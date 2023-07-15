@@ -1,6 +1,6 @@
 import React from 'react'
 import {LogOut} from 'features/LogOut/LogOut'
-import {AsideWrapper} from 'widgets/Aside/styled'
+import {AsideWrapper} from 'widgets/Aside/Aside.styled'
 import {NavLink} from 'shared/components/NavLink/NavLink'
 import HomeIcon from 'common/assets/icons/home.svg'
 import MyProfileIcon from 'common/assets/icons/myProfile.svg'

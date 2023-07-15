@@ -3,15 +3,18 @@ import {Aside} from 'widgets/Aside/Aside'
 import {NextPage} from 'next'
 import {Unauthorized} from '_app/Layouts/unauthorized/Unauthorized'
 import {AuthorizedLayoutWrapper} from '_app/Layouts/authorized/AuthorizeLayout.style'
+import {Container} from 'shared/components/Container/Container'
 
 export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     return (
         // @ts-ignore
         <Unauthorized>
-            <AuthorizedLayoutWrapper>
-                <Aside />
-                <section>{children}</section>
-            </AuthorizedLayoutWrapper>
+            <Container>
+                <AuthorizedLayoutWrapper>
+                    <Aside />
+                    <section>{children}</section>
+                </AuthorizedLayoutWrapper>
+            </Container>
         </Unauthorized>
     )
 }
