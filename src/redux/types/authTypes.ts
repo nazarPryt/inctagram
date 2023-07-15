@@ -21,6 +21,24 @@ export type UserResponseType = {
     userName: string
 }
 
+export interface UserProfile {
+    id: number
+    userName: string
+    firstName: string
+    lastName: string
+    city: string
+    dateOfBirth: Date
+    aboutMe: string
+    avatars: UserProfileAvatars[]
+}
+
+export interface UserProfileAvatars {
+    url: string
+    width: number
+    height: number
+    fileSize: number
+}
+
 export type ForgotPasswordArgType = {
     email: string
     recaptcha: string

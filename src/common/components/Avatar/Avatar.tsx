@@ -11,7 +11,7 @@ import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {Button} from 'shared/components/Button/Button'
 
-export const Avatar: FC<{avatar: string}> = ({avatar}) => {
+export const Avatar: FC<{avatar?: string}> = ({avatar}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleModalClose = () => {
@@ -57,9 +57,9 @@ const Wrapper = styled.span`
     }
 `
 
-export const UserAvatar: FC<{avatar: string}> = ({avatar}) => {
+export const UserAvatar: FC<{avatar?: string}> = ({avatar}) => {
     const dispatch = useAppDispatch()
-    const [_, setImgUrl] = useState(
+    const [imgUrl, setImgUrl] = useState(
         'https://storage.yandexcloud.net/users-inctagram/users/248/avatar/b07e8938-b97e-458f-872f-61f23e427079-images-192x192'
     )
 
@@ -85,7 +85,7 @@ export const UserAvatar: FC<{avatar: string}> = ({avatar}) => {
         <Wrapper>
             {avatar ? (
                 <div className={'avatar'}>
-                    <Image src={avatar} alt={'imgUrl'} width={192} height={192} />
+                    <Image src={avatar ? avatar : imgUrl} alt={'imgUrl'} width={192} height={192} />
                     <IconButton onClick={handleDeleteAvatar} disabled={isLoading}>
                         <DeleteAvatarIcon />
                     </IconButton>
