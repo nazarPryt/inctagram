@@ -11,10 +11,14 @@ export const PostHeaderWrapper = styled.div`
         align-items: center;
         gap: 20px;
 
-        p {
+        a {
             position: relative;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            color: ${props => props.theme.textColor};
         }
-        p:after {
+        a:after {
             content: '';
             position: absolute;
             top: 5px;
@@ -23,13 +27,6 @@ export const PostHeaderWrapper = styled.div`
             height: 8px;
             border-radius: 50%;
             background-color: ${props => props.theme.textColor};
-        }
-
-        .avatar {
-            border-radius: 50%;
-            overflow: hidden;
-            width: 36px;
-            height: 36px;
         }
     }
 `

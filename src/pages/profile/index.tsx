@@ -10,7 +10,8 @@ const data = {
     items: [
         {
             id: 1,
-            description: 'description',
+            description:
+                'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores ea hic, natus neque qui voluptate? Animi aut commodi, ea facere facilis inventore magnam nostrum sapiente sequi soluta vel voluptas',
             location: 'location',
             images: [
                 {
