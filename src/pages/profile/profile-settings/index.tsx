@@ -8,6 +8,7 @@ import {ProfileSettingsAccordion} from 'shared/components/ProfileSettingsAccordi
 import {Devices} from 'shared/components/Devices/Devices'
 import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
 import {AccountManagement} from 'shared/components/AccountManagement/AccountManagement'
+import {getAuthorizedLayout} from '../../../_app/Layouts/authorized/AuthorizedLayout'
 
 export default function ProfileSettingsPage() {
     const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
@@ -24,4 +25,4 @@ export default function ProfileSettingsPage() {
         </ProfileSettingsWrapper>
     )
 }
-ProfileSettingsPage.getLayout = getHomeLayout
+ProfileSettingsPage.getLayout = getAuthorizedLayout
