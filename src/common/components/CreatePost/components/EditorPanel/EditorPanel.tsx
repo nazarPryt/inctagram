@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {MouseEvent, ChangeEvent, useRef, useState, MouseEventHandler} from 'react'
 import RatioIcon from '../../../../assets/icons/ratio.svg'
 import ZoomIcon from '../../../../assets/icons/zoom.svg'
 import CropOriginal from '../../../../assets/icons/cropOriginal.svg'
@@ -6,15 +6,21 @@ import Crop1x1 from '../../../../assets/icons/crop1x1.svg'
 import Crop4x5 from '../../../../assets/icons/crop4x5.svg'
 import Crop16x9 from '../../../../assets/icons/crop16x9.svg'
 import AddPhotoToLibrary from 'common/assets/icons/emptyAvatar.svg'
-import {EditorPanelWrapper, LibraryWrapper, SelectWrapper, ZoomWrapper} from './styled'
+import AddIcon from 'common/assets/icons/addIcon.svg'
+import CloseIcon from 'common/assets/icons/close.svg'
+import {EditorPanelWrapper, LibraryPicture, LibraryWrapper, SelectWrapper, ZoomWrapper} from './styled'
+import {LibraryPicturesType} from '../../CreatePost'
 import {Button} from '../../../Button/Button'
-import {StepsType} from '../../CreatePost'
+import {InputFile} from '../../../InputFile/InputFile'
 
 type EditorButtonsType = {
     valueZoom: string
     width: number
     height: number
-
+    libraryPictures: LibraryPicturesType[]
+    handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
+    onChangeGeneralPicture: (id: string) => void
+    onDeletePicture: (id: string) => void
     onChangeResize: (width: number, height: number) => void
     onChangeZoom: (e: ChangeEvent<HTMLInputElement>) => void
 }
@@ -32,6 +38,8 @@ const ASPECT_RATIO = {
 }
 
 export const EditorPanel: React.FC<EditorButtonsType> = props => {
+    const selectPhotoRef = useRef<HTMLInputElement>(null)
+
     const [selectHidden, setSelectHidden] = useState(false)
     const [zoomHidden, setZoomHidden] = useState(false)
     const [libraryHidden, setLibraryHidden] = useState(false)
@@ -43,7 +51,6 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
     ]
 
     const handlerCrop = (aspectRatio: number) => {
-        console.log('aspectRatio', aspectRatio)
         if (aspectRatio === ASPECT_RATIO.OneToOne) {
             const newSize = Math.round(Math.sqrt(props.width * props.height))
             return props.onChangeResize(newSize, newSize)
@@ -58,6 +65,10 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
         if (aspectRatio === ASPECT_RATIO.Original) {
             return props.onChangeResize(ORIGINAL_SIZE.width, ORIGINAL_SIZE.height)
         }
+    }
+
+    const handlerAddPhoto = () => {
+        selectPhotoRef && selectPhotoRef.current?.click()
     }
 
     return (
@@ -81,10 +92,45 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
                         step='0.1'
                     />
                 </ZoomWrapper>
-                <LibraryWrapper hidden={libraryHidden}>LIBRARY</LibraryWrapper>
-                <RatioIcon onClick={() => setSelectHidden(!selectHidden)} />
-                <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
-                <AddPhotoToLibrary onClick={() => setLibraryHidden(!libraryHidden)} />
+                <LibraryWrapper hidden={libraryHidden}>
+                    <div className={'OVER'}>
+                        {props.libraryPictures.map(el => (
+                            <div key={el.id}>
+                                <LibraryPicture image={el.img} onClick={() => props.onChangeGeneralPicture(el.id)} />
+                                <Button
+                                    className='close'
+                                    variant={'isIcon'}
+                                    onClick={() => props.onDeletePicture(el.id)}
+                                >
+                                    <CloseIcon />
+                                </Button>
+                            </div>
+                        ))}
+                    </div>
+                    <div>
+                        <Button variant={'isIcon'} onClick={handlerAddPhoto}>
+                            <AddIcon />
+                        </Button>
+                    </div>
+                    <InputFile
+                        title={'Select from Computer'}
+                        ref={selectPhotoRef}
+                        onChange={props.handleCreatePost}
+                        accept={'image/png, image/jpeg'}
+                        multiple={false}
+                    />
+                </LibraryWrapper>
+                <div className='iconsWrapper'>
+                    <div>
+                        <RatioIcon onClick={() => setSelectHidden(!selectHidden)} />
+                    </div>
+                    <div>
+                        <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
+                    </div>
+                    <div>
+                        <AddPhotoToLibrary onClick={() => setLibraryHidden(!libraryHidden)} />
+                    </div>
+                </div>
             </div>
         </EditorPanelWrapper>
     )

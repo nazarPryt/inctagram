@@ -1,5 +1,5 @@
 import {api} from './api'
-import {UploadedImageResponse} from '../types/postsTypes'
+import {CreatePostResponse, UploadedImageResponse, UploadPost} from '../types/postsTypes'
 
 export const postsAPI = api.injectEndpoints({
     endpoints: build => ({
@@ -10,7 +10,14 @@ export const postsAPI = api.injectEndpoints({
                 body,
             }),
         }),
+        createPost: build.mutation<CreatePostResponse, UploadPost>({
+            query: body => ({
+                url: `posts`,
+                method: 'POST',
+                body,
+            }),
+        }),
     }),
 })
 
-export const {useUploadImageMutation} = postsAPI
+export const {useUploadImageMutation, useCreatePostMutation} = postsAPI

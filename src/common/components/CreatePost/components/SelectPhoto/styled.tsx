@@ -8,5 +8,5 @@ export const SelectPhotoWrapper = styled.div`
     max-width: 230px;
     z-index: 1;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
 `

@@ -16,7 +16,6 @@ export const SelectPhoto: React.FC<SelectPhotoType> = props => {
                 accept={'image/png, image/jpeg'}
                 multiple={false}
             />
-            <Button variant={'outlined'}>Open Draft</Button>
         </SelectPhotoWrapper>
     )
 }
