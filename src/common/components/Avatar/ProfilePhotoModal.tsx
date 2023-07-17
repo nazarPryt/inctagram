@@ -33,12 +33,10 @@ export const ProfilePhotoModal = (props: BaseModalProps) => {
     const handleSave = () => {
         if (editor) {
             const canvas = editor.getImage()
-
             canvas.toBlob((blob: any) => {
                 const formData = new FormData()
 
                 formData.append('file', blob)
-
                 avatar(formData)
                     .unwrap()
                     .then(() => {

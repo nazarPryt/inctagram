@@ -25,6 +25,7 @@ export const ModalContent = styled.div`
   transform: scale(0.5);
   color: ${props => props.theme.palette.common.white};
   transition: 1s linear;
+  position: relative;
 
   &.open {
     transform: scale(1);
