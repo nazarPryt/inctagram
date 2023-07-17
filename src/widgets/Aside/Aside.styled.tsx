@@ -14,7 +14,7 @@ export const AsideWrapper = styled.aside`
     nav a:nth-child(6) {
         margin-top: 60px;
     }
-    & button {
+    button:last-child {
         margin-top: 180px;
         padding: 0;
     }

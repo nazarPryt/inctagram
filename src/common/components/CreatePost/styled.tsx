@@ -1,12 +1,26 @@
 import styled from 'styled-components'
 
-export const CreatePostWrapper = styled.div`
-    li {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin: 0 auto;
-        list-style-type: none;
+export const CreatePostButton = styled.button`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    padding: 0;
+
+    &:hover {
+        color: ${props => props.theme.palette.primary['100']};
+        path {
+            fill: ${props => props.theme.palette.primary['100']};
+        }
+    }
+
+    path {
+        fill: ${props =>
+            props.theme.name === 'dark' ? props.theme.palette.common.white : props => props.theme.palette.common.black};
     }
 `
 export const ModalContentWrapper = styled.div`

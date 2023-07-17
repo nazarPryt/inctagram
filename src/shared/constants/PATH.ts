@@ -11,7 +11,6 @@ export const PATH = {
 
     // Aside
     HOME: '/profile',
-    CREATE: '/profile/create',
     MY_PROFILE: '/profile/my-profile',
     USER_PROFILE: '/profile/user-profile',
     PROFILE_SETTINGS: '/profile/profile-settings',

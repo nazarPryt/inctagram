@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
-import {CreatePostWrapper, EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
+import {CreatePostButton, EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
 import EmptyIcon from '../../assets/icons/emptyAvatar.svg'
-import {useCreatePostMutation, useUploadImageMutation} from '../../../redux/api/postsAPI'
+import {useCreatePostMutation, useUploadImageMutation} from 'redux/api/postsAPI'
 import AvatarEditor from 'react-avatar-editor'
 import {EditorPanel} from './components/EditorPanel/EditorPanel'
 import {SelectPhoto} from './components/SelectPhoto/SelectPhoto'
@@ -12,9 +12,9 @@ import {createFilteredFile} from './createFilteredFile'
 import {EditorButtons} from './components/EditorButtons/EditorButtons'
 import {Describe} from './components/Describe/Describe'
 import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
-import {useAppDispatch} from '../../../shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '../../../_app/store/appSlice'
-import {Modal} from '../../../shared/components/Modal/BaseModal'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '_app/store/appSlice'
+import {Modal} from 'shared/components/Modal/BaseModal'
 
 export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'
 
@@ -210,12 +210,11 @@ export const CreatePost = () => {
 
     return (
         <>
-            <CreatePostWrapper>
-                <li onClick={() => setIsOpen(true)}>
-                    <CreateIcon />
-                    Create
-                </li>
-            </CreatePostWrapper>
+            <CreatePostButton onClick={() => setIsOpen(true)}>
+                <CreateIcon />
+                Create
+            </CreatePostButton>
+
             <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
                     {step !== 'Add Photo' && (
