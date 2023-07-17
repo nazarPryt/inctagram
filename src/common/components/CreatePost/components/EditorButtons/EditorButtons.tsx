@@ -6,6 +6,7 @@ import {EditorButtonsWrapper} from './styled'
 
 type EditorButtonsType = {
     title: string
+    isLoading: boolean
     onChangeStep: (step: StepsType) => void
 }
 
@@ -15,13 +16,21 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
     return (
         <EditorButtonsWrapper>
             <div>
-                <Button variant={'text'} onClick={() => props.onChangeStep(STEPS[nextStep - 1])}>
+                <Button
+                    variant={'text'}
+                    disabled={props.isLoading}
+                    onClick={() => props.onChangeStep(STEPS[nextStep - 1])}
+                >
                     <ArrowLeft />
                 </Button>
             </div>
             <span>{props.title}</span>
             <div>
-                <Button variant={'text'} onClick={() => props.onChangeStep(STEPS[nextStep + 1])}>
+                <Button
+                    variant={'text'}
+                    disabled={props.isLoading}
+                    onClick={() => props.onChangeStep(STEPS[nextStep + 1])}
+                >
                     Next
                 </Button>
             </div>

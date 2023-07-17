@@ -26,8 +26,8 @@ export type LibraryPicturesType = {
 
 export const CreatePost = () => {
     const dispatch = useAppDispatch()
-    const [post] = useUploadImageMutation()
-    const [postDescribe, {isLoading}] = useCreatePostMutation()
+    const [post, {isLoading}] = useUploadImageMutation()
+    const [postDescribe] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
     const [step, setStep] = useState<StepsType>('Add Photo')
     const [width, setWidth] = useState(485)
@@ -218,7 +218,9 @@ export const CreatePost = () => {
             </CreatePostWrapper>
             <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
-                    {step !== 'Add Photo' && <EditorButtons title={step} onChangeStep={handleChangeStep} />}
+                    {step !== 'Add Photo' && (
+                        <EditorButtons isLoading={isLoading} title={step} onChangeStep={handleChangeStep} />
+                    )}
                     <EditorWrapper>
                         {picture.img.length ? (
                             <>
