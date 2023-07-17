@@ -1,9 +1,7 @@
 import React, {ReactNode, useEffect} from 'react'
 import {ReactPortal} from 'shared/components/Modal/ReactPortal'
 import {IconButton} from 'shared/components/IconButton/IconButton'
-import CloseIconWhite from 'common/assets/icons/closeWhite.svg'
-import CloseIconDark from 'common/assets/icons/closeBlack.svg'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
+import CloseIcon from 'common/assets/icons/closeWhite.svg'
 import {ModalContent, ModalWrapper} from 'shared/components/Modal/BaseModal.styled'
 
 export type BaseModalProps = {
@@ -12,8 +10,8 @@ export type BaseModalProps = {
     handleClose: () => void
     title: string
 }
+
 export const Modal = ({children, isOpen, handleClose, title}: BaseModalProps) => {
-    const theme = useAppSelector(state => state.app.theme)
     const handleCloseModal = () => {
         document.body.classList.remove('isModalOpen')
         handleClose()
@@ -43,7 +41,7 @@ export const Modal = ({children, isOpen, handleClose, title}: BaseModalProps) =>
                         <div className={'header'}>
                             {title}
                             <IconButton onClick={handleCloseModal}>
-                                {theme === 'dark' ? <CloseIconWhite /> : <CloseIconDark />}
+                                <CloseIcon />
                             </IconButton>
                         </div>
                         <div className={'line'}></div>

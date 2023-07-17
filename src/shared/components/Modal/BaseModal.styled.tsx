@@ -18,7 +18,7 @@ export const ModalWrapper = styled.div`
 `
 export const ModalContent = styled.div`
   background-color: ${props => props.theme.palette.dark['300']};
-  width: 436px;
+  min-width: 436px;
   overflow: auto;
   box-shadow: 0 0 70px 10px #000;
   border: 1px solid ${props => props.theme.palette.dark['100']};
