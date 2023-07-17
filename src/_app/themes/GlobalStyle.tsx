@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+  html{
+    
+    overflow-y: scroll;
+  }
 
   body {
     background-color: ${({theme}) => theme.bodyColor};

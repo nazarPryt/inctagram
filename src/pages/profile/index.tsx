@@ -27,6 +27,20 @@ const data = {
                     fileSize: 300,
                     uploadId: 'string',
                 },
+                {
+                    url: 'https://loremflickr.com/500/500/cat',
+                    width: 300,
+                    height: 300,
+                    fileSize: 300,
+                    uploadId: 'string',
+                },
+                {
+                    url: 'https://loremflickr.com/500/500/car',
+                    width: 300,
+                    height: 300,
+                    fileSize: 300,
+                    uploadId: 'string',
+                },
             ],
             createdAt: '2023-07-14T14:50:09.268Z',
             updatedAt: '2023-07-14T14:50:09.268Z',
@@ -39,6 +53,13 @@ const data = {
             images: [
                 {
                     url: 'https://loremflickr.com/500/500/dog',
+                    width: 300,
+                    height: 300,
+                    fileSize: 300,
+                    uploadId: 'string',
+                },
+                {
+                    url: 'https://loremflickr.com/500/500/rain',
                     width: 300,
                     height: 300,
                     fileSize: 300,
