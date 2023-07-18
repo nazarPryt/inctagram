@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
-import {CreatePostButton, EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
+import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
 import EmptyIcon from '../../assets/icons/emptyAvatar.svg'
 import {useCreatePostMutation, useUploadImageMutation} from 'redux/api/postsAPI'
 import AvatarEditor from 'react-avatar-editor'
@@ -15,6 +15,7 @@ import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {Modal} from 'shared/components/Modal/BaseModal'
+import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 
 export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'
 
@@ -210,10 +211,7 @@ export const CreatePost = () => {
 
     return (
         <>
-            <CreatePostButton onClick={() => setIsOpen(true)}>
-                <CreateIcon />
-                Create
-            </CreatePostButton>
+            <NavButton title={'Create'} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
 
             <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>

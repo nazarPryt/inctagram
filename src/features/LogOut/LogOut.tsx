@@ -8,6 +8,7 @@ import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {signOut, useSession} from 'next-auth/react'
 import {Button} from 'shared/components/Button/Button'
+import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 
 export const LogOut = () => {
     const dispatch = useAppDispatch()
@@ -35,10 +36,8 @@ export const LogOut = () => {
     }
     return (
         <>
-            <Button onClick={() => setShowModal(true)} variant={'isIcon'}>
-                <LogoutIcon />
-                Log Out
-            </Button>
+            <NavButton title={'Log Out'} icon={<LogoutIcon />} onClick={() => setShowModal(true)} />
+
             <Modal isOpen={showModal} title={'Log Out'} handleClose={handleCloseModal}>
                 <LogOutModalWrapper>
                     <p>
