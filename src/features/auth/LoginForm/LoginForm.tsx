@@ -40,7 +40,7 @@ export const LoginForm = () => {
                     </IconButton>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email} />
+                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email?.message} />
                     <InputPassword label={'Password'} {...register('password')} error={errors.password?.message} />
                     <Link href={PATH.FORGOT_PASSWORD}>Forgot Password</Link>
                     <Button type={'submit'} disabled={isLoading}>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {PostCommentsWrapper} from 'entities/Post/ui/PostComments/PostComments.styled'
-import {Textarea} from 'shared/components/Textarea/Textarea'
+import {TextArea} from 'shared/components/TextArea/TextArea'
 import {Button} from 'shared/components/Button/Button'
 import {Modal} from 'shared/components/Modal/BaseModal'
 
@@ -15,7 +15,7 @@ export const PostComments = () => {
         <PostCommentsWrapper>
             <button onClick={() => setIsModalOpen(true)}>{`View All Comments ${114}`}</button>
             <form className={'textAreaWrapper'}>
-                <Textarea placeholder={'Add a Comment...'} />
+                <TextArea placeholder={'Add a Comment...'} />
                 <Button variant={'outlined'}>Publish</Button>
             </form>
             <Modal isOpen={isModalOpen} handleClose={handleCloseModal} title={'modal'}>

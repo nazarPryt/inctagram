@@ -36,8 +36,13 @@ export const RegistrationForm = () => {
                     </IconButton>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <InputText label={'UserName'} type={'text'} {...register('userName')} error={errors.userName} />
-                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email} />
+                    <InputText
+                        label={'UserName'}
+                        type={'text'}
+                        {...register('userName')}
+                        error={errors.userName?.message}
+                    />
+                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email?.message} />
                     <InputPassword label={'Password'} {...register('password')} error={errors.password?.message} />
                     <InputPassword
                         label={'Password confirmation'}

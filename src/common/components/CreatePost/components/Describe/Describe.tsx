@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react'
 import Image from 'next/image'
 import EmptyAvatarIcon from 'common/assets/icons/emptyAvatar.svg'
 import {AvatarWrapper, DescribeWrapper} from './styled'
-import {Textarea} from '../../../../../shared/components/Textarea/Textarea'
+import {TextArea} from 'shared/components/TextArea/TextArea'
 
 type DescribeType = {
     describeText: string
@@ -18,7 +18,7 @@ export const Describe: React.FC<DescribeType> = props => {
                 </AvatarWrapper>
                 <span>Your Name</span>
             </div>
-            <Textarea
+            <TextArea
                 defaultValue={props.describeText}
                 onChange={e => props.changeTextHandler(e)}
                 label='Add Publication descriptions'

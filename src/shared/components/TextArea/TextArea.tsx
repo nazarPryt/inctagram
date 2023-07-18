@@ -1,16 +1,14 @@
 'use client'
 import React, {ComponentProps, forwardRef} from 'react'
-
-import {FieldError} from 'react-hook-form'
 import {Wrapper} from 'shared/components/InputText/InputText.styled'
 
 type DefaultTextareaPropsType = ComponentProps<'textarea'>
 
 type TextareaProps = DefaultTextareaPropsType & {
     label?: string
-    error?: FieldError | undefined
+    error?: string
 }
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
     return (
         <Wrapper>
             <textarea ref={ref} {...props} required />
@@ -20,4 +18,4 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, r
         </Wrapper>
     )
 })
-Textarea.displayName = 'Textarea' //https://bobbyhadz.com/blog/react-component-is-missing-display-name
+TextArea.displayName = 'TextArea' //https://bobbyhadz.com/blog/react-component-is-missing-display-name

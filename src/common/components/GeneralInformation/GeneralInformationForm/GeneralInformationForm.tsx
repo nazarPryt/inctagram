@@ -1,7 +1,7 @@
 'use client'
 import React, {FC, useRef} from 'react'
 import {InputText} from 'shared/components/InputText/InputText'
-import {Textarea} from 'shared/components/Textarea/Textarea'
+import {TextArea} from 'shared/components/TextArea/TextArea'
 import {GeneralInformationFormWrapper} from 'common/components/GeneralInformation/GeneralInformationForm/styled'
 import {useForm} from 'react-hook-form'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
@@ -83,12 +83,12 @@ export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit(onSubmit)}>
-            <InputText {...register('userName')} label='Username' error={errors.userName}></InputText>
+            <InputText {...register('userName')} label='Username' error={errors.userName?.message}></InputText>
             <InputText {...register('firstName')} label='First Name'></InputText>
             <InputText {...register('lastName')} label='Last Name'></InputText>
             <CustomDatePicker control={control} {...register('dateOfBirth')} ref={datePickerRef} />
             <InputText {...register('city')} label='City'></InputText>
-            <Textarea {...register('aboutMe')} label='About me' error={errors.aboutMe}></Textarea>
+            <TextArea {...register('aboutMe')} label='About me' error={errors.aboutMe?.message}></TextArea>
             <Button type='submit' className='buttonSave'>
                 Save Changes
             </Button>
