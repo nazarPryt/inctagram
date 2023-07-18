@@ -1,16 +1,17 @@
-import React, {ComponentProps, ReactNode} from 'react'
+import React, {ComponentProps, forwardRef, ReactNode} from 'react'
 import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
 
-type NavButtonType = {
+type NavButtonType = ComponentProps<'button'> & {
     title: string
     icon: ReactNode
-} & ComponentProps<'button'>
+}
 
-export const NavButton = ({title, icon, ...rest}: NavButtonType) => {
+export const NavButton = forwardRef<HTMLButtonElement, NavButtonType>((props, ref) => {
     return (
-        <NavButtonWrapper {...rest}>
-            {icon}
-            {title}
+        <NavButtonWrapper ref={ref} {...props}>
+            {props.icon}
+            {props.title}
         </NavButtonWrapper>
     )
-}
+})
+NavButton.displayName = 'NavButton'

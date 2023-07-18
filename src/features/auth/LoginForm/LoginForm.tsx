@@ -41,7 +41,7 @@ export const LoginForm = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email} />
-                    <InputPassword label={'Password'} {...register('password')} error={errors.password} />
+                    <InputPassword label={'Password'} {...register('password')} error={errors.password?.message} />
                     <Link href={PATH.FORGOT_PASSWORD}>Forgot Password</Link>
                     <Button type={'submit'} disabled={isLoading}>
                         Sign In

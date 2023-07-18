@@ -4,7 +4,7 @@ import {Button} from './Button'
 import {withThemeDecorator} from '../../../../.storybook/withThemeDecorator'
 
 const meta: Meta<typeof Button> = {
-    title: 'Example/Button',
+    title: 'Components/Button',
     component: Button,
     tags: ['docsPage'],
     argTypes: {
