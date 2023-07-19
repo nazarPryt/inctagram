@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
-import {withThemeDecorator} from '../../../../../.storybook/withThemeDecorator'
+import {withThemeDecorator} from 'storybook/decorators/withThemeDecorator'
 
 const meta = {
     title: 'Components/NavButton',

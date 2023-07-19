@@ -1,4 +1,4 @@
-import {BaseModalProps, Modal} from 'shared/components/Modal/BaseModal'
+import {BaseModalProps, Modal} from 'shared/components/Modal/Modal'
 import React, {ChangeEvent, useState} from 'react'
 import styled from 'styled-components'
 import {InputFile} from 'shared/components/InputFile/InputFile'

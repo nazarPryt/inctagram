@@ -3,8 +3,11 @@ import Link from 'next/link'
 
 export const AvatarIconWrapper = styled(Link)`
     flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 36px;
-    height: 36px;
+
+    img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: fill;
+    }
 `

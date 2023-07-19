@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react'
-import {withThemeDecorator} from '../../../../.storybook/withThemeDecorator'
+import {withThemeDecorator} from 'storybook/decorators/withThemeDecorator'
 import {InputText} from './InputText'
 
 const meta = {

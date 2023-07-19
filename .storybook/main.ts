@@ -1,27 +1,6 @@
 import type {StorybookConfig} from '@storybook/nextjs'
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-// const config: StorybookConfig = {
-//     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-//     addons: [
-//         '@storybook/addon-links',
-//         '@storybook/addon-essentials',
-//         '@storybook/addon-interactions',
-//         {
-//             name: '@storybook/addon-styling',
-//             options: {},
-//         },
-//     ],
-//     framework: {
-//         name: '@storybook/nextjs',
-//         options: {},
-//     },
-//     docs: {
-//         autodocs: 'tag',
-//     },
-// }
-// export default config
-
 const path = require('path')
 module.exports = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -29,6 +8,7 @@ module.exports = {
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
+        '@storybook-addon-state',
         {
             name: '@storybook/addon-styling',
             options: {},
@@ -62,4 +42,25 @@ module.exports = {
         return config
     },
 }
+
 //https://github.com/MarikaKonturova/inctagram-v2/blob/main/config/storybook/main.js
+// const config: StorybookConfig = {
+//     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+//     addons: [
+//         '@storybook/addon-links',
+//         '@storybook/addon-essentials',
+//         '@storybook/addon-interactions',
+//         {
+//             name: '@storybook/addon-styling',
+//             options: {},
+//         },
+//     ],
+//     framework: {
+//         name: '@storybook/nextjs',
+//         options: {},
+//     },
+//     docs: {
+//         autodocs: 'tag',
+//     },
+// }
+// export default config

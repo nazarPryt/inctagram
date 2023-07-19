@@ -1,8 +1,8 @@
 import React, {ReactNode, useEffect} from 'react'
 import {ReactPortal} from 'shared/components/Modal/ReactPortal'
 import {IconButton} from 'shared/components/IconButton/IconButton'
-import CloseIcon from 'common/assets/icons/closeWhite.svg'
-import {ModalContent, ModalWrapper} from 'shared/components/Modal/BaseModal.styled'
+import {ModalContent, ModalWrapper} from 'shared/components/Modal/Modal.styled'
+import {CloseIcon} from 'common/assets/icons/CloseIcon'
 
 export type BaseModalProps = {
     children?: ReactNode

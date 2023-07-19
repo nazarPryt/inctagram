@@ -1,7 +1,7 @@
 'use client'
 import LogoutIcon from 'features/LogOut/logout.svg'
 import React, {useState} from 'react'
-import {Modal} from 'shared/components/Modal/BaseModal'
+import {Modal} from 'shared/components/Modal/Modal'
 import {LogOutModalWrapper} from 'features/LogOut/LogOut.styled'
 import {useLogOutMutation} from 'redux/api/authAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
