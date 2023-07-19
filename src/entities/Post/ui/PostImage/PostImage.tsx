@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {PostImageWrapper} from 'entities/Post/ui/PostImage/PostImage.styled'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {PostCardImageType} from 'entities/Post/api/types'
-import {A11y, Autoplay, Navigation, Pagination} from 'swiper/modules'
+import {A11y, Autoplay, Navigation, Pagination, Keyboard} from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -12,10 +12,11 @@ export const PostImage = (props: {images: PostCardImageType[]}) => {
     return (
         <PostImageWrapper>
             <Swiper
-                modules={[Navigation, Pagination, Autoplay, A11y]}
+                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
                 spaceBetween={0}
                 slidesPerView={1}
-                navigation
+                navigation={true}
+                keyboard={true}
                 pagination={{clickable: true}}
                 scrollbar={{draggable: true}}
                 autoplay={{
