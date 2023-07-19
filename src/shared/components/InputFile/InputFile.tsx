@@ -1,5 +1,5 @@
 import React, {ComponentProps, forwardRef} from 'react'
-import {InputFileWrapper} from 'shared/components/InputFile/styled'
+import {InputFileWrapper} from 'shared/components/InputFile/InputFile.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 

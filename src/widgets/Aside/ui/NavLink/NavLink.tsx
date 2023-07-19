@@ -1,8 +1,7 @@
 import React, {ComponentProps, ReactNode} from 'react'
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
-import {NavIconWrapper} from 'widgets/Aside/ui/NavLink/NavIcon'
-import {NavLinkWrapper} from 'widgets/Aside/ui/NavLink/styled'
+import {NavIconWrapper, NavLinkWrapper} from 'widgets/Aside/ui/NavLink/NavLink.styled'
 
 type DefaultLinkPropsType = ComponentProps<typeof Link>
 
