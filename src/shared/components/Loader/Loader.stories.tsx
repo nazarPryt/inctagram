@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react'
-import {withThemeDecorator} from 'storybook/decorators/withThemeDecorator'
+import {withThemeDecorator} from 'shared/lib/storybook/decorators/withThemeDecorator'
 import {Loader} from './Loader'
 
 const meta = {

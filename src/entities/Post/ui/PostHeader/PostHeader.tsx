@@ -17,7 +17,9 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
         <PostHeaderWrapper>
             <div>
                 <AvatarIcon img={img} userID={userID} />
-                <Link href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>URLProfiele</Link>
+                <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>
+                    URLProfiele
+                </Link>
                 <span>22 Minutes ago</span>
             </div>
             <IconButton>

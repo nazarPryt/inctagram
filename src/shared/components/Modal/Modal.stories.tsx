@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react'
 import {Modal} from './Modal'
 import React, {useState} from 'react'
-import {ModalDecorator} from 'storybook/decorators/ModalDecorator'
+import {ModalDecorator} from 'shared/lib/storybook/decorators/ModalDecorator'
 
 const meta: Meta<typeof Modal> = {
     title: 'Components/Modal',

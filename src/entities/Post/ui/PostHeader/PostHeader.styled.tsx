@@ -11,22 +11,23 @@ export const PostHeaderWrapper = styled.div`
         align-items: center;
         gap: 20px;
 
-        a {
+        .link {
             position: relative;
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
             color: ${props => props.theme.textColor};
-        }
-        a:after {
-            content: '';
-            position: absolute;
-            top: 5px;
-            right: -15px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: ${props => props.theme.textColor};
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 5px;
+                right: -15px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: ${props => props.theme.textColor};
+            }
         }
     }
 `

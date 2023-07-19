@@ -13,7 +13,6 @@ type PostType = {
 }
 
 //todo ask backend where i have to take userID
-//todo PostImage should have Swiper
 
 export const Post = ({post}: PostType) => {
     return (
