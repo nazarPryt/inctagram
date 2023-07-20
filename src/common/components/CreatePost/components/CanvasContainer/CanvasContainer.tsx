@@ -1,6 +1,7 @@
-import AvatarEditor from 'react-avatar-editor'
+import AvatarEditor, {ImageState} from 'react-avatar-editor'
 import React, {RefObject} from 'react'
 import {Wrapper} from './styled'
+import Image from 'next/image'
 
 type CanvasContainerType = {
     width: number
@@ -11,6 +12,8 @@ type CanvasContainerType = {
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
+    console.log('CANVAS', props.picture.img)
+
     return (
         <Wrapper width={props.width} height={props.height}>
             <AvatarEditor

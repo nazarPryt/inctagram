@@ -9,7 +9,7 @@ import AddPhotoToLibrary from 'common/assets/icons/emptyAvatar.svg'
 import AddIcon from 'common/assets/icons/addIcon.svg'
 import CloseIcon from 'common/assets/icons/close.svg'
 import {EditorPanelWrapper, LibraryPicture, LibraryWrapper, SelectWrapper, ZoomWrapper} from './styled'
-import {LibraryPicturesType} from '../../CreatePost'
+import {LibraryPictureType} from '../../CreatePost'
 import {Button} from '../../../../../shared/components/Button/Button'
 import {InputFile} from '../../../../../shared/components/InputFile/InputFile'
 
@@ -17,7 +17,7 @@ type EditorButtonsType = {
     valueZoom: string
     width: number
     height: number
-    libraryPictures: LibraryPicturesType[]
+    libraryPictures: LibraryPictureType[]
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
     onChangeGeneralPicture: (id: string) => void
     onDeletePicture: (id: string) => void
@@ -71,6 +71,7 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
         selectPhotoRef && selectPhotoRef.current?.click()
     }
 
+    // @ts-ignore
     return (
         <EditorPanelWrapper>
             <div className='popUpBtn'>
@@ -97,6 +98,7 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
                         {props.libraryPictures.map(el => (
                             <div key={el.id}>
                                 <LibraryPicture image={el.img} onClick={() => props.onChangeGeneralPicture(el.id)} />
+                                {/*задизейблить или спрятать кнопку когда длинна libraryPictures === 1 */}
                                 <Button
                                     className='close'
                                     variant={'isIcon'}
