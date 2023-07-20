@@ -3,11 +3,13 @@ import {setupListeners} from '@reduxjs/toolkit/query'
 import {appReducer} from '_app/store/appSlice'
 import {userReducer} from '_app/store/userSlice'
 import {api} from 'redux/api/api'
+import {uploadPhotoReducer} from '../../common/components/CreatePost/model/slice/uploadPhotoSlice'
 
 export const store = configureStore({
     reducer: {
         app: appReducer,
         userAuth: userReducer,
+        uploadPhoto: uploadPhotoReducer,
         [api.reducerPath]: api.reducer,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
