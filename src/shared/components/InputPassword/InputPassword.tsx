@@ -1,23 +1,17 @@
 'use client'
 import React, {ComponentProps, forwardRef, useState} from 'react'
-
-import {FieldError} from 'react-hook-form'
 import {Wrapper} from 'shared/components/InputText/InputText.styled'
-import EyeWhite from 'common/assets/icons/eyeWhite.svg'
-import EyeBlack from 'common/assets/icons/eyeBlack.svg'
-import EyeOffBlack from 'common/assets/icons/eyeOffBlack.svg'
-import EyeOffWhite from 'common/assets/icons/eyeOffWhite.svg'
+import {Eye} from 'common/assets/icons/Eye'
 import {IconButton} from 'shared/components/IconButton/IconButton'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
+import {EyeOff} from 'common/assets/icons/EyeOff'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 
 type InputProps = DefaultInputPropsType & {
     label?: string
-    error?: FieldError | undefined
+    error?: string
 }
 export const InputPassword = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const theme = useAppSelector(state => state.app.theme)
     const [see, setSee] = useState(false)
 
     const handleShowPassword = () => {
@@ -30,14 +24,14 @@ export const InputPassword = forwardRef<HTMLInputElement, InputProps>((props, re
             <span className='bar'></span>
             {see ? (
                 <IconButton className='eye' onClick={handleShowPassword}>
-                    {theme === 'dark' ? <EyeOffWhite /> : <EyeOffBlack />}
+                    <EyeOff />
                 </IconButton>
             ) : (
                 <IconButton className='eye' onClick={handleShowPassword}>
-                    {theme === 'dark' ? <EyeWhite /> : <EyeBlack />}
+                    <Eye />
                 </IconButton>
             )}
-            <span className='error'>{props.error?.message}</span>
+            <span className='error'>{props.error}</span>
             <label>{props.label}</label>
         </Wrapper>
     )

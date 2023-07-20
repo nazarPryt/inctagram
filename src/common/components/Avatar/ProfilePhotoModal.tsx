@@ -1,4 +1,4 @@
-import {BaseModalProps, Modal} from 'shared/components/Modal/BaseModal'
+import {BaseModalProps, Modal} from 'shared/components/Modal/Modal'
 import React, {ChangeEvent, useState} from 'react'
 import styled from 'styled-components'
 import {InputFile} from 'shared/components/InputFile/InputFile'
@@ -33,12 +33,10 @@ export const ProfilePhotoModal = (props: BaseModalProps) => {
     const handleSave = () => {
         if (editor) {
             const canvas = editor.getImage()
-
             canvas.toBlob((blob: any) => {
                 const formData = new FormData()
 
                 formData.append('file', blob)
-
                 avatar(formData)
                     .unwrap()
                     .then(() => {
