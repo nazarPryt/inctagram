@@ -8,7 +8,7 @@ export const PostDescriptionWrapper = styled.div`
         text-decoration: none;
         font-weight: 600;
         font-size: 16px;
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor[100]};
     }
 
     p {

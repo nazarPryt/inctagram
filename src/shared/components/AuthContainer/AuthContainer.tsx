@@ -11,8 +11,8 @@ export const AuthContainerWrapper = styled.section`
         width: 100%;
         max-width: 378px;
         padding: 23px;
-        border: 1px solid ${props => props.theme.palette.dark['300']};
-        background-color: ${props => props.theme.palette.dark['500']};
+        border: 1px solid ${props => props.theme.textColor['300']};
+        background-color: ${props => props.theme.bodyColor['500']};
     }
 `
 

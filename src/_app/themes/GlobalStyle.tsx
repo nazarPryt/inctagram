@@ -12,8 +12,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({theme}) => theme.bodyColor};
-    color: ${({theme}) => theme.textColor};
+    background-color: ${({theme}) => theme.bodyColor['300']};
+    color: ${({theme}) => theme.textColor['100']};
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     height: 100vh;
@@ -39,8 +39,8 @@ export const GlobalStyle = createGlobalStyle`
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    -webkit-text-fill-color: ${({theme}) => theme.textColor};
-    -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.palette.dark['500']} inset;
+    -webkit-text-fill-color: ${({theme}) => theme.textColor['100']};
+    -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.bodyColor['500']} inset;
   }
 
   

@@ -17,13 +17,13 @@ export const ModalWrapper = styled.div`
     }
 `
 export const ModalContent = styled.div`
-  background-color: ${props => props.theme.palette.dark['300']};
+  background-color: ${props => props.theme.bodyColor['300']};
   min-width: 436px;
   overflow: auto;
   box-shadow: 0 0 70px 10px #000;
-  border: 1px solid ${props => props.theme.palette.dark['100']};
+  border: 1px solid ${props => props.theme.bodyColor['100']};
   transform: scale(0.5);
-  color: ${props => props.theme.palette.common.white};
+  color: ${props => props.theme.textColor[100]};
   transition: 1s linear;
   position: relative;
 
@@ -46,6 +46,5 @@ export const ModalContent = styled.div`
 
   .line {
     width: 100%;
-    color: ${props =>
-        props.theme.name === 'dark' ? props.theme.palette.dark['100'] : props.theme.palette.light['100']};
+    color: ${props => props.theme.textColor['100']};
 `

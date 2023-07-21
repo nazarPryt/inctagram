@@ -16,7 +16,7 @@ export const PostHeaderWrapper = styled.div`
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
-            color: ${props => props.theme.textColor};
+            color: ${props => props.theme.textColor[100]};
 
             &:after {
                 content: '';
@@ -26,7 +26,7 @@ export const PostHeaderWrapper = styled.div`
                 width: 8px;
                 height: 8px;
                 border-radius: 50%;
-                background-color: ${props => props.theme.textColor};
+                background-color: ${props => props.theme.textColor[100]};
             }
         }
     }

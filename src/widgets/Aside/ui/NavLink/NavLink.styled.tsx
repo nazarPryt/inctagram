@@ -11,17 +11,21 @@ export const NavLinkWrapper = styled(Link)`
     font-size: 14px;
 
     text-decoration: none;
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.textColor[100]};
 
     &:hover {
-        color: ${props => props.theme.palette.primary['100']};
+        color: ${props => props.theme.palette.primary[100]};
         path {
-            fill: ${props => props.theme.palette.primary['100']};
+            fill: ${props => props.theme.palette.primary[100]};
         }
     }
 
     &.active {
-        color: ${props => props.theme.palette.primary['500']};
+        color: ${props => props.theme.palette.primary[500]};
+
+        path {
+            fill: ${props => props.theme.palette.primary[500]};
+        }
     }
 `
 const Wrapper = styled.span<{$active: boolean}>`
@@ -37,16 +41,11 @@ const Wrapper = styled.span<{$active: boolean}>`
         ${props => {
             if (props.$active) {
                 return css`
-                    fill: ${props => props.theme.palette.primary['500']};
-                `
-            }
-            if (props.theme.name === 'light') {
-                return css`
-                    fill: ${props => props.theme.palette.common.black};
+                    fill: ${props => props.theme.palette.primary[500]};
                 `
             } else {
                 return css`
-                    fill: ${props => props.theme.palette.common.white};
+                    fill: ${props => props.theme.textColor[100]};
                 `
             }
         }}

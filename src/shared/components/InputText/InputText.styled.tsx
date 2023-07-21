@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
     input,
     textarea {
         background: none;
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor['100']};
         font-size: 18px;
         padding: 10px 10px 10px 5px;
         display: block;
@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
         &:valid ~ label {
             top: -3px;
             font-size: 12px;
-            color: ${props => props.theme.palette.primary['100']};
+            color: ${props => props.theme.textColor['100']};
             letter-spacing: 1px;
         }
 
@@ -45,7 +45,7 @@ export const Wrapper = styled.div`
     }
 
     label {
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor['100']};
         font-size: 16px;
         font-weight: normal;
         position: absolute;
@@ -59,7 +59,7 @@ export const Wrapper = styled.div`
         position: relative;
         display: block;
         width: 100%;
-        border-bottom: 1px solid ${props => props.theme.palette.dark['300']};
+        border-bottom: 1px solid ${props => props.theme.bodyColor['300']};
 
         &:before {
             content: '';

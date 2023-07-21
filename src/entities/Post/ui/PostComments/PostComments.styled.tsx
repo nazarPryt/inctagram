@@ -7,7 +7,7 @@ export const PostCommentsWrapper = styled.div`
         font-weight: 700;
         background-color: inherit;
         border: none;
-        color: ${props => props.theme.palette.light['900']};
+        color: ${props => props.theme.textColor['900']};
     }
     .textAreaWrapper {
         display: flex;

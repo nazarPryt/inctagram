@@ -20,8 +20,8 @@ export const IconButtonStyled = styled.button<{$colorful?: 'true'}>`
                 return css`
                     fill: ${props =>
                         props.theme.name === 'dark'
-                            ? props.theme.palette.common.white
-                            : props => props.theme.palette.common.black};
+                            ? props.theme.textColor['100']
+                            : props => props.theme.textColor['100']};
                 `
             }
         }}

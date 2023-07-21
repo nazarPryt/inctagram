@@ -6,7 +6,7 @@ export const NavButtonWrapper = styled.button`
     align-items: center;
     gap: 15px;
     background-color: inherit;
-    color: inherit;
+    color: ${props => props.theme.textColor['100']};
     border: none;
     padding: 0;
 
@@ -18,7 +18,6 @@ export const NavButtonWrapper = styled.button`
     }
 
     path {
-        fill: ${props =>
-            props.theme.name === 'dark' ? props.theme.palette.common.white : props => props.theme.palette.common.black};
+        fill: ${props => props.theme.textColor[100]};
     }
 `
