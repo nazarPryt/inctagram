@@ -2,7 +2,7 @@ import React from 'react'
 import {StepsType} from '../../CreatePost'
 import ArrowLeft from 'common/assets/icons/arrowLeft.svg'
 import {EditorButtonsWrapper} from './styled'
-import {Button} from '../../../../../shared/components/Button/Button'
+import {Button} from 'shared/components/Button/Button'
 
 type EditorButtonsType = {
     title: string
