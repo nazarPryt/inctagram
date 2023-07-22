@@ -33,7 +33,7 @@ export const EditorPanelWrapper = styled.div<{width: number}>`
 
         svg {
             path {
-                fill: ${props => props.theme.bodyColor[500]};
+                fill: ${props => props.theme.textColor[500]};
             }
         }
     }
