@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Ref, RefObject, useEffect, useRef, useState} from 'react'
+import React, {ChangeEvent, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
 import {CreatePostButton, EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
@@ -12,7 +12,7 @@ import {createFilteredFile} from './createFilteredFile'
 import {EditorButtons} from './components/EditorButtons/EditorButtons'
 import {Describe} from './components/Describe/Describe'
 import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
-import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {Modal} from 'shared/components/Modal/BaseModal'
 import {ImageMetaData} from '../../../redux/types/postsTypes'
@@ -123,9 +123,7 @@ export const CreatePost = () => {
             zoom: e.target.value,
         })
     }
-    //todo разобраться с шагами назад!!!
     const handleChangeStep = (step: StepsType) => {
-        console.log(step)
         switch (step) {
             case 'Add Photo': {
                 handleClear()
@@ -271,7 +269,7 @@ export const CreatePost = () => {
                             <Describe describeText={describeText} changeTextHandler={handleChangeText} />
                         )}
                         {step === 'Add Photo' && <SelectPhoto handleCreatePost={handleUploadImage} />}
-                        
+
                         {step === 'Cropping' || step === 'Filters' ? (
                             <EditorPanel
                                 libraryPictures={libraryPictures}
