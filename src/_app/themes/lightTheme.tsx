@@ -5,11 +5,11 @@ export const lightTheme: DefaultTheme = {
     name: 'light',
     borderRadius: '4px',
     bodyColor: {
-        100: '#FFFFFF',
-        300: '#F7FBFF',
+        100: '#BDC1C7',
+        300: '#D5DAE0',
         500: '#EDF3FA',
-        700: '#D5DAE0',
-        900: '#BDC1C7',
+        700: '#F7FBFF',
+        900: '#FFFFFF',
     },
     textColor: {
         100: '#0E1720',

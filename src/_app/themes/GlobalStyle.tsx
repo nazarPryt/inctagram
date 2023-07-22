@@ -6,13 +6,12 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
-  html{
-    
+  html {
     overflow-y: scroll;
   }
 
   body {
-    background-color: ${({theme}) => theme.bodyColor['300']};
+    background-color: ${({theme}) => theme.bodyColor['700']};
     color: ${({theme}) => theme.textColor['100']};
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
@@ -22,6 +21,15 @@ export const GlobalStyle = createGlobalStyle`
     &.isModalOpen {
       overflow: hidden;
     }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
   }
 
   img {

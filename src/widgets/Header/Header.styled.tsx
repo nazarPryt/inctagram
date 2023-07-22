@@ -6,7 +6,7 @@ export const HeaderStyled = styled.header`
     border-bottom: 1px solid ${props => props.theme.bodyColor['100']};
     margin-bottom: 24px;
     z-index: 2;
-    background-color: ${props => props.theme.bodyColor['300']};
+    background-color: ${props => props.theme.bodyColor['700']};
 
     div {
         display: flex;
