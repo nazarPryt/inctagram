@@ -15,11 +15,8 @@ import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {Modal} from 'shared/components/Modal/BaseModal'
-import {Button} from '../../../shared/components/Button/Button'
-import {dataURLtoFile} from './dataURLtoFile'
-import {Blob} from 'node-fetch'
 import {ImageMetaData} from '../../../redux/types/postsTypes'
-import {setImage} from './model/slice/uploadPhotoSlice'
+import {Loader} from '../../../shared/components/Loader/Loader'
 
 export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'
 
@@ -33,10 +30,9 @@ export type LibraryPictureType = {
 
 export const CreatePost = () => {
     const dispatch = useAppDispatch()
-    const [post, {isLoading}] = useUploadImageMutation()
-    const [postDescribe] = useCreatePostMutation()
+    const [post, loadingImage] = useUploadImageMutation()
+    const [postDescribe, loadingPost] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
-
     const [step, setStep] = useState<StepsType>('Add Photo')
     const [width, setWidth] = useState(485)
     const [height, setHeight] = useState(465)
@@ -45,46 +41,56 @@ export const CreatePost = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [libraryPictures, setLibraryPictures] = useState<LibraryPictureType[]>([])
     const [uploadID, setUploadID] = useState<ImageMetaData[]>([])
-    const image = useAppSelector(state => state.uploadPhoto)
-    // const [picture, setPicture] = useState<LibraryPictureType>(image)
+    const [image, setImage] = useState({
+        id: '',
+        img: '',
+        filter: '',
+        zoom: '1',
+    })
 
-    const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
         let url = URL.createObjectURL(e.target.files[0])
-        dispatch(
-            setImage({
-                id: url,
-                img: url,
-                filter: '',
-                zoom: '1',
-            })
-        )
+        setImage({
+            id: url,
+            img: url,
+            filter: '',
+            zoom: '1',
+        })
 
         setLibraryPictures(prev => [...prev, {id: url, img: url, zoom: '1', filter: '', readyToSend: null}])
-        await prepareImageToSend(url)
+
         setStep('Cropping')
     }
 
+    const prepareImageToSend = async (img: string) => {
+        const currImage = libraryPictures.find(el => el.img === img)
+        if (editorRef.current) {
+            const file = await createFilteredFile(editorRef, currImage!.filter)
+
+            setLibraryPictures(prev => prev.map(el => (el.img === img ? {...el, readyToSend: file} : {...el})))
+        }
+    }
+
     const handleSetFilter = async (filter: string) => {
-        dispatch(
-            setImage({
-                ...image,
-                filter: filter,
-            })
-        )
+        setImage({
+            ...image,
+            filter: filter,
+        })
         setFilter(filter)
+
+        setLibraryPictures(prev => prev.map(el => (el.img === image.img ? {...el, filter: filter} : {...el})))
+
         await prepareImageToSend(image.id)
     }
 
     const handleSetPreviewPicture = (img: LibraryPictureType) => {
-        dispatch(
-            setImage({
-                id: img.id,
-                img: img.img,
-                filter: img.filter,
-                zoom: img.zoom,
-            })
-        )
+        setImage({
+            id: img.id,
+            img: img.img,
+            filter: img.filter,
+            zoom: img.zoom,
+        })
     }
 
     const handleResize = (width: number, height: number) => {
@@ -97,14 +103,13 @@ export const CreatePost = () => {
     }
 
     const handleClear = () => {
-        dispatch(
-            setImage({
-                id: '',
-                img: '',
-                filter: '',
-                zoom: '1',
-            })
-        )
+        setImage({
+            id: '',
+            img: '',
+            filter: '',
+            zoom: '1',
+        })
+        setLibraryPictures([])
     }
 
     const handleClose = () => {
@@ -113,18 +118,22 @@ export const CreatePost = () => {
     }
 
     const handleZoom = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(
-            setImage({
-                ...image,
-                zoom: e.target.value,
-            })
-        )
+        setImage({
+            ...image,
+            zoom: e.target.value,
+        })
     }
     //todo разобраться с шагами назад!!!
     const handleChangeStep = (step: StepsType) => {
+        console.log(step)
         switch (step) {
             case 'Add Photo': {
                 handleClear()
+                setStep(step)
+                break
+            }
+            case 'Cropping': {
+                setStep(step)
                 break
             }
             case 'Describe': {
@@ -138,11 +147,6 @@ export const CreatePost = () => {
             }
             case 'SENDING': {
                 handleCreatePost()
-                setStep('Add Photo')
-                handleClose()
-                setLibraryPictures([])
-                setDescribeText('')
-                setFilter('')
                 break
             }
         }
@@ -162,17 +166,6 @@ export const CreatePost = () => {
         handleSetPreviewPicture(newImagePreview)
         setLibraryPictures(newLibrary)
     }
-
-    const prepareImageToSend = async (id: string) => {
-        if (editorRef.current) {
-            const file = await createFilteredFile(editorRef, filter)
-            setLibraryPictures(prev => prev.map(el => (el.id === id ? {...el, readyToSend: file} : {...el})))
-        }
-    }
-
-    useEffect(() => {
-        console.log(libraryPictures)
-    }, [libraryPictures])
 
     const handleSave = async () => {
         for (const image of libraryPictures) {
@@ -212,6 +205,11 @@ export const CreatePost = () => {
         postDescribe(postData)
             .unwrap()
             .then(() => {
+                setStep('Add Photo')
+                handleClose()
+                setLibraryPictures([])
+                setDescribeText('')
+                setFilter('')
                 dispatch(
                     SetAppNotificationAC({
                         notifications: {type: 'success', message: 'Your post was successfully uploaded'},
@@ -237,38 +235,44 @@ export const CreatePost = () => {
 
             <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
+                    {(loadingImage.isLoading || loadingPost.isLoading) && <Loader />}
                     {step !== 'Add Photo' && (
-                        <EditorButtons isLoading={isLoading} title={step} onChangeStep={handleChangeStep} />
+                        <EditorButtons
+                            isLoading={loadingImage.isLoading}
+                            title={step}
+                            onChangeStep={handleChangeStep}
+                        />
                     )}
                     <EditorWrapper>
                         {image.img.length ? (
-                            <>
-                                <CanvasContainer
-                                    editorRef={editorRef}
-                                    height={height}
-                                    width={width}
-                                    filter={filter}
-                                    picture={image}
-                                />
-                                {step === 'Filters' && (
-                                    <PresetFilters
-                                        picture={image.img}
-                                        handleSave={handleSave}
-                                        handleSetFilter={handleSetFilter}
-                                    />
-                                )}
-                                {step === 'Describe' && (
-                                    <Describe describeText={describeText} changeTextHandler={handleChangeText} />
-                                )}
-                            </>
+                            <CanvasContainer
+                                editorRef={editorRef}
+                                height={height}
+                                width={width}
+                                filter={filter}
+                                picture={image}
+                                prepareImageToSend={prepareImageToSend}
+                            />
                         ) : (
                             <EmptyImageWrapper>
                                 <EmptyIcon />
                             </EmptyImageWrapper>
                         )}
-                        {step === 'Add Photo' && <SelectPhoto handleCreatePost={handleUploadImage} />}
 
-                        {step === 'Cropping' && (
+                        {step === 'Filters' && (
+                            <PresetFilters
+                                picture={image.img}
+                                handleSave={handleSave}
+                                handleSetFilter={handleSetFilter}
+                            />
+                        )}
+
+                        {step === 'Describe' && (
+                            <Describe describeText={describeText} changeTextHandler={handleChangeText} />
+                        )}
+                        {step === 'Add Photo' && <SelectPhoto handleCreatePost={handleUploadImage} />}
+                        
+                        {step === 'Cropping' || step === 'Filters' ? (
                             <EditorPanel
                                 libraryPictures={libraryPictures}
                                 valueZoom={image.zoom}
@@ -280,7 +284,7 @@ export const CreatePost = () => {
                                 onChangeResize={handleResize}
                                 onChangeZoom={handleZoom}
                             />
-                        )}
+                        ) : null}
                     </EditorWrapper>
                 </ModalContentWrapper>
             </Modal>
