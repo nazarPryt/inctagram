@@ -2,14 +2,12 @@ import React from 'react'
 import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
-import Image from 'next/image'
+import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
 
 export const ProfileHeader = () => {
     return (
         <ProfileHeaderWrapper>
-            <div className={'profileAvatar'}>
-                <Image src={'https://loremflickr.com/500/500'} alt={'ProfileAvatar'} width={205} height={205} />
-            </div>
+            <ProfileAvatar src={'https://loremflickr.com/500/500'} />
             <div className={'profileData'}>
                 <div className={'profileHeader'}>
                     <h2>URLProfiele</h2>
@@ -23,12 +21,12 @@ export const ProfileHeader = () => {
                         Following
                     </div>
                     <div>
-                        <span>2 218</span>
-                        Following
+                        <span>2 358</span>
+                        Followers
                     </div>
                     <div>
-                        <span>2 218</span>
-                        Following
+                        <span>2 764</span>
+                        Publications
                     </div>
                 </div>
                 <p>

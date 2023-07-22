@@ -22,15 +22,6 @@ export const ProfileHeaderWrapper = styled.div`
         }
     }
 
-    .profileAvatar {
-        flex-shrink: 0;
-        width: 205px;
-        height: 205px;
-
-        img {
-            border-radius: 50%;
-        }
-    }
     .profileHeader {
         display: flex;
         justify-content: space-between;
