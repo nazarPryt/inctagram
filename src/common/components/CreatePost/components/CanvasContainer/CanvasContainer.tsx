@@ -9,10 +9,17 @@ type CanvasContainerType = {
     editorRef: RefObject<AvatarEditor>
     picture: {img: string; zoom: string}
     filter: string
+    prepareImageToSend: (img: string) => void
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
     console.log('CANVAS', props.picture.img)
+
+    const handlePrepareImage = (e: Event) => {
+        console.log('БЫЛИ ИЗМЕНЕНИЯ', e)
+        console.log('editor REF', props.editorRef)
+        props.prepareImageToSend(props.picture.img)
+    }
 
     return (
         <Wrapper width={props.width} height={props.height}>
@@ -22,7 +29,8 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
                 width={props.width}
                 height={props.height}
                 scale={+props.picture.zoom}
-                border={[10, 20]}
+                border={0}
+                onImageReady={e => handlePrepareImage(e)}
                 style={{
                     filter: props.filter,
                 }}
