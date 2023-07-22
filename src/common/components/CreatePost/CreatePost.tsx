@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react'
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
 import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
