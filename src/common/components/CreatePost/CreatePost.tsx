@@ -14,9 +14,10 @@ import {Describe} from './components/Describe/Describe'
 import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
-import {Modal} from 'shared/components/Modal/BaseModal'
 import {ImageMetaData} from '../../../redux/types/postsTypes'
 import {Loader} from '../../../shared/components/Loader/Loader'
+import {Modal} from '../../../shared/components/Modal/Modal'
+import {NavButton} from '../../../widgets/Aside/ui/NavButton/NavButton'
 
 export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'
 

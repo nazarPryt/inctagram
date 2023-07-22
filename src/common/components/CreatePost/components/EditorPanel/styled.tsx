@@ -22,7 +22,7 @@ export const EditorPanelWrapper = styled.div<{width: number}>`
             width: 40px;
             height: 40px;
             padding: 5px;
-            background-color: ${props => props.theme.palette.common.black};
+            background-color: ${props => props.theme.bodyColor[500]};
         }
 
         .wrapper {
@@ -33,7 +33,7 @@ export const EditorPanelWrapper = styled.div<{width: number}>`
 
         svg {
             path {
-                fill: ${props => props.theme.palette.common.white};
+                fill: ${props => props.theme.bodyColor[500]};
             }
         }
     }
@@ -43,7 +43,7 @@ export const SelectWrapper = styled.div`
     display: ${props => (props.hidden ? 'flex' : 'none')};
 
     flex-direction: column;
-    background-color: ${props => props.theme.palette.dark[500]};
+    background-color: ${props => props.theme.bodyColor[500]};
     width: 110px;
     padding: 10px;
     position: absolute;
@@ -54,7 +54,7 @@ export const SelectWrapper = styled.div`
 export const ZoomWrapper = styled.div`
   display: ${props => (props.hidden ? 'flex' : 'none')};
   flex-direction: column;
-  background-color: ${props => props.theme.palette.dark[500]};
+  background-color: ${props => props.theme.bodyColor[500]};
   padding: 10px;
   position: absolute;
   left: 50px;
@@ -71,7 +71,7 @@ export const LibraryWrapper = styled.div`
     display: ${props => (props.hidden ? 'flex' : 'none')};
     align-items: center;
     gap: 10px;
-    background-color: ${props => props.theme.palette.dark[500]};
+    background-color: ${props => props.theme.bodyColor[500]};
     padding: 5px;
     position: absolute;
     right: 0;
@@ -88,7 +88,7 @@ export const LibraryWrapper = styled.div`
 
     .close {
         justify-content: center;
-        background-color: ${props => props.theme.palette.common.black};
+        background-color: ${props => props.theme.bodyColor[500]};
         position: absolute;
         right: 0;
         top: 0;
