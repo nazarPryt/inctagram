@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react'
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
 import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
@@ -34,7 +34,6 @@ export const CreatePost = () => {
     const [post, loadingImage] = useUploadImageMutation()
     const [postDescribe, loadingPost] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
-
     const [step, setStep] = useState<StepsType>('Add Photo')
     const [width, setWidth] = useState(485)
     const [height, setHeight] = useState(465)
