@@ -3,11 +3,13 @@ import styled from 'styled-components'
 export const ProfileHeaderWrapper = styled.div`
     display: flex;
     gap: 30px;
+    margin-bottom: 30px;
 
     .profileData {
         display: flex;
         flex-direction: column;
         gap: 30px;
+        width: 100%;
 
         p {
             text-overflow: ellipsis;

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {useAppSelector} from 'shared/hooks/reduxHooks'
-
 import {GeneralInformation} from 'common/components/GeneralInformation/GeneralInformation'
 import {MyPayments} from 'shared/components/MyPayments/MyPayments'
 import {ProfileSettingsAccordion} from 'shared/components/ProfileSettingsAccordion/ProfileSettingsAccordion'

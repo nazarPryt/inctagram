@@ -3,47 +3,49 @@ import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHead
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
+import {useGetUserProfileQuery} from 'redux/api/profileAPI'
+import {Loader} from 'shared/components/Loader/Loader'
+import {useSession} from 'next-auth/react'
 
 export const ProfileHeader = () => {
-    return (
-        <ProfileHeaderWrapper>
-            <ProfileAvatar src={'https://loremflickr.com/500/500'} />
-            <div className={'profileData'}>
-                <div className={'profileHeader'}>
-                    <h2>URLProfiele</h2>
-                    <Link className={'settingsLink'} href={PATH.PROFILE_SETTINGS}>
-                        Profile Settings
-                    </Link>
+    const {data: user} = useSession()
+    console.log(user)
+    const {data, isLoading} = useGetUserProfileQuery(248)
+
+    if (isLoading) {
+        return <Loader />
+    }
+    if (data) {
+        return (
+            <ProfileHeaderWrapper>
+                <ProfileAvatar src={data.avatars[0].url} />
+                <div className={'profileData'}>
+                    <div className={'profileHeader'}>
+                        <h2>
+                            {data.firstName} {data.lastName}
+                        </h2>
+                        <Link className={'settingsLink'} href={PATH.PROFILE_SETTINGS}>
+                            Profile Settings
+                        </Link>
+                    </div>
+                    <div className={'profileStatistics'}>
+                        <div>
+                            <span>2 218</span>
+                            Following
+                        </div>
+                        <div>
+                            <span>2 358</span>
+                            Followers
+                        </div>
+                        <div>
+                            <span>2 764</span>
+                            Publications
+                        </div>
+                    </div>
+                    <p>{data.aboutMe}</p>
                 </div>
-                <div className={'profileStatistics'}>
-                    <div>
-                        <span>2 218</span>
-                        Following
-                    </div>
-                    <div>
-                        <span>2 358</span>
-                        Followers
-                    </div>
-                    <div>
-                        <span>2 764</span>
-                        Publications
-                    </div>
-                </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa officia, sapiente! Accusantium,
-                    aliquam doloremque enim eos eum ipsa obcaecati odit officiis omnis optio porro quasi quis quisquam
-                    quod rerum sit, veniam? Dignissimos ea nostrum possimus quibusdam totam. Cumque eaque inventore nam,
-                    nostrum quo rem, repudiandae sapiente soluta unde voluptas, voluptatibus! Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Alias dolor dolore, inventore ipsam perspiciatis, possimus quas
-                    quisquam repellendus, soluta totam vitae voluptas. Adipisci aliquam, at beatae, commodi deleniti
-                    doloribus eligendi fugit libero numquam officiis quas quo saepe sequi, similique tempore unde
-                    voluptas voluptatibus. Autem deserunt ducimus eligendi eum, exercitationem facilis id illum in
-                    incidunt ipsam libero mollitia quis sed vel voluptate. Assumenda atque autem commodi consectetur
-                    culpa delectus ea, est fugit ipsum magni nihil quae sequi ullam voluptas voluptates. Culpa
-                    dignissimos eligendi error, exercitationem facilis harum impedit ipsam iste iusto maxime
-                    perspiciatis provident quaerat quam quas quod ratione sit! Veniam!
-                </p>
-            </div>
-        </ProfileHeaderWrapper>
-    )
+            </ProfileHeaderWrapper>
+        )
+    }
+    return <div>header</div>
 }

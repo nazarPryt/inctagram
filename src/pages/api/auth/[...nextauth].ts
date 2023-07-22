@@ -1,4 +1,4 @@
-import NextAuth, {NextAuthOptions} from 'next-auth'
+import NextAuth, {NextAuthOptions, User} from 'next-auth'
 import {NextApiRequest, NextApiResponse} from 'next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import {PATH} from 'shared/constants/PATH'
@@ -26,16 +26,23 @@ export const nextAuthOptions: NextAuthOptionsCallback = (req, res) => {
             newUser: PATH.PROFILE_SETTINGS,
         },
         callbacks: {
-            async signIn() {
-                return true
+            async jwt({token, user}) {
+                if (user) {
+                    token.id = +user.id
+                    token.name = user.name
+                    token.email = user.email
+                }
+                return token
             },
-            async session({session, token}) {
-                session.user = token as any
+            session: async ({session, token}) => {
+                session.user.userId = token.id as number
+                session.user.name = token.name as string
+                session.user.email = token.email as string
                 return session
             },
-            async jwt({token, user}) {
-                return {...token, ...user}
-            },
+            // async jwt({token, user}) {
+            //     return {...token, ...user}
+            // },
         },
         // events: {
         //     async signOut() {
@@ -69,11 +76,13 @@ export const nextAuthOptions: NextAuthOptionsCallback = (req, res) => {
                         if (accessToken) {
                             const meResponse = await serverAuthAPI.authMe(accessToken)
 
-                            return {
+                            const userData: User & {userId: number} = {
                                 name: meResponse.userName,
                                 email: meResponse.email,
                                 id: meResponse.userId + '',
+                                userId: meResponse.userId,
                             }
+                            return userData
                         }
 
                         return null
