@@ -166,8 +166,6 @@ export const CreatePost = () => {
         setLibraryPictures(newLibrary)
     }
 
-    console.log('test')
-
     const handleSave = async () => {
         for (const image of libraryPictures) {
             const file = image.readyToSend

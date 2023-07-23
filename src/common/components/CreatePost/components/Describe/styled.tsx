@@ -17,6 +17,15 @@ export const DescribeWrapper = styled.div`
             font-weight: 500;
             line-height: 24px;
         }
+
+        .userNameWrapper {
+            display: flex;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
     div {
@@ -26,13 +35,18 @@ export const DescribeWrapper = styled.div`
 
         textarea {
             background-color: #171717;
+            height: 140px;
         }
     }
 `
 export const AvatarWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80px;
     height: 80px;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: #1fe55c;
+
+    img {
+        border-radius: 50%;
+    }
 `

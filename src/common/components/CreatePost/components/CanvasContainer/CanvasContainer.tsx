@@ -13,11 +13,7 @@ type CanvasContainerType = {
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
-    console.log('CANVAS', props.picture.img)
-
-    const handlePrepareImage = (e: Event) => {
-        console.log('БЫЛИ ИЗМЕНЕНИЯ', e)
-        console.log('editor REF', props.editorRef)
+    const handlePrepareImage = () => {
         props.prepareImageToSend(props.picture.img)
     }
 
@@ -30,7 +26,7 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
                 height={props.height}
                 scale={+props.picture.zoom}
                 border={0}
-                onImageReady={e => handlePrepareImage(e)}
+                onImageReady={handlePrepareImage}
                 style={{
                     filter: props.filter,
                 }}
