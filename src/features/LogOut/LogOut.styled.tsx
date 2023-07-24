@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const LogOutWrapper = styled.div`
+export const LogOutModalWrapper = styled.div`
     max-width: 438px;
     margin: 0 auto;
     z-index: 1;
@@ -17,17 +17,16 @@ export const LogOutWrapper = styled.div`
             color: darkorange;
         }
     }
-`
+    .buttonsWrapper {
+        display: flex;
+        gap: 25px;
+        justify-content: flex-end;
+        margin: 30px 24px 0 24px;
+        padding-bottom: 36px;
 
-export const ButtonWrapper = styled.div`
-    display: flex;
-    gap: 25px;
-    justify-content: flex-end;
-    margin: 30px 24px 0 24px;
-    padding-bottom: 36px;
-
-    button {
-        width: 96px;
-        height: 36px;
+        button {
+            width: 96px;
+            height: 36px;
+        }
     }
 `

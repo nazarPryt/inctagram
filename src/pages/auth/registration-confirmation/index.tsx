@@ -5,7 +5,7 @@ import {useSignUpConfirmationMutation} from 'redux/api/authAPI'
 import {useRouter, useSearchParams} from 'next/navigation'
 import {Loader} from 'shared/components/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
-import {getLayoutWithHeader} from '_app/Layouts/LayoutWithHeader'
+import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 
 export default function ConfirmationPage() {
     const router = useRouter()

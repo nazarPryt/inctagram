@@ -1,10 +1,9 @@
 import React from 'react'
 import {Meta, StoryObj} from '@storybook/react'
 import {Button} from './Button'
-import {withThemeDecorator} from '../../../../.storybook/withThemeDecorator'
 
 const meta: Meta<typeof Button> = {
-    title: 'Example/Button',
+    title: 'Components/Button',
     component: Button,
     tags: ['docsPage'],
     argTypes: {
@@ -22,14 +21,12 @@ export const DefaultButton: Story = {
     args: {
         children: 'Default',
     },
-    decorators: [withThemeDecorator],
 }
 export const DefaultButtonDisabled: Story = {
     args: {
         children: 'Default',
         disabled: true,
     },
-    decorators: [withThemeDecorator],
 }
 export const OutlinedButton: Story = {
     args: {
@@ -37,7 +34,6 @@ export const OutlinedButton: Story = {
         disabled: false,
         children: 'Outlined Button',
     },
-    decorators: [withThemeDecorator],
 }
 export const ContainedButton: Story = {
     args: {
@@ -45,7 +41,6 @@ export const ContainedButton: Story = {
         disabled: false,
         children: 'Contained Button',
     },
-    decorators: [withThemeDecorator],
 }
 export const IsIconButton: Story = {
     args: {
@@ -53,7 +48,6 @@ export const IsIconButton: Story = {
         disabled: false,
         children: 'Button is icon',
     },
-    decorators: [withThemeDecorator],
 }
 export const TextButton: Story = {
     args: {
@@ -61,5 +55,4 @@ export const TextButton: Story = {
         disabled: false,
         children: 'Text Button',
     },
-    decorators: [withThemeDecorator],
 }

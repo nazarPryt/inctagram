@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
-import {getHomeLayout} from '_app/Layouts/HomeLayout'
+import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 
 export default function MyProfilePage() {
     return (
@@ -10,4 +10,4 @@ export default function MyProfilePage() {
         </>
     )
 }
-MyProfilePage.getLayout = getHomeLayout
+MyProfilePage.getLayout = getAuthorizedLayout

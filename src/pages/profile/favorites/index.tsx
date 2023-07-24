@@ -1,7 +1,7 @@
 import React from 'react'
-import {getHomeLayout} from '_app/Layouts/HomeLayout'
+import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 
 export default function FavoritePage() {
     return <>Favorites page</>
 }
-FavoritePage.getLayout = getHomeLayout
+FavoritePage.getLayout = getAuthorizedLayout

@@ -1,7 +1,7 @@
 import React from 'react'
-import {getHomeLayout} from '_app/Layouts/HomeLayout'
+import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 
 export default function MessengerPage() {
     return <>Messenger page</>
 }
-MessengerPage.getLayout = getHomeLayout
+MessengerPage.getLayout = getAuthorizedLayout
