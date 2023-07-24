@@ -1,5 +1,6 @@
 {
     "name": "final",
+    "homepage": "https://inctagram-three.vercel.app",
     "version": "0.1.0",
     "private": true,
     "scripts": {
