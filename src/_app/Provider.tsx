@@ -12,13 +12,13 @@ import ProtectedRoute from '_app/ProtectedRoutes/ProtectedRoutes'
 
 export function Providers({children}: {children: ReactNode}) {
     return (
-        <ProtectedRoute>
-            <StyledComponentsRegistry>
-                <Provider store={store}>
-                    <ThemeStyled>{children}</ThemeStyled>
-                </Provider>
-            </StyledComponentsRegistry>
-        </ProtectedRoute>
+        // <ProtectedRoute>
+        <StyledComponentsRegistry>
+            <Provider store={store}>
+                <ThemeStyled>{children}</ThemeStyled>
+            </Provider>
+        </StyledComponentsRegistry>
+        // </ProtectedRoute>
     )
 }
 

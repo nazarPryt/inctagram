@@ -10,7 +10,7 @@ import {useSession} from 'next-auth/react'
 export const GeneralInformation = () => {
     const {data: user} = useSession()
 
-    const {data, isLoading} = useGetUserProfileQuery(user!.user.userId)
+    const {data, isLoading} = useGetUserProfileQuery(248)
 
     if (isLoading) {
         return <Loader />

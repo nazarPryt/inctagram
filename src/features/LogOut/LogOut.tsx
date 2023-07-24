@@ -9,6 +9,8 @@ import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {signOut, useSession} from 'next-auth/react'
 import {Button} from 'shared/components/Button/Button'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
+import {accessToken} from 'shared/constants/constants'
+import cookie from 'react-cookies'
 
 export const LogOut = () => {
     const dispatch = useAppDispatch()
@@ -20,6 +22,10 @@ export const LogOut = () => {
         await signOut()
         await logOut()
             .unwrap()
+            .then(async () => {
+                await cookie.remove(accessToken)
+                setShowModal(false)
+            })
             .catch(error => {
                 console.log(error)
                 dispatch(
@@ -28,7 +34,6 @@ export const LogOut = () => {
                     })
                 )
             })
-        setShowModal(false)
     }
 
     const handleCloseModal = () => {
