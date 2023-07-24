@@ -31,7 +31,7 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep + 1])}
                 >
-                    Next
+                    {props.title === 'Describe' ? 'Publish' : 'Next'}
                 </Button>
             </div>
         </EditorButtonsWrapper>

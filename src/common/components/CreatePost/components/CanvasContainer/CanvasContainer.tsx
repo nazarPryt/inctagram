@@ -1,6 +1,7 @@
-import AvatarEditor from 'react-avatar-editor'
+import AvatarEditor, {ImageState} from 'react-avatar-editor'
 import React, {RefObject} from 'react'
 import {Wrapper} from './styled'
+import Image from 'next/image'
 
 type CanvasContainerType = {
     width: number
@@ -8,9 +9,14 @@ type CanvasContainerType = {
     editorRef: RefObject<AvatarEditor>
     picture: {img: string; zoom: string}
     filter: string
+    prepareImageToSend: (img: string) => void
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
+    const handlePrepareImage = () => {
+        props.prepareImageToSend(props.picture.img)
+    }
+
     return (
         <Wrapper width={props.width} height={props.height}>
             <AvatarEditor
@@ -19,7 +25,8 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
                 width={props.width}
                 height={props.height}
                 scale={+props.picture.zoom}
-                border={[10, 20]}
+                border={0}
+                onImageReady={handlePrepareImage}
                 style={{
                     filter: props.filter,
                 }}

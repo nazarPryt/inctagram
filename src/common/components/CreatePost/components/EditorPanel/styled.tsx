@@ -1,36 +1,39 @@
 import styled from 'styled-components'
 
-export const EditorPanelWrapper = styled.div`
+export const EditorPanelWrapper = styled.div<{width: number}>`
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: ${props => props.width}px;
     gap: 50px;
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
+    left: 9px;
 
     .popUpBtn {
-        width: 100%;
+        width: 95%;
         display: flex;
         gap: 50px;
+        justify-content: space-between;
 
-        .iconsWrapper {
+        .select,
+        .zoom,
+        .library {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+            background-color: ${props => props.theme.bodyColor[500]};
+        }
+
+        .wrapper {
             display: flex;
-            width: 100%;
-            justify-content: space-evenly;
-            align-items: center;
-
-            div {
-                width: 40px;
-                height: 40px;
-                padding: 5px;
-                border-radius: 50%;
-                background-color: ${props => props.theme.bodyColor[300]};
-            }
+            width: 120px;
+            justify-content: space-between;
         }
 
         svg {
             path {
-                fill: ${props => props.theme.textColor[100]};
+                fill: ${props => props.theme.textColor[500]};
             }
         }
     }
@@ -38,27 +41,36 @@ export const EditorPanelWrapper = styled.div`
 
 export const SelectWrapper = styled.div`
     display: ${props => (props.hidden ? 'flex' : 'none')};
-
     flex-direction: column;
+    gap: 5px;
     background-color: ${props => props.theme.bodyColor[500]};
+    width: 110px;
     padding: 10px;
     position: absolute;
-    top: -130px;
-    left: 30px;
-`
-export const ZoomWrapper = styled.div`
-    display: ${props => (props.hidden ? 'flex' : 'none')};
-    flex-direction: column;
-    background-color: ${props => props.theme.bodyColor[500]};
-    padding: 10px;
-    position: absolute;
-    left: 180px;
-    top: -35px;
+    top: -135px;
+    left: 0;
 
-    input {
-        width: 90px;
-        height: 3px;
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
+`
+
+export const ZoomWrapper = styled.div`
+  display: ${props => (props.hidden ? 'flex' : 'none')};
+  flex-direction: column;
+  background-color: ${props => props.theme.bodyColor[500]};
+  padding: 10px;
+  position: absolute;
+  left: 50px;
+  top: 8px;
+}
+
+input {
+  width: 90px;
+  height: 3px;
+}
 `
 
 export const LibraryWrapper = styled.div`
@@ -68,7 +80,7 @@ export const LibraryWrapper = styled.div`
     background-color: ${props => props.theme.bodyColor[500]};
     padding: 5px;
     position: absolute;
-    right: 15px;
+    right: 0;
     top: -135px;
     max-width: 475px;
     overflow: hidden;
@@ -82,7 +94,7 @@ export const LibraryWrapper = styled.div`
 
     .close {
         justify-content: center;
-        background-color: ${props => props.theme.bodyColor[900]};
+        background-color: ${props => props.theme.bodyColor[500]};
         position: absolute;
         right: 0;
         top: 0;
