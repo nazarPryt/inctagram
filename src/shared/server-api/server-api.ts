@@ -12,7 +12,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
     config => {
-        const token = cookie.load('accessToken')
+        const token = cookie.load(accessToken)
 
         if (token) {
             config.headers.Authorization = 'Bearer ' + token
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
 export const serverAuthAPI = {
     async authMe(token: string) {
         try {
-            const res = await instance.get<authMeDataType>(`${baseURL}auth/me`, {
+            const res = await axios.get<authMeDataType>(`${baseURL}auth/me`, {
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -19,7 +19,7 @@ export const GeneralInformation = () => {
     if (data) {
         return (
             <GeneralInformationWrapper>
-                <Avatar avatar={data?.avatars[0].url} />
+                <Avatar avatar={data.avatars[0].url} />
                 <GeneralInformationForm data={data} />
             </GeneralInformationWrapper>
         )

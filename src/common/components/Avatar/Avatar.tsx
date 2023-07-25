@@ -11,7 +11,7 @@ import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {Button} from 'shared/components/Button/Button'
 
-export const Avatar: FC<{avatar?: string}> = ({avatar}) => {
+export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleModalClose = () => {
@@ -31,32 +31,7 @@ export const Avatar: FC<{avatar?: string}> = ({avatar}) => {
     )
 }
 
-const Wrapper = styled.span`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 192px;
-    border-radius: 50%;
-    margin-bottom: 30px;
-    background-color: ${props => props.theme.bodyColor['500']};
-
-    .avatar {
-        position: relative;
-
-        img {
-            border-radius: 50%;
-        }
-
-        button {
-            position: absolute;
-            top: 0;
-            right: 20px;
-        }
-    }
-`
-
-export const UserAvatar: FC<{avatar?: string}> = ({avatar}) => {
+export const UserAvatar: FC<{avatar: string | undefined}> = ({avatar}) => {
     const dispatch = useAppDispatch()
     const [imgUrl, setImgUrl] = useState(
         'https://storage.yandexcloud.net/users-inctagram/users/248/avatar/b07e8938-b97e-458f-872f-61f23e427079-images-192x192'
@@ -67,7 +42,6 @@ export const UserAvatar: FC<{avatar?: string}> = ({avatar}) => {
         deleteAvatar({})
             .unwrap()
             .then(() => {
-                setImgUrl('')
                 dispatch(
                     SetAppNotificationAC({
                         notifications: {type: 'success', message: 'Your Avatar was successfully removed'},
@@ -95,3 +69,28 @@ export const UserAvatar: FC<{avatar?: string}> = ({avatar}) => {
         </Wrapper>
     )
 }
+
+const Wrapper = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 192px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    background-color: ${props => props.theme.bodyColor['500']};
+
+    .avatar {
+        position: relative;
+
+        img {
+            border-radius: 50%;
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            right: 20px;
+        }
+    }
+`

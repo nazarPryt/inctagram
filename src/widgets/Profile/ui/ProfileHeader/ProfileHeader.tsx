@@ -22,7 +22,12 @@ export const ProfileHeader = () => {
     if (userData) {
         return (
             <ProfileHeaderWrapper>
-                <ProfileAvatar src={userData.avatars[0].url} />
+                <ProfileAvatar
+                    src={
+                        'https://storage.yandexcloud.net/users-inctagram/users/248/avatar/b07e8938-b97e-458f-872f-61f23e427079-images-192x192'
+                    }
+                />
+                {/*<ProfileAvatar src={userData.avatars[0].url} />*/}
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>
