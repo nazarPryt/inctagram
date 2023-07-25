@@ -1,5 +1,6 @@
 import axios from 'axios'
 import cookie from 'react-cookies'
+import {accessToken} from 'shared/constants/constants'
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
 // const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string
@@ -44,12 +45,12 @@ instance.interceptors.response.use(
 )
 
 export const serverAuthAPI = {
-    async authMe(accessToken: string) {
+    async authMe(token: string) {
         try {
             const res = await instance.get<authMeDataType>(`${baseURL}auth/me`, {
                 withCredentials: true,
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${token}`,
                 },
             })
 
@@ -64,7 +65,7 @@ export const serverAuthAPI = {
                 withCredentials: true,
             })
 
-            cookie.save('accessToken', res.data.accessToken, {})
+            cookie.save(accessToken, res.data.accessToken, {})
 
             return res.data.accessToken
         } catch (e) {

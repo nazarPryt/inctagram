@@ -23,7 +23,9 @@ export const LogOut = () => {
         await logOut()
             .unwrap()
             .then(async () => {
-                await cookie.remove(accessToken)
+                debugger
+                console.log('cookie.remove(accessToken)')
+                cookie.remove(accessToken)
                 setShowModal(false)
             })
             .catch(error => {

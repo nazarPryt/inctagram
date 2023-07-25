@@ -11,6 +11,8 @@ import {ProfileHeaderLoader} from 'widgets/Profile/ui/ProfileHeader/ProfileHeade
 export const ProfileHeader = () => {
     const {data: user, status} = useSession()
 
+    console.log(user)
+
     const {data: userData, isLoading} = useGetUserProfileQuery(248)
 
     // if (isLoading) {
