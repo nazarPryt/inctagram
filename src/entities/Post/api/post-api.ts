@@ -1,11 +1,10 @@
 import {api} from 'redux/api/api'
-import {PostsType} from 'entities/Post/api/types'
 
 export const postApi = api.injectEndpoints({
     endpoints: build => ({
-        getPosts: build.query<PostsType, number>({
-            query: userID => ({
-                url: `posts/${userID}`,
+        getPosts: build.query({
+            query: () => ({
+                url: `posts`,
                 method: 'GET',
             }),
         }),
@@ -13,3 +12,5 @@ export const postApi = api.injectEndpoints({
 })
 
 export const {useGetPostsQuery} = postApi
+
+//todo ~~ Waiting for backend to implement this endpoint

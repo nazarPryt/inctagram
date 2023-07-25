@@ -52,7 +52,7 @@ const filters = [
 
 type PresetFiltersType = {
     picture: string
-    setFilter: (filter: string) => void
+    handleSetFilter: (filter: string) => void
     handleSave: () => void
 }
 
@@ -60,7 +60,7 @@ export const PresetFilters: React.FC<PresetFiltersType> = props => {
     return (
         <FiltersWrapper>
             {filters.map(el => (
-                <Filter key={el.id} filter={el.filter} onClick={() => props.setFilter(el.filter)}>
+                <Filter key={el.id} filter={el.filter} onClick={() => props.handleSetFilter(el.filter)}>
                     <Image src={props.picture} width={100} height={100} alt={'filter photo'} />
                     {el.title}
                 </Filter>

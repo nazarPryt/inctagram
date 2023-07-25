@@ -4,14 +4,22 @@ import {DefaultTheme} from 'styled-components'
 export const darkTheme: DefaultTheme = {
     name: 'dark',
     borderRadius: '4px',
-    bodyColor: '#0D0D0D',
-    textColor: '#ffffff',
+    bodyColor: {
+        100: '#4C4C4C',
+        300: '#333333',
+        500: '#171717',
+        700: '#0D0D0D',
+        900: '#0D0D0D',
+    },
+    textColor: {
+        100: '#FFFFFF',
+        300: '#F7FBFF',
+        500: '#EDF3FA',
+        700: '#D5DAE0',
+        900: '#BDC1C7',
+    },
     //typography: {Large: {'font-family': Inter, 'font-weight': 600, 'font-size': '25px', 'line-height': '36px'}},
     palette: {
-        common: {
-            black: '#121212',
-            white: '#ffffff',
-        },
         primary: {
             100: '#73A5FF',
             300: '#4C8DFF',
@@ -39,20 +47,6 @@ export const darkTheme: DefaultTheme = {
             500: '#D99000',
             700: '#996600',
             900: '#664400',
-        },
-        dark: {
-            100: '#4C4C4C',
-            300: '#333333',
-            500: '#171717',
-            700: '#0D0D0D',
-            900: '#0D0D0D',
-        },
-        light: {
-            100: '#FFFFFF',
-            300: '#F7FBFF',
-            500: '#EDF3FA',
-            700: '#D5DAE0',
-            900: '#BDC1C7',
         },
     },
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Post} from 'entities/Post/Post'
-import {PostCardType} from 'entities/Post/api/types'
+import {PostCardType} from 'entities/UserPosts/api/types'
 import {PostsListWrapper} from 'widgets/PostsList/PostsList.styled'
 
 type PostsListType = {

@@ -9,7 +9,7 @@ import AddPhotoToLibrary from 'common/assets/icons/emptyAvatar.svg'
 import AddIcon from 'common/assets/icons/addIcon.svg'
 import CloseIcon from 'common/assets/icons/close.svg'
 import {EditorPanelWrapper, LibraryPicture, LibraryWrapper, SelectWrapper, ZoomWrapper} from './styled'
-import {LibraryPicturesType} from '../../CreatePost'
+import {LibraryPictureType} from '../../CreatePost'
 import {Button} from '../../../../../shared/components/Button/Button'
 import {InputFile} from '../../../../../shared/components/InputFile/InputFile'
 
@@ -17,7 +17,7 @@ type EditorButtonsType = {
     valueZoom: string
     width: number
     height: number
-    libraryPictures: LibraryPicturesType[]
+    libraryPictures: LibraryPictureType[]
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
     onChangeGeneralPicture: (id: string) => void
     onDeletePicture: (id: string) => void
@@ -72,64 +72,69 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
     }
 
     return (
-        <EditorPanelWrapper>
+        <EditorPanelWrapper width={props.width}>
             <div className='popUpBtn'>
-                <SelectWrapper hidden={selectHidden}>
-                    {ratioData.map(el => (
-                        <div key={el.id} onClick={() => handlerCrop(el.value)}>
-                            <span>{el.title}</span>
-                            <el.icon />
-                        </div>
-                    ))}
-                </SelectWrapper>
-                <ZoomWrapper hidden={zoomHidden}>
-                    <input
-                        type='range'
-                        value={props.valueZoom}
-                        onChange={props.onChangeZoom}
-                        min={1}
-                        max={12}
-                        step='0.1'
-                    />
-                </ZoomWrapper>
-                <LibraryWrapper hidden={libraryHidden}>
-                    <div className={'OVER'}>
-                        {props.libraryPictures.map(el => (
-                            <div key={el.id}>
-                                <LibraryPicture image={el.img} onClick={() => props.onChangeGeneralPicture(el.id)} />
-                                <Button
-                                    className='close'
-                                    variant={'isIcon'}
-                                    onClick={() => props.onDeletePicture(el.id)}
-                                >
-                                    <CloseIcon />
-                                </Button>
-                            </div>
-                        ))}
-                    </div>
-                    <div>
-                        <Button variant={'isIcon'} onClick={handlerAddPhoto}>
-                            <AddIcon />
-                        </Button>
-                    </div>
-                    <InputFile
-                        title={'Select from Computer'}
-                        ref={selectPhotoRef}
-                        onChange={props.handleCreatePost}
-                        accept={'image/png, image/jpeg'}
-                        multiple={false}
-                    />
-                </LibraryWrapper>
-                <div className='iconsWrapper'>
-                    <div>
+                <div className='wrapper'>
+                    <div className='select'>
                         <RatioIcon onClick={() => setSelectHidden(!selectHidden)} />
+                        <SelectWrapper hidden={selectHidden}>
+                            {ratioData.map(el => (
+                                <div key={el.id} onClick={() => handlerCrop(el.value)}>
+                                    <span>{el.title}</span>
+                                    <el.icon />
+                                </div>
+                            ))}
+                        </SelectWrapper>
                     </div>
-                    <div>
+                    <div className='zoom'>
                         <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
+                        <ZoomWrapper hidden={zoomHidden}>
+                            <input
+                                type='range'
+                                value={props.valueZoom}
+                                onChange={props.onChangeZoom}
+                                min={1}
+                                max={12}
+                                step='0.1'
+                            />
+                        </ZoomWrapper>
                     </div>
-                    <div>
-                        <AddPhotoToLibrary onClick={() => setLibraryHidden(!libraryHidden)} />
-                    </div>
+                </div>
+                <div className='library'>
+                    <AddPhotoToLibrary onClick={() => setLibraryHidden(!libraryHidden)} />
+                    <LibraryWrapper hidden={libraryHidden}>
+                        <div className={'OVER'}>
+                            {props.libraryPictures.map(el => (
+                                <div key={el.id}>
+                                    <LibraryPicture
+                                        image={el.img}
+                                        onClick={() => props.onChangeGeneralPicture(el.id)}
+                                    />
+                                    {props.libraryPictures.length > 1 && (
+                                        <Button
+                                            className='close'
+                                            variant={'isIcon'}
+                                            onClick={() => props.onDeletePicture(el.id)}
+                                        >
+                                            <CloseIcon />
+                                        </Button>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            <Button variant={'isIcon'} onClick={handlerAddPhoto}>
+                                <AddIcon />
+                            </Button>
+                        </div>
+                        <InputFile
+                            title={'Select from Computer'}
+                            ref={selectPhotoRef}
+                            onChange={props.handleCreatePost}
+                            accept={'image/png, image/jpeg'}
+                            multiple={false}
+                        />
+                    </LibraryWrapper>
                 </div>
             </div>
         </EditorPanelWrapper>

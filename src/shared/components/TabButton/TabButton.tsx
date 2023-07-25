@@ -6,12 +6,12 @@ export const TabButton = styled.button<{$active: boolean}>`
     border-left: none;
     border-right: none;
     border-top: none;
-    border-bottom: 2px solid ${props => props.theme.palette.dark['100']};
+    border-bottom: 2px solid ${props => props.theme.bodyColor['100']};
     font-size: 16px;
     font-weight: 600;
     font-family: Inter, sans-serif;
     letter-spacing: 0.7px;
-    color: ${props => props.theme.palette.dark['100']};
+    color: ${props => props.theme.textColor['100']};
     background-color: inherit;
 
     ${props => {
