@@ -16,20 +16,43 @@ interface ITypographyStyles {
     'font-family': NextFont
     'font-weight': number
 }
+// interface ITypographyType {
+//     Large: Interpolation<object>
+// H1: ITypographyStyles
+// H2: ITypographyStyles
+// H3: ITypographyStyles
+// 'regular_text 16': ITypographyStyles
+// 'Bold_text 16': ITypographyStyles
+// 'regular_text 14': ITypographyStyles
+// 'Medium_text 14': ITypographyStyles
+// 'bold_text 14': ITypographyStyles
+// small_text: ITypographyStyles
+// 'Semi-bold small_text': ITypographyStyles
+// regular_link: ITypographyStyles
+// small_link: ITypographyStyles
+// }
+
 interface ITypographyType {
-    Large: Interpolation<object>
-    // H1: ITypographyStyles
-    // H2: ITypographyStyles
-    // H3: ITypographyStyles
-    // 'regular_text 16': ITypographyStyles
-    // 'Bold_text 16': ITypographyStyles
-    // 'regular_text 14': ITypographyStyles
-    // 'Medium_text 14': ITypographyStyles
-    // 'bold_text 14': ITypographyStyles
-    // small_text: ITypographyStyles
-    // 'Semi-bold small_text': ITypographyStyles
-    // regular_link: ITypographyStyles
-    // small_link: ITypographyStyles
+    fontFamilyPrimary: string
+
+    // line heights
+    lineHeightS: string
+    lineHeightM: string
+    lineHeightL: string
+
+    // font sizes
+    fontSizeXS: string
+    fontSizeS: string
+    fontSizeM: string
+    fontSizeL: string
+    fontSizeXL: string
+    fontSizeXXL: string
+
+    // font weights
+    fontWeightRegular: number
+    fontWeightMedium: number
+    fontWeightSemiBold: number
+    fontWeightBold: number
 }
 
 declare module 'styled-components' {
@@ -38,7 +61,7 @@ declare module 'styled-components' {
         borderRadius: string
         bodyColor: string
         textColor: string
-        //typography: ITypographyType
+        typography: ITypographyType
         palette: {
             common: {
                 black: string

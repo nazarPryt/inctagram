@@ -1,11 +1,13 @@
 'use client'
 import {DefaultTheme} from 'styled-components'
+import {typography} from './typography'
 
 export const lightTheme: DefaultTheme = {
     name: 'light',
     borderRadius: '4px',
     bodyColor: '#ffffff',
     textColor: '#000000',
+    typography: typography,
     palette: {
         common: {
             black: '#121212',
