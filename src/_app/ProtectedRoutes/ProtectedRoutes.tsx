@@ -11,7 +11,14 @@ const ProtectedRoute = (props: {children: any}) => {
     const router = useRouter()
     const isAuthenticated = status === 'authenticated'
 
-    let unprotectedRoutes = [PATH.LOGIN, PATH.REGISTRATION]
+    let unprotectedRoutes = [
+        PATH.LOGIN,
+        PATH.REGISTRATION,
+        PATH.FORGOT_PASSWORD,
+        PATH.REGISTRATION_CONFIRMED,
+        PATH.EXPIRED_LINK,
+        PATH.CREATE_NEW_PASSWORD,
+    ]
 
     /**
      * @var pathIsProtected Checks if path exists in the unprotectedRoutes routes array

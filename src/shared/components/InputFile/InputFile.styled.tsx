@@ -11,5 +11,5 @@ export const InputFileWrapper = styled.label`
     letter-spacing: 0.7px;
 
     background-color: ${props => props.theme.palette.primary[500]};
-    color: ${props => props.theme.palette.light[100]};
+    color: ${props => props.theme.textColor[100]};
 `

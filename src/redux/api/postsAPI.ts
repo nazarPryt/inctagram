@@ -17,6 +17,12 @@ export const postsAPI = api.injectEndpoints({
                 body,
             }),
         }),
+        GetUserPosts: build.query<{}, {userId: number}>({
+            query: userId => ({
+                url: `posts/${userId}`,
+                method: 'GET',
+            }),
+        }),
     }),
 })
 

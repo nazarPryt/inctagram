@@ -5,7 +5,7 @@ export const EditorButtonsWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    background-color: ${props => props.theme.palette.dark['300']};
+    background-color: ${props => props.theme.bodyColor['300']};
     width: 100%;
     top: 0;
     left: 0;

@@ -1,7 +1,7 @@
 import 'styled-components'
 import {NextFont} from 'next/dist/compiled/@next/font'
-import {Interpolation} from 'styled-components/dist/types'
 import {ThemeAppType} from '_app/store/appSlice'
+
 interface IPalette {
     100: string
     300: string
@@ -59,20 +59,20 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         name: ThemeAppType
         borderRadius: string
-        bodyColor: string
-        textColor: string
+        bodyColor: IPalette
+        textColor: IPalette
         typography: ITypographyType
         palette: {
-            common: {
-                black: string
-                white: string
-            }
+            // common: {
+            //     black: string
+            //     white: string
+            // }
             primary: IPalette
             success: IPalette
             danger: IPalette
             warning: IPalette
-            dark: IPalette
-            light: IPalette
+            // dark: IPalette
+            // light: IPalette
         }
     }
 }

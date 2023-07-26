@@ -6,22 +6,29 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
-  html{
-    
+  html {
     overflow-y: scroll;
   }
 
   body {
-    background-color: ${({theme}) => theme.bodyColor};
-    color: ${({theme}) => theme.textColor};
+    background-color: ${({theme}) => theme.bodyColor['700']};
+    color: ${({theme}) => theme.textColor['100']};
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     height: 100vh;
-    font-family: Inter sans-serif;
     margin: 0;
     &.isModalOpen {
       overflow: hidden;
     }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
   }
 
   img {
@@ -39,8 +46,8 @@ export const GlobalStyle = createGlobalStyle`
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    -webkit-text-fill-color: ${({theme}) => theme.textColor};
-    -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.palette.dark['500']} inset;
+    -webkit-text-fill-color: ${({theme}) => theme.textColor['100']};
+    -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.bodyColor['500']} inset;
   }
 
   

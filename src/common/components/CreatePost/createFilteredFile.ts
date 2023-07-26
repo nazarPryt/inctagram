@@ -4,6 +4,7 @@ import {dataURLtoFile} from './dataURLtoFile'
 
 export const createFilteredFile = async (editorRef: RefObject<AvatarEditor>, filter: string) => {
     const canvas = editorRef!.current!.getImageScaledToCanvas()
+
     const ctx = canvas.getContext('2d')
 
     ctx!.filter = filter
@@ -22,5 +23,5 @@ export const createFilteredFile = async (editorRef: RefObject<AvatarEditor>, fil
     const imageDataUrl = filteredCanvas.toDataURL()
 
     // Create a new file object from the Data URL
-    return dataURLtoFile(imageDataUrl, 'avatar')
+    return dataURLtoFile(imageDataUrl, 'picture')
 }

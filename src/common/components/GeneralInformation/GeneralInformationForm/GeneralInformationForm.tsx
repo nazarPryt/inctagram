@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker'
 import {useUpdateUserMutation} from 'redux/api/profileAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {Button} from 'shared/components/Button/Button'
-import {UserProfile} from '../../../../redux/types/authTypes'
+import {UserProfile} from 'redux/types/authTypes'
 
 export interface IFormInput {
     userName: string
@@ -67,18 +67,6 @@ export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
             .unwrap()
             .then()
             .catch(error => dispatch(SetAppNotificationAC({notifications: {type: 'error', message: error.message}})))
-
-        console.log(
-            {
-                userName: data.userName,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                city: data.city,
-                dateOfBirth: result,
-                aboutMe: data.aboutMe,
-            },
-            data.dateOfBirth
-        )
     }
 
     return (

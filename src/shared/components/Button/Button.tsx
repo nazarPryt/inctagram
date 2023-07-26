@@ -14,27 +14,27 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
         switch (props.variant) {
             case 'contained':
                 return css`
-                    background-color: ${({theme}) => theme.palette.light[100]};
-                    color: ${({theme}) => theme.palette.dark[900]};
+                    background-color: ${({theme}) => theme.bodyColor[100]};
+                    color: ${({theme}) => theme.textColor[900]};
 
                     &:active {
                         background-color: ${({theme}) => theme.palette.primary[700]};
                     }
 
                     &:hover {
-                        background-color: ${({theme}) => theme.palette.light[100]};
-                        color: ${({theme}) => theme.palette.dark[300]};
+                        background-color: ${({theme}) => theme.bodyColor[100]};
+                        color: ${({theme}) => theme.textColor[300]};
                     }
 
                     &:focus {
-                        background-color: ${({theme}) => theme.palette.light[100]};
-                        color: ${({theme}) => theme.palette.dark[900]};
+                        background-color: ${({theme}) => theme.bodyColor[100]};
+                        color: ${({theme}) => theme.textColor[900]};
                         border: 2px solid ${({theme}) => theme.palette.primary[700]};
                     }
 
                     &:disabled {
-                        background-color: ${({theme}) => theme.palette.light[900]};
-                        color: ${({theme}) => theme.palette.dark[100]};
+                        background-color: ${({theme}) => theme.bodyColor[900]};
+                        color: ${({theme}) => theme.textColor[100]};
                     }
                 `
             case 'text':
@@ -90,14 +90,12 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
                     align-items: center;
                     gap: 15px;
                     background-color: inherit;
-                    color: ${({theme}) =>
-                        theme.name === 'dark' ? theme.palette.common.white : theme.palette.common.black};
+                    color: ${({theme}) => theme.textColor[100]};
                     font-size: 14px;
                     font-weight: 500;
 
                     & svg path {
-                        fill: ${({theme}) =>
-                            theme.name === 'dark' ? theme.palette.common.white : theme.palette.common.black};
+                        fill: ${({theme}) => theme.palette.primary[700]};
                     }
 
                     &:active {
@@ -135,26 +133,26 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
             default:
                 return css`
                     background-color: ${({theme}) => theme.palette.primary[500]};
-                    color: ${({theme}) => theme.palette.light[100]};
+                    color: ${({theme}) => theme.textColor[100]};
 
                     &:active {
                         background-color: ${({theme}) => theme.palette.primary[700]};
-                        color: ${({theme}) => theme.palette.light[500]};
+                        color: ${({theme}) => theme.textColor[500]};
                     }
 
                     &:hover {
                         background-color: ${({theme}) => theme.palette.primary[100]};
-                        color: ${({theme}) => theme.palette.light[100]};
+                        color: ${({theme}) => theme.textColor[100]};
                     }
 
                     &:focus {
                         background-color: ${({theme}) => theme.palette.primary[700]};
-                        color: ${({theme}) => theme.palette.light[100]};
+                        color: ${({theme}) => theme.textColor[100]};
                     }
 
                     &:disabled {
                         background-color: ${({theme}) => theme.palette.primary[900]};
-                        color: ${({theme}) => theme.palette.light[900]};
+                        color: ${({theme}) => theme.textColor[900]};
                     }
                 `
         }

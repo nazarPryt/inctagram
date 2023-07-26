@@ -5,8 +5,11 @@ export const NavButtonWrapper = styled.button`
     display: flex;
     align-items: center;
     gap: 15px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 14px;
     background-color: inherit;
-    color: inherit;
+    color: ${props => props.theme.textColor['100']};
     border: none;
     padding: 0;
 
@@ -18,7 +21,6 @@ export const NavButtonWrapper = styled.button`
     }
 
     path {
-        fill: ${props =>
-            props.theme.name === 'dark' ? props.theme.palette.common.white : props => props.theme.palette.common.black};
+        fill: ${props => props.theme.textColor[100]};
     }
 `

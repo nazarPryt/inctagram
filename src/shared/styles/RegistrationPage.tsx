@@ -7,7 +7,7 @@ export const AuthPageStyled = styled.div`
             font-size: 20px;
             line-height: 36px;
 
-            color: ${props => props.theme.palette.light['100']};
+            color: ${props => props.theme.textColor['100']};
             margin-top: 0;
             margin-bottom: 13px;
         }

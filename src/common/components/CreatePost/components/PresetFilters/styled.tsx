@@ -22,5 +22,6 @@ export const Filter = styled.div<{filter: string}>`
         width: 100%;
         height: 100%;
         filter: ${props => props.filter};
+        object-fit: cover;
     }
 `

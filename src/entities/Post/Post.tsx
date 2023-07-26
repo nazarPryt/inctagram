@@ -1,5 +1,5 @@
 import React from 'react'
-import {PostCardType} from 'entities/Post/api/types'
+import {PostCardType} from 'entities/UserPosts/api/types'
 import {PostHeader} from 'entities/Post/ui/PostHeader/PostHeader'
 import {PostImage} from 'entities/Post/ui/PostImage/PostImage'
 import {PostFeatures} from 'entities/Post/ui/PostFeatures/PostFeatures'
