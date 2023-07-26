@@ -18,16 +18,16 @@ export const Main = styled.div`
 
         font-size: ${props => props.theme.typography.fontSizeM};
         line-height: ${props => props.theme.typography.lineHeightM};
-        color: ${props => props.theme.palette.light['100']};
+        color: ${props => props.theme.textColor['100']};
 
-        background-color: ${props => props.theme.palette.dark['700']};
-        border: 1px solid ${props => props.theme.palette.dark['100']};
+        background-color: ${props => props.theme.bodyColor['700']};
+        border: 1px solid ${props => props.theme.bodyColor['100']};
         border-radius: 0.125rem;
         &.primary {
             //min-width: 13.125rem;
         }
         &[data-state='open'] {
-            border-color: ${props => props.theme.palette.dark['100']};
+            border-color: ${props => props.theme.bodyColor['100']};
             border-bottom: none;
             border-radius: 0.125rem 0.125rem 0 0;
         }
@@ -51,8 +51,8 @@ export const Main = styled.div`
         }
 
         &:hover {
-            background: ${props => props.theme.palette.dark['500']};
-            border-color: ${props => props.theme.palette.dark['100']};
+            background: ${props => props.theme.bodyColor['500']};
+            border-color: ${props => props.theme.bodyColor['100']};
         }
 
         &:focus {
@@ -61,12 +61,12 @@ export const Main = styled.div`
         }
 
         &[data-placeholder] {
-            color: ${props => props.theme.palette.light['100']};
+            color: ${props => props.theme.textColor['100']};
         }
 
         &[data-disabled] {
             pointer-events: none;
-            color: ${props => props.theme.palette.dark['300']};
+            color: ${props => props.theme.bodyColor['300']};
         }
 
         .icon {
@@ -79,7 +79,7 @@ export const Main = styled.div`
                 height: 16px;
             }
             svg {
-                color: ${props => props.theme.textColor};
+                color: ${props => props.theme.textColor['500']};
             }
         }
 
@@ -97,8 +97,8 @@ export const Main = styled.div`
         width: var(--radix-select-trigger-width);
         max-height: var(--radix-select-content-available-height);
 
-        background-color: ${props => props.theme.palette.dark['900']};
-        border: 1px solid ${props => props.theme.palette.dark['100']};
+        background-color: ${props => props.theme.bodyColor['900']};
+        border: 1px solid ${props => props.theme.bodyColor['100']};
         border-radius: 0 0 0.125rem 0.125rem;
 
         &.pagination {
@@ -112,8 +112,8 @@ export const Main = styled.div`
             width: 100%;
             font-size: ${props => props.theme.typography.fontSizeS};
             line-height: ${props => props.theme.typography.lineHeightM};
-            color: ${props => props.theme.palette.light['100']};
-            background-color: ${props => props.theme.palette.dark['900']};
+            color: ${props => props.theme.textColor['100']};
+            background-color: ${props => props.theme.bodyColor['900']};
 
             &.pagination {
                 padding: 0 0 0 6px;
@@ -123,13 +123,13 @@ export const Main = styled.div`
 
             &[data-highlighted] {
                 color: ${props => props.theme.palette.primary['500']};
-                background-color: ${props => props.theme.palette.dark['300']};
+                background-color: ${props => props.theme.bodyColor['300']};
                 outline: none;
             }
 
             &[data-disabled] {
                 pointer-events: none;
-                color: ${props => props.theme.palette.dark['300']};
+                color: ${props => props.theme.textColor['300']};
             }
         }
     }
@@ -138,10 +138,10 @@ export const Main = styled.div`
         display: block;
         font-size: ${props => props.theme.typography.fontSizeS};
         line-height: ${props => props.theme.typography.lineHeightM};
-        color: ${props => props.theme.palette.dark['100']};
+        color: ${props => props.theme.textColor['100']};
 
         &.disabled {
-            color: ${props => props.theme.palette.dark['300']};
+            color: ${props => props.theme.textColor['300']};
         }
     }
 `

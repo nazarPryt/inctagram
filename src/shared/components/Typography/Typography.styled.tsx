@@ -8,14 +8,14 @@ interface TypographyProps {
 
 const TypographyMixin = styled.p<TypographyProps>`
     font-family: ${props => props.theme.typography.fontFamilyPrimary};
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.textColor['500']};
     white-space: pre-line;
 
     &.primary-color {
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor['500']};
     }
     &.secondary-color {
-        //color: ${props => props.theme.palette.dark['500']};
+        //color: ${props => props.theme.bodyColor['500']};
     }
     &.inherit-color {
         color: inherit;
