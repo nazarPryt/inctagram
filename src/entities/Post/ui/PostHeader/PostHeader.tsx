@@ -1,14 +1,12 @@
 import {PostHeaderWrapper} from 'entities/Post/ui/PostHeader/PostHeader.styled'
 import {AvatarIcon} from 'shared/components/AvatarIcon/AvatarIcon'
-import CopyOutline from '../../../../common/assets/icons/copyOutline.png'
-import RemovePerson from '../../../../common/assets/icons/personRemove.png'
-import EmailOutline from '../../../../common/assets/icons/emailOutline.png'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {useState} from 'react'
 import {Popover} from '../../../../shared/components/Popover/Popover'
-import {IconButton} from '../../../../shared/components/IconButton/IconButton'
-import Image from 'next/image'
+import {EmailReport} from '../../../../features/EmailReport/EmailReport'
+import {UnfollowUser} from '../../../../features/UnfollowUser/UnfollowUser'
+import {CopyLink} from '../../../../features/CopyLink/CopyLink'
 
 type PostHeaderType = {
     img: string
@@ -41,27 +39,17 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
                 </Link>
                 <span>22 Minutes ago</span>
             </div>
-            <Popover
-                onActionHandler={handleActionOne}
-                setIsPopoverOpen={setIsPopoverOpen}
-                isPopoverOpen={isPopoverOpen}
-            >
-                <div id='iconWrapper'>
-                    <IconButton onClick={handleActionOne}>
-                        <Image style={{width: '24px', height: '24px'}} src={EmailOutline} alt={'email icon'} />
-                    </IconButton>
+            <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
+                <div>
+                    <EmailReport changeHandler={handleActionOne} />
                     <span>Report</span>
                 </div>
-                <div id='iconWrapper'>
-                    <IconButton onClick={handleActionTwo}>
-                        <Image style={{width: '24px', height: '24px'}} src={RemovePerson} alt={'email icon'} />
-                    </IconButton>
+                <div>
+                    <UnfollowUser changeHandler={handleActionTwo} />
                     <span>Unfollow</span>
                 </div>
-                <div id='iconWrapper'>
-                    <IconButton onClick={handleActionThree}>
-                        <Image style={{width: '24px', height: '24px'}} src={CopyOutline} alt={'email icon'} />
-                    </IconButton>
+                <div>
+                    <CopyLink changeHandler={handleActionThree} />
                     <span>Copy</span>
                 </div>
             </Popover>

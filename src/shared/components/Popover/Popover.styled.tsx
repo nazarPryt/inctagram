@@ -12,6 +12,11 @@ export const PopoverContentWrapper = styled.div`
     border: 1px solid ${props => props.theme.bodyColor['100']};
     z-index: 999;
     color: ${props => props.theme.textColor[100]};
+
+    div {
+        width: 100%;
+        justify-content: left;
+    }
 `
 export const PopoverWrapper = styled.div`
     position: relative;
