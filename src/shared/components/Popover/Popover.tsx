@@ -1,7 +1,7 @@
 import React, {Dispatch, FC, ReactNode, SetStateAction, useEffect} from 'react'
 import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
 import {IconButton} from '../IconButton/IconButton'
-import {PopOverIcon} from '../../../entities/Post/ui/PostHeader/popOverIcon'
+import {PopOverIcon} from 'entities/Post/ui/PostHeader/popOverIcon'
 
 interface PopoverContentProps {
     onActionHandler?: () => void

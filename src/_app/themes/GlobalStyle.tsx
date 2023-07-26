@@ -16,7 +16,6 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     height: 100vh;
-    font-family: Inter sans-serif;
     margin: 0;
     &.isModalOpen {
       overflow: hidden;

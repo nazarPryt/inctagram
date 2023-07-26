@@ -7,7 +7,6 @@ export const NavLinkWrapper = styled(Link)`
     align-items: center;
     gap: 15px;
     font-weight: 500;
-    font-family: Inter serif;
     font-size: 14px;
 
     text-decoration: none;
