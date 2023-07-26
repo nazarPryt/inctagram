@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 
-export const IconButtonStyled = styled.button<{$colorful?: 'true'}>`
+export const IconButtonStyled = styled.button<{$colorful?: 'true'; $active?: 'true' | undefined}>`
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -14,8 +14,14 @@ export const IconButtonStyled = styled.button<{$colorful?: 'true'}>`
     &:active {
         transform: scale(1);
     }
+
     path {
         ${props => {
+            if (props.$active) {
+                return css`
+                    fill: ${props => props.theme.palette.primary['500']};
+                `
+            }
             if (!props.$colorful) {
                 return css`
                     fill: ${props =>

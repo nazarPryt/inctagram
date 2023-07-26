@@ -4,9 +4,10 @@ import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {useState} from 'react'
 import {Popover} from '../../../../shared/components/Popover/Popover'
-import {EmailReport} from '../../../../features/EmailReport/EmailReport'
-import {UnfollowUser} from '../../../../features/UnfollowUser/UnfollowUser'
-import {CopyLink} from '../../../../features/CopyLink/CopyLink'
+import {PopoverItem} from '../../../../shared/components/Popover/PopoverItem/PopoverItem'
+import {EmailReportIcon} from '../../../../features/EmailReport/EmailReportIcon'
+import {UnfollowUserIcon} from '../../../../features/UnfollowUser/UnfollowUserIcon'
+import {CopyLinkIcon} from '../../../../features/CopyLink/CopyLinkIcon'
 
 type PostHeaderType = {
     img: string
@@ -32,7 +33,7 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
 
     return (
         <PostHeaderWrapper>
-            <div>
+            <div className={'PostHeader'}>
                 <AvatarIcon img={img} userID={userID} />
                 <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>
                     URLProfile
@@ -40,18 +41,9 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
                 <span>22 Minutes ago</span>
             </div>
             <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
-                <div>
-                    <EmailReport changeHandler={handleActionOne} />
-                    <span>Report</span>
-                </div>
-                <div>
-                    <UnfollowUser changeHandler={handleActionTwo} />
-                    <span>Unfollow</span>
-                </div>
-                <div>
-                    <CopyLink changeHandler={handleActionThree} />
-                    <span>Copy</span>
-                </div>
+                <PopoverItem onClick={handleActionOne} name={'Report'} icon={<EmailReportIcon />} />
+                <PopoverItem onClick={handleActionTwo} name={'Unfollow'} icon={<UnfollowUserIcon />} />
+                <PopoverItem onClick={handleActionThree} name={'Copy'} icon={<CopyLinkIcon />} />
             </Popover>
         </PostHeaderWrapper>
     )

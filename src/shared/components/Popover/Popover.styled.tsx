@@ -9,6 +9,7 @@ export const PopoverContentWrapper = styled.div`
     transform: translateX(-90%);
     background-color: ${props => props.theme.bodyColor['500']};
     padding: 10px;
+    gap: 10px;
     border: 1px solid ${props => props.theme.bodyColor['100']};
     z-index: 999;
     color: ${props => props.theme.textColor[100]};

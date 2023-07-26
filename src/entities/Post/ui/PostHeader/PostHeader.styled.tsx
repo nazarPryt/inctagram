@@ -5,7 +5,7 @@ export const PostHeaderWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    div {
+    .PostHeader {
         display: flex;
         justify-content: space-between;
         align-items: center;
