@@ -5,6 +5,11 @@ export const PostHeaderWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    #iconWrapper {
+        width: 100%;
+        justify-content: left;
+    }
+
     div {
         display: flex;
         justify-content: space-between;
