@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, ReactNode, SetStateAction} from 'react'
+import React, {Dispatch, FC, ReactNode, SetStateAction, useEffect} from 'react'
 import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
 import {IconButton} from '../IconButton/IconButton'
 import {PopOverIcon} from '../../../entities/Post/ui/PostHeader/popOverIcon'
@@ -16,8 +16,24 @@ export const Popover: FC<PopoverContentProps> = props => {
         setIsPopoverOpen(prevIsOpen => !prevIsOpen)
     }
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const popoverWrapper = document.getElementById('popoverWrapper')
+
+            if (popoverWrapper && !popoverWrapper.contains(event.target as Node)) {
+                setIsPopoverOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [setIsPopoverOpen])
+
     return (
-        <PopoverWrapper>
+        <PopoverWrapper id='popoverWrapper'>
             <IconButton onClick={handleTogglePopover}>
                 <PopOverIcon />
             </IconButton>
