@@ -5,12 +5,9 @@ import {GeneralInformationForm} from 'common/components/GeneralInformation/Gener
 import {Avatar} from 'common/components/Avatar/Avatar'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {Loader} from 'shared/components/Loader/Loader'
-import {useSession} from 'next-auth/react'
 
-export const GeneralInformation = () => {
-    const {data: user} = useSession()
-
-    const {data, isLoading} = useGetUserProfileQuery(248)
+export const GeneralInformation = ({userId}: {userId: number | null}) => {
+    const {data, isLoading} = useGetUserProfileQuery(userId as number)
 
     if (isLoading) {
         return <Loader />
@@ -19,7 +16,7 @@ export const GeneralInformation = () => {
     if (data) {
         return (
             <GeneralInformationWrapper>
-                <Avatar avatar={data.avatars[0].url} />
+                <Avatar avatar={data.avatars[0]?.url} />
                 <GeneralInformationForm data={data} />
             </GeneralInformationWrapper>
         )

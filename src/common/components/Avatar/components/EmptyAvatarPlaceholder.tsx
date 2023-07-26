@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import EmptyAvatarIcon from 'common/assets/icons/emptyAvatar.svg'
+import {EmptyAvatar} from 'common/assets/icons/emptyAvatar'
 import React from 'react'
 
 const Wrapper = styled.div`
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 export const EmptyAvatarPlaceholder = () => {
     return (
         <Wrapper>
-            <EmptyAvatarIcon />
+            <EmptyAvatar />
         </Wrapper>
     )
 }

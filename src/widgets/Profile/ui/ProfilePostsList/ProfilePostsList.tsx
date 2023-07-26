@@ -3,24 +3,23 @@ import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/Profi
 import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 import {Loader} from 'shared/components/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
-import {useSession} from 'next-auth/react'
+import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
 
-export const ProfilePostsList = () => {
-    const session = useSession()
-    const userId = session.data?.user.userId as number
-    const {data: posts, isLoading} = useGetUserPostsQuery(userId)
+export const ProfilePostsList = ({userId}: {userId: number | null}) => {
+    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
 
     if (isLoading) {
         return <Loader />
     }
     if (posts && posts.items.length === 0) {
-        return <div>User doesnt have any posts</div>
+        return <NoPosts />
     }
+
     return (
         <ProfilePostsListWrapper>
             {posts &&
                 posts.items.map(post => {
-                    return <UserPost key={post.id} src={post.images[0].url} />
+                    return <UserPost key={post.id} src={post.images[0]?.url} />
                 })}
         </ProfilePostsListWrapper>
     )

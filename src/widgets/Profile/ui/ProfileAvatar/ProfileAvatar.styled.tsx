@@ -8,4 +8,8 @@ export const ProfileAvatarWrapper = styled.div`
     img {
         border-radius: 50%;
     }
+
+    path {
+        fill: ${props => props.theme.palette.primary[500]};
+    }
 `

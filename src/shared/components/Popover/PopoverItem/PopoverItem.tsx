@@ -1,5 +1,5 @@
 import React, {ComponentPropsWithoutRef, ReactNode} from 'react'
-import styled from 'styled-components'
+import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
 
 type PopoverItemProps = {
     name: string
@@ -7,25 +7,9 @@ type PopoverItemProps = {
 } & ComponentPropsWithoutRef<'button'>
 export const PopoverItem = ({name, icon, ...rest}: PopoverItemProps) => {
     return (
-        <PopoverWrapperItem {...rest}>
+        <NavButtonWrapper {...rest}>
             {icon}
             <span>{name}</span>
-        </PopoverWrapperItem>
+        </NavButtonWrapper>
     )
 }
-
-export const PopoverWrapperItem = styled.button`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    outline: none;
-    border: none;
-    background: inherit;
-    color: ${props => props.theme.textColor[100]};
-
-    path {
-        fill: ${props => props.theme.textColor[100]};
-    }
-
-    cursor: pointer;
-`

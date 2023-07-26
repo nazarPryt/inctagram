@@ -3,31 +3,20 @@ import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHead
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
-import {Loader} from 'shared/components/Loader/Loader'
-import {useSession} from 'next-auth/react'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {ProfileHeaderLoader} from 'widgets/Profile/ui/ProfileHeader/ProfileHeaderLoader'
 
-export const ProfileHeader = () => {
-    const {data: user, status} = useSession()
+export const ProfileHeader = ({userId}: {userId: number | null}) => {
+    const {data: userData, isLoading} = useGetUserProfileQuery(userId as number)
 
-    console.log(user)
-
-    const {data: userData, isLoading} = useGetUserProfileQuery(248)
-
-    // if (isLoading) {
-    //     return <Loader />
-    // }
+    if (isLoading) {
+        return <ProfileHeaderLoader />
+    }
 
     if (userData) {
         return (
             <ProfileHeaderWrapper>
-                <ProfileAvatar
-                    src={
-                        'https://storage.yandexcloud.net/users-inctagram/users/248/avatar/b07e8938-b97e-458f-872f-61f23e427079-images-192x192'
-                    }
-                />
-                {/*<ProfileAvatar src={userData.avatars[0].url} />*/}
+                <ProfileAvatar src={userData.avatars[0]?.url} />
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>
@@ -56,5 +45,5 @@ export const ProfileHeader = () => {
             </ProfileHeaderWrapper>
         )
     }
-    return <ProfileHeaderLoader />
+    return <div>error</div>
 }

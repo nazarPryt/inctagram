@@ -1,8 +1,7 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
+import React, {ChangeEvent, useRef, useState} from 'react'
 import CreateIcon from 'common/assets/icons/create.svg'
 
 import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
-import EmptyIcon from '../../assets/icons/emptyAvatar.svg'
 import {useCreatePostMutation, useUploadImageMutation} from 'redux/api/postsAPI'
 import AvatarEditor from 'react-avatar-editor'
 import {EditorPanel} from './components/EditorPanel/EditorPanel'
@@ -14,10 +13,11 @@ import {Describe} from './components/Describe/Describe'
 import {CanvasContainer} from './components/CanvasContainer/CanvasContainer'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
-import {ImageMetaData} from '../../../redux/types/postsTypes'
-import {Loader} from '../../../shared/components/Loader/Loader'
-import {Modal} from '../../../shared/components/Modal/Modal'
-import {NavButton} from '../../../widgets/Aside/ui/NavButton/NavButton'
+import {ImageMetaData} from 'redux/types/postsTypes'
+import {Loader} from 'shared/components/Loader/Loader'
+import {Modal} from 'shared/components/Modal/Modal'
+import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
+import {EmptyAvatar} from 'common/assets/icons/emptyAvatar'
 
 export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'
 
@@ -251,7 +251,7 @@ export const CreatePost = () => {
                             />
                         ) : (
                             <EmptyImageWrapper>
-                                <EmptyIcon />
+                                <EmptyAvatar />
                             </EmptyImageWrapper>
                         )}
 

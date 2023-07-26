@@ -1,17 +1,17 @@
-import React, {MouseEvent, ChangeEvent, useRef, useState, MouseEventHandler} from 'react'
+import React, {ChangeEvent, useRef, useState} from 'react'
 import RatioIcon from '../../../../assets/icons/ratio.svg'
 import ZoomIcon from '../../../../assets/icons/zoom.svg'
 import CropOriginal from '../../../../assets/icons/cropOriginal.svg'
 import Crop1x1 from '../../../../assets/icons/crop1x1.svg'
 import Crop4x5 from '../../../../assets/icons/crop4x5.svg'
 import Crop16x9 from '../../../../assets/icons/crop16x9.svg'
-import AddPhotoToLibrary from 'common/assets/icons/emptyAvatar.svg'
 import AddIcon from 'common/assets/icons/addIcon.svg'
 import CloseIcon from 'common/assets/icons/close.svg'
 import {EditorPanelWrapper, LibraryPicture, LibraryWrapper, SelectWrapper, ZoomWrapper} from './styled'
 import {LibraryPictureType} from '../../CreatePost'
-import {Button} from '../../../../../shared/components/Button/Button'
-import {InputFile} from '../../../../../shared/components/InputFile/InputFile'
+import {Button} from 'shared/components/Button/Button'
+import {InputFile} from 'shared/components/InputFile/InputFile'
+import {EmptyAvatar} from 'common/assets/icons/emptyAvatar'
 
 type EditorButtonsType = {
     valueZoom: string
@@ -101,7 +101,10 @@ export const EditorPanel: React.FC<EditorButtonsType> = props => {
                     </div>
                 </div>
                 <div className='library'>
-                    <AddPhotoToLibrary onClick={() => setLibraryHidden(!libraryHidden)} />
+                    <span onClick={() => setLibraryHidden(!libraryHidden)}>
+                        <EmptyAvatar />
+                    </span>
+                    <EmptyAvatar />
                     <LibraryWrapper hidden={libraryHidden}>
                         <div className={'OVER'}>
                             {props.libraryPictures.map(el => (
