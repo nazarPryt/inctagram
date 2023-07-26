@@ -26,6 +26,7 @@ type CommonProps = {
     label?: string
     width?: CSSProperties['width']
     rootClassName?: string
+    defaultValue?: string
 }
 export type SelectProps = CommonProps & ConditionalMultipleProps
 
@@ -41,6 +42,7 @@ export const Select: FC<SelectProps> = ({
     label,
     rootClassName,
     width,
+    defaultValue,
 }) => {
     const showError = !!errorMessage && errorMessage.length > 0
     const classNames = {
@@ -51,7 +53,7 @@ export const Select: FC<SelectProps> = ({
         content: clsx('content', variant),
         label: clsx('label', disabled && 'disabled'),
     }
-    const withoutPlaceholder = options[0].label
+    // const withoutPlaceholder = options[0].label
     const triggerValue = options.find(el => el.value === value)?.label
     const rootStyles = {width}
 
@@ -60,11 +62,9 @@ export const Select: FC<SelectProps> = ({
             <Typography variant={'regular_text_14'} as='label' className={classNames.label}>
                 {label}
             </Typography>
-            <SelectRadix.Root disabled={disabled} onValueChange={onChange}>
+            <SelectRadix.Root disabled={disabled} onValueChange={onChange} defaultValue={defaultValue}>
                 <SelectRadix.Trigger className={classNames.trigger} style={rootStyles}>
-                    <SelectRadix.Value placeholder={placeholder || withoutPlaceholder}>
-                        {triggerValue}
-                    </SelectRadix.Value>
+                    <SelectRadix.Value placeholder={placeholder || ''}>{triggerValue}</SelectRadix.Value>
                     <SelectRadix.Icon className={classNames.icon}>
                         <ArrowDownIcon />
                     </SelectRadix.Icon>

@@ -1,32 +1,22 @@
 import {pluralizeRu} from '../src/common/helpers/createPluralize'
 
 export const ru = {
-    homePage: {
-        test: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати',
-        getCount(count: number) {
-            const str = pluralizeRu(count)
-            switch (str) {
-                case 'one':
-                    return `${count} товар`
-                case 'few':
-                    return `${count} товара`
-                case 'many':
-                    return `${count} товаров`
-            }
-        },
-    },
-    charactersPage: {
-        title: 'Страница с персонажами',
-    },
-    characterPage: {
-        getDescription(name: string, species: string) {
-            return `Персонаж ${name} относится к разновидности ${species}`
-        },
-        description: 'Персонаж <1>name</1> относится к разновидности <2>species</2>',
-    },
-    locationsPage: {
-        title: 'Страница с локациями',
-    },
+    //auth
+    auth_email: 'Почта',
+    auth_password: 'Пароль',
+    auth_confirm_password: 'Подтверждение пароля',
+
+    //auth_sign_up
+    auth_sign_up_title: 'Зарегистрироваться',
+    auth_sign_up_username: 'Имя пользователя',
+    auth_sign_up_username_error: 'Пользователь с этим логином уже зарегистрирован',
+    auth_sign_up_description: 'У вас уже есть аккаунт?',
+
+    //auth_sign_in
+    auth_sign_in_title: 'Войти',
+    auth_sign_in_password_error: 'Вы ввели неверный пароль или адрес электронной почты. Пожалуйста, попробуйте еще раз',
+    auth_sign_in_description: 'У вас нет аккаунта?',
+    auth_sign_in_forgot_password: 'Забыли пароль',
 }
 
 export type LocaleType = typeof ru

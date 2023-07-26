@@ -14,7 +14,7 @@ module.exports = {
     },
     images: {domains: ['storage.yandexcloud.net', 'loremflickr.com']},
     i18n: {
-        locales: ['en', 'ru'],
+        locales: ['ru', 'en'],
         defaultLocale: 'ru',
     },
 }

@@ -13,11 +13,12 @@ import {Modal} from 'shared/components/Modal/Modal'
 import {useRegistrationForm} from 'features/auth/RegistrationForm/UseRegistrationForm'
 import {AuthContainer} from 'shared/components/AuthContainer/AuthContainer'
 import {Button} from 'shared/components/Button/Button'
+import {useTranslation} from '../../../common/hooks/useTranslation'
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const {isLoading, register, handleSubmit, errors, getValues, reset} = useRegistrationForm(setIsModalOpen)
-
+    const {t} = useTranslation()
     const handleModalClose = () => {
         setIsModalOpen(false)
         reset()
@@ -26,7 +27,7 @@ export const RegistrationForm = () => {
         <AuthContainer>
             {isLoading && <Loader />}
             <AuthPageStyled>
-                <h1>Sign Up</h1>
+                <h1>{t.auth_sign_up_title}</h1>
                 <div>
                     <IconButton colorful='true'>
                         <GoogleIcon />
@@ -37,25 +38,30 @@ export const RegistrationForm = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <InputText
-                        label={'UserName'}
+                        label={t.auth_sign_up_username}
                         type={'text'}
                         {...register('userName')}
                         error={errors.userName?.message}
                     />
-                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email?.message} />
-                    <InputPassword label={'Password'} {...register('password')} error={errors.password?.message} />
+                    <InputText
+                        label={t.auth_email}
+                        type={'email'}
+                        {...register('email')}
+                        error={errors.email?.message}
+                    />
+                    <InputPassword label={t.auth_password} {...register('password')} error={errors.password?.message} />
                     <InputPassword
-                        label={'Password confirmation'}
+                        label={t.auth_confirm_password}
                         {...register('passwordConfirmation')}
                         error={errors.passwordConfirmation?.message}
                     />
                     <Button type={'submit'} disabled={isLoading}>
-                        Submit
+                        {t.auth_sign_up_title}
                     </Button>
-                    <p>Do you have an account?</p>
+                    <p>{t.auth_sign_up_description}</p>
                     <Link href={PATH.LOGIN}>
                         <Button type={'button'} variant={'text'}>
-                            Sign In
+                            {t.auth_sign_in_title}
                         </Button>
                     </Link>
                 </form>
