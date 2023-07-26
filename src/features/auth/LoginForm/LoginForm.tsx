@@ -21,7 +21,6 @@ export const LoginForm = () => {
     const handleRedirectOnRegistration = () => {
         router.push(PATH.REGISTRATION)
     }
-    console.log(status)
 
     if (status === 'authenticated') {
         router.push(PATH.HOME)

@@ -3,12 +3,13 @@ import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/Profi
 import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 import {Loader} from 'shared/components/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
+import {useSession} from 'next-auth/react'
 
 export const ProfilePostsList = () => {
-    const userId = 248
+    const session = useSession()
+    const userId = session.data?.user.userId as number
     const {data: posts, isLoading} = useGetUserPostsQuery(userId)
 
-    console.log(posts)
     if (isLoading) {
         return <Loader />
     }
