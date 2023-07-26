@@ -1,13 +1,14 @@
-import type {Meta} from '@storybook/react'
+import type {Meta, StoryObj} from '@storybook/react'
 import React, {useState} from 'react'
+import {FlagEngIcon} from '../../../common/assets/icons/FlagEngIcon'
 import {FlagRussiaIcon} from '../../../common/assets/icons/FlagRussiaIcon'
 import {Select, SelectProps} from './Select'
-import EnglishFlag from '../../../common/assets/icons/FlagUnitedKingdom.svg'
+
 export default {
     title: 'Components/Select',
     component: Select,
     tags: ['autodocs'],
-} satisfies Meta<typeof Select>
+} as Meta<typeof Select>
 
 const optionsPrimary = [
     {
@@ -66,21 +67,29 @@ const Country = [
     },
 ]
 
-export const Simple = () => {
+type Story = StoryObj<typeof Select>
+
+const SimpleSelect = () => {
     const [value, setValue] = useState('')
 
-    return <Select value={value} onChange={setValue} placeholder={'select box'} options={optionsPrimary} />
+    return <Select value={value} onChange={setValue} options={optionsPrimary} />
+}
+export const Simple: Story = {
+    render: () => <SimpleSelect />,
 }
 
-export const SimpleWithLabel = () => {
+const SimpleWithLabelSelect = () => {
     const [value, setValue] = useState('')
 
     return (
         <Select value={value} onChange={setValue} placeholder={'select...'} options={optionsPrimary} label={'Select'} />
     )
 }
+export const SimpleWithLabel: Story = {
+    render: () => <SimpleWithLabelSelect />,
+}
 
-export const Error = () => {
+const ErrorSelect = () => {
     const [value, setValue] = useState('')
 
     return (
@@ -94,7 +103,12 @@ export const Error = () => {
         />
     )
 }
-export const Pagination = () => {
+
+export const Error: Story = {
+    render: () => <ErrorSelect />,
+}
+
+const PaginationSelect = () => {
     const [value, setValue] = useState('')
 
     return (
@@ -109,17 +123,34 @@ export const Pagination = () => {
     )
 }
 
-export const FullWidth = () => {
+export const Pagination: Story = {
+    render: () => <PaginationSelect />,
+}
+
+const FullWidthSelect = () => {
     const [value, setValue] = useState('')
 
     return <Select value={value} onChange={setValue} options={optionsPrimary} variant={'primary'} width={'100%'} />
 }
-export const CountrySelect = () => {
+
+export const FullWidth: Story = {
+    render: () => <FullWidthSelect />,
+}
+
+const CountryExample = () => {
     const [value, setValue] = useState('ru')
 
     return <Select value={value} onChange={setValue} options={Country} variant={'primary'} />
 }
 
-export const Disabled = () => {
+export const CountrySelect: Story = {
+    render: () => <CountryExample />,
+}
+
+const DisabledSelect = () => {
     return <Select value={''} onChange={() => {}} options={optionsPrimary} variant={'primary'} disabled />
+}
+
+export const Disabled: Story = {
+    render: () => <DisabledSelect />,
 }

@@ -26,7 +26,6 @@ type CommonProps = {
     label?: string
     width?: CSSProperties['width']
     rootClassName?: string
-    isOpen?: boolean
 }
 export type SelectProps = CommonProps & ConditionalMultipleProps
 
@@ -41,7 +40,6 @@ export const Select: FC<SelectProps> = ({
     options,
     label,
     rootClassName,
-    isOpen,
     width,
 }) => {
     const showError = !!errorMessage && errorMessage.length > 0
@@ -54,6 +52,7 @@ export const Select: FC<SelectProps> = ({
         label: clsx('label', disabled && 'disabled'),
     }
     const withoutPlaceholder = options[0].label
+    const triggerValue = options.find(el => el.value === value)?.label
     const rootStyles = {width}
 
     return (
@@ -61,16 +60,18 @@ export const Select: FC<SelectProps> = ({
             <Typography variant={'regular_text_14'} as='label' className={classNames.label}>
                 {label}
             </Typography>
-            <SelectRadix.Root disabled={disabled} onValueChange={onChange} open={isOpen}>
+            <SelectRadix.Root disabled={disabled} onValueChange={onChange}>
                 <SelectRadix.Trigger className={classNames.trigger} style={rootStyles}>
-                    <SelectRadix.Value placeholder={placeholder || withoutPlaceholder}>{value}</SelectRadix.Value>
+                    <SelectRadix.Value placeholder={placeholder || withoutPlaceholder}>
+                        {triggerValue}
+                    </SelectRadix.Value>
                     <SelectRadix.Icon className={classNames.icon}>
                         <ArrowDownIcon />
                     </SelectRadix.Icon>
                 </SelectRadix.Trigger>
                 <SelectRadix.Content className={classNames.content} position={'popper'}>
-                    {options.map(option => (
-                        <SelectRadix.Item value={option.label as string} className={classNames.item} key={option.value}>
+                    {options.map((option, i) => (
+                        <SelectRadix.Item value={option.value} className={classNames.item} key={option.value}>
                             {option.label}
                         </SelectRadix.Item>
                     ))}

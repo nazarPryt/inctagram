@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Main = styled.div`
     width: 100%;
-
+    margin: 0;
+    padding: 0;
     .trigger {
         all: unset;
         cursor: pointer;
@@ -23,7 +24,7 @@ export const Main = styled.div`
         border: 1px solid ${props => props.theme.palette.dark['100']};
         border-radius: 0.125rem;
         &.primary {
-            min-width: 13.125rem;
+            //min-width: 13.125rem;
         }
         &[data-state='open'] {
             border-color: ${props => props.theme.palette.dark['100']};
@@ -89,9 +90,9 @@ export const Main = styled.div`
         }
     }
     .content {
+        cursor: pointer;
         position: relative;
         z-index: 500;
-
         display: flex;
         width: var(--radix-select-trigger-width);
         max-height: var(--radix-select-content-available-height);
@@ -108,6 +109,7 @@ export const Main = styled.div`
             display: flex;
             padding: 6px 12px;
             gap: 12px;
+            width: 100%;
             font-size: ${props => props.theme.typography.fontSizeS};
             line-height: ${props => props.theme.typography.lineHeightM};
             color: ${props => props.theme.palette.light['100']};
