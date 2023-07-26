@@ -8,7 +8,7 @@ export const HeaderStyled = styled.header`
     z-index: 2;
     background-color: ${props => props.theme.bodyColor};
 
-    div {
+    & > div {
         display: flex;
         align-items: center;
         justify-content: space-between;
