@@ -23,7 +23,13 @@ export const postsAPI = api.injectEndpoints({
                 method: 'GET',
             }),
         }),
+        GetUserPost: build.query<{}, number>({
+            query: postId => ({
+                url: `posts/p/${postId}`,
+                method: 'GET',
+            }),
+        }),
     }),
 })
 
-export const {useUploadImageMutation, useCreatePostMutation} = postsAPI
+export const {useUploadImageMutation, useCreatePostMutation, useGetUserPostQuery} = postsAPI

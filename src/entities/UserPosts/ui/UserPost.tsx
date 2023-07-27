@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 type UserPostType = {
     src: string
-} & ComponentProps<'div'>
+} & ComponentProps<'a'>
 
 export const UserPost = ({src, ...rest}: UserPostType) => {
     return (

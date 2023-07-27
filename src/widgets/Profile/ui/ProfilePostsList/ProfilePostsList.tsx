@@ -1,34 +1,33 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
 import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 import {Loader} from 'shared/components/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
 import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
-import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
-import {UserPostModalContent} from 'entities/UserPostModalContent/UserPostModalContent'
+import {PATH} from 'shared/constants/PATH'
 
 export const ProfilePostsList = ({userId}: {userId: number | null}) => {
-    const [open, setOpen] = useState(false)
-    // const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
+    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
+    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
-    // if (isLoading) {
-    //     return <Loader />
-    // }
-    // if (posts && posts.items.length === 0) {
-    //     return <NoPosts />
-    // }
+    if (isLoading) {
+        return <Loader />
+    }
+    if (posts && posts.items.length === 0) {
+        return <NoPosts />
+    }
 
     return (
         <>
-            <UserPostsModal open={open} onClose={setOpen}>
-                <UserPostModalContent />
-            </UserPostsModal>
             <ProfilePostsListWrapper>
-                {/*{posts &&*/}
-                {/*    posts.items.map(post => (*/}
-                {/*        <UserPost key={post.id} src={post.images[0]?.url} onClick={() => setOpen(true)} />*/}
-                {/*    ))}*/}
-                <button onClick={() => setOpen(true)}> modal</button>
+                {posts &&
+                    posts.items.map(post => (
+                        <UserPost
+                            key={post.id}
+                            src={post.images[0]?.url}
+                            href={`${BASE_URL}${PATH.SHOW_POST}/${post.id}`}
+                        />
+                    ))}
             </ProfilePostsListWrapper>
         </>
     )

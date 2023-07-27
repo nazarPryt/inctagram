@@ -28,7 +28,7 @@ export const DialogOverlay = styled(Dialog.Overlay)`
     z-index: 99;
 `
 export const DialogContent = styled(Dialog.Content)`
-    background-color: inherit;
+    background-color: transparent;
     border-radius: 9px;
     box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
     position: fixed;
