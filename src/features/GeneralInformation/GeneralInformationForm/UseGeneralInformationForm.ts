@@ -1,19 +1,13 @@
-'use client'
-import React, {FC, useRef} from 'react'
-import {InputText} from 'shared/components/InputText/InputText'
-import {TextArea} from 'shared/components/TextArea/TextArea'
-import {GeneralInformationFormWrapper} from 'common/components/GeneralInformation/GeneralInformationForm/styled'
+import {useRef} from 'react'
 import {useForm} from 'react-hook-form'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useAppDispatch} from '../../../shared/hooks/reduxHooks'
 import {toDate} from 'date-fns'
-import {CustomDatePicker} from 'shared/components/DatePicker/DatePicker'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import DatePicker from 'react-datepicker'
-import {useUpdateUserMutation} from 'redux/api/profileAPI'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {Button} from 'shared/components/Button/Button'
-import {UserProfile} from 'redux/types/authTypes'
+import {useUpdateUserMutation} from '../../../redux/api/profileAPI'
+import {SetAppNotificationAC} from '../../../_app/store/appSlice'
+import {UserProfile} from '../../../redux/types/authTypes'
 
 export interface IFormInput {
     userName: string
@@ -40,7 +34,7 @@ const schema = yup.object().shape({
         .max(200, 'About me field must be at least 200 characters long'),
 })
 
-export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
+export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
     const dispatch = useAppDispatch()
     const datePickerRef = useRef<DatePicker>(null)
     const {
@@ -48,6 +42,7 @@ export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
         control,
         handleSubmit,
         formState: {errors},
+        ...rest
     } = useForm<IFormInput>({
         resolver: yupResolver(schema),
         defaultValues: {...data, dateOfBirth: new Date(data.dateOfBirth)},
@@ -68,18 +63,12 @@ export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
             .then()
             .catch(error => dispatch(SetAppNotificationAC({notifications: {type: 'error', message: error.message}})))
     }
-
-    return (
-        <GeneralInformationFormWrapper onSubmit={handleSubmit(onSubmit)}>
-            <InputText {...register('userName')} label='Username' error={errors.userName?.message}></InputText>
-            <InputText {...register('firstName')} label='First Name'></InputText>
-            <InputText {...register('lastName')} label='Last Name'></InputText>
-            <CustomDatePicker control={control} {...register('dateOfBirth')} ref={datePickerRef} />
-            <InputText {...register('city')} label='City'></InputText>
-            <TextArea {...register('aboutMe')} label='About me' error={errors.aboutMe?.message}></TextArea>
-            <Button type='submit' className='buttonSave'>
-                Save Changes
-            </Button>
-        </GeneralInformationFormWrapper>
-    )
+    return {
+        register,
+        control,
+        handleSubmit: handleSubmit(onSubmit),
+        errors,
+        datePickerRef,
+        ...rest,
+    }
 }

@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
-import {GeneralInformationWrapper} from 'common/components/GeneralInformation/styled'
-import {GeneralInformationForm} from 'common/components/GeneralInformation/GeneralInformationForm/GeneralInformationForm'
-import {Avatar} from 'common/components/Avatar/Avatar'
-import {useGetUserProfileQuery} from 'redux/api/profileAPI'
-import {Loader} from 'shared/components/Loader/Loader'
+import {GeneralInformationWrapper} from './styled'
+import {GeneralInformationForm} from './GeneralInformationForm/GeneralInformationForm'
+import {Avatar} from '../../common/components/Avatar/Avatar'
+import {useGetUserProfileQuery} from '../../redux/api/profileAPI'
+import {Loader} from '../../shared/components/Loader/Loader'
 
 export const GeneralInformation = ({userId}: {userId: number | null}) => {
     const {data, isLoading} = useGetUserProfileQuery(userId as number)

@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import React, {ChangeEvent, useState} from 'react'
+import React, {useState} from 'react'
 import {FlagRussiaIcon} from '../../../common/assets/icons/FlagRussiaIcon'
 import {Select} from '../Select'
 import FlagEngIcon from '../../../common/assets/icons/FlagUnitedKingdom.svg'
@@ -10,7 +10,7 @@ const Country = [
         label: (
             <>
                 <FlagRussiaIcon />
-                Russia
+                Russian
             </>
         ),
     },
