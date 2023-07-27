@@ -9,15 +9,14 @@ import {UserPostModalContent} from 'entities/UserPostModalContent/UserPostModalC
 
 export const ProfilePostsList = ({userId}: {userId: number | null}) => {
     const [open, setOpen] = useState(false)
-    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
+    // const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
 
-    console.log('open', open)
-    if (isLoading) {
-        return <Loader />
-    }
-    if (posts && posts.items.length === 0) {
-        return <NoPosts />
-    }
+    // if (isLoading) {
+    //     return <Loader />
+    // }
+    // if (posts && posts.items.length === 0) {
+    //     return <NoPosts />
+    // }
 
     return (
         <>
@@ -25,10 +24,11 @@ export const ProfilePostsList = ({userId}: {userId: number | null}) => {
                 <UserPostModalContent />
             </UserPostsModal>
             <ProfilePostsListWrapper>
-                {posts &&
-                    posts.items.map(post => (
-                        <UserPost key={post.id} src={post.images[0]?.url} onClick={() => setOpen(true)} />
-                    ))}
+                {/*{posts &&*/}
+                {/*    posts.items.map(post => (*/}
+                {/*        <UserPost key={post.id} src={post.images[0]?.url} onClick={() => setOpen(true)} />*/}
+                {/*    ))}*/}
+                <button onClick={() => setOpen(true)}> modal</button>
             </ProfilePostsListWrapper>
         </>
     )

@@ -1,6 +1,7 @@
 import React, {ComponentProps, Dispatch} from 'react'
-import {UserPostsModalWrapper} from 'widgets/UserPostsModal/UserPostsModal.styled'
-import {DialogContent, DialogOverlay, DialogPortal, DialogClose} from '@radix-ui/react-dialog'
+import * as Dialog from '@radix-ui/react-dialog'
+import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
+import {CloseIcon} from 'common/assets/icons/CloseIcon'
 
 export type ModalProps = {
     open: boolean
@@ -12,16 +13,18 @@ export const UserPostsModal = ({open, onClose, children}: ModalProps) => {
         onClose(false)
     }
     return (
-        <UserPostsModalWrapper open={open} onOpenChange={handleModalClosed}>
+        <Dialog.Root open={open} onOpenChange={handleModalClosed}>
             {open && (
-                <DialogPortal>
-                    <DialogOverlay className={'overlay'} />
-                    <DialogContent className={'content'}>
-                        <DialogClose className={'closeButton'}>close</DialogClose>
-                        <div className={'contentBox'}>{children}</div>
+                <Dialog.Portal>
+                    <DialogOverlay />
+                    <DialogContent>
+                        <DialogClose>
+                            <CloseIcon />
+                        </DialogClose>
+                        <DialogContentBox>{children}</DialogContentBox>
                     </DialogContent>
-                </DialogPortal>
+                </Dialog.Portal>
             )}
-        </UserPostsModalWrapper>
+        </Dialog.Root>
     )
 }
