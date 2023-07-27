@@ -1,12 +1,12 @@
 import React from 'react'
 import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
-import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 import {Loader} from '../../../../shared/ui/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
 import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
+import {useGetUserPostsQuery} from '../../../../entities/UserPosts/api/user-posts-api'
 
 export const ProfilePostsList = ({userId}: {userId: number | null}) => {
-    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number, {refetchOnMountOrArgChange: true})
+    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number)
 
     if (isLoading) {
         return <Loader />

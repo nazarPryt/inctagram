@@ -6,7 +6,7 @@ import {GeneralInformationFormWrapper} from './styled'
 import {CustomDatePicker} from '../../../shared/ui/DatePicker/DatePicker'
 import {Button} from '../../../shared/ui/Button/Button'
 import {UserProfile} from '../../../redux/types/authTypes'
-import {useGeneralInformationForm} from './UseGeneralInformationForm'
+import {useGeneralInformationForm} from './useGeneralInformationForm'
 
 export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
     const {register, handleSubmit, errors, control, datePickerRef} = useGeneralInformationForm({data})

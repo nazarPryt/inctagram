@@ -8,6 +8,7 @@ export const userPostApi = api.injectEndpoints({
                 url: `posts/${userId}`,
                 method: 'GET',
             }),
+            providesTags: () => ['Posts'],
         }),
     }),
 })

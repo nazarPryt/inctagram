@@ -22,6 +22,7 @@ export const ProfilePhotoModalWrapper = styled.div`
 
 export const ProfilePhotoModal = (props: BaseModalProps) => {
     const dispatch = useAppDispatch()
+
     const [avatar, {isLoading}] = useUploadAvatarMutation()
     const [editor, setEditor] = useState<AvatarEditor | null>(null)
     const [picture, setPicture] = useState({

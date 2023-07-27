@@ -9,6 +9,7 @@ export const postsAPI = api.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['Posts'],
         }),
         createPost: build.mutation<CreatePostResponse, UploadPost>({
             query: body => ({
@@ -16,12 +17,7 @@ export const postsAPI = api.injectEndpoints({
                 method: 'POST',
                 body,
             }),
-        }),
-        GetUserPosts: build.query<{}, {userId: number}>({
-            query: userId => ({
-                url: `posts/${userId}`,
-                method: 'GET',
-            }),
+            invalidatesTags: ['Posts'],
         }),
     }),
 })
