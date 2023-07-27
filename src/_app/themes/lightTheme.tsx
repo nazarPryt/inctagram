@@ -1,5 +1,6 @@
 'use client'
 import {DefaultTheme} from 'styled-components'
+import {typography} from './typography'
 
 export const lightTheme: DefaultTheme = {
     name: 'light',
@@ -18,18 +19,19 @@ export const lightTheme: DefaultTheme = {
         700: '#46515E',
         900: '#747D86',
     },
+    typography: typography,
     palette: {
         primary: {
-            // 100: '#73A5FF',
-            // 300: '#4C8DFF',
-            // 500: '#397DF6',
-            // 700: '#2F68CC',
-            // 900: '#234E99',
-            100: '#80FFBF',
-            300: '#22E584',
-            500: '#14CC70',
-            700: '#0F9954',
-            900: '#0A6638',
+            100: '#73A5FF',
+            300: '#4C8DFF',
+            500: '#397DF6',
+            700: '#2F68CC',
+            900: '#234E99',
+            // 100: '#80FFBF',
+            // 300: '#22E584',
+            // 500: '#14CC70',
+            // 700: '#0F9954',
+            // 900: '#0A6638',
         },
         success: {
             100: '#80FFBF',

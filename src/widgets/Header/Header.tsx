@@ -7,6 +7,7 @@ import {LogOut} from 'features/LogOut/LogOut'
 import {PATH} from 'shared/constants/PATH'
 import {Container} from 'shared/components/Container/Container'
 import {useSession} from 'next-auth/react'
+import {LangSelect} from '../../shared/components/langaugeSelect/LangSelect'
 
 export const Header = () => {
     const {status} = useSession()
@@ -16,6 +17,7 @@ export const Header = () => {
                 <Link href={PATH.HOME}>Inctagram</Link>
                 <ThemeSwitcher />
                 {status === 'authenticated' ? <LogOut /> : null}
+                <LangSelect />
             </Container>
         </HeaderStyled>
     )

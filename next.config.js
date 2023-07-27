@@ -13,4 +13,8 @@ module.exports = {
         styledComponents: true,
     },
     images: {domains: ['storage.yandexcloud.net', 'loremflickr.com']},
+    i18n: {
+        locales: ['ru', 'en'],
+        defaultLocale: 'ru',
+    },
 }

@@ -12,11 +12,13 @@ import {useRouter} from 'next/navigation'
 import {useLoginForm} from 'features/auth/LoginForm/UseLoginForm'
 import {AuthContainer} from 'shared/components/AuthContainer/AuthContainer'
 import {Button} from 'shared/components/Button/Button'
+import {useTranslation} from '../../../common/hooks/useTranslation'
 
 export const LoginForm = () => {
     const {status} = useSession()
     const router = useRouter()
     const {register, handleSubmit, isLoading, errors} = useLoginForm()
+    const {t} = useTranslation()
 
     const handleRedirectOnRegistration = () => {
         router.push(PATH.REGISTRATION)
@@ -29,7 +31,7 @@ export const LoginForm = () => {
     return (
         <AuthContainer>
             <AuthPageStyled>
-                <h1>Sign In</h1>
+                <h1>{t.auth_sign_in_title}</h1>
                 <div>
                     <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful='true'>
                         <GoogleIcon />
@@ -39,20 +41,25 @@ export const LoginForm = () => {
                     </IconButton>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <InputText label={'Email'} type={'email'} {...register('email')} error={errors.email?.message} />
-                    <InputPassword label={'Password'} {...register('password')} error={errors.password?.message} />
-                    <Link href={PATH.FORGOT_PASSWORD}>Forgot Password</Link>
+                    <InputText
+                        label={t.auth_email}
+                        type={'email'}
+                        {...register('email')}
+                        error={errors.email?.message}
+                    />
+                    <InputPassword label={t.auth_password} {...register('password')} error={errors.password?.message} />
+                    <Link href={PATH.FORGOT_PASSWORD}>{t.auth_sign_in_forgot_password}</Link>
                     <Button type={'submit'} disabled={isLoading}>
-                        Sign In
+                        {t.auth_sign_in_title}
                     </Button>
-                    <p>Dont you have an account?</p>
+                    <p>{t.auth_sign_in_description}</p>
                     <Button
                         type={'button'}
                         variant={'text'}
                         onClick={handleRedirectOnRegistration}
                         disabled={isLoading}
                     >
-                        Sign Up
+                        {t.auth_sign_up_title}
                     </Button>
                 </form>
             </AuthPageStyled>

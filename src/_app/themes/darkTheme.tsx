@@ -1,5 +1,6 @@
 'use client'
 import {DefaultTheme} from 'styled-components'
+import {typography} from './typography'
 
 export const darkTheme: DefaultTheme = {
     name: 'dark',
@@ -18,7 +19,7 @@ export const darkTheme: DefaultTheme = {
         700: '#D5DAE0',
         900: '#BDC1C7',
     },
-    //typography: {Large: {'font-family': Inter, 'font-weight': 600, 'font-size': '25px', 'line-height': '36px'}},
+    typography: typography,
     palette: {
         primary: {
             100: '#73A5FF',
