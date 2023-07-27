@@ -5,9 +5,9 @@ import Link from 'next/link'
 import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {LogOut} from 'features/LogOut/LogOut'
 import {PATH} from 'shared/constants/PATH'
-import {Container} from 'shared/components/Container/Container'
+import {Container} from '../../shared/ui/Container/Container'
 import {useSession} from 'next-auth/react'
-import {LangSelect} from '../../shared/components/langaugeSelect/LangSelect'
+import {LangSelect} from '../../shared/ui/LangaugeSelect/LangSelect'
 
 export const Header = () => {
     const {status} = useSession()

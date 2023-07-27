@@ -1,6 +1,6 @@
 'use client'
 
-import {InputText} from 'shared/components/InputText/InputText'
+import {InputText} from '../../../shared/ui/InputText/InputText'
 import {useAppSelector} from 'shared/hooks/reduxHooks'
 import Link from 'next/link'
 import React, {useState} from 'react'
@@ -10,8 +10,8 @@ import {useForgotPasswordMutation} from 'redux/api/authAPI'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {ForgotPasswordStyled} from 'shared/styles/ForgotPasswordPage'
-import {Button} from 'shared/components/Button/Button'
-import {AuthContainer} from 'shared/components/AuthContainer/AuthContainer'
+import {Button} from '../../../shared/ui/Button/Button'
+import {AuthContainer} from '../../../shared/ui/AuthContainer/AuthContainer'
 
 type ForgotPasswordFormType = {
     email: string

@@ -1,4 +1,3 @@
-import {pluralizeEn} from '../src/common/helpers/createPluralize'
 import {LocaleType} from './ru'
 
 export const en: LocaleType = {

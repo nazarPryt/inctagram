@@ -2,9 +2,9 @@
 import React from 'react'
 import {GeneralInformationWrapper} from './styled'
 import {GeneralInformationForm} from './GeneralInformationForm/GeneralInformationForm'
-import {Avatar} from '../../common/components/Avatar/Avatar'
+import {Avatar} from '../Avatar/Avatar'
 import {useGetUserProfileQuery} from '../../redux/api/profileAPI'
-import {Loader} from '../../shared/components/Loader/Loader'
+import {Loader} from '../../shared/ui/Loader/Loader'
 
 export const GeneralInformation = ({userId}: {userId: number | null}) => {
     const {data, isLoading} = useGetUserProfileQuery(userId as number)
