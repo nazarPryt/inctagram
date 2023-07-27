@@ -10,7 +10,20 @@ export const userPostApi = api.injectEndpoints({
             }),
             providesTags: () => ['Posts'],
         }),
+        updateUserPost: build.mutation<unknown, {description: string; postId: number}>({
+            query: ({description, postId}) => ({
+                url: `posts/${postId}`,
+                method: 'PUT',
+                body: description,
+            }),
+        }),
+        deleteUserPost: build.mutation<unknown, number>({
+            query: postId => ({
+                url: `posts/${postId}`,
+                method: 'DELETE',
+            }),
+        }),
     }),
 })
 
-export const {useGetUserPostsQuery} = userPostApi
+export const {useGetUserPostsQuery, useUpdateUserPostMutation, useDeleteUserPostMutation} = userPostApi
