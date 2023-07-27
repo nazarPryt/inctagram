@@ -1,17 +1,17 @@
 import React from 'react'
 import {Post} from 'entities/Post/Post'
 import {PostCardType} from 'entities/UserPosts/api/types'
-import {PostsListWrapper} from 'widgets/PostsList/PostsList.styled'
+import {AllPostsListWrapper} from 'widgets/AllPostsList/AllPostsList.styled'
 
 type PostsListType = {
     posts: PostCardType[]
 }
-export const PostsList = (props: PostsListType) => {
+export const AllPostsList = (props: PostsListType) => {
     return (
-        <PostsListWrapper>
+        <AllPostsListWrapper>
             {props.posts.map(post => (
                 <Post post={post} key={post.id} />
             ))}
-        </PostsListWrapper>
+        </AllPostsListWrapper>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import {PostsList} from 'widgets/PostsList/PostsList'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
+import {AllPostsList} from 'widgets/AllPostsList/AllPostsList'
 
 export default function Home() {
-    return <PostsList posts={data.items} />
+    return <AllPostsList posts={data.items} />
 }
 
 Home.getLayout = getAuthorizedLayout

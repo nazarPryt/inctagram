@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PostsListWrapper = styled.div`
+export const AllPostsListWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
