@@ -1,17 +1,17 @@
-import React, {Dispatch, FC, ReactNode, SetStateAction, useEffect} from 'react'
+import React, {ComponentPropsWithoutRef, Dispatch, FC, ReactNode, SetStateAction, useEffect} from 'react'
 import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
 import {IconButton} from '../IconButton/IconButton'
-import {PopOverIcon} from '../../../entities/Post/ui/PostHeader/popOverIcon'
+import {PopOverIcon} from 'entities/Post/ui/PostHeader/popOverIcon'
 
-interface PopoverContentProps {
+type PopoverContentProps = {
     onActionHandler?: () => void
     children: ReactNode
     setIsPopoverOpen: Dispatch<SetStateAction<boolean>>
     isPopoverOpen: boolean
-}
+} & ComponentPropsWithoutRef<'div'>
 
 export const Popover: FC<PopoverContentProps> = props => {
-    const {onActionHandler, setIsPopoverOpen, isPopoverOpen, children} = props
+    const {onActionHandler, setIsPopoverOpen, isPopoverOpen, children, ...rest} = props
     const handleTogglePopover = () => {
         setIsPopoverOpen(prevIsOpen => !prevIsOpen)
     }
@@ -33,7 +33,7 @@ export const Popover: FC<PopoverContentProps> = props => {
     }, [setIsPopoverOpen])
 
     return (
-        <PopoverWrapper id='popoverWrapper'>
+        <PopoverWrapper {...rest} id='popoverWrapper'>
             <IconButton active={isPopoverOpen ? 'true' : undefined} onClick={handleTogglePopover}>
                 <PopOverIcon />
             </IconButton>

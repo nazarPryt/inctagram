@@ -3,9 +3,9 @@ import React, {useState, useEffect} from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {useRouter} from 'next/router'
 import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
-import {UserPostModalContent} from 'entities/UserPostModalContent/UserPostModalContent'
 import {useGetUserPostQuery} from 'redux/api/postsAPI'
 import {Loader} from 'shared/ui/Loader/Loader'
+import {ViewUserPost} from 'entities/ViewUserPost/ViewUserPost'
 
 export default function ShowPostPage() {
     const [open, setOpen] = useState(false)
@@ -24,7 +24,7 @@ export default function ShowPostPage() {
     return (
         <>
             <UserPostsModal open={open} onClose={setOpen}>
-                <UserPostModalContent />
+                <ViewUserPost />
             </UserPostsModal>
         </>
     )

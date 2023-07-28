@@ -1,5 +1,5 @@
 import React, {ComponentPropsWithoutRef, ReactNode} from 'react'
-import {NavButtonWrapper} from '../../../../widgets/Aside/ui/NavButton/NavButton.styled'
+import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
 
 type PopoverItemProps = {
     name: string
