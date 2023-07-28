@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {PostCommentsWrapper} from 'entities/Post/ui/PostComments/PostComments.styled'
-import {TextArea} from 'shared/components/TextArea/TextArea'
-import {Button} from 'shared/components/Button/Button'
-import {Modal} from 'shared/components/Modal/Modal'
+import {TextArea} from '../../../../shared/ui/TextArea/TextArea'
+import {Button} from '../../../../shared/ui/Button/Button'
+import {Modal} from '../../../../shared/ui/Modal/Modal'
 
 export const PostComments = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)

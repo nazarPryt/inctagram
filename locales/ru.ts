@@ -1,5 +1,3 @@
-import {pluralizeRu} from '../src/common/helpers/createPluralize'
-
 export const ru = {
     //auth
     auth_email: 'Почта',

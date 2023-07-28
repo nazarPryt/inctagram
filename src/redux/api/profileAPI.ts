@@ -10,6 +10,7 @@ export const profileAPI = api.injectEndpoints({
                 method: 'GET',
                 params: {userId},
             }),
+            providesTags: () => ['UserAvatar'],
         }),
         uploadAvatar: build.mutation<UserAvatar, FormData | File>({
             query: body => ({
@@ -17,7 +18,9 @@ export const profileAPI = api.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['UserAvatar'],
         }),
+
         deleteAvatar: build.mutation({
             query: body => ({
                 url: `users/profile/avatar`,
@@ -31,6 +34,7 @@ export const profileAPI = api.injectEndpoints({
                 method: 'PUT',
                 body,
             }),
+            invalidatesTags: ['UserAvatar'],
         }),
     }),
 })

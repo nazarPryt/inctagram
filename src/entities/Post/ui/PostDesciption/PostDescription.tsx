@@ -1,5 +1,5 @@
 import React from 'react'
-import {AvatarIcon} from 'shared/components/AvatarIcon/AvatarIcon'
+import {AvatarIcon} from '../../../../shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {PostDescriptionWrapper} from 'entities/Post/ui/PostDesciption/PostDescription.styled'
