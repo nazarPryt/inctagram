@@ -3,7 +3,9 @@ import styled from 'styled-components'
 export const ViewUserPostWrapper = styled.div`
     display: flex;
 
-    .pictureWrapper {
+    .pictureSlider {
+        width: 600px;
+        height: 600px;
     }
 
     .right {

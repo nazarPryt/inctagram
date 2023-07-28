@@ -1,17 +1,21 @@
 import React from 'react'
-import Image from 'next/image'
 import {ViewUserPostWrapper} from 'entities/ViewUserPost/ViewUserPost.styled'
 import {ViewUserPostHeader} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
 import {ViewUserPostComments} from 'entities/ViewUserPost/ui/ViewUserPostComments/ViewUserPostComments'
+import {PostByIdType} from 'entities/ViewUserPost/api/type'
+import {ViewUserPostSlider} from 'entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 
-export const ViewUserPost = () => {
+type PropsType = {
+    data: PostByIdType
+}
+
+export const ViewUserPost = ({data}: PropsType) => {
     return (
         <ViewUserPostWrapper>
-            <div className={'pictureWrapper'}>
-                <Image src={'https://loremflickr.com/500/500'} alt={'user post picture'} width={500} height={500} />
-            </div>
+            <ViewUserPostSlider className={'pictureSlider'} images={data.images} />
+
             <div className={'right'}>
-                <ViewUserPostHeader userID={248} />
+                <ViewUserPostHeader userID={248} postId={data.id} />
                 <ViewUserPostComments />
             </div>
         </ViewUserPostWrapper>

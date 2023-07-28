@@ -10,16 +10,19 @@ import {EditPostIcon} from 'features/EditPost/EditPostIcon'
 
 type PropsType = {
     userID: number
+    postId: number
 }
-export const ViewUserPostHeader = ({userID}: PropsType) => {
+export const ViewUserPostHeader = ({userID, postId}: PropsType) => {
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleEditPost = () => {
         console.log('handleEditPost')
+        console.log('postId', postId)
         setIsPopoverOpen(false)
     }
     const handleDeletePost = () => {
+        console.log('postId', postId)
         console.log('handleDeletePost')
         setIsPopoverOpen(false)
     }
