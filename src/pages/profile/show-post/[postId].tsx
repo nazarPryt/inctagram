@@ -5,7 +5,7 @@ import {useRouter} from 'next/router'
 import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
 import {UserPostModalContent} from 'entities/UserPostModalContent/UserPostModalContent'
 import {useGetUserPostQuery} from 'redux/api/postsAPI'
-import {Loader} from 'shared/components/Loader/Loader'
+import {Loader} from 'shared/ui/Loader/Loader'
 
 export default function ShowPostPage() {
     const [open, setOpen] = useState(false)
@@ -13,7 +13,6 @@ export default function ShowPostPage() {
     const postId = router.query.postId
     const {data, isLoading} = useGetUserPostQuery(503)
 
-    console.log('data', data)
     useEffect(() => {
         setOpen(true)
     }, [])

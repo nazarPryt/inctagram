@@ -1,8 +1,9 @@
 import React, {ComponentProps, Dispatch} from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
-import {CloseIcon} from 'common/assets/icons/CloseIcon'
+
 import {useRouter} from 'next/router'
+import {CloseIcon} from 'shared/assets/icons/CloseIcon'
 
 export type ModalProps = {
     open: boolean
