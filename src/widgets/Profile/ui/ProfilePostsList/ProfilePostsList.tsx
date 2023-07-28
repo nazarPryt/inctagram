@@ -19,7 +19,7 @@ export const ProfilePostsList = ({userId}: {userId: number | null}) => {
         <ProfilePostsListWrapper>
             {posts &&
                 posts.items.map(post => {
-                    return <UserPost key={post.id} src={post.images[0]?.url} />
+                    return <UserPost imagesLength={post.images.length} key={post.id} src={post.images[0]?.url} />
                 })}
         </ProfilePostsListWrapper>
     )
