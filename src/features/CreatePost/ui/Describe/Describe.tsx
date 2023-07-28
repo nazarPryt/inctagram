@@ -6,15 +6,19 @@ import {useSession} from 'next-auth/react'
 import {useGetUserProfileQuery} from '../../../../redux/api/profileAPI'
 import SkeletonAvatar from '../../../../shared/assets/icons/skeletonCycle.svg'
 import SkeletonTitle from '../../../../shared/assets/icons/skeletonTitle.svg'
+import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {createPostAC} from '../../model/slice/createPostSlice'
 
-type DescribeType = {
-    describeText: string
-    changeTextHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void
-}
+export const Describe = () => {
+    const dispatch = useAppDispatch()
+    const describeText = useAppSelector(state => state.createPost.describeText)
 
-export const Describe: React.FC<DescribeType> = props => {
     const {data: user} = useSession()
     const {data, isLoading} = useGetUserProfileQuery(user!.user.userId)
+
+    const changeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(createPostAC.setDescribeText(e.target.value.trim()))
+    }
 
     return (
         <DescribeWrapper>
@@ -36,8 +40,8 @@ export const Describe: React.FC<DescribeType> = props => {
                 </div>
             </div>
             <TextArea
-                defaultValue={props.describeText}
-                onChange={e => props.changeTextHandler(e)}
+                defaultValue={describeText}
+                onChange={e => changeTextHandler(e)}
                 label='Add Publication descriptions'
             />
             <div>ADD LOCATION : tobeContinued...</div>

@@ -1,8 +1,8 @@
 import React from 'react'
-import {StepsType} from '../../CreatePost'
 import ArrowLeft from '../../../../shared/assets/icons/arrowLeft.svg'
 import {EditorButtonsWrapper} from './styled'
 import {Button} from '../../../../shared/ui/Button/Button'
+import {StepsType} from '../../model/types/createPostSchema'
 
 type EditorButtonsType = {
     title: string

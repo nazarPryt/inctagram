@@ -1,33 +1,34 @@
-import AvatarEditor from 'react-avatar-editor'
+import AvatarEditor, {ImageState} from 'react-avatar-editor'
 import React, {RefObject} from 'react'
 import {Wrapper} from './styled'
+import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
 
 type CanvasContainerType = {
-    width: number
-    height: number
     editorRef: RefObject<AvatarEditor>
-    picture: {img: string; zoom: string}
-    filter: string
-    prepareImageToSend: (img: string) => void
+    prepareImageToSend: (img: string, filter: string) => void
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
+    const {previewImage, previewFilter, previewZoom, defaultWidth, defaultHeight} = useAppSelector(
+        state => state.createPost
+    )
+
     const handlePrepareImage = () => {
-        props.prepareImageToSend(props.picture.img)
+        props.prepareImageToSend(previewImage, previewFilter)
     }
 
     return (
-        <Wrapper width={props.width} height={props.height}>
+        <Wrapper width={defaultWidth} height={defaultHeight}>
             <AvatarEditor
                 ref={props.editorRef}
-                image={props.picture.img}
-                width={props.width}
-                height={props.height}
-                scale={+props.picture.zoom}
+                image={previewImage}
+                width={defaultWidth}
+                height={defaultHeight}
+                scale={+previewZoom}
                 border={0}
                 onImageReady={handlePrepareImage}
                 style={{
-                    filter: props.filter,
+                    filter: previewFilter,
                 }}
                 disableHiDPIScaling={true}
             />
