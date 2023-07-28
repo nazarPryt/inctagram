@@ -6,6 +6,7 @@ import {PostByIdType} from 'entities/ViewUserPost/api/type'
 import {ViewUserPostSlider} from 'entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 import {ViewUserPostDescription} from 'entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription'
 import {ViewUserPostAddComment} from 'entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment'
+import {ViewUserPostFeatures} from 'entities/ViewUserPost/ui/ViewUserPostFeatures/ViewUserPostFeatures'
 
 type PropsType = {
     data: PostByIdType
@@ -22,6 +23,7 @@ export const ViewUserPost = ({data}: PropsType) => {
                 <ViewUserPostHeader userID={248} postId={data.id} />
                 <ViewUserPostDescription description={des} createdAt={data.createdAt} />
                 <ViewUserPostComments />
+                <ViewUserPostFeatures />
                 <ViewUserPostAddComment />
             </div>
         </ViewUserPostWrapper>
