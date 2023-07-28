@@ -34,7 +34,8 @@ export const DescribeWrapper = styled.div`
         }
 
         textarea {
-            background-color: #171717;
+            background-color: ${props => props.theme.bodyColor[700]};
+            color: ${props => props.theme.textColor[700]};
             height: 140px;
         }
     }
