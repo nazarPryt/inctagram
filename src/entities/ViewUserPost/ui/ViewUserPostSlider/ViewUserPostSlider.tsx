@@ -30,11 +30,14 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
                 }}
             >
                 {images.map(photo => {
-                    return (
-                        <SwiperSlide key={photo.uploadId}>
-                            <Image src={photo.url} alt={'Post-Image'} height={photo.height} width={photo.width} />
-                        </SwiperSlide>
-                    )
+                    if (photo.width === 1440) {
+                        //todo ask if exist better way how to show JUST hight resolution pictures
+                        return (
+                            <SwiperSlide key={photo.uploadId}>
+                                <Image src={photo.url} alt={'Post-Image'} height={photo.height} width={photo.width} />
+                            </SwiperSlide>
+                        )
+                    }
                 })}
             </Swiper>
         </ViewUserPostSliderWrapper>
