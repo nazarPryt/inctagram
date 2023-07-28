@@ -3,10 +3,10 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import {CustomDatePickerWrapper, DatePickerHeader} from './styled'
 import {Control, Controller} from 'react-hook-form'
-import {IFormInput} from '../../../features/GeneralInformation/GeneralInformationForm/GeneralInformationForm'
 import range from 'lodash/range'
 import {getMonth, getYear} from 'date-fns/fp'
 import {months} from './constants'
+import {IFormInput} from '../../../features/GeneralInformation/GeneralInformationForm/useGeneralInformationForm'
 
 type DatePickerPropsType = {
     control: Control<IFormInput, {dateOfBirthday: Date}>
