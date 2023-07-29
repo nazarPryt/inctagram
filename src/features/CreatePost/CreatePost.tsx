@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useRef, useState} from 'react'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import CreateIcon from '../../shared/assets/icons/create.svg'
 
 import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
@@ -30,6 +31,7 @@ export type LibraryPictureType = {
 }
 
 export const CreatePost = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const [post, loadingImage] = useUploadImageMutation()
     const [postDescribe, loadingPost] = useCreatePostMutation()
@@ -227,7 +229,7 @@ export const CreatePost = () => {
 
     return (
         <>
-            <NavButton title={'Create'} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
+            <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
 
             <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>

@@ -1,6 +1,7 @@
 'use client'
 import LogoutIcon from 'features/LogOut/logout.svg'
 import React, {useState} from 'react'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {Modal} from '../../shared/ui/Modal/Modal'
 import {LogOutModalWrapper} from 'features/LogOut/LogOut.styled'
 import {useLogOutMutation} from 'redux/api/authAPI'
@@ -13,6 +14,7 @@ import {accessToken} from 'shared/constants/constants'
 import cookie from 'react-cookies'
 
 export const LogOut = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const {data} = useSession()
     const [showModal, setShowModal] = useState(false)
@@ -43,19 +45,19 @@ export const LogOut = () => {
     }
     return (
         <>
-            <NavButton title={'Log Out'} icon={<LogoutIcon />} onClick={() => setShowModal(true)} />
+            <NavButton title={t.aside.logout} icon={<LogoutIcon />} onClick={() => setShowModal(true)} />
 
-            <Modal isOpen={showModal} title={'Log Out'} handleClose={handleCloseModal}>
+            <Modal isOpen={showModal} title={t.generalInfo.logoutModal.title} handleClose={handleCloseModal}>
                 <LogOutModalWrapper>
                     <p>
-                        Do you really want to log out of your account
+                        {t.generalInfo.logoutModal.description}
                         <br /> <span>{data?.user.email}</span>?
                     </p>
                     <div className={'buttonsWrapper'}>
                         <Button variant={'outlined'} onClick={onLogOut}>
-                            Yes
+                            {t.generalInfo.logoutModal.yes}
                         </Button>
-                        <Button onClick={handleCloseModal}>No</Button>
+                        <Button onClick={handleCloseModal}>{t.generalInfo.logoutModal.no}</Button>
                     </div>
                 </LogOutModalWrapper>
             </Modal>

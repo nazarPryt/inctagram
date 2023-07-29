@@ -10,7 +10,7 @@ const Country = [
         label: (
             <>
                 <FlagRussiaIcon />
-                Russian
+                Русский
             </>
         ),
     },

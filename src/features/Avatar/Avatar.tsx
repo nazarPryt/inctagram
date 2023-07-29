@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {AvatarFormWrapper} from './styled'
 import {ProfilePhotoModal} from './ProfilePhotoModal'
 import Image from 'next/image'
@@ -12,6 +13,7 @@ import {Button} from '../../shared/ui/Button/Button'
 import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
 
 export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
+    const {t} = useTranslation()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleModalClose = () => {
@@ -24,7 +26,7 @@ export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
         <AvatarFormWrapper>
             <UserAvatar avatar={avatar} />
             <Button type='button' variant={'outlined'} onClick={handleModalOpen}>
-                Add a Profile Photo
+                {t.generalInfo.addProfilePhoto}
             </Button>
             <ProfilePhotoModal title={'Add a Profile Photo'} isOpen={isModalOpen} handleClose={handleModalClose} />
         </AvatarFormWrapper>

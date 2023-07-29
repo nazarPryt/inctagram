@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {CustomDatePickerWrapper, DatePickerHeader} from './styled'
 import {Control, Controller} from 'react-hook-form'
 import range from 'lodash/range'
@@ -13,6 +14,7 @@ type DatePickerPropsType = {
 }
 
 export const CustomDatePicker = React.forwardRef<DatePicker, DatePickerPropsType>((props, ref) => {
+    const {t} = useTranslation()
     const years = range(1923, getYear(new Date()) + 1, 1) //todo
 
     const yearsList = years.map(option => (
@@ -29,7 +31,7 @@ export const CustomDatePicker = React.forwardRef<DatePicker, DatePickerPropsType
 
     return (
         <CustomDatePickerWrapper>
-            Date of Birthday <br />
+            {t.generalInfo.inputs.dateOfBirth} <br />
             <Controller
                 control={props.control}
                 name='dateOfBirth'

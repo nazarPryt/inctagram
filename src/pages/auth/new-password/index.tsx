@@ -4,6 +4,7 @@ import {SubmitHandler, useForm} from 'react-hook-form'
 import React from 'react'
 import {useNewPasswordMutation} from 'redux/api/authAPI'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
+import {useTranslation} from 'shared/hooks/useTranslation'
 
 type NewPasswordFormType = {
     password: string
@@ -11,6 +12,7 @@ type NewPasswordFormType = {
 }
 
 export default function NewPasswordPage() {
+    const {t} = useTranslation()
     const {
         register,
         handleSubmit,
@@ -48,7 +50,7 @@ export default function NewPasswordPage() {
 
     const newPasswordError = errors.password && <span style={{color: 'hotpink'}}>{errors.password.message}</span>
     const passwordConfirmError = errors.passwordConfirm && (
-        <span style={{color: 'hotpink'}}>The password must match the new password</span>
+        <span style={{color: 'hotpink'}}>{t.auth.newPassword.error.passwordConfirm}</span>
     )
 
     return (
@@ -56,20 +58,20 @@ export default function NewPasswordPage() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label>
-                        New password
+                        {t.auth.newPasswordInput}
                         <input type='password' {...register('password', passwordParams)} />
                         {newPasswordError}
                     </label>
                 </div>
                 <div>
                     <label>
-                        Password confirmation
+                        {t.auth.confirmPassword}
                         <input type='password' {...register('passwordConfirm', passwordConfirmParams)} />
                         {passwordConfirmError}
                     </label>
                 </div>
-                <p>Your password must be between 6 and 20 characters</p>
-                <button type='submit'>Create new password</button>
+                <p>{t.auth.newPassword.description}</p>
+                <button type='submit'>{t.auth.newPassword.btn}</button>
             </form>
         </div>
     )

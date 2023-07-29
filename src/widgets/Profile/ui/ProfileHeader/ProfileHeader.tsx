@@ -1,4 +1,5 @@
 import React from 'react'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
@@ -7,6 +8,7 @@ import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {ProfileHeaderLoader} from 'widgets/Profile/ui/ProfileHeader/ProfileHeaderLoader'
 
 export const ProfileHeader = ({userId}: {userId: number | null}) => {
+    const {t} = useTranslation()
     const {data: userData, isLoading} = useGetUserProfileQuery(userId as number)
 
     if (isLoading) {
@@ -23,21 +25,21 @@ export const ProfileHeader = ({userId}: {userId: number | null}) => {
                             {userData.firstName} {userData.lastName}
                         </h2>
                         <Link className={'settingsLink'} href={PATH.PROFILE_SETTINGS}>
-                            Profile Settings
+                            {t.profile.settingsBtn}
                         </Link>
                     </div>
                     <div className={'profileStatistics'}>
                         <div>
                             <span>2 218</span>
-                            Following
+                            {t.profile.following}
                         </div>
                         <div>
                             <span>2 358</span>
-                            Followers
+                            {t.profile.followers}
                         </div>
                         <div>
                             <span>2 764</span>
-                            Publications
+                            {t.profile.publications}
                         </div>
                     </div>
                     <p>{userData.aboutMe}</p>

@@ -1,4 +1,5 @@
 import {PostHeaderWrapper} from 'entities/Post/ui/PostHeader/PostHeader.styled'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {AvatarIcon} from '../../../../shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
@@ -15,6 +16,7 @@ type PostHeaderType = {
 }
 
 export const PostHeader = ({img, userID}: PostHeaderType) => {
+    const {t} = useTranslation()
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -38,12 +40,12 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
                 <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>
                     URLProfile
                 </Link>
-                <span>22 Minutes ago</span>
+                <span>22 {t.home.minutesAgo}</span>
             </div>
             <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
-                <PopoverItem onClick={handleActionOne} name={'Report'} icon={<EmailReportIcon />} />
-                <PopoverItem onClick={handleActionTwo} name={'Unfollow'} icon={<UnfollowUserIcon />} />
-                <PopoverItem onClick={handleActionThree} name={'Copy'} icon={<CopyLinkIcon />} />
+                <PopoverItem onClick={handleActionOne} name={t.home.options.report} icon={<EmailReportIcon />} />
+                <PopoverItem onClick={handleActionTwo} name={t.home.options.unfollow} icon={<UnfollowUserIcon />} />
+                <PopoverItem onClick={handleActionThree} name={t.home.options.copyLink} icon={<CopyLinkIcon />} />
             </Popover>
         </PostHeaderWrapper>
     )
