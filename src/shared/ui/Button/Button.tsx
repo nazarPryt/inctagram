@@ -35,6 +35,7 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
                     &:disabled {
                         background-color: ${({theme}) => theme.bodyColor[900]};
                         color: ${({theme}) => theme.textColor[100]};
+                        cursor: not-allowed;
                     }
                 `
             case 'text':
@@ -57,6 +58,7 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
 
                     &:disabled {
                         color: ${({theme}) => theme.palette.primary[900]};
+                        cursor: not-allowed;
                     }
                 `
             case 'outlined':
@@ -82,6 +84,7 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
                     &:disabled {
                         border: 2px solid ${props => props.theme.palette.primary[900]};
                         color: ${({theme}) => theme.palette.primary[900]};
+                        cursor: not-allowed;
                     }
                 `
             case 'isIcon':
@@ -124,6 +127,7 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
 
                     &:disabled {
                         color: ${({theme}) => theme.palette.primary[900]};
+                        cursor: not-allowed;
 
                         & svg path {
                             fill: ${({theme}) => theme.palette.primary[900]};
@@ -153,6 +157,7 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
                     &:disabled {
                         background-color: ${({theme}) => theme.palette.primary[900]};
                         color: ${({theme}) => theme.textColor[900]};
+                        cursor: not-allowed;
                     }
                 `
         }

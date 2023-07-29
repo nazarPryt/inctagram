@@ -10,12 +10,13 @@ export const userPostApi = api.injectEndpoints({
             }),
             providesTags: () => ['Posts'],
         }),
-        updateUserPost: build.mutation<void, {description: string; postId: number}>({
-            query: ({description, postId}) => ({
+        updateUserPost: build.mutation<void, {postId: number; description: string}>({
+            query: ({postId, description}) => ({
                 url: `posts/${postId}`,
                 method: 'PUT',
-                body: description,
+                body: {description},
             }),
+            invalidatesTags: ['Post'],
         }),
         deleteUserPost: build.mutation<void, number>({
             query: postId => ({

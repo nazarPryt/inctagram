@@ -8,6 +8,7 @@ const postApi = api.injectEndpoints({
                 url: `posts/p/${postId}`,
                 method: 'GET',
             }),
+            providesTags: () => ['Post'],
         }),
     }),
 })

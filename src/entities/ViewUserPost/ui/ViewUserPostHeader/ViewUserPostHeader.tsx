@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {Dispatch, SetStateAction, useState} from 'react'
 import {ViewUserPostHeaderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader.styled'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
@@ -11,12 +11,15 @@ import {EditPostIcon} from 'features/EditPost/EditPostIcon'
 type PropsType = {
     userID: number
     postId: number
+    edit: boolean
+    setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({userID, postId}: PropsType) => {
+export const ViewUserPostHeader = ({userID, postId, setEdit, edit}: PropsType) => {
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleEditPost = () => {
+        setEdit(true)
         console.log('handleEditPost')
         console.log('postId', postId)
         setIsPopoverOpen(false)
@@ -35,10 +38,12 @@ export const ViewUserPostHeader = ({userID, postId}: PropsType) => {
                     URLProfile
                 </Link>
             </div>
-            <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
-                <PopoverItem onClick={handleEditPost} name={'Edit Post'} icon={<EditPostIcon />} />
-                <PopoverItem onClick={handleDeletePost} name={'Delete Post'} icon={<DeletePostIcon />} />
-            </Popover>
+            {!edit && (
+                <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
+                    <PopoverItem onClick={handleEditPost} name={'Edit Post'} icon={<EditPostIcon />} />
+                    <PopoverItem onClick={handleDeletePost} name={'Delete Post'} icon={<DeletePostIcon />} />
+                </Popover>
+            )}
         </ViewUserPostHeaderWrapper>
     )
 }
