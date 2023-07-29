@@ -5,6 +5,8 @@ import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widge
 import {useRouter} from 'next/router'
 import {CloseIcon} from 'shared/assets/icons/CloseIcon'
 
+//https://www.radix-ui.com/docs/primitives/components/dialog
+
 export type ModalProps = {
     open: boolean
     onClose: Dispatch<React.SetStateAction<boolean>>

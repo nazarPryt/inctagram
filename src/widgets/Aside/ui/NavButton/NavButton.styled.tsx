@@ -7,6 +7,7 @@ export const NavButtonWrapper = styled.button`
     gap: 15px;
     font-family: inherit;
     font-weight: 500;
+    white-space: nowrap;
     font-size: 14px;
     background-color: inherit;
     color: ${props => props.theme.textColor['100']};

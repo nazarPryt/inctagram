@@ -18,5 +18,5 @@ export const PATH = {
     SEARCH: '/profile/search',
     FAVORITES: '/profile/favorites',
     STATISTICS: '/profile/statistics',
-    SHOW_POST: '/profile/show-post',
+    VIEW_POST: '/profile/view-post',
 } as const

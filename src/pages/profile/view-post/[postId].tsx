@@ -3,15 +3,15 @@ import React, {useState, useEffect} from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {useRouter} from 'next/router'
 import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
-import {UserPostModalContent} from 'entities/UserPostModalContent/UserPostModalContent'
-import {useGetUserPostQuery} from 'redux/api/postsAPI'
 import {Loader} from 'shared/ui/Loader/Loader'
+import {ViewUserPost} from 'entities/ViewUserPost/ViewUserPost'
+import {useGetUserPostQuery} from 'entities/ViewUserPost/api/get-post-api'
 
 export default function ShowPostPage() {
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const postId = router.query.postId
-    const {data, isLoading} = useGetUserPostQuery(503)
+    const postId = Number(router.query.postId)
+    const {data, isLoading} = useGetUserPostQuery(postId)
 
     useEffect(() => {
         setOpen(true)
@@ -21,12 +21,13 @@ export default function ShowPostPage() {
         return <Loader />
     }
 
-    return (
-        <>
+    if (data) {
+        return (
             <UserPostsModal open={open} onClose={setOpen}>
-                <UserPostModalContent />
+                <ViewUserPost data={data} />
             </UserPostsModal>
-        </>
-    )
+        )
+    }
+    return <div>network error</div>
 }
 ShowPostPage.getLayout = getAuthorizedLayout

@@ -1,6 +1,6 @@
 import {api} from 'redux/api/api'
 
-export const postApi = api.injectEndpoints({
+const postApi = api.injectEndpoints({
     endpoints: build => ({
         getPosts: build.query({
             query: () => ({
