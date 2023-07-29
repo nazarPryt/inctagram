@@ -1,20 +1,135 @@
-import {LocaleType} from './ru'
-
-export const en: LocaleType = {
+export const en = {
     //auth
-    auth_email: 'Email',
-    auth_password: 'Password',
-    auth_confirm_password: 'Password confirmation',
+    auth: {
+        username: 'Username',
+        email: 'Email',
+        password: 'Password',
+        confirmPassword: 'Confirm password',
+        newPasswordInput: 'Новый пароль',
 
-    //auth_sign_up
-    auth_sign_up_title: 'Sign Up',
-    auth_sign_up_username: 'Username',
-    auth_sign_up_username_error: 'User with this username is already registered',
-    auth_sign_up_description: 'Do you have an account?',
+        signUp: {
+            title: 'Sign up',
+            btn: 'Sign up',
+            description: 'Do you have an account?',
+            link: 'Sign In',
+            error: {
+                username: 'User with this username is already registered',
+            },
 
-    //auth_sign_in
-    auth_sign_in_title: 'Sign In',
-    auth_sign_in_password_error: 'The password or email you entered is incorrect. Please try again',
-    auth_sign_in_description: 'Don’t have an account?',
-    auth_sign_in_forgot_password: 'Forgot Password',
+            merge: {
+                title: 'Merge accounts',
+                description:
+                    'The user with email Epam@epam.com is already in the system. Could we merge this accounts?',
+                btnFirst: 'Yes, merge',
+                btnSec: 'No',
+            },
+
+            success: {
+                title: 'Congratulations!',
+                description: 'Your email has been confirmed',
+                btn: 'Sing In',
+            },
+            expiredLink: {
+                title: 'Email verification link expired',
+                description: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+                btn: 'Resend verification link',
+            },
+            badLink: {
+                title: 'Email verification link invalid',
+                description: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+                btn: 'Resend link',
+            },
+        },
+        signIn: {
+            title: 'Sign in',
+            linkFirst: 'Forgot password',
+            button: 'Sign in',
+            description: "Don't have an account?",
+            linkSecond: 'Sign up',
+            error: {
+                password: 'The password or email you entered is incorrect. Please try again',
+            },
+        },
+        forgotPassword: {
+            title: 'Forgot password',
+            description: 'Enter your email address and we will send you further instructions',
+            instruction: 'The link has been sent by email. If you don’t receive an email send link again',
+            btnFirst: 'Send link',
+            btnSec: 'Send Link Again',
+            link: 'Back to Sign in',
+        },
+        newPassword: {
+            title: 'Create new password',
+            description: 'Your password must be between 6 and 20 characters',
+            btn: 'Create new password',
+            error: {
+                passwordConfirm: 'The password must match the new password',
+            },
+        },
+        modal: {
+            title: 'Email sent',
+            description: 'We have sent a link to confirm your email to ',
+            btn: 'Ok',
+        },
+    },
+    generalInfo: {
+        tabs: {
+            generalInfo: 'General information',
+            devices: 'Devices',
+            accountManagement: 'Account Management',
+            myPayments: 'My payments',
+        },
+        inputs: {
+            username: 'Username',
+            firstname: 'First Name',
+            lastname: 'Last Name',
+            dateOfBirth: 'Date of birthday',
+            city: 'City',
+            aboutMe: 'City',
+        },
+        saveChanges: 'Save Changes',
+        addProfilePhoto: 'Add a Profile Photo',
+        addModal: {
+            title: 'Add a Profile Photo',
+            selectBtn: 'Select from Computer',
+            saveBtn: 'Save',
+        },
+        logoutModal: {
+            title: 'Log Out',
+            description: 'Are you really want to log out of your account ',
+            yes: 'Yes',
+            no: 'No',
+        },
+    },
+    profile: {
+        settingsBtn: 'Profile Settings',
+        following: 'Following',
+        followers: 'Followers',
+        publications: 'Publications',
+    },
+    aside: {
+        home: 'Home',
+        create: 'Create',
+        myProfile: 'My Profile',
+        messenger: 'Messenger',
+        search: 'Search',
+        favorites: 'Favorites',
+        statistics: 'Statistics',
+        logout: 'Log Out',
+    },
+    create: {},
+    home: {
+        minutesAgo: 'Minutes ago',
+        viewComm: 'View All Comments ',
+        addComm: 'Add a Comment...',
+        publish: 'Publish',
+        options: {
+            report: 'Report',
+            unfollow: 'Unfollow',
+            copyLink: 'Copy Link',
+            follow: 'Follow',
+        },
+    },
 }
+
+export type LocaleType = typeof en
