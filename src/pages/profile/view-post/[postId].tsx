@@ -11,9 +11,7 @@ export default function ShowPostPage() {
     const [open, setOpen] = useState(false)
     const router = useRouter()
     const postId = Number(router.query.postId)
-    const {data, isLoading} = useGetUserPostQuery(511)
-
-    console.log('postId', postId)
+    const {data, isLoading} = useGetUserPostQuery(postId)
 
     useEffect(() => {
         setOpen(true)
