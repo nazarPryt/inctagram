@@ -6,7 +6,7 @@ export type CreatePostSchema = {
     previewZoom: string
     defaultWidth: number
     defaultHeight: number
-    step: StepsType
+    step: string
     libraryPictures: LibraryPictureType[]
     uploadId: ImageMetaData[]
     describeText: string
@@ -19,5 +19,3 @@ export type LibraryPictureType = {
     filter: string
     readyToSend: File | null
 }
-
-export type StepsType = 'Add Photo' | 'Cropping' | 'Filters' | 'Describe' | 'SENDING'

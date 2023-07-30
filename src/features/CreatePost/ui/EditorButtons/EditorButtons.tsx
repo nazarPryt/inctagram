@@ -2,17 +2,25 @@ import React from 'react'
 import ArrowLeft from '../../../../shared/assets/icons/arrowLeft.svg'
 import {EditorButtonsWrapper} from './styled'
 import {Button} from '../../../../shared/ui/Button/Button'
-import {StepsType} from '../../model/types/createPostSchema'
+import {useTranslation} from '../../../../shared/hooks/useTranslation'
 
 type EditorButtonsType = {
     title: string
+    step: string
     isLoading: boolean
-    onChangeStep: (step: StepsType) => void
+    onChangeStep: (step: string) => void
 }
 
 export const EditorButtons: React.FC<EditorButtonsType> = props => {
-    const STEPS: StepsType[] = ['Add Photo', 'Cropping', 'Filters', 'Describe', 'SENDING']
-    const nextStep = STEPS.findIndex(el => el === props.title)
+    const {t} = useTranslation()
+    const STEPS = [
+        t.create.steps.addPhoto,
+        t.create.steps.cropping,
+        t.create.steps.filters,
+        t.create.steps.describe,
+        'SENDING',
+    ]
+    const nextStep = STEPS.findIndex(el => el === props.step)
     return (
         <EditorButtonsWrapper>
             <div>
@@ -31,7 +39,9 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep + 1])}
                 >
-                    {props.title === 'Describe' ? 'Publish' : 'Next'}
+                    {props.step === t.create.steps.describe
+                        ? t.create.editorButtons.publish
+                        : t.create.editorButtons.next}
                 </Button>
             </div>
         </EditorButtonsWrapper>

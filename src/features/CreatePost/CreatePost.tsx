@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react'
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import CreateIcon from '../../shared/assets/icons/create.svg'
 
@@ -17,7 +17,6 @@ import {Loader} from '../../shared/ui/Loader/Loader'
 import {Modal} from '../../shared/ui/Modal/Modal'
 import {NavButton} from '../../widgets/Aside/ui/NavButton/NavButton'
 import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
-import {StepsType} from './model/types/createPostSchema'
 import {createPostAC} from './model/slice/createPostSlice'
 import {useCreatePostMutation, useUploadImageMutation} from './service/createPost'
 
@@ -35,7 +34,7 @@ export const CreatePost = () => {
         if (!e.target.files) return
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
-        dispatch(createPostAC.setStep('Cropping'))
+        dispatch(createPostAC.setStep(t.create.steps.cropping))
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
@@ -54,17 +53,17 @@ export const CreatePost = () => {
         dispatch(createPostAC.clearAllState())
     }
 
-    const handleChangeStep = (step: StepsType) => {
-        if (step === 'Add Photo') {
+    const handleChangeStep = (step: string) => {
+        if (step === t.create.steps.addPhoto) {
             dispatch(createPostAC.clearAllState())
             return dispatch(createPostAC.setStep(step))
         }
 
-        if (step === 'Cropping' || step === 'Filters') {
+        if (step === t.create.steps.cropping || step === t.create.steps.filters) {
             return dispatch(createPostAC.setStep(step))
         }
 
-        if (step === 'Describe') {
+        if (step === t.create.steps.describe) {
             handleSave()
             return dispatch(createPostAC.setStep(step))
         }
@@ -88,7 +87,7 @@ export const CreatePost = () => {
                         dispatch(createPostAC.setUploadId({uploadId: res.images[0].uploadId}))
                         dispatch(
                             SetAppNotificationAC({
-                                notifications: {type: 'success', message: 'Your Picture was successfully uploaded'},
+                                notifications: {type: 'success', message: t.create.savePhoto.success.message},
                             })
                         )
                     })
@@ -116,7 +115,10 @@ export const CreatePost = () => {
                 dispatch(createPostAC.clearAllState())
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'success', message: 'Your post was successfully uploaded'},
+                        notifications: {
+                            type: 'success',
+                            message: t.create.createPost.success.message,
+                        },
                     })
                 )
             })
@@ -130,15 +132,24 @@ export const CreatePost = () => {
             })
     }
 
+    useEffect(() => {
+        dispatch(createPostAC.setStep(t.create.steps.addPhoto))
+    }, [t.create.steps.addPhoto])
+
     return (
         <>
             <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
 
-            <Modal title={step} isOpen={isOpen} handleClose={handleClose}>
+            <Modal title={t.create.steps.addPhoto} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader />}
-                    {step !== 'Add Photo' && (
-                        <EditorButtons isLoading={isLoadingImage} title={step} onChangeStep={handleChangeStep} />
+                    {step !== t.create.steps.addPhoto && (
+                        <EditorButtons
+                            isLoading={isLoadingImage}
+                            title={step}
+                            step={step}
+                            onChangeStep={handleChangeStep}
+                        />
                     )}
                     <EditorWrapper>
                         {previewImage.length ? (
@@ -149,10 +160,10 @@ export const CreatePost = () => {
                             </EmptyImageWrapper>
                         )}
 
-                        {step === 'Filters' && <PresetFilters prepareImageToSend={prepareImageToSend} />}
-                        {step === 'Describe' && <Describe />}
-                        {step === 'Add Photo' && <SelectPhoto handleCreatePost={handleUploadImage} />}
-                        {step === 'Cropping' || step === 'Filters' ? (
+                        {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
+                        {step === t.create.steps.describe && <Describe />}
+                        {step === t.create.steps.addPhoto && <SelectPhoto handleCreatePost={handleUploadImage} />}
+                        {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
                     </EditorWrapper>

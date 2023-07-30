@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {CreatePostSchema, LibraryPictureType, StepsType} from '../types/createPostSchema'
+import {CreatePostSchema, LibraryPictureType} from '../types/createPostSchema'
 import {ImageMetaData} from '../../service/types'
 
 const createPostSlice = createSlice({
@@ -29,7 +29,7 @@ const createPostSlice = createSlice({
             state.defaultHeight = action.payload.height
             state.defaultWidth = action.payload.width
         },
-        setStep: (state, action: PayloadAction<StepsType>) => {
+        setStep: (state, action: PayloadAction<string>) => {
             state.step = action.payload
         },
         setLibraryPictures: (state, action: PayloadAction<LibraryPictureType>) => {
