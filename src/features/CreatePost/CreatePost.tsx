@@ -134,7 +134,7 @@ export const CreatePost = () => {
 
     useEffect(() => {
         dispatch(createPostAC.setStep(t.create.steps.addPhoto))
-    }, [])
+    }, [t.create.steps.addPhoto])
 
     return (
         <>
