@@ -8,12 +8,14 @@ import Crop16x9 from '../../../../shared/assets/icons/crop16x9.svg'
 import {ASPECT_RATIO, ORIGINAL_SIZE} from '../../model/types/const'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
+import {useTranslation} from '../../../../shared/hooks/useTranslation'
 
 export const SelectResize = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const [selectHidden, setSelectHidden] = useState(false)
     const ratioData = [
-        {id: 1, value: 0, title: 'Original', icon: CropOriginal},
+        {id: 1, value: 0, title: t.create.selectResize, icon: CropOriginal},
         {id: 2, value: 1, title: '1:1', icon: Crop1x1},
         {id: 3, value: 4 / 5, title: '4:5', icon: Crop4x5},
         {id: 4, value: 16 / 9, title: '16:9', icon: Crop16x9},

@@ -117,7 +117,38 @@ export const en = {
         statistics: 'Statistics',
         logout: 'Log Out',
     },
-    create: {},
+    create: {
+        selectButton: 'Select from computer',
+        selectResize: 'Original',
+        steps: {
+            addPhoto: 'Add Photo',
+            cropping: 'Cropping',
+            filters: 'Filters',
+            describe: 'Describe',
+        },
+        editorButtons: {
+            next: 'Next',
+            publish: 'Publish',
+        },
+        describe: 'Add publication descriptions',
+        addLocation: 'Add location',
+        savePhoto: {
+            success: {
+                message: 'Your Picture was successfully uploaded',
+            },
+            error: {
+                type: 'Error',
+            },
+        },
+        createPost: {
+            success: {
+                message: 'Your post was successfully uploaded',
+            },
+            error: {
+                type: 'Error',
+            },
+        },
+    },
     home: {
         minutesAgo: 'Minutes ago',
         viewComm: 'View All Comments ',

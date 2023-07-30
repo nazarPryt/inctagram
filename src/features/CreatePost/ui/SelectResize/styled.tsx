@@ -5,7 +5,7 @@ export const SelectWrapper = styled.div`
     flex-direction: column;
     gap: 5px;
     background-color: ${props => props.theme.bodyColor[500]};
-    width: 110px;
+    width: 120px;
     padding: 10px;
     position: absolute;
     top: -135px;

@@ -121,7 +121,38 @@ export const ru: LocaleType = {
         statistics: 'статистика',
         logout: 'Выйти',
     },
-    create: {},
+    create: {
+        selectButton: 'Выбрать фото',
+        selectResize: 'Оригинал',
+        steps: {
+            addPhoto: 'Добавить фото',
+            cropping: 'Обезка фото',
+            filters: 'Фильтра для фото',
+            describe: 'Описание фото',
+        },
+        editorButtons: {
+            next: 'Далее',
+            publish: 'Опубликовать',
+        },
+        describe: 'Добавить описание к фото',
+        addLocation: 'Добавить места',
+        savePhoto: {
+            success: {
+                message: 'Ваше фото было добавлено',
+            },
+            error: {
+                type: 'Ошибка',
+            },
+        },
+        createPost: {
+            success: {
+                message: 'Ваш пост был добавлен',
+            },
+            error: {
+                type: 'Ошибка',
+            },
+        },
+    },
     home: {
         minutesAgo: 'Минут назад',
         viewComm: 'Просмотреть все комментарии ',

@@ -8,8 +8,10 @@ import SkeletonAvatar from '../../../../shared/assets/icons/skeletonCycle.svg'
 import SkeletonTitle from '../../../../shared/assets/icons/skeletonTitle.svg'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
+import {useTranslation} from '../../../../shared/hooks/useTranslation'
 
 export const Describe = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
 
@@ -39,12 +41,8 @@ export const Describe = () => {
                     <span>{data ? data.userName : <SkeletonTitle />}</span>
                 </div>
             </div>
-            <TextArea
-                defaultValue={describeText}
-                onChange={e => changeTextHandler(e)}
-                label='Add Publication descriptions'
-            />
-            <div>ADD LOCATION : tobeContinued...</div>
+            <TextArea defaultValue={describeText} onChange={e => changeTextHandler(e)} label={t.create.describe} />
+            <div>{t.create.addLocation} : tobeContinued...</div>
         </DescribeWrapper>
     )
 }
