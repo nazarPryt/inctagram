@@ -1,11 +1,12 @@
 export const en = {
     //auth
+
     auth: {
         username: 'Username',
         email: 'Email',
         password: 'Password',
         confirmPassword: 'Confirm password',
-        newPasswordInput: 'Новый пароль',
+        newPasswordInput: 'New password',
 
         signUp: {
             title: 'Sign up',
@@ -23,7 +24,6 @@ export const en = {
                 btnFirst: 'Yes, merge',
                 btnSec: 'No',
             },
-
             success: {
                 title: 'Congratulations!',
                 description: 'Your email has been confirmed',
