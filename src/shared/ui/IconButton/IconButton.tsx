@@ -3,12 +3,12 @@ import {IconButtonStyled} from './IconButton.styled'
 
 type DefaultButtonPropsType = ComponentProps<'button'>
 
-type IconButtonProps = DefaultButtonPropsType & {
+export type IconButtonType = DefaultButtonPropsType & {
     children: ReactNode
     colorful?: 'true'
     active?: 'true' | undefined
 }
-export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((props, ref) => {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonType>((props, ref) => {
     return (
         <IconButtonStyled ref={ref} {...props} type='button' $active={props.active} $colorful={props.colorful}>
             {props.children}
