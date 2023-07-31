@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const ViewUserPostWrapper = styled.div`
     display: flex;
+    width: 80vw;
 
     .pictureSlider {
         width: 60%;
