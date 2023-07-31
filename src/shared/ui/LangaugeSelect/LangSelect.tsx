@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
 import {Select} from '../Select'
 import FlagEngIcon from '../../assets/icons/FlagUnitedKingdom.svg'
@@ -27,11 +27,22 @@ const Country = [
 
 export const LangSelect = () => {
     const {locale, push, pathname, query, asPath, locales, defaultLocale} = useRouter()
-    const [value, setValue] = useState(locale)
+    const [value, setValue] = useState(defaultLocale)
     const changeLangHandler = (country: string) => {
         setValue(country)
         push({pathname, query}, asPath, {locale: country})
+        localStorage.setItem('lang', country)
     }
+
+    useEffect(() => {
+        const lang = localStorage.getItem('lang')
+        if (lang) {
+            setValue(lang)
+            push({pathname, query}, asPath, {locale: lang})
+        } else {
+            push({pathname, query}, asPath, {locale: defaultLocale})
+        }
+    }, [])
 
     return (
         <div>
