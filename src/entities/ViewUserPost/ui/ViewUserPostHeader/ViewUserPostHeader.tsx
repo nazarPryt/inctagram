@@ -9,12 +9,12 @@ import {DeletePostIcon} from 'features/DeletePost/DeletePostIcon'
 import {EditPostIcon} from 'features/EditPost/EditPostIcon'
 
 type PropsType = {
-    userID: number
+    userId: number
     postId: number
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({userID, postId, setEdit, edit}: PropsType) => {
+export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) => {
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -33,8 +33,8 @@ export const ViewUserPostHeader = ({userID, postId, setEdit, edit}: PropsType) =
     return (
         <ViewUserPostHeaderWrapper>
             <div className={'avaLink'}>
-                <AvatarIcon img={'https://loremflickr.com/500/500'} userID={userID} />
-                <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>
+                <AvatarIcon img={'https://loremflickr.com/500/500'} userID={userId} />
+                <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userId}`}>
                     URLProfile
                 </Link>
             </div>

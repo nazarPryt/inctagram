@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PostDescriptionWrapper = styled.div`
+export const CommentWrapper = styled.div`
     display: flex;
     gap: 20px;
 
