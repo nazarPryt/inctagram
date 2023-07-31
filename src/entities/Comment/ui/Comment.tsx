@@ -9,9 +9,10 @@ type CommentType = {
     comment: string
     userID: number
     img: string
+    isLiked: boolean
 }
 
-export const Comment = ({comment, userID, img}: CommentType) => {
+export const Comment = ({comment, userID, img, isLiked}: CommentType) => {
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
     return (
@@ -26,7 +27,7 @@ export const Comment = ({comment, userID, img}: CommentType) => {
                     <div>Answer</div>
                 </div>
             </div>
-            <LikeComment className={'likeButton'} commentId={33} isLiked={true} />
+            <LikeComment className={'likeButton'} commentId={33} isLiked={isLiked} />
         </CommentWrapper>
     )
 }

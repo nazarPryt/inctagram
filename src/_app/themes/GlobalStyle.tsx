@@ -35,6 +35,10 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
   //~~~~-autofills for inputs
   //https://css-tricks.com/almanac/selectors/a/autofill/
   input:-webkit-autofill,

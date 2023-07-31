@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CommentWrapper = styled.div`
+export const CommentWrapper = styled.li`
     display: flex;
     gap: 20px;
     margin-bottom: 20px;

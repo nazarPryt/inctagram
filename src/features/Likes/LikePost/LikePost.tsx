@@ -1,11 +1,11 @@
 import React from 'react'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {LikeIcon} from 'features/Likes/icons/LikeIcon'
+import {NotLikedIcon} from 'features/Likes/icons/NotLikedIcon'
 
 export const LikePost = () => {
     return (
         <IconButton>
-            <LikeIcon />
+            <NotLikedIcon />
         </IconButton>
     )
 }
