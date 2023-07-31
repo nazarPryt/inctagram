@@ -1,12 +1,20 @@
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
+import {useSession} from 'next-auth/react'
+import {useRouter} from 'next/router'
+import {PATH} from 'shared/constants/PATH'
+import {Loader} from 'shared/ui/Loader/Loader'
 
 const Home = () => {
-    return (
-        <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores ea hic, natus neque qui
-            voluptate? Animi aut commodi, ea facere facilis inventore magnam nostrum sapiente sequi soluta vel voluptas?
-        </div>
-    )
+    const session = useSession()
+    const router = useRouter()
+
+    if (session.status === 'authenticated') {
+        router.push(PATH.HOME)
+    }
+    if (session.status === 'unauthenticated') {
+        router.push(PATH.LOGIN)
+    }
+    return <Loader />
 }
 
 Home.getLayout = getLayoutWithHeader

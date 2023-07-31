@@ -1,19 +1,24 @@
-import React, {ComponentProps} from 'react'
+import React, {forwardRef} from 'react'
 import {UserPostWrapper} from 'entities/UserPosts/ui/UserPost.styled'
 import Image from 'next/image'
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'
+import {PATH} from 'shared/constants/PATH'
 
 type UserPostType = {
     src: string
     imagesLength: number
-} & ComponentProps<'a'>
+    postId: number
+}
 
+export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
+    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
 
-export const UserPost = ({src, imagesLength, ...rest}: UserPostType) => {
     return (
-        <UserPostWrapper {...rest}>
-            {imagesLength > 2 && <MorePhotosIcon />}
-            <Image src={src} alt={'PostPhoto'} width={230} height={235} />
+        <UserPostWrapper href={{pathname: `${BASE_URL}${PATH.VIEW_POST}/${props.postId}`}} ref={ref}>
+            {props.imagesLength > 2 && <MorePhotosIcon />}
+            <Image src={props.src} alt={'PostPhoto'} width={230} height={235} />
         </UserPostWrapper>
     )
-}
+})
+
+UserPost.displayName = 'UserPost'
