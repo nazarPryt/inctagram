@@ -1,9 +1,9 @@
 import React from 'react'
-import {PostsList} from 'widgets/PostsList/PostsList'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
+import {AllPostsList} from 'widgets/AllPostsList/AllPostsList'
 
 export default function Home() {
-    return <PostsList posts={data.items} />
+    return <AllPostsList posts={data.items} />
 }
 
 Home.getLayout = getAuthorizedLayout
@@ -25,21 +25,21 @@ const data = {
                     width: 300,
                     height: 300,
                     fileSize: 300,
-                    uploadId: 'string',
+                    uploadId: '1',
                 },
                 {
                     url: 'https://loremflickr.com/500/500/cat',
                     width: 300,
                     height: 300,
                     fileSize: 300,
-                    uploadId: 'string',
+                    uploadId: '2',
                 },
                 {
                     url: 'https://loremflickr.com/500/500/car',
                     width: 300,
                     height: 300,
                     fileSize: 300,
-                    uploadId: 'string',
+                    uploadId: '3',
                 },
             ],
             createdAt: '2023-07-14T14:50:09.268Z',
@@ -56,14 +56,14 @@ const data = {
                     width: 300,
                     height: 300,
                     fileSize: 300,
-                    uploadId: 'string',
+                    uploadId: '1',
                 },
                 {
                     url: 'https://loremflickr.com/500/500/rain',
                     width: 300,
                     height: 300,
                     fileSize: 300,
-                    uploadId: 'string',
+                    uploadId: '2',
                 },
             ],
             createdAt: '2023-07-14T14:50:09.268Z',

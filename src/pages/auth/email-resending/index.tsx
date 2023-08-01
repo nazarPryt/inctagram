@@ -1,21 +1,23 @@
 'use client'
 import React, {useState} from 'react'
 import Image from 'next/image'
-import timeManagement from 'common/assets/pictures/timeManagement.png'
+import {useTranslation} from 'shared/hooks/useTranslation'
+import timeManagement from '../../../shared/assets/pictures/timeManagement.png'
 import {useResendConfirmationLinkMutation} from 'redux/api/authAPI'
-import {Modal} from 'shared/components/Modal/Modal'
+import {Modal} from '../../../shared/ui/Modal/Modal'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useRouter, useSearchParams} from 'next/navigation'
-import {Loader} from 'shared/components/Loader/Loader'
+import {Loader} from '../../../shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {EmailResendWrapper} from 'shared/styles/EmailResendPage'
 import {RegistrationModalContent} from 'shared/styles/RegistrationPage'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {AuthContainer} from 'shared/components/AuthContainer/AuthContainer'
-import {Button} from 'shared/components/Button/Button'
+import {AuthContainer} from '../../../shared/ui/AuthContainer/AuthContainer'
+import {Button} from '../../../shared/ui/Button/Button'
 
 export default function EmailResendingPage() {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const router = useRouter()
     const [resend, {isLoading}] = useResendConfirmationLinkMutation()
@@ -43,21 +45,22 @@ export default function EmailResendingPage() {
         <AuthContainer>
             {isLoading && <Loader />}
             <EmailResendWrapper>
-                <h1>Email verification link expired</h1>
-                <p>Looks like the verification link has expired. Not to worry, we can send the link again</p>
+                <h1>{t.auth.signUp.expiredLink.title}</h1>
+                <p>{t.auth.signUp.expiredLink.description}</p>
                 <Button onClick={handleResend} disabled={isLoading}>
-                    Resend verification link
+                    {t.auth.signUp.expiredLink.btn}
                 </Button>
                 <span>
                     <Image src={timeManagement} alt={'timeManagement picture'} />
                 </span>
             </EmailResendWrapper>
-            <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={'Email sent'}>
+            <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
                 <RegistrationModalContent>
                     <div>
-                        We have sent a link to confirm your email to <span>{email}</span>
+                        {t.auth.modal.description}
+                        <span>{email}</span>
                     </div>
-                    <Button onClick={handleModalClose}>OK</Button>
+                    <Button onClick={handleModalClose}>{t.auth.modal.btn}</Button>
                 </RegistrationModalContent>
             </Modal>
         </AuthContainer>

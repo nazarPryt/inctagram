@@ -1,16 +1,19 @@
 import * as process from 'process'
 import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
 import cookie from 'react-cookies'
+import {accessToken} from 'shared/constants/constants'
+import {signOut} from 'next-auth/react'
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
 export const baseQuery = fetchBaseQuery({
-    baseUrl: baseUrl,
+    baseUrl,
     credentials: 'include',
     prepareHeaders: headers => {
-        const accessToken = cookie.load('accessToken')
+        const token = cookie.load(accessToken)
 
-        if (accessToken) {
-            headers.set('authorization', `Bearer ${accessToken}`)
+        if (token) {
+            headers.set('authorization', `Bearer ${token}`)
         }
         return headers
     },
@@ -35,7 +38,7 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
         )) as {data: {accessToken: string}}
 
         if (refreshResult.data.accessToken) {
-            cookie.save('accessToken', refreshResult.data.accessToken as string, {httpOnly: false})
+            cookie.save(accessToken, refreshResult.data.accessToken as string, {httpOnly: false, path: '/'})
 
             // retry the initial query
             result = await baseQuery(args, api, extraOptions)
@@ -55,6 +58,48 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
 export const api = createApi({
     reducerPath: 'api',
+    tagTypes: ['UserAvatar', 'Posts', 'Post'],
     baseQuery: baseQueryWithReAuth,
     endpoints: () => ({}),
 })
+
+// const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+//     args,
+//     api,
+//     extraOptions
+// ) => {
+//     let result = await baseQuery(args, api, extraOptions)
+//
+//     if (result.error && result.error.status === 401) {
+//         // try to get a new token
+//
+//         try {
+//             const refreshResult = (await baseQuery(
+//                 {
+//                     url: 'auth/update-tokens',
+//                     method: 'POST',
+//                 },
+//                 api,
+//                 extraOptions
+//             )) as {data: {accessToken: string}}
+//
+//             if (refreshResult.data.accessToken) {
+//                 cookie.save(accessToken, refreshResult.data.accessToken as string, {httpOnly: false})
+//                 // retry the initial query
+//                 result = await baseQuery(args, api, extraOptions)
+//             }
+//         } catch (e) {
+//             await signOut()
+//             // await baseQuery(
+//             //     {
+//             //         url: 'auth/logout',
+//             //         method: 'POST',
+//             //     },
+//             //     api,
+//             //     extraOptions
+//             // )
+//             console.log(e)
+//         }
+//     }
+//     return result
+// }

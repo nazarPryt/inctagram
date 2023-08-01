@@ -1,26 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
+import {Comment} from 'entities/Comment/ui/Comment'
 import {PostCommentsWrapper} from 'entities/Post/ui/PostComments/PostComments.styled'
-import {TextArea} from 'shared/components/TextArea/TextArea'
-import {Button} from 'shared/components/Button/Button'
-import {Modal} from 'shared/components/Modal/Modal'
 
-export const PostComments = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false)
-    }
-
+type PostDescriptionType = {}
+export const PostComments = ({}: PostDescriptionType) => {
     return (
         <PostCommentsWrapper>
-            <button onClick={() => setIsModalOpen(true)}>{`View All Comments ${114}`}</button>
-            <form className={'textAreaWrapper'}>
-                <TextArea placeholder={'Add a Comment...'} />
-                <Button variant={'outlined'}>Publish</Button>
-            </form>
-            <Modal isOpen={isModalOpen} handleClose={handleCloseModal} title={'modal'}>
-                <div>PostComments content</div>
-            </Modal>
+            <Comment isLiked={false} comment={'post.description'} userID={3} img={'https://loremflickr.com/500/500'} />
         </PostCommentsWrapper>
     )
 }

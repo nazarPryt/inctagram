@@ -5,6 +5,7 @@ import {Providers} from '_app/Provider'
 import {useLoader} from 'shared/hooks/useLoader'
 import 'shared/styles/nprogress.css'
 import {SessionProvider} from 'next-auth/react'
+import {Inter} from 'next/font/google'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -13,7 +14,7 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
-
+const inter = Inter({subsets: ['latin']})
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
     useLoader()
 
@@ -21,7 +22,18 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
 
     return (
         <SessionProvider session={session}>
-            <Providers>{getLayout(<Component {...pageProps} />)}</Providers>
+            <Providers>
+                {getLayout(
+                    <>
+                        <style jsx global>{`
+                            html {
+                                font-family: ${inter.style.fontFamily};
+                            }
+                        `}</style>
+                        <Component {...pageProps} />
+                    </>
+                )}
+            </Providers>
         </SessionProvider>
     )
 }

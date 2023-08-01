@@ -4,12 +4,12 @@ export const EmailResendWrapper = styled.div`
     h1 {
         font-size: 20px;
         font-weight: 700;
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor[100]};
     }
     p {
         font-size: 16px;
         font-weight: 400;
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.textColor[100]};
     }
 
     span {
