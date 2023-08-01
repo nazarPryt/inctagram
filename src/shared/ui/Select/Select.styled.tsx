@@ -176,11 +176,13 @@ export const SelectIcon = styled(Select.SelectIcon)`
     width: 24px;
     height: 24px;
     transition: 0.2s;
+
     &.pagination {
         display: flex;
         width: 16px;
         height: 16px;
     }
+
     svg {
         color: ${props => props.theme.textColor['500']};
     }

@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
   html {
     overflow-y: scroll;
   }
@@ -17,10 +18,12 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed;
     height: 100vh;
     margin: 0;
+
     &.isModalOpen {
       overflow: hidden;
     }
   }
+
   h1,
   h2,
   h3,
@@ -35,10 +38,12 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+
   ul {
     margin: 0;
     padding: 0;
   }
+
   //~~~~-autofills for inputs
   //https://css-tricks.com/almanac/selectors/a/autofill/
   input:-webkit-autofill,
@@ -54,7 +59,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.bodyColor['500']} inset;
   }
 
-  
+
   //~~~~ScrollBar
   //https://codepen.io/devstreak/pen/dMYgeO
   &::-webkit-scrollbar-track {
@@ -63,8 +68,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   &::-webkit-scrollbar {
-    width: 10px;
-    background-color: #F5F5F5;
+    display: none;
   }
 
   &::-webkit-scrollbar-thumb {
