@@ -55,7 +55,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   
-  
   //~~~~ScrollBar
   //https://codepen.io/devstreak/pen/dMYgeO
   &::-webkit-scrollbar-track {

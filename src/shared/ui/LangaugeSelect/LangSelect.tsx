@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router'
 import React, {useEffect, useState} from 'react'
 import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
-import {Select} from '../Select'
 import FlagEngIcon from '../../assets/icons/FlagUnitedKingdom.svg'
+import {CustomSelect} from 'shared/ui/Select'
 
 const Country = [
     {
@@ -46,7 +46,7 @@ export const LangSelect = () => {
 
     return (
         <div>
-            <Select
+            <CustomSelect
                 value={value!}
                 defaultValue={defaultLocale}
                 onChange={value => changeLangHandler(value)}
