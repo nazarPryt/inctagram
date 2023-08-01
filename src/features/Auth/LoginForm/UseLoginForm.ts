@@ -2,11 +2,11 @@ import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {signIn} from 'next-auth/react'
-import {PATH} from '../../../shared/constants/PATH'
-import {SetAppNotificationAC} from '../../../_app/store/appSlice'
-import {useAppDispatch} from '../../../shared/hooks/reduxHooks'
-import {useLoginMutation} from '../../../redux/api/authAPI'
-import {useTranslation} from '../../../shared/hooks/useTranslation'
+import {PATH} from 'shared/constants/PATH'
+import {SetAppNotificationAC} from '_app/store/appSlice'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useLoginMutation} from 'redux/api/authAPI'
+import {useTranslation} from 'shared/hooks/useTranslation'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
