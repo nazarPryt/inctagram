@@ -51,7 +51,7 @@ export const LangSelect = () => {
                 defaultValue={defaultLocale}
                 onChange={value => changeLangHandler(value)}
                 options={Country}
-                width={'163px'}
+                // width={'163px'}
             />
         </div>
     )

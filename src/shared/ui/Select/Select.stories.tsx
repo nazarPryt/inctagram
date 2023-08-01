@@ -2,13 +2,13 @@ import type {Meta, StoryObj} from '@storybook/react'
 import React, {useState} from 'react'
 import {FlagEngIcon} from '../../assets/icons/FlagEngIcon'
 import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
-import {Select} from './Select'
+import {CustomSelect} from 'shared/ui/Select/Select'
 
 export default {
     title: 'Components/Select',
-    component: Select,
+    component: CustomSelect,
     tags: ['autodocs'],
-} as Meta<typeof Select>
+} as Meta<typeof CustomSelect>
 
 const optionsPrimary = [
     {
@@ -67,12 +67,12 @@ const Country = [
     },
 ]
 
-type Story = StoryObj<typeof Select>
+type Story = StoryObj<typeof CustomSelect>
 
 const SimpleSelect = () => {
     const [value, setValue] = useState('')
 
-    return <Select value={value} onChange={setValue} options={optionsPrimary} />
+    return <CustomSelect value={value} onChange={setValue} options={optionsPrimary} />
 }
 export const Simple: Story = {
     render: () => <SimpleSelect />,
@@ -82,7 +82,13 @@ const SimpleWithLabelSelect = () => {
     const [value, setValue] = useState('')
 
     return (
-        <Select value={value} onChange={setValue} placeholder={'select...'} options={optionsPrimary} label={'Select'} />
+        <CustomSelect
+            value={value}
+            onChange={setValue}
+            placeholder={'select...'}
+            options={optionsPrimary}
+            label={'Select'}
+        />
     )
 }
 export const SimpleWithLabel: Story = {
@@ -93,13 +99,12 @@ const ErrorSelect = () => {
     const [value, setValue] = useState('')
 
     return (
-        <Select
+        <CustomSelect
             value={value}
             onChange={setValue}
             options={optionsPrimary}
             placeholder={'select...'}
             label={'Select'}
-            errorMessage={'error error error error '}
         />
     )
 }
@@ -112,12 +117,11 @@ const PaginationSelect = () => {
     const [value, setValue] = useState('')
 
     return (
-        <Select
+        <CustomSelect
             value={value}
             onChange={setValue}
             options={optionsPagination}
             label={'pagination'}
-            variant={'pagination'}
             placeholder={'1'}
         />
     )
@@ -130,7 +134,7 @@ export const Pagination: Story = {
 const FullWidthSelect = () => {
     const [value, setValue] = useState('')
 
-    return <Select value={value} onChange={setValue} options={optionsPrimary} variant={'primary'} width={'100%'} />
+    return <CustomSelect value={value} onChange={setValue} options={optionsPrimary} />
 }
 
 export const FullWidth: Story = {
@@ -140,7 +144,7 @@ export const FullWidth: Story = {
 const CountryExample = () => {
     const [value, setValue] = useState('ru')
 
-    return <Select value={value} onChange={setValue} options={Country} variant={'primary'} />
+    return <CustomSelect value={value} onChange={setValue} options={Country} />
 }
 
 export const CountrySelect: Story = {
@@ -148,7 +152,7 @@ export const CountrySelect: Story = {
 }
 
 const DisabledSelect = () => {
-    return <Select value={''} onChange={() => {}} options={optionsPrimary} variant={'primary'} disabled />
+    return <CustomSelect value={''} onChange={() => {}} options={optionsPrimary} disabled />
 }
 
 export const Disabled: Story = {
