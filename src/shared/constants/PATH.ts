@@ -6,7 +6,7 @@ export const PATH = {
     FORGOT_PASSWORD: '/auth/forgot-password',
     EXPIRED_LINK: '/auth/email-resending',
     REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
-    CREATE_NEW_PASSWORD: '/create-new-password/:token',
+    CREATE_NEW_PASSWORD: '/auth/create-new-password/:token',
     UPDATE_TOKENS: '/auth/update-tokens',
 
     // Aside
@@ -18,4 +18,5 @@ export const PATH = {
     SEARCH: '/profile/search',
     FAVORITES: '/profile/favorites',
     STATISTICS: '/profile/statistics',
+    VIEW_POST: '/profile/view-post',
 } as const

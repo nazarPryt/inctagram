@@ -4,14 +4,13 @@ import {ResponseType, UserProfile} from 'redux/types/authTypes'
 
 export const profileAPI = api.injectEndpoints({
     endpoints: build => ({
-        getUserProfile: build.mutation<UserProfile, string>({
-            query: accessToken => ({
+        getUserProfile: build.query<UserProfile, number>({
+            query: userId => ({
                 url: `users/profile`,
                 method: 'GET',
-                headers: {
-                    authorization: accessToken,
-                },
+                params: {userId},
             }),
+            providesTags: () => ['UserAvatar'],
         }),
         uploadAvatar: build.mutation<UserAvatar, FormData | File>({
             query: body => ({
@@ -19,7 +18,9 @@ export const profileAPI = api.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['UserAvatar'],
         }),
+
         deleteAvatar: build.mutation({
             query: body => ({
                 url: `users/profile/avatar`,
@@ -33,9 +34,10 @@ export const profileAPI = api.injectEndpoints({
                 method: 'PUT',
                 body,
             }),
+            invalidatesTags: ['UserAvatar'],
         }),
     }),
 })
 
-export const {useUploadAvatarMutation, useDeleteAvatarMutation, useUpdateUserMutation, useGetUserProfileMutation} =
+export const {useUploadAvatarMutation, useDeleteAvatarMutation, useUpdateUserMutation, useGetUserProfileQuery} =
     profileAPI

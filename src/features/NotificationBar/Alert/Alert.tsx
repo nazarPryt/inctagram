@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 
-import errorIcon from 'common/assets/icons/errorIcon.png'
-import successIcon from 'common/assets/icons/success.png'
+import errorIcon from '../../../shared/assets/icons/errorIcon.png'
+import successIcon from '../../../shared/assets/icons/success.png'
 import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'
 import {NotificationType, RemoveAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'

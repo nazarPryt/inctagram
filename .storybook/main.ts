@@ -9,6 +9,7 @@ module.exports = {
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
         '@storybook-addon-state',
+        '@storybook/addon-a11y',
         {
             name: '@storybook/addon-styling',
             options: {},

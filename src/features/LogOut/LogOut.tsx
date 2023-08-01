@@ -1,16 +1,20 @@
 'use client'
 import LogoutIcon from 'features/LogOut/logout.svg'
 import React, {useState} from 'react'
-import {Modal} from 'shared/components/Modal/Modal'
+import {useTranslation} from 'shared/hooks/useTranslation'
+import {Modal} from '../../shared/ui/Modal/Modal'
 import {LogOutModalWrapper} from 'features/LogOut/LogOut.styled'
 import {useLogOutMutation} from 'redux/api/authAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {signOut, useSession} from 'next-auth/react'
-import {Button} from 'shared/components/Button/Button'
+import {Button} from '../../shared/ui/Button/Button'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
+import {accessToken} from 'shared/constants/constants'
+import cookie from 'react-cookies'
 
 export const LogOut = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const {data} = useSession()
     const [showModal, setShowModal] = useState(false)
@@ -20,6 +24,12 @@ export const LogOut = () => {
         await signOut()
         await logOut()
             .unwrap()
+            .then(async () => {
+                debugger
+                console.log('cookie.remove(accessToken)')
+                cookie.remove(accessToken)
+                setShowModal(false)
+            })
             .catch(error => {
                 console.log(error)
                 dispatch(
@@ -28,7 +38,6 @@ export const LogOut = () => {
                     })
                 )
             })
-        setShowModal(false)
     }
 
     const handleCloseModal = () => {
@@ -36,19 +45,19 @@ export const LogOut = () => {
     }
     return (
         <>
-            <NavButton title={'Log Out'} icon={<LogoutIcon />} onClick={() => setShowModal(true)} />
+            <NavButton title={t.aside.logout} icon={<LogoutIcon />} onClick={() => setShowModal(true)} />
 
-            <Modal isOpen={showModal} title={'Log Out'} handleClose={handleCloseModal}>
+            <Modal isOpen={showModal} title={t.generalInfo.logoutModal.title} handleClose={handleCloseModal}>
                 <LogOutModalWrapper>
                     <p>
-                        Do you really want to log out of your account
+                        {t.generalInfo.logoutModal.description}
                         <br /> <span>{data?.user.email}</span>?
                     </p>
                     <div className={'buttonsWrapper'}>
                         <Button variant={'outlined'} onClick={onLogOut}>
-                            Yes
+                            {t.generalInfo.logoutModal.yes}
                         </Button>
-                        <Button onClick={handleCloseModal}>No</Button>
+                        <Button onClick={handleCloseModal}>{t.generalInfo.logoutModal.no}</Button>
                     </div>
                 </LogOutModalWrapper>
             </Modal>

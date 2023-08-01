@@ -11,7 +11,7 @@ export const ForgotPasswordStyled = styled.div`
         font-weight: 700;
         font-size: 20px;
         line-height: 36px;
-        color: ${props => props.theme.palette.light[100]};
+        color: ${props => props.theme.textColor['100']};
     }
 
     h2 {
@@ -19,7 +19,7 @@ export const ForgotPasswordStyled = styled.div`
         text-align: start;
         font-size: 14px;
         line-height: 24px;
-        color: ${props => props.theme.palette.light[900]};
+        color: ${props => props.theme.textColor[900]};
         margin: 0;
     }
 
