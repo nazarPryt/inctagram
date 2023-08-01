@@ -1,9 +1,9 @@
-import {ViewUserPostHeader} from '../../entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
-import {TextArea} from '../../shared/ui/TextArea/TextArea'
-import {Button} from '../../shared/ui/Button/Button'
+import {ViewUserPostHeader} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
+import {TextArea} from 'shared/ui/TextArea/TextArea'
+import {Button} from 'shared/ui/Button/Button'
 import React, {Dispatch, SetStateAction} from 'react'
 import {useEditPost} from './UseEditPost'
-import {PostByIdType} from '../../entities/ViewUserPost/api/type'
+import {PostByIdType} from 'entities/ViewUserPost/api/type'
 import {EditPostWrapper} from './EditPost.styled'
 
 type EditPostPropsType = {
@@ -16,7 +16,7 @@ export const EditPost = ({edit, setEdit, data}: EditPostPropsType) => {
 
     return (
         <EditPostWrapper className={'editStyle'} onSubmit={handleSubmit}>
-            <ViewUserPostHeader edit={edit} setEdit={setEdit} userID={248} postId={data.id} />
+            <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={248} postId={data.id} />
             <TextArea
                 defaultValue={data.description}
                 {...register('description')}

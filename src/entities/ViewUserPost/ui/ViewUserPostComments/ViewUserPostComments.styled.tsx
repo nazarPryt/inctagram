@@ -4,5 +4,12 @@ export const ViewUserPostCommentsWrapper = styled.ul`
     flex: 1;
 
     overflow-y: scroll;
-    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 `

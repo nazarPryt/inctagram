@@ -6,7 +6,7 @@ type PostDescriptionType = {}
 export const PostComments = ({}: PostDescriptionType) => {
     return (
         <PostCommentsWrapper>
-            <Comment comment={'post.description'} userID={3} img={'https://loremflickr.com/500/500'} />
+            <Comment isLiked={false} comment={'post.description'} userID={3} img={'https://loremflickr.com/500/500'} />
         </PostCommentsWrapper>
     )
 }

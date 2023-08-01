@@ -15,6 +15,7 @@ export const ViewUserPostWrapper = styled.div`
 
         padding: 0 15px;
         background-color: ${props => props.theme.bodyColor[300]};
+        height: 800px;
         width: 40%;
         min-width: 200px;
     }
