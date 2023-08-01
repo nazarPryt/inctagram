@@ -15,14 +15,15 @@ type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
 const inter = Inter({subsets: ['latin']})
+
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
     useLoader()
 
     const getLayout = Component.getLayout ?? (page => page)
 
     return (
-        <SessionProvider session={session}>
-            <Providers>
+        <Providers>
+            <SessionProvider session={session}>
                 {getLayout(
                     <>
                         <style jsx global>{`
@@ -33,7 +34,7 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
                         <Component {...pageProps} />
                     </>
                 )}
-            </Providers>
-        </SessionProvider>
+            </SessionProvider>
+        </Providers>
     )
 }
