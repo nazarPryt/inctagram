@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 export const ViewUserPostWrapper = styled.div`
     display: flex;
-    width: 80vw;
+    width: 800px;
 
     .pictureSlider {
         width: 60%;
+        display: flex;
     }
 
     .right {
