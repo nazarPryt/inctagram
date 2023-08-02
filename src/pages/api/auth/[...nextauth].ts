@@ -10,7 +10,7 @@ import GitHubProvider from 'next-auth/providers/github'
 import {serverAuthAPI} from 'shared/server-api/server-api'
 
 export const authOptions = {
-    secret: process.env.NEXTAUTH_SECRET as string,
+    secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET as string,
     pages: {
         signIn: PATH.LOGIN,
         error: PATH.LOGIN,
