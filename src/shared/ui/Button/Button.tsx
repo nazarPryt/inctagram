@@ -1,6 +1,8 @@
 import styled, {css} from 'styled-components'
 
-export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text' | 'isIcon'}>`
+export const Button = styled.button.attrs<{variant?: 'contained' | 'outlined' | 'text' | 'isIcon' | 'link'}>(props => ({
+    as: props.as || 'button',
+}))`
     border-radius: 2px;
     padding: 6px 24px;
     cursor: pointer;
@@ -37,6 +39,16 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
                         color: ${({theme}) => theme.textColor[100]};
                         cursor: not-allowed;
                     }
+                `
+            case 'link':
+                return css`
+                    padding: 0;
+                    font-size: ${props => props.theme.typography.fontSizeS};
+                    line-height: ${props => props.theme.typography.lineHeightXS};
+                    font-weight: ${props => props.theme.typography.fontWeightRegular};
+                    color: ${props => props.theme.textColor['700']};
+                    cursor: pointer;
+                    text-decoration-line: none;
                 `
             case 'text':
                 return css`

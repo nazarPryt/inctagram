@@ -1,6 +1,5 @@
 import React from 'react'
 import {signIn, useSession} from 'next-auth/react'
-import Link from 'next/link'
 import {useRouter} from 'next/navigation'
 import {PATH} from 'shared/constants/PATH'
 import {useTranslation} from 'shared/hooks/useTranslation'
@@ -48,7 +47,9 @@ export const LoginForm = () => {
                         error={errors.email?.message}
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
-                    <Link href={PATH.FORGOT_PASSWORD}>{t.auth.signIn.linkFirst}</Link>
+                    <Button variant='link' as='a' href={PATH.FORGOT_PASSWORD}>
+                        {t.auth.signIn.linkFirst}
+                    </Button>
                     <Button type={'submit'} disabled={isLoading}>
                         {t.auth.signIn.button}
                     </Button>
