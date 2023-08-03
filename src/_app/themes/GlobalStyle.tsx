@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     height: 100vh;
-    margin: 0;
+    margin-right: 0!important;
 
     &.isModalOpen {
       overflow: hidden;
@@ -68,7 +68,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   &::-webkit-scrollbar {
-    display: none;
+    //display: none;
   }
 
   &::-webkit-scrollbar-thumb {

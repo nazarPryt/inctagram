@@ -2,13 +2,13 @@
 import LogoutIcon from 'features/LogOut/logout.svg'
 import React, {useState} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {Modal} from '../../shared/ui/Modal/Modal'
+import {Modal} from 'shared/ui/Modal/Modal'
 import {LogOutModalWrapper} from 'features/LogOut/LogOut.styled'
 import {useLogOutMutation} from 'redux/api/authAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {signOut, useSession} from 'next-auth/react'
-import {Button} from '../../shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 import {accessToken} from 'shared/constants/constants'
 import cookie from 'react-cookies'
@@ -21,14 +21,12 @@ export const LogOut = () => {
     const [logOut] = useLogOutMutation()
 
     const onLogOut = async () => {
-        await signOut()
         await logOut()
             .unwrap()
             .then(async () => {
-                debugger
-                console.log('cookie.remove(accessToken)')
                 cookie.remove(accessToken)
                 setShowModal(false)
+                await signOut()
             })
             .catch(error => {
                 console.log(error)

@@ -105,7 +105,7 @@ import * as Select from '@radix-ui/react-select'
 // `
 export const SelectWrapper = styled.div`
     width: 100%;
-    margin: 0;
+    margin: 0 !important;
     padding: 0;
 `
 
