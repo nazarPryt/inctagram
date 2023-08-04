@@ -18,6 +18,7 @@ export const EditPost = ({edit, setEdit, data}: EditPostPropsType) => {
         <EditPostWrapper className={'editStyle'} onSubmit={handleSubmit}>
             <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={248} postId={data.id} />
             <TextArea
+                className={'textArea'}
                 defaultValue={data.description}
                 {...register('description')}
                 error={errors.description?.message}

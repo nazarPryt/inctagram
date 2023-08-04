@@ -11,6 +11,7 @@ export const EditPostWrapper = styled.form`
     min-width: 200px;
 
     textarea {
+        width: 100%;
         min-height: 130px;
         background-color: ${props => props.theme.bodyColor[700]};
         color: ${props => props.theme.textColor[700]};
