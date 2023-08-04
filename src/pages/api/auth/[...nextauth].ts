@@ -2,14 +2,14 @@
 //https://stackoverflow.com/questions/67594977/how-to-send-httponly-cookies-client-side-when-using-next-auth-credentials-provid/69418553#69418553
 //https://stackoverflow.com/questions/68235182/nextjs-with-next-auth-setting-cookie-received-from-node-js
 
-import NextAuth from 'next-auth'
+import NextAuth, {NextAuthOptions} from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import {PATH} from 'shared/constants/PATH'
 import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import {serverAuthAPI} from 'shared/server-api/server-api'
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
     secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET as string,
     pages: {
         signIn: PATH.LOGIN,
