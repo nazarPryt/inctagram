@@ -15,6 +15,9 @@ export const authOptions: NextAuthOptions = {
         signIn: PATH.LOGIN,
         error: PATH.LOGIN,
     },
+    session: {
+        strategy: 'jwt',
+    },
     callbacks: {
         async jwt({token, user}: any) {
             if (user) {
@@ -44,6 +47,7 @@ export const authOptions: NextAuthOptions = {
             credentials: {
                 accessToken: {type: 'string'},
             },
+            type: 'credentials',
             id: 'credentials',
             name: 'credentials',
             async authorize(credentials) {
