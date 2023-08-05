@@ -11,8 +11,8 @@ import {useForgotPasswordMutation} from 'redux/api/authAPI'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {ForgotPasswordStyled} from 'shared/styles/ForgotPasswordPage'
-import {Button} from '../../../shared/ui/Button/Button'
 import {AuthContainer} from '../../../shared/ui/AuthContainer/AuthContainer'
+import Button from '../../../shared/ui/Button/Button'
 
 type ForgotPasswordFormType = {
     email: string

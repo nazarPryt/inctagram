@@ -4,13 +4,13 @@ import {AvatarFormWrapper} from './styled'
 import {ProfilePhotoModal} from './ProfilePhotoModal'
 import Image from 'next/image'
 import styled from 'styled-components'
-import {IconButton} from '../../shared/ui/IconButton/IconButton'
-import DeleteAvatarIcon from '../../shared/assets/icons/deleteAvatar.svg'
+import {IconButton} from 'shared/ui/IconButton/IconButton'
+import DeleteAvatarIcon from 'shared/assets/icons/deleteAvatar.svg'
 import {useDeleteAvatarMutation} from '../../redux/api/profileAPI'
 import {SetAppNotificationAC} from '../../_app/store/appSlice'
-import {useAppDispatch} from '../../shared/hooks/reduxHooks'
-import {Button} from '../../shared/ui/Button/Button'
-import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import Button from 'shared/ui/Button/Button'
 
 export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
     const {t} = useTranslation()

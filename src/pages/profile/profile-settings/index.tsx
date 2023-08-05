@@ -34,14 +34,14 @@ export const getServerSideProps: GetServerSideProps<ProfileSettingsPageProps> = 
     }
 }
 
-export default function ProfileSettingsPage({userId}: ProfileSettingsPageProps) {
+export default function ProfileSettingsPage() {
     const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
 
     return (
         <ProfileSettingsWrapper>
             <ProfileSettingsAccordion />
             <div>
-                {profileSettingActiveTab === 'generalInformation' && <GeneralInformation userId={userId} />}
+                {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
                 {profileSettingActiveTab === 'devices' && <Devices />}
                 {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}
                 {profileSettingActiveTab === 'myPayments' && <MyPayments />}

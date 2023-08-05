@@ -1,11 +1,5 @@
 import {api} from 'redux/api/api'
-import {
-    SignUpRequestType,
-    ResponseType,
-    UserResponseType,
-    ForgotPasswordArgType,
-    NewPasswordArgType,
-} from 'redux/types/authTypes'
+import {SignUpRequestType, ResponseType, ForgotPasswordArgType, NewPasswordArgType} from 'redux/types/authTypes'
 
 export const authAPI = api.injectEndpoints({
     endpoints: build => ({
@@ -57,12 +51,6 @@ export const authAPI = api.injectEndpoints({
                 method: 'POST',
             }),
         }),
-        authMe: build.mutation<UserResponseType, void>({
-            query: () => ({
-                url: `auth/me`,
-                method: 'GET',
-            }),
-        }),
     }),
     overrideExisting: false,
 })
@@ -75,5 +63,4 @@ export const {
     useResendConfirmationLinkMutation,
     useLoginMutation,
     useLogOutMutation,
-    useAuthMeMutation,
 } = authAPI

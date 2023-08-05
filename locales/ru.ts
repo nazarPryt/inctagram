@@ -118,7 +118,7 @@ export const ru: LocaleType = {
         messenger: 'Мессенджер',
         search: 'Поиск',
         favorites: 'Избранное',
-        statistics: 'статистика',
+        statistics: 'Статистика',
         logout: 'Выйти',
     },
     create: {

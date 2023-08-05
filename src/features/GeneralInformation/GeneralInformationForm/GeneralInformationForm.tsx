@@ -1,13 +1,13 @@
 'use client'
 import React, {FC} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {InputText} from '../../../shared/ui/InputText/InputText'
-import {TextArea} from '../../../shared/ui/TextArea/TextArea'
+import {InputText} from 'shared/ui/InputText/InputText'
+import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {GeneralInformationFormWrapper} from './styled'
-import {CustomDatePicker} from '../../../shared/ui/DatePicker/DatePicker'
-import {Button} from '../../../shared/ui/Button/Button'
-import {UserProfile} from '../../../redux/types/authTypes'
+import {CustomDatePicker} from 'shared/ui/DatePicker/DatePicker'
+import {UserProfile} from 'redux/types/authTypes'
 import {useGeneralInformationForm} from './useGeneralInformationForm'
+import Button from 'shared/ui/Button/Button'
 
 export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
     const {t} = useTranslation()

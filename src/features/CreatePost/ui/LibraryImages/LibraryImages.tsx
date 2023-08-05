@@ -1,13 +1,13 @@
-import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
-import {Button} from '../../../../shared/ui/Button/Button'
-import CloseIcon from '../../../../shared/assets/icons/close.svg'
-import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
-import {InputFile} from '../../../../shared/ui/InputFile/InputFile'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import CloseIcon from 'shared/assets/icons/close.svg'
+import AddIcon from 'shared/assets/icons/addIcon.svg'
+import {InputFile} from 'shared/ui/InputFile/InputFile'
 import React, {ChangeEvent, useRef, useState} from 'react'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
+import Button from 'shared/ui/Button/Button'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void

@@ -2,7 +2,6 @@ import * as process from 'process'
 import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
-import {signOut} from 'next-auth/react'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -58,7 +57,7 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
 export const api = createApi({
     reducerPath: 'api',
-    tagTypes: ['UserAvatar', 'Posts', 'Post'],
+    tagTypes: ['User', 'Posts', 'Post'],
     baseQuery: baseQueryWithReAuth,
     endpoints: () => ({}),
 })

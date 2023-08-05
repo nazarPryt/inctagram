@@ -85,7 +85,7 @@ export const en = {
             lastname: 'Last Name',
             dateOfBirth: 'Date of birthday',
             city: 'City',
-            aboutMe: 'City',
+            aboutMe: 'About me',
         },
         saveChanges: 'Save Changes',
         addProfilePhoto: 'Add a Profile Photo',
