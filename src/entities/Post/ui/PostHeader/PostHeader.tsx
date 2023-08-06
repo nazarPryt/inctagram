@@ -1,14 +1,14 @@
 import {PostHeaderWrapper} from 'entities/Post/ui/PostHeader/PostHeader.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {AvatarIcon} from '../../../../shared/ui/AvatarIcon/AvatarIcon'
+import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {useState} from 'react'
-import {Popover} from '../../../../shared/ui/Popover/Popover'
-import {PopoverItem} from '../../../../shared/ui/Popover/PopoverItem/PopoverItem'
-import {EmailReportIcon} from '../../../../features/EmailReport/EmailReportIcon'
-import {UnfollowUserIcon} from '../../../../features/UnfollowUser/UnfollowUserIcon'
-import {CopyLinkIcon} from '../../../../features/CopyLink/CopyLinkIcon'
+import {Popover} from 'shared/ui/Popover/Popover'
+import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
+import {EmailReportIcon} from 'features/EmailReport/EmailReportIcon'
+import {UnfollowUserIcon} from 'features/UnfollowUser/UnfollowUserIcon'
+import {CopyLinkIcon} from 'features/CopyLink/CopyLinkIcon'
 
 type PostHeaderType = {
     img: string
@@ -17,8 +17,6 @@ type PostHeaderType = {
 
 export const PostHeader = ({img, userID}: PostHeaderType) => {
     const {t} = useTranslation()
-    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
-
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleActionOne = () => {
         console.log('Action One')
@@ -37,7 +35,7 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
         <PostHeaderWrapper>
             <div className={'PostHeader'}>
                 <AvatarIcon img={img} userID={userID} />
-                <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>
+                <Link className={'link'} href={`${PATH.USER_PROFILE}/${userID}`}>
                     URLProfile
                 </Link>
                 <span>22 {t.home.minutesAgo}</span>

@@ -1,5 +1,5 @@
 import * as Select from '@radix-ui/react-select'
-import {ComponentProps, FC, forwardRef, ReactNode} from 'react'
+import {ComponentProps, FC, forwardRef, ReactNode, useEffect} from 'react'
 import {ArrowDownIcon} from '../../assets/icons/ArrowDownIcon'
 import {Typography} from '../Typography'
 import {SelectContent, SelectIcon, SelectTrigger, SelectWrapper, StyledItem} from './Select.styled'
@@ -32,19 +32,25 @@ export const CustomSelect: FC<SelectProps> = ({
 }) => {
     const triggerValue = options.find(el => el.value === value)?.label
 
+    useEffect(() => {
+        // document.body.style.overflow = 'hidden'
+        // return () => {
+        //     document.body.style.overflow = 'auto'
+        // }
+    }, [])
     return (
         <SelectWrapper>
             <Typography variant={'regular_text_14'} as='label'>
                 {label}
             </Typography>
             <Select.Root disabled={disabled} onValueChange={onChange} defaultValue={defaultValue}>
-                <SelectTrigger>
+                <SelectTrigger style={{margin: 0}}>
                     <Select.Value placeholder={placeholder || ''}>{triggerValue}</Select.Value>
                     <SelectIcon>
                         <ArrowDownIcon />
                     </SelectIcon>
                 </SelectTrigger>
-                <SelectContent position={'popper'}>
+                <SelectContent style={{margin: 0}} position={'popper'}>
                     {options.map((option, i) => (
                         <SelectItem value={option.value} key={option.value}>
                             {option.label}

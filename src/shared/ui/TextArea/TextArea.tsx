@@ -1,4 +1,3 @@
-'use client'
 import React, {ComponentProps, forwardRef} from 'react'
 import {Wrapper} from '../InputText/InputText.styled'
 

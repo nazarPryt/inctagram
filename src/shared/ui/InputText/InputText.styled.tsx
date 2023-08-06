@@ -3,9 +3,8 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
     position: relative;
     width: 100%;
-    max-width: 400px;
-    padding: 10px 0;
-    margin-bottom: 5px;
+    padding: 20px 0 25px 0;
+    margin: 5px;
 
     textarea {
         resize: none;
@@ -16,7 +15,7 @@ export const Wrapper = styled.div`
         background: none;
         color: ${props => props.theme.textColor['100']};
         font-size: 18px;
-        padding: 10px 10px 10px 5px;
+        padding: 5px 0;
         display: block;
         width: 100%;
         border: none;
@@ -30,6 +29,7 @@ export const Wrapper = styled.div`
         &:focus ~ label,
         &:valid ~ label {
             top: -3px;
+            left: 0;
             font-size: 12px;
             color: ${props => props.theme.textColor['100']};
             letter-spacing: 1px;
@@ -81,7 +81,7 @@ export const Wrapper = styled.div`
 
     .error {
         position: absolute;
-        top: 90%;
+        top: 85%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;

@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const PostImageWrapper = styled.div`
+    //img {
+    //    object-fit: contain;
+    //}
     //~~~~swiper-button-next
     .swiper-button-next:before,
     .swiper-button-next:after {

@@ -9,7 +9,7 @@ import MessengerIcon from '../../shared/assets/icons/messenger.svg'
 import StatisticsIcon from '../../shared/assets/icons/statistics.svg'
 import SearchIcon from '../../shared/assets/icons/search.svg'
 import FavoritesIcon from '../../shared/assets/icons/favorites.svg'
-import {CreatePost} from '../../features/CreatePost/CreatePost'
+import {CreatePost} from 'features/CreatePost/CreatePost'
 import {PATH} from 'shared/constants/PATH'
 
 export const Aside = () => {

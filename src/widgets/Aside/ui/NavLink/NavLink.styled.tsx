@@ -14,6 +14,7 @@ export const NavLinkWrapper = styled(Link)`
 
     &:hover {
         color: ${props => props.theme.palette.primary[100]};
+
         path {
             fill: ${props => props.theme.palette.primary[100]};
         }
