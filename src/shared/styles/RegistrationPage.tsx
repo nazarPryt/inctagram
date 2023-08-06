@@ -31,6 +31,16 @@ export const AuthPageStyled = styled.div`
           
         }
     }
+
+    .createNewPassForm {
+      
+        p{
+          margin-bottom: 20px;
+          color: ${props => props.theme.textColor[900]};
+        }
+      
+    }
+      
 `
 export const RegistrationModalContent = styled.div`
     display: flex;
