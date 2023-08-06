@@ -16,6 +16,7 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
     return (
         <ViewUserPostSliderWrapper className={className}>
             <Swiper
+                className={'Swiper'}
                 modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
                 spaceBetween={0}
                 slidesPerView={1}
@@ -33,7 +34,7 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
                     if (photo.width === 1440) {
                         //todo ask if exist better way how to show JUST hight resolution pictures
                         return (
-                            <SwiperSlide key={photo.uploadId}>
+                            <SwiperSlide key={photo.uploadId} className={'slide'}>
                                 <Image src={photo.url} alt={'Post-Image'} height={photo.height} width={photo.width} />
                             </SwiperSlide>
                         )

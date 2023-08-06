@@ -15,8 +15,6 @@ type PropsType = {
     setEdit: Dispatch<SetStateAction<boolean>>
 }
 export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) => {
-    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
-
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleEditPost = () => {
         setEdit(true)
@@ -34,7 +32,7 @@ export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) =
         <ViewUserPostHeaderWrapper>
             <div className={'avaLink'}>
                 <AvatarIcon img={'https://loremflickr.com/500/500'} userID={userId} />
-                <Link className={'link'} href={`${BASE_URL}${PATH.USER_PROFILE}/${userId}`}>
+                <Link className={'link'} href={`${PATH.USER_PROFILE}/${userId}`}>
                     URLProfile
                 </Link>
             </div>
