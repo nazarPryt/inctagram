@@ -1,24 +1,29 @@
 import * as yup from 'yup'
-import {useAddNewUserMutation} from '../../../redux/api/authAPI'
-import {useAppDispatch} from '../../../shared/hooks/reduxHooks'
+import {useAddNewUserMutation} from 'redux/api/authAPI'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '../../../_app/store/appSlice'
+import {SetAppNotificationAC} from '_app/store/appSlice'
 
 const schema = yup
     .object({
         userName: yup
             .string()
+            .trim()
             .min(6, 'Your userName is too short, min 6 characters')
             .max(30, 'Your userName is too long, max 30 characters')
             .required('User name is required'),
-        email: yup.string().email().required('Email is required'),
+        email: yup.string().trim().email().required('Email is required'),
         password: yup
             .string()
+            .trim()
             .min(6, 'Your password is too short, min 6 characters')
             .max(20, 'Your password is too long, max 20 characters')
             .required('Password is required'),
-        passwordConfirmation: yup.string().oneOf([yup.ref('password')], 'Your passwords do not match.'),
+        passwordConfirmation: yup
+            .string()
+            .trim()
+            .oneOf([yup.ref('password')], 'Your passwords do not match.'),
     })
     .required('You have to confirm password.')
 
@@ -31,7 +36,7 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
         handleSubmit,
         formState: {errors},
         ...rest
-    } = useForm({resolver: yupResolver(schema)})
+    } = useForm({resolver: yupResolver(schema), mode: 'all', reValidateMode: 'onChange'})
 
     const [addNewUser, {isLoading}] = useAddNewUserMutation()
 

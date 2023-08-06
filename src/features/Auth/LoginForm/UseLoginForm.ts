@@ -10,8 +10,8 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
-        email: yup.string().email('not email').required(emailErrorMessage),
-        password: yup.string().required(passwordErrorMessage),
+        email: yup.string().trim().email('not email').required(emailErrorMessage),
+        password: yup.string().trim().required(passwordErrorMessage),
     })
 }
 

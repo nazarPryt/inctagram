@@ -3,11 +3,13 @@ import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} 
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
 import {signOut} from 'next-auth/react'
+import {PATH} from 'shared/constants/PATH'
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
 
 export const baseQuery = fetchBaseQuery({
-    baseUrl,
+    baseUrl: BASE_URL,
     credentials: 'include',
     prepareHeaders: headers => {
         const token = cookie.load(accessToken)
@@ -47,7 +49,7 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
                 await signOut()
             }
         } catch (e) {
-            await signOut()
+            await signOut({callbackUrl: `${DOMAIN_URL}${PATH.LOGIN}`, redirect: true})
             // await baseQuery(
             //     {
             //         url: 'auth/logout',
