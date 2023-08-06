@@ -1,43 +1,34 @@
 import styled from 'styled-components'
 
 export const AuthPageStyled = styled.div`
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+  
         h1 {
             font-family: Inter, sans-serif;
             font-weight: 700;
             font-size: 20px;
             line-height: 36px;
 
-            color: ${props => props.theme.textColor['100']};
-            margin-top: 0;
-            margin-bottom: 13px;
+            color: ${props => props.theme.textColor[100]};
         }
-
-        h1 + div {
+        form {
+          display: flex;
+          flex-direction: column;
+            
+          a {
+            text-align: right;
+            margin-bottom: 30px;
+            color: ${props => props.theme.textColor[900]};
+          } 
+        }
+  
+        .oauthWrapper {
             display: flex;
             justify-content: center;
             gap: 60px;
-
-            margin-bottom: 22px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
           
-            input[type='password'] > button {
-                width: 100%;
-            }
-          
-            a {
-              text-align: right;
-              margin-bottom: 10px;
-              color: inherit;
-            }
-          
-            p {
-                margin: 0;
-            }
         }
     }
 `

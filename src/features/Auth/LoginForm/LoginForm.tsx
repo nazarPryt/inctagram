@@ -32,7 +32,7 @@ export const LoginForm = () => {
         <AuthContainer>
             <AuthPageStyled>
                 <h1>{t.auth.signIn.title}</h1>
-                <div>
+                <div className={'oauthWrapper'}>
                     <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful='true'>
                         <GoogleIcon />
                     </IconButton>
@@ -52,16 +52,11 @@ export const LoginForm = () => {
                     <Button type={'submit'} disabled={isLoading}>
                         {t.auth.signIn.button}
                     </Button>
-                    <p>{t.auth.signIn.description}</p>
-                    <Button
-                        type={'button'}
-                        variant={'text'}
-                        onClick={handleRedirectOnRegistration}
-                        disabled={isLoading}
-                    >
-                        {t.auth.signIn.linkSecond}
-                    </Button>
                 </form>
+                <p>{t.auth.signIn.description}</p>
+                <Button type={'button'} variant={'text'} onClick={handleRedirectOnRegistration} disabled={isLoading}>
+                    {t.auth.signIn.linkSecond}
+                </Button>
             </AuthPageStyled>
         </AuthContainer>
     )

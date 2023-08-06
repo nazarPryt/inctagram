@@ -1,4 +1,3 @@
-'use client'
 import React, {useState} from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {AuthPageStyled, RegistrationModalContent} from 'shared/styles/RegistrationPage'
@@ -28,7 +27,7 @@ export const RegistrationForm = () => {
             {isLoading && <Loader />}
             <AuthPageStyled>
                 <h1>{t.auth.signUp.title}</h1>
-                <div>
+                <div className={'oauthWrapper'}>
                     <IconButton colorful='true'>
                         <GoogleIcon />
                     </IconButton>
@@ -58,13 +57,13 @@ export const RegistrationForm = () => {
                     <Button type={'submit'} disabled={isLoading}>
                         {t.auth.signUp.btn}
                     </Button>
-                    <p>{t.auth.signUp.description}</p>
-                    <Link href={PATH.LOGIN}>
-                        <Button type={'button'} variant={'text'}>
-                            {t.auth.signUp.link}
-                        </Button>
-                    </Link>
                 </form>
+                <p>{t.auth.signUp.description}</p>
+                <Link href={PATH.LOGIN}>
+                    <Button type={'button'} variant={'text'}>
+                        {t.auth.signUp.link}
+                    </Button>
+                </Link>
             </AuthPageStyled>
             <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
                 <RegistrationModalContent>

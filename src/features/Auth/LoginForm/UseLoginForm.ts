@@ -30,7 +30,8 @@ export const useLoginForm = () => {
         ...rest
     } = useForm<FormData>({
         resolver: yupResolver(schema),
-        mode: 'onSubmit',
+        mode: 'onTouched',
+        reValidateMode: 'onChange',
         defaultValues: {email: 'sevoyo7702@soremap.com', password: '123456'},
     })
     const onSubmit = async (data: FormData) => {

@@ -1,9 +1,7 @@
-'use client'
-
 import React, {useEffect} from 'react'
 import {useSignUpConfirmationMutation} from 'redux/api/authAPI'
 import {useRouter, useSearchParams} from 'next/navigation'
-import {Loader} from '../../../shared/ui/Loader/Loader'
+import {Loader} from 'shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 
