@@ -7,7 +7,7 @@ const meta: Meta<typeof ButtonAs> = {
     tags: ['docsPage'],
     argTypes: {
         variant: {
-            options: ['contained', 'outlined', 'text'],
+            options: ['primary', 'contained', 'outlined', 'text', 'link'],
             control: {type: 'radio'},
         },
     },
@@ -19,5 +19,6 @@ type Story = StoryObj<typeof ButtonAs>
 export const DefaultButton: Story = {
     args: {
         children: 'Default',
+        disabled: false,
     },
 }
