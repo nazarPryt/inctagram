@@ -1,10 +1,12 @@
 import React from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import styled from 'styled-components'
+import {ButtonAs} from 'shared/ui/ButtonAs/ButtonAs'
 
 export default function SearchPage() {
     return (
         <SearchPageWrapper>
+            <ButtonAs>sdfsddf</ButtonAs>
             <div className={'one'}></div>
             <div className={'two'}></div>
         </SearchPageWrapper>
