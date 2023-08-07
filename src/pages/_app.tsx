@@ -18,7 +18,6 @@ const inter = Inter({subsets: ['latin']})
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
     const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
-    console.log('DOMAIN_URL: ', DOMAIN_URL)
 
     useLoader()
 

@@ -28,7 +28,7 @@ export const LogOut = () => {
             .then(async () => {
                 cookie.remove(accessToken)
                 setShowModal(false)
-                await signOut({callbackUrl: `${DOMAIN}/${PATH.LOGIN}`, redirect: true})
+                await signOut({callbackUrl: `${DOMAIN}/${PATH.LOGIN}`})
             })
             .catch(error => {
                 console.log(error)

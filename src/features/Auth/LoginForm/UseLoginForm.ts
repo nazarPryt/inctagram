@@ -40,7 +40,6 @@ export const useLoginForm = () => {
             .then(async payload => {
                 await signIn('credentials', {
                     accessToken: payload.accessToken,
-                    redirect: true,
                     callbackUrl: `${DOMAIN}/${PATH.HOME}`,
                 })
             })
