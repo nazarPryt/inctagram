@@ -23,6 +23,7 @@ export const userPostApi = api.injectEndpoints({
                 url: `posts/${postId}`,
                 method: 'DELETE',
             }),
+            invalidatesTags: ['Posts'],
         }),
     }),
 })

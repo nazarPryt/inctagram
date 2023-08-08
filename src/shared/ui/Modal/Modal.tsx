@@ -1,8 +1,8 @@
-import React, {ReactNode, useEffect} from 'react'
-import {ReactPortal} from './ReactPortal'
+import {ReactNode, useEffect} from 'react'
+import {CloseIcon} from '../../assets/icons/CloseIcon'
 import {IconButton} from '../IconButton/IconButton'
 import {ModalContent, ModalWrapper} from './Modal.styled'
-import {CloseIcon} from '../../assets/icons/CloseIcon'
+import {ReactPortal} from './ReactPortal'
 
 export type BaseModalProps = {
     children?: ReactNode
@@ -25,7 +25,6 @@ export const Modal = ({children, isOpen, handleClose, title}: BaseModalProps) =>
     useEffect(() => {
         const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === 'Escape' ? handleClose() : null)
         document.body.addEventListener('keydown', closeOnEscapeKey)
-
         return () => {
             document.body.removeEventListener('keydown', closeOnEscapeKey)
         }
