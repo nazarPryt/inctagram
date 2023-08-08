@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ForgotPasswordStyled = styled.div`
+export const ForgotPasswordStyled = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@ export const ForgotPasswordStyled = styled.div`
         color: ${props => props.theme.textColor['100']};
     }
 
-    h2 {
+    p {
         padding: 0;
         text-align: start;
         font-size: 14px;
@@ -23,12 +23,11 @@ export const ForgotPasswordStyled = styled.div`
         margin: 0;
     }
 
-    .captcha {
-        margin-top: 30px;
-    }
     button {
-        height: 36px;
-        width: 100%;
         margin: 30px;
+    }
+
+    a {
+        margin-bottom: 30px;
     }
 `

@@ -6,9 +6,9 @@ import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useCreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/useCreateNewPassForm'
 
-export const CreateNewPasswordForm = () => {
+export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string | string[]}) => {
     const {t} = useTranslation()
-    const {handleSubmit, register, errors} = useCreateNewPasswordForm()
+    const {handleSubmit, register, errors, isValid} = useCreateNewPasswordForm(recoveryCode as string)
 
     return (
         <AuthContainer>
@@ -22,7 +22,7 @@ export const CreateNewPasswordForm = () => {
                         error={errors.passwordConfirmation?.message}
                     />
                     <p>{t.auth.newPassword.description}</p>
-                    <Button type={'submit'} disabled={false}>
+                    <Button type={'submit'} disabled={!isValid}>
                         {t.auth.newPassword.btn}
                     </Button>
                 </form>
