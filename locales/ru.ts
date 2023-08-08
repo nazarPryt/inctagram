@@ -111,6 +111,14 @@ export const ru: LocaleType = {
         followers: 'Подписчики',
         publications: 'Публикации',
     },
+    myPost: {
+        modal: {
+            title: 'Удалить запись',
+            description: 'Вы уверены, что хотите удалить эту запись?',
+            btn1: 'Да',
+            btn2: 'Нет',
+        },
+    },
     aside: {
         home: 'Главная',
         create: 'Создать',
