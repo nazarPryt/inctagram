@@ -33,7 +33,7 @@ export const LoginForm = () => {
             <AuthPageStyled>
                 <h1>{t.auth.signIn.title}</h1>
                 <div className={'oauthWrapper'}>
-                    <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful='true'>
+                    <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful>
                         <GoogleIcon />
                     </IconButton>
                     <IconButton onClick={() => signIn('github')} disabled={isLoading}>

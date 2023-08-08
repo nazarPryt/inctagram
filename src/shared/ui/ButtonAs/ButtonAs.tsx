@@ -1,23 +1,21 @@
-import React, {forwardRef} from 'react'
+import React, {ComponentPropsWithoutRef, ElementType} from 'react'
 import {ComponentButtonAs} from 'shared/ui/ButtonAs/ButtonAs.styled'
 
 export type ButtonVariantType = 'primary' | 'contained' | 'outlined' | 'text' | 'link'
 
-export interface ButtonProps<T extends React.ElementType = 'button'> {
-    as?: T
+export type ButtonAsProps<T extends ElementType = 'button'> = {
+    ast?: T
     children?: React.ReactNode
     variant?: ButtonVariantType
-    fullWidth?: boolean
+    fullwidth?: boolean
     className?: string
+} & ComponentPropsWithoutRef<T>
+
+export const ButtonAs = <T extends ElementType = 'button'>(props: ButtonAsProps<T>) => {
+    const {ast: Component = 'button', variant = 'primary', fullwidth, className, ...rest} = props
+
+    return <ComponentButtonAs as={Component} variant={variant} fullwidth={fullwidth} className={className} {...rest} />
 }
-
-export const ButtonAs = forwardRef<React.ForwardedRef<any>, ButtonProps>((props, ref) => {
-    const {as: Component = 'button', variant = 'primary', fullWidth, className, ...otherProps} = props
-
-    return <ComponentButtonAs as={Component} variant={variant} {...otherProps} />
-})
-
-ButtonAs.displayName = 'ButtonAs'
 
 // export const ButtonAs = <T extends React.ElementType = 'button'>(
 //     props: ButtonProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,

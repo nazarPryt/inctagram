@@ -1,8 +1,8 @@
 import {Component} from 'react'
 import styled, {css} from 'styled-components'
-import {ButtonVariantType} from 'shared/ui/ButtonAs/ButtonAs'
+import {ButtonAsProps} from 'shared/ui/ButtonAs/ButtonAs'
 
-export const ComponentButtonAs = styled(Component)<{variant?: ButtonVariantType}>`
+export const ComponentButtonAs = styled(Component<ButtonAsProps>)`
     border-radius: 2px;
     padding: 6px 24px;
     cursor: pointer;
@@ -11,6 +11,7 @@ export const ComponentButtonAs = styled(Component)<{variant?: ButtonVariantType}
     font-weight: 600;
     font-family: Inter, sans-serif;
     letter-spacing: 0.7px;
+    width: ${props => (props.fullwidth ? '100%' : '')};
 
     ${props => {
         switch (props.variant) {
@@ -116,5 +117,5 @@ export const ComponentButtonAs = styled(Component)<{variant?: ButtonVariantType}
                     }
                 `
         }
-    }}
+    }};
 `

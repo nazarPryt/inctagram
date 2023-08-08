@@ -28,7 +28,7 @@ export const RegistrationForm = () => {
             <AuthPageStyled>
                 <h1>{t.auth.signUp.title}</h1>
                 <div className={'oauthWrapper'}>
-                    <IconButton colorful='true'>
+                    <IconButton colorful>
                         <GoogleIcon />
                     </IconButton>
                     <IconButton>

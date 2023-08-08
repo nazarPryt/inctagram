@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components'
+import {IconButtonType} from 'shared/ui/IconButton/IconButton'
 
-export const IconButtonStyled = styled.button<{$colorful?: 'true'; $active?: 'true' | undefined}>`
+export const IconButtonStyled = styled.button<IconButtonType>`
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -17,12 +18,12 @@ export const IconButtonStyled = styled.button<{$colorful?: 'true'; $active?: 'tr
 
     path {
         ${props => {
-            if (props.$active) {
+            if (props.active) {
                 return css`
                     fill: ${props => props.theme.palette.primary['500']};
                 `
             }
-            if (!props.$colorful) {
+            if (!props.colorful) {
                 return css`
                     fill: ${props =>
                         props.theme.name === 'dark'

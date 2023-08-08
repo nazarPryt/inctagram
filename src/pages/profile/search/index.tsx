@@ -6,7 +6,9 @@ import {ButtonAs} from 'shared/ui/ButtonAs/ButtonAs'
 export default function SearchPage() {
     return (
         <SearchPageWrapper>
-            <ButtonAs>sdfsddf</ButtonAs>
+            <ButtonAs ast={'a'} href={'dsd'}>
+                sdfsddf
+            </ButtonAs>
         </SearchPageWrapper>
     )
 }

@@ -34,7 +34,7 @@ export const Popover: FC<PopoverContentProps> = props => {
 
     return (
         <PopoverWrapper {...rest} id='popoverWrapper'>
-            <IconButton active={isPopoverOpen ? 'true' : undefined} onClick={handleTogglePopover}>
+            <IconButton active={isPopoverOpen} onClick={handleTogglePopover}>
                 <PopOverIcon />
             </IconButton>
             {isPopoverOpen && <PopoverContentWrapper>{children}</PopoverContentWrapper>}
