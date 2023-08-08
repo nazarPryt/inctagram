@@ -1,8 +1,8 @@
 import {Component} from 'react'
 import styled, {css} from 'styled-components'
-import {ButtonAsProps} from 'shared/ui/ButtonAs/ButtonAs'
+import {ButtonProps} from 'shared/ui/Button/Button'
 
-export const ComponentButtonAs = styled(Component<ButtonAsProps>)`
+export const ComponentButton = styled(Component<ButtonProps>)`
     border-radius: 2px;
     padding: 6px 24px;
     cursor: pointer;
@@ -41,8 +41,12 @@ export const ComponentButtonAs = styled(Component<ButtonAsProps>)`
                         cursor: not-allowed;
                     }
                 `
+            case 'link':
+                return css``
+
             case 'text':
                 return css`
+                    text-decoration: none;
                     background-color: inherit;
                     color: ${({theme}) => theme.palette.primary[500]};
 

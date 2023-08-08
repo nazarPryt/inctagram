@@ -20,10 +20,6 @@ export const LoginForm = () => {
     const {register, handleSubmit, isLoading, errors} = useLoginForm()
     const {t} = useTranslation()
 
-    const handleRedirectOnRegistration = () => {
-        router.push(PATH.REGISTRATION)
-    }
-
     if (status === 'authenticated') {
         router.push(PATH.HOME)
     }
@@ -54,7 +50,7 @@ export const LoginForm = () => {
                     </Button>
                 </form>
                 <p>{t.auth.signIn.description}</p>
-                <Button type={'button'} variant={'text'} onClick={handleRedirectOnRegistration} disabled={isLoading}>
+                <Button asT={'a'} variant={'text'} href={PATH.REGISTRATION}>
                     {t.auth.signIn.linkSecond}
                 </Button>
             </AuthPageStyled>

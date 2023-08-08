@@ -29,6 +29,6 @@ export const ForgotPasswordStyled = styled.div`
     button {
         height: 36px;
         width: 100%;
-        margin-top: 30px;
+        margin: 30px;
     }
 `
