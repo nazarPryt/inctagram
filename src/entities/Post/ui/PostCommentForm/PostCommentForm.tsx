@@ -4,7 +4,7 @@ import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {useCommentPost} from 'features/CommentPost/UseCommentPost'
 import {PostCommentFormWrapper} from 'entities/Post/ui/PostCommentForm/PostCommentForm.styled'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export const PostCommentForm = () => {
     const {t} = useTranslation()

@@ -4,7 +4,7 @@ import React, {Dispatch, SetStateAction} from 'react'
 import {useEditPost} from './UseEditPost'
 import {PostByIdType} from 'entities/ViewUserPost/api/type'
 import {EditPostWrapper} from './EditPost.styled'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 type EditPostPropsType = {
     edit: boolean

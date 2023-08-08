@@ -9,9 +9,10 @@ import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {useLoginForm} from './UseLoginForm'
-import GoogleIcon from '../../../shared/assets/icons/google.svg'
-import GithubWhite from '../../../shared/assets/icons/githubWhite.svg'
-import Button from '../../../shared/ui/Button/Button'
+import GoogleIcon from 'shared/assets/icons/google.svg'
+import GithubWhite from 'shared/assets/icons/githubWhite.svg'
+import {Button} from 'shared/ui/Button/Button'
+import Link from 'next/link'
 
 export const LoginForm = () => {
     const {status} = useSession()
@@ -47,8 +48,8 @@ export const LoginForm = () => {
                         error={errors.email?.message}
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
-                    <Button variant='link' className='forgotPassword' as='a' href={PATH.FORGOT_PASSWORD}>
-                        {t.auth.signIn.linkFirst}
+                    <Button className='forgotPassword'>
+                        <Link href={PATH.FORGOT_PASSWORD}>{t.auth.signIn.linkFirst}</Link>
                     </Button>
                     <Button type={'submit'} disabled={isLoading}>
                         {t.auth.signIn.button}

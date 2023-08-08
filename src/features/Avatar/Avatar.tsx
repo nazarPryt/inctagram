@@ -10,7 +10,7 @@ import {useDeleteAvatarMutation} from '../../redux/api/profileAPI'
 import {SetAppNotificationAC} from '../../_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
     const {t} = useTranslation()

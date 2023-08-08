@@ -2,7 +2,7 @@
 import LogoutIcon from 'features/LogOut/logout.svg'
 import React, {useState} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {Modal} from '../../shared/ui/Modal/Modal'
+import {Modal} from 'shared/ui/Modal/Modal'
 import {LogOutModalWrapper} from 'features/LogOut/LogOut.styled'
 import {useLogOutMutation} from 'redux/api/authAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
@@ -11,7 +11,7 @@ import {signOut, useSession} from 'next-auth/react'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 import {accessToken} from 'shared/constants/constants'
 import cookie from 'react-cookies'
-import Button from '../../shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export const LogOut = () => {
     const {t} = useTranslation()

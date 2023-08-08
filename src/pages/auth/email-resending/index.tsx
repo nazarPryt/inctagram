@@ -14,7 +14,7 @@ import {EmailResendWrapper} from 'shared/styles/EmailResendPage'
 import {RegistrationModalContent} from 'shared/styles/RegistrationPage'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export default function EmailResendingPage() {
     const {t} = useTranslation()

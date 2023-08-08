@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React, {ComponentProps} from 'react'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 
 const Wrapper = styled.div`

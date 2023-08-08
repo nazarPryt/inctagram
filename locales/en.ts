@@ -12,6 +12,8 @@ export const en = {
             title: 'Sign up',
             btn: 'Sign up',
             description: 'Do you have an account?',
+            privacy: 'Privacy policy',
+            termsOfService: 'Terms of service',
             link: 'Sign In',
             error: {
                 username: 'User with this username is already registered',

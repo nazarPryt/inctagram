@@ -13,7 +13,7 @@ import {Modal} from 'shared/ui/Modal/Modal'
 import {useRegistrationForm} from './UseRegistrationForm'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)

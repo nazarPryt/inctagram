@@ -7,7 +7,7 @@ import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void

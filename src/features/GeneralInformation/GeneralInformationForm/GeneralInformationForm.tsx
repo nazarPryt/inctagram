@@ -7,7 +7,7 @@ import {GeneralInformationFormWrapper} from './styled'
 import {CustomDatePicker} from 'shared/ui/DatePicker/DatePicker'
 import {UserProfile} from 'redux/types/authTypes'
 import {useGeneralInformationForm} from './useGeneralInformationForm'
-import Button from 'shared/ui/Button/Button'
+import {Button} from 'shared/ui/Button/Button'
 
 export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
     const {t} = useTranslation()
