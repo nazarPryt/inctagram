@@ -16,6 +16,7 @@ import {useRouter} from 'next/router'
 import React, {Dispatch, SetStateAction, useState} from 'react'
 import {CloseIcon} from 'shared/assets/icons/CloseIcon'
 import {PATH} from 'shared/constants/PATH'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import {Button} from 'shared/ui/Button/Button'
 import {Popover} from 'shared/ui/Popover/Popover'
@@ -28,6 +29,7 @@ type PropsType = {
     setEdit: Dispatch<SetStateAction<boolean>>
 }
 export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) => {
+    const {t} = useTranslation()
     const router = useRouter()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -57,17 +59,17 @@ export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) =
                     <DialogOverlay />
                     <DialogContent>
                         <DialogTitle>
-                            Delete Post
+                            {t.myPost.modal.title}
                             <DialogClose>
                                 <CloseIcon />
                             </DialogClose>
                         </DialogTitle>
-                        <DialogDescription>Are you sure you want to delete this post?</DialogDescription>
+                        <DialogDescription>{t.myPost.modal.description}</DialogDescription>
                         <WrapperButton>
                             <Button variant={'outlined'} onClick={handleDeletePost}>
-                                Yes
+                                {t.myPost.modal.btn1}
                             </Button>
-                            <Button onClick={() => setModalIsOpen(false)}>No</Button>
+                            <Button onClick={() => setModalIsOpen(false)}>{t.myPost.modal.btn2}</Button>
                         </WrapperButton>
                     </DialogContent>
                 </Dialog.Portal>
