@@ -17,13 +17,15 @@ type AppPropsWithLayout = AppProps & {
 const inter = Inter({subsets: ['latin']})
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
+    const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
+
     useLoader()
 
     const getLayout = Component.getLayout ?? (page => page)
 
     return (
         <Providers>
-            <SessionProvider session={session}>
+            <SessionProvider session={session} baseUrl={DOMAIN_URL} basePath={'/api/auth'}>
                 {getLayout(
                     <>
                         <style jsx global>{`

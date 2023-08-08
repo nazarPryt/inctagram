@@ -137,16 +137,16 @@ export const Button = styled.button<{variant?: 'contained' | 'outlined' | 'text'
             default:
                 return css`
                     background-color: ${({theme}) => theme.palette.primary[500]};
-                    color: ${({theme}) => theme.textColor[100]};
+                    color: white;
 
                     &:active {
                         background-color: ${({theme}) => theme.palette.primary[700]};
-                        color: ${({theme}) => theme.textColor[500]};
+                        color: white;
                     }
 
                     &:hover {
                         background-color: ${({theme}) => theme.palette.primary[100]};
-                        color: ${({theme}) => theme.textColor[100]};
+                        color: white;
                     }
 
                     &:focus {

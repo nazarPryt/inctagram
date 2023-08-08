@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'

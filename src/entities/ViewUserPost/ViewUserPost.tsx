@@ -18,7 +18,7 @@ export const ViewUserPost = ({data}: PropsType) => {
 
     return (
         <ViewUserPostWrapper>
-            <ViewUserPostSlider className={'pictureSlider'} images={data.images} />
+            <ViewUserPostSlider className={'left'} images={data.images} />
             {edit ? (
                 <EditPost edit={edit} setEdit={setEdit} data={data} />
             ) : (

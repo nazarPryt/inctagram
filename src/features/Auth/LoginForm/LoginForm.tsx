@@ -1,18 +1,18 @@
 import React from 'react'
 import {signIn, useSession} from 'next-auth/react'
+import Link from 'next/link'
 import {useRouter} from 'next/navigation'
 import {PATH} from 'shared/constants/PATH'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
+import {Button} from 'shared/ui/Button/Button'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {useLoginForm} from './UseLoginForm'
 import GoogleIcon from 'shared/assets/icons/google.svg'
 import GithubWhite from 'shared/assets/icons/githubWhite.svg'
-import {Button} from 'shared/ui/Button/Button'
-import Link from 'next/link'
 
 export const LoginForm = () => {
     const {status} = useSession()
@@ -32,7 +32,7 @@ export const LoginForm = () => {
         <AuthContainer>
             <AuthPageStyled>
                 <h1>{t.auth.signIn.title}</h1>
-                <div>
+                <div className={'oauthWrapper'}>
                     <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful='true'>
                         <GoogleIcon />
                     </IconButton>
@@ -48,17 +48,15 @@ export const LoginForm = () => {
                         error={errors.email?.message}
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
-                    <Button className='forgotPassword'>
-                        <Link href={PATH.FORGOT_PASSWORD}>{t.auth.signIn.linkFirst}</Link>
-                    </Button>
+                    <Link href={PATH.FORGOT_PASSWORD}>{t.auth.signIn.linkFirst}</Link>
                     <Button type={'submit'} disabled={isLoading}>
                         {t.auth.signIn.button}
                     </Button>
-                    <p>{t.auth.signIn.description}</p>
-                    <Button type={'button'} variant='text' onClick={handleRedirectOnRegistration} disabled={isLoading}>
-                        {t.auth.signIn.linkSecond}
-                    </Button>
                 </form>
+                <p>{t.auth.signIn.description}</p>
+                <Button type={'button'} variant={'text'} onClick={handleRedirectOnRegistration} disabled={isLoading}>
+                    {t.auth.signIn.linkSecond}
+                </Button>
             </AuthPageStyled>
         </AuthContainer>
     )

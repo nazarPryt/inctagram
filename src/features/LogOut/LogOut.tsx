@@ -8,10 +8,11 @@ import {useLogOutMutation} from 'redux/api/authAPI'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {signOut, useSession} from 'next-auth/react'
+import {Button} from 'shared/ui/Button/Button'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 import {accessToken} from 'shared/constants/constants'
 import cookie from 'react-cookies'
-import {Button} from 'shared/ui/Button/Button'
+import {PATH} from 'shared/constants/PATH'
 
 export const LogOut = () => {
     const {t} = useTranslation()
@@ -19,6 +20,7 @@ export const LogOut = () => {
     const {data} = useSession()
     const [showModal, setShowModal] = useState(false)
     const [logOut] = useLogOutMutation()
+    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
 
     const onLogOut = async () => {
         await logOut()
@@ -26,7 +28,7 @@ export const LogOut = () => {
             .then(async () => {
                 cookie.remove(accessToken)
                 setShowModal(false)
-                await signOut()
+                await signOut({callbackUrl: `${DOMAIN}/${PATH.LOGIN}`})
             })
             .catch(error => {
                 console.log(error)

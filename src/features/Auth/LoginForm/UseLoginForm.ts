@@ -10,15 +10,15 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
-        email: yup.string().email('not email').required(emailErrorMessage),
-        password: yup.string().required(passwordErrorMessage),
+        email: yup.string().trim().email('not email').required(emailErrorMessage),
+        password: yup.string().trim().required(passwordErrorMessage),
     })
 }
 
 export const useLoginForm = () => {
     const {t} = useTranslation()
     const schema = getLoginFormSchema('not email', 'l;jkfljk')
-
+    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()
@@ -30,7 +30,8 @@ export const useLoginForm = () => {
         ...rest
     } = useForm<FormData>({
         resolver: yupResolver(schema),
-        mode: 'onSubmit',
+        mode: 'onTouched',
+        reValidateMode: 'onChange',
         defaultValues: {email: 'sevoyo7702@soremap.com', password: '123456'},
     })
     const onSubmit = async (data: FormData) => {
@@ -39,8 +40,7 @@ export const useLoginForm = () => {
             .then(async payload => {
                 await signIn('credentials', {
                     accessToken: payload.accessToken,
-                    redirect: true,
-                    callbackUrl: PATH.HOME,
+                    callbackUrl: `${DOMAIN}/${PATH.HOME}`,
                 })
             })
             .catch(() =>

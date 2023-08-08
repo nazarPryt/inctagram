@@ -7,7 +7,7 @@ export const ModalWrapper = styled.div`
     left: 0;
     height: 100vh;
     width: 100vw;
-    z-index: 99;
+    z-index: 101;
 
     &.open {
         display: flex;

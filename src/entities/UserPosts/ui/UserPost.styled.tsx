@@ -10,4 +10,8 @@ export const UserPostWrapper = styled(Link)`
     &:hover {
         opacity: 0.8;
     }
+
+    img {
+        object-fit: cover;
+    }
 `

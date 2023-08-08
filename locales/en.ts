@@ -109,6 +109,14 @@ export const en = {
         followers: 'Followers',
         publications: 'Publications',
     },
+    myPost: {
+        modal: {
+            title: 'Delete Post',
+            description: 'Are you sure you want to delete this post?',
+            btn1: 'Yes',
+            btn2: 'No',
+        },
+    },
     aside: {
         home: 'Home',
         create: 'Create',

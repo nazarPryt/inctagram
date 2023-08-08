@@ -11,10 +11,8 @@ type UserPostType = {
 }
 
 export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
-    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
-
     return (
-        <UserPostWrapper href={{pathname: `${BASE_URL}${PATH.VIEW_POST}/${props.postId}`}} ref={ref}>
+        <UserPostWrapper href={{pathname: `${PATH.VIEW_POST}/${encodeURIComponent(props.postId)}`}} ref={ref}>
             {props.imagesLength > 2 && <MorePhotosIcon />}
             <Image src={props.src} alt={'PostPhoto'} width={230} height={235} />
         </UserPostWrapper>

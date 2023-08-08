@@ -13,13 +13,11 @@ type CommentType = {
 }
 
 export const Comment = ({comment, userID, img, isLiked}: CommentType) => {
-    const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string
-
     return (
         <CommentWrapper>
             <AvatarIcon userID={userID} img={img} />
             <div className={'content'}>
-                <Link href={`${BASE_URL}${PATH.USER_PROFILE}/${userID}`}>URLProfile</Link>
+                <Link href={`${PATH.USER_PROFILE}/${userID}`}>URLProfile</Link>
                 <p>{comment}</p>
                 <div className={'footer'}>
                     <div>2 Hours ago</div>
