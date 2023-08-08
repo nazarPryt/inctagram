@@ -11,6 +11,7 @@ export const ComponentButton = styled(Component<ButtonProps>)`
     font-weight: 600;
     font-family: Inter, sans-serif;
     letter-spacing: 0.7px;
+    text-decoration: none;
     width: ${props => (props.fullwidth ? '100%' : '')};
 
     ${props => {
@@ -46,7 +47,6 @@ export const ComponentButton = styled(Component<ButtonProps>)`
 
             case 'text':
                 return css`
-                    text-decoration: none;
                     background-color: inherit;
                     color: ${({theme}) => theme.palette.primary[500]};
 
