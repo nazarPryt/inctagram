@@ -13,6 +13,8 @@ export const ru: LocaleType = {
             btn: 'Зарегистрироваться',
             description: 'У вас уже есть аккаунт?',
             link: 'Войти',
+            privacy: 'Политика конфиденциальности',
+            termsOfService: 'Условия использования',
             error: {
                 username: 'Пользователь с этим логином уже зарегистрирован',
             },
@@ -126,7 +128,7 @@ export const ru: LocaleType = {
         messenger: 'Мессенджер',
         search: 'Поиск',
         favorites: 'Избранное',
-        statistics: 'статистика',
+        statistics: 'Статистика',
         logout: 'Выйти',
     },
     create: {

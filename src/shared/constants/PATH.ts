@@ -8,6 +8,8 @@ export const PATH = {
     REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
     CREATE_NEW_PASSWORD: '/auth/create-new-password',
     UPDATE_TOKENS: '/auth/update-tokens',
+    PRIVACY_POLICY: '/auth/privacy-policy',
+    TERMS_OF_SERVICE: '/auth/terms-of-service',
 
     // Aside
     HOME: '/profile',

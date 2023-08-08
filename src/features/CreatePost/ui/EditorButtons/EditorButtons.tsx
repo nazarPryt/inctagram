@@ -1,8 +1,8 @@
 import React from 'react'
-import ArrowLeft from '../../../../shared/assets/icons/arrowLeft.svg'
+import ArrowLeft from 'shared/assets/icons/arrowLeft.svg'
 import {EditorButtonsWrapper} from './styled'
-import {Button} from '../../../../shared/ui/Button/Button'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
+import {useTranslation} from 'shared/hooks/useTranslation'
+import {Button} from 'shared/ui/Button/Button'
 
 type EditorButtonsType = {
     title: string

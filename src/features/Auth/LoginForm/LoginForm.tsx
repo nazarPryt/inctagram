@@ -11,8 +11,8 @@ import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {useLoginForm} from './UseLoginForm'
-import GoogleIcon from '../../../shared/assets/icons/google.svg'
-import GithubWhite from '../../../shared/assets/icons/githubWhite.svg'
+import GoogleIcon from 'shared/assets/icons/google.svg'
+import GithubWhite from 'shared/assets/icons/githubWhite.svg'
 
 export const LoginForm = () => {
     const {status} = useSession()

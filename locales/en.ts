@@ -12,6 +12,8 @@ export const en = {
             title: 'Sign up',
             btn: 'Sign up',
             description: 'Do you have an account?',
+            privacy: 'Privacy policy',
+            termsOfService: 'Terms of service',
             link: 'Sign In',
             error: {
                 username: 'User with this username is already registered',
@@ -85,7 +87,7 @@ export const en = {
             lastname: 'Last Name',
             dateOfBirth: 'Date of birthday',
             city: 'City',
-            aboutMe: 'City',
+            aboutMe: 'About me',
         },
         saveChanges: 'Save Changes',
         addProfilePhoto: 'Add a Profile Photo',
