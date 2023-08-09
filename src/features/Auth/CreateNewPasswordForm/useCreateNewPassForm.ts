@@ -18,10 +18,10 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>
 
-export const useCreateNewPasswordForm = () => {
+export const useCreateNewPasswordForm = (recoveryCode: string) => {
     const {
         handleSubmit,
-        formState: {errors},
+        formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
         resolver: yupResolver(schema),
@@ -29,12 +29,22 @@ export const useCreateNewPasswordForm = () => {
         reValidateMode: 'onChange',
     })
     const onSubmit = async (data: FormData) => {
-        alert(JSON.stringify(data, null, 2))
+        const toSend: NewPassType = {
+            newPassword: data.password,
+            recoveryCode,
+        }
+        alert(JSON.stringify(toSend, null, 2))
     }
 
     return {
+        isValid,
         handleSubmit: handleSubmit(onSubmit),
         errors,
         ...rest,
     }
+}
+
+type NewPassType = {
+    newPassword: string
+    recoveryCode: string
 }

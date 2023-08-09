@@ -6,7 +6,6 @@ import GoogleIcon from 'shared/assets/icons/google.svg'
 import GithubIcon from 'shared/assets/icons/githubWhite.svg'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
-import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {useRegistrationForm} from './UseRegistrationForm'
@@ -34,7 +33,7 @@ export const RegistrationForm = () => {
             <AuthPageStyled>
                 <h1>{t.auth.signUp.title}</h1>
                 <div className={'oauthWrapper'}>
-                    <IconButton colorful='true'>
+                    <IconButton colorful>
                         <GoogleIcon />
                     </IconButton>
                     <IconButton>
@@ -66,11 +65,9 @@ export const RegistrationForm = () => {
                     </Button>
                 </form>
                 <p>{t.auth.signUp.description}</p>
-                <Link href={PATH.LOGIN}>
-                    <Button type={'button'} variant={'text'}>
-                        {t.auth.signUp.link}
-                    </Button>
-                </Link>
+                <Button asT={'a'} variant={'text'} href={PATH.LOGIN}>
+                    {t.auth.signUp.link}
+                </Button>
             </AuthPageStyled>
             <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
                 <RegistrationModalContent>

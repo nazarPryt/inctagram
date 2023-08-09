@@ -6,7 +6,7 @@ export const PATH = {
     FORGOT_PASSWORD: '/auth/forgot-password',
     EXPIRED_LINK: '/auth/email-resending',
     REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
-    CREATE_NEW_PASSWORD: '/auth/create-new-password/:token',
+    CREATE_NEW_PASSWORD: '/auth/create-new-password',
     UPDATE_TOKENS: '/auth/update-tokens',
     PRIVACY_POLICY: '/auth/privacy-policy',
     TERMS_OF_SERVICE: '/auth/terms-of-service',
