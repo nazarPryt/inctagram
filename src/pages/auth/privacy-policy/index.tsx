@@ -2,12 +2,13 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {TextContainer} from 'shared/ui/TextContainer/TextContainer'
 import {BackToPrevious} from 'shared/ui/BackToPrevious/BackToPrevious'
+import {PATH} from 'shared/constants/PATH'
 
 export default function PrivacyPolicyPage() {
     const {t} = useTranslation()
     return (
         <TextContainer>
-            <BackToPrevious title='Back to sign in' />
+            <BackToPrevious href={PATH.REGISTRATION} title='Back to sign in' />
             <p>{t.auth.signUp.privacy}</p>
             <span>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

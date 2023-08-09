@@ -1,13 +1,13 @@
 import {BackToPreviousIcon} from './BackToPreviousIcon'
 import {BackToPreviousWrapper} from './BackToPrevious.styled'
 
-type BackToPreviousPropsType = {
+type PropsType = {
     title: string
+    href: string
 }
-export const BackToPrevious = (props: BackToPreviousPropsType) => {
-    const {title} = props
+export const BackToPrevious = ({title, href}: PropsType) => {
     return (
-        <BackToPreviousWrapper>
+        <BackToPreviousWrapper href={href}>
             <BackToPreviousIcon />
             <span>{title}</span>
         </BackToPreviousWrapper>
