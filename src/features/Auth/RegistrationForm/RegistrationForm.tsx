@@ -13,8 +13,7 @@ import {useRegistrationForm} from './UseRegistrationForm'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
-import {CustomCheckbox} from '../../../shared/ui/Checkbox/Checkbox'
-import {RegistrationCheckboxLabel} from './RegistrationCheckboxLabel'
+import {RegistrationCheckbox} from './RegistrationCheckbox'
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -61,11 +60,7 @@ export const RegistrationForm = () => {
                         {...register('passwordConfirmation')}
                         error={errors.passwordConfirmation?.message}
                     />
-                    <CustomCheckbox
-                        checked={isChecked}
-                        label={<RegistrationCheckboxLabel />}
-                        onChange={handleCheckboxChange}
-                    />
+                    <RegistrationCheckbox isChecked={isChecked} handleCheckboxChange={handleCheckboxChange} />
                     <Button type={'submit'} disabled={isLoading || !isChecked}>
                         {t.auth.signUp.btn}
                     </Button>

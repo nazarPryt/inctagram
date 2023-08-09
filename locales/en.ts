@@ -14,6 +14,8 @@ export const en = {
             description: 'Do you have an account?',
             privacy: 'Privacy policy',
             termsOfService: 'Terms of service',
+            userAgree: 'I agree to the',
+            and: 'and',
             link: 'Sign In',
             error: {
                 username: 'User with this username is already registered',

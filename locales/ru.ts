@@ -15,6 +15,8 @@ export const ru: LocaleType = {
             link: 'Войти',
             privacy: 'Политика конфиденциальности',
             termsOfService: 'Условия использования',
+            userAgree: 'Я принимаю',
+            and: 'и',
             error: {
                 username: 'Пользователь с этим логином уже зарегистрирован',
             },

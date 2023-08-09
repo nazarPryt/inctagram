@@ -3,7 +3,7 @@ import {FC, ReactNode} from 'react'
 import CheckedIcon from '../../assets/icons/Check-box.svg'
 import UnCheckedIcon from '../../assets/icons/checkbox-unchecked.svg'
 
-export const CustomCheckbox: FC<CheckboxProps & {label: ReactNode; onChange: () => void}> = ({
+export const Checkbox: FC<CheckboxProps & {label: ReactNode; onChange: () => void}> = ({
     label,
     checked,
     checkedIcon,
