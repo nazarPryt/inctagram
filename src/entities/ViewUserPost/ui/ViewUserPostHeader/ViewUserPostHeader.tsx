@@ -36,13 +36,9 @@ export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) =
     const [deletePost] = useDeleteUserPostMutation()
     const handleEditPost = () => {
         setEdit(true)
-        console.log('handleEditPost')
-        console.log('postId', postId)
         setIsPopoverOpen(false)
     }
     const handleDeletePost = () => {
-        console.log('postId', postId)
-        console.log('handleDeletePost')
         deletePost(postId)
             .then(() => {
                 setModalIsOpen(true)

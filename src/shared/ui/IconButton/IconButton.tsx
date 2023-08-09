@@ -1,7 +1,7 @@
-import React, {ComponentProps, forwardRef, ReactNode} from 'react'
+import React, {ComponentPropsWithoutRef, forwardRef, ReactNode} from 'react'
 import {IconButtonStyled} from './IconButton.styled'
 
-type DefaultButtonPropsType = ComponentProps<'button'>
+type DefaultButtonPropsType = ComponentPropsWithoutRef<'button'>
 
 export type IconButtonType = DefaultButtonPropsType & {
     children: ReactNode

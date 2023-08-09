@@ -1,22 +1,27 @@
 import styled, {css} from 'styled-components'
-import {IconButtonType} from 'shared/ui/IconButton/IconButton'
 
-export const IconButtonStyled = styled.button<IconButtonType>`
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
+type IconButtonProps = {
+    active?: boolean
+    colorful?: boolean
+}
+export const IconButtonStyled = styled('button').withConfig({
+    shouldForwardProp: prop => !['active', 'colorful'].includes(prop),
+})<IconButtonProps>`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 
-    &:active {
-        transform: scale(1);
-    }
+  &:active {
+    transform: scale(1);
+  }
 
-    path {
+  path {
         ${props => {
             if (props.active) {
                 return css`
@@ -33,4 +38,5 @@ export const IconButtonStyled = styled.button<IconButtonType>`
             }
         }}
     }
+  }
 `
