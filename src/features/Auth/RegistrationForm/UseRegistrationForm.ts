@@ -24,6 +24,7 @@ const schema = yup
             .string()
             .trim()
             .oneOf([yup.ref('password')], 'Your passwords do not match.'),
+        terms: yup.boolean().required().default(false),
     })
     .required('You have to confirm password.')
 

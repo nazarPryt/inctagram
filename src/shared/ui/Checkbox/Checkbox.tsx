@@ -1,19 +1,18 @@
-import {CheckboxInput, CheckboxProps, CheckboxWrapper, StyledCheckbox} from './Checkbox.styled'
-import {FC, ReactNode} from 'react'
+import {CheckboxWrapper} from './Checkbox.styled'
+import {ComponentPropsWithoutRef, ReactNode} from 'react'
 import CheckedIcon from '../../assets/icons/Check-box.svg'
 import UnCheckedIcon from '../../assets/icons/checkbox-unchecked.svg'
 
-export const Checkbox: FC<CheckboxProps & {label: ReactNode; onChange: () => void}> = ({
-    label,
-    checked,
-    checkedIcon,
-    uncheckedIcon,
-    ...rest
-}) => {
+type CheckboxType = {
+    label?: ReactNode
+    onChange: () => void
+} & ComponentPropsWithoutRef<'input'>
+
+export const Checkbox = ({label, checked, ...rest}: CheckboxType) => {
     return (
         <CheckboxWrapper>
-            <CheckboxInput {...rest} />
-            <StyledCheckbox>{checked ? <CheckedIcon /> : <UnCheckedIcon />}</StyledCheckbox>
+            <input type={'checkbox'} {...rest} />
+            <div className={'checkboxIcon'}>{checked ? <CheckedIcon /> : <UnCheckedIcon />}</div>
             {label}
         </CheckboxWrapper>
     )

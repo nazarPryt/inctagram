@@ -20,7 +20,6 @@ export const AuthPageStyled = styled.div`
           a {
             text-align: right;
             margin-bottom: 30px;
-            color: ${props => props.theme.textColor[900]};
           } 
         }
   
