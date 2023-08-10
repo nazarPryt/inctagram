@@ -4,4 +4,4 @@ export default withAuth({
     secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET as string,
 })
 
-export const config = {matcher: ['/profile/:path*']}
+export const config = {matcher: ['/profilee/:path*']}

@@ -15,7 +15,7 @@ import {Button} from 'shared/ui/Button/Button'
 import {RegistrationCheckbox} from './RegistrationCheckbox'
 
 export const RegistrationForm = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(true)
     const {isLoading, register, handleSubmit, errors, getValues, reset} = useRegistrationForm(setIsModalOpen)
     const {t} = useTranslation()
     const [isChecked, setIsChecked] = useState(false)
@@ -69,11 +69,12 @@ export const RegistrationForm = () => {
                     {t.auth.signUp.link}
                 </Button>
             </AuthPageStyled>
+
             <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
                 <RegistrationModalContent>
                     <div>
                         {t.auth.modal.description}
-                        <span>{getValues('email')}</span>
+                        <span>{getValues('email')}sdfsdfsdfsfssdfsdfsdfsdfsdfsd</span>
                     </div>
                     <Button onClick={handleModalClose}>{t.auth.modal.btn}</Button>
                 </RegistrationModalContent>

@@ -2,7 +2,9 @@ import {Component} from 'react'
 import styled, {css} from 'styled-components'
 import {ButtonProps} from 'shared/ui/Button/Button'
 
-export const ComponentButton = styled(Component<ButtonProps>)`
+export const ComponentButton = styled(Component<ButtonProps>).withConfig({
+    shouldForwardProp: prop => !['fullwidth'].includes(prop),
+})<{fullwidth?: boolean}>`
     border-radius: 2px;
     padding: 6px 24px;
     cursor: pointer;

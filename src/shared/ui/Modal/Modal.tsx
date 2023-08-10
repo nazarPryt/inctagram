@@ -43,7 +43,6 @@ export const Modal = ({children, isOpen, handleClose, title}: BaseModalProps) =>
                                 <CloseIcon />
                             </IconButton>
                         </div>
-                        <div className={'line'}></div>
                     </div>
                     {children}
                 </ModalContent>
