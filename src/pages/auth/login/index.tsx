@@ -1,8 +1,8 @@
 import React from 'react'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {LoginForm} from 'features/Auth/LoginForm/LoginForm'
+import {LogInForm} from 'features/Auth/LogIn/ui/LogInForm/LogInForm'
 
 export default function LoginPage() {
-    return <LoginForm />
+    return <LogInForm />
 }
 LoginPage.getLayout = getLayoutWithHeader

@@ -10,14 +10,14 @@ import {Button} from 'shared/ui/Button/Button'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {InputText} from 'shared/ui/InputText/InputText'
-import {useLoginForm} from './UseLoginForm'
 import GoogleIcon from 'shared/assets/icons/google.svg'
 import GithubWhite from 'shared/assets/icons/githubWhite.svg'
+import {useLogIn} from 'features/Auth/LogIn/hook/UseLogIn'
 
-export const LoginForm = () => {
+export const LogInForm = () => {
     const {status} = useSession()
     const router = useRouter()
-    const {register, handleSubmit, isLoading, errors, isValid} = useLoginForm()
+    const {register, handleSubmit, isLoading, errors, isValid} = useLogIn()
     const {t} = useTranslation()
 
     if (status === 'authenticated') {

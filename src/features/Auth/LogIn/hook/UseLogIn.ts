@@ -5,8 +5,8 @@ import {signIn} from 'next-auth/react'
 import {PATH} from 'shared/constants/PATH'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {useLoginMutation} from 'redux/api/authAPI'
 import {useTranslation} from 'shared/hooks/useTranslation'
+import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
@@ -15,7 +15,7 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
     })
 }
 
-export const useLoginForm = () => {
+export const useLogIn = () => {
     const {t} = useTranslation()
     const schema = getLoginFormSchema('not email', 'l;jkfljk')
     const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL

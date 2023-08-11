@@ -4,11 +4,11 @@ import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {Button} from 'shared/ui/Button/Button'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {useCreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/ui/useCreateNewPassForm'
+import {useCreateNewPassword} from 'features/Auth/CreateNewPassword/hook/useCreateNewPass'
 
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string | string[]}) => {
     const {t} = useTranslation()
-    const {handleSubmit, register, errors, isValid} = useCreateNewPasswordForm(recoveryCode as string)
+    const {handleSubmit, register, errors, isValid} = useCreateNewPassword(recoveryCode as string)
 
     return (
         <AuthContainer>

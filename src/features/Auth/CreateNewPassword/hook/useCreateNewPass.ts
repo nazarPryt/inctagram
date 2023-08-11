@@ -1,6 +1,7 @@
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
+import {useCreateNewPasswordMutation} from 'features/Auth/CreateNewPassword/api/createNewPassword.api'
 
 const schema = yup.object({
     password: yup
@@ -18,7 +19,8 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>
 
-export const useCreateNewPasswordForm = (recoveryCode: string) => {
+export const useCreateNewPassword = (recoveryCode: string) => {
+    const [askNewPassword] = useCreateNewPasswordMutation()
     const {
         handleSubmit,
         formState: {errors, isValid},
@@ -33,7 +35,7 @@ export const useCreateNewPasswordForm = (recoveryCode: string) => {
             newPassword: data.password,
             recoveryCode,
         }
-        alert(JSON.stringify(toSend, null, 2))
+        askNewPassword({...toSend})
     }
 
     return {

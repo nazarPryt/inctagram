@@ -16,6 +16,7 @@ export const useDeleteUserPost = ({postId}: {postId: number}) => {
     }
     const handleModalOpen = () => {
         setModalIsOpen(true)
+        document.body.style.pointerEvents = '' //todo: find hov to fix
     }
     const handleDeletePost = () => {
         deletePost(postId)

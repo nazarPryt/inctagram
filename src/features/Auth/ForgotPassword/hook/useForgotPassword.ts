@@ -1,8 +1,8 @@
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {useForgotPasswordMutation} from 'redux/api/authAPI'
 import {useState} from 'react'
+import {useForgotPasswordMutation} from 'features/Auth/ForgotPassword/api/forgotPassword.api'
 
 const schema = yup.object({
     email: yup.string().trim().email('not email').required('emailErrorMessage'),
@@ -11,7 +11,7 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>
 
-export const useForgotPasswordForm = () => {
+export const useForgotPassword = () => {
     const [token, setToken] = useState<string | null>(null)
     const [forgotPassword, {isLoading}] = useForgotPasswordMutation()
 

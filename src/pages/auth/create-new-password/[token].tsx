@@ -1,6 +1,6 @@
 import React from 'react'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {CreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/ui/CreateNewPasswordForm'
+import {CreateNewPasswordForm} from 'features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
 import {useRouter} from 'next/router'
 import {Loader} from 'shared/ui/Loader/Loader'
 
