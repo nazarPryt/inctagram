@@ -26,7 +26,7 @@ export const useLoginForm = () => {
 
     const {
         handleSubmit,
-        formState: {errors},
+        formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
         resolver: yupResolver(schema),
@@ -56,6 +56,7 @@ export const useLoginForm = () => {
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
         errors,
+        isValid,
         ...rest,
     }
 }

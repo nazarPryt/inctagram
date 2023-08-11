@@ -18,14 +18,7 @@ export const userPostApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Post'],
         }),
-        deleteUserPost: build.mutation<void, number>({
-            query: postId => ({
-                url: `posts/${postId}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: ['Posts'],
-        }),
     }),
 })
 
-export const {useGetUserPostsQuery, useUpdateUserPostMutation, useDeleteUserPostMutation} = userPostApi
+export const {useGetUserPostsQuery, useUpdateUserPostMutation} = userPostApi

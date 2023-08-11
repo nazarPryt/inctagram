@@ -1,7 +1,8 @@
 import React from 'react'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {CreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/CreateNewPasswordForm'
+import {CreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/ui/CreateNewPasswordForm'
 import {useRouter} from 'next/router'
+import {Loader} from 'shared/ui/Loader/Loader'
 
 export default function CreateNewPasswordPage() {
     const router = useRouter()
@@ -10,7 +11,7 @@ export default function CreateNewPasswordPage() {
     if (recoveryCode) {
         return <CreateNewPasswordForm recoveryCode={recoveryCode} />
     }
-    return <div>form expect token in URL (/auth/create-new-password/asdasdasd)</div>
+    return <Loader />
 }
 
 CreateNewPasswordPage.getLayout = getLayoutWithHeader

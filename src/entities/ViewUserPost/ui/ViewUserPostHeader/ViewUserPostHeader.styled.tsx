@@ -86,10 +86,3 @@ export const DialogTitle = styled(Dialog.Title)`
 export const DialogDescription = styled.div`
     padding: 30px 24px;
 `
-
-export const WrapperButton = styled.div`
-    padding: 0 24px 36px 24px;
-    display: flex;
-    gap: 24px;
-    justify-content: end;
-`

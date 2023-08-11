@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
-import {AuthPageStyled, RegistrationModalContent} from 'shared/styles/RegistrationPage'
+import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
 import GoogleIcon from 'shared/assets/icons/google.svg'
 import GithubIcon from 'shared/assets/icons/githubWhite.svg'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {PATH} from 'shared/constants/PATH'
-import {Modal} from 'shared/ui/Modal/Modal'
-import {useRegistrationForm} from './UseRegistrationForm'
+import {useRegistrationForm} from 'features/Auth/Registration/hook/UseRegistrationForm'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
-import {RegistrationTerms} from 'features/Auth/RegistrationForm/RegistrationTerms/RegistrationTerms'
+import {RegistrationTerms} from 'features/Auth/Registration/ui/RegistrationTerms/RegistrationTerms'
+import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -70,15 +70,7 @@ export const RegistrationForm = () => {
                 </Button>
             </AuthPageStyled>
 
-            <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
-                <RegistrationModalContent>
-                    <div>
-                        {t.auth.modal.description}
-                        <span>{getValues('email')}sdfsdfsdfsfssdfsdfsdfsdfsdfsd</span>
-                    </div>
-                    <Button onClick={handleModalClose}>{t.auth.modal.btn}</Button>
-                </RegistrationModalContent>
-            </Modal>
+            <RegistrationModal isOpen={isModalOpen} handleModalClose={handleModalClose} email={getValues('email')} />
         </AuthContainer>
     )
 }

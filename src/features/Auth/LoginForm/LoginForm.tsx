@@ -17,7 +17,7 @@ import GithubWhite from 'shared/assets/icons/githubWhite.svg'
 export const LoginForm = () => {
     const {status} = useSession()
     const router = useRouter()
-    const {register, handleSubmit, isLoading, errors} = useLoginForm()
+    const {register, handleSubmit, isLoading, errors, isValid} = useLoginForm()
     const {t} = useTranslation()
 
     if (status === 'authenticated') {
@@ -44,8 +44,10 @@ export const LoginForm = () => {
                         error={errors.email?.message}
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
-                    <Link href={PATH.FORGOT_PASSWORD}>{t.auth.signIn.linkFirst}</Link>
-                    <Button type={'submit'} disabled={isLoading}>
+                    <Link className={'link'} href={PATH.FORGOT_PASSWORD}>
+                        {t.auth.signIn.linkFirst}
+                    </Link>
+                    <Button type={'submit'} disabled={!isValid || isLoading}>
                         {t.auth.signIn.button}
                     </Button>
                 </form>

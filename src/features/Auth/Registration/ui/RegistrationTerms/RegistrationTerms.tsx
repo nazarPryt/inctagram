@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Checkbox} from 'shared/ui/Checkbox/Checkbox'
-import {RegistrationTermsWrapper} from 'features/Auth/RegistrationForm/RegistrationTerms/RegistrationTerms.styled'
+import {RegistrationTermsWrapper} from 'features/Auth/Registration/ui/RegistrationTerms/RegistrationTerms.styled'
 
 type PropsType = {
     isChecked: boolean

@@ -10,7 +10,7 @@ import {useRouter, useSearchParams} from 'next/navigation'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {EmailResendWrapper} from 'shared/styles/EmailResendPage'
-import {RegistrationModalContent} from 'shared/styles/RegistrationPage'
+import {RegistrationModal} from 'shared/styles/RegistrationPage'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {Button} from 'shared/ui/Button/Button'
@@ -54,13 +54,13 @@ export default function EmailResendingPage() {
                 </span>
             </EmailResendWrapper>
             <Modal handleClose={handleModalClose} isOpen={isModalOpen} title={t.auth.modal.title}>
-                <RegistrationModalContent>
+                <RegistrationModal>
                     <div>
                         {t.auth.modal.description}
                         <span>{email}</span>
                     </div>
                     <Button onClick={handleModalClose}>{t.auth.modal.btn}</Button>
-                </RegistrationModalContent>
+                </RegistrationModal>
             </Modal>
         </AuthContainer>
     )

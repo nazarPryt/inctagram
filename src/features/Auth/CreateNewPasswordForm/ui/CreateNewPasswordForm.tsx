@@ -4,7 +4,7 @@ import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {Button} from 'shared/ui/Button/Button'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {useCreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/useCreateNewPassForm'
+import {useCreateNewPasswordForm} from 'features/Auth/CreateNewPasswordForm/ui/useCreateNewPassForm'
 
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string | string[]}) => {
     const {t} = useTranslation()

@@ -1,9 +1,3 @@
-export type SignUpRequestType = {
-    userName: string
-    email: string
-    password: string
-}
-
 export type ResponseType = {
     statusCode: number
     messages: [
