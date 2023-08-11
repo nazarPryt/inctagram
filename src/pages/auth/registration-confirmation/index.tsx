@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import {useSignUpConfirmationMutation} from 'redux/api/authAPI'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {useRouter} from 'next/router'
 import {NextPageContext} from 'next'
+import {useRegistrationConfirmationMutation} from 'features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {code, email} = ctx.query
@@ -19,7 +19,7 @@ export async function getServerSideProps(ctx: NextPageContext) {
 
 export default function ConfirmationPage({code, email}: {code: string; email: string}) {
     const router = useRouter()
-    const [signUpConfirmation] = useSignUpConfirmationMutation()
+    const [signUpConfirmation] = useRegistrationConfirmationMutation()
 
     const handleConfirm = async () => {
         await signUpConfirmation({confirmationCode: code})

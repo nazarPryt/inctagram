@@ -1,9 +1,9 @@
 import {api} from 'redux/api/api'
 import {ResponseType} from 'redux/types/authTypes'
 
-export const authAPI = api.injectEndpoints({
+export const registrationConfirmationAPI = api.injectEndpoints({
     endpoints: build => ({
-        signUpConfirmation: build.mutation<ResponseType, {confirmationCode: string}>({
+        registrationConfirmation: build.mutation<ResponseType, {confirmationCode: string}>({
             query: body => ({
                 url: `auth/registration-confirmation`,
                 method: 'POST',
@@ -11,7 +11,5 @@ export const authAPI = api.injectEndpoints({
             }),
         }),
     }),
-    overrideExisting: false,
 })
-
-export const {useSignUpConfirmationMutation} = authAPI
+export const {useRegistrationConfirmationMutation} = registrationConfirmationAPI
