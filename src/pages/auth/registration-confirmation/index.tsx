@@ -7,30 +7,28 @@ import {useRouter} from 'next/router'
 import {NextPageContext} from 'next'
 
 export async function getServerSideProps(ctx: NextPageContext) {
-    const {code} = ctx.query
+    const {code, email} = ctx.query
     //todo we can make all logic with REDIRECT wright here
     return {
         props: {
             code,
+            email,
         },
     }
 }
 
-export default function ConfirmationPage({code}: {code: string}) {
+export default function ConfirmationPage({code, email}: {code: string; email: string}) {
     const router = useRouter()
-    console.log('code: ', code)
-
     const [signUpConfirmation] = useSignUpConfirmationMutation()
 
     const handleConfirm = async () => {
         await signUpConfirmation({confirmationCode: code})
             .unwrap()
             .then(() => router.replace(PATH.REGISTRATION_CONFIRMED))
-            // .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
-            .catch(() => router.replace(PATH.EXPIRED_LINK))
+            .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
     }
     useEffect(() => {
-        if (code) {
+        if (code && email) {
             handleConfirm()
         }
     }, [])
