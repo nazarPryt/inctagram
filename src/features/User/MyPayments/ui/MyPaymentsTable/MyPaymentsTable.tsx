@@ -1,8 +1,12 @@
 import React from 'react'
-import {MyPaymentsTableStyled} from 'features/User/MyPayments/ui/MyPaymentsTable/MyPaymentsTable.styled'
 import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from 'shared/ui/Table'
+import {MyPaymentType} from 'features/User/MyPayments/api'
+import {MyPaymentsTableStyled} from './MyPaymentsTable.styled'
 
-export const MyPaymentsTable = () => {
+type PropsType = {
+    payments: MyPaymentType[]
+}
+export const MyPaymentsTable = (props: PropsType) => {
     return (
         <MyPaymentsTableStyled>
             <TableHead>
@@ -13,13 +17,17 @@ export const MyPaymentsTable = () => {
                 <TableHeadCell>Payment Type</TableHeadCell>
             </TableHead>
             <TableBody>
-                <TableRow>
-                    <TableCell>'12.12.2022'</TableCell>
-                    <TableCell>'12.12.2022'</TableCell>
-                    <TableCell>$100</TableCell>
-                    <TableCell>7 days</TableCell>
-                    <TableCell>Stripe</TableCell>
-                </TableRow>
+                {props.payments.map(subscription => {
+                    return (
+                        <TableRow key={subscription.subscriptionId}>
+                            <TableCell>{subscription.dateOfPayment}</TableCell>
+                            <TableCell>{subscription.endDateOfSubscription}</TableCell>
+                            <TableCell>{subscription.price}</TableCell>
+                            <TableCell>{subscription.subscriptionType}</TableCell>
+                            <TableCell>{subscription.paymentType}</TableCell>
+                        </TableRow>
+                    )
+                })}
             </TableBody>
         </MyPaymentsTableStyled>
     )

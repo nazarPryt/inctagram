@@ -5,6 +5,6 @@ export const IsEmptyStyled = styled.div`
     flex-direction: column;
     text-align: center;
     gap: 30px;
-    width: 300px;
+    max-width: 300px;
     margin-top: 30px;
 `
