@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import {useDeletePostMutation} from 'features/DeletePost/api/DeletePost.api'
 import {PATH} from 'shared/constants/PATH'
 import {useRouter} from 'next/router'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
+import {useDeletePostMutation} from 'features/Post/DeletePost/api/DeletePost.api'
 
 export const useDeleteUserPost = ({postId}: {postId: number}) => {
     const dispatch = useAppDispatch()

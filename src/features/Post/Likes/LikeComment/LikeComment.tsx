@@ -1,8 +1,8 @@
 import React, {forwardRef, useState} from 'react'
-import {NotLikedIcon} from 'features/Likes/icons/NotLikedIcon'
-import {LikeCommentWrapper} from 'features/Likes/LikeComment/LikeComment.styled'
+import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
+import {LikeCommentWrapper} from 'features/Post/Likes/LikeComment/LikeComment.styled'
 import {IconButtonType} from 'shared/ui/IconButton/IconButton'
-import {LikedIcon} from 'features/Likes/icons/LikedIcon'
+import {LikedIcon} from 'features/Post/Likes/icons/LikedIcon'
 
 type LikeCommentType = {
     isLiked: boolean

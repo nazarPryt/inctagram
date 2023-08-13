@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {Modal} from 'shared/ui/Modal/Modal'
-import {useCommentPost} from 'features/CommentPost/UseCommentPost'
+import {useCommentPost} from 'features/Post/CommentPost/hook/UseCommentPost'
 import {PostCommentFormWrapper} from 'entities/Post/ui/PostCommentForm/PostCommentForm.styled'
 import {Button} from 'shared/ui/Button/Button'
 

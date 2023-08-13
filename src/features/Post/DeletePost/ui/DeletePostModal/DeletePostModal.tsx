@@ -1,7 +1,7 @@
 import React from 'react'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {Button} from 'shared/ui/Button/Button'
-import {DeletePostModalWrapper} from 'features/DeletePost/ui/DeletePostModal/DeletePostModal.styled'
+import {DeletePostModalWrapper} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
 
 type PropsType = {

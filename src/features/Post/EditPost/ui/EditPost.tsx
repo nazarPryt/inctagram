@@ -1,9 +1,9 @@
 import {ViewUserPostHeader} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
 import React, {Dispatch, SetStateAction} from 'react'
-import {useEditPost} from './UseEditPost'
+import {useEditPost} from 'features/Post/EditPost/hook/UseEditPost'
 import {PostByIdType} from 'entities/ViewUserPost/api/type'
-import {EditPostWrapper} from './EditPost.styled'
+import {EditPostWrapper} from 'features/Post/EditPost/ui/EditPost.styled'
 import {Button} from 'shared/ui/Button/Button'
 
 type EditPostPropsType = {
