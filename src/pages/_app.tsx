@@ -4,7 +4,6 @@ import {NextPage} from 'next'
 import {Providers} from '_app/Provider'
 import {useLoader} from 'shared/hooks/useLoader'
 import 'shared/styles/nprogress.css'
-import {SessionProvider} from 'next-auth/react'
 import {Inter} from 'next/font/google'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
@@ -17,26 +16,22 @@ type AppPropsWithLayout = AppProps & {
 const inter = Inter({subsets: ['latin']})
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
-    const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
-
     useLoader()
 
     const getLayout = Component.getLayout ?? (page => page)
 
     return (
         <Providers>
-            <SessionProvider session={session} baseUrl={DOMAIN_URL} basePath={'/api/auth'}>
-                {getLayout(
-                    <>
-                        <style jsx global>{`
-                            html {
-                                font-family: ${inter.style.fontFamily};
-                            }
-                        `}</style>
-                        <Component {...pageProps} />
-                    </>
-                )}
-            </SessionProvider>
+            {getLayout(
+                <>
+                    <style jsx global>{`
+                        html {
+                            font-family: ${inter.style.fontFamily};
+                        }
+                    `}</style>
+                    <Component {...pageProps} />
+                </>
+            )}
         </Providers>
     )
 }

@@ -1,12 +1,11 @@
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {signIn} from 'next-auth/react'
-import {PATH} from 'shared/constants/PATH'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
+import cookie from 'react-cookies'
+import {accessToken} from 'shared/constants/constants'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
@@ -16,9 +15,7 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
 }
 
 export const useLogIn = () => {
-    const {t} = useTranslation()
     const schema = getLoginFormSchema('not email', 'l;jkfljk')
-    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()
@@ -38,10 +35,7 @@ export const useLogIn = () => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                await signIn('credentials', {
-                    accessToken: payload.accessToken,
-                    callbackUrl: `${DOMAIN}/${PATH.HOME}`,
-                })
+                cookie.save(accessToken, payload.accessToken, {path: ''})
             })
             .catch(() =>
                 dispatch(

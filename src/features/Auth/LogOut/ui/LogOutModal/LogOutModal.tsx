@@ -3,14 +3,12 @@ import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {Button} from 'shared/ui/Button/Button'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {useSession} from 'next-auth/react'
 import {useLogOut} from 'features/Auth/LogOut/hook/useLogOut'
 import {LogOutModalWrapper} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal.styled'
 import {LogOutIcon} from 'features/Auth/LogOut/ui/icons/LogOutIcon'
 
 export const LogOutModal = () => {
     const {t} = useTranslation()
-    const {data} = useSession()
     const {handleCloseModal, handleModalOpen, handleLogOut, isOpen} = useLogOut()
 
     return (
@@ -21,7 +19,7 @@ export const LogOutModal = () => {
                 <LogOutModalWrapper>
                     <p>
                         {t.generalInfo.logoutModal.description}
-                        <br /> <span>{data?.user.email}</span>?
+                        <br /> <span>user.email</span>?
                     </p>
                     <div className={'buttonsWrapper'}>
                         <Button variant={'outlined'} onClick={handleLogOut}>
