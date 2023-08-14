@@ -1,7 +1,7 @@
 import React from 'react'
 import {ViewUserPostAddCommentWrapper} from 'entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment.styled'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
-import {useCommentPost} from 'features/CommentPost/UseCommentPost'
+import {useCommentPost} from 'features/Post/CommentPost/hook/UseCommentPost'
 import {Button} from 'shared/ui/Button/Button'
 
 export const ViewUserPostAddComment = () => {

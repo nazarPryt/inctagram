@@ -7,7 +7,7 @@ import {ViewUserPostSlider} from 'entities/ViewUserPost/ui/ViewUserPostSlider/Vi
 import {ViewUserPostDescription} from 'entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription'
 import {ViewUserPostAddComment} from 'entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment'
 import {ViewUserPostFeatures} from 'entities/ViewUserPost/ui/ViewUserPostFeatures/ViewUserPostFeatures'
-import {EditPost} from 'features/EditPost/EditPost'
+import {EditPost} from 'features/Post/EditPost/ui/EditPost'
 
 type PropsType = {
     data: PostByIdType
