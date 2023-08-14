@@ -28,7 +28,7 @@ export const Default: Story = {
 
 export const Colorful: Story = {
     args: {
-        colorful: 'true',
+        colorful: true,
         children: (
             <svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <g clipPath='url(#clip0_3663_9513)'>

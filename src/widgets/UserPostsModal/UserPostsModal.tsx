@@ -21,6 +21,7 @@ export const UserPostsModal = ({open, onClose, children}: ModalProps) => {
     }
     return (
         <Dialog.Root open={open} onOpenChange={handleModalClosed}>
+            <Dialog.Trigger />
             {open && (
                 <Dialog.Portal>
                     <DialogOverlay />

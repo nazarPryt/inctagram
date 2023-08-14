@@ -3,7 +3,7 @@ import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {CommentWrapper} from 'entities/Comment/ui/Comment.styled'
-import {LikeComment} from 'features/Likes/LikeComment/LikeComment'
+import {LikeComment} from 'features/Post/Likes/LikeComment/LikeComment'
 
 type CommentType = {
     comment: string

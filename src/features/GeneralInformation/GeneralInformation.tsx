@@ -6,8 +6,8 @@ import {Avatar} from '../Avatar/Avatar'
 import {useGetUserProfileQuery} from '../../redux/api/profileAPI'
 import {Loader} from '../../shared/ui/Loader/Loader'
 
-export const GeneralInformation = ({userId}: {userId: number | null}) => {
-    const {data, isLoading} = useGetUserProfileQuery(userId as number)
+export const GeneralInformation = () => {
+    const {data, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
         return <Loader />

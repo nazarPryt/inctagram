@@ -1,18 +1,25 @@
-'use client'
-
 import React, {useEffect} from 'react'
-import {useSignUpConfirmationMutation} from 'redux/api/authAPI'
-import {useRouter, useSearchParams} from 'next/navigation'
-import {Loader} from '../../../shared/ui/Loader/Loader'
+import {Loader} from 'shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
+import {useRouter} from 'next/router'
+import {NextPageContext} from 'next'
+import {useRegistrationConfirmationMutation} from 'features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
 
-export default function ConfirmationPage() {
+export async function getServerSideProps(ctx: NextPageContext) {
+    const {code, email} = ctx.query
+    //todo we can make all logic with REDIRECT wright here
+    return {
+        props: {
+            code,
+            email,
+        },
+    }
+}
+
+export default function ConfirmationPage({code, email}: {code: string; email: string}) {
     const router = useRouter()
-    const code = useSearchParams().get('code') as string
-    const email = useSearchParams().get('email') as string
-
-    const [signUpConfirmation] = useSignUpConfirmationMutation()
+    const [signUpConfirmation] = useRegistrationConfirmationMutation()
 
     const handleConfirm = async () => {
         await signUpConfirmation({confirmationCode: code})
@@ -21,7 +28,9 @@ export default function ConfirmationPage() {
             .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
     }
     useEffect(() => {
-        handleConfirm()
+        if (code && email) {
+            handleConfirm()
+        }
     }, [])
 
     return <Loader />

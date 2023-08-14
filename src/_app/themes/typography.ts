@@ -2,6 +2,8 @@ export const typography = {
     fontFamilyPrimary: 'Inter',
 
     // line heights
+
+    lineHeightXS: '14px',
     lineHeightS: '16px',
     lineHeightM: '24px',
     lineHeightL: '36px',

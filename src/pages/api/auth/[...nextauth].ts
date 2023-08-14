@@ -9,6 +9,8 @@ import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import {serverAuthAPI} from 'shared/server-api/server-api'
 
+const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
+
 export const authOptions: NextAuthOptions = {
     secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET as string,
     pages: {
@@ -19,6 +21,9 @@ export const authOptions: NextAuthOptions = {
         strategy: 'jwt',
     },
     callbacks: {
+        redirect: async ({url, baseUrl}: any) => {
+            return Promise.resolve(DOMAIN_URL)
+        },
         async jwt({token, user}: any) {
             if (user) {
                 token.id = +user.id

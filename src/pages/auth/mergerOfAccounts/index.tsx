@@ -1,12 +1,11 @@
-'use client'
 import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
-import re from '../../../shared/assets/pictures/congratulation.png'
+import re from 'shared/assets/pictures/congratulation.png'
 import Image from 'next/image'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {MergeAccountsPageWrapper} from 'shared/styles/MergeAccountsPage'
+import {Button} from 'shared/ui/Button/Button'
 
 export default function MergeAccountsPage() {
     const {t} = useTranslation()
