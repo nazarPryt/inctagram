@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const RadioInputWrapper = styled.label`
     display: inline-flex;
     align-items: center;
+    cursor: pointer;
 
     input[type='radio'] {
         position: absolute;
         opacity: 0;
-        cursor: pointer;
     }
 
     .radioIcon {
