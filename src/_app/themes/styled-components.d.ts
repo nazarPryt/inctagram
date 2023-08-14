@@ -16,6 +16,7 @@ interface ITypographyStyles {
     'font-family': NextFont
     'font-weight': number
 }
+
 // interface ITypographyType {
 //     Large: Interpolation<object>
 // H1: ITypographyStyles
@@ -36,6 +37,7 @@ interface ITypographyType {
     fontFamilyPrimary: string
 
     // line heights
+    lineHeightXS: string
     lineHeightS: string
     lineHeightM: string
     lineHeightL: string

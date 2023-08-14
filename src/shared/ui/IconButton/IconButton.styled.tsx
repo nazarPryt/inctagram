@@ -1,28 +1,34 @@
 import styled, {css} from 'styled-components'
 
-export const IconButtonStyled = styled.button<{$colorful?: 'true'; $active?: 'true' | undefined}>`
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
+type IconButtonProps = {
+    active?: boolean
+    colorful?: boolean
+}
+export const IconButtonStyled = styled('button').withConfig({
+    shouldForwardProp: prop => !['active', 'colorful'].includes(prop),
+})<IconButtonProps>`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 
-    &:active {
-        transform: scale(1);
-    }
+  &:active {
+    transform: scale(1);
+  }
 
-    path {
+  path {
         ${props => {
-            if (props.$active) {
+            if (props.active) {
                 return css`
                     fill: ${props => props.theme.palette.primary['500']};
                 `
             }
-            if (!props.$colorful) {
+            if (!props.colorful) {
                 return css`
                     fill: ${props =>
                         props.theme.name === 'dark'
@@ -32,4 +38,5 @@ export const IconButtonStyled = styled.button<{$colorful?: 'true'; $active?: 'tr
             }
         }}
     }
+  }
 `

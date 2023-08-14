@@ -1,15 +1,15 @@
-import {BaseModalProps, Modal} from '../../shared/ui/Modal/Modal'
+import {BaseModalProps, Modal} from 'shared/ui/Modal/Modal'
 import React, {ChangeEvent, useState} from 'react'
 import styled from 'styled-components'
-import {InputFile} from '../../shared/ui/InputFile/InputFile'
+import {InputFile} from 'shared/ui/InputFile/InputFile'
 import AvatarEditor from 'react-avatar-editor'
 import {ProfilePhotoModalFooter} from './ui/ProfilePhotoModalFooter'
 import {EmptyAvatarPlaceholder} from './ui/EmptyAvatarPlaceholder'
-import {useUploadAvatarMutation} from '../../redux/api/profileAPI'
-import {SetAppNotificationAC} from '../../_app/store/appSlice'
+import {useUploadAvatarMutation} from 'redux/api/profileAPI'
+import {SetAppNotificationAC} from '_app/store/appSlice'
 
-import {useAppDispatch} from '../../shared/hooks/reduxHooks'
-import {Loader} from '../../shared/ui/Loader/Loader'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {Loader} from 'shared/ui/Loader/Loader'
 
 export const ProfilePhotoModalWrapper = styled.div`
     display: flex;

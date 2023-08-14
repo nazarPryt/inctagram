@@ -12,6 +12,10 @@ export const en = {
             title: 'Sign up',
             btn: 'Sign up',
             description: 'Do you have an account?',
+            privacy: 'Privacy policy',
+            termsOfService: 'Terms of service',
+            userAgree: 'I agree to the ',
+            and: 'and ',
             link: 'Sign In',
             error: {
                 username: 'User with this username is already registered',
@@ -85,7 +89,7 @@ export const en = {
             lastname: 'Last Name',
             dateOfBirth: 'Date of birthday',
             city: 'City',
-            aboutMe: 'City',
+            aboutMe: 'About me',
         },
         saveChanges: 'Save Changes',
         addProfilePhoto: 'Add a Profile Photo',
@@ -106,6 +110,14 @@ export const en = {
         following: 'Following',
         followers: 'Followers',
         publications: 'Publications',
+    },
+    myPost: {
+        modal: {
+            title: 'Delete Post',
+            description: 'Are you sure you want to delete this post?',
+            btn1: 'Yes',
+            btn2: 'No',
+        },
     },
     aside: {
         home: 'Home',

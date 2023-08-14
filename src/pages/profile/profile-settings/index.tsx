@@ -1,12 +1,11 @@
 import React from 'react'
-
 import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {GeneralInformation} from '../../../features/GeneralInformation/GeneralInformation'
-import {MyPayments} from '../../../shared/ui/MyPayments/MyPayments'
-import {ProfileSettingsAccordion} from '../../../shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
-import {Devices} from '../../../shared/ui/Devices/Devices'
+import {GeneralInformation} from 'features/GeneralInformation/GeneralInformation'
+import {MyPayments} from 'features/User/MyPayments/ui/MyPayments/MyPayments'
+import {ProfileSettingsAccordion} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
+import {Devices} from 'shared/ui/Devices/Devices'
 import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
-import {AccountManagement} from '../../../shared/ui/AccountManagement/AccountManagement'
+import {AccountManagement} from 'shared/ui/AccountManagement/AccountManagement'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {GetServerSideProps, GetServerSidePropsContext} from 'next'
 import {getSession} from 'next-auth/react'
@@ -34,14 +33,14 @@ export const getServerSideProps: GetServerSideProps<ProfileSettingsPageProps> = 
     }
 }
 
-export default function ProfileSettingsPage({userId}: ProfileSettingsPageProps) {
+export default function ProfileSettingsPage() {
     const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
 
     return (
         <ProfileSettingsWrapper>
             <ProfileSettingsAccordion />
             <div>
-                {profileSettingActiveTab === 'generalInformation' && <GeneralInformation userId={userId} />}
+                {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
                 {profileSettingActiveTab === 'devices' && <Devices />}
                 {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}
                 {profileSettingActiveTab === 'myPayments' && <MyPayments />}

@@ -12,7 +12,7 @@ type UserPostType = {
 
 export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
     return (
-        <UserPostWrapper href={{pathname: `${PATH.VIEW_POST}/${props.postId}`}} ref={ref}>
+        <UserPostWrapper href={{pathname: `${PATH.VIEW_POST}/${encodeURIComponent(props.postId)}`}} ref={ref}>
             {props.imagesLength > 2 && <MorePhotosIcon />}
             <Image src={props.src} alt={'PostPhoto'} width={230} height={235} />
         </UserPostWrapper>

@@ -14,12 +14,15 @@ const TypographyMixin = styled.p<TypographyProps>`
     &.primary-color {
         color: ${props => props.theme.textColor['500']};
     }
+
     &.secondary-color {
         //color: ${props => props.theme.bodyColor['500']};
     }
+
     &.inherit-color {
         color: inherit;
     }
+
     &.error-color {
         color: ${props => props.theme.palette.danger['500']};
     }
@@ -80,8 +83,8 @@ export const BoldText14 = styled(TypographyMixin)`
 `
 
 export const SmallText = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXS};
-    line-height: ${props => props.theme.typography.lineHeightS};
+    font-size: ${props => props.theme.typography.fontSizeS};
+    line-height: ${props => props.theme.typography.lineHeightXS};
     font-weight: ${props => props.theme.typography.fontWeightRegular};
 `
 export const SemiBoldSmallText = styled(TypographyMixin)`

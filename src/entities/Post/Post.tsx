@@ -12,8 +12,6 @@ type PostType = {
     post: PostCardType
 }
 
-//todo ask backend where i have to take userID
-
 export const Post = ({post}: PostType) => {
     return (
         <PostWrapper>

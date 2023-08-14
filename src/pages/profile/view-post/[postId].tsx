@@ -1,4 +1,3 @@
-'use client'
 import React, {useState, useEffect} from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {useRouter} from 'next/router'

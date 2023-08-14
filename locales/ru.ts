@@ -13,6 +13,10 @@ export const ru: LocaleType = {
             btn: 'Зарегистрироваться',
             description: 'У вас уже есть аккаунт?',
             link: 'Войти',
+            privacy: 'Политика конфиденциальности',
+            termsOfService: 'Условия использования',
+            userAgree: 'Я принимаю',
+            and: 'и',
             error: {
                 username: 'Пользователь с этим логином уже зарегистрирован',
             },
@@ -111,6 +115,14 @@ export const ru: LocaleType = {
         followers: 'Подписчики',
         publications: 'Публикации',
     },
+    myPost: {
+        modal: {
+            title: 'Удалить запись',
+            description: 'Вы уверены, что хотите удалить эту запись?',
+            btn1: 'Да',
+            btn2: 'Нет',
+        },
+    },
     aside: {
         home: 'Главная',
         create: 'Создать',
@@ -118,7 +130,7 @@ export const ru: LocaleType = {
         messenger: 'Мессенджер',
         search: 'Поиск',
         favorites: 'Избранное',
-        statistics: 'статистика',
+        statistics: 'Статистика',
         logout: 'Выйти',
     },
     create: {

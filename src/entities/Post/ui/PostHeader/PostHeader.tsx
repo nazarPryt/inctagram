@@ -6,9 +6,9 @@ import {PATH} from 'shared/constants/PATH'
 import {useState} from 'react'
 import {Popover} from 'shared/ui/Popover/Popover'
 import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
-import {EmailReportIcon} from 'features/EmailReport/EmailReportIcon'
+import {EmailReportIcon} from 'features/Post/EmailReport/EmailReportIcon'
 import {UnfollowUserIcon} from 'features/UnfollowUser/UnfollowUserIcon'
-import {CopyLinkIcon} from 'features/CopyLink/CopyLinkIcon'
+import {CopyLinkIcon} from 'features/Post/CopyLink/CopyLinkIcon'
 
 type PostHeaderType = {
     img: string

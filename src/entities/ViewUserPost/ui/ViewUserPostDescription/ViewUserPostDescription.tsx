@@ -7,7 +7,7 @@ type PropsType = {
     createdAt: string
 }
 export const ViewUserPostDescription = ({description, createdAt}: PropsType) => {
-    const day = formatDistance(subDays(new Date(createdAt), 3), new Date(), {addSuffix: true}) //todo fix format of day when post was created
+    const day = formatDistance(subDays(new Date(createdAt), 1), new Date(), {addSuffix: true}) //todo fix format of day when post was created
 
     return (
         <ViewUserPostDescriptionWrapper>

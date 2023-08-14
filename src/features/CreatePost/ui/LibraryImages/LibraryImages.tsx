@@ -1,13 +1,13 @@
-import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
-import {Button} from '../../../../shared/ui/Button/Button'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 import CloseIcon from '../../../../shared/assets/icons/close.svg'
 import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
-import {InputFile} from '../../../../shared/ui/InputFile/InputFile'
+import {InputFile} from 'shared/ui/InputFile/InputFile'
 import React, {ChangeEvent, useRef, useState} from 'react'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
+import {IconButton} from 'shared/ui/IconButton/IconButton'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
@@ -56,17 +56,17 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
                                 onClick={() => handleChangeGeneralPicture(el.id)}
                             />
                             {libraryPictures.length > 1 && (
-                                <Button className='close' variant={'isIcon'} onClick={() => handleDeletePicture(el.id)}>
+                                <IconButton className='close' onClick={() => handleDeletePicture(el.id)}>
                                     <CloseIcon />
-                                </Button>
+                                </IconButton>
                             )}
                         </div>
                     ))}
                 </div>
                 <div>
-                    <Button variant={'isIcon'} onClick={handlerAddPhoto}>
+                    <IconButton onClick={handlerAddPhoto}>
                         <AddIcon />
-                    </Button>
+                    </IconButton>
                 </div>
                 <InputFile
                     title={'Select from Computer'}

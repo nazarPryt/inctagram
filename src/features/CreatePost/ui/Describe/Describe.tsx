@@ -1,22 +1,20 @@
 import React, {ChangeEvent} from 'react'
 import Image from 'next/image'
 import {AvatarWrapper, DescribeWrapper} from './styled'
-import {TextArea} from '../../../../shared/ui/TextArea/TextArea'
-import {useSession} from 'next-auth/react'
-import {useGetUserProfileQuery} from '../../../../redux/api/profileAPI'
-import SkeletonAvatar from '../../../../shared/assets/icons/skeletonCycle.svg'
-import SkeletonTitle from '../../../../shared/assets/icons/skeletonTitle.svg'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {TextArea} from 'shared/ui/TextArea/TextArea'
+import {useGetUserProfileQuery} from 'redux/api/profileAPI'
+import SkeletonAvatar from 'shared/assets/icons/skeletonCycle.svg'
+import SkeletonTitle from 'shared/assets/icons/skeletonTitle.svg'
+import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
+import {useTranslation} from 'shared/hooks/useTranslation'
 
 export const Describe = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
 
-    const {data: user} = useSession()
-    const {data, isLoading} = useGetUserProfileQuery(user!.user.userId)
+    const {data, isLoading} = useGetUserProfileQuery()
 
     const changeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(createPostAC.setDescribeText(e.target.value.trim()))
