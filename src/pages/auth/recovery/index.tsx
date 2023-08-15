@@ -22,7 +22,7 @@ export default function RecoveryPage({code}: {code: string}) {
         await checkRecoveryCode({recoveryCode: code})
             .unwrap()
             .then(() => router.replace(`${PATH.CREATE_NEW_PASSWORD}?recoveryCode=${code}`))
-            .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${'sdfs'}`))
+            .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${'email'}`))
     }
     useEffect(() => {
         if (code) {
