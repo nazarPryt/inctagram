@@ -6,7 +6,7 @@ import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useCreateNewPassword} from 'features/Auth/CreateNewPassword/hook/useCreateNewPass'
 
-export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string | string[]}) => {
+export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) => {
     const {t} = useTranslation()
     const {handleSubmit, register, errors, isValid} = useCreateNewPassword(recoveryCode as string)
 
