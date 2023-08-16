@@ -3,7 +3,10 @@ import styled from 'styled-components'
 export const CommentWrapper = styled.li`
     display: flex;
     gap: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px 5px;
+    background-color: ${props => props.theme.bodyColor[500]};
 
     .content {
         flex: 1;
