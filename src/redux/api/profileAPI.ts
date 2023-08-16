@@ -29,7 +29,7 @@ export const profileAPI = api.injectEndpoints({
         }),
         updateUser: build.mutation<ResponseType, UpdateUserRequest>({
             query: body => ({
-                url: `/users/profile`,
+                url: `users/profile`,
                 method: 'PUT',
                 body,
             }),

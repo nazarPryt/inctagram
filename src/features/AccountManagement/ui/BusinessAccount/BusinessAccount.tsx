@@ -1,43 +1,49 @@
 import {ChangeEvent, useState} from 'react'
 import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
 import {BusinessAccountContainer} from './BusinessAccount.styled'
-
-export enum OptionForCosts {
-    ONE_DAY_COST = '10',
-    SEVEN_DAY_COST = '50',
-    MONTH_COST = '100',
-}
+import {PayPal} from '../PayPal/PayPal'
+import {Stripe} from '../Stripe/Stripe'
+import {Subscription} from '../../types/accountTypes'
+import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
 
 export const BusinessAccount = () => {
-    const [selectedCostsValue, setSelectedCostsValue] = useState<OptionForCosts>(OptionForCosts.ONE_DAY_COST)
-
+    const [selectedCostsValue, setSelectedCostsValue] = useState<Subscription>(Subscription.MONTHLY)
+    const {handleSubmit, register, errors, isValid} = useCreateNewSubscription()
     const handleCostsRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedCostsValue(event.target.value as OptionForCosts)
+        setSelectedCostsValue(event.target.value as Subscription)
     }
 
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <h4>Your subscription costs:</h4>
             <BusinessAccountContainer>
                 <RadioInput
-                    label={'$10 per 1 Day'}
-                    value={OptionForCosts.ONE_DAY_COST}
-                    checked={selectedCostsValue === OptionForCosts.ONE_DAY_COST}
-                    onChange={handleCostsRadioChange}
-                />
-                <RadioInput
-                    label={'$50 per 7 Day'}
-                    value={OptionForCosts.SEVEN_DAY_COST}
-                    checked={selectedCostsValue === OptionForCosts.SEVEN_DAY_COST}
-                    onChange={handleCostsRadioChange}
-                />
-                <RadioInput
+                    {...register('typeSubscription')}
                     label={'$100 per month'}
-                    value={OptionForCosts.MONTH_COST}
-                    checked={selectedCostsValue === OptionForCosts.MONTH_COST}
+                    value={Subscription.MONTHLY}
+                    checked={selectedCostsValue === Subscription.MONTHLY}
+                    onChange={handleCostsRadioChange}
+                />
+                <RadioInput
+                    {...register('typeSubscription')}
+                    label={'$500 per half-year'}
+                    value={Subscription.SEMI_ANNUALLY}
+                    checked={selectedCostsValue === Subscription.SEMI_ANNUALLY}
+                    onChange={handleCostsRadioChange}
+                />
+                <RadioInput
+                    {...register('typeSubscription')}
+                    label={'$900 per year'}
+                    value={Subscription.YEARLY}
+                    checked={selectedCostsValue === Subscription.YEARLY}
                     onChange={handleCostsRadioChange}
                 />
             </BusinessAccountContainer>
-        </>
+            <span>
+                <PayPal />
+                or
+                <Stripe />
+            </span>
+        </form>
     )
 }
