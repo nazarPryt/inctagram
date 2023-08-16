@@ -20,15 +20,15 @@ export const Modal = ({children, isOpen, handleClose, title}: BaseModalProps) =>
         event.stopPropagation()
     }
 
-    isOpen && document.body.classList.add('isModalOpen')
-
     useEffect(() => {
+        isOpen && document.body.classList.add('isModalOpen')
         const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === 'Escape' ? handleClose() : null)
         document.body.addEventListener('keydown', closeOnEscapeKey)
         document.body.style.pointerEvents = ''
         return () => {
             document.body.removeEventListener('keydown', closeOnEscapeKey)
             document.body.style.pointerEvents = 'auto'
+            document.body.classList.remove('isModalOpen')
         }
     }, [handleClose])
 

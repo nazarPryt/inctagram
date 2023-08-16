@@ -7,14 +7,15 @@ import {PATH} from 'shared/constants/PATH'
 import {useCheckRecoveryCodeMutation} from 'features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
 
 export async function getServerSideProps(ctx: NextPageContext) {
-    const {code} = ctx.query
+    const {code, email} = ctx.query
     return {
         props: {
             code,
+            email,
         },
     }
 }
-export default function RecoveryPage({code}: {code: string}) {
+export default function RecoveryPage({code, email}: {code: string; email: string}) {
     const router = useRouter()
     const [checkRecoveryCode] = useCheckRecoveryCodeMutation()
 
@@ -22,7 +23,7 @@ export default function RecoveryPage({code}: {code: string}) {
         await checkRecoveryCode({recoveryCode: code})
             .unwrap()
             .then(() => router.replace(`${PATH.CREATE_NEW_PASSWORD}?recoveryCode=${code}`))
-            .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${'email'}`))
+            .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
     }
     useEffect(() => {
         if (code) {

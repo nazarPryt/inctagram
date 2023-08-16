@@ -6,12 +6,18 @@ import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useCreateNewPassword} from 'features/Auth/CreateNewPassword/hook/useCreateNewPass'
 
+import {Loader} from 'shared/ui/Loader'
+import {ModalConfirmChangedPassword} from 'features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
+
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) => {
     const {t} = useTranslation()
-    const {handleSubmit, register, errors, isValid} = useCreateNewPassword(recoveryCode as string)
+    const {handleSubmit, register, errors, isValid, handleModalClose, isOpen, isLoading} = useCreateNewPassword(
+        recoveryCode as string
+    )
 
     return (
         <AuthContainer>
+            {isLoading && <Loader />}
             <AuthPageStyled>
                 <h1>{t.auth.newPassword.title}</h1>
                 <form onSubmit={handleSubmit} className={'createNewPassForm'}>
@@ -26,6 +32,7 @@ export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) =>
                         {t.auth.newPassword.btn}
                     </Button>
                 </form>
+                <ModalConfirmChangedPassword handleModalClose={handleModalClose} isOpen={isOpen} />
             </AuthPageStyled>
         </AuthContainer>
     )
