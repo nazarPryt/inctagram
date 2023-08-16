@@ -65,6 +65,7 @@ export const en = {
         newPassword: {
             title: 'Create new password',
             description: 'Your password must be between 6 and 20 characters',
+            modal: 'Your password was successfully changed',
             btn: 'Create new password',
             error: {
                 passwordConfirm: 'The password must match the new password',
