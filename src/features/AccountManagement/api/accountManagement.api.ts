@@ -1,5 +1,5 @@
 import {api} from 'redux/api/api'
-import {NewSubscriptionType, ResponseCreateSubscriptionType} from '../types/accountTypes'
+import {Data, NewSubscriptionType, ResponseCreateSubscriptionType} from '../types/accountTypes'
 
 export const accountManagementAPI = api.injectEndpoints({
     endpoints: build => ({
@@ -10,7 +10,13 @@ export const accountManagementAPI = api.injectEndpoints({
                 body,
             }),
         }),
+        getSubscriptionCosts: build.query<Data[], void>({
+            query: () => ({
+                url: `subscriptions/cost-of-subscriptions`,
+                method: 'GET',
+            }),
+        }),
     }),
 })
 
-export const {useCreateNewSubscriptionMutation} = accountManagementAPI
+export const {useCreateNewSubscriptionMutation, useGetSubscriptionCostsQuery} = accountManagementAPI

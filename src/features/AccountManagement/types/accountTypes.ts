@@ -1,20 +1,19 @@
-export interface NewSubscriptionType {
-    typeSubscription: Subscription
-    paymentType: Payment
+export type NewSubscriptionType = {
+    typeSubscription: SubscriptionType
+    paymentType: PaymentType
     amount: number
+    baseUrl: string
 }
 
-export enum Subscription {
-    MONTHLY = 'MONTHLY',
-    SEMI_ANNUALLY = 'SEMI_ANNUALLY',
-    YEARLY = 'YEARLY',
-}
+export type SubscriptionType = 'MONTHLY' | 'SEMI_ANNUALLY' | 'YEARLY'
 
-export enum Payment {
-    STRIPE = 'STRIPE',
-    PAYPAL = 'PAYPAL',
-}
+export type PaymentType = 'STRIPE' | 'PAYPAL'
 
 export type ResponseCreateSubscriptionType = {
     url: string
+}
+
+export type Data = {
+    amount: number
+    typeDescription: SubscriptionType
 }

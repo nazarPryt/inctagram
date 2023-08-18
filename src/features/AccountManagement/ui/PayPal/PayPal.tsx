@@ -2,9 +2,13 @@ import React from 'react'
 import PaypalIcon from 'shared/assets/icons/paypal.svg'
 import {PayPalWrapper} from './PayPal.styled'
 
-export const PayPal = () => {
+type PropsType = {
+    onClick?: () => void
+}
+
+export const PayPal = ({onClick}: PropsType) => {
     return (
-        <PayPalWrapper type={'submit'}>
+        <PayPalWrapper onClick={onClick} type={'submit'}>
             <PaypalIcon />
         </PayPalWrapper>
     )
