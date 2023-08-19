@@ -10,7 +10,8 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
 
     const {
         handleSubmit,
-        formState: {errors},
+        formState: {errors, isValid},
+
         ...rest
     } = useForm({resolver: yupResolver(RegistrationFormSchema), mode: 'onTouched', reValidateMode: 'onChange'})
 
@@ -30,6 +31,7 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
     return {
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
+        isValid,
         errors,
         ...rest,
     }
