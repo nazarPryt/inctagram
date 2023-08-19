@@ -69,6 +69,7 @@ export const ru: LocaleType = {
         newPassword: {
             title: 'Создать новый пароль',
             description: 'Ваш пароль должен быть от 6 до 20 символов',
+            modal: 'Ваш пароль бил успешно изменен',
             btn: 'Создать новый пароль',
             error: {
                 passwordConfirm: 'Пароль должен совпадать с новым паролем',

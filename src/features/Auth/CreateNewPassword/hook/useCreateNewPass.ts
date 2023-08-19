@@ -2,7 +2,16 @@ import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useCreateNewPasswordMutation} from 'features/Auth/CreateNewPassword/api/createNewPassword.api'
+import {useState} from 'react'
+import {SetAppNotificationAC} from '_app/store/appSlice'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useRouter} from 'next/router'
+import {PATH} from 'shared/constants/PATH'
 
+type NewPassType = {
+    newPassword: string
+    recoveryCode: string
+}
 const schema = yup.object({
     password: yup
         .string()
@@ -20,9 +29,13 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>
 
 export const useCreateNewPassword = (recoveryCode: string) => {
-    const [askNewPassword] = useCreateNewPasswordMutation()
+    const dispatch = useAppDispatch()
+    const router = useRouter()
+    const [isOpen, setIsOpen] = useState(false)
+    const [askNewPassword, {isLoading}] = useCreateNewPasswordMutation()
     const {
         handleSubmit,
+        reset,
         formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
@@ -36,17 +49,32 @@ export const useCreateNewPassword = (recoveryCode: string) => {
             recoveryCode,
         }
         askNewPassword({...toSend})
+            .unwrap()
+            .then(() => {
+                setIsOpen(true)
+            })
+            .catch(() => {
+                dispatch(
+                    SetAppNotificationAC({
+                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
+                    })
+                )
+            })
+    }
+
+    const handleModalClose = () => {
+        setIsOpen(false)
+        reset()
+        router.replace(PATH.LOGIN)
     }
 
     return {
+        isLoading,
+        isOpen,
+        handleModalClose,
         isValid,
         handleSubmit: handleSubmit(onSubmit),
         errors,
         ...rest,
     }
-}
-
-type NewPassType = {
-    newPassword: string
-    recoveryCode: string
 }
