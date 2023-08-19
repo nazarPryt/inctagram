@@ -1,14 +1,15 @@
 import React from 'react'
+
 import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {GeneralInformation} from 'features/GeneralInformation/GeneralInformation'
-import {MyPayments} from 'features/User/MyPayments/ui/MyPayments/MyPayments'
-import {ProfileSettingsAccordion} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
-import {Devices} from 'shared/ui/Devices/Devices'
+import {GeneralInformation} from '../../../features/GeneralInformation/GeneralInformation'
+import {ProfileSettingsAccordion} from '../../../shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
+import {Devices} from '../../../shared/ui/Devices/Devices'
 import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
-import {AccountManagement} from 'shared/ui/AccountManagement/AccountManagement'
+import {AccountManagement} from '../../../features/AccountManagement/AccountManagement'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {GetServerSideProps, GetServerSidePropsContext} from 'next'
 import {getSession} from 'next-auth/react'
+import {MyPayments} from '../../../features/User/MyPayments/ui/MyPayments'
 
 type ProfileSettingsPageProps = {
     userId: number | null

@@ -10,9 +10,16 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
 
     const {
         handleSubmit,
-        formState: {errors},
+        control,
+        formState: {errors, isValid},
+
         ...rest
-    } = useForm({resolver: yupResolver(RegistrationFormSchema), mode: 'onTouched', reValidateMode: 'onChange'})
+    } = useForm({
+        resolver: yupResolver(RegistrationFormSchema),
+        defaultValues: {checkbox: false},
+        mode: 'onTouched',
+        reValidateMode: 'onChange',
+    })
 
     const [addNewUser, {isLoading}] = useRegistrationMutation()
 
@@ -30,6 +37,8 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
     return {
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
+        control,
+        isValid,
         errors,
         ...rest,
     }

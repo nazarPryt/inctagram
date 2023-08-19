@@ -16,13 +16,10 @@ import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const {isLoading, register, handleSubmit, errors, getValues, reset} = useRegistrationForm(setIsModalOpen)
+    const {isLoading, register, handleSubmit, control, isValid, errors, getValues, reset} =
+        useRegistrationForm(setIsModalOpen)
     const {t} = useTranslation()
-    const [isChecked, setIsChecked] = useState(false)
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked)
-    }
     const handleModalClose = () => {
         setIsModalOpen(false)
         reset()
@@ -59,8 +56,8 @@ export const RegistrationForm = () => {
                         {...register('passwordConfirmation')}
                         error={errors.passwordConfirmation?.message}
                     />
-                    <RegistrationTerms isChecked={isChecked} handleCheckboxChange={handleCheckboxChange} />
-                    <Button type={'submit'} disabled={isLoading || !isChecked}>
+                    <RegistrationTerms control={control} />
+                    <Button type={'submit'} disabled={isLoading || !isValid}>
                         {t.auth.signUp.btn}
                     </Button>
                 </form>
