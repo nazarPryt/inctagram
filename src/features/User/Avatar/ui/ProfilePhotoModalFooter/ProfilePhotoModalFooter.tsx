@@ -1,21 +1,6 @@
-import styled from 'styled-components'
 import React, {ComponentProps} from 'react'
 import {Button} from 'shared/ui/Button/Button'
-
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-self: end;
-    gap: 30px;
-    margin-top: 40px;
-    width: 100%;
-
-    div {
-        display: flex;
-        justify-content: space-between;
-    }
-`
+import {ProfilePhotoModalFooterStyled} from './ProfilePhotoModalFooter.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 
@@ -25,7 +10,7 @@ type PropsProps = DefaultInputPropsType & {
 }
 export const ProfilePhotoModalFooter = (props: PropsProps) => {
     return (
-        <Wrapper>
+        <ProfilePhotoModalFooterStyled>
             <input type='range' value={props.value} onChange={props.onChange} min={1} max={2} step='0.1' />
             <div>
                 <Button type={'button'} onClick={() => props.clearImagePreview()}>
@@ -33,6 +18,6 @@ export const ProfilePhotoModalFooter = (props: PropsProps) => {
                 </Button>
                 <Button onClick={() => props.savePhoto()}>Save</Button>
             </div>
-        </Wrapper>
+        </ProfilePhotoModalFooterStyled>
     )
 }

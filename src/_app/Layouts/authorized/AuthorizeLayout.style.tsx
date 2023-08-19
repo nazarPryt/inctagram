@@ -7,9 +7,10 @@ export const AuthorizedLayoutWrapper = styled.div`
     aside {
         width: 100%;
         max-width: 220px;
+        min-width: 145px;
     }
 
     section {
-        width: 100%;
+        flex: 1;
     }
 `

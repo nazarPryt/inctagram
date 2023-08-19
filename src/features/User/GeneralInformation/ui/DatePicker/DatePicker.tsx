@@ -2,15 +2,15 @@ import React, {ChangeEvent} from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {CustomDatePickerWrapper, DatePickerHeader} from './styled'
+import {CustomDatePickerWrapper, DatePickerHeader} from 'features/User/GeneralInformation/ui/DatePicker/styled'
 import {Control, Controller} from 'react-hook-form'
 import range from 'lodash/range'
 import {getMonth, getYear} from 'date-fns/fp'
-import {months} from './constants'
-import {IFormInput} from '../../../features/GeneralInformation/GeneralInformationForm/useGeneralInformationForm'
+import {months} from 'features/User/GeneralInformation/ui/DatePicker/constants'
+import {GeneralInformationFormData} from 'features/User/GeneralInformation/hook/GeneralInformationSchema'
 
 type DatePickerPropsType = {
-    control: Control<IFormInput, {dateOfBirthday: Date}>
+    control: Control<GeneralInformationFormData, {dateOfBirthday: Date}>
 }
 
 export const CustomDatePicker = React.forwardRef<DatePicker, DatePickerPropsType>((props, ref) => {
