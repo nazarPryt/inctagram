@@ -1,4 +1,3 @@
-'use client'
 import {DefaultTheme} from 'styled-components'
 import {typography} from './typography'
 

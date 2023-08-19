@@ -1,7 +1,7 @@
 import {ChangeEvent, Dispatch, SetStateAction} from 'react'
 import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
 import {Option} from '../../AccountManagement'
-import {PersonalAccountContainer} from './PersonalAccount.styled'
+import {AccountManagementContainer} from '../../../../shared/styles/AccountManagementContainer.styled'
 
 type PropsType = {
     selectedValue: Option
@@ -15,7 +15,7 @@ export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) =>
     return (
         <>
             <h4> Account type:</h4>
-            <PersonalAccountContainer>
+            <AccountManagementContainer>
                 <RadioInput
                     label={'Personal'}
                     value={'personal'}
@@ -28,7 +28,7 @@ export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) =>
                     checked={selectedValue === 'business'}
                     onChange={handleRadioChange}
                 />
-            </PersonalAccountContainer>
+            </AccountManagementContainer>
         </>
     )
 }
