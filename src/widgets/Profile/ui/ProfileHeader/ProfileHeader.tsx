@@ -5,14 +5,14 @@ import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
-import {ProfileHeaderLoader} from 'widgets/Profile/ui/ProfileHeader/ProfileHeaderLoader'
+import {Loader} from 'shared/ui/Loader'
 
 export const ProfileHeader = () => {
     const {t} = useTranslation()
     const {data: userData, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
-        return <ProfileHeaderLoader />
+        return <Loader />
     }
 
     if (userData) {
