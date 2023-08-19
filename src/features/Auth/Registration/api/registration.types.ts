@@ -25,7 +25,7 @@ export const RegistrationFormSchema = yup
             .string()
             .trim()
             .oneOf([yup.ref('password')], 'Your passwords do not match.'),
-        checkbox: yup.boolean().required(),
+        checkbox: yup.boolean().oneOf([true], 'checkbox').required(),
     })
     .required('You have to confirm password.')
 
