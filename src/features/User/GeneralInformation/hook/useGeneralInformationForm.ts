@@ -1,22 +1,13 @@
 import {useRef} from 'react'
 import {useForm} from 'react-hook-form'
-import {useAppDispatch} from '../../../shared/hooks/reduxHooks'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {toDate} from 'date-fns'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import DatePicker from 'react-datepicker'
-import {useUpdateUserMutation} from '../../../redux/api/profileAPI'
-import {SetAppNotificationAC} from '../../../_app/store/appSlice'
-import {UserProfile} from '../../../redux/types/authTypes'
-
-export interface IFormInput {
-    userName: string
-    firstName: string
-    lastName: string
-    dateOfBirth: Date
-    city: string
-    aboutMe: string
-}
+import {SetAppNotificationAC} from '_app/store/appSlice'
+import {UserProfile} from 'redux/types/authTypes'
+import {useUpdateUserMutation} from 'features/User/GeneralInformation/api/updateUser.api'
 
 const schema = yup.object().shape({
     userName: yup
@@ -34,22 +25,26 @@ const schema = yup.object().shape({
         .max(200, 'About me field must be at least 200 characters long'),
 })
 
+type FormData = yup.InferType<typeof schema>
+
 export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
     const dispatch = useAppDispatch()
+    const [updateProfile] = useUpdateUserMutation()
+
     const datePickerRef = useRef<DatePicker>(null)
+
     const {
         register,
         control,
         handleSubmit,
         formState: {errors},
         ...rest
-    } = useForm<IFormInput>({
+    } = useForm<FormData>({
         resolver: yupResolver(schema),
         defaultValues: {...data, dateOfBirth: new Date(data.dateOfBirth)},
     })
-    const [updateProfile] = useUpdateUserMutation()
 
-    const onSubmit = async (data: IFormInput) => {
+    const onSubmit = async (data: FormData) => {
         const result = String(toDate(data.dateOfBirth).toISOString())
         await updateProfile({
             userName: data.userName,

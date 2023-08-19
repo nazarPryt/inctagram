@@ -7,7 +7,7 @@ import {Control, Controller} from 'react-hook-form'
 import range from 'lodash/range'
 import {getMonth, getYear} from 'date-fns/fp'
 import {months} from './constants'
-import {IFormInput} from '../../../features/GeneralInformation/GeneralInformationForm/useGeneralInformationForm'
+import {IFormInput} from 'features/User/GeneralInformation/hook/useGeneralInformationForm'
 
 type DatePickerPropsType = {
     control: Control<IFormInput, {dateOfBirthday: Date}>

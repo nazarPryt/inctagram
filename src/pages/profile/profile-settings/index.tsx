@@ -1,6 +1,6 @@
 import React from 'react'
 import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {GeneralInformation} from 'features/GeneralInformation/GeneralInformation'
+import {GeneralInformation} from 'features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
 import {ProfileSettingsAccordion} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
 import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
 import {AccountManagement} from 'features/AccountManagement/AccountManagement'
