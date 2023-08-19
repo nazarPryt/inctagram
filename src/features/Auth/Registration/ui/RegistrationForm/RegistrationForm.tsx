@@ -11,8 +11,11 @@ import {useRegistrationForm} from 'features/Auth/Registration/hook/UseRegistrati
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
-import {RegistrationTerms} from 'features/Auth/Registration/ui/RegistrationTerms/RegistrationTerms'
 import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
+import {Controller} from 'react-hook-form'
+import {Checkbox} from '../../../../../shared/ui/Checkbox/Checkbox'
+import Link from 'next/link'
+import {RegistrationCheckboxWrapper} from './RegistrationForm.styled'
 
 export const RegistrationForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -56,7 +59,20 @@ export const RegistrationForm = () => {
                         {...register('passwordConfirmation')}
                         error={errors.passwordConfirmation?.message}
                     />
-                    <RegistrationTerms control={control} />
+                    <RegistrationCheckboxWrapper>
+                        <Controller
+                            control={control}
+                            name='checkbox'
+                            render={({field: {onChange, value, ref}}) => (
+                                <Checkbox checked={value} ref={ref} onChange={onChange} />
+                            )}
+                        />
+                        <p>
+                            {t.auth.signUp.userAgree}
+                            <Link href={PATH.TERMS_OF_SERVICE}>{t.auth.signUp.termsOfService}</Link> {t.auth.signUp.and}
+                            <Link href={PATH.PRIVACY_POLICY}>{t.auth.signUp.privacy}</Link>
+                        </p>
+                    </RegistrationCheckboxWrapper>
                     <Button type={'submit'} disabled={isLoading || !isValid}>
                         {t.auth.signUp.btn}
                     </Button>
