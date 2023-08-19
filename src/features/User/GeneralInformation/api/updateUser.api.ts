@@ -1,14 +1,6 @@
 import {api} from 'redux/api/api'
 import {ResponseType} from 'redux/types/authTypes'
-
-export type UpdateUserRequest = {
-    userName: string
-    firstName: string
-    lastName: string
-    city: string
-    dateOfBirth: string
-    aboutMe: string
-}
+import {UpdateUserRequest} from './updateUser.type'
 
 export const updateUserAPI = api.injectEndpoints({
     endpoints: build => ({

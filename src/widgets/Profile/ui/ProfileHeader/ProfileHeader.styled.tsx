@@ -12,15 +12,14 @@ export const ProfileHeaderWrapper = styled.div`
         width: 100%;
 
         p {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            -ms-line-clamp: 3;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            display: -webkit-box;
-            word-wrap: break-word;
+            line-height: 2rem;
+            max-height: 8rem;
             -webkit-box-orient: vertical;
-            box-orient: vertical;
+            display: block;
+            display: -webkit-box;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 4;
         }
     }
 
