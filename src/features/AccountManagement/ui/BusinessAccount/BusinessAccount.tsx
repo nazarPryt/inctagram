@@ -1,10 +1,11 @@
 import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
-import {BusinessAccountContainer, BusinessFormWrapper} from './BusinessAccount.styled'
+import {BusinessFormWrapper} from './BusinessAccount.styled'
 import {PayPal} from '../PayPal/PayPal'
 import {Stripe} from '../Stripe/Stripe'
 import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
 import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
 import {Controller} from 'react-hook-form'
+import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
 
 export const BusinessAccount = () => {
     const {data: costs} = useGetSubscriptionCostsQuery()
@@ -22,7 +23,7 @@ export const BusinessAccount = () => {
     return (
         <BusinessFormWrapper onSubmit={handleSubmit}>
             <h4>Your subscription costs:</h4>
-            <BusinessAccountContainer>
+            <AccountManagementContainer>
                 <Controller
                     control={control}
                     name='typeSubscription'
@@ -49,7 +50,7 @@ export const BusinessAccount = () => {
                         </>
                     )}
                 />
-            </BusinessAccountContainer>
+            </AccountManagementContainer>
             <span>
                 <PayPal onClick={handlePaypalPaymentType} />
                 or
