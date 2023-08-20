@@ -6,6 +6,13 @@ export type RegistrationRequestType = {
     email: string
     password: string
 }
+const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+const passwordPatternError =
+    'Password must contain 1-9;\n' +
+    'A-Z;\n' +
+    'a-z;\n' +
+    '! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _`\n' +
+    '{ | } ~'
 
 export const RegistrationFormSchema = yup
     .object({
@@ -19,9 +26,10 @@ export const RegistrationFormSchema = yup
         password: yup
             .string()
             .trim()
+            .required('Password is required')
             .min(6, 'Your password is too short, min 6 characters')
             .max(20, 'Your password is too long, max 20 characters')
-            .required('Password is required'),
+            .matches(passwordPattern, passwordPatternError),
         passwordConfirmation: yup
             .string()
             .trim()
