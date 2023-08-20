@@ -21,4 +21,10 @@ export const HeaderStyled = styled.header`
             color: ${props => props.theme.textColor['100']};
         }
     }
+
+    @media (max-width: ${props => props.theme.viewPort[768]}px) {
+        a {
+            display: none;
+        }
+    }
 `

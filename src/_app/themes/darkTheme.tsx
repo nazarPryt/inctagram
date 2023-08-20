@@ -3,6 +3,9 @@ import {typography} from './typography'
 
 export const darkTheme: DefaultTheme = {
     name: 'dark',
+    viewPort: {
+        768: '768',
+    },
     borderRadius: '4px',
     bodyColor: {
         100: '#4C4C4C',

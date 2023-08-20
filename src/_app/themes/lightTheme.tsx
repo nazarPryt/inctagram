@@ -3,6 +3,9 @@ import {typography} from './typography'
 
 export const lightTheme: DefaultTheme = {
     name: 'light',
+    viewPort: {
+        768: '768',
+    },
     borderRadius: '4px',
     bodyColor: {
         100: '#BDC1C7',

@@ -22,7 +22,7 @@ export const RegistrationFormSchema = yup
             .min(6, 'Your userName is too short, min 6 characters')
             .max(30, 'Your userName is too long, max 30 characters')
             .required('User name is required'),
-        email: yup.string().matches(emailPattern, 'email is not valid').required('Email is required'),
+        email: yup.string().trim().required('Email is required').matches(emailPattern, 'email is not valid'),
         password: yup
             .string()
             .trim()

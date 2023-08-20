@@ -18,4 +18,8 @@ export const AsideWrapper = styled.aside`
         margin-top: 180px;
         padding: 0;
     }
+
+    @media (max-width: ${props => props.theme.viewPort[768]}px) {
+        display: none;
+    }
 `

@@ -5,9 +5,10 @@ import {useState} from 'react'
 import {useForgotPasswordMutation} from 'features/Auth/ForgotPassword/api/forgotPassword.api'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {emailPattern} from 'shared/helpers/emailPattern'
 
 const schema = yup.object({
-    email: yup.string().trim().email('invalid email').required('emailErrorMessage'),
+    email: yup.string().trim().required('Email is required').matches(emailPattern, 'email is not valid'),
     recaptcha: yup.string().nonNullable().trim().required('Token is required'),
 })
 

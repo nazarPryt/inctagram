@@ -11,7 +11,7 @@ import {HandleServerError} from 'shared/helpers/HandleServerError/HandleServerEr
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
-        email: yup.string().matches(emailPattern, 'email is not valid').required(emailErrorMessage),
+        email: yup.string().trim().required(emailErrorMessage).matches(emailPattern, 'email is not valid'),
         password: yup
             .string()
             .trim()
