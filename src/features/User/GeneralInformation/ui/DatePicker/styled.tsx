@@ -4,7 +4,7 @@ export const CustomDatePickerWrapper = styled.div`
     .react-datepicker__header,
     .react-datepicker,
     .react-datepicker__today-button {
-        background-color: ${props => props.theme.bodyColor[300]};
+        background-color: ${props => props.theme.bodyColor[900]};
     }
 
     .react-datepicker__current-month {
@@ -63,6 +63,9 @@ export const CustomDatePickerWrapper = styled.div`
     .react-datepicker__day {
         color: ${props => props.theme.textColor[100]} !important;
     }
+    .react-datepicker__day:hover {
+        color: ${props => props.theme.bodyColor[900]} !important;
+    }
 
     .react-datepicker__day--outside-month {
         color: rgba(76, 76, 76, 0.71) !important;
@@ -79,7 +82,7 @@ export const CustomDatePickerWrapper = styled.div`
         position: relative;
         padding: 5px;
         font-size: 16px;
-        border: 0.5px solid ${props => props.theme.textColor[900]};
+        border: 0.5px solid ${props => props.theme.bodyColor[300]};
         outline: none !important;
     }
 
@@ -91,7 +94,7 @@ export const CustomDatePickerWrapper = styled.div`
 
     input,
     .react-datepicker-ignore-onclickoutside {
-        background-color: ${props => props.theme.bodyColor[100]};
+        background-color: ${props => props.theme.bodyColor[900]};
 
         color: ${props => props.theme.textColor[100]};
     }

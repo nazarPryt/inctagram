@@ -3,21 +3,27 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {signIn} from 'next-auth/react'
 import {PATH} from 'shared/constants/PATH'
-import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
+import {emailPattern} from 'shared/helpers/emailPattern'
+import {HandleServerError} from 'shared/helpers/HandleServerError/HandleServerError'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
-        email: yup.string().trim().email('not email').required(emailErrorMessage),
-        password: yup.string().trim().required(passwordErrorMessage),
+        email: yup.string().matches(emailPattern, 'email is not valid').required(emailErrorMessage),
+        password: yup
+            .string()
+            .trim()
+            .min(6, 'Your password is too short, min 6 characters')
+            .max(20, 'Your password is too long, max 20 characters')
+            .required('Password is required'),
     })
 }
 
 export const useLogIn = () => {
     const {t} = useTranslation()
-    const schema = getLoginFormSchema('not email', 'l;jkfljk')
+    const schema = getLoginFormSchema('email is required', 'l;jkfljk')
     const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
     type FormData = yup.InferType<typeof schema>
 
@@ -43,13 +49,9 @@ export const useLogIn = () => {
                     callbackUrl: `${DOMAIN}/${PATH.HOME}`,
                 })
             })
-            .catch(() =>
-                dispatch(
-                    SetAppNotificationAC({
-                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
-                    })
-                )
-            )
+            .catch(error => {
+                HandleServerError(error, dispatch)
+            })
     }
 
     return {

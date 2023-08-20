@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import {emailPattern} from 'shared/helpers/emailPattern'
 
 export type RegistrationRequestType = {
     userName: string
@@ -14,7 +15,7 @@ export const RegistrationFormSchema = yup
             .min(6, 'Your userName is too short, min 6 characters')
             .max(30, 'Your userName is too long, max 30 characters')
             .required('User name is required'),
-        email: yup.string().trim().email().required('Email is required'),
+        email: yup.string().matches(emailPattern, 'email is not valid').required('Email is required'),
         password: yup
             .string()
             .trim()
