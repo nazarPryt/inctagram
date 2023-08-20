@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {BurgerStyled} from 'features/Burger/ui/Burger.styled'
+import {BurgerStyled} from 'features/Burger/ui/Burger/Burger.styled'
 
 export const Burger = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)

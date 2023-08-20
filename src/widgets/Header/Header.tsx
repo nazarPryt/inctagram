@@ -5,7 +5,8 @@ import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {PATH} from 'shared/constants/PATH'
 import {Container} from 'shared/ui/Container/Container'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
-import {Burger} from 'features/Burger/ui/Burger'
+import {Burger} from 'features/Burger/ui/Burger/Burger'
+import {SheetDemo} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
 
 export const Header = () => {
     return (
@@ -15,6 +16,7 @@ export const Header = () => {
                 <Link href={PATH.HOME}>Inctagram</Link>
                 <ThemeSwitcher />
                 <LangSelect />
+                <SheetDemo />
             </Container>
         </HeaderStyled>
     )
