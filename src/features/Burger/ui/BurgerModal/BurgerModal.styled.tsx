@@ -51,6 +51,7 @@ export const SheetContentStyled = styled(SheetPrimitive.Content)`
     }
 `
 export const SheetCloseStyled = styled(SheetPrimitive.Close)`
+    cursor: pointer;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -58,21 +59,33 @@ export const SheetCloseStyled = styled(SheetPrimitive.Close)`
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-    opacity: 0.7;
+    opacity: 0.9;
 
     span {
         position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
+        right: -52px;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        opacity: 0.9;
     }
-    :hover {
+    span:hover {
         opacity: 1;
+    }
+    span:before,
+    span:after {
+        position: absolute;
+        left: 15px;
+        content: ' ';
+        height: 33px;
+        width: 4px;
+        background-color: ${props => props.theme.textColor[100]};
+    }
+    span:before {
+        transform: rotate(45deg);
+    }
+    span:after {
+        transform: rotate(-45deg);
     }
 `
 export const SheetHeaderStyled = styled.div`

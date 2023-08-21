@@ -5,18 +5,6 @@ export const BurgerMenuStyled = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    aside {
-        width: 100%;
-
-        //nav {
-        //    align-items: center;
-        //}
-    }
-
-    //svg {
-    //    width: 50px;
-    //    height: 50px;
-    //}
 
     a {
         width: 100%;

@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 
-export const BurgerStyled = styled.button.withConfig({
+export const BurgerButtonStyled = styled.button.withConfig({
     shouldForwardProp: prop => !['isMenuOpen'].includes(prop),
 })<{isMenuOpen?: boolean}>`
     display: none;

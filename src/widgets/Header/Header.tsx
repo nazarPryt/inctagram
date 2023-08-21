@@ -11,10 +11,10 @@ export const Header = () => {
     return (
         <HeaderStyled>
             <Container>
+                <BurgerModal />
                 <Link href={PATH.HOME}>Inctagram</Link>
                 <ThemeSwitcher />
                 <LangSelect />
-                <BurgerModal />
             </Container>
         </HeaderStyled>
     )
