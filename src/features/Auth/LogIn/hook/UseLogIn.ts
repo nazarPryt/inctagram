@@ -7,7 +7,7 @@ import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
 import {emailPattern} from 'shared/helpers/emailPattern'
-import {HandleServerError} from 'shared/helpers/HandleServerError/HandleServerError'
+import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
@@ -50,10 +50,9 @@ export const useLogIn = () => {
                 })
             })
             .catch(error => {
-                HandleServerError(error, dispatch)
+                HandelLoginErrors(error, dispatch)
             })
     }
-
     return {
         handleSubmit: handleSubmit(onSubmit),
         isLoading,

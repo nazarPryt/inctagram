@@ -27,11 +27,8 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     extraOptions
 ) => {
     let result = await baseQuery(args, api, extraOptions)
-    console.log('api', api)
-    console.log('args', args)
-    console.log('extraOptions', extraOptions)
 
-    if (result.error && result.error.status === 401) {
+    if (result.error && result.error.status === 401 && api.endpoint !== 'login') {
         // try to get a new token
 
         try {
