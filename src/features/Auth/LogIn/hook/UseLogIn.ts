@@ -6,7 +6,7 @@ import {PATH} from 'shared/constants/PATH'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
-import {emailPattern} from 'shared/helpers/emailPattern'
+import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
 import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
@@ -23,7 +23,7 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
 
 export const useLogIn = () => {
     const {t} = useTranslation()
-    const schema = getLoginFormSchema('email is required', 'l;jkfljk')
+    const schema = getLoginFormSchema('email is required', '')
     const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
     type FormData = yup.InferType<typeof schema>
 

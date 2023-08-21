@@ -1,27 +1,23 @@
 import * as yup from 'yup'
-import {emailPattern} from 'shared/helpers/emailPattern'
+import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
+import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
+import {userNamePattern, userNamePatternError} from 'features/Auth/Registration/helpers/userNamePatern'
 
 export type RegistrationRequestType = {
     userName: string
     email: string
     password: string
 }
-const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-const passwordPatternError =
-    'Password must contain 1-9;\n' +
-    'A-Z;\n' +
-    'a-z;\n' +
-    '! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _`\n' +
-    '{ | } ~'
 
 export const RegistrationFormSchema = yup
     .object({
         userName: yup
             .string()
             .trim()
+            .required('User name is required')
             .min(6, 'Your userName is too short, min 6 characters')
-            .max(30, 'Your userName is too long, max 30 characters')
-            .required('User name is required'),
+            .max(30, 'Your userName is too long, max 30 characters'),
+        // .matches(userNamePattern, userNamePatternError),
         email: yup.string().trim().required('Email is required').matches(emailPattern, 'email is not valid'),
         password: yup
             .string()
