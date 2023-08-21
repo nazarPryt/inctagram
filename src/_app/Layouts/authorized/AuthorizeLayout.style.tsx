@@ -13,4 +13,10 @@ export const AuthorizedLayoutWrapper = styled.div`
     section {
         flex: 1;
     }
+
+    @media (max-width: ${props => props.theme.viewPort[768]}px) {
+        aside {
+            display: none;
+        }
+    }
 `

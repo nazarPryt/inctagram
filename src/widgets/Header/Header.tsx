@@ -5,18 +5,16 @@ import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {PATH} from 'shared/constants/PATH'
 import {Container} from 'shared/ui/Container/Container'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
-import {Burger} from 'features/Burger/ui/Burger/Burger'
-import {SheetDemo} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
+import {BurgerModal} from 'features/Burger/ui/BurgerModal/BurgerModal'
 
 export const Header = () => {
     return (
         <HeaderStyled>
             <Container>
-                <Burger />
                 <Link href={PATH.HOME}>Inctagram</Link>
                 <ThemeSwitcher />
                 <LangSelect />
-                <SheetDemo />
+                <BurgerModal />
             </Container>
         </HeaderStyled>
     )
