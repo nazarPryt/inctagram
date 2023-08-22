@@ -10,10 +10,12 @@ import {
     SheetOverlayStyled,
     SheetTitleStyled,
 } from 'features/Burger/ui/BurgerModal/BurgerModal.styled'
-import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
 import {BurgerButton} from 'features/Burger/ui/BurgerButton/BurgerButton'
+import Link from 'next/link'
+import {PATH} from 'shared/constants/PATH'
 
 const Sheet = SheetPrimitive.Root
+const SheetClose = SheetPrimitive.Close
 
 const SheetTrigger = SheetPrimitive.Trigger
 
@@ -74,7 +76,14 @@ export function BurgerModal() {
                 <BurgerButton />
             </SheetTrigger>
             <SheetContent>
-                <BurgerMenu />
+                <SheetClose asChild>
+                    <Link href={PATH.SEARCH}>SEARCH</Link>
+                </SheetClose>
+                <SheetClose asChild>
+                    <Link href={PATH.MESSENGER}>MESSENGER</Link>
+                </SheetClose>
+
+                {/*<BurgerMenu />*/}
             </SheetContent>
         </Sheet>
     )

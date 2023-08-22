@@ -32,6 +32,7 @@ export const useLogIn = () => {
 
     const {
         handleSubmit,
+        setError,
         formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
@@ -50,7 +51,7 @@ export const useLogIn = () => {
                 })
             })
             .catch(error => {
-                HandelLoginErrors(error, dispatch)
+                HandelLoginErrors(error, dispatch, setError)
             })
     }
     return {
