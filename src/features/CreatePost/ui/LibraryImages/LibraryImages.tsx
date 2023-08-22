@@ -30,11 +30,11 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
         dispatch(createPostAC.setPreviewPicture(data))
     }
 
-    const handleDeletePicture = (id: string) => {
-        const newLibrary = libraryPictures.find(el => el.id !== id)
-        const newImagePreview = libraryPictures[0]
+    const handleDeletePicture = async (id: string) => {
+        const newLibrary = libraryPictures.find(el => el.id === id)
+        newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
+        const newImagePreview = libraryPictures.filter(el => el.id !== id)[0]
         handleSetPreviewPicture(newImagePreview)
-        newLibrary && dispatch(createPostAC.deleteImageFromLibrary(newLibrary))
     }
 
     const handlerAddPhoto = () => {

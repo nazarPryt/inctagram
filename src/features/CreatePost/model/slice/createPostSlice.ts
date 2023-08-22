@@ -59,7 +59,9 @@ const createPostSlice = createSlice({
         deleteImageFromLibrary: (state, action: PayloadAction<LibraryPictureType>) => {
             const currentIndex = state.libraryPictures.findIndex(el => el.img === action.payload.img)
 
-            delete state.libraryPictures[currentIndex]
+            if (currentIndex !== -1) {
+                state.libraryPictures.splice(currentIndex, 1)
+            }
         },
         clearLibraryImages: (state, action) => {
             state.libraryPictures = action.payload
