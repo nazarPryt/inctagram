@@ -13,6 +13,11 @@ import {
 import {BurgerButton} from 'features/Burger/ui/BurgerButton/BurgerButton'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
+import {CreatePost} from 'features/CreatePost/CreatePost'
+import {LogOutModal} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal'
+import {useTranslation} from 'shared/hooks/useTranslation'
+import {BurgerMenuStyled} from 'features/Burger/ui/BurgerMenu/BurgerMenu.styled'
+import styled from 'styled-components'
 
 const Sheet = SheetPrimitive.Root
 const SheetClose = SheetPrimitive.Close
@@ -38,7 +43,7 @@ const SheetContent = forwardRef<React.ElementRef<typeof SheetPrimitive.Content>,
             <SheetOverlay />
             <SheetContentStyled ref={ref} className={className} {...props}>
                 {children}
-                <SheetCloseStyled>
+                <SheetCloseStyled asChild>
                     <span></span>
                 </SheetCloseStyled>
             </SheetContentStyled>
@@ -69,22 +74,40 @@ const SheetDescription = forwardRef<
 >(({className, ...props}, ref) => <SheetDescriptionStyled ref={ref} className={className} {...props} />)
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
-export function BurgerModal() {
+export function BurgerModal(props: ComponentPropsWithoutRef<'div'>) {
+    const {t} = useTranslation()
     return (
-        <Sheet>
-            <SheetTrigger asChild>
-                <BurgerButton />
-            </SheetTrigger>
-            <SheetContent>
-                <SheetClose asChild>
-                    <Link href={PATH.SEARCH}>SEARCH</Link>
-                </SheetClose>
-                <SheetClose asChild>
-                    <Link href={PATH.MESSENGER}>MESSENGER</Link>
-                </SheetClose>
-
-                {/*<BurgerMenu />*/}
-            </SheetContent>
-        </Sheet>
+        <BurgerModalStyled {...props}>
+            <Sheet>
+                <SheetTrigger asChild>
+                    <BurgerButton />
+                </SheetTrigger>
+                <SheetContent>
+                    <BurgerMenuStyled>
+                        <SheetClose asChild>
+                            <Link href={PATH.HOME}>{t.aside.home}</Link>
+                        </SheetClose>
+                        <CreatePost />
+                        <SheetClose asChild>
+                            <Link href={PATH.MY_PROFILE}>{t.aside.myProfile}</Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href={PATH.MESSENGER}>{t.aside.messenger}</Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href={PATH.SEARCH}>{t.aside.search}</Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href={PATH.STATISTICS}>{t.aside.statistics}</Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href={PATH.FAVORITES}>{t.aside.favorites}</Link>
+                        </SheetClose>
+                        <LogOutModal />
+                    </BurgerMenuStyled>
+                </SheetContent>
+            </Sheet>
+        </BurgerModalStyled>
     )
 }
+export const BurgerModalStyled = styled.div``
