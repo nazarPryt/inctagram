@@ -4,8 +4,9 @@ import {NotificationIconWrapper} from './NotificationIcon.styled'
 
 type PropsType = {
     notificationCount: number
+    hasNotification: boolean
 }
-export const NotificationIcon = ({notificationCount}: PropsType) => {
+export const NotificationIcon = ({notificationCount, hasNotification}: PropsType) => {
     return (
         <NotificationIconWrapper>
             <IconButton>
@@ -15,7 +16,7 @@ export const NotificationIcon = ({notificationCount}: PropsType) => {
                         fill='white'
                     />
                 </svg>
-                <span>{notificationCount}</span>
+                {hasNotification && <span>{notificationCount}</span>}
             </IconButton>
         </NotificationIconWrapper>
     )
