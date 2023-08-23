@@ -7,7 +7,6 @@ import {Container} from 'shared/ui/Container/Container'
 
 export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     return (
-        // @ts-ignore
         <Unauthorized>
             <Container>
                 <AuthorizedLayoutWrapper>

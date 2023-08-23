@@ -5,13 +5,13 @@ import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {PATH} from 'shared/constants/PATH'
 import {Container} from 'shared/ui/Container/Container'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
-import {BurgerModal} from 'features/Burger/ui/BurgerModal/BurgerModal'
+import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
 
 export const Header = () => {
     return (
         <HeaderStyled>
             <Container>
-                <BurgerModal className={'BurgerModal'} />
+                <BurgerMenu className={'BurgerMenu'} />
                 <Link className={'InctagramLogo'} href={PATH.HOME}>
                     Inctagram
                 </Link>

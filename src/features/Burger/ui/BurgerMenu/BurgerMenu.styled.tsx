@@ -25,3 +25,4 @@ export const BurgerMenuStyled = styled.nav`
         }
     }
 `
+export const BurgerModalStyled = styled.div``
