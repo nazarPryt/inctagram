@@ -8,6 +8,7 @@ interface IPalette {
     700: string
     900: string
 }
+
 interface IViewPort {
     768: string //todo check & add relevant Screen sizes and breakpoints
 }
@@ -22,6 +23,7 @@ interface ITypographyType {
     lineHeightL: string
 
     // font sizes
+    fontSizeNotification: string
     fontSizeXS: string
     fontSizeS: string
     fontSizeM: string

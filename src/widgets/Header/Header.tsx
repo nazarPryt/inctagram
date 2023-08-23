@@ -6,6 +6,7 @@ import {PATH} from 'shared/constants/PATH'
 import {Container} from 'shared/ui/Container/Container'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
 import {BurgerModal} from 'features/Burger/ui/BurgerModal/BurgerModal'
+import {NotificationIcon} from '../../features/Notification/ui/NotificationIcon/NotificationIcon'
 
 export const Header = () => {
     return (
@@ -14,6 +15,7 @@ export const Header = () => {
                 <BurgerModal />
                 <Link href={PATH.HOME}>Inctagram</Link>
                 <ThemeSwitcher />
+                <NotificationIcon notificationCount={3} />
                 <LangSelect />
             </Container>
         </HeaderStyled>
