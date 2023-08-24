@@ -15,7 +15,7 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
-// const inter = Inter({subsets: ['latin']})
+//const inter = Inter({subsets: ['latin']})
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
     const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
