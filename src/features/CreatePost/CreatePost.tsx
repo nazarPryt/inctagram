@@ -19,6 +19,9 @@ import {NavButton} from '../../widgets/Aside/ui/NavButton/NavButton'
 import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
 import {createPostAC} from './model/slice/createPostSlice'
 import {useCreatePostMutation, useUploadImageMutation} from './service/createPost'
+import {Button} from '../../shared/ui/Button/Button'
+import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
+import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
@@ -29,7 +32,7 @@ export const CreatePost = () => {
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
     const [isOpen, setIsOpen] = useState(false)
-
+    const [isNotice, setIsNotice] = useState(false)
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
         let url = URL.createObjectURL(e.target.files[0])
@@ -49,8 +52,18 @@ export const CreatePost = () => {
     }
 
     const handleClose = () => {
-        setIsOpen(false)
-        dispatch(createPostAC.clearAllState())
+        if (libraryPictures.length !== 0) {
+            setIsNotice(true)
+        } else {
+            setIsOpen(false)
+            dispatch(createPostAC.clearAllState())
+        }
+
+        if (libraryPictures.length !== 0 && isNotice) {
+            setIsNotice(false)
+            setIsOpen(false)
+            dispatch(createPostAC.clearAllState())
+        }
     }
 
     const handleChangeStep = (step: string) => {
@@ -140,9 +153,10 @@ export const CreatePost = () => {
         <>
             <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
 
-            <Modal title={t.create.steps.addPhoto} isOpen={isOpen} handleClose={handleClose}>
+            <Modal title={t.create.modalTitle} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader />}
+
                     {step !== t.create.steps.addPhoto && (
                         <EditorButtons
                             isLoading={isLoadingImage}
@@ -151,7 +165,7 @@ export const CreatePost = () => {
                             onChangeStep={handleChangeStep}
                         />
                     )}
-                    <EditorWrapper>
+                    <EditorWrapper $isAddPhoto={step === t.create.steps.addPhoto}>
                         {previewImage.length ? (
                             <CanvasContainer editorRef={editorRef} prepareImageToSend={prepareImageToSend} />
                         ) : (
@@ -162,12 +176,13 @@ export const CreatePost = () => {
 
                         {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
                         {step === t.create.steps.describe && <Describe />}
-                        {step === t.create.steps.addPhoto && <SelectPhoto handleCreatePost={handleUploadImage} />}
+                        {step === t.create.steps.addPhoto && <CreatePostPanel />}
                         {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
                     </EditorWrapper>
                 </ModalContentWrapper>
+                <CloseOrSaveToDraft isNotice={isNotice} handleClose={setIsNotice} handleDelete={handleClose} />
             </Modal>
         </>
     )
