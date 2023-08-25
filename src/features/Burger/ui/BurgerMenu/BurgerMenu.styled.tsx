@@ -1,35 +1,28 @@
 import styled from 'styled-components'
 
-export const BurgerMenuStyled = styled.div`
+export const BurgerMenuStyled = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 
-    a {
-        width: 100%;
+    a,
+    button {
+        text-decoration: none;
         font-size: 35px;
-        margin-top: 0 !important;
+        font-weight: bold;
+        color: ${props => props.theme.textColor['100']};
+    }
 
-        span {
-            width: 30px;
-            height: 30px;
-
-            svg {
-                width: 100%;
-                height: 100%;
-            }
-        }
+    a:hover,
+    button:hover {
+        color: ${props => props.theme.palette.primary['100']};
+        transition: 0.1s linear;
     }
     button {
-        width: 100%;
-        font-size: 35px;
-        margin-top: 0 !important;
-        padding: 0;
-
         svg {
-            width: 30px;
-            height: 30px;
+            display: none;
         }
     }
 `
+export const BurgerModalStyled = styled.div``
