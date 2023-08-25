@@ -1,6 +1,10 @@
 import styled from 'styled-components'
+import {typography} from '_app/themes/mixins'
 
 export const HeaderStyled = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     border-bottom: 1px solid ${props => props.theme.bodyColor['100']};
@@ -8,18 +12,11 @@ export const HeaderStyled = styled.header`
     z-index: 2;
     background-color: ${props => props.theme.bodyColor['700']};
 
-    & > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        a {
-            padding: 12px 0;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 26px;
-            color: ${props => props.theme.textColor['100']};
-        }
+    a {
+        padding: 12px 0;
+        text-decoration: none;
+        ${typography.Large()}
+        color: ${props => props.theme.textColor['100']};
     }
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {

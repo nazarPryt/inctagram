@@ -1,21 +1,21 @@
 import React, {PropsWithChildren, ReactElement} from 'react'
 import {Aside} from 'widgets/Aside/Aside'
 import {NextPage} from 'next'
-import {Unauthorized} from '_app/Layouts/unauthorized/Unauthorized'
 import {AuthorizedLayoutWrapper} from '_app/Layouts/authorized/AuthorizeLayout.style'
 import {Container} from 'shared/ui/Container/Container'
+import {Header} from 'widgets/Header/Header'
+import {NotificationBar} from 'features/NotificationBar/NotificationBar'
 
 export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     return (
-        // @ts-ignore
-        <Unauthorized>
-            <Container>
-                <AuthorizedLayoutWrapper>
-                    <Aside />
-                    <section>{children}</section>
-                </AuthorizedLayoutWrapper>
-            </Container>
-        </Unauthorized>
+        <Container>
+            <AuthorizedLayoutWrapper>
+                <Header />
+                <Aside />
+                <section>{children}</section>
+            </AuthorizedLayoutWrapper>
+            <NotificationBar />
+        </Container>
     )
 }
 
