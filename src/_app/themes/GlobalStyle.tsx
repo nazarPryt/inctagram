@@ -1,31 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: Inter-400;
-    src: url('/fonts/inter-latin-400.woff') format('woff');
-    font-weight: 400;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: Inter-500;
-    src: url('/fonts/inter-latin-500.woff') format('woff');
-    font-weight: 500;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: Inter-600;
-    src: url('/fonts/inter-latin-600.woff') format('woff');
-    font-style: normal;
-    font-weight:600;
-    font-display: block;
-  }
-  @font-face {
-    font-family: Inter-700;
-    src: url('/fonts/inter-latin-700.woff') format('woff');
-    font-weight: 700;
-    font-display: swap;
-  }
   *,
   *::before,
   *::after {
@@ -44,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed;
     height: 100vh;
     margin: 0;
-    font-family: Inter-600 ;
+    font-family: 'Inter Variable', sans-serif;
 
     &.isModalOpen {
       overflow: hidden;

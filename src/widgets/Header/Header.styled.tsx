@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {typography} from '_app/themes/mixins'
 
 export const HeaderStyled = styled.header`
     position: sticky;
@@ -16,8 +17,7 @@ export const HeaderStyled = styled.header`
         a {
             padding: 12px 0;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 26px;
+            ${typography.Large()}
             color: ${props => props.theme.textColor['100']};
         }
     }

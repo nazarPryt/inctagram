@@ -5,7 +5,7 @@ import {Providers} from '_app/Provider'
 import {useLoader} from 'shared/hooks/useLoader'
 import 'shared/styles/nprogress.css'
 import {SessionProvider} from 'next-auth/react'
-import {Inter} from 'next/font/google'
+import '@fontsource-variable/inter'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode

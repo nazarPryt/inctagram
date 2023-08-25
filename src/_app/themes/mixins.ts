@@ -3,7 +3,7 @@ import {css} from 'styled-components'
 class TypographyClass {
     Large() {
         return css`
-            font-family: Inter-600;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 600;
             font-size: 1.625rem;
             line-height: 2.25rem;
@@ -11,7 +11,7 @@ class TypographyClass {
     }
     H1() {
         return css`
-            font-family: Inter-700;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 700;
             font-size: 1.25rem;
             line-height: 2.25rem;
@@ -19,7 +19,7 @@ class TypographyClass {
     }
     H2() {
         return css`
-            font-family: Inter-700;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 700;
             font-size: 1.125rem;
             line-height: 1.5rem;
@@ -27,7 +27,7 @@ class TypographyClass {
     }
     H3() {
         return css`
-            font-family: Inter-700;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 700;
             font-size: 1rem;
             line-height: 2.25rem;
@@ -35,7 +35,7 @@ class TypographyClass {
     }
     regular_text_16() {
         return css`
-            font-family: Inter-400;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 400;
             font-size: 1rem;
             line-height: 1.5rem;
@@ -43,7 +43,7 @@ class TypographyClass {
     }
     Bold_text_16() {
         return css`
-            font-family: Inter-700;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 700;
             font-size: 1rem;
             line-height: 1.5rem;
@@ -51,7 +51,7 @@ class TypographyClass {
     }
     regular_text_14() {
         return css`
-            font-family: Inter-400;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 400;
             font-size: 0.875rem;
             line-height: 1.5rem;
@@ -59,7 +59,7 @@ class TypographyClass {
     }
     Medium_text_14() {
         return css`
-            font-family: Inter-500;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 500;
             font-size: 0.875rem;
             line-height: 1.5rem;
@@ -67,7 +67,7 @@ class TypographyClass {
     }
     bold_text_14() {
         return css`
-            font-family: Inter-700;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 700;
             font-size: 0.875rem;
             line-height: 1.5rem;
@@ -75,7 +75,7 @@ class TypographyClass {
     }
     small_text() {
         return css`
-            font-family: Inter-400;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 400;
             font-size: 0.75rem;
             line-height: 1rem;
@@ -83,7 +83,7 @@ class TypographyClass {
     }
     Semi_bold_small_text() {
         return css`
-            font-family: Inter-600;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 600;
             font-size: 0.75rem;
             line-height: 1rem;
@@ -91,7 +91,7 @@ class TypographyClass {
     }
     regular_link() {
         return css`
-            font-family: Inter-400;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 400;
             font-size: 0.875rem;
             line-height: 1.5rem;
@@ -99,7 +99,7 @@ class TypographyClass {
     }
     small_link() {
         return css`
-            font-family: Inter-400;
+            font-family: 'Inter Variable', sans-serif;
             font-weight: 400;
             font-size: 0.75rem;
             line-height: 1rem;

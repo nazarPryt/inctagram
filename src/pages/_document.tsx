@@ -30,10 +30,6 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head lang='en'>
-                    <link rel='preload' href='/fonts/inter-latin-400.woff' as='font' type='font/woff' crossOrigin='' />
-                    <link rel='preload' href='/fonts/inter-latin-500.woff' as='font' type='font/woff' crossOrigin='' />
-                    <link rel='preload' href='/fonts/inter-latin-600.woff' as='font' type='font/woff' crossOrigin='' />
-                    <link rel='preload' href='/fonts/inter-latin-700.woff' as='font' type='font/woff' crossOrigin='' />
                     {
                         // @ts-ignore
                         this.props.styleTags
