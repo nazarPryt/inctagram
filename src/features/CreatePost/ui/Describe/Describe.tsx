@@ -15,7 +15,7 @@ export const Describe = () => {
     const describeText = useAppSelector(state => state.createPost.describeText)
 
     const {data, isLoading} = useGetUserProfileQuery()
-
+    console.log(data)
     const changeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(createPostAC.setDescribeText(e.target.value.trim()))
     }
@@ -26,9 +26,9 @@ export const Describe = () => {
                 <AvatarWrapper>
                     {data ? (
                         <Image
-                            src={data.avatars[0].url}
-                            width={data.avatars[0].width}
-                            height={data.avatars[0].height}
+                            src={data.avatars.length ? data.avatars[0].url : ''}
+                            width={data.avatars.length ? data.avatars[0].width : 100}
+                            height={data.avatars.length ? data.avatars[0].height : 100}
                             alt={'avatar'}
                         />
                     ) : (
