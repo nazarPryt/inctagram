@@ -4,4 +4,7 @@ export const UnauthorizedStyled = styled.div`
     .InctagramLogo {
         display: block;
     }
+    .BurgerMenu {
+        display: none;
+    }
 `
