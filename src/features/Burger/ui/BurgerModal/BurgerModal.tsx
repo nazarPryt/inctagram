@@ -10,10 +10,9 @@ import {
     SheetOverlayStyled,
     SheetTitleStyled,
 } from 'features/Burger/ui/BurgerModal/BurgerModal.styled'
-import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
-import {BurgerButton} from 'features/Burger/ui/BurgerButton/BurgerButton'
 
 const Sheet = SheetPrimitive.Root
+const SheetClose = SheetPrimitive.Close
 
 const SheetTrigger = SheetPrimitive.Trigger
 
@@ -36,7 +35,7 @@ const SheetContent = forwardRef<React.ElementRef<typeof SheetPrimitive.Content>,
             <SheetOverlay />
             <SheetContentStyled ref={ref} className={className} {...props}>
                 {children}
-                <SheetCloseStyled>
+                <SheetCloseStyled asChild>
                     <span></span>
                 </SheetCloseStyled>
             </SheetContentStyled>
@@ -67,15 +66,4 @@ const SheetDescription = forwardRef<
 >(({className, ...props}, ref) => <SheetDescriptionStyled ref={ref} className={className} {...props} />)
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
-export function BurgerModal() {
-    return (
-        <Sheet>
-            <SheetTrigger asChild>
-                <BurgerButton />
-            </SheetTrigger>
-            <SheetContent>
-                <BurgerMenu />
-            </SheetContent>
-        </Sheet>
-    )
-}
+export {Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription}

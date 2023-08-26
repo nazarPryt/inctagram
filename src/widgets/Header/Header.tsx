@@ -1,23 +1,24 @@
-import React from 'react'
+import React, {ComponentPropsWithoutRef} from 'react'
 import {HeaderStyled} from 'widgets/Header/Header.styled'
 import Link from 'next/link'
 import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {PATH} from 'shared/constants/PATH'
-import {Container} from 'shared/ui/Container/Container'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
 import {BurgerModal} from 'features/Burger/ui/BurgerModal/BurgerModal'
 import {Notification} from '../../features/Notification/ui/Notification/Notification'
+import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
 
-export const Header = () => {
+export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
     return (
-        <HeaderStyled>
-            <Container>
+        <HeaderStyled  {...props}>
+            <BurgerMenu className={'BurgerMenu'} />
                 <BurgerModal />
-                <Link href={PATH.HOME}>Inctagram</Link>
+                <Link className={'InctagramLogo'} href={PATH.HOME}>
+                    Inctagram
+                </Link>
                 <ThemeSwitcher />
                 <Notification />
                 <LangSelect />
-            </Container>
         </HeaderStyled>
     )
 }
