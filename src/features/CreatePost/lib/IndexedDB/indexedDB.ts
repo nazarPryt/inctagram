@@ -6,6 +6,7 @@ export interface UserDB extends DBSchema {
         key: number
         value: {
             drafts: LibraryPictureType[]
+            description: string
         }
     }
 }
@@ -20,17 +21,45 @@ if (typeof window !== 'undefined') {
     })
 }
 
-async function addToDraft(data: LibraryPictureType[]) {
+const addToDraft = async (data: LibraryPictureType[], description: string) => {
     if (!dbPromise) return
 
     const db = await dbPromise
     const tx = db.transaction('draftImages', 'readwrite')
     const store = tx.objectStore('draftImages')
-    await store.add({drafts: data})
+    await store.add({drafts: data, description})
     await tx.done
 }
 
-async function getAllDrafts() {
+const clearIndexedDB = (objectStoreName: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('userDatabase')
+
+        request.onerror = function (event) {
+            reject('Ошибка при открытии базы данных')
+        }
+
+        request.onsuccess = function (event) {
+            const db = (event.target as IDBRequest).result
+            if (db instanceof IDBDatabase) {
+                const transaction = db.transaction(objectStoreName, 'readwrite')
+                const objectStore = transaction.objectStore(objectStoreName)
+
+                const clearRequest = objectStore.clear()
+
+                clearRequest.onsuccess = function (event) {
+                    resolve('Данные успешно очищены')
+                }
+
+                clearRequest.onerror = function (event) {
+                    reject('Ошибка при очистке данных')
+                }
+            }
+        }
+    })
+}
+
+const getAllDrafts = async () => {
     if (!dbPromise) return []
 
     const db = await dbPromise
@@ -39,4 +68,4 @@ async function getAllDrafts() {
     return store.getAll()
 }
 
-export {addToDraft, getAllDrafts}
+export {addToDraft, getAllDrafts, clearIndexedDB}

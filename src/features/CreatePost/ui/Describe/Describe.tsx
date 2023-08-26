@@ -8,14 +8,18 @@ import SkeletonTitle from 'shared/assets/icons/skeletonTitle.svg'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useTranslation} from 'shared/hooks/useTranslation'
+import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
 
 export const Describe = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
-
     const {data, isLoading} = useGetUserProfileQuery()
-    console.log(data)
+    const UserImage = data?.avatars.length ? (
+        <Image src={data.avatars[0].url} width={data.avatars[0].width} height={data.avatars[0].height} alt={'avatar'} />
+    ) : (
+        <EmptyAvatar />
+    )
     const changeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(createPostAC.setDescribeText(e.target.value.trim()))
     }
@@ -23,18 +27,7 @@ export const Describe = () => {
     return (
         <DescribeWrapper>
             <div className='headerBlock'>
-                <AvatarWrapper>
-                    {data ? (
-                        <Image
-                            src={data.avatars.length ? data.avatars[0].url : ''}
-                            width={data.avatars.length ? data.avatars[0].width : 100}
-                            height={data.avatars.length ? data.avatars[0].height : 100}
-                            alt={'avatar'}
-                        />
-                    ) : (
-                        <SkeletonAvatar />
-                    )}
-                </AvatarWrapper>
+                <AvatarWrapper>{data ? UserImage : <SkeletonAvatar />}</AvatarWrapper>
                 <div className='userNameWrapper'>
                     <span>{data ? data.userName : <SkeletonTitle />}</span>
                 </div>

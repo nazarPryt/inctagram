@@ -3,7 +3,7 @@ import {Modal} from '../../../../shared/ui/Modal/Modal'
 import {Button} from '../../../../shared/ui/Button/Button'
 import {SaveToDraftWrapper} from './styled'
 import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {addToDraft} from '../../lib/IndexedDB/indexedDB'
+import {addToDraft, clearIndexedDB} from '../../lib/IndexedDB/indexedDB'
 
 type SaveToDraftType = {
     isNotice: boolean
@@ -18,11 +18,17 @@ export const CloseOrSaveToDraft = (props: SaveToDraftType) => {
         props.handleClose(false)
     }
 
-    const handleSaveToDraft = () => {
+    const handleSaveToDraft = async () => {
         if (libraryPictures.length !== 0) {
-            addToDraft(libraryPictures)
+            await clearIndexedDB('draftImages')
+            await addToDraft(libraryPictures, describeText)
             props.handleDelete()
         }
+    }
+
+    const refusalToSave = async () => {
+        props.handleDelete()
+        await clearIndexedDB('draftImages')
     }
 
     return (
@@ -31,7 +37,7 @@ export const CloseOrSaveToDraft = (props: SaveToDraftType) => {
                 <span>{t.create.saveToDraftModal.text}</span>
                 <span>{t.create.saveToDraftModal.textNext}</span>
                 <div>
-                    <Button variant={'outlined'} onClick={props.handleDelete}>
+                    <Button variant={'outlined'} onClick={refusalToSave}>
                         {t.create.saveToDraftModal.buttons.discard}
                     </Button>
                     <Button onClick={handleSaveToDraft}>{t.create.saveToDraftModal.buttons.save}</Button>
