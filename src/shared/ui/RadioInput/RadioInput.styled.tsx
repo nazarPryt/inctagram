@@ -6,8 +6,8 @@ export const RadioInputWrapper = styled.label`
     cursor: pointer;
 
     input[type='radio'] {
-        position: absolute;
         opacity: 0;
+        position: absolute;
     }
 
     .radioIcon {

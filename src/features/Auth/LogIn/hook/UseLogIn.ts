@@ -1,21 +1,30 @@
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
+import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
+import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
-        email: yup.string().trim().email('not email').required(emailErrorMessage),
-        password: yup.string().trim().required(passwordErrorMessage),
+        email: yup.string().trim().required(emailErrorMessage).matches(emailPattern, 'email is not valid'),
+        password: yup
+            .string()
+            .trim()
+            .required('Password is required')
+            .min(6, 'Your password is too short, min 6 characters')
+            .max(20, 'Your password is too long, max 20 characters'),
     })
 }
 
 export const useLogIn = () => {
-    const schema = getLoginFormSchema('not email', 'l;jkfljk')
+    const {t} = useTranslation()
+    const schema = getLoginFormSchema('email is required', '')
+    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()
@@ -23,13 +32,14 @@ export const useLogIn = () => {
 
     const {
         handleSubmit,
+        setError,
         formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
         resolver: yupResolver(schema),
         mode: 'onTouched',
         reValidateMode: 'onChange',
-        defaultValues: {email: 'sevoyo7702@soremap.com', password: '123456'},
+        defaultValues: {email: 'sayagih520@xgh6.com', password: 'qwertQ1!'},
     })
     const onSubmit = async (data: FormData) => {
         login({email: data.email, password: data.password})
@@ -37,13 +47,9 @@ export const useLogIn = () => {
             .then(async payload => {
                 cookie.save(accessToken, payload.accessToken, {path: ''})
             })
-            .catch(() =>
-                dispatch(
-                    SetAppNotificationAC({
-                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
-                    })
-                )
-            )
+            .catch(error => {
+                HandelLoginErrors(error, dispatch, setError)
+            })
     }
 
     return {

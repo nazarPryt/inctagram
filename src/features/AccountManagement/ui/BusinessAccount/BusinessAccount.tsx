@@ -1,43 +1,61 @@
-import {ChangeEvent, useState} from 'react'
 import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
-import {BusinessAccountContainer} from './BusinessAccount.styled'
-
-export enum OptionForCosts {
-    ONE_DAY_COST = '10',
-    SEVEN_DAY_COST = '50',
-    MONTH_COST = '100',
-}
+import {BusinessFormWrapper} from './BusinessAccount.styled'
+import {PayPal} from '../PayPal/PayPal'
+import {Stripe} from '../Stripe/Stripe'
+import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
+import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
+import {Controller} from 'react-hook-form'
+import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
 
 export const BusinessAccount = () => {
-    const [selectedCostsValue, setSelectedCostsValue] = useState<OptionForCosts>(OptionForCosts.ONE_DAY_COST)
+    const {data: costs} = useGetSubscriptionCostsQuery()
+    const {handleSubmit, control, setValue} = useCreateNewSubscription()
 
-    const handleCostsRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedCostsValue(event.target.value as OptionForCosts)
+    const handleStripePaymentType = () => {
+        setValue('paymentType', 'STRIPE')
+        return handleSubmit()
+    }
+    const handlePaypalPaymentType = () => {
+        setValue('paymentType', 'PAYPAL')
+        return handleSubmit()
     }
 
     return (
-        <>
+        <BusinessFormWrapper onSubmit={handleSubmit}>
             <h4>Your subscription costs:</h4>
-            <BusinessAccountContainer>
-                <RadioInput
-                    label={'$10 per 1 Day'}
-                    value={OptionForCosts.ONE_DAY_COST}
-                    checked={selectedCostsValue === OptionForCosts.ONE_DAY_COST}
-                    onChange={handleCostsRadioChange}
+            <AccountManagementContainer>
+                <Controller
+                    control={control}
+                    name='typeSubscription'
+                    render={({field: {onChange, value}}) => (
+                        <>
+                            <RadioInput
+                                label={`$10 per month`}
+                                value={'MONTHLY'}
+                                onChange={onChange}
+                                checked={value === 'MONTHLY'}
+                            />
+                            <RadioInput
+                                onChange={onChange}
+                                label={'$50 per half-year'}
+                                value={'SEMI_ANNUALLY'}
+                                checked={value === 'SEMI_ANNUALLY'}
+                            />
+                            <RadioInput
+                                label={'$100 per year'}
+                                onChange={onChange}
+                                value={'YEARLY'}
+                                checked={value === 'YEARLY'}
+                            />
+                        </>
+                    )}
                 />
-                <RadioInput
-                    label={'$50 per 7 Day'}
-                    value={OptionForCosts.SEVEN_DAY_COST}
-                    checked={selectedCostsValue === OptionForCosts.SEVEN_DAY_COST}
-                    onChange={handleCostsRadioChange}
-                />
-                <RadioInput
-                    label={'$100 per month'}
-                    value={OptionForCosts.MONTH_COST}
-                    checked={selectedCostsValue === OptionForCosts.MONTH_COST}
-                    onChange={handleCostsRadioChange}
-                />
-            </BusinessAccountContainer>
-        </>
+            </AccountManagementContainer>
+            <span>
+                <PayPal onClick={handlePaypalPaymentType} />
+                or
+                <Stripe onClick={handleStripePaymentType} />
+            </span>
+        </BusinessFormWrapper>
     )
 }

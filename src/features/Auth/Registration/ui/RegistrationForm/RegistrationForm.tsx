@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
@@ -11,22 +11,18 @@ import {useRegistrationForm} from 'features/Auth/Registration/hook/UseRegistrati
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
-import {RegistrationTerms} from 'features/Auth/Registration/ui/RegistrationTerms/RegistrationTerms'
 import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
+import {Controller} from 'react-hook-form'
+import {Checkbox} from 'shared/ui/Checkbox/Checkbox'
+import Link from 'next/link'
+import {RegistrationCheckboxWrapper} from './RegistrationForm.styled'
 
 export const RegistrationForm = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const {isLoading, register, handleSubmit, errors, getValues, reset} = useRegistrationForm(setIsModalOpen)
     const {t} = useTranslation()
-    const [isChecked, setIsChecked] = useState(false)
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked)
-    }
-    const handleModalClose = () => {
-        setIsModalOpen(false)
-        reset()
-    }
+    const {isLoading, register, handleSubmit, control, isValid, errors, getValues, isModalOpen, handleModalClose} =
+        useRegistrationForm()
+
     return (
         <AuthContainer>
             {isLoading && <Loader />}
@@ -59,8 +55,21 @@ export const RegistrationForm = () => {
                         {...register('passwordConfirmation')}
                         error={errors.passwordConfirmation?.message}
                     />
-                    <RegistrationTerms isChecked={isChecked} handleCheckboxChange={handleCheckboxChange} />
-                    <Button type={'submit'} disabled={isLoading || !isChecked}>
+                    <RegistrationCheckboxWrapper>
+                        <Controller
+                            control={control}
+                            name='checkbox'
+                            render={({field: {onChange, value, ref}}) => (
+                                <Checkbox checked={value} ref={ref} onChange={onChange} />
+                            )}
+                        />
+                        <p>
+                            {t.auth.signUp.userAgree}
+                            <Link href={PATH.TERMS_OF_SERVICE}>{t.auth.signUp.termsOfService}</Link> {t.auth.signUp.and}
+                            <Link href={PATH.PRIVACY_POLICY}>{t.auth.signUp.privacy}</Link>
+                        </p>
+                    </RegistrationCheckboxWrapper>
+                    <Button type={'submit'} disabled={isLoading || !isValid}>
                         {t.auth.signUp.btn}
                     </Button>
                 </form>

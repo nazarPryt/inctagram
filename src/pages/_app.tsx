@@ -4,7 +4,7 @@ import {NextPage} from 'next'
 import {Providers} from '_app/Provider'
 import {useLoader} from 'shared/hooks/useLoader'
 import 'shared/styles/nprogress.css'
-import {Inter} from 'next/font/google'
+import '@fontsource-variable/inter'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -13,7 +13,6 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
-const inter = Inter({subsets: ['latin']})
 
 export default function App({Component, pageProps: {session, ...pageProps}}: AppPropsWithLayout) {
     useLoader()
@@ -22,16 +21,11 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
 
     return (
         <Providers>
-            {getLayout(
-                <>
-                    <style jsx global>{`
-                        html {
-                            font-family: ${inter.style.fontFamily};
-                        }
-                    `}</style>
-                    <Component {...pageProps} />
-                </>
-            )}
+                {getLayout(
+                    <>
+                        <Component {...pageProps} />
+                    </>
+                )}
         </Providers>
     )
 }

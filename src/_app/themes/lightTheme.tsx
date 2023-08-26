@@ -1,9 +1,11 @@
-'use client'
 import {DefaultTheme} from 'styled-components'
 import {typography} from './typography'
 
 export const lightTheme: DefaultTheme = {
     name: 'light',
+    viewPort: {
+        768: '768',
+    },
     borderRadius: '4px',
     bodyColor: {
         100: '#BDC1C7',
@@ -27,11 +29,6 @@ export const lightTheme: DefaultTheme = {
             500: '#397DF6',
             700: '#2F68CC',
             900: '#234E99',
-            // 100: '#80FFBF',
-            // 300: '#22E584',
-            // 500: '#14CC70',
-            // 700: '#0F9954',
-            // 900: '#0A6638',
         },
         success: {
             100: '#80FFBF',
