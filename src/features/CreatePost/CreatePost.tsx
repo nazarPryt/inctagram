@@ -33,7 +33,6 @@ export const CreatePost = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isNotice, setIsNotice] = useState(false)
     const [hasData, setHasData] = useState(false)
-    const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
 
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
