@@ -1,4 +1,4 @@
-import AvatarEditor, {ImageState} from 'react-avatar-editor'
+import AvatarEditor from 'react-avatar-editor'
 import React, {RefObject} from 'react'
 import {Wrapper} from './styled'
 import {useAppSelector} from '../../../../shared/hooks/reduxHooks'

@@ -135,7 +135,9 @@ export const ru: LocaleType = {
         logout: 'Выйти',
     },
     create: {
+        modalTitle: 'Создать пост',
         selectButton: 'Выбрать фото',
+        selectDraft: 'Открыть черновик',
         selectResize: 'Оригинал',
         steps: {
             addPhoto: 'Добавить фото',
@@ -163,6 +165,15 @@ export const ru: LocaleType = {
             },
             error: {
                 type: 'Ошибка',
+            },
+        },
+        saveToDraftModal: {
+            title: 'Закрыть',
+            text: 'Вы действительно хотите закрыть?',
+            textNext: 'Если вы закроете, все будет удалено.',
+            buttons: {
+                discard: 'Удалить',
+                save: 'Сохранить в черновик',
             },
         },
     },
