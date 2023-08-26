@@ -159,6 +159,7 @@ export const ru: LocaleType = {
                 type: 'Ошибка',
             },
         },
+        errorAddPhotoToLibrary: 'Количество фотографий не должно превышать десяти',
         createPost: {
             success: {
                 message: 'Ваш пост был добавлен',
