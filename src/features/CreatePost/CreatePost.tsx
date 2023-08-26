@@ -25,7 +25,7 @@ import {getAllDrafts} from './lib/IndexedDB/indexedDB'
 export const CreatePost = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
-    const {previewImage, previewZoom, defaultWidth, defaultHeight} = useAppSelector(state => state.createPost)
+    const {previewImage} = useAppSelector(state => state.createPost)
     const {step, libraryPictures, uploadId, describeText} = useAppSelector(state => state.createPost)
     const [post, {isLoading: isLoadingImage}] = useUploadImageMutation()
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
@@ -33,11 +33,13 @@ export const CreatePost = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isNotice, setIsNotice] = useState(false)
     const [hasData, setHasData] = useState(false)
+
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
+        dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
