@@ -131,7 +131,9 @@ export const en = {
         logout: 'Log Out',
     },
     create: {
+        modalTitle: 'Create post',
         selectButton: 'Select from computer',
+        selectDraft: 'Open Draft',
         selectResize: 'Original',
         steps: {
             addPhoto: 'Add Photo',
@@ -159,6 +161,15 @@ export const en = {
             },
             error: {
                 type: 'Error',
+            },
+        },
+        saveToDraftModal: {
+            title: 'Close',
+            text: 'Do you really want to close the creation of a publication?',
+            textNext: 'If you close everything will be deleted.',
+            buttons: {
+                discard: 'Discard',
+                save: 'Save draft',
             },
         },
     },

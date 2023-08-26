@@ -5,7 +5,6 @@ import CreateIcon from '../../shared/assets/icons/create.svg'
 import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
 import AvatarEditor from 'react-avatar-editor'
 import {EditorPanel} from './ui/EditorPanel/EditorPanel'
-import {SelectPhoto} from './ui/SelectPhoto/SelectPhoto'
 import {PresetFilters} from './ui/PresetFilters/PresetFilters'
 import {createFilteredFile} from './lib/createFilteredFile'
 import {EditorButtons} from './ui/EditorButtons/EditorButtons'
@@ -13,12 +12,15 @@ import {Describe} from './ui/Describe/Describe'
 import {CanvasContainer} from './ui/CanvasContainer/CanvasContainer'
 import {useAppDispatch, useAppSelector} from '../../shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '../../_app/store/appSlice'
-import {Loader} from '../../shared/ui/Loader/Loader'
+import {Loader} from '../../shared/ui/Loader'
 import {Modal} from '../../shared/ui/Modal/Modal'
 import {NavButton} from '../../widgets/Aside/ui/NavButton/NavButton'
 import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
 import {createPostAC} from './model/slice/createPostSlice'
 import {useCreatePostMutation, useUploadImageMutation} from './service/createPost'
+import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
+import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
+import {getAllDrafts} from './lib/IndexedDB/indexedDB'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
@@ -29,8 +31,11 @@ export const CreatePost = () => {
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
     const [isOpen, setIsOpen] = useState(false)
+    const [isNotice, setIsNotice] = useState(false)
+    const [hasData, setHasData] = useState(false)
+    const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
 
-    const handleUploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
@@ -50,8 +55,18 @@ export const CreatePost = () => {
     }
 
     const handleClose = () => {
-        setIsOpen(false)
-        dispatch(createPostAC.clearAllState())
+        if (libraryPictures.length !== 0) {
+            setIsNotice(true)
+        } else {
+            setIsOpen(false)
+            dispatch(createPostAC.clearAllState())
+        }
+
+        if (libraryPictures.length !== 0 && isNotice) {
+            setIsNotice(false)
+            setIsOpen(false)
+            dispatch(createPostAC.clearAllState())
+        }
     }
 
     const handleChangeStep = (step: string) => {
@@ -137,13 +152,21 @@ export const CreatePost = () => {
         dispatch(createPostAC.setStep(t.create.steps.addPhoto))
     }, [t.create.steps.addPhoto])
 
+    const checkData = async () => {
+        const data = await getAllDrafts()
+        setHasData(data.length > 0)
+
+        setIsOpen(true)
+    }
+
     return (
         <>
-            <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={() => setIsOpen(true)} />
+            <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={checkData} />
 
-            <Modal title={t.create.steps.addPhoto} isOpen={isOpen} handleClose={handleClose}>
+            <Modal title={t.create.modalTitle} isOpen={isOpen} handleClose={handleClose}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader />}
+
                     {step !== t.create.steps.addPhoto && (
                         <EditorButtons
                             isLoading={isLoadingImage}
@@ -152,7 +175,7 @@ export const CreatePost = () => {
                             onChangeStep={handleChangeStep}
                         />
                     )}
-                    <EditorWrapper>
+                    <EditorWrapper $isAddPhoto={step === t.create.steps.addPhoto}>
                         {previewImage.length ? (
                             <CanvasContainer editorRef={editorRef} prepareImageToSend={prepareImageToSend} />
                         ) : (
@@ -163,12 +186,13 @@ export const CreatePost = () => {
 
                         {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
                         {step === t.create.steps.describe && <Describe />}
-                        {step === t.create.steps.addPhoto && <SelectPhoto handleCreatePost={handleUploadImage} />}
+                        {step === t.create.steps.addPhoto && <CreatePostPanel hasData={hasData} />}
                         {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
                     </EditorWrapper>
                 </ModalContentWrapper>
+                <CloseOrSaveToDraft isNotice={isNotice} handleClose={setIsNotice} handleDelete={handleClose} />
             </Modal>
         </>
     )
