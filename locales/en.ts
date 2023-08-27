@@ -155,6 +155,7 @@ export const en = {
                 type: 'Error',
             },
         },
+        errorAddPhotoToLibrary: "Count of photo don't be more than ten",
         createPost: {
             success: {
                 message: 'Your post was successfully uploaded',

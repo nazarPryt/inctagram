@@ -21,6 +21,7 @@ import {useCreatePostMutation, useUploadImageMutation} from './service/createPos
 import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
 import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
+import {MAX_COUNT_PHOTO} from './constants/constants'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
@@ -36,6 +37,14 @@ export const CreatePost = () => {
 
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
+        if (libraryPictures.length + 1 > MAX_COUNT_PHOTO) {
+            dispatch(
+                SetAppNotificationAC({
+                    notifications: {type: 'error', message: t.create.errorAddPhotoToLibrary},
+                })
+            )
+            return
+        }
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
@@ -126,7 +135,8 @@ export const CreatePost = () => {
         postDescribe(postData)
             .unwrap()
             .then(() => {
-                handleClose()
+                setIsNotice(false)
+                setIsOpen(false)
                 dispatch(createPostAC.clearAllState())
                 dispatch(
                     SetAppNotificationAC({
