@@ -21,7 +21,7 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
     const handlePrepareImage = () => {
         props.prepareImageToSend(previewImage, previewFilter)
     }
-    console.log(libraryPictures)
+
     return (
         <Wrapper width={defaultWidth} height={defaultHeight}>
             <Swiper

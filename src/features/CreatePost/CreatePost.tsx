@@ -157,7 +157,7 @@ export const CreatePost = () => {
 
         setIsOpen(true)
     }
-    console.log(libraryPictures)
+
     return (
         <>
             <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={checkData} />
