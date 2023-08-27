@@ -78,8 +78,6 @@ export const CreatePost = () => {
     }
 
     const handleChangeStep = (step: string) => {
-        console.log(step)
-
         if (step === t.create.steps.addPhoto) {
             dispatch(createPostAC.clearAllState())
             return dispatch(createPostAC.setStep(step))
