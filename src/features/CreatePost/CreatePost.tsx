@@ -37,7 +37,7 @@ export const CreatePost = () => {
 
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
-        if (libraryPictures.length > MAX_COUNT_PHOTO) {
+        if (libraryPictures.length + 1 > MAX_COUNT_PHOTO) {
             dispatch(
                 SetAppNotificationAC({
                     notifications: {type: 'error', message: t.create.errorAddPhotoToLibrary},
@@ -50,6 +50,10 @@ export const CreatePost = () => {
         dispatch(createPostAC.setStep(t.create.steps.cropping))
         dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
     }
+
+    useEffect(() => {
+        console.log(libraryPictures.length)
+    }, [libraryPictures])
 
     const prepareImageToSend = async (img: string, filter: string) => {
         const currImage = libraryPictures.find(el => el.img === img)
