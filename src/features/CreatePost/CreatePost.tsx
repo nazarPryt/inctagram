@@ -51,10 +51,6 @@ export const CreatePost = () => {
         dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
     }
 
-    useEffect(() => {
-        console.log(libraryPictures.length)
-    }, [libraryPictures])
-
     const prepareImageToSend = async (img: string, filter: string) => {
         const currImage = libraryPictures.find(el => el.img === img)
         if (editorRef.current && currImage) {
