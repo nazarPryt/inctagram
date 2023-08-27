@@ -13,6 +13,8 @@ export const PopoverContentWrapper = styled.div`
     border: 1px solid ${props => props.theme.bodyColor['100']};
     z-index: 999;
     color: ${props => props.theme.textColor[100]};
+    max-height: 470px;
+    overflow-y: auto;
 
     div {
         width: 100%;

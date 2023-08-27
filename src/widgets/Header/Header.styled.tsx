@@ -24,4 +24,9 @@ export const HeaderStyled = styled.header`
             display: none;
         }
     }
+
+    .block {
+        display: flex;
+        gap: 15px;
+    }
 `

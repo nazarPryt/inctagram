@@ -190,4 +190,11 @@ export const ru: LocaleType = {
             follow: 'Подписаться',
         },
     },
+    header: {
+        notification: {
+            notifications: 'Уведомелния',
+            new: 'Новое',
+            newNotification: 'Новое уведомление!',
+        },
+    },
 }

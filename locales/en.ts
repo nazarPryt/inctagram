@@ -186,6 +186,13 @@ export const en = {
             follow: 'Follow',
         },
     },
+    header: {
+        notification: {
+            notifications: 'Notifications',
+            new: 'New',
+            newNotification: 'New notification!',
+        },
+    },
 }
 
 export type LocaleType = typeof en

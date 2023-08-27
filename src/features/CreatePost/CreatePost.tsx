@@ -26,7 +26,7 @@ import {MAX_COUNT_PHOTO} from './constants/constants'
 export const CreatePost = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
-    const {previewImage, previewZoom, defaultWidth, defaultHeight} = useAppSelector(state => state.createPost)
+    const {previewImage} = useAppSelector(state => state.createPost)
     const {step, libraryPictures, uploadId, describeText} = useAppSelector(state => state.createPost)
     const [post, {isLoading: isLoadingImage}] = useUploadImageMutation()
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
@@ -34,6 +34,7 @@ export const CreatePost = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isNotice, setIsNotice] = useState(false)
     const [hasData, setHasData] = useState(false)
+
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return
         if (libraryPictures.length > MAX_COUNT_PHOTO) {
@@ -47,6 +48,7 @@ export const CreatePost = () => {
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
+        dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
@@ -192,7 +194,9 @@ export const CreatePost = () => {
 
                         {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
                         {step === t.create.steps.describe && <Describe />}
-                        {step === t.create.steps.addPhoto && <CreatePostPanel hasData={hasData} />}
+                        {step === t.create.steps.addPhoto && (
+                            <CreatePostPanel hasData={hasData} handleCreatePost={handleUploadImage} />
+                        )}
                         {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
