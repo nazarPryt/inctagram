@@ -8,17 +8,15 @@ import {CreatePostPanelWrapper} from './styled'
 import {getAllDrafts} from '../../lib/IndexedDB/indexedDB'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 
-export const CreatePostPanel = ({hasData}: {hasData: boolean}) => {
+type PropsType = {
+    handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
+    hasData: boolean
+}
+
+export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
     const dispatch = useAppDispatch()
     const {step} = useAppSelector(state => state.createPost)
     const {t} = useTranslation()
-
-    const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return
-        let url = URL.createObjectURL(e.target.files[0])
-        dispatch(createPostAC.setPreviewImage(url))
-        dispatch(createPostAC.setStep(t.create.steps.cropping))
-    }
 
     const openDraft = async () => {
         const [userDraft] = await getAllDrafts()
@@ -48,7 +46,7 @@ export const CreatePostPanel = ({hasData}: {hasData: boolean}) => {
         <CreatePostPanelWrapper>
             {step === t.create.steps.addPhoto && (
                 <div>
-                    <SelectPhoto handleCreatePost={handleUploadImage} />
+                    <SelectPhoto handleCreatePost={handleCreatePost} />
                     {hasData && (
                         <Button variant={'outlined'} onClick={openDraft}>
                             Open Draft

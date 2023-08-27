@@ -157,7 +157,7 @@ export const CreatePost = () => {
 
         setIsOpen(true)
     }
-
+    console.log(libraryPictures)
     return (
         <>
             <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={checkData} />
@@ -185,7 +185,9 @@ export const CreatePost = () => {
 
                         {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
                         {step === t.create.steps.describe && <Describe />}
-                        {step === t.create.steps.addPhoto && <CreatePostPanel hasData={hasData} />}
+                        {step === t.create.steps.addPhoto && (
+                            <CreatePostPanel hasData={hasData} handleCreatePost={handleUploadImage} />
+                        )}
                         {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
