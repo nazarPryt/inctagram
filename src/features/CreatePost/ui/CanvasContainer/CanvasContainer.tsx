@@ -3,7 +3,7 @@ import AvatarEditor from 'react-avatar-editor'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
+import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {Wrapper} from './styled'
@@ -25,18 +25,13 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
     return (
         <Wrapper width={defaultWidth} height={defaultHeight}>
             <Swiper
-                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
+                modules={[Navigation, Pagination, A11y, Keyboard]}
                 spaceBetween={0}
                 slidesPerView={1}
                 navigation={true}
                 keyboard={true}
                 pagination={{clickable: true}}
                 scrollbar={{draggable: true}}
-                autoplay={{
-                    delay: 7000,
-                    pauseOnMouseEnter: true,
-                    disableOnInteraction: false,
-                }}
             >
                 {libraryPictures.map(img => {
                     return (
