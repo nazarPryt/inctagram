@@ -4,10 +4,12 @@ import AvatarEditor from 'react-avatar-editor'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {Wrapper} from './styled'
+import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { Wrapper } from './styled'
+
+import { useAppSelector } from 'shared/hooks/reduxHooks'
 
 type CanvasContainerType = {
   editorRef: RefObject<AvatarEditor>
@@ -23,37 +25,37 @@ export const CanvasContainer: FC<CanvasContainerType> = ({ editorRef, prepareIma
     prepareImageToSend(previewImage, previewFilter)
   }
 
-    return (
-        <Wrapper width={defaultWidth} height={defaultHeight}>
-            <Swiper
-                modules={[Navigation, Pagination, A11y, Keyboard]}
-                spaceBetween={0}
-                slidesPerView={1}
-                navigation={true}
-                keyboard={true}
-                pagination={{clickable: true}}
-                scrollbar={{draggable: true}}
-            >
-                {libraryPictures.map(img => {
-                    return (
-                        <SwiperSlide key={img.id}>
-                            <AvatarEditor
-                                ref={props.editorRef}
-                                image={img.img}
-                                width={defaultWidth}
-                                height={defaultHeight}
-                                scale={+img.zoom}
-                                border={0}
-                                onImageReady={handlePrepareImage}
-                                style={{
-                                    filter: previewFilter,
-                                }}
-                                disableHiDPIScaling={true}
-                            />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </Wrapper>
-    )
+  return (
+    <Wrapper height={defaultHeight} width={defaultWidth}>
+      <Swiper
+        keyboard
+        navigation
+        modules={[Navigation, Pagination, A11y, Keyboard]}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        slidesPerView={1}
+        spaceBetween={0}
+      >
+        {libraryPictures.map(img => {
+          return (
+            <SwiperSlide key={img.id}>
+              <AvatarEditor
+                ref={editorRef}
+                disableHiDPIScaling
+                border={0}
+                height={defaultHeight}
+                image={img.img}
+                scale={+img.zoom}
+                width={defaultWidth}
+                style={{
+                  filter: previewFilter,
+                }}
+                onImageReady={handlePrepareImage}
+              />
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
+    </Wrapper>
+  )
 }
