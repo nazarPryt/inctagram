@@ -1,22 +1,25 @@
-import React, {ChangeEvent} from 'react'
-import {SelectPhotoWrapper} from './styled'
-import {InputFile} from '../../../../shared/ui/InputFile/InputFile'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
+import React, { ChangeEvent } from 'react'
+
+import { SelectPhotoWrapper } from './styled'
+
+import { useTranslation } from 'shared/hooks/useTranslation'
+import { InputFile } from 'shared/ui/InputFile/InputFile'
 
 type SelectPhotoType = {
-    handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
+  handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const SelectPhoto: React.FC<SelectPhotoType> = props => {
-    const {t} = useTranslation()
-    return (
-        <SelectPhotoWrapper>
-            <InputFile
-                title={t.create.selectButton}
-                onChange={props.handleCreatePost}
-                accept={'image/png, image/jpeg'}
-                multiple={false}
-            />
-        </SelectPhotoWrapper>
-    )
+export const SelectPhoto: React.FC<SelectPhotoType> = ({ handleCreatePost }) => {
+  const { t } = useTranslation()
+
+  return (
+    <SelectPhotoWrapper>
+      <InputFile
+        accept="image/png, image/jpeg"
+        multiple={false}
+        title={t.create.selectButton}
+        onChange={handleCreatePost}
+      />
+    </SelectPhotoWrapper>
+  )
 }

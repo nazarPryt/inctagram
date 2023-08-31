@@ -1,50 +1,57 @@
-import React from 'react'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {GeneralInformation} from 'features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
-import {ProfileSettingsAccordion} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
-import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
-import {AccountManagement} from 'features/AccountManagement/AccountManagement'
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
-import {GetServerSideProps, GetServerSidePropsContext} from 'next'
-import {getSession} from 'next-auth/react'
-import {MyPayments} from 'features/User/MyPayments/ui/MyPayments'
-import {Devices} from 'features/User/Device/ui/Devices/Devices'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { getSession } from 'next-auth/react'
+
+import { getAuthorizedLayout } from '_app/Layouts/authorized/AuthorizedLayout'
+import { AccountManagement } from 'features/AccountManagement/AccountManagement'
+import { Devices } from 'features/User/Device/ui/Devices/Devices'
+import { GeneralInformation } from 'features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
+import { MyPayments } from 'features/User/MyPayments/ui/MyPayments'
+import { useAppSelector } from 'shared/hooks/reduxHooks'
+import { ProfileSettingsWrapper } from 'shared/styles/ProfileSettingsPage'
+import { ProfileSettingsAccordion } from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
 
 type ProfileSettingsPageProps = {
-    userId: number | null
+  userId: number | null
 }
 
 export const getServerSideProps: GetServerSideProps<ProfileSettingsPageProps> = async (
-    context: GetServerSidePropsContext
+  context: GetServerSidePropsContext
 ) => {
-    const session = await getSession(context)
+  const session = await getSession(context)
 
-    if (session && session.user.userId) {
-        return {
-            props: {
-                userId: session.user.userId,
-            },
-        }
-    }
+  // TODO
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (session && session.user.userId) {
     return {
-        props: {
-            userId: null,
-        },
+      props: {
+        // TODO
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        userId: session.user.userId,
+      },
     }
+  }
+
+  return {
+    props: {
+      userId: null,
+    },
+  }
 }
 
-export default function ProfileSettingsPage() {
-    const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
+export default function ProfileSettingsPage(): JSX.Element {
+  const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
 
-    return (
-        <ProfileSettingsWrapper>
-            <ProfileSettingsAccordion />
+  return (
+    <ProfileSettingsWrapper>
+      <ProfileSettingsAccordion />
 
-            {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
-            {profileSettingActiveTab === 'devices' && <Devices />}
-            {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}
-            {profileSettingActiveTab === 'myPayments' && <MyPayments />}
-        </ProfileSettingsWrapper>
-    )
+      {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
+      {profileSettingActiveTab === 'devices' && <Devices />}
+      {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}
+      {profileSettingActiveTab === 'myPayments' && <MyPayments />}
+    </ProfileSettingsWrapper>
+  )
 }
 ProfileSettingsPage.getLayout = getAuthorizedLayout

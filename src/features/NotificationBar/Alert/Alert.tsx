@@ -1,81 +1,83 @@
-'use client'
-import React, {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
-import errorIcon from '../../../shared/assets/icons/errorIcon.png'
-import successIcon from '../../../shared/assets/icons/success.png'
-import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'
-import {NotificationType, RemoveAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import Image from 'next/image'
 
-export const Alert = (props: NotificationType) => {
-    const dispatch = useAppDispatch()
-    const [exit, setExit] = useState(false)
-    const [width, setWidth] = useState(0)
-    const [intervalID, setIntervalID] = useState<any>(null)
+import { NotificationType, RemoveAppNotificationAC } from '_app/store/appSlice'
+import { AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar } from 'features/NotificationBar/styled'
+import errorIcon from 'shared/assets/icons/errorIcon.png'
+import successIcon from 'shared/assets/icons/success.png'
+import { useAppDispatch } from 'shared/hooks/reduxHooks'
 
-    const handleStartTimer = () => {
-        if (props.type) {
-            const id = setInterval(() => {
-                setWidth(prev => {
-                    if (prev < 100) {
-                        return prev + 0.5
-                    }
+export const Alert = ({ id, type, message }: NotificationType): JSX.Element => {
+  const dispatch = useAppDispatch()
+  const [exit, setExit] = useState(false)
+  const [width, setWidth] = useState(0)
+  // TODO any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [intervalID, setIntervalID] = useState<any>(null)
 
-                    clearInterval(id)
+  const handleStartTimer = (): void => {
+    if (type) {
+      const timerId = setInterval(() => {
+        setWidth(prev => {
+          if (prev < 100) {
+            return prev + 0.5
+          }
 
-                    return prev
-                })
-            }, 20)
+          clearInterval(timerId)
 
-            setIntervalID(id)
-        }
+          return prev
+        })
+      }, 20)
+
+      setIntervalID(id)
     }
+  }
 
-    const handlePauseTimer = () => {
-        clearInterval(intervalID)
+  const handlePauseTimer = (): void => {
+    clearInterval(intervalID)
+  }
+
+  const handleCloseNotification = (): void => {
+    handlePauseTimer()
+    setExit(true)
+    setTimeout(() => {
+      dispatch(RemoveAppNotificationAC({ id }))
+    }, 400)
+  }
+
+  useEffect(() => {
+    if (width === 100) {
+      handleCloseNotification()
     }
+  }, [width])
 
-    const handleCloseNotification = () => {
-        handlePauseTimer()
-        setExit(true)
-        setTimeout(() => {
-            dispatch(RemoveAppNotificationAC({id: props.id}))
-        }, 400)
-    }
+  useEffect(() => {
+    handleStartTimer()
+  }, [])
 
-    useEffect(() => {
-        if (width === 100) {
-            handleCloseNotification()
-        }
-    }, [width])
+  const handleClose = (): void => {
+    dispatch(RemoveAppNotificationAC({ id }))
+    setExit(true)
+  }
 
-    useEffect(() => {
-        handleStartTimer()
-    }, [])
-
-    const handleClose = () => {
-        dispatch(RemoveAppNotificationAC({id: props.id}))
-        setExit(true)
-    }
-
-    return (
-        <AlertWrapper $exit={exit} type={props.type}>
-            <AlertItem onMouseEnter={handlePauseTimer} onMouseLeave={handleStartTimer}>
-                <p>{props.message}</p>
-                <CloseAlertIcon onClick={handleClose} />
-                <ProgressBar type={props.type} style={{width: `${width}%`}} />
-                {props.type === 'error' && (
-                    <AlertIcon>
-                        <Image src={errorIcon} alt={'errorIcon'} />
-                    </AlertIcon>
-                )}
-                {props.type === 'success' && (
-                    <AlertIcon>
-                        <Image src={successIcon} alt={'successIcon'} />
-                    </AlertIcon>
-                )}
-            </AlertItem>
-        </AlertWrapper>
-    )
+  return (
+    <AlertWrapper $exit={exit} type={type}>
+      <AlertItem onMouseEnter={handlePauseTimer} onMouseLeave={handleStartTimer}>
+        <p>{message}</p>
+        <CloseAlertIcon onClick={handleClose} />
+        <ProgressBar style={{ width: `${width}%` }} type={type} />
+        {type === 'error' && (
+          <AlertIcon>
+            <Image alt="errorIcon" src={errorIcon} />
+          </AlertIcon>
+        )}
+        {type === 'success' && (
+          <AlertIcon>
+            <Image alt="successIcon" src={successIcon} />
+          </AlertIcon>
+        )}
+      </AlertItem>
+    </AlertWrapper>
+  )
 }

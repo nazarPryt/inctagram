@@ -1,19 +1,22 @@
 import styled from 'styled-components'
 
 export const SelectWrapper = styled.div`
-    display: ${props => (props.hidden ? 'flex' : 'none')};
-    flex-direction: column;
-    gap: 5px;
-    background-color: ${props => props.theme.bodyColor[500]};
-    width: 120px;
-    padding: 10px;
-    position: absolute;
-    top: -135px;
-    left: 0;
+  position: absolute;
+  top: -135px;
+  left: 0;
 
-    div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  display: ${props => (props.hidden ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 5px;
+
+  width: 120px;
+  padding: 10px;
+
+  background-color: ${props => props.theme.bodyColor[500]};
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `

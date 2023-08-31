@@ -1,27 +1,29 @@
-import React, {FC, useState} from 'react'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AvatarFormWrapper} from 'features/User/Avatar/ui/Avatar/Avatar.styled'
-import {ProfilePhotoModal} from 'features/User/Avatar/ui/ProfilePhotoModal/ProfilePhotoModal'
-import {Button} from 'shared/ui/Button/Button'
-import {UserAvatar} from 'features/User/Avatar/ui/UserAvatar/UserAvatar'
+import { FC, useState } from 'react'
 
-export const Avatar: FC<{avatar: string | undefined}> = ({avatar}) => {
-    const {t} = useTranslation()
-    const [isModalOpen, setIsModalOpen] = useState(false)
+import { AvatarFormWrapper } from 'features/User/Avatar/ui/Avatar/Avatar.styled'
+import { ProfilePhotoModal } from 'features/User/Avatar/ui/ProfilePhotoModal/ProfilePhotoModal'
+import { UserAvatar } from 'features/User/Avatar/ui/UserAvatar/UserAvatar'
+import { useTranslation } from 'shared/hooks/useTranslation'
+import { Button } from 'shared/ui/Button/Button'
 
-    const handleModalClose = () => {
-        setIsModalOpen(false)
-    }
-    const handleModalOpen = () => {
-        setIsModalOpen(true)
-    }
-    return (
-        <AvatarFormWrapper>
-            <UserAvatar avatar={avatar} />
-            <Button type='button' variant={'outlined'} onClick={handleModalOpen}>
-                {t.generalInfo.addProfilePhoto}
-            </Button>
-            <ProfilePhotoModal title={'Add a Profile Photo'} isOpen={isModalOpen} handleClose={handleModalClose} />
-        </AvatarFormWrapper>
-    )
+export const Avatar: FC<{ avatar: string | undefined }> = ({ avatar }): JSX.Element => {
+  const { t } = useTranslation()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleModalClose = (): void => {
+    setIsModalOpen(false)
+  }
+  const handleModalOpen = (): void => {
+    setIsModalOpen(true)
+  }
+
+  return (
+    <AvatarFormWrapper>
+      <UserAvatar avatar={avatar} />
+      <Button type="button" variant="outlined" onClick={handleModalOpen}>
+        {t.generalInfo.addProfilePhoto}
+      </Button>
+      <ProfilePhotoModal handleClose={handleModalClose} isOpen={isModalOpen} title="Add a Profile Photo" />
+    </AvatarFormWrapper>
+  )
 }

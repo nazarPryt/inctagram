@@ -1,9 +1,9 @@
 export type UserAvatar = {
-    avatars: UserAvatarAvatars[]
+  avatars: UserAvatarAvatars[]
 }
 export type UserAvatarAvatars = {
-    url: string
-    width: number
-    height: number
-    fileSize: number
+  url: string
+  width: number
+  height: number
+  fileSize: number
 }

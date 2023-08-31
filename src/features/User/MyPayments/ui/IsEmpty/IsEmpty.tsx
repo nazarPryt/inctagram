@@ -1,14 +1,15 @@
-import React from 'react'
-import {IsEmptyStyled} from './IsEmpty.styled'
 import Image from 'next/image'
+
 import emptyFolder from './icon/emptyfolder.png'
-export const IsEmpty = () => {
-    return (
-        <IsEmptyStyled>
-            <div>
-                <h1>You do not have any payment yet</h1>
-                <Image src={emptyFolder} alt={'emptyFolder'} />
-            </div>
-        </IsEmptyStyled>
-    )
+import { IsEmptyStyled } from './IsEmpty.styled'
+
+export const IsEmpty = (): JSX.Element => {
+  return (
+    <IsEmptyStyled>
+      <div>
+        <h1>You do not have any payment yet</h1>
+        <Image alt="emptyFolder" src={emptyFolder} />
+      </div>
+    </IsEmptyStyled>
+  )
 }

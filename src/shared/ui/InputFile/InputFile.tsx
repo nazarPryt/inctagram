@@ -1,18 +1,19 @@
-import React, {ComponentProps, forwardRef} from 'react'
-import {InputFileWrapper} from './InputFile.styled'
+import { ComponentProps, forwardRef } from 'react'
+
+import { InputFileWrapper } from './InputFile.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 
 type InputFileProps = DefaultInputPropsType & {
-    title: string
+  title: string
 }
 export const InputFile = forwardRef<HTMLInputElement, InputFileProps>((props, ref) => {
-    return (
-        <InputFileWrapper htmlFor='InputFile'>
-            <input type='file' id='InputFile' ref={ref} {...props} hidden />
-            {props.title}
-        </InputFileWrapper>
-    )
+  return (
+    <InputFileWrapper htmlFor="InputFile">
+      <input ref={ref} id="InputFile" type="file" {...props} hidden />
+      {props.title}
+    </InputFileWrapper>
+  )
 })
 
 InputFile.displayName = 'InputFile'

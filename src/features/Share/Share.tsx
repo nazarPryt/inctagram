@@ -1,11 +1,10 @@
-import React from 'react'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {ShareIcon} from 'features/Share/ShareIcon'
+import { ShareIcon } from 'features/Share/ShareIcon'
+import { IconButton } from 'shared/ui/IconButton/IconButton'
 
-export const Share = () => {
-    return (
-        <IconButton>
-            <ShareIcon />
-        </IconButton>
-    )
+export const Share = (): JSX.Element => {
+  return (
+    <IconButton>
+      <ShareIcon />
+    </IconButton>
+  )
 }

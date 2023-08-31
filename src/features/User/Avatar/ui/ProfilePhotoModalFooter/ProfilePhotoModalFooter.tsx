@@ -1,23 +1,25 @@
-import React, {ComponentProps} from 'react'
-import {Button} from 'shared/ui/Button/Button'
-import {ProfilePhotoModalFooterStyled} from './ProfilePhotoModalFooter.styled'
+import { ComponentProps } from 'react'
+
+import { ProfilePhotoModalFooterStyled } from './ProfilePhotoModalFooter.styled'
+
+import { Button } from 'shared/ui/Button/Button'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 
 type PropsProps = DefaultInputPropsType & {
-    clearImagePreview: () => void
-    savePhoto: () => void
+  clearImagePreview: () => void
+  savePhoto: () => void
 }
-export const ProfilePhotoModalFooter = (props: PropsProps) => {
-    return (
-        <ProfilePhotoModalFooterStyled>
-            <input type='range' value={props.value} onChange={props.onChange} min={1} max={2} step='0.1' />
-            <div>
-                <Button type={'button'} onClick={() => props.clearImagePreview()}>
-                    delete
-                </Button>
-                <Button onClick={() => props.savePhoto()}>Save</Button>
-            </div>
-        </ProfilePhotoModalFooterStyled>
-    )
+export const ProfilePhotoModalFooter = ({ savePhoto, clearImagePreview, value, onChange }: PropsProps): JSX.Element => {
+  return (
+    <ProfilePhotoModalFooterStyled>
+      <input max={2} min={1} step="0.1" type="range" value={value} onChange={onChange} />
+      <div>
+        <Button type="button" onClick={() => clearImagePreview()}>
+          delete
+        </Button>
+        <Button onClick={() => savePhoto()}>Save</Button>
+      </div>
+    </ProfilePhotoModalFooterStyled>
+  )
 }

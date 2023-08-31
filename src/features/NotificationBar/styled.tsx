@@ -1,11 +1,12 @@
-import styled, {css, keyframes} from 'styled-components'
-import {NotificationType} from '_app/store/appSlice'
+import styled, { css, keyframes } from 'styled-components'
+
+import { NotificationType } from '_app/store/appSlice'
 
 const SlideRight = keyframes`
   from {
     margin-left: -120%;
   }
-  
+
   to {
     margin-left: 0;
   }
@@ -19,116 +20,142 @@ const SlideLeft = keyframes`
     left: -120%;
   }
 `
+
 export const NotificationBarWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    gap: 10px;
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    z-index: 100;
+  position: fixed;
+  z-index: 100;
+  bottom: 10px;
+  left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 300px;
 `
 
-export const AlertWrapper = styled.div<Pick<NotificationType, 'type'> & {$exit: boolean}>`
-    position: relative;
-    border-radius: 15px;
-    color: #fff;
-    margin-top: 33px;
-    animation: ${props => (props.$exit ? SlideLeft : SlideRight)} 0.4s; //TODO cheek why doesnt work Slide to Left
-    animation-fill-mode: forwards;
+export const AlertWrapper = styled.div<Pick<NotificationType, 'type'> & { $exit: boolean }>`
+  position: relative;
 
-    ${props => {
-        switch (props.type) {
-            case 'error':
-                return css`
-                    background-color: #c6271a;
-                `
-            case 'success':
-                return css`
-                    background-color: #3bc74a;
-                `
-        }
-    }}
+  margin-top: 33px;
+
+  color: #fff;
+
+  border-radius: 15px;
+
+  animation: ${props => (props.$exit ? SlideLeft : SlideRight)} 0.4s; /* TODO cheek why doesnt work Slide to Left */
+  animation-fill-mode: forwards;
+
+  ${props => {
+    switch (props.type) {
+      case 'error':
+        return css`
+          background-color: #c6271a;
+        `
+      case 'success':
+        return css`
+          background-color: #3bc74a;
+        `
+      default:
+        return css`
+          background-color: #fff;
+        `
+    }
+  }}
 `
 
 export const AlertItem = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3px;
-    overflow: hidden;
-    p {
-        margin: 0;
-        padding: 10px;
-        text-align: center;
-        span {
-            color: #447bba;
-            font-weight: bold;
-        }
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 3px;
+
+  p {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+
+    span {
+      font-weight: bold;
+      color: #447bba;
     }
+  }
 `
 
 export const ProgressBar = styled.div<Pick<NotificationType, 'type'>>`
-    height: 5px;
+  height: 5px;
 
-    ${props => {
-        switch (props.type) {
-            case 'error':
-                return css`
-                    background-color: #65d266;
-                `
-            case 'success':
-                return css`
-                    display: block;
-                    background-color: white;
-                `
-        }
-    }}
+  ${props => {
+    switch (props.type) {
+      case 'error':
+        return css`
+          background-color: #65d266;
+        `
+      case 'success':
+        return css`
+          display: block;
+          background-color: white;
+        `
+      default:
+        return css`
+          display: none;
+        `
+    }
+  }}
 `
 
 export const CloseAlertIcon = styled.span`
+  cursor: pointer;
+
+  position: absolute;
+  top: -20px;
+  right: -20px;
+
+  width: 24px;
+  height: 24px;
+
+  opacity: 0.5;
+
+  transition: opacity ease 0.5s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  ::before,
+  ::after {
+    content: '';
+
     position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 24px;
-    height: 24px;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: opacity ease 0.5s;
+    top: 10px;
 
-    &:hover {
-        opacity: 1;
-    }
+    display: block;
 
-    ::before,
-    ::after {
-        content: '';
-        position: absolute;
-        top: 10px;
-        display: block;
-        width: 15px;
-        height: 3px;
-        background: #000;
-    }
+    width: 15px;
+    height: 3px;
 
-    ::before {
-        transform: rotate(45deg);
-    }
+    background: #000;
+  }
 
-    ::after {
-        transform: rotate(-45deg);
-    }
+  ::before {
+    transform: rotate(45deg);
+  }
+
+  ::after {
+    transform: rotate(-45deg);
+  }
 `
 export const AlertIcon = styled.span`
-    position: absolute;
-    top: -43px;
-    width: 40px;
-    height: 40px;
+  position: absolute;
+  top: -43px;
+  width: 40px;
+  height: 40px;
 
-    img {
-        width: 100%;
-        height: 100%;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `

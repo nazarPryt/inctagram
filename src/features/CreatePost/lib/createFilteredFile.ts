@@ -1,27 +1,29 @@
-import {RefObject} from 'react'
+import { RefObject } from 'react'
+
 import AvatarEditor from 'react-avatar-editor'
-import {dataURLtoFile} from './dataURLtoFile'
 
-export const createFilteredFile = async (editorRef: RefObject<AvatarEditor>, filter: string) => {
-    const canvas = editorRef!.current!.getImageScaledToCanvas()
+import { dataURLtoFile } from './dataURLtoFile'
 
-    const ctx = canvas.getContext('2d')
+export const createFilteredFile = async (editorRef: RefObject<AvatarEditor>, filter: string): Promise<File> => {
+  const canvas = editorRef!.current!.getImageScaledToCanvas()
 
-    ctx!.filter = filter
+  const ctx = canvas.getContext('2d')
 
-    // Create a new canvas and draw the filtered image on it
-    const filteredCanvas = document.createElement('canvas')
+  ctx!.filter = filter
 
-    filteredCanvas.width = canvas.width
-    filteredCanvas.height = canvas.height
-    const filteredCtx = filteredCanvas.getContext('2d')
+  // Create a new canvas and draw the filtered image on it
+  const filteredCanvas = document.createElement('canvas')
 
-    filteredCtx!.filter = ctx!.filter
-    filteredCtx!.drawImage(canvas, 0, 0)
+  filteredCanvas.width = canvas.width
+  filteredCanvas.height = canvas.height
+  const filteredCtx = filteredCanvas.getContext('2d')
 
-    // Get Data URL with the filtered image
-    const imageDataUrl = filteredCanvas.toDataURL()
+  filteredCtx!.filter = ctx!.filter
+  filteredCtx!.drawImage(canvas, 0, 0)
 
-    // Create a new file object from the Data URL
-    return dataURLtoFile(imageDataUrl, 'picture')
+  // Get Data URL with the filtered image
+  const imageDataUrl = filteredCanvas.toDataURL()
+
+  // Create a new file object from the Data URL
+  return dataURLtoFile(imageDataUrl, 'picture')
 }

@@ -1,127 +1,164 @@
-import {Component} from 'react'
-import styled, {css} from 'styled-components'
-import {ButtonProps} from 'shared/ui/Button/Button'
+import React, { Component, ComponentPropsWithoutRef, ElementType } from 'react'
 
+import styled, { css } from 'styled-components'
+
+export type ButtonVariantType = 'contained' | 'link' | 'outlined' | 'primary' | 'text'
+
+export type ButtonProps<T extends ElementType = 'button'> = ComponentPropsWithoutRef<T> & {
+  asT?: T
+  children?: React.ReactNode
+  variant?: ButtonVariantType
+  fullwidth?: boolean
+  className?: string
+}
 export const ComponentButton = styled(Component<ButtonProps>).withConfig({
-    shouldForwardProp: prop => !['fullwidth'].includes(prop),
-})<{fullwidth?: boolean}>`
-    border-radius: 2px;
-    padding: 6px 24px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0.7px;
-    text-decoration: none;
-    width: ${props => (props.fullwidth ? '100%' : '')};
+  shouldForwardProp: prop => !['fullwidth'].includes(prop),
+})<{ fullwidth?: boolean }>`
+  width: ${props => (props.fullwidth ? '100%' : '')};
+  cursor: pointer;
 
-    ${props => {
-        switch (props.variant) {
-            case 'contained':
-                return css`
-                    background-color: ${({theme}) => theme.bodyColor[100]};
-                    color: ${({theme}) => theme.textColor[900]};
+  padding: 6px 24px;
 
-                    &:active {
-                        background-color: ${({theme}) => theme.palette.primary[700]};
-                    }
+  font-family: Inter, sans-serif;
+  font-size: 16px;
 
-                    &:hover {
-                        background-color: ${({theme}) => theme.bodyColor[100]};
-                        color: ${({theme}) => theme.textColor[300]};
-                    }
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-decoration: none;
 
-                    &:focus {
-                        background-color: ${({theme}) => theme.bodyColor[100]};
-                        color: ${({theme}) => theme.textColor[900]};
-                        border: 2px solid ${({theme}) => theme.palette.primary[700]};
-                    }
+  border: none;
+  border-radius: 2px;
 
-                    &:disabled {
-                        background-color: ${({theme}) => theme.bodyColor[900]};
-                        color: ${({theme}) => theme.textColor[100]};
-                        cursor: not-allowed;
-                    }
-                `
-            case 'link':
-                return css``
+  ${props => {
+    switch (props.variant) {
+      case 'contained':
+        return css`
+          color: ${({ theme }) => theme.textColor[900]};
+          background-color: ${({ theme }) => theme.bodyColor[100]};
 
-            case 'text':
-                return css`
-                    background-color: inherit;
-                    color: ${({theme}) => theme.palette.primary[500]};
+          &:active {
+            background-color: ${({ theme }) => theme.palette.primary[700]};
+          }
 
-                    &:active {
-                        color: ${({theme}) => theme.palette.primary[700]};
-                    }
+          &:hover {
+            color: ${({ theme }) => theme.textColor[300]};
+            background-color: ${({ theme }) => theme.bodyColor[100]};
+          }
 
-                    &:hover {
-                        color: ${({theme}) => theme.palette.primary[100]};
-                    }
+          &:focus {
+            color: ${({ theme }) => theme.textColor[900]};
+            background-color: ${({ theme }) => theme.bodyColor[100]};
+            border: 2px solid ${({ theme }) => theme.palette.primary[700]};
+          }
 
-                    &:focus {
-                        color: ${({theme}) => theme.palette.primary[500]};
-                        border: 2px solid ${({theme}) => theme.palette.primary[700]};
-                    }
+          &:disabled {
+            cursor: not-allowed;
+            color: ${({ theme }) => theme.textColor[100]};
+            background-color: ${({ theme }) => theme.bodyColor[900]};
+          }
+        `
 
-                    &:disabled {
-                        color: ${({theme}) => theme.palette.primary[900]};
-                        cursor: not-allowed;
-                    }
-                `
-            case 'outlined':
-                return css`
-                    background-color: inherit;
-                    color: ${({theme}) => theme.palette.primary[500]};
-                    border: 1px solid ${({theme}) => theme.palette.primary[500]};
+      case 'text':
+        return css`
+          color: ${({ theme }) => theme.palette.primary[500]};
+          background-color: inherit;
 
-                    &:active {
-                        color: ${({theme}) => theme.palette.primary[700]};
-                    }
+          &:active {
+            color: ${({ theme }) => theme.palette.primary[700]};
+          }
 
-                    &:hover {
-                        border: 1px solid ${({theme}) => theme.palette.primary[100]};
-                        color: ${({theme}) => theme.palette.primary[100]};
-                    }
+          &:hover {
+            color: ${({ theme }) => theme.palette.primary[100]};
+          }
 
-                    &:focus {
-                        color: ${({theme}) => theme.palette.primary[700]};
-                        border: 2px solid ${props => props.theme.palette.primary[700]};
-                    }
+          &:focus {
+            color: ${({ theme }) => theme.palette.primary[500]};
+            border: 2px solid ${({ theme }) => theme.palette.primary[700]};
+          }
 
-                    &:disabled {
-                        border: 2px solid ${props => props.theme.palette.primary[900]};
-                        color: ${({theme}) => theme.palette.primary[900]};
-                        cursor: not-allowed;
-                    }
-                `
-            case 'primary':
-                return css`
-                    background-color: ${({theme}) => theme.palette.primary[500]};
-                    color: white;
+          &:disabled {
+            cursor: not-allowed;
+            color: ${({ theme }) => theme.palette.primary[900]};
+          }
+        `
+      case 'outlined':
+        return css`
+          color: ${({ theme }) => theme.palette.primary[500]};
+          background-color: inherit;
+          border: 1px solid ${({ theme }) => theme.palette.primary[500]};
 
-                    &:active {
-                        background-color: ${({theme}) => theme.palette.primary[700]};
-                        color: white;
-                    }
+          &:active {
+            color: ${({ theme }) => theme.palette.primary[700]};
+          }
 
-                    &:hover {
-                        background-color: ${({theme}) => theme.palette.primary[100]};
-                        color: white;
-                    }
+          &:hover {
+            color: ${({ theme }) => theme.palette.primary[100]};
+            border: 1px solid ${({ theme }) => theme.palette.primary[100]};
+          }
 
-                    &:focus {
-                        background-color: ${({theme}) => theme.palette.primary[700]};
-                        color: ${({theme}) => theme.textColor[100]};
-                    }
+          &:focus {
+            color: ${({ theme }) => theme.palette.primary[700]};
+            border: 2px solid ${props => props.theme.palette.primary[700]};
+          }
 
-                    &:disabled {
-                        background-color: ${({theme}) => theme.palette.primary[900]};
-                        color: ${({theme}) => theme.textColor[900]};
-                        cursor: not-allowed;
-                    }
-                `
-        }
-    }};
+          &:disabled {
+            cursor: not-allowed;
+            color: ${({ theme }) => theme.palette.primary[900]};
+            border: 2px solid ${props => props.theme.palette.primary[900]};
+          }
+        `
+      case 'primary':
+        return css`
+          color: white;
+          background-color: ${({ theme }) => theme.palette.primary[500]};
+
+          &:active {
+            color: white;
+            background-color: ${({ theme }) => theme.palette.primary[700]};
+          }
+
+          &:hover {
+            color: white;
+            background-color: ${({ theme }) => theme.palette.primary[100]};
+          }
+
+          &:focus {
+            color: ${({ theme }) => theme.textColor[100]};
+            background-color: ${({ theme }) => theme.palette.primary[700]};
+          }
+
+          &:disabled {
+            cursor: not-allowed;
+            color: ${({ theme }) => theme.textColor[900]};
+            background-color: ${({ theme }) => theme.palette.primary[900]};
+          }
+        `
+      default:
+        return css`
+          color: white;
+          background-color: ${({ theme }) => theme.palette.primary[500]};
+
+          &:active {
+            color: white;
+            background-color: ${({ theme }) => theme.palette.primary[700]};
+          }
+
+          &:hover {
+            color: white;
+            background-color: ${({ theme }) => theme.palette.primary[100]};
+          }
+
+          &:focus {
+            color: ${({ theme }) => theme.textColor[100]};
+            background-color: ${({ theme }) => theme.palette.primary[700]};
+          }
+
+          &:disabled {
+            cursor: not-allowed;
+            color: ${({ theme }) => theme.textColor[900]};
+            background-color: ${({ theme }) => theme.palette.primary[900]};
+          }
+        `
+    }
+  }};
 `

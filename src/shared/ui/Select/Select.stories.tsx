@@ -1,160 +1,147 @@
-import type {Meta, StoryObj} from '@storybook/react'
-import React, {useState} from 'react'
-import {FlagEngIcon} from '../../assets/icons/FlagEngIcon'
-import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
-import {CustomSelect} from 'shared/ui/Select/Select'
+import React, { useState } from 'react'
+
+import type { Meta, StoryObj } from '@storybook/react'
+
+import { FlagEngIcon } from '../../assets/icons/FlagEngIcon'
+import { FlagRussiaIcon } from '../../assets/icons/FlagRussiaIcon'
+
+import { CustomSelect } from 'shared/ui/Select/Select'
 
 export default {
-    title: 'Components/Select',
-    component: CustomSelect,
-    tags: ['autodocs'],
+  title: 'Components/Select',
+  component: CustomSelect,
+  tags: ['autodocs'],
 } as Meta<typeof CustomSelect>
 
 const optionsPrimary = [
-    {
-        value: 'apple',
-        label: 'Apple',
-    },
-    {
-        value: 'banana',
-        label: 'Banana',
-    },
-    {
-        value: 'blueberry',
-        label: 'Blueberry',
-    },
-    {
-        value: 'grapes',
-        label: 'Grapes',
-    },
+  {
+    value: 'apple',
+    label: 'Apple',
+  },
+  {
+    value: 'banana',
+    label: 'Banana',
+  },
+  {
+    value: 'blueberry',
+    label: 'Blueberry',
+  },
+  {
+    value: 'grapes',
+    label: 'Grapes',
+  },
 ]
 const optionsPagination = [
-    {
-        value: '1',
-        label: '1',
-    },
-    {
-        value: '2',
-        label: '2',
-    },
-    {
-        value: '3',
-        label: '3',
-    },
-    {
-        value: '4',
-        label: '4',
-    },
+  {
+    value: '1',
+    label: '1',
+  },
+  {
+    value: '2',
+    label: '2',
+  },
+  {
+    value: '3',
+    label: '3',
+  },
+  {
+    value: '4',
+    label: '4',
+  },
 ]
 const Country = [
-    {
-        value: 'ru',
-        label: (
-            <>
-                <FlagRussiaIcon />
-                Russia
-            </>
-        ),
-    },
-    {
-        value: 'en',
-        label: (
-            <>
-                <FlagEngIcon />
-                English
-            </>
-        ),
-    },
+  {
+    value: 'ru',
+    label: (
+      <>
+        <FlagRussiaIcon />
+        Russia
+      </>
+    ),
+  },
+  {
+    value: 'en',
+    label: (
+      <>
+        <FlagEngIcon />
+        English
+      </>
+    ),
+  },
 ]
 
 type Story = StoryObj<typeof CustomSelect>
 
 const SimpleSelect = () => {
-    const [value, setValue] = useState('')
+  const [value, setValue] = useState('')
 
-    return <CustomSelect value={value} onChange={setValue} options={optionsPrimary} />
+  return <CustomSelect options={optionsPrimary} value={value} onChange={setValue} />
 }
+
 export const Simple: Story = {
-    render: () => <SimpleSelect />,
+  render: () => <SimpleSelect />,
 }
 
 const SimpleWithLabelSelect = () => {
-    const [value, setValue] = useState('')
+  const [value, setValue] = useState('')
 
-    return (
-        <CustomSelect
-            value={value}
-            onChange={setValue}
-            placeholder={'select...'}
-            options={optionsPrimary}
-            label={'Select'}
-        />
-    )
+  return (
+    <CustomSelect label="Select" options={optionsPrimary} placeholder="select..." value={value} onChange={setValue} />
+  )
 }
+
 export const SimpleWithLabel: Story = {
-    render: () => <SimpleWithLabelSelect />,
+  render: () => <SimpleWithLabelSelect />,
 }
 
 const ErrorSelect = () => {
-    const [value, setValue] = useState('')
+  const [value, setValue] = useState('')
 
-    return (
-        <CustomSelect
-            value={value}
-            onChange={setValue}
-            options={optionsPrimary}
-            placeholder={'select...'}
-            label={'Select'}
-        />
-    )
+  return (
+    <CustomSelect label="Select" options={optionsPrimary} placeholder="select..." value={value} onChange={setValue} />
+  )
 }
 
 export const Error: Story = {
-    render: () => <ErrorSelect />,
+  render: () => <ErrorSelect />,
 }
 
 const PaginationSelect = () => {
-    const [value, setValue] = useState('')
+  const [value, setValue] = useState('')
 
-    return (
-        <CustomSelect
-            value={value}
-            onChange={setValue}
-            options={optionsPagination}
-            label={'pagination'}
-            placeholder={'1'}
-        />
-    )
+  return (
+    <CustomSelect label="pagination" options={optionsPagination} placeholder="1" value={value} onChange={setValue} />
+  )
 }
 
 export const Pagination: Story = {
-    render: () => <PaginationSelect />,
+  render: () => <PaginationSelect />,
 }
 
 const FullWidthSelect = () => {
-    const [value, setValue] = useState('')
+  const [value, setValue] = useState('')
 
-    return <CustomSelect value={value} onChange={setValue} options={optionsPrimary} />
+  return <CustomSelect options={optionsPrimary} value={value} onChange={setValue} />
 }
 
 export const FullWidth: Story = {
-    render: () => <FullWidthSelect />,
+  render: () => <FullWidthSelect />,
 }
 
 const CountryExample = () => {
-    const [value, setValue] = useState('ru')
+  const [value, setValue] = useState('ru')
 
-    return <CustomSelect value={value} onChange={setValue} options={Country} />
+  return <CustomSelect options={Country} value={value} onChange={setValue} />
 }
 
 export const CountrySelect: Story = {
-    render: () => <CountryExample />,
+  render: () => <CountryExample />,
 }
 
 const DisabledSelect = () => {
-    return <CustomSelect value={''} onChange={() => {}} options={optionsPrimary} disabled />
+  return <CustomSelect disabled options={optionsPrimary} value="" onChange={() => {}} />
 }
 
 export const Disabled: Story = {
-    render: () => <DisabledSelect />,
+  render: () => <DisabledSelect />,
 }

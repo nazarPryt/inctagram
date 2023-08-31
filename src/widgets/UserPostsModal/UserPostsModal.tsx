@@ -1,38 +1,47 @@
-import React, {ComponentProps, Dispatch} from 'react'
+import React, { ComponentProps, Dispatch } from 'react'
+
 import * as Dialog from '@radix-ui/react-dialog'
-import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
+import { useRouter } from 'next/router'
 
-import {useRouter} from 'next/router'
-import {CloseIcon} from 'shared/assets/icons/CloseIcon'
+import { CloseIcon } from 'shared/assets/icons/CloseIcon'
+import {
+  DialogClose,
+  DialogContent,
+  DialogContentBox,
+  DialogOverlay,
+} from 'widgets/UserPostsModal/UserPostsModal.styled'
 
-//https://www.radix-ui.com/docs/primitives/components/dialog
+// https://www.radix-ui.com/docs/primitives/components/dialog
 
-export type ModalProps = {
-    open: boolean
-    onClose: Dispatch<React.SetStateAction<boolean>>
-} & ComponentProps<'div'>
+export type ModalProps = ComponentProps<'div'> & {
+  open: boolean
+  onClose: Dispatch<React.SetStateAction<boolean>>
+}
 
-export const UserPostsModal = ({open, onClose, children}: ModalProps) => {
-    const router = useRouter()
+export const UserPostsModal = ({ open, onClose, children }: ModalProps) => {
+  const router = useRouter()
 
-    function handleModalClosed() {
-        onClose(false)
-        router.back()
-    }
-    return (
-        <Dialog.Root open={open} onOpenChange={handleModalClosed}>
-            <Dialog.Trigger />
-            {open && (
-                <Dialog.Portal>
-                    <DialogOverlay />
-                    <DialogContent>
-                        <DialogClose>
-                            <CloseIcon />
-                        </DialogClose>
-                        <DialogContentBox>{children}</DialogContentBox>
-                    </DialogContent>
-                </Dialog.Portal>
-            )}
-        </Dialog.Root>
-    )
+  function handleModalClosed() {
+    onClose(false)
+    router.back()
+  }
+
+  return (
+    // TODO
+    // eslint-disable-next-line react/jsx-no-bind
+    <Dialog.Root open={open} onOpenChange={handleModalClosed}>
+      <Dialog.Trigger />
+      {open && (
+        <Dialog.Portal>
+          <DialogOverlay />
+          <DialogContent>
+            <DialogClose>
+              <CloseIcon />
+            </DialogClose>
+            <DialogContentBox>{children}</DialogContentBox>
+          </DialogContent>
+        </Dialog.Portal>
+      )}
+    </Dialog.Root>
+  )
 }

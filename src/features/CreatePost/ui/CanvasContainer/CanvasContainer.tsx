@@ -1,63 +1,66 @@
-import React, {RefObject} from 'react'
+import { FC, RefObject } from 'react'
+
 import AvatarEditor from 'react-avatar-editor'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {Wrapper} from './styled'
+import { A11y, Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { Wrapper } from './styled'
+
+import { useAppSelector } from 'shared/hooks/reduxHooks'
 
 type CanvasContainerType = {
-    editorRef: RefObject<AvatarEditor>
-    prepareImageToSend: (img: string, filter: string) => void
+  editorRef: RefObject<AvatarEditor>
+  prepareImageToSend: (img: string, filter: string) => void
 }
 
-export const CanvasContainer: React.FC<CanvasContainerType> = props => {
-    const {previewImage, previewFilter, defaultWidth, defaultHeight, libraryPictures} = useAppSelector(
-        state => state.createPost
-    )
+export const CanvasContainer: FC<CanvasContainerType> = ({ editorRef, prepareImageToSend }) => {
+  const { previewImage, previewFilter, defaultWidth, defaultHeight, libraryPictures } = useAppSelector(
+    state => state.createPost
+  )
 
-    const handlePrepareImage = () => {
-        props.prepareImageToSend(previewImage, previewFilter)
-    }
+  const handlePrepareImage = (): void => {
+    prepareImageToSend(previewImage, previewFilter)
+  }
 
-    return (
-        <Wrapper width={defaultWidth} height={defaultHeight}>
-            <Swiper
-                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
-                spaceBetween={0}
-                slidesPerView={1}
-                navigation={true}
-                keyboard={true}
-                pagination={{clickable: true}}
-                scrollbar={{draggable: true}}
-                autoplay={{
-                    delay: 7000,
-                    pauseOnMouseEnter: true,
-                    disableOnInteraction: false,
+  return (
+    <Wrapper height={defaultHeight} width={defaultWidth}>
+      <Swiper
+        keyboard
+        navigation
+        modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        slidesPerView={1}
+        spaceBetween={0}
+        autoplay={{
+          delay: 7000,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        }}
+      >
+        {libraryPictures.map(img => {
+          return (
+            <SwiperSlide key={img.id}>
+              <AvatarEditor
+                ref={editorRef}
+                disableHiDPIScaling
+                border={0}
+                height={defaultHeight}
+                image={img.img}
+                scale={+img.zoom}
+                width={defaultWidth}
+                style={{
+                  filter: previewFilter,
                 }}
-            >
-                {libraryPictures.map(img => {
-                    return (
-                        <SwiperSlide key={img.id}>
-                            <AvatarEditor
-                                ref={props.editorRef}
-                                image={img.img}
-                                width={defaultWidth}
-                                height={defaultHeight}
-                                scale={+img.zoom}
-                                border={0}
-                                onImageReady={handlePrepareImage}
-                                style={{
-                                    filter: previewFilter,
-                                }}
-                                disableHiDPIScaling={true}
-                            />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </Wrapper>
-    )
+                onImageReady={handlePrepareImage}
+              />
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
+    </Wrapper>
+  )
 }

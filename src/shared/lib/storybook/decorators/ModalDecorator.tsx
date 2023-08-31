@@ -1,11 +1,10 @@
-import {Decorator} from '@storybook/react'
-import React from 'react'
+import { Decorator } from '@storybook/react'
 
-export const ModalDecorator: Decorator = (Story, context) => {
-    return (
-        <div>
-            <div id={'react-portal-modal-container'}></div>
-            <Story />
-        </div>
-    )
+export const ModalDecorator: Decorator = Story => {
+  return (
+    <div>
+      <div id="react-portal-modal-container" />
+      <Story />
+    </div>
+  )
 }

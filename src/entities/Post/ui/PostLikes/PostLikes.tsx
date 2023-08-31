@@ -1,5 +1,3 @@
-import React from 'react'
-
-export const PostLikes = () => {
-    return <div>PostLikes</div>
+export const PostLikes = (): JSX.Element => {
+  return <div>PostLikes</div>
 }

@@ -1,32 +1,35 @@
-import React, {useState, useEffect} from 'react'
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
-import {useRouter} from 'next/router'
-import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
-import {Loader} from 'shared/ui/Loader/Loader'
-import {ViewUserPost} from 'entities/ViewUserPost/ViewUserPost'
-import {useGetUserPostQuery} from 'entities/ViewUserPost/api/get-post-api'
+import { useState, useEffect } from 'react'
 
-export default function ShowPostPage() {
-    const [open, setOpen] = useState(false)
-    const router = useRouter()
-    const postId = Number(router.query.postId)
-    const {data, isLoading} = useGetUserPostQuery(postId)
+import { useRouter } from 'next/router'
 
-    useEffect(() => {
-        setOpen(true)
-    }, [])
+import { getAuthorizedLayout } from '_app/Layouts/authorized/AuthorizedLayout'
+import { useGetUserPostQuery } from 'entities/ViewUserPost/api/get-post-api'
+import { ViewUserPost } from 'entities/ViewUserPost/ViewUserPost'
+import { Loader } from 'shared/ui/Loader/Loader'
+import { UserPostsModal } from 'widgets/UserPostsModal/UserPostsModal'
 
-    if (isLoading) {
-        return <Loader />
-    }
+export default function ShowPostPage(): JSX.Element {
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+  const postId = Number(router.query.postId)
+  const { data, isLoading } = useGetUserPostQuery(postId)
 
-    if (data) {
-        return (
-            <UserPostsModal open={open} onClose={setOpen}>
-                <ViewUserPost data={data} />
-            </UserPostsModal>
-        )
-    }
-    return <div>network error</div>
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  if (data) {
+    return (
+      <UserPostsModal open={open} onClose={setOpen}>
+        <ViewUserPost data={data} />
+      </UserPostsModal>
+    )
+  }
+
+  return <div>network error</div>
 }
 ShowPostPage.getLayout = getAuthorizedLayout

@@ -1,38 +1,39 @@
-import React from 'react'
 import Image from 'next/image'
-import {PostImageWrapper} from 'entities/Post/ui/PostImage/PostImage.styled'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import {PostCardImageType} from 'entities/UserPosts/api/types'
-import {A11y, Autoplay, Navigation, Pagination, Keyboard} from 'swiper/modules'
+import { A11y, Autoplay, Navigation, Pagination, Keyboard } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { PostImageWrapper } from 'entities/Post/ui/PostImage/PostImage.styled'
+import { PostCardImageType } from 'entities/UserPosts/api/types'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-export const PostImage = (props: {images: PostCardImageType[]}) => {
-    return (
-        <PostImageWrapper>
-            <Swiper
-                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
-                spaceBetween={0}
-                slidesPerView={1}
-                navigation={true}
-                keyboard={true}
-                pagination={{clickable: true}}
-                scrollbar={{draggable: true}}
-                autoplay={{
-                    delay: 7000,
-                    pauseOnMouseEnter: true,
-                    disableOnInteraction: false,
-                }}
-            >
-                {props.images.map(photo => {
-                    return (
-                        <SwiperSlide key={photo.uploadId}>
-                            <Image src={photo.url} alt={'Post-Image'} height={photo.height} width={photo.width} />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </PostImageWrapper>
-    )
+export const PostImage = ({ images }: { images: PostCardImageType[] }): JSX.Element => {
+  return (
+    <PostImageWrapper>
+      <Swiper
+        keyboard
+        navigation
+        modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        slidesPerView={1}
+        spaceBetween={0}
+        autoplay={{
+          delay: 7000,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
+        }}
+      >
+        {images.map(({ height, uploadId, url, width }) => {
+          return (
+            <SwiperSlide key={uploadId}>
+              <Image alt="Post-Image" height={height} src={url} width={width} />
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
+    </PostImageWrapper>
+  )
 }

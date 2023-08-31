@@ -1,11 +1,10 @@
-import React from 'react'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {FavoriteIcon} from 'features/Post/AddToFavorites/FavoriteIcon'
+import { FavoriteIcon } from 'features/Post/AddToFavorites/FavoriteIcon'
+import { IconButton } from 'shared/ui/IconButton/IconButton'
 
-export const AddToFavorites = () => {
-    return (
-        <IconButton>
-            <FavoriteIcon />
-        </IconButton>
-    )
+export const AddToFavorites = (): JSX.Element => {
+  return (
+    <IconButton>
+      <FavoriteIcon />
+    </IconButton>
+  )
 }

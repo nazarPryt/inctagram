@@ -1,14 +1,16 @@
 import React from 'react'
+
+import { StripeWrapper } from './Stripe.styled'
+
 import StripeIcon from 'shared/assets/icons/stripe.svg'
-import {StripeWrapper} from './Stripe.styled'
 
 type PropsType = {
-    onClick?: () => void
+  onClick?: () => void
 }
-export const Stripe = ({onClick}: PropsType) => {
-    return (
-        <StripeWrapper onClick={onClick} type={'submit'}>
-            <StripeIcon />
-        </StripeWrapper>
-    )
+export const Stripe = ({ onClick }: PropsType) => {
+  return (
+    <StripeWrapper type="submit" onClick={onClick}>
+      <StripeIcon />
+    </StripeWrapper>
+  )
 }

@@ -1,7 +1,6 @@
-import React from 'react'
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
+import { getAuthorizedLayout } from '_app/Layouts/authorized/AuthorizedLayout'
 
-export default function StatisticsPage() {
-    return <>Statistics page</>
+export default function StatisticsPage(): JSX.Element {
+  return <>Statistics page</>
 }
 StatisticsPage.getLayout = getAuthorizedLayout

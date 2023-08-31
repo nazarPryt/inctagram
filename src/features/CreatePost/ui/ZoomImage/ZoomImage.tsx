@@ -1,26 +1,29 @@
-import ZoomIcon from '../../../../shared/assets/icons/zoom.svg'
-import React, {ChangeEvent, useState} from 'react'
-import {ZoomWrapper} from './styled'
-import {createPostAC} from '../../model/slice/createPostSlice'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import { ChangeEvent, useState } from 'react'
 
-export const ZoomImage = () => {
-    const dispatch = useAppDispatch()
+import { createPostAC } from '../../model/slice/createPostSlice'
 
-    const previewZoom = useAppSelector(state => state.createPost.previewZoom)
+import { ZoomWrapper } from './styled'
 
-    const [zoomHidden, setZoomHidden] = useState(false)
+import ZoomIcon from 'shared/assets/icons/zoom.svg'
+import { useAppDispatch, useAppSelector } from 'shared/hooks/reduxHooks'
 
-    const handleZoom = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(createPostAC.setPreviewZoom(e.target.value))
-    }
+export const ZoomImage = (): JSX.Element => {
+  const dispatch = useAppDispatch()
 
-    return (
-        <div className='zoom'>
-            <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
-            <ZoomWrapper hidden={zoomHidden}>
-                <input type='range' value={previewZoom} onChange={handleZoom} min={1} max={12} step='0.1' />
-            </ZoomWrapper>
-        </div>
-    )
+  const previewZoom = useAppSelector(state => state.createPost.previewZoom)
+
+  const [zoomHidden, setZoomHidden] = useState(false)
+
+  const handleZoom = (e: ChangeEvent<HTMLInputElement>): void => {
+    dispatch(createPostAC.setPreviewZoom(e.target.value))
+  }
+
+  return (
+    <div className="zoom">
+      <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
+      <ZoomWrapper hidden={zoomHidden}>
+        <input max={12} min={1} step="0.1" type="range" value={previewZoom} onChange={handleZoom} />
+      </ZoomWrapper>
+    </div>
+  )
 }

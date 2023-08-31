@@ -1,14 +1,15 @@
-import React from 'react'
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
-export default function UserProfilePage() {
-    const router = useRouter()
-    return (
-        <>
-            <p>UserProfilePage </p>
-            <p>userID: {router.query.userID}</p>
-        </>
-    )
+import { getAuthorizedLayout } from '_app/Layouts/authorized/AuthorizedLayout'
+
+export default function UserProfilePage(): JSX.Element {
+  const router = useRouter()
+
+  return (
+    <>
+      <p>UserProfilePage </p>
+      <p>userID: {router.query.userID}</p>
+    </>
+  )
 }
 UserProfilePage.getLayout = getAuthorizedLayout

@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -9,17 +9,20 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     overflow-y: scroll;
-   
+
   }
 
   body {
-    background-color: ${({theme}) => theme.bodyColor['700']};
-    color: ${({theme}) => theme.textColor['100']};
     scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
+
     height: 100vh;
     margin: 0;
+
     font-family: 'Inter Variable', sans-serif;
+    color: ${({ theme }) => theme.textColor['100']};
+    text-rendering: optimizespeed;
+
+    background-color: ${({ theme }) => theme.bodyColor['700']};
 
     &.isModalOpen {
       overflow: hidden;
@@ -57,16 +60,17 @@ export const GlobalStyle = createGlobalStyle`
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    -webkit-text-fill-color: ${({theme}) => theme.textColor['100']};
-    -webkit-box-shadow: 0 0 0 40rem ${({theme}) => theme.bodyColor['500']} inset;
+    box-shadow: 0 0 0 40rem ${({ theme }) => theme.bodyColor['500']} inset;
+
+    -webkit-text-fill-color: ${({ theme }) => theme.textColor['100']};
   }
 
 
   //~~~~ScrollBar
   //https://codepen.io/devstreak/pen/dMYgeO
   &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
-    background-color: #CCCCCC;
+    background-color: #CCC;
+    box-shadow: inset 0 0 6px rgb(0 0 0 / 60%);
   }
 
   &::-webkit-scrollbar {
@@ -75,11 +79,11 @@ export const GlobalStyle = createGlobalStyle`
 
   &::-webkit-scrollbar-thumb {
     background-color: #FFF;
-    background-image: -webkit-linear-gradient(90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 25%,
+    background-image: linear-gradient(90deg,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 25%,
     transparent 100%,
-    rgba(0, 0, 0, 1) 75%,
+    rgb(0 0 0 / 100%) 75%,
     transparent)
   }
 `

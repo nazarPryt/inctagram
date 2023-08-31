@@ -1,41 +1,45 @@
 import styled from 'styled-components'
 
-export const EditorPanelWrapper = styled.div<{width: number}>`
+export const EditorPanelWrapper = styled.div<{ width: number }>`
+  position: absolute;
+  z-index: 1;
+  bottom: 30px;
+  left: 9px;
+
+  display: flex;
+  gap: 50px;
+  justify-content: space-around;
+
+  width: ${props => props.width}px;
+
+  .popUpBtn {
     display: flex;
-    z-index: 1;
-    justify-content: space-around;
-    width: ${props => props.width}px;
     gap: 50px;
-    position: absolute;
-    bottom: 30px;
-    left: 9px;
+    justify-content: space-between;
+    width: 95%;
 
-    .popUpBtn {
-        width: 95%;
-        display: flex;
-        gap: 50px;
-        justify-content: space-between;
+    .select,
+    .zoom,
+    .library {
+      position: relative;
 
-        .select,
-        .zoom,
-        .library {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            padding: 5px;
-            background-color: ${props => props.theme.bodyColor[500]};
-        }
+      width: 40px;
+      height: 40px;
+      padding: 5px;
 
-        .wrapper {
-            display: flex;
-            width: 120px;
-            justify-content: space-between;
-        }
-
-        svg {
-            path {
-                fill: ${props => props.theme.textColor[500]};
-            }
-        }
+      background-color: ${props => props.theme.bodyColor[500]};
     }
+
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 120px;
+    }
+
+    svg {
+      path {
+        fill: ${props => props.theme.textColor[500]};
+      }
+    }
+  }
 `

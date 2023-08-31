@@ -1,16 +1,16 @@
-import {api} from 'redux/api/api'
+import { api } from 'redux/api/api'
 
 const postApi = api.injectEndpoints({
-    endpoints: build => ({
-        getPosts: build.query({
-            query: () => ({
-                url: `posts`,
-                method: 'GET',
-            }),
-        }),
+  endpoints: build => ({
+    getPosts: build.query({
+      query: () => ({
+        url: `posts`,
+        method: 'GET',
+      }),
     }),
+  }),
 })
 
-export const {useGetPostsQuery} = postApi
+export const { useGetPostsQuery } = postApi
 
-//todo ~~ Waiting for backend to implement this endpoint
+// todo ~~ Waiting for backend to implement this endpoint

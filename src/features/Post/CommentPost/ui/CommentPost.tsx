@@ -1,11 +1,10 @@
-import React from 'react'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {CommentIcon} from 'features/Post/CommentPost/ui/CommentIcon'
+import { CommentIcon } from 'features/Post/CommentPost/ui/CommentIcon'
+import { IconButton } from 'shared/ui/IconButton/IconButton'
 
-export const CommentPost = () => {
-    return (
-        <IconButton>
-            <CommentIcon />
-        </IconButton>
-    )
+export const CommentPost = (): JSX.Element => {
+  return (
+    <IconButton>
+      <CommentIcon />
+    </IconButton>
+  )
 }
