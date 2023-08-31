@@ -56,9 +56,9 @@ export const LibraryImages: FC<LibraryImagesType> = ({ handleCreatePost }) => {
 
   return (
     <div className="library">
-      <span onClick={() => setLibraryHidden(!libraryHidden)}>
+      <button type="button" onClick={() => setLibraryHidden(!libraryHidden)}>
         <EmptyAvatar />
-      </span>
+      </button>
       <LibraryWrapper countPictures={libraryPictures.length || 1} hidden={libraryHidden}>
         <Swiper
           keyboard
