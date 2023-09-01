@@ -76,11 +76,13 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
                         ))}
                     </div>
                 </Swiper>
-                <div>
-                    <IconButton onClick={handlerAddPhoto}>
-                        <AddIcon />
-                    </IconButton>
-                </div>
+                {libraryPictures.length < 10 && (
+                    <div>
+                        <IconButton onClick={handlerAddPhoto}>
+                            <AddIcon />
+                        </IconButton>
+                    </div>
+                )}
                 <InputFile
                     title={'Select from Computer'}
                     ref={selectPhotoRef}
