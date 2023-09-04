@@ -4,15 +4,16 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useRegistrationMutation} from 'features/Auth/Registration/api/registration.api'
 import {RegistrationFormData, RegistrationFormSchema} from 'features/Auth/Registration/api/registration.types'
+import {useState} from 'react'
 
-export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
+export const useRegistrationForm = () => {
     const dispatch = useAppDispatch()
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const {
         handleSubmit,
         control,
         formState: {errors, isValid},
-
+        reset,
         ...rest
     } = useForm({
         resolver: yupResolver(RegistrationFormSchema),
@@ -33,13 +34,19 @@ export const useRegistrationForm = (setIsModalOpen: (v: boolean) => void) => {
                 )
             )
     }
+    const handleModalClose = () => {
+        setIsModalOpen(false)
+        reset()
+    }
 
     return {
+        handleModalClose,
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
         control,
         isValid,
         errors,
+        isModalOpen,
         ...rest,
     }
 }

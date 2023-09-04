@@ -1,13 +1,15 @@
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
-import CloseIcon from '../../../../shared/assets/icons/close.svg'
-import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
-import {InputFile} from 'shared/ui/InputFile/InputFile'
 import React, {ChangeEvent, useRef, useState} from 'react'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
-import {LibraryPictureType} from '../../model/types/createPostSchema'
-import {createPostAC} from '../../model/slice/createPostSlice'
-import {LibraryPicture, LibraryWrapper} from './styled'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
+import {InputFile} from 'shared/ui/InputFile/InputFile'
+import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
+import CloseIcon from '../../../../shared/assets/icons/close.svg'
+import {createPostAC} from '../../model/slice/createPostSlice'
+import {LibraryPictureType} from '../../model/types/createPostSchema'
+import {LibraryPicture, LibraryWrapper} from './styled'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
@@ -21,7 +23,9 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
 
     const handleChangeGeneralPicture = async (id: string) => {
         const pictureFromGallery = libraryPictures.find(el => (el.id === id ? {...el} : null))
+
         if (pictureFromGallery) {
+            console.log(2222)
             handleSetPreviewPicture(pictureFromGallery)
         }
     }
@@ -30,11 +34,11 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
         dispatch(createPostAC.setPreviewPicture(data))
     }
 
-    const handleDeletePicture = (id: string) => {
-        const newLibrary = libraryPictures.find(el => el.id !== id)
-        const newImagePreview = libraryPictures[0]
+    const handleDeletePicture = async (id: string) => {
+        const newLibrary = libraryPictures.find(el => el.id === id)
+        newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
+        const newImagePreview = libraryPictures.filter(el => el.id !== id)[0]
         handleSetPreviewPicture(newImagePreview)
-        newLibrary && dispatch(createPostAC.deleteImageFromLibrary(newLibrary))
     }
 
     const handlerAddPhoto = () => {
@@ -46,28 +50,39 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
             <span onClick={() => setLibraryHidden(!libraryHidden)}>
                 <EmptyAvatar />
             </span>
-            <LibraryWrapper hidden={libraryHidden}>
-                <div className={'OVER'}>
-                    {libraryPictures.map(el => (
-                        <div key={el.id}>
-                            <LibraryPicture
-                                image={el.img}
-                                filter={el.filter}
-                                onClick={() => handleChangeGeneralPicture(el.id)}
-                            />
-                            {libraryPictures.length > 1 && (
-                                <IconButton className='close' onClick={() => handleDeletePicture(el.id)}>
-                                    <CloseIcon />
-                                </IconButton>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                <div>
-                    <IconButton onClick={handlerAddPhoto}>
-                        <AddIcon />
-                    </IconButton>
-                </div>
+            <LibraryWrapper hidden={libraryHidden} countPictures={libraryPictures.length || 1}>
+                <Swiper
+                    modules={[Navigation, Pagination, A11y, Keyboard]}
+                    spaceBetween={0}
+                    slidesPerView={4}
+                    navigation={true}
+                    keyboard={true}
+                    width={360}
+                >
+                    <div className={'OVER'}>
+                        {libraryPictures.map(el => (
+                            <SwiperSlide key={el.id}>
+                                <LibraryPicture
+                                    image={el.img}
+                                    filter={el.filter}
+                                    onClick={() => handleChangeGeneralPicture(el.id)}
+                                />
+                                {libraryPictures.length > 1 && (
+                                    <IconButton className='close' onClick={() => handleDeletePicture(el.id)}>
+                                        <CloseIcon />
+                                    </IconButton>
+                                )}
+                            </SwiperSlide>
+                        ))}
+                    </div>
+                </Swiper>
+                {libraryPictures.length < 10 && (
+                    <div>
+                        <IconButton onClick={handlerAddPhoto}>
+                            <AddIcon />
+                        </IconButton>
+                    </div>
+                )}
                 <InputFile
                     title={'Select from Computer'}
                     ref={selectPhotoRef}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
@@ -13,20 +13,16 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
 import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
 import {Controller} from 'react-hook-form'
-import {Checkbox} from '../../../../../shared/ui/Checkbox/Checkbox'
+import {Checkbox} from 'shared/ui/Checkbox/Checkbox'
 import Link from 'next/link'
 import {RegistrationCheckboxWrapper} from './RegistrationForm.styled'
 
 export const RegistrationForm = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const {isLoading, register, handleSubmit, control, isValid, errors, getValues, reset} =
-        useRegistrationForm(setIsModalOpen)
     const {t} = useTranslation()
 
-    const handleModalClose = () => {
-        setIsModalOpen(false)
-        reset()
-    }
+    const {isLoading, register, handleSubmit, control, isValid, errors, getValues, isModalOpen, handleModalClose} =
+        useRegistrationForm()
+
     return (
         <AuthContainer>
             {isLoading && <Loader />}

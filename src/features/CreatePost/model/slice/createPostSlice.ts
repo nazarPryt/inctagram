@@ -35,6 +35,10 @@ const createPostSlice = createSlice({
         setLibraryPictures: (state, action: PayloadAction<LibraryPictureType>) => {
             state.libraryPictures.push(action.payload)
         },
+        setLibraryFromDraft: (state, action: PayloadAction<LibraryPictureType[]>) => {
+            state.libraryPictures = action.payload
+            state.previewImage = action.payload[0].img
+        },
         setUploadId: (state, action: PayloadAction<ImageMetaData>) => {
             state.uploadId.push(action.payload)
         },
@@ -59,7 +63,9 @@ const createPostSlice = createSlice({
         deleteImageFromLibrary: (state, action: PayloadAction<LibraryPictureType>) => {
             const currentIndex = state.libraryPictures.findIndex(el => el.img === action.payload.img)
 
-            delete state.libraryPictures[currentIndex]
+            if (currentIndex !== -1) {
+                state.libraryPictures.splice(currentIndex, 1)
+            }
         },
         clearLibraryImages: (state, action) => {
             state.libraryPictures = action.payload

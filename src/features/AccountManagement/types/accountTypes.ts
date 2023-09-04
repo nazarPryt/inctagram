@@ -17,3 +17,15 @@ export type Data = {
     amount: number
     typeDescription: SubscriptionType
 }
+export type CurrentSubscriptionData = {
+    userId: number
+    subscriptionId: string
+    dateOfPayment: string
+    endDateOfSubscription: string
+    autoRenewal: boolean
+}
+
+export type CurrentSubscriptionResponseType = {
+    data: CurrentSubscriptionData[]
+    hasAutoRenewal: boolean
+}

@@ -10,6 +10,7 @@ import {Popover} from 'shared/ui/Popover/Popover'
 import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
 import {DeletePostModal} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
 import {useDeleteUserPost} from 'features/Post/DeletePost/hook/useDeleteUserPost'
+import {PopOverIcon} from '../../../Post/ui/PostHeader/popOverIcon'
 
 type PropsType = {
     userId: number
@@ -42,7 +43,7 @@ export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) =
                     </Link>
                 </div>
                 {!edit && (
-                    <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
+                    <Popover icon={<PopOverIcon />} setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
                         <PopoverItem onClick={handleEditPost} name={'Edit Post'} icon={<EditPostIcon />} />
                         <PopoverItem onClick={handleModalOpen} name={'Delete Post'} icon={<DeletePostIcon />} />
                     </Popover>
