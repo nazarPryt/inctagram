@@ -135,7 +135,9 @@ export const ru: LocaleType = {
         logout: 'Выйти',
     },
     create: {
+        modalTitle: 'Создать пост',
         selectButton: 'Выбрать фото',
+        selectDraft: 'Открыть черновик',
         selectResize: 'Оригинал',
         steps: {
             addPhoto: 'Добавить фото',
@@ -157,12 +159,22 @@ export const ru: LocaleType = {
                 type: 'Ошибка',
             },
         },
+        errorAddPhotoToLibrary: 'Количество фотографий не должно превышать десяти',
         createPost: {
             success: {
                 message: 'Ваш пост был добавлен',
             },
             error: {
                 type: 'Ошибка',
+            },
+        },
+        saveToDraftModal: {
+            title: 'Закрыть',
+            text: 'Вы действительно хотите закрыть?',
+            textNext: 'Если вы закроете, все будет удалено.',
+            buttons: {
+                discard: 'Удалить',
+                save: 'Сохранить в черновик',
             },
         },
     },
@@ -176,6 +188,13 @@ export const ru: LocaleType = {
             unfollow: 'Отписаться',
             copyLink: 'Копировать ссылку',
             follow: 'Подписаться',
+        },
+    },
+    header: {
+        notification: {
+            notifications: 'Уведомелния',
+            new: 'Новое',
+            newNotification: 'Новое уведомление!',
         },
     },
 }

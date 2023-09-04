@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const EditorPanelWrapper = styled.div<{width: number}>`
     display: flex;
+    z-index: 1;
     justify-content: space-around;
     width: ${props => props.width}px;
     gap: 50px;

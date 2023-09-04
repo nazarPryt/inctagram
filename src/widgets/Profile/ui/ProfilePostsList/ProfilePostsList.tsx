@@ -8,7 +8,6 @@ import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 export const ProfilePostsList = () => {
     const userId = 248
     const {data: posts, isLoading} = useGetUserPostsQuery(userId as number)
-    console.log('posts: ', posts)
 
     if (isLoading) {
         return <Loader />
@@ -20,14 +19,20 @@ export const ProfilePostsList = () => {
     return (
         <ProfilePostsListWrapper>
             {posts &&
-                posts.items.map(post => (
-                    <UserPost
-                        key={post.id}
-                        imagesLength={post.images.length}
-                        src={post.images[0]?.url}
-                        postId={post.id}
-                    />
-                ))}
+                posts.items.map(post => {
+                    const images = [...post.images]
+                        .filter(img => img.width === 1440)
+                        .sort((a, b) => b.uploadId.localeCompare(a.uploadId))
+
+                    return (
+                        <UserPost
+                            key={post.id}
+                            imagesLength={post.images.length}
+                            src={images[0]?.url}
+                            postId={post.id}
+                        />
+                    )
+                })}
         </ProfilePostsListWrapper>
     )
 }

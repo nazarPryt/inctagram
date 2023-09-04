@@ -5,6 +5,7 @@ import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {PATH} from 'shared/constants/PATH'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
 import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
+import {Notification} from 'features/Notification/ui/Notification/Notification'
 
 export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
     return (
@@ -14,7 +15,10 @@ export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
                 Inctagram
             </Link>
             <ThemeSwitcher />
-            <LangSelect />
+            <div className='block'>
+                <Notification />
+                <LangSelect />
+            </div>
         </HeaderStyled>
     )
 }
