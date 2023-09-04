@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     overflow-y: scroll;
+   
   }
 
   body {
@@ -18,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed;
     height: 100vh;
     margin: 0;
+    font-family: 'Inter Variable', sans-serif;
 
     &.isModalOpen {
       overflow: hidden;

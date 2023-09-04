@@ -4,12 +4,11 @@ export const EditorButtonsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
     background-color: ${props => props.theme.bodyColor['300']};
     width: 100%;
     top: 0;
     left: 0;
-    height: 60px;
+    height: 20px;
     padding: 0 10px;
 
     span {

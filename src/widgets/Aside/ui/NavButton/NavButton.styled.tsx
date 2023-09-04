@@ -5,10 +5,10 @@ export const NavButtonWrapper = styled.button`
     display: flex;
     align-items: center;
     gap: 15px;
+    font-size: inherit;
+    font-weight: inherit;
     font-family: inherit;
-    font-weight: 500;
     white-space: nowrap;
-    font-size: 14px;
     background-color: inherit;
     color: ${props => props.theme.textColor['100']};
     border: none;

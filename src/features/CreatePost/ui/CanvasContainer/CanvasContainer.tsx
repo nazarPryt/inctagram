@@ -1,7 +1,12 @@
-import AvatarEditor, {ImageState} from 'react-avatar-editor'
 import React, {RefObject} from 'react'
-import {Wrapper} from './styled'
+import AvatarEditor from 'react-avatar-editor'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
 import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {Wrapper} from './styled'
 
 type CanvasContainerType = {
     editorRef: RefObject<AvatarEditor>
@@ -9,7 +14,7 @@ type CanvasContainerType = {
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
-    const {previewImage, previewFilter, previewZoom, defaultWidth, defaultHeight} = useAppSelector(
+    const {previewImage, previewFilter, defaultWidth, defaultHeight, libraryPictures} = useAppSelector(
         state => state.createPost
     )
 
@@ -19,19 +24,35 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
 
     return (
         <Wrapper width={defaultWidth} height={defaultHeight}>
-            <AvatarEditor
-                ref={props.editorRef}
-                image={previewImage}
-                width={defaultWidth}
-                height={defaultHeight}
-                scale={+previewZoom}
-                border={0}
-                onImageReady={handlePrepareImage}
-                style={{
-                    filter: previewFilter,
-                }}
-                disableHiDPIScaling={true}
-            />
+            <Swiper
+                modules={[Navigation, Pagination, A11y, Keyboard]}
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation={true}
+                keyboard={true}
+                pagination={{clickable: true}}
+                scrollbar={{draggable: true}}
+            >
+                {libraryPictures.map(img => {
+                    return (
+                        <SwiperSlide key={img.id}>
+                            <AvatarEditor
+                                ref={props.editorRef}
+                                image={img.img}
+                                width={defaultWidth}
+                                height={defaultHeight}
+                                scale={+img.zoom}
+                                border={0}
+                                onImageReady={handlePrepareImage}
+                                style={{
+                                    filter: previewFilter,
+                                }}
+                                disableHiDPIScaling={true}
+                            />
+                        </SwiperSlide>
+                    )
+                })}
+            </Swiper>
         </Wrapper>
     )
 }

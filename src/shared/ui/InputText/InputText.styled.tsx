@@ -59,6 +59,7 @@ export const Wrapper = styled.div`
         position: relative;
         display: block;
         width: 100%;
+        margin-bottom: 5px;
         border-bottom: 1px solid ${props => props.theme.bodyColor['300']};
 
         &:before {
@@ -80,11 +81,8 @@ export const Wrapper = styled.div`
     }
 
     .error {
-        position: absolute;
-        top: 85%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         width: 100%;
         color: red;
+        margin: 5px 0;
     }
 `

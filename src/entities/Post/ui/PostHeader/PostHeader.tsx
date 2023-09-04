@@ -3,12 +3,13 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Popover} from 'shared/ui/Popover/Popover'
 import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
 import {EmailReportIcon} from 'features/Post/EmailReport/EmailReportIcon'
 import {UnfollowUserIcon} from 'features/UnfollowUser/UnfollowUserIcon'
 import {CopyLinkIcon} from 'features/Post/CopyLink/CopyLinkIcon'
+import {PopOverIcon} from './popOverIcon'
 
 type PostHeaderType = {
     img: string
@@ -40,7 +41,7 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
                 </Link>
                 <span>22 {t.home.minutesAgo}</span>
             </div>
-            <Popover setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
+            <Popover icon={<PopOverIcon />} setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
                 <PopoverItem onClick={handleActionOne} name={t.home.options.report} icon={<EmailReportIcon />} />
                 <PopoverItem onClick={handleActionTwo} name={t.home.options.unfollow} icon={<UnfollowUserIcon />} />
                 <PopoverItem onClick={handleActionThree} name={t.home.options.copyLink} icon={<CopyLinkIcon />} />

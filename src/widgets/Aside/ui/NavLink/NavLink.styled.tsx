@@ -6,8 +6,6 @@ export const NavLinkWrapper = styled(Link)`
     display: flex;
     align-items: center;
     gap: 15px;
-    font-weight: 500;
-    font-size: 14px;
 
     text-decoration: none;
     color: ${props => props.theme.textColor[100]};

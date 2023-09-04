@@ -35,8 +35,6 @@ export const DialogContent = styled(Dialog.Content)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    //max-width: 90vw;
-    //max-height: 90vh;
     padding: 10px;
     animation: ${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 100;

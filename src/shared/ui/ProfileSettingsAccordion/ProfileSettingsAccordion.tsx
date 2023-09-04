@@ -1,8 +1,9 @@
 import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {setProfileSettingsTabsAC, TabsSettingsType} from '../../../_app/store/appSlice'
+import {setProfileSettingsTabsAC, TabsSettingsType} from '_app/store/appSlice'
 import {useAppDispatch, useAppSelector} from '../../hooks/reduxHooks'
 import {TabButton} from '../TabButton/TabButton'
+import {ProfileSettingsAccordionStyled} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion.styled'
 
 type TabNamesType = {
     name: TabsSettingsType
@@ -24,7 +25,7 @@ export const ProfileSettingsAccordion = () => {
         dispatch(setProfileSettingsTabsAC({tab}))
     }
     return (
-        <div>
+        <ProfileSettingsAccordionStyled>
             {tabNames.map(tabName => (
                 <TabButton
                     key={tabName.name}
@@ -34,6 +35,6 @@ export const ProfileSettingsAccordion = () => {
                     {tabName.labelName}
                 </TabButton>
             ))}
-        </div>
+        </ProfileSettingsAccordionStyled>
     )
 }

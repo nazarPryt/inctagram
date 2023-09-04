@@ -131,7 +131,9 @@ export const en = {
         logout: 'Log Out',
     },
     create: {
+        modalTitle: 'Create post',
         selectButton: 'Select from computer',
+        selectDraft: 'Open Draft',
         selectResize: 'Original',
         steps: {
             addPhoto: 'Add Photo',
@@ -153,12 +155,22 @@ export const en = {
                 type: 'Error',
             },
         },
+        errorAddPhotoToLibrary: "Count of photo don't be more than ten",
         createPost: {
             success: {
                 message: 'Your post was successfully uploaded',
             },
             error: {
                 type: 'Error',
+            },
+        },
+        saveToDraftModal: {
+            title: 'Close',
+            text: 'Do you really want to close the creation of a publication?',
+            textNext: 'If you close everything will be deleted.',
+            buttons: {
+                discard: 'Discard',
+                save: 'Save draft',
             },
         },
     },
@@ -172,6 +184,13 @@ export const en = {
             unfollow: 'Unfollow',
             copyLink: 'Copy Link',
             follow: 'Follow',
+        },
+    },
+    header: {
+        notification: {
+            notifications: 'Notifications',
+            new: 'New',
+            newNotification: 'New notification!',
         },
     },
 }

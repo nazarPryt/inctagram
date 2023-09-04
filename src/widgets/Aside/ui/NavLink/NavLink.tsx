@@ -16,7 +16,7 @@ export const NavLink = (props: NavLinkProps) => {
     return (
         <NavLinkWrapper {...props} className={pathname === props.href ? 'active' : ''}>
             <NavIconWrapper active={pathname === props.href}>{props.icon}</NavIconWrapper>
-            <span>{props.name}</span>
+            {props.name}
         </NavLinkWrapper>
     )
 }
