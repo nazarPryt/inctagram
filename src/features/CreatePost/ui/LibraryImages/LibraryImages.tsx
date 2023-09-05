@@ -22,23 +22,25 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
     const selectPhotoRef = useRef<HTMLInputElement>(null)
 
     const handleChangeGeneralPicture = async (id: string) => {
-        const pictureFromGallery = libraryPictures.find(el => (el.id === id ? {...el} : null))
-
+        const pictureFromGallery = libraryPictures.find(el => el.id === id && el)
+        console.log('handleChangeGeneralPicture', pictureFromGallery)
         if (pictureFromGallery) {
-            console.log(2222)
-            handleSetPreviewPicture(pictureFromGallery)
+            handleSetPreviewPicture(pictureFromGallery.id)
         }
     }
 
-    const handleSetPreviewPicture = (data: LibraryPictureType) => {
-        dispatch(createPostAC.setPreviewPicture(data))
+    const handleSetPreviewPicture = (currentImageId: string) => {
+        dispatch(createPostAC.setCurrentImageId(currentImageId))
     }
 
-    const handleDeletePicture = async (id: string) => {
+    const handleDeletePicture = async (id: string, index: number) => {
         const newLibrary = libraryPictures.find(el => el.id === id)
         newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
-        const newImagePreview = libraryPictures.filter(el => el.id !== id)[0]
-        handleSetPreviewPicture(newImagePreview)
+        const newCurrentImageId = libraryPictures.filter(el => el.id !== id)
+
+        if (newCurrentImageId.length > index) {
+            handleSetPreviewPicture(newCurrentImageId[index].id)
+        }
     }
 
     const handlerAddPhoto = () => {
@@ -50,7 +52,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
             <span onClick={() => setLibraryHidden(!libraryHidden)}>
                 <EmptyAvatar />
             </span>
-            <LibraryWrapper hidden={libraryHidden} countPictures={libraryPictures.length || 1}>
+            <LibraryWrapper hidden={libraryHidden} $countPictures={libraryPictures.length || 1}>
                 <Swiper
                     modules={[Navigation, Pagination, A11y, Keyboard]}
                     spaceBetween={0}
@@ -60,7 +62,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
                     width={360}
                 >
                     <div className={'OVER'}>
-                        {libraryPictures.map(el => (
+                        {libraryPictures.map((el, index) => (
                             <SwiperSlide key={el.id}>
                                 <LibraryPicture
                                     image={el.img}
@@ -68,7 +70,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
                                     onClick={() => handleChangeGeneralPicture(el.id)}
                                 />
                                 {libraryPictures.length > 1 && (
-                                    <IconButton className='close' onClick={() => handleDeletePicture(el.id)}>
+                                    <IconButton className='close' onClick={() => handleDeletePicture(el.id, index)}>
                                         <CloseIcon />
                                     </IconButton>
                                 )}

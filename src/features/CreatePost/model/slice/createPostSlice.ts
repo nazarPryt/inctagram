@@ -5,6 +5,7 @@ import {ImageMetaData} from '../../service/types'
 const createPostSlice = createSlice({
     name: 'createPost',
     initialState: {
+        currentImageId: '',
         previewImage: '',
         previewFilter: '',
         previewZoom: '1',
@@ -16,6 +17,10 @@ const createPostSlice = createSlice({
         describeText: '',
     } as CreatePostSchema,
     reducers: {
+        setCurrentImageId: (state: CreatePostSchema, action: PayloadAction<string>) => {
+            console.log('currentImageId', action.payload)
+            state.currentImageId = action.payload
+        },
         setPreviewImage: (state, action: PayloadAction<string>) => {
             state.previewImage = action.payload
         },

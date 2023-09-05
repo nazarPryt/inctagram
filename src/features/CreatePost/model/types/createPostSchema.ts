@@ -1,6 +1,7 @@
 import {ImageMetaData} from '../../service/types'
 
 export type CreatePostSchema = {
+    currentImageId: string
     previewImage: string
     previewFilter: string
     previewZoom: string

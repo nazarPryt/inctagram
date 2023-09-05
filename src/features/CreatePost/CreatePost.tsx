@@ -48,6 +48,7 @@ export const CreatePost = () => {
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
+        dispatch(createPostAC.setCurrentImageId(url))
         dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
     }
 
