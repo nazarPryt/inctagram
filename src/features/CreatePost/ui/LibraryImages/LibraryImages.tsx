@@ -8,7 +8,6 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
 import CloseIcon from '../../../../shared/assets/icons/close.svg'
 import {createPostAC} from '../../model/slice/createPostSlice'
-import {LibraryPictureType} from '../../model/types/createPostSchema'
 import {LibraryPicture, LibraryWrapper} from './styled'
 
 type LibraryImagesType = {
@@ -26,6 +25,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
         console.log('handleChangeGeneralPicture', pictureFromGallery)
         if (pictureFromGallery) {
             handleSetPreviewPicture(pictureFromGallery.id)
+            dispatch(createPostAC.setPreviewImage(pictureFromGallery.img))
         }
     }
 
@@ -36,10 +36,11 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
     const handleDeletePicture = async (id: string, index: number) => {
         const newLibrary = libraryPictures.find(el => el.id === id)
         newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
-        const newCurrentImageId = libraryPictures.filter(el => el.id !== id)
+        const newLibrariesPictures = libraryPictures.filter(el => el.id !== id)
 
-        if (newCurrentImageId.length > index) {
-            handleSetPreviewPicture(newCurrentImageId[index].id)
+        if (newLibrariesPictures.length > index) {
+            handleSetPreviewPicture(newLibrariesPictures[index].id)
+            dispatch(createPostAC.setPreviewImage(newLibrariesPictures[index].img))
         }
     }
 

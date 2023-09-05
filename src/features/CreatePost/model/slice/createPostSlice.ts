@@ -30,6 +30,10 @@ const createPostSlice = createSlice({
         setPreviewZoom: (state, action: PayloadAction<string>) => {
             state.previewZoom = action.payload
         },
+        setLibraryPicturesZoom: (state, action: PayloadAction<string>) => {
+            const index = state.libraryPictures.findIndex(item => item.id === state.currentImageId)
+            if (index !== -1) state.libraryPictures[index].zoom = action.payload
+        },
         setResizeCanvas: (state, action: PayloadAction<{width: number; height: number}>) => {
             state.defaultHeight = action.payload.height
             state.defaultWidth = action.payload.width
