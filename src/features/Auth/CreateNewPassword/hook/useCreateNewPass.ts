@@ -7,6 +7,7 @@ import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useRouter} from 'next/router'
 import {PATH} from 'shared/constants/PATH'
+import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
 
 type NewPassType = {
     newPassword: string
@@ -16,9 +17,10 @@ const schema = yup.object({
     password: yup
         .string()
         .trim()
+        .required('Password is required')
         .min(6, 'Your password is too short, min 6 characters')
         .max(20, 'Your password is too long, max 20 characters')
-        .required('Password is required'),
+        .matches(passwordPattern, passwordPatternError),
     passwordConfirmation: yup
         .string()
         .trim()
