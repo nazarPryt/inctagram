@@ -22,7 +22,12 @@ const createPostSlice = createSlice({
             state.currentImageId = action.payload
         },
         setPreviewImage: (state, action: PayloadAction<string>) => {
+            const currPicture = state.libraryPictures.find(el => el.img === action.payload)
             state.previewImage = action.payload
+            if (currPicture) {
+                state.defaultWidth = currPicture.width
+                state.defaultHeight = currPicture.height
+            }
         },
         setPreviewFilter: (state, action: PayloadAction<string>) => {
             state.previewFilter = action.payload
@@ -35,8 +40,13 @@ const createPostSlice = createSlice({
             if (index !== -1) state.libraryPictures[index].zoom = action.payload
         },
         setResizeCanvas: (state, action: PayloadAction<{width: number; height: number}>) => {
+            const currImage = state.libraryPictures.find(el => el.img === state.previewImage)
             state.defaultHeight = action.payload.height
             state.defaultWidth = action.payload.width
+            if (currImage) {
+                currImage.height = action.payload.height
+                currImage.width = action.payload.width
+            }
         },
         setStep: (state, action: PayloadAction<string>) => {
             state.step = action.payload

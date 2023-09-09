@@ -16,7 +16,6 @@ type CanvasContainerType = {
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
     const {defaultWidth, defaultHeight, libraryPictures} = useAppSelector(state => state.createPost)
-
     return (
         <Wrapper width={defaultWidth} height={defaultHeight}>
             <Swiper

@@ -22,7 +22,6 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
 
     const handleChangeGeneralPicture = async (id: string) => {
         const pictureFromGallery = libraryPictures.find(el => el.id === id && el)
-        console.log('handleChangeGeneralPicture', pictureFromGallery)
         if (pictureFromGallery) {
             handleSetPreviewPicture(pictureFromGallery.id)
             dispatch(createPostAC.setPreviewImage(pictureFromGallery.img))

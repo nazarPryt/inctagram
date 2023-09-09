@@ -18,5 +18,7 @@ export type LibraryPictureType = {
     img: string
     zoom: string | '1'
     filter: string
+    width: number
+    height: number
     readyToSend: File | null
 }
