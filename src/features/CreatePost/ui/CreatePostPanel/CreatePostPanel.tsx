@@ -37,7 +37,6 @@ export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
         })
 
         if (array.length > 0) {
-            console.log(array)
             dispatch(createPostAC.setLibraryFromDraft(array))
             dispatch(createPostAC.setDescribeText(userDraft.description))
         }
