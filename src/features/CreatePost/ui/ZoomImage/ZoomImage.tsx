@@ -20,7 +20,7 @@ export const ZoomImage = () => {
         dispatch(editorPanelAC.setOnZoom(!onZoom))
     }
     return (
-        <div className='zoom' onClick={handleClickZoom}>
+        <div className={`zoom ${onZoom && 'active'}`} onClick={handleClickZoom}>
             <ZoomIcon onClick={handleClickZoom} />
             <ZoomWrapper hidden={onZoom}>
                 <input

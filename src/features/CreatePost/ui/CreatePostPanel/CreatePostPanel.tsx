@@ -5,7 +5,7 @@ import {useTranslation} from '../../../../shared/hooks/useTranslation'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {CreatePostPanelWrapper} from './styled'
-import {getAllDrafts} from '../../lib/IndexedDB/indexedDB'
+import {clearIndexedDB, getAllDrafts} from '../../lib/IndexedDB/indexedDB'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 
 type PropsType = {
@@ -42,6 +42,7 @@ export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
         }
 
         dispatch(createPostAC.setStep(t.create.steps.cropping))
+        await clearIndexedDB('draftImages')
     }
 
     return (

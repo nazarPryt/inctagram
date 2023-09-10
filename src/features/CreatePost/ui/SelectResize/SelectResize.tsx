@@ -47,7 +47,7 @@ export const SelectResize = () => {
     }
 
     return (
-        <div className='select' onClick={handleClickResize}>
+        <div className={`select ${onSelectResize && 'active'}`} onClick={handleClickResize}>
             <RatioIcon onClick={handleClickResize} />
             <SelectWrapper hidden={onSelectResize}>
                 {ratioData.map(el => (
