@@ -1,5 +1,5 @@
 import RatioIcon from '../../../../shared/assets/icons/ratio.svg'
-import React, {useState} from 'react'
+import React, {useRef, useState, MouseEvent, RefObject} from 'react'
 import {SelectWrapper} from './styled'
 import CropOriginal from '../../../../shared/assets/icons/cropOriginal.svg'
 import Crop1x1 from '../../../../shared/assets/icons/crop1x1.svg'
@@ -10,10 +10,16 @@ import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHook
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useTranslation} from '../../../../shared/hooks/useTranslation'
 
-export const SelectResize = () => {
+type SelectResizeType = {
+    resizeRef: RefObject<HTMLDivElement>
+    handleClick: (e: MouseEvent<HTMLDivElement>) => void
+    onCloseResize: () => void
+    onResize: boolean
+}
+
+export const SelectResize: React.FC<SelectResizeType> = ({resizeRef, handleClick, onResize, onCloseResize}) => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
-    const [selectHidden, setSelectHidden] = useState(false)
     const ratioData = [
         {id: 1, value: 0, title: t.create.selectResize, icon: CropOriginal},
         {id: 2, value: 1, title: '1:1', icon: Crop1x1},
@@ -40,10 +46,15 @@ export const SelectResize = () => {
             return handleResize(ORIGINAL_SIZE.width, ORIGINAL_SIZE.height)
         }
     }
+
+    const handleClickResize = (e: MouseEvent<HTMLDivElement>) => {
+        handleClick(e)
+    }
+
     return (
-        <div className='select'>
-            <RatioIcon onClick={() => setSelectHidden(!selectHidden)} />
-            <SelectWrapper hidden={selectHidden}>
+        <div className='select' ref={resizeRef} onClick={handleClickResize}>
+            <RatioIcon onClick={onCloseResize} />
+            <SelectWrapper hidden={onResize}>
                 {ratioData.map(el => (
                     <div key={el.id} onClick={() => handlerCrop(el.value)}>
                         <span>{el.title}</span>

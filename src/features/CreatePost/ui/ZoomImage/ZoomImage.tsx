@@ -1,15 +1,20 @@
 import ZoomIcon from '../../../../shared/assets/icons/zoom.svg'
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, MouseEvent, RefObject, useState} from 'react'
 import {ZoomWrapper} from './styled'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 
-export const ZoomImage = () => {
+type ZoomImageType = {
+    zoomRef: RefObject<HTMLDivElement>
+    handleClick: (e: MouseEvent<HTMLDivElement>) => void
+    onZoom: boolean
+    onCloseZoom: () => void
+}
+
+export const ZoomImage: React.FC<ZoomImageType> = ({zoomRef, handleClick, onZoom, onCloseZoom}) => {
     const dispatch = useAppDispatch()
 
     const {previewZoom, currentImageId, libraryPictures} = useAppSelector(state => state.createPost)
-
-    const [zoomHidden, setZoomHidden] = useState(false)
 
     const handleZoom = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(createPostAC.setLibraryPicturesZoom(e.target.value))
@@ -17,10 +22,13 @@ export const ZoomImage = () => {
 
     const currentImage = libraryPictures.find(image => image.id === currentImageId)
 
+    const handleClickZoom = (e: MouseEvent<HTMLDivElement>) => {
+        handleClick(e)
+    }
     return (
-        <div className='zoom'>
-            <ZoomIcon onClick={() => setZoomHidden(!zoomHidden)} />
-            <ZoomWrapper hidden={zoomHidden}>
+        <div className='zoom' ref={zoomRef} onClick={handleClickZoom}>
+            <ZoomIcon onClick={onCloseZoom} />
+            <ZoomWrapper hidden={onZoom}>
                 <input
                     type='range'
                     value={currentImage?.zoom || previewZoom}

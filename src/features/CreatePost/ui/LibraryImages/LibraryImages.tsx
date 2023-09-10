@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react'
+import React, {ChangeEvent, MouseEvent, RefObject, useRef, useState} from 'react'
 import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
@@ -12,12 +12,21 @@ import {LibraryPicture, LibraryWrapper} from './styled'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
+    libraryRef: RefObject<HTMLDivElement>
+    handleClick: (e: MouseEvent<HTMLDivElement>) => void
+    onLibrary: boolean
+    onCloseLibrary: () => void
 }
-export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) => {
+export const LibraryImages: React.FC<LibraryImagesType> = ({
+    handleCreatePost,
+    libraryRef,
+    handleClick,
+    onCloseLibrary,
+    onLibrary,
+}) => {
     const dispatch = useAppDispatch()
     const {libraryPictures} = useAppSelector(state => state.createPost)
 
-    const [libraryHidden, setLibraryHidden] = useState(false)
     const selectPhotoRef = useRef<HTMLInputElement>(null)
 
     const handleChangeGeneralPicture = async (id: string) => {
@@ -47,12 +56,16 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
         selectPhotoRef && selectPhotoRef.current?.click()
     }
 
+    const handleClickLibrary = (e: MouseEvent<HTMLDivElement>) => {
+        handleClick(e)
+    }
+
     return (
-        <div className='library'>
-            <span onClick={() => setLibraryHidden(!libraryHidden)}>
+        <div className='library' ref={libraryRef} onClick={handleClickLibrary}>
+            <span onClick={onCloseLibrary}>
                 <EmptyAvatar />
             </span>
-            <LibraryWrapper hidden={libraryHidden} $countPictures={libraryPictures.length || 1}>
+            <LibraryWrapper hidden={onLibrary} $countPictures={libraryPictures.length || 1}>
                 <Swiper
                     modules={[Navigation, Pagination, A11y, Keyboard]}
                     spaceBetween={0}
