@@ -1,5 +1,5 @@
-import React, {ChangeEvent, MouseEvent, RefObject, useRef, useState} from 'react'
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import React, {ChangeEvent, useRef} from 'react'
+
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {InputFile} from 'shared/ui/InputFile/InputFile'
@@ -10,6 +10,7 @@ import CloseIcon from '../../../../shared/assets/icons/close.svg'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
 import {editorPanelAC} from '../../model/slice/editorPanelSlice'
+import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
@@ -53,8 +54,8 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
     }
 
     return (
-        <div className='library'>
-            <span onClick={handleClickLibrary}>
+        <div className={`library`}>
+            <span onClick={handleClickLibrary} className={onLibrary ? 'libraryActive' : ''}>
                 <EmptyAvatar />
             </span>
             <LibraryWrapper hidden={onLibrary} $countPictures={libraryPictures.length || 1}>
