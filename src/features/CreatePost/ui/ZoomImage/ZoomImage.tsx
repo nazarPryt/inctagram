@@ -3,17 +3,11 @@ import React, {ChangeEvent, MouseEvent, RefObject, useState} from 'react'
 import {ZoomWrapper} from './styled'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {editorPanelAC} from '../../model/slice/editorPanelSlice'
 
-type ZoomImageType = {
-    zoomRef: RefObject<HTMLDivElement>
-    handleClick: (e: MouseEvent<HTMLDivElement>) => void
-    onZoom: boolean
-    onCloseZoom: () => void
-}
-
-export const ZoomImage: React.FC<ZoomImageType> = ({zoomRef, handleClick, onZoom, onCloseZoom}) => {
+export const ZoomImage = () => {
     const dispatch = useAppDispatch()
-
+    const {onZoom} = useAppSelector(state => state.editorPanel)
     const {previewZoom, currentImageId, libraryPictures} = useAppSelector(state => state.createPost)
 
     const handleZoom = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +16,12 @@ export const ZoomImage: React.FC<ZoomImageType> = ({zoomRef, handleClick, onZoom
 
     const currentImage = libraryPictures.find(image => image.id === currentImageId)
 
-    const handleClickZoom = (e: MouseEvent<HTMLDivElement>) => {
-        handleClick(e)
+    const handleClickZoom = () => {
+        dispatch(editorPanelAC.setOnZoom(!onZoom))
     }
     return (
-        <div className='zoom' ref={zoomRef} onClick={handleClickZoom}>
-            <ZoomIcon onClick={onCloseZoom} />
+        <div className='zoom' onClick={handleClickZoom}>
+            <ZoomIcon onClick={handleClickZoom} />
             <ZoomWrapper hidden={onZoom}>
                 <input
                     type='range'

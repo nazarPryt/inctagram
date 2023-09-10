@@ -9,22 +9,14 @@ import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
 import CloseIcon from '../../../../shared/assets/icons/close.svg'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
+import {editorPanelAC} from '../../model/slice/editorPanelSlice'
 
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
-    libraryRef: RefObject<HTMLDivElement>
-    handleClick: (e: MouseEvent<HTMLDivElement>) => void
-    onLibrary: boolean
-    onCloseLibrary: () => void
 }
-export const LibraryImages: React.FC<LibraryImagesType> = ({
-    handleCreatePost,
-    libraryRef,
-    handleClick,
-    onCloseLibrary,
-    onLibrary,
-}) => {
+export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) => {
     const dispatch = useAppDispatch()
+    const {onLibrary} = useAppSelector(state => state.editorPanel)
     const {libraryPictures} = useAppSelector(state => state.createPost)
 
     const selectPhotoRef = useRef<HTMLInputElement>(null)
@@ -56,13 +48,13 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({
         selectPhotoRef && selectPhotoRef.current?.click()
     }
 
-    const handleClickLibrary = (e: MouseEvent<HTMLDivElement>) => {
-        handleClick(e)
+    const handleClickLibrary = () => {
+        dispatch(editorPanelAC.setOnLibrary(!onLibrary))
     }
 
     return (
-        <div className='library' ref={libraryRef} onClick={handleClickLibrary}>
-            <span onClick={onCloseLibrary}>
+        <div className='library'>
+            <span onClick={handleClickLibrary}>
                 <EmptyAvatar />
             </span>
             <LibraryWrapper hidden={onLibrary} $countPictures={libraryPictures.length || 1}>

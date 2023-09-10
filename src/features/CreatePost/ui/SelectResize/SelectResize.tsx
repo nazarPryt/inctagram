@@ -9,17 +9,12 @@ import {ASPECT_RATIO, ORIGINAL_SIZE} from '../../model/types/const'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useTranslation} from '../../../../shared/hooks/useTranslation'
+import {editorPanelAC} from '../../model/slice/editorPanelSlice'
 
-type SelectResizeType = {
-    resizeRef: RefObject<HTMLDivElement>
-    handleClick: (e: MouseEvent<HTMLDivElement>) => void
-    onCloseResize: () => void
-    onResize: boolean
-}
-
-export const SelectResize: React.FC<SelectResizeType> = ({resizeRef, handleClick, onResize, onCloseResize}) => {
+export const SelectResize = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
+    const {onSelectResize} = useAppSelector(state => state.editorPanel)
     const ratioData = [
         {id: 1, value: 0, title: t.create.selectResize, icon: CropOriginal},
         {id: 2, value: 1, title: '1:1', icon: Crop1x1},
@@ -47,14 +42,14 @@ export const SelectResize: React.FC<SelectResizeType> = ({resizeRef, handleClick
         }
     }
 
-    const handleClickResize = (e: MouseEvent<HTMLDivElement>) => {
-        handleClick(e)
+    const handleClickResize = () => {
+        dispatch(editorPanelAC.setOnSelectResize(!onSelectResize))
     }
 
     return (
-        <div className='select' ref={resizeRef} onClick={handleClickResize}>
-            <RatioIcon onClick={onCloseResize} />
-            <SelectWrapper hidden={onResize}>
+        <div className='select' onClick={handleClickResize}>
+            <RatioIcon onClick={handleClickResize} />
+            <SelectWrapper hidden={onSelectResize}>
                 {ratioData.map(el => (
                     <div key={el.id} onClick={() => handlerCrop(el.value)}>
                         <span>{el.title}</span>
