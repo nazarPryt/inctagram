@@ -30,6 +30,8 @@ export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
                     zoom: el.zoom,
                     filter: el.filter,
                     readyToSend: null,
+                    width: el.width,
+                    height: el.height,
                 }
             }
         })

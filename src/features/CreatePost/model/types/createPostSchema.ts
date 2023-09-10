@@ -1,6 +1,7 @@
 import {ImageMetaData} from '../../service/types'
 
 export type CreatePostSchema = {
+    currentImageId: string
     previewImage: string
     previewFilter: string
     previewZoom: string
@@ -17,5 +18,7 @@ export type LibraryPictureType = {
     img: string
     zoom: string | '1'
     filter: string
+    width: number
+    height: number
     readyToSend: File | null
 }

@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 
-export const LibraryWrapper = styled.div<{countPictures: number}>`
+export const LibraryWrapper = styled.div<{$countPictures: number}>`
     display: ${props => (props.hidden ? 'flex' : 'none')};
     align-items: center;
     gap: 10px;
@@ -61,7 +61,7 @@ export const LibraryWrapper = styled.div<{countPictures: number}>`
     }
 
     ${props =>
-        props.countPictures > 4 &&
+        props.$countPictures > 4 &&
         css`
             .swiper-button-next {
                 position: absolute;
