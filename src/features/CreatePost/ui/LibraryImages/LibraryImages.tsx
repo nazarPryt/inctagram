@@ -1,99 +1,98 @@
-import { ChangeEvent, FC, useRef, useState } from 'react'
-
-import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-import { createPostAC } from '../../model/slice/createPostSlice'
-import { LibraryPictureType } from '../../model/types/createPostSchema'
-
-import { LibraryPicture, LibraryWrapper } from './styled'
-
-import AddIcon from 'shared/assets/icons/addIcon.svg'
-import CloseIcon from 'shared/assets/icons/close.svg'
-import { EmptyAvatar } from 'shared/assets/icons/emptyAvatar'
-import { useAppDispatch, useAppSelector } from 'shared/hooks/reduxHooks'
-import { IconButton } from 'shared/ui/IconButton/IconButton'
-import { InputFile } from 'shared/ui/InputFile/InputFile'
+import React, {ChangeEvent, useRef, useState} from 'react'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
+import {IconButton} from 'shared/ui/IconButton/IconButton'
+import {InputFile} from 'shared/ui/InputFile/InputFile'
+import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
+import CloseIcon from '../../../../shared/assets/icons/close.svg'
+import {createPostAC} from '../../model/slice/createPostSlice'
+import {LibraryPicture, LibraryWrapper} from './styled'
 
 type LibraryImagesType = {
-  handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
+    handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export const LibraryImages: FC<LibraryImagesType> = ({ handleCreatePost }) => {
-  const dispatch = useAppDispatch()
-  const { libraryPictures } = useAppSelector(state => state.createPost)
+export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) => {
+    const dispatch = useAppDispatch()
+    const {libraryPictures} = useAppSelector(state => state.createPost)
 
-  const [libraryHidden, setLibraryHidden] = useState(false)
-  const selectPhotoRef = useRef<HTMLInputElement>(null)
+    const [libraryHidden, setLibraryHidden] = useState(false)
+    const selectPhotoRef = useRef<HTMLInputElement>(null)
 
-  const handleChangeGeneralPicture = async (id: string) => {
-    const pictureFromGallery = libraryPictures.find(el => (el.id === id ? { ...el } : null))
-
-    if (pictureFromGallery) {
-      console.log(2222)
-      handleSetPreviewPicture(pictureFromGallery)
+    const handleChangeGeneralPicture = async (id: string) => {
+        const pictureFromGallery = libraryPictures.find(el => el.id === id && el)
+        if (pictureFromGallery) {
+            handleSetPreviewPicture(pictureFromGallery.id)
+            dispatch(createPostAC.setPreviewImage(pictureFromGallery.img))
+        }
     }
-  }
 
-  const handleSetPreviewPicture = (data: LibraryPictureType) => {
-    dispatch(createPostAC.setPreviewPicture(data))
-  }
+    const handleSetPreviewPicture = (currentImageId: string) => {
+        dispatch(createPostAC.setCurrentImageId(currentImageId))
+    }
 
-  const handleDeletePicture = async (id: string) => {
-    const newLibrary = libraryPictures.find(el => el.id === id)
+    const handleDeletePicture = async (id: string, index: number) => {
+        const newLibrary = libraryPictures.find(el => el.id === id)
+        newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
+        const newLibrariesPictures = libraryPictures.filter(el => el.id !== id)
 
-    // TODO
-    // eslint-disable-next-line no-unused-expressions
-    newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
-    const newImagePreview = libraryPictures.filter(el => el.id !== id)[0]
+        if (newLibrariesPictures.length > index) {
+            handleSetPreviewPicture(newLibrariesPictures[index].id)
+            dispatch(createPostAC.setPreviewImage(newLibrariesPictures[index].img))
+        }
+    }
 
-    handleSetPreviewPicture(newImagePreview)
-  }
+    const handlerAddPhoto = () => {
+        selectPhotoRef && selectPhotoRef.current?.click()
+    }
 
-  const handlerAddPhoto = () => {
-    // eslint-disable-next-line no-unused-expressions
-    selectPhotoRef && selectPhotoRef.current?.click()
-  }
-
-  return (
-    <div className="library">
-      <button type="button" onClick={() => setLibraryHidden(!libraryHidden)}>
-        <EmptyAvatar />
-      </button>
-      <LibraryWrapper countPictures={libraryPictures.length || 1} hidden={libraryHidden}>
-        <Swiper
-          keyboard
-          navigation
-          modules={[Navigation, Pagination, A11y, Keyboard]}
-          slidesPerView={4}
-          spaceBetween={0}
-          width={360}
-        >
-          <div className="OVER">
-            {libraryPictures.map(el => (
-              <SwiperSlide key={el.id}>
-                <LibraryPicture filter={el.filter} image={el.img} onClick={() => handleChangeGeneralPicture(el.id)} />
-                {libraryPictures.length > 1 && (
-                  <IconButton className="close" onClick={() => handleDeletePicture(el.id)}>
-                    <CloseIcon />
-                  </IconButton>
+    return (
+        <div className='library'>
+            <span onClick={() => setLibraryHidden(!libraryHidden)}>
+                <EmptyAvatar />
+            </span>
+            <LibraryWrapper hidden={libraryHidden} $countPictures={libraryPictures.length || 1}>
+                <Swiper
+                    modules={[Navigation, Pagination, A11y, Keyboard]}
+                    spaceBetween={0}
+                    slidesPerView={4}
+                    navigation={true}
+                    keyboard={true}
+                    width={360}
+                >
+                    <div className={'OVER'}>
+                        {libraryPictures.map((el, index) => (
+                            <SwiperSlide key={el.id}>
+                                <LibraryPicture
+                                    image={el.img}
+                                    filter={el.filter}
+                                    onClick={() => handleChangeGeneralPicture(el.id)}
+                                />
+                                {libraryPictures.length > 1 && (
+                                    <IconButton className='close' onClick={() => handleDeletePicture(el.id, index)}>
+                                        <CloseIcon />
+                                    </IconButton>
+                                )}
+                            </SwiperSlide>
+                        ))}
+                    </div>
+                </Swiper>
+                {libraryPictures.length < 10 && (
+                    <div>
+                        <IconButton onClick={handlerAddPhoto}>
+                            <AddIcon />
+                        </IconButton>
+                    </div>
                 )}
-              </SwiperSlide>
-            ))}
-          </div>
-        </Swiper>
-        <div>
-          <IconButton onClick={handlerAddPhoto}>
-            <AddIcon />
-          </IconButton>
+                <InputFile
+                    title={'Select from Computer'}
+                    ref={selectPhotoRef}
+                    onChange={handleCreatePost}
+                    accept={'image/png, image/jpeg'}
+                    multiple={false}
+                />
+            </LibraryWrapper>
         </div>
-        <InputFile
-          ref={selectPhotoRef}
-          accept="image/png, image/jpeg"
-          multiple={false}
-          title="Select from Computer"
-          onChange={handleCreatePost}
-        />
-      </LibraryWrapper>
-    </div>
-  )
+    )
 }

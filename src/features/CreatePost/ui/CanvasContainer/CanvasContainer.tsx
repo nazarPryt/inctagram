@@ -1,61 +1,83 @@
-import { FC, RefObject } from 'react'
-
+import {LibraryPictureType} from 'features/CreatePost/model/types/createPostSchema'
+import React, {RefObject, useEffect} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-import { Wrapper } from './styled'
-
-import { useAppSelector } from 'shared/hooks/reduxHooks'
+import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
+import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
+import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {Wrapper} from './styled'
 
 type CanvasContainerType = {
-  editorRef: RefObject<AvatarEditor>
-  prepareImageToSend: (img: string, filter: string) => void
+    editorRef: RefObject<AvatarEditor>
+    prepareImageToSend: (img: string, filter: string) => void
 }
 
-export const CanvasContainer: FC<CanvasContainerType> = ({ editorRef, prepareImageToSend }) => {
-  const { previewImage, previewFilter, defaultWidth, defaultHeight, libraryPictures } = useAppSelector(
-    state => state.createPost
-  )
+export const CanvasContainer: React.FC<CanvasContainerType> = props => {
+    const {defaultWidth, defaultHeight, libraryPictures} = useAppSelector(state => state.createPost)
+    return (
+        <Wrapper width={defaultWidth} height={defaultHeight}>
+            <Swiper
+                modules={[Navigation, Pagination, A11y, Keyboard]}
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation
+                keyboard
+                pagination={{clickable: true}}
+                scrollbar={{draggable: true}}
+            >
+                {libraryPictures.map(img => {
+                    return (
+                        <SwiperSlide key={img.id}>
+                            <SlideComponent
+                                img={img}
+                                prepareImageToSend={props.prepareImageToSend}
+                                editorRef={props.editorRef}
+                            />
+                        </SwiperSlide>
+                    )
+                })}
+            </Swiper>
+        </Wrapper>
+    )
+}
 
-  const handlePrepareImage = (): void => {
-    prepareImageToSend(previewImage, previewFilter)
-  }
+type SlidePropsType = {
+    img: LibraryPictureType
+    editorRef: RefObject<AvatarEditor>
+    prepareImageToSend: (img: string, filter: string) => void
+}
 
-  return (
-    <Wrapper height={defaultHeight} width={defaultWidth}>
-      <Swiper
-        keyboard
-        navigation
-        modules={[Navigation, Pagination, A11y, Keyboard]}
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        slidesPerView={1}
-        spaceBetween={0}
-      >
-        {libraryPictures.map(img => {
-          return (
-            <SwiperSlide key={img.id}>
-              <AvatarEditor
-                ref={editorRef}
-                disableHiDPIScaling
-                border={0}
-                height={defaultHeight}
-                image={img.img}
-                scale={+img.zoom}
-                width={defaultWidth}
-                style={{
-                  filter: previewFilter,
-                }}
-                onImageReady={handlePrepareImage}
-              />
-            </SwiperSlide>
-          )
-        })}
-      </Swiper>
-    </Wrapper>
-  )
+const SlideComponent = ({img, editorRef, prepareImageToSend}: SlidePropsType) => {
+    const swiper = useSwiper()
+
+    const {previewImage, previewFilter, defaultWidth, defaultHeight, libraryPictures, currentImageId} = useAppSelector(
+        state => state.createPost
+    )
+
+    const handlePrepareImage = () => {
+        prepareImageToSend(previewImage, previewFilter)
+    }
+
+    useEffect(() => {
+        const imageIndex = libraryPictures.findIndex(picture => picture.id === currentImageId)
+        swiper.slideTo(imageIndex)
+    }, [currentImageId])
+
+    return (
+        <AvatarEditor
+            ref={editorRef}
+            width={defaultWidth}
+            image={img.img}
+            height={defaultHeight}
+            scale={+img.zoom}
+            border={0}
+            onImageReady={handlePrepareImage}
+            style={{
+                filter: img.filter,
+            }}
+            disableHiDPIScaling={true}
+        />
+    )
 }
