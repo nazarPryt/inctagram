@@ -18,8 +18,6 @@ export const EditorPanel: React.FC<EditorButtonsType> = ({handleCreatePost}) => 
     const {defaultWidth, defaultHeight, libraryPictures, step} = useAppSelector(state => state.createPost)
     const hasDisableButtons = step !== t.create.steps.filters && step !== t.create.steps.describe
 
-    console.log(step !== t.create.steps.filters)
-    console.log(step !== t.create.steps.describe)
     return (
         <EditorPanelWrapper width={defaultWidth}>
             <div className='popUpBtn'>
