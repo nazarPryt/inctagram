@@ -21,11 +21,12 @@ import {useCreatePostMutation, useUploadImageMutation} from './service/createPos
 import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
 import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
+import {editorPanelAC} from './model/slice/editorPanelSlice'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
-    const {previewImage} = useAppSelector(state => state.createPost)
+    const {previewImage, defaultHeight, defaultWidth} = useAppSelector(state => state.createPost)
     const {step, libraryPictures, uploadId, describeText} = useAppSelector(state => state.createPost)
     const [post, {isLoading: isLoadingImage}] = useUploadImageMutation()
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
@@ -39,7 +40,18 @@ export const CreatePost = () => {
         let url = URL.createObjectURL(e.target.files[0])
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
-        dispatch(createPostAC.setLibraryPictures({id: url, img: url, zoom: '1', filter: '', readyToSend: null}))
+        dispatch(createPostAC.setCurrentImageId(url))
+        dispatch(
+            createPostAC.setLibraryPictures({
+                id: url,
+                img: url,
+                zoom: '1',
+                filter: '',
+                readyToSend: null,
+                width: defaultWidth,
+                height: defaultHeight,
+            })
+        )
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
@@ -49,7 +61,17 @@ export const CreatePost = () => {
             dispatch(createPostAC.uploadFile({img, file}))
         } else {
             const file = await createFilteredFile(editorRef, filter)
-            dispatch(createPostAC.setLibraryPictures({id: img, img, zoom: '1', filter: '', readyToSend: file}))
+            dispatch(
+                createPostAC.setLibraryPictures({
+                    id: img,
+                    img,
+                    zoom: '1',
+                    filter: '',
+                    readyToSend: file,
+                    width: defaultWidth,
+                    height: defaultHeight,
+                })
+            )
         }
     }
 
@@ -69,6 +91,7 @@ export const CreatePost = () => {
     }
 
     const handleChangeStep = (step: string) => {
+        dispatch(editorPanelAC.setCloseAllPopup(false))
         if (step === t.create.steps.addPhoto) {
             dispatch(createPostAC.clearAllState())
             return dispatch(createPostAC.setStep(step))

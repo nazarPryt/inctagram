@@ -11,7 +11,7 @@ type PresetFiltersType = {
 
 export const PresetFilters: React.FC<PresetFiltersType> = props => {
     const dispatch = useAppDispatch()
-    const {previewImage} = useAppSelector(state => state.createPost)
+    const {previewImage, defaultHeight, defaultWidth} = useAppSelector(state => state.createPost)
 
     const handleSetFilter = (filter: string) => {
         dispatch(createPostAC.setPreviewFilter(filter))
@@ -24,9 +24,17 @@ export const PresetFilters: React.FC<PresetFiltersType> = props => {
     return (
         <FiltersWrapper>
             {FILTERS_DATA.map(el => (
-                <Filter key={el.id} filter={el.filter} onClick={() => handleSetFilter(el.filter)}>
-                    <Image src={previewImage} width={100} height={100} alt={'filter photo'} />
-                    {el.title}
+                <Filter
+                    key={el.id}
+                    filter={el.filter}
+                    width={defaultWidth}
+                    height={defaultHeight}
+                    onClick={() => handleSetFilter(el.filter)}
+                >
+                    <div>
+                        <Image src={previewImage} width={defaultWidth} height={defaultHeight} alt={'filter photo'} />
+                        {el.title}
+                    </div>
                 </Filter>
             ))}
         </FiltersWrapper>
