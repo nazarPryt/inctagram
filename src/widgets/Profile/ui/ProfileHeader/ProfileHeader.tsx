@@ -7,9 +7,9 @@ import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {Loader} from 'shared/ui/Loader'
 
-export const ProfileHeader = () => {
+export const ProfileHeader = ({userId}: {userId: number | null}) => {
     const {t} = useTranslation()
-    const {data: userData, isLoading} = useGetUserProfileQuery()
+    const {data: userData, isLoading} = useGetUserProfileQuery(userId as number)
 
     if (isLoading) {
         return <Loader />

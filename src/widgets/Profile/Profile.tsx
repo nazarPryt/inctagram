@@ -6,7 +6,7 @@ import {ProfileHeader} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader'
 export const Profile = ({userId}: {userId: number | null}) => {
     return (
         <ProfileWrapper>
-            <ProfileHeader />
+            <ProfileHeader userId={userId} />
             <ProfilePostsList userId={userId} />
         </ProfileWrapper>
     )

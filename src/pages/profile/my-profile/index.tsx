@@ -18,6 +18,7 @@ export const getServerSideProps: GetServerSideProps<ProfilePageProps> = async (c
             },
         }
     }
+
     return {
         props: {
             userId: null,
