@@ -47,6 +47,7 @@ instance.interceptors.response.use(
 export const serverAuthAPI = {
     async authMe(token: string) {
         try {
+            console.log('authMe start')
             const res = await axios.get<authMeDataType>(`${baseURL}auth/me`, {
                 withCredentials: true,
                 headers: {
