@@ -7,7 +7,6 @@ import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
 
 export const ProfilePostsList = ({userId}: {userId: number | null}) => {
     const {data: posts, isLoading} = useGetUserPostsQuery(userId as number)
-    console.log(userId)
     if (isLoading) {
         return <Loader />
     }
