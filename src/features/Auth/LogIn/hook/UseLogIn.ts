@@ -45,7 +45,7 @@ export const useLogIn = () => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                cookie.save(accessToken, payload.accessToken, {path: ''})
+                cookie.save(accessToken, payload.accessToken, {path: '/', httpOnly: false})
             })
             .catch(error => {
                 HandelLoginErrors(error, dispatch, setError)

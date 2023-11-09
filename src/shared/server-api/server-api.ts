@@ -1,6 +1,7 @@
 import axios from 'axios'
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
+import nookies from 'nookies'
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
 // const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string
@@ -10,18 +11,19 @@ export const instance = axios.create({
     baseURL,
 })
 
-instance.interceptors.request.use(
-    config => {
-        const token = cookie.load(accessToken)
-
-        if (token) {
-            config.headers.Authorization = 'Bearer ' + token
-        }
-
-        return config
-    },
-    error => Promise.reject(error)
-)
+// instance.interceptors.request.use(
+//     config => {
+//         const token = cookie.loadAll()
+//         console.log(`interceptors.request accessToken: ${token.accessToken}`)
+//
+//         if (token.accessToken) {
+//             config.headers.Authorization = 'Bearer ' + token
+//         }
+//
+//         return config
+//     },
+//     error => Promise.reject(error)
+// )
 
 instance.interceptors.response.use(
     config => {
@@ -48,28 +50,33 @@ export const serverAuthAPI = {
     async authMe(token: string) {
         try {
             console.log('authMe start')
-            const res = await axios.get<authMeDataType>(`${baseURL}auth/me`, {
+            const res = await instance.get<authMeDataType>(`auth/me`, {
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
+            console.log('authMe response: ', res.data)
 
             return res.data
         } catch (e) {
-            throw new Error('Cant make authMe request')
+            console.log('authMe error', e)
+            throw new Error(`Cant make authMe request`)
         }
     },
     async refreshTokens() {
         try {
-            const res = await instance.post<{accessToken: string}>(`${baseURL}auth/update-tokens`, {
-                withCredentials: true,
-            })
+            console.log('start refreshTokens')
+
+            const res = await axios.post<{accessToken: string}>(`${baseURL}auth/update-tokens`)
+
+            console.log('success refreshTokens')
 
             cookie.save(accessToken, res.data.accessToken, {})
 
             return res.data.accessToken
         } catch (e) {
+            console.log('refreshTokens error: ', e)
             throw new Error('Cant make request for refresh tokens')
         }
     },

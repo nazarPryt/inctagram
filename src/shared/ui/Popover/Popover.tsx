@@ -16,21 +16,21 @@ export const Popover: FC<PopoverContentProps> = props => {
         setIsPopoverOpen(prevIsOpen => !prevIsOpen)
     }
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const popoverWrapper = document.getElementById('popoverWrapper')
-
-            if (popoverWrapper && !popoverWrapper.contains(event.target as Node)) {
-                setIsPopoverOpen(false)
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [setIsPopoverOpen])
+    // useEffect(() => {
+    //     const handleClickOutside = (event: MouseEvent) => {
+    //         const popoverWrapper = document.getElementById('popoverWrapper')
+    //
+    //         if (popoverWrapper && !popoverWrapper.contains(event.target as Node)) {
+    //             setIsPopoverOpen(false)
+    //         }
+    //     }
+    //
+    //     document.addEventListener('mousedown', handleClickOutside)
+    //
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside)
+    //     }
+    // }, [setIsPopoverOpen])
 
     return (
         <PopoverWrapper {...rest} id='popoverWrapper'>

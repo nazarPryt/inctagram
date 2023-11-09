@@ -27,30 +27,30 @@ import nookies from 'nookies'
 //     }
 // }
 
-// export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-//     const cookies = nookies.get(ctx)
-//
-//     console.log('getServerSide checkAuth start')
-//     console.log('cookies: ', cookies)
-//     if ('accessToken') {
-//         const user = await serverAuthAPI.authMe('accessToken')
-//         return {
-//             props: {
-//                 user,
-//             },
-//             redirect: {
-//                 destination: PATH.HOME,
-//                 permanent: false,
-//             },
-//         }
-//     }
-//     return {
-//         redirect: {
-//             destination: PATH.LOGIN,
-//             permanent: false,
-//         },
-//     }
-// }
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const cookies = nookies.get(ctx)
+    const accessToken = cookies.accessToken
+
+    console.log('cookies: ', cookies)
+    if (accessToken) {
+        const user = await serverAuthAPI.authMe(accessToken)
+        return {
+            props: {
+                user,
+            },
+            redirect: {
+                destination: PATH.HOME,
+                permanent: false,
+            },
+        }
+    }
+    return {
+        redirect: {
+            destination: PATH.LOGIN,
+            permanent: false,
+        },
+    }
+}
 
 const Home = ({user}: {user: any}) => {
     const router = useRouter()
