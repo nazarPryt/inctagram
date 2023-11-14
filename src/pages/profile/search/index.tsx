@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps<{accessToken: string; data: 
 
     return {
         props: {
-            accessToken,
+            accessToken: accessToken ? accessToken : 'not-found',
             data,
         },
     }

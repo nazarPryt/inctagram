@@ -6,7 +6,7 @@ import nookies from 'nookies'
 export default async function handler(req, res) {
     // const session = await getServerSession(req, res, authOptions)
     // if (session) {
-    nookies.set(res, 'nazar-server-triggered', 'sdfsdfsdf', {path: '/'})
+    nookies.set(res, 'refreshToken', 'my-refresh-token', {path: '/', httpOnly: true, secure: true})
 
     const blogData = [
         {
