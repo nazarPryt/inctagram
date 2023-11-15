@@ -48,21 +48,21 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     )
                     console.log(' 401 interceptors.response finished')
 
-                    console.log('update-tokens res: ', res)
-
-                    const cookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                    const arr = cookies.split(' ')
-
-                    let refreshToken = ''
-
-                    arr.forEach(el => {
-                        if (el.includes('refresh')) {
-                            refreshToken = el.split('=')[1].slice(0, -1)
-                        }
-                    })
+                    // console.log('update-tokens res: ', res)
+                    //
+                    // const cookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                    // const arr = cookies.split(' ')
+                    //
+                    // let refreshToken = ''
+                    //
+                    // arr.forEach(el => {
+                    //     if (el.includes('refresh')) {
+                    //         refreshToken = el.split('=')[1].slice(0, -1)
+                    //     }
+                    // })
 
                     nookies.set(ctx, accessToken, res.data.accessToken, {path: '/'})
-                    nookies.set(ctx, 'refreshToken', refreshToken, {path: '/', secure: true, httpOnly: true})
+                    // c', refreshToken, {path: '/', secure: true, httpOnly: true})
 
                     return instance.request(originalRequest)
                 } catch (e) {
