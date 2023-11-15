@@ -41,7 +41,11 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     console.log(' 401 interceptors.response start')
                     console.log('ctx.req.cookies', ctx.req.cookies)
 
-                    const res = await instance.post<{accessToken: string}>(`auth/update-tokens`)
+                    const res = await instance.post<{accessToken: string}>(
+                        `auth/update-tokens`,
+                        {},
+                        {withCredentials: true, headers: {Cookie: `refreshToken=${ctx.req.cookies.refreshToken}`}}
+                    )
                     console.log(' 401 interceptors.response finished')
 
                     console.log('update-tokens res: ', res)
