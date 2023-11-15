@@ -1,4 +1,13 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import {getServerSession} from 'next-auth/next'
+import {authOptions} from './auth/[...nextauth]'
+import nookies from 'nookies'
+
 export default async function handler(req, res) {
+    // const session = await getServerSession(req, res, authOptions)
+    // if (session) {
+    nookies.set(res, 'refreshToken', 'my-refresh-token', {path: '/', httpOnly: true, secure: true})
+
     const blogData = [
         {
             id: 1,

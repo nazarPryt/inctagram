@@ -11,6 +11,7 @@ export const editPostApi = api.injectEndpoints({
             invalidatesTags: ['Post'],
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useEditUserPostMutation} = editPostApi

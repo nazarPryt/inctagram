@@ -11,6 +11,7 @@ export const profileAPI = api.injectEndpoints({
             providesTags: () => ['User'],
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useGetUserProfileQuery} = profileAPI
