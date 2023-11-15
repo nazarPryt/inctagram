@@ -20,10 +20,10 @@ export const ViewUserPost = ({data}: PropsType) => {
         <ViewUserPostWrapper>
             <ViewUserPostSlider className={'left'} images={data.images} />
             {edit ? (
-                <EditPost edit={edit} setEdit={setEdit} data={data} />
+                <EditPost userId={data.id} edit={edit} setEdit={setEdit} data={data} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={248} postId={data.id} />
+                    <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} userId={248} />
                     <ViewUserPostDescription description={data.description} createdAt={data.createdAt} />
                     <ViewUserPostComments />
                     <ViewUserPostFeatures />

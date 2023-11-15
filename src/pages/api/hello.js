@@ -1,6 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import {getServerSession} from 'next-auth/next'
-import {authOptions} from './auth/[...nextauth]'
 import nookies from 'nookies'
 
 export default async function handler(req, res) {

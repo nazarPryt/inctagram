@@ -31,9 +31,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     const cookies = nookies.get(ctx)
     const accessToken = cookies.accessToken
 
-    console.log('cookies: ', cookies)
     if (accessToken) {
-        const user = await serverAuthAPI.authMe(accessToken)
+        const user = await serverAuthAPI.authMe(ctx)
         return {
             props: {
                 user,
