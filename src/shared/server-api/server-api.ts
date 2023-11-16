@@ -42,8 +42,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
                     const refreshTokenValue = ctx.req.cookies.refreshToken
 
-                    console.log('refreshTokenValue', refreshTokenValue)
-
                     if (refreshTokenValue) {
                         const res = await instance.post<{accessToken: string}>(
                             `auth/update-tokens`,
@@ -52,28 +50,13 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         )
                         console.log(' 401 interceptors.response finished')
                         console.log('ctx.req.cookies (AFTER update-tokens): ', ctx.req.cookies)
+                        originalRequest._isRetry = false
 
-                        nookies.set(ctx, accessToken, res.data.accessToken, {path: '/'})
+                        console.log('originalRequest._isRetry: ', originalRequest._isRetry)
 
-                        console.log(
-                            'ctx.req.cookies (AFTER nookies.set(ctx, accessToken, res.data.accessToken): ',
-                            ctx.req.cookies
-                        )
+                        ctx.res.setHeader('nazar', 'me=value')
+                        ctx.res.setHeader('cookies', 'myCookies=myCookiesValue')
                     }
-                    // console.log('update-tokens res: ', res)
-                    //
-                    // const cookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                    // const arr = cookies.split(' ')
-                    //
-                    // let refreshToken = ''
-                    //
-                    // arr.forEach(el => {
-                    //     if (el.includes('refresh')) {
-                    //         refreshToken = el.split('=')[1].slice(0, -1)
-                    //     }
-                    // })
-
-                    // nookies.set(ctx, refreshToken, {path: '/', secure: true, httpOnly: true})
 
                     return instance.request(originalRequest)
                 } catch (e) {
@@ -90,10 +73,10 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
 export const serverAuthAPI = {
     async authMe(ctx: GetServerSidePropsContext) {
-        console.log('authMe serverside')
+        console.log('authMe serverside start')
         try {
             const res = await customAxios(ctx).get<authMeDataType>(`auth/me`)
-
+            console.log('authMe serverside success')
             return res.data
         } catch (e) {
             return 'Cant make authMe request'
