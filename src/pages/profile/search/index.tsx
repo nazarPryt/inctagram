@@ -11,7 +11,6 @@ export const getServerSideProps: GetServerSideProps<{accessToken: string; data: 
 ) => {
     const cookies = nookies.get(ctx)
     const accessToken = cookies.accessToken
-    nookies.set(ctx, 'myCookiy', 'sdfsdfsdf')
     const data = {}
 
     return {

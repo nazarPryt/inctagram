@@ -44,9 +44,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
                     const refreshTokenValue = ctx.req.cookies.refreshToken
 
-                    // const response = NextResponse.next()
-                    // response.cookies.set('test', 'test', {secure: false})
-
                     if (refreshTokenValue) {
                         const res = await instance.post<{accessToken: string}>(
                             `auth/update-tokens`,
