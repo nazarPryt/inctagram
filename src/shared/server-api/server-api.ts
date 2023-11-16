@@ -43,17 +43,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     console.log(' 401 interceptors.response start!!!!!!!!!!')
                     console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
                     const refreshTokenValue = ctx.req.cookies.refreshToken
-                    nookies.set(ctx, 'test1', 'test1', {secure: false})
-                    const responce = NextResponse.next()
-                    responce.cookies.set('test', 'test', {secure: false})
 
-                    console.log('tets')
-
-                    console.log(responce.cookies.get('test'), 'test')
-
-                    const cookies = nookies.get(ctx)
-
-                    console.log(cookies, 'cookies')
+                    // const response = NextResponse.next()
+                    // response.cookies.set('test', 'test', {secure: false})
 
                     if (refreshTokenValue) {
                         const res = await instance.post<{accessToken: string}>(
@@ -64,26 +56,27 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
                         nookies.destroy(ctx, 'accessToken')
                         nookies.destroy(ctx, 'refreshToken')
-                        console.log(' 401 interceptors.response finished')
-                        console.log('ctx.req.cookies (AFTER update-tokens): ', ctx.req.cookies)
-                        originalRequest._isRetry = false
 
-                        ctx.req.cookies['accessToken'] = res.data.accessToken
+                        console.log('ctx.req.cookies (old cookies destroyed?): ', ctx.req.cookies)
+
                         console.log('originalRequest._isRetry: ', originalRequest._isRetry)
 
-                        const cookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                        const arr = cookies.split(' ')
+                        const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                        const arr = newRefreshCookies.split(' ')
 
-                        let refreshToken = ''
+                        let parsedRefreshToken = ''
 
                         arr.forEach(el => {
                             if (el.includes('refresh')) {
-                                refreshToken = el.split('=')[1].slice(0, -1)
+                                parsedRefreshToken = el.split('=')[1].slice(0, -1)
                             }
                         })
+                        console.log('parsedRefreshToken: ', parsedRefreshToken)
 
-                        nookies.set(ctx, 'accessToken', res.data.accessToken, {secure: false})
-                        nookies.set(ctx, 'refreshToken', refreshToken, {secure: true, httpOnly: true, path: '/'})
+                        nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
+                        nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
+
+                        console.log('ctx.req.cookies (new cookies AFTER update-tokens)', ctx.req.cookies)
 
                         console.log(' 401 interceptors.response success')
                         return instance.request(originalRequest)
@@ -92,7 +85,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         return
                     }
                 } catch (e) {
-                    cookies().set('test', 'test')
                     originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')
                     await serverAuthAPI.logOut(ctx)
