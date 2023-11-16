@@ -60,7 +60,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             ctx.req.cookies
                         )
                     }
-
                     // console.log('update-tokens res: ', res)
                     //
                     // const cookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
@@ -78,7 +77,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
                     return instance.request(originalRequest)
                 } catch (e) {
+                    originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')
+                    await serverAuthAPI.logOut(ctx)
                 }
             }
             throw error
@@ -110,6 +111,18 @@ export const serverAuthAPI = {
             return res.data.accessToken
         } catch (e) {
             throw new Error('Cant make request for refresh tokens')
+        }
+    },
+    async logOut(ctx: GetServerSidePropsContext) {
+        try {
+            console.log('logOut serverside')
+            const res = await customAxios(ctx).post(`auth/logout`)
+            nookies.destroy(ctx, accessToken)
+            console.log('logOut serverside is success')
+            console.log('ctx.req.cookies (AFTER logOut serverside): ', ctx.req.cookies)
+            return res.data
+        } catch (e) {
+            return 'Cant make authMe request'
         }
     },
 }
