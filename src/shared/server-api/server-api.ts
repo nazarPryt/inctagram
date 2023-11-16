@@ -56,9 +56,12 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
                         ctx.res.setHeader('nazar', 'me=value')
                         ctx.res.setHeader('cookies', 'myCookies=myCookiesValue')
+                        console.log(' 401 interceptors.response success')
+                        return instance.request(originalRequest)
+                    } else {
+                        console.log('refreshToken is undefined')
+                        return
                     }
-
-                    return instance.request(originalRequest)
                 } catch (e) {
                     originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')

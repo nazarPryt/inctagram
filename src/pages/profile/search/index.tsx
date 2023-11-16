@@ -12,7 +12,6 @@ export const getServerSideProps: GetServerSideProps<{accessToken: string; data: 
     const cookies = nookies.get(ctx)
     const accessToken = cookies.accessToken
 
-    nookies.set(ctx, 'nazar-server', 'data-set-from-serverside', {path: '/'})
     const data = {}
 
     return {
