@@ -61,6 +61,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             {},
                             {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
                         )
+
+                        nookies.destroy(ctx, 'accessToken')
+                        nookies.destroy(ctx, 'refreshToken')
                         console.log(' 401 interceptors.response finished')
                         console.log('ctx.req.cookies (AFTER update-tokens): ', ctx.req.cookies)
                         originalRequest._isRetry = false
@@ -78,6 +81,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                                 refreshToken = el.split('=')[1].slice(0, -1)
                             }
                         })
+
                         nookies.set(ctx, 'accessToken', res.data.accessToken, {secure: false})
                         nookies.set(ctx, 'refreshToken', refreshToken, {secure: true, httpOnly: true, path: '/'})
 
