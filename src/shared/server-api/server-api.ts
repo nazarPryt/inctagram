@@ -39,14 +39,27 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 originalRequest._isRetry = true
                 try {
                     console.log(' 401 interceptors.response start')
-                    console.log('ctx.req.cookies', ctx.req.cookies)
+                    console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
+                    const refreshTokenValue = ctx.req.cookies.refreshToken
 
-                    const res = await instance.post<{accessToken: string}>(
-                        `auth/update-tokens`,
-                        {},
-                        {withCredentials: true, headers: {Cookie: `refreshToken=${ctx.req.cookies.refreshToken}`}}
-                    )
-                    console.log(' 401 interceptors.response finished')
+                    console.log('refreshTokenValue', refreshTokenValue)
+
+                    if (refreshTokenValue) {
+                        const res = await instance.post<{accessToken: string}>(
+                            `auth/update-tokens`,
+                            {},
+                            {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
+                        )
+                        console.log(' 401 interceptors.response finished')
+                        console.log('ctx.req.cookies (AFTER update-tokens): ', ctx.req.cookies)
+
+                        nookies.set(ctx, accessToken, res.data.accessToken, {path: '/'})
+
+                        console.log(
+                            'ctx.req.cookies (AFTER nookies.set(ctx, accessToken, res.data.accessToken): ',
+                            ctx.req.cookies
+                        )
+                    }
 
                     // console.log('update-tokens res: ', res)
                     //
@@ -61,8 +74,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     //     }
                     // })
 
-                    nookies.set(ctx, accessToken, res.data.accessToken, {path: '/'})
-                    // c', refreshToken, {path: '/', secure: true, httpOnly: true})
+                    // nookies.set(ctx, refreshToken, {path: '/', secure: true, httpOnly: true})
 
                     return instance.request(originalRequest)
                 } catch (e) {
@@ -83,7 +95,7 @@ export const serverAuthAPI = {
 
             return res.data
         } catch (e) {
-            throw new Error('Cant make authMe request')
+            return 'Cant make authMe request'
         }
     },
     async refreshTokens(ctx: GetServerSidePropsContext) {
