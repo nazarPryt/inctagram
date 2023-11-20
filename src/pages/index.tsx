@@ -28,26 +28,29 @@ import nookies from 'nookies'
 // }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const cookies = nookies.get(ctx)
-    const accessToken = cookies.accessToken
-
-    if (accessToken) {
-        const user = await serverAuthAPI.authMe(ctx)
+    // const cookies = nookies.get(ctx)
+    // const accessToken = cookies.accessToken
+    //
+    // if (accessToken) {
+    const user = await serverAuthAPI.authMe(ctx)
+    console.log('serverAuthAPI.authMe (user): ', user)
+    if (user) {
         return {
             props: {
                 user,
             },
             redirect: {
                 destination: PATH.HOME,
-                permanent: false,
+                permanent: true,
             },
         }
-    }
-    return {
-        redirect: {
-            destination: PATH.LOGIN,
-            permanent: false,
-        },
+    } else {
+        return {
+            redirect: {
+                destination: PATH.LOGIN,
+                permanent: true,
+            },
+        }
     }
 }
 

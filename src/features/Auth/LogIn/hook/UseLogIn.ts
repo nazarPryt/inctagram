@@ -8,6 +8,8 @@ import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
 import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
+import {useRouter} from 'next/router'
+import {PATH} from 'shared/constants/PATH'
 
 const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
     return yup.object({
@@ -22,6 +24,7 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
 }
 
 export const useLogIn = () => {
+    const router = useRouter()
     const {t} = useTranslation()
     const schema = getLoginFormSchema('email is required', '')
     const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
@@ -46,6 +49,7 @@ export const useLogIn = () => {
             .unwrap()
             .then(async payload => {
                 cookie.save(accessToken, payload.accessToken, {path: '/', httpOnly: false})
+                await router.push(PATH.HOME)
             })
             .catch(error => {
                 HandelLoginErrors(error, dispatch, setError)
