@@ -52,32 +52,29 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
                     )
                     console.log('update-tokens res.headers: ', res.headers)
-                    // nookies.destroy(ctx, 'accessToken')
-                    // nookies.destroy(ctx, 'refreshToken')
-                    //
-                    // console.log('ctx.req.cookies (old cookies destroyed?): ', ctx.req.cookies)
-                    //
-                    // console.log('originalRequest._isRetry: ', originalRequest._isRetry)
 
-                    // nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
-                    // nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
-                    if (res.status == 200 && res.headers['set-cookie']) {
-                        // const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                        // const arr = newRefreshCookies.split(' ')
-                        //
-                        // let parsedRefreshToken = ''
-                        //
-                        // arr.forEach(el => {
-                        //     if (el.includes('refresh')) {
-                        //         parsedRefreshToken = el.split('=')[1].slice(0, -1)
-                        //     }
-                        // })
+                    if (res.status == 200) {
+                        nookies.destroy(ctx, 'accessToken')
+                        nookies.destroy(ctx, 'refreshToken')
+
+                        const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                        const arr = newRefreshCookies.split(' ')
+
+                        let parsedRefreshToken = ''
+
+                        arr.forEach(el => {
+                            if (el.includes('refresh')) {
+                                parsedRefreshToken = el.split('=')[1].slice(0, -1)
+                            }
+                        })
+                        nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
+                        nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
                         // console.log('parsedRefreshToken: ', parsedRefreshToken)
-                        const newRefreshToken = res.headers['set-cookie'][0]
-                        ctx.res.setHeader('Set-Cookie', [
-                            `${newRefreshToken}`,
-                            `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
-                        ])
+                        // const newRefreshToken = res.headers['set-cookie'][0]
+                        // ctx.res.setHeader('Set-Cookie', [
+                        //     `${newRefreshToken}`,
+                        //     `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
+                        // ])
                         console.log(' 401 interceptors.response finished successfully')
                         console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
                         return instance.request(originalRequest)
