@@ -39,12 +39,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             console.log('~~~~~~~~ 401 interceptors.response start ~~~~~~~~')
             console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
             const refreshTokenValue = ctx.req.cookies.refreshToken
-            console.log('refreshTokenValue: ', refreshTokenValue)
+            console.log('originalRequest = error.config: ', error.config)
 
-            originalRequest._isRetry = false
-            const isUserAuthorised = Boolean(
-                error.response.status == 401 && refreshTokenValue && error.config && !error.config._isRetry
-            )
+            const isUserAuthorised = Boolean(error.response.status == 401 && refreshTokenValue && error.config)
 
             console.log('isUserAuthorised: ', isUserAuthorised)
             if (isUserAuthorised) {
@@ -77,22 +74,23 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         // })
                         // console.log('parsedRefreshToken: ', parsedRefreshToken)
                         const newRefreshToken = res.headers['set-cookie'][0]
-
                         ctx.res.setHeader('Set-Cookie', [
                             `${newRefreshToken}`,
                             `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
                         ])
-                        originalRequest._isRetry = true
                         console.log(' 401 interceptors.response finished successfully')
+                        console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
                         return instance.request(originalRequest)
                     } else {
                         console.log('update-tokens failed with res.statusText: ', res.statusText)
                         await serverAuthAPI.logOut(ctx)
+                        console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
                         return Promise.reject(error)
                     }
                 } catch (e) {
                     console.log('User is not authorized (refreshToken is not valid)')
                     await serverAuthAPI.logOut(ctx)
+                    console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
                     return Promise.reject(error)
                 }
             }
