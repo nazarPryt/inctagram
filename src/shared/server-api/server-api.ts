@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, {AxiosHeaders} from 'axios'
 import {accessToken} from 'shared/constants/constants'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
@@ -64,39 +64,41 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
                     // nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
                     // nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
-                    if (res.status == 200) {
-                        const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                        const arr = newRefreshCookies.split(' ')
-
-                        let parsedRefreshToken = ''
-
-                        arr.forEach(el => {
-                            if (el.includes('refresh')) {
-                                parsedRefreshToken = el.split('=')[1].slice(0, -1)
-                            }
-                        })
-                        console.log('parsedRefreshToken: ', parsedRefreshToken)
+                    if (res.status == 200 && res.headers['set-cookie']) {
+                        // const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                        // const arr = newRefreshCookies.split(' ')
+                        //
+                        // let parsedRefreshToken = ''
+                        //
+                        // arr.forEach(el => {
+                        //     if (el.includes('refresh')) {
+                        //         parsedRefreshToken = el.split('=')[1].slice(0, -1)
+                        //     }
+                        // })
+                        // console.log('parsedRefreshToken: ', parsedRefreshToken)
+                        const newRefreshToken = res.headers['set-cookie'][0]
 
                         ctx.res.setHeader('Set-Cookie', [
-                            `refreshToken=${parsedRefreshToken}`,
-                            `accessToken=${res.data.accessToken}`,
+                            `${newRefreshToken}`,
+                            `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
                         ])
+                        originalRequest._isRetry = true
                         console.log(' 401 interceptors.response finished successfully')
                         return instance.request(originalRequest)
                     } else {
-                        console.log('update-tokens res.status: ', res.status)
+                        console.log('update-tokens failed with res.statusText: ', res.statusText)
                         await serverAuthAPI.logOut(ctx)
-                        await Promise.reject(error)
+                        return Promise.reject(error)
                     }
                 } catch (e) {
-                    console.log('User is not authorized (refreshToken is not valid)', e)
+                    console.log('User is not authorized (refreshToken is not valid)')
                     await serverAuthAPI.logOut(ctx)
-                    await Promise.reject(error)
+                    return Promise.reject(error)
                 }
             }
             console.log('User is not authorized (doesnt have the refreshToken)')
             console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-            await Promise.reject(error)
+            return Promise.reject(error)
         }
     )
     return instance
@@ -110,7 +112,7 @@ export const serverAuthAPI = {
             console.log('authMe serverside success')
             return res.data
         } catch (e) {
-            console.log('Because cant make authMe request: ', e)
+            console.log('authMe request was failed')
         }
     },
     async refreshTokens(ctx: GetServerSidePropsContext) {
