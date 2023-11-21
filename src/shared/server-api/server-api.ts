@@ -36,7 +36,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
         },
         async error => {
             const originalRequest = error.config
-            console.log(' 401 interceptors.response start!!!!!!!!!!')
+            console.log('~~~~~~~~ 401 interceptors.response start ~~~~~~~~')
             console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
             const refreshTokenValue = ctx.req.cookies.refreshToken
             console.log('refreshTokenValue: ', refreshTokenValue)
@@ -82,22 +82,21 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             `accessToken=${res.data.accessToken}`,
                         ])
                         console.log(' 401 interceptors.response finished successfully')
-                        originalRequest._isRetry = true
                         return instance.request(originalRequest)
                     } else {
                         console.log('update-tokens res.status: ', res.status)
                         await serverAuthAPI.logOut(ctx)
-                        return
+                        await Promise.reject(error)
                     }
                 } catch (e) {
                     console.log('User is not authorized (refreshToken is not valid)', e)
                     await serverAuthAPI.logOut(ctx)
-                    throw error
+                    await Promise.reject(error)
                 }
             }
             console.log('User is not authorized (doesnt have the refreshToken)')
-            await serverAuthAPI.logOut(ctx)
-            throw error
+            console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
+            await Promise.reject(error)
         }
     )
     return instance
@@ -129,14 +128,10 @@ export const serverAuthAPI = {
         }
     },
     async logOut(ctx: GetServerSidePropsContext) {
-        try {
-            console.log('logOut serverside start')
-            nookies.destroy(ctx, 'accessToken')
-            nookies.destroy(ctx, 'refreshToken')
-            console.log('logOut serverside finished (all cookies were removed)')
-        } catch (e) {
-            return 'Cant make authMe request'
-        }
+        console.log('logOut serverside start')
+        nookies.destroy(ctx, 'accessToken')
+        nookies.destroy(ctx, 'refreshToken')
+        console.log('logOut serverside finished (all cookies were removed)')
     },
 }
 
