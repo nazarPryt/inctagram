@@ -38,45 +38,15 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             const originalRequest = error.config
             console.log('~~~~~~~~ 401 interceptors.response start ~~~~~~~~')
             console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
-            const refreshTokenValue = ctx.req.cookies.refreshToken
-            console.log('originalRequest = error.config: ', error.config)
+            const oldRefreshToken = ctx.req.cookies.refreshToken as string
             const isUserAuthorised = Boolean(
-                error.response.status == 401 && refreshTokenValue && error.config && !originalRequest._retry
+                error.response.status == 401 && oldRefreshToken && error.config && !originalRequest._retry
             )
 
-            console.log('isUserAuthorised: ', isUserAuthorised)
             if (isUserAuthorised) {
                 try {
                     originalRequest._retry = true
-                    const res = await axios.post<{accessToken: string}>(
-                        `auth/update-tokens`,
-                        {},
-                        {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
-                    )
-
-                    console.log('update-tokens res.headers: ', res.headers)
-
-                    // nookies.destroy(ctx, 'accessToken')
-                    // nookies.destroy(ctx, 'refreshToken')
-                    //
-                    // const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                    // const arr = newRefreshCookies.split(' ')
-                    //
-                    // let parsedRefreshToken = ''
-                    //
-                    // arr.forEach(el => {
-                    //     if (el.includes('refresh')) {
-                    //         parsedRefreshToken = el.split('=')[1].slice(0, -1)
-                    //     }
-                    // })
-                    // nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
-                    // nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
-                    // console.log('parsedRefreshToken: ', parsedRefreshToken)
-                    const newRefreshToken = res.headers['set-cookie']![0]
-                    ctx.res.setHeader('Set-Cookie', [
-                        `${newRefreshToken}`,
-                        `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
-                    ])
+                    const res = await serverAuthAPI.refreshTokens(ctx, baseURL, oldRefreshToken)
                     originalRequest.headers['Authorization'] = 'Bearer ' + res.data.accessToken
                     console.log(' 401 interceptors.response finished successfully')
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
@@ -108,16 +78,20 @@ export const serverAuthAPI = {
             console.log('authMe request was failed')
         }
     },
-    async refreshTokens(ctx: GetServerSidePropsContext) {
+    async refreshTokens(ctx: GetServerSidePropsContext, baseURL: string, oldRefreshToken: string) {
         try {
-            const res = await customAxios(ctx).post<{accessToken: string}>(`auth/update-tokens`)
+            const res = await axios.post<{accessToken: string}>(
+                `${baseURL}auth/update-tokens`,
+                {},
+                {withCredentials: true, headers: {Cookie: `refreshToken=${oldRefreshToken}`}}
+            )
 
-            console.log('res', res)
-
-            nookies.set(ctx, accessToken, res.data.accessToken, {path: '/'})
-            // nookies.set(ctx, 'refreshToken', res.data.accessToken, {path: '/', secure: true, httpOnly: true})
-
-            return res.data.accessToken
+            const newRefreshToken = res.headers['set-cookie']![0]
+            ctx.res.setHeader('Set-Cookie', [
+                `${newRefreshToken}`,
+                `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
+            ])
+            return res
         } catch (e) {
             throw new Error('Cant make request for refresh tokens')
         }
