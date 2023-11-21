@@ -49,7 +49,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 try {
                     originalRequest._retry = true
                     const res = await axios.post<{accessToken: string}>(
-                        `${baseURL}auth/update-tokens`,
+                        `auth/update-tokens`,
                         {},
                         {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
                     )
@@ -77,15 +77,10 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         `${newRefreshToken}`,
                         `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
                     ])
+                    originalRequest.headers['Authorization'] = 'Bearer ' + res.data.accessToken
                     console.log(' 401 interceptors.response finished successfully')
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
                     return instance.request(originalRequest)
-                    // } else {
-                    //     console.log('update-tokens failed with res.statusText: ', res.statusText)
-                    //     await serverAuthAPI.logOut(ctx)
-                    //     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-                    //     return Promise.reject(error)
-                    // }
                 } catch (e) {
                     console.log('User is not authorized (refreshToken is not valid)')
                     await serverAuthAPI.logOut(ctx)
@@ -94,6 +89,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 }
             }
             console.log('User is not authorized (doesnt have the refreshToken)')
+            await serverAuthAPI.logOut(ctx)
             console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
             return Promise.reject(error)
         }
