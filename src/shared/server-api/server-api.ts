@@ -50,7 +50,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             if (isUserAuthorised) {
                 try {
                     const res = await axios.post<{accessToken: string}>(
-                        `auth/update-tokens`,
+                        `${baseURL}auth/update-tokens`,
                         {},
                         {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
                     )
