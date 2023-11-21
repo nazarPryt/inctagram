@@ -40,55 +40,57 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
             const refreshTokenValue = ctx.req.cookies.refreshToken
             console.log('originalRequest = error.config: ', error.config)
-
-            const isUserAuthorised = Boolean(error.response.status == 401 && refreshTokenValue && error.config)
+            const isUserAuthorised = Boolean(
+                error.response.status == 401 && refreshTokenValue && error.config && !originalRequest._retry
+            )
 
             console.log('isUserAuthorised: ', isUserAuthorised)
             if (isUserAuthorised) {
                 try {
+                    originalRequest._retry = true
                     const res = await axios.post<{accessToken: string}>(
                         `${baseURL}auth/update-tokens`,
                         {},
                         {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
                     )
+
                     console.log('update-tokens res.headers: ', res.headers)
 
-                    if (res.status == 200) {
-                        nookies.destroy(ctx, 'accessToken')
-                        nookies.destroy(ctx, 'refreshToken')
-
-                        const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
-                        const arr = newRefreshCookies.split(' ')
-
-                        let parsedRefreshToken = ''
-
-                        arr.forEach(el => {
-                            if (el.includes('refresh')) {
-                                parsedRefreshToken = el.split('=')[1].slice(0, -1)
-                            }
-                        })
-                        nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
-                        nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
-                        // console.log('parsedRefreshToken: ', parsedRefreshToken)
-                        // const newRefreshToken = res.headers['set-cookie'][0]
-                        // ctx.res.setHeader('Set-Cookie', [
-                        //     `${newRefreshToken}`,
-                        //     `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
-                        // ])
-                        console.log(' 401 interceptors.response finished successfully')
-                        console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-                        return instance.request(originalRequest)
-                    } else {
-                        console.log('update-tokens failed with res.statusText: ', res.statusText)
-                        await serverAuthAPI.logOut(ctx)
-                        console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-                        return Promise.reject(error)
-                    }
+                    // nookies.destroy(ctx, 'accessToken')
+                    // nookies.destroy(ctx, 'refreshToken')
+                    //
+                    // const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                    // const arr = newRefreshCookies.split(' ')
+                    //
+                    // let parsedRefreshToken = ''
+                    //
+                    // arr.forEach(el => {
+                    //     if (el.includes('refresh')) {
+                    //         parsedRefreshToken = el.split('=')[1].slice(0, -1)
+                    //     }
+                    // })
+                    // nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
+                    // nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
+                    // console.log('parsedRefreshToken: ', parsedRefreshToken)
+                    const newRefreshToken = res.headers['set-cookie']![0]
+                    ctx.res.setHeader('Set-Cookie', [
+                        `${newRefreshToken}`,
+                        `accessToken=${res.data.accessToken}; Path=/; Secure; SameSite=None`,
+                    ])
+                    console.log(' 401 interceptors.response finished successfully')
+                    console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
+                    return instance.request(originalRequest)
+                    // } else {
+                    //     console.log('update-tokens failed with res.statusText: ', res.statusText)
+                    //     await serverAuthAPI.logOut(ctx)
+                    //     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
+                    //     return Promise.reject(error)
+                    // }
                 } catch (e) {
                     console.log('User is not authorized (refreshToken is not valid)')
                     await serverAuthAPI.logOut(ctx)
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-                    return Promise.reject(error)
+                    return Promise.reject(e)
                 }
             }
             console.log('User is not authorized (doesnt have the refreshToken)')
