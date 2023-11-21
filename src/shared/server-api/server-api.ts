@@ -37,8 +37,11 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
         async error => {
             const originalRequest = error.config
             console.log(' 401 interceptors.response start!!!!!!!!!!')
+            console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
             const refreshTokenValue = ctx.req.cookies.refreshToken
-            originalRequest._isRetry = true
+            console.log('refreshTokenValue: ', refreshTokenValue)
+
+            originalRequest._isRetry = false
             const isUserAuthorised = Boolean(
                 error.response.status == 401 && refreshTokenValue && error.config && !error.config._isRetry
             )
@@ -46,8 +49,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             console.log('isUserAuthorised: ', isUserAuthorised)
             if (isUserAuthorised) {
                 try {
-                    console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
-
                     const res = await axios.post<{accessToken: string}>(
                         `auth/update-tokens`,
                         {},
@@ -81,6 +82,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             `accessToken=${res.data.accessToken}`,
                         ])
                         console.log(' 401 interceptors.response finished successfully')
+                        originalRequest._isRetry = true
                         return instance.request(originalRequest)
                     } else {
                         console.log('update-tokens res.status: ', res.status)
@@ -88,12 +90,12 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         return
                     }
                 } catch (e) {
-                    console.log('User is not authorized (in interceptors.response):', e)
+                    console.log('User is not authorized (refreshToken is not valid)', e)
                     await serverAuthAPI.logOut(ctx)
-                    return
+                    throw error
                 }
             }
-            console.log('User is not authorized (in interceptors.response)')
+            console.log('User is not authorized (doesnt have the refreshToken)')
             await serverAuthAPI.logOut(ctx)
             throw error
         }
