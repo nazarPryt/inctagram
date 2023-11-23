@@ -48,7 +48,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     originalRequest._retry = true
                     const res = await serverAuthAPI.refreshTokens(ctx, baseURL, oldRefreshToken)
                     originalRequest.headers['Authorization'] = 'Bearer ' + res!.accessToken
-                    originalRequest.headers.Cookie = `refreshToken=${res!.refreshToken}`
+                    originalRequest.headers = res!.res.headers
                     console.log('originalRequest', originalRequest)
                     console.log(' 401 interceptors.response finished successfully')
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
@@ -63,7 +63,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             console.log('User is not authorized (doesnt have the refreshToken)')
             await serverAuthAPI.logOut(ctx)
             console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-            return Promise.resolve(error)
+            return Promise.reject(error)
         }
     )
     return instance
@@ -82,10 +82,11 @@ export const serverAuthAPI = {
     },
     async refreshTokens(ctx: GetServerSidePropsContext, baseURL: string, oldRefreshToken: string) {
         try {
+            console.log('ctx.req.headers: ', ctx.req.headers)
             const res = await axios.post<{accessToken: string}>(
-                `${baseURL}auth/update-tokens`,
+                `auth/update-tokens`,
                 {},
-                {withCredentials: true, headers: {Cookie: `refreshToken=${oldRefreshToken}`}}
+                {withCredentials: true, headers: ctx.req.headers, baseURL}
             )
             console.log('new accessToken: ', res.data.accessToken)
             const newRefreshToken = res.headers['set-cookie']![0]
@@ -103,7 +104,7 @@ export const serverAuthAPI = {
             })
             console.log('parsedRefreshToken: ', parsedRefreshToken)
 
-            return {accessToken: res.data.accessToken, refreshToken: parsedRefreshToken}
+            return {accessToken: res.data.accessToken, refreshToken: parsedRefreshToken, res}
         } catch (e) {
             console.log('Cant make request for refresh tokens')
         }
