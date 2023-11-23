@@ -47,8 +47,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 try {
                     originalRequest._retry = true
                     const res = await serverAuthAPI.refreshTokens(ctx, baseURL, oldRefreshToken)
-                    originalRequest.headers['Authorization'] = 'Bearer ' + res!.accessToken
                     originalRequest.headers = res!.res.headers
+                    originalRequest.headers.cookie = `refreshToken=${res!.refreshToken}`
+                    originalRequest.headers['Authorization'] = 'Bearer ' + res!.accessToken
                     console.log('originalRequest', originalRequest)
                     console.log(' 401 interceptors.response finished successfully')
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
