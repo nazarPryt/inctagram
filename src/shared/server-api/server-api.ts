@@ -47,7 +47,8 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 try {
                     originalRequest._retry = true
                     const res = await serverAuthAPI.refreshTokens(ctx, baseURL, oldRefreshToken)
-                    originalRequest.headers['Authorization'] = 'Bearer ' + res!.data.accessToken
+                    originalRequest.headers['Authorization'] = 'Bearer ' + res!.accessToken
+                    originalRequest.headers.Cookie = `refreshToken=${res!.refreshToken}`
                     console.log('originalRequest', originalRequest)
                     console.log(' 401 interceptors.response finished successfully')
                     console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
@@ -62,7 +63,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             console.log('User is not authorized (doesnt have the refreshToken)')
             await serverAuthAPI.logOut(ctx)
             console.log('~~~~~~~~ 401 interceptors.response finished ~~~~~~~~~~~')
-            return Promise.reject(error)
+            return Promise.resolve(error)
         }
     )
     return instance
@@ -89,7 +90,20 @@ export const serverAuthAPI = {
             console.log('new accessToken: ', res.data.accessToken)
             const newRefreshToken = res.headers['set-cookie']![0]
             ctx.res.setHeader('Set-Cookie', [`${newRefreshToken}`, `accessToken=${res.data.accessToken}; Path=/`])
-            return res
+
+            const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+            const arr = newRefreshCookies.split(' ')
+
+            let parsedRefreshToken = ''
+
+            arr.forEach(el => {
+                if (el.includes('refresh')) {
+                    parsedRefreshToken = el.split('=')[1].slice(0, -1)
+                }
+            })
+            console.log('parsedRefreshToken: ', parsedRefreshToken)
+
+            return {accessToken: res.data.accessToken, refreshToken: parsedRefreshToken}
         } catch (e) {
             console.log('Cant make request for refresh tokens')
         }
