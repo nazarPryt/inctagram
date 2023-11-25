@@ -71,9 +71,9 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
                         nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
                         //originalRequest.headers = ctx.req.headers
-                        originalRequest.headers.Authorization = 'Bearer ' + res.data.accessToken
-                        originalRequest.headers.cookie = 'refreshToken=' + parsedRefreshToken
-                        console.log('originalRequest after update: ', originalRequest)
+                        // originalRequest.headers.Authorization = 'Bearer ' + res.data.accessToken
+                        // originalRequest.headers.cookie = 'refreshToken=' + parsedRefreshToken
+                        // console.log('originalRequest after update: ', originalRequest)
                         console.log(' 401 interceptors.response success')
                         return await instance.request(originalRequest)
                     } else {
