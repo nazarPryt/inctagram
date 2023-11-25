@@ -78,15 +78,18 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         return await instance.request(originalRequest)
                     } else {
                         console.log('refreshToken is undefined')
+                        originalRequest._isRetry = false
                         return
                     }
                 } catch (e) {
                     console.log('User is not authorized (in interceptors.response)')
+                    originalRequest._isRetry = false
                     // await serverAuthAPI.logOut(ctx)
                     return
                 }
             }
-            throw error
+            originalRequest._isRetry = false
+            return
         }
     )
     return instance
