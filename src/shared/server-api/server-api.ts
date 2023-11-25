@@ -35,13 +35,15 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
             return config
         },
         async error => {
+            console.log(' 401 interceptors.response start!!!!!!!!!!')
             const originalRequest = error.config
+            console.log('wait 5s start')
             await new Promise(resolve => setTimeout(resolve, 5000))
+            console.log('wait 5s finished')
             console.log('originalRequest', originalRequest)
-            if (error.response.status == 401 && error.config) {
-                // originalRequest._isRetry = true
+            if (error.response.status == 401 && error.config && !originalRequest._isRetry) {
+                originalRequest._isRetry = true
                 try {
-                    console.log(' 401 interceptors.response start!!!!!!!!!!')
                     console.log('ctx.req.cookies (BEFORE update-tokens)', ctx.req.cookies)
                     const refreshTokenValue = ctx.req.cookies.refreshToken
 
@@ -52,8 +54,8 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             {withCredentials: true, headers: ctx.req.headers, baseURL}
                         )
 
-                        nookies.destroy(ctx, 'accessToken')
-                        nookies.destroy(ctx, 'refreshToken')
+                        // nookies.destroy(ctx, 'accessToken')
+                        // nookies.destroy(ctx, 'refreshToken')
 
                         const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
                         const arr = newRefreshCookies.split(' ')
@@ -68,12 +70,12 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
 
                         nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
                         nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
-                        originalRequest.headers = ctx.req.headers
+                        //originalRequest.headers = ctx.req.headers
                         originalRequest.headers.Authorization = 'Bearer ' + res.data.accessToken
-                        originalRequest.headers.Cookie = 'refreshToken=' + parsedRefreshToken
+                        originalRequest.headers.cookie = 'refreshToken=' + parsedRefreshToken
                         console.log('originalRequest after update: ', originalRequest)
                         console.log(' 401 interceptors.response success')
-                        return instance.request(originalRequest)
+                        return await instance.request(originalRequest)
                     } else {
                         console.log('refreshToken is undefined')
                         return Promise.reject(error)
