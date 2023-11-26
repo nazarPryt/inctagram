@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {accessToken} from 'shared/constants/constants'
+import {accessToken, refreshToken} from 'shared/constants/constants'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
 import {cookies} from 'next/headers'
@@ -45,20 +45,19 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                     const refreshTokenValue = ctx.req.cookies.refreshToken
 
                     if (refreshTokenValue) {
-                        const res = await instance.post<{accessToken: string}>(
+                        const resRefresh = await axios.post<{accessToken: string}>(
                             `auth/update-tokens`,
                             {},
-                            {withCredentials: true, headers: {Cookie: `refreshToken=${refreshTokenValue}`}}
+                            {withCredentials: true, headers: ctx.req.headers, baseURL}
                         )
+                        console.log('resRefresh.status: ', resRefresh.status)
 
                         nookies.destroy(ctx, 'accessToken')
                         nookies.destroy(ctx, 'refreshToken')
 
-                        console.log('ctx.req.cookies (old cookies destroyed?): ', ctx.req.cookies)
-
-                        console.log('originalRequest._isRetry: ', originalRequest._isRetry)
-
-                        const newRefreshCookies = res.headers['set-cookie']?.length ? res.headers['set-cookie'][0] : ''
+                        const newRefreshCookies = resRefresh.headers['set-cookie']?.length
+                            ? resRefresh.headers['set-cookie'][0]
+                            : ''
                         const arr = newRefreshCookies.split(' ')
 
                         let parsedRefreshToken = ''
@@ -70,13 +69,22 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         })
                         console.log('parsedRefreshToken: ', parsedRefreshToken)
 
-                        nookies.set(ctx, 'accessToken', res.data.accessToken, {path: '/'})
+                        nookies.set(ctx, 'accessToken', resRefresh.data.accessToken, {path: '/'})
                         nookies.set(ctx, 'refreshToken', parsedRefreshToken, {secure: true, httpOnly: true, path: '/'})
 
-                        console.log('ctx.req.cookies (new cookies AFTER update-tokens)', ctx.req.cookies)
+                        const resMe = await axios.get(`auth/me`, {
+                            withCredentials: true,
+                            headers: {
+                                Authorization: 'Bearer ' + resRefresh.data.accessToken,
+                                Cookie: `refreshToken=${parsedRefreshToken}`,
+                            },
+                            baseURL,
+                        })
+                        console.log('resMe.status: ', resMe.status)
+                        console.log('resMe.data: ', resMe.data)
 
                         console.log(' 401 interceptors.response success')
-                        return instance.request(originalRequest)
+                        return resMe.data
                     } else {
                         console.log('refreshToken is undefined')
                         return
@@ -84,10 +92,11 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 } catch (e) {
                     originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')
-                    await serverAuthAPI.logOut(ctx)
+                    // await serverAuthAPI.logOut(ctx)
+                    return
                 }
             }
-            throw error
+            return
         }
     )
     return instance
@@ -101,7 +110,7 @@ export const serverAuthAPI = {
             console.log('authMe serverside success')
             return res.data
         } catch (e) {
-            return 'Cant make authMe request'
+            console.log('Cant make authMe request')
         }
     },
     async refreshTokens(ctx: GetServerSidePropsContext) {
@@ -119,16 +128,10 @@ export const serverAuthAPI = {
         }
     },
     async logOut(ctx: GetServerSidePropsContext) {
-        try {
-            console.log('logOut serverside')
-            const res = await customAxios(ctx).post(`auth/logout`)
-            nookies.destroy(ctx, accessToken)
-            console.log('logOut serverside is success')
-            console.log('ctx.req.cookies (AFTER logOut serverside): ', ctx.req.cookies)
-            return res.data
-        } catch (e) {
-            return 'Cant make authMe request'
-        }
+        console.log('logOut serverside')
+        nookies.destroy(ctx, accessToken)
+        nookies.destroy(ctx, refreshToken)
+        console.log('logOut serverside is success')
     },
 }
 
