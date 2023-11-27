@@ -84,7 +84,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         console.log('resMe.data: ', resMe.data)
 
                         console.log(' 401 interceptors.response success')
-                        return resMe.data
+                        return (originalRequest.data = resMe.data)
                     } else {
                         console.log('refreshToken is undefined')
                         return
@@ -108,7 +108,7 @@ export const serverAuthAPI = {
         try {
             const res = await customAxios(ctx).get<authMeDataType>(`auth/me`)
             console.log('authMe serverside success')
-            return res.data
+            return res
         } catch (e) {
             console.log('Cant make authMe request')
         }

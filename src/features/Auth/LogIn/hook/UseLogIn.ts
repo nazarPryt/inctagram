@@ -42,7 +42,7 @@ export const useLogIn = () => {
         resolver: yupResolver(schema),
         mode: 'onTouched',
         reValidateMode: 'onChange',
-        defaultValues: {email: 'axuvam@mailto.plus', password: '11223344qwerTY!'},
+        defaultValues: {email: 'xokavem670@bustayes.com', password: '11223344qwerTY!'},
     })
     const onSubmit = async (data: FormData) => {
         login({email: data.email, password: data.password})
