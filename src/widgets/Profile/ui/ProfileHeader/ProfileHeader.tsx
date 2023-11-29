@@ -9,7 +9,7 @@ import {Loader} from 'shared/ui/Loader'
 
 export const ProfileHeader = () => {
     const {t} = useTranslation()
-    const {data: userData, isLoading} = useGetUserProfileQuery(34)
+    const {data: userData, isLoading} = useGetUserProfileQuery(13)
 
     if (isLoading) {
         return <Loader />

@@ -11,7 +11,7 @@ import {accessToken} from 'shared/constants/constants'
 import {useRouter} from 'next/router'
 import {PATH} from 'shared/constants/PATH'
 
-const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
+const getLoginFormSchema = (emailErrorMessage: string) => {
     return yup.object({
         email: yup.string().trim().required(emailErrorMessage).matches(emailPattern, 'email is not valid'),
         password: yup
@@ -25,9 +25,7 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
 
 export const useLogIn = () => {
     const router = useRouter()
-    const {t} = useTranslation()
-    const schema = getLoginFormSchema('email is required', '')
-    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
+    const schema = getLoginFormSchema('email is required')
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()

@@ -3,7 +3,7 @@ import {PostByIdType} from 'entities/ViewUserPost/api/type'
 
 const postApi = api.injectEndpoints({
     endpoints: build => ({
-        GetUserPost: build.query<PostByIdType, number>({
+        GetUserPost: build.query<PostByIdType, string>({
             query: postId => ({
                 url: `posts/p/${postId}`,
                 method: 'GET',

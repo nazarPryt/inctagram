@@ -92,7 +92,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 } catch (e) {
                     originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')
-                    // await serverAuthAPI.logOut(ctx)
+                    await serverAuthAPI.logOut(ctx)
                     return
                 }
             }
