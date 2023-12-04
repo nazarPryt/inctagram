@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef, Dispatch, FC, ReactNode, SetStateAction, useEffect} from 'react'
+import React, {ComponentPropsWithoutRef, Dispatch, FC, ReactNode, SetStateAction} from 'react'
 import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
 import {IconButton} from '../IconButton/IconButton'
 
@@ -11,29 +11,13 @@ type PopoverContentProps = {
 } & ComponentPropsWithoutRef<'div'>
 
 export const Popover: FC<PopoverContentProps> = props => {
-    const {onActionHandler, setIsPopoverOpen, icon, isPopoverOpen, children, ...rest} = props
+    const {onActionHandler, icon, isPopoverOpen, setIsPopoverOpen, children, ...rest} = props
     const handleTogglePopover = () => {
         setIsPopoverOpen(prevIsOpen => !prevIsOpen)
     }
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const popoverWrapper = document.getElementById('popoverWrapper')
-
-            if (popoverWrapper && !popoverWrapper.contains(event.target as Node)) {
-                setIsPopoverOpen(false)
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [setIsPopoverOpen])
-
     return (
-        <PopoverWrapper {...rest} id='popoverWrapper'>
+        <PopoverWrapper id='popoverWrapper' {...rest}>
             <IconButton active={isPopoverOpen} onClick={handleTogglePopover}>
                 {icon}
             </IconButton>

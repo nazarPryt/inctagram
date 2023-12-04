@@ -1,76 +1,104 @@
 import axios from 'axios'
-import cookie from 'react-cookies'
-import {accessToken} from 'shared/constants/constants'
+import {accessToken, refreshToken} from 'shared/constants/constants'
+import {GetServerSidePropsContext} from 'next'
+import nookies from 'nookies'
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
+//https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
 // const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string
 
-export const instance = axios.create({
-    withCredentials: true,
-    baseURL,
-})
+export const customAxios = (ctx: GetServerSidePropsContext) => {
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
 
-instance.interceptors.request.use(
-    config => {
-        const token = cookie.load(accessToken)
+    const instance = axios.create({
+        withCredentials: true,
+        baseURL,
+    })
 
-        if (token) {
-            config.headers.Authorization = 'Bearer ' + token
-        }
+    instance.interceptors.request.use(
+        config => {
+            const cookies = nookies.get(ctx)
+            const accessToken = cookies.accessToken
 
-        return config
-    },
-    error => Promise.reject(error)
-)
-
-instance.interceptors.response.use(
-    config => {
-        return config
-    },
-    async error => {
-        const originalRequest = error.config
-
-        if (error.response.status == 401 && error.config && !error.config._isRetry) {
-            originalRequest._isRetry = true
-            try {
-                await serverAuthAPI.refreshTokens()
-
-                return instance.request(originalRequest)
-            } catch (e) {
-                console.log('User is not authorized (in interceptors.response)')
+            if (accessToken) {
+                config.headers.Authorization = 'Bearer ' + accessToken
             }
+
+            return config
+        },
+        error => Promise.reject(error)
+    )
+
+    instance.interceptors.response.use(
+        config => {
+            return config
+        },
+        async error => {
+            const originalRequest = error.config
+
+            if (error.response.status == 401 && error.config && !error.config._isRetry) {
+                originalRequest._isRetry = true
+                try {
+                    const refreshTokenValue = ctx.req.cookies.refreshToken
+
+                    if (refreshTokenValue) {
+                        const resRefresh = await axios.post<{accessToken: string}>(
+                            `auth/update-tokens`,
+                            {},
+                            {withCredentials: true, headers: ctx.req.headers, baseURL}
+                        )
+                        console.log('resRefresh.status: ', resRefresh.status)
+
+                        const newRefreshToken = resRefresh.headers['set-cookie']![0]
+                        // const parsedRefreshToken = parseRefreshToken(resRefresh)
+
+                        const resMe = await axios.get(`auth/me`, {
+                            withCredentials: true,
+                            headers: {
+                                Authorization: 'Bearer ' + resRefresh.data.accessToken,
+                                // Cookie: `refreshToken=${parsedRefreshToken}`,
+                            },
+                            baseURL,
+                        })
+                        ctx.res.setHeader('Set-Cookie', [
+                            `${newRefreshToken}`,
+                            `${accessToken}=${resRefresh.data.accessToken}; Path=/`,
+                        ])
+                        console.log('resMe.status: ', resMe.status)
+                        console.log('resMe.data: ', resMe.data)
+                        return (originalRequest.data = resMe.data)
+                    } else {
+                        console.log('refreshToken is undefined')
+                        return
+                    }
+                } catch (e) {
+                    originalRequest._isRetry = false
+                    console.log('User is not authorized (in interceptors.response)')
+                    await serverAuthAPI.logOut(ctx)
+                    return
+                }
+            }
+            return
         }
-        throw error
-    }
-)
+    )
+    return instance
+}
 
 export const serverAuthAPI = {
-    async authMe(token: string) {
+    async authMe(ctx: GetServerSidePropsContext) {
+        console.log('authMe serverside start')
         try {
-            const res = await axios.get<authMeDataType>(`${baseURL}auth/me`, {
-                withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-
-            return res.data
+            const res = await customAxios(ctx).get<authMeDataType>(`auth/me`)
+            console.log('authMe serverside success')
+            return res
         } catch (e) {
-            throw new Error('Cant make authMe request')
+            console.log('Cant make authMe request')
         }
     },
-    async refreshTokens() {
-        try {
-            const res = await instance.post<{accessToken: string}>(`${baseURL}auth/update-tokens`, {
-                withCredentials: true,
-            })
-
-            cookie.save(accessToken, res.data.accessToken, {})
-
-            return res.data.accessToken
-        } catch (e) {
-            throw new Error('Cant make request for refresh tokens')
-        }
+    async logOut(ctx: GetServerSidePropsContext) {
+        console.log('logOut serverside')
+        nookies.destroy(ctx, accessToken)
+        nookies.destroy(ctx, refreshToken)
+        console.log('logOut serverside is success')
     },
 }
 

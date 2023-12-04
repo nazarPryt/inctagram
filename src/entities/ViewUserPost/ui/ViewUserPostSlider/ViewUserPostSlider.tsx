@@ -13,6 +13,8 @@ type PropsType = {
 } & ComponentPropsWithoutRef<'div'>
 
 export const ViewUserPostSlider = ({className, images}: PropsType) => {
+    const imagesToShow = images.filter(img => img.width === 1440).sort((a, b) => b.uploadId.localeCompare(a.uploadId))
+
     return (
         <ViewUserPostSliderWrapper className={className}>
             <Swiper
@@ -30,7 +32,8 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
                     disableOnInteraction: false,
                 }}
             >
-                {images.map(photo => {
+                {imagesToShow.map(photo => {
+                    console.log('photo', photo)
                     if (photo.width === 1440) {
                         //todo ask if exist better way how to show JUST hight resolution pictures
                         return (

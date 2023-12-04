@@ -21,6 +21,7 @@ import {useCreatePostMutation, useUploadImageMutation} from './service/createPos
 import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
 import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
+import {editorPanelAC} from './model/slice/editorPanelSlice'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
@@ -90,6 +91,7 @@ export const CreatePost = () => {
     }
 
     const handleChangeStep = (step: string) => {
+        dispatch(editorPanelAC.setCloseAllPopup(false))
         if (step === t.create.steps.addPhoto) {
             dispatch(createPostAC.clearAllState())
             return dispatch(createPostAC.setStep(step))
@@ -171,7 +173,7 @@ export const CreatePost = () => {
 
     useEffect(() => {
         dispatch(createPostAC.setStep(t.create.steps.addPhoto))
-    }, [t.create.steps.addPhoto])
+    }, [t.create.steps.addPhoto, dispatch])
 
     const checkData = async () => {
         const data = await getAllDrafts()

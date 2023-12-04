@@ -56,7 +56,8 @@ const createPostSlice = createSlice({
         },
         setLibraryFromDraft: (state, action: PayloadAction<LibraryPictureType[]>) => {
             state.libraryPictures = action.payload
-            state.previewImage = action.payload[0].img
+
+            state.previewImage = action.payload[action.payload.length - 1].img
         },
         setUploadId: (state, action: PayloadAction<ImageMetaData>) => {
             state.uploadId.push(action.payload)

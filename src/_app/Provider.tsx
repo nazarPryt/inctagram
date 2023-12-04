@@ -1,4 +1,3 @@
-'use client'
 import {store} from '_app/store/store'
 import {Provider} from 'react-redux'
 import React, {ReactNode} from 'react'

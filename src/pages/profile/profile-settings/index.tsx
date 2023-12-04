@@ -5,33 +5,9 @@ import {ProfileSettingsAccordion} from 'shared/ui/ProfileSettingsAccordion/Profi
 import {ProfileSettingsWrapper} from 'shared/styles/ProfileSettingsPage'
 import {AccountManagement} from 'features/AccountManagement/AccountManagement'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
-import {GetServerSideProps, GetServerSidePropsContext} from 'next'
-import {getSession} from 'next-auth/react'
 import {MyPayments} from 'features/User/MyPayments/ui/MyPayments'
 import {Devices} from 'features/User/Device/ui/Devices/Devices'
 
-type ProfileSettingsPageProps = {
-    userId: number | null
-}
-
-export const getServerSideProps: GetServerSideProps<ProfileSettingsPageProps> = async (
-    context: GetServerSidePropsContext
-) => {
-    const session = await getSession(context)
-
-    if (session && session.user.userId) {
-        return {
-            props: {
-                userId: session.user.userId,
-            },
-        }
-    }
-    return {
-        props: {
-            userId: null,
-        },
-    }
-}
 
 export default function ProfileSettingsPage() {
     const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
@@ -39,7 +15,6 @@ export default function ProfileSettingsPage() {
     return (
         <ProfileSettingsWrapper>
             <ProfileSettingsAccordion />
-
             {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
             {profileSettingActiveTab === 'devices' && <Devices />}
             {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}

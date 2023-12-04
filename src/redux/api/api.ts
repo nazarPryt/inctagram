@@ -2,11 +2,8 @@ import * as process from 'process'
 import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
 import cookie from 'react-cookies'
 import {accessToken} from 'shared/constants/constants'
-import {signOut} from 'next-auth/react'
-import {PATH} from 'shared/constants/PATH'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: BASE_URL,
@@ -45,19 +42,16 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
                 cookie.save(accessToken, refreshResult.data.accessToken as string, {httpOnly: false})
                 // retry the initial query
                 result = await baseQuery(args, api, extraOptions)
-            } else {
-                await signOut()
             }
         } catch (e) {
-            await signOut({callbackUrl: `${DOMAIN_URL}${PATH.LOGIN}`, redirect: true})
-            // await baseQuery(
-            //     {
-            //         url: 'auth/logout',
-            //         method: 'POST',
-            //     },
-            //     api,
-            //     extraOptions
-            // )
+            await baseQuery(
+                {
+                    url: 'auth/logout',
+                    method: 'POST',
+                },
+                api,
+                extraOptions
+            )
             console.log(e)
         }
     }

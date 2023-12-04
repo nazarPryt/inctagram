@@ -37,5 +37,23 @@ export const EditorPanelWrapper = styled.div<{width: number}>`
                 fill: ${props => props.theme.textColor[500]};
             }
         }
+
+        .active {
+            svg {
+                g {
+                    path {
+                        fill: #397df6;
+                    }
+                }
+            }
+        }
+
+        .libraryActive {
+            svg {
+                path {
+                    fill: #397df6;
+                }
+            }
+        }
     }
 `
