@@ -7,7 +7,7 @@ import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 
 type AvatarIconType = {
     img: string
-    userID: number
+    userID: number | null
 }
 export const AvatarIcon = ({img, userID}: AvatarIconType) => {
     const BASE_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL as string

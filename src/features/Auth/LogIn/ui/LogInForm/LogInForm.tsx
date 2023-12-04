@@ -1,7 +1,5 @@
 import React from 'react'
-import {signIn, useSession} from 'next-auth/react'
 import Link from 'next/link'
-import {useRouter} from 'next/navigation'
 import {PATH} from 'shared/constants/PATH'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
@@ -15,24 +13,18 @@ import GithubWhite from 'shared/assets/icons/githubWhite.svg'
 import {useLogIn} from 'features/Auth/LogIn/hook/UseLogIn'
 
 export const LogInForm = () => {
-    const {status} = useSession()
-    const router = useRouter()
     const {register, handleSubmit, isLoading, errors, isValid} = useLogIn()
     const {t} = useTranslation()
-
-    if (status === 'authenticated') {
-        router.push(PATH.HOME)
-    }
 
     return (
         <AuthContainer>
             <AuthPageStyled>
                 <h1>{t.auth.signIn.title}</h1>
                 <div className={'oauthWrapper'}>
-                    <IconButton onClick={() => signIn('google')} disabled={isLoading} colorful>
+                    <IconButton onClick={() => {}} disabled={isLoading} colorful>
                         <GoogleIcon />
                     </IconButton>
-                    <IconButton onClick={() => signIn('github')} disabled={isLoading}>
+                    <IconButton onClick={() => {}} disabled={isLoading}>
                         <GithubWhite />
                     </IconButton>
                 </div>

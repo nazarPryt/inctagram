@@ -8,13 +8,14 @@ import SkeletonTitle from 'shared/assets/icons/skeletonTitle.svg'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
+import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 
 export const Describe = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
-    const {data, isLoading} = useGetUserProfileQuery()
+    // TODO userID
+    const {data, isLoading} = useGetUserProfileQuery(136)
     const UserImage = data?.avatars.length ? (
         <Image src={data.avatars[0].url} width={data.avatars[0].width} height={data.avatars[0].height} alt={'avatar'} />
     ) : (

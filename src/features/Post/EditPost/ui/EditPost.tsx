@@ -6,17 +6,22 @@ import {PostByIdType} from 'entities/ViewUserPost/api/type'
 import {EditPostWrapper} from 'features/Post/EditPost/ui/EditPost.styled'
 import {Button} from 'shared/ui/Button/Button'
 
+type PropsType = EditPostUserIdPropsType & EditPostPropsType
 type EditPostPropsType = {
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
     data: PostByIdType
 }
-export const EditPost = ({edit, setEdit, data}: EditPostPropsType) => {
+type EditPostUserIdPropsType = {
+    userId: number | null
+}
+
+export const EditPost = ({edit, setEdit, data, userId}: PropsType) => {
     const {register, handleSubmit, errors, isLoading} = useEditPost({postId: data.id, setEdit})
 
     return (
         <EditPostWrapper onSubmit={handleSubmit}>
-            <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={248} postId={data.id} />
+            <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={userId} data={data} />
             <TextArea
                 className={'textArea'}
                 defaultValue={data.description}

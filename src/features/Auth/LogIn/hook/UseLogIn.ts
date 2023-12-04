@@ -1,15 +1,17 @@
 import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {signIn} from 'next-auth/react'
-import {PATH} from 'shared/constants/PATH'
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
 import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
 import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
+import cookie from 'react-cookies'
+import {accessToken} from 'shared/constants/constants'
+import {useRouter} from 'next/router'
+import {PATH} from 'shared/constants/PATH'
 
-const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: string) => {
+const getLoginFormSchema = (emailErrorMessage: string) => {
     return yup.object({
         email: yup.string().trim().required(emailErrorMessage).matches(emailPattern, 'email is not valid'),
         password: yup
@@ -22,9 +24,8 @@ const getLoginFormSchema = (emailErrorMessage: string, passwordErrorMessage: str
 }
 
 export const useLogIn = () => {
-    const {t} = useTranslation()
-    const schema = getLoginFormSchema('email is required', '')
-    const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_URL
+    const router = useRouter()
+    const schema = getLoginFormSchema('email is required')
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()
@@ -39,21 +40,20 @@ export const useLogIn = () => {
         resolver: yupResolver(schema),
         mode: 'onTouched',
         reValidateMode: 'onChange',
-        defaultValues: {email: 'rifive9770@gameszox.com', password: 'qwertQ1!'},
+        defaultValues: {email: 'xokavem670@bustayes.com', password: '11223344qwerTY!'},
     })
     const onSubmit = async (data: FormData) => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                await signIn('credentials', {
-                    accessToken: payload.accessToken,
-                    callbackUrl: `${DOMAIN}/${PATH.HOME}`,
-                })
+                cookie.save(accessToken, payload.accessToken, {path: '/', httpOnly: false})
+                await router.push(PATH.HOME)
             })
             .catch(error => {
                 HandelLoginErrors(error, dispatch, setError)
             })
     }
+
     return {
         handleSubmit: handleSubmit(onSubmit),
         isLoading,

@@ -5,7 +5,7 @@ import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useDeletePostMutation} from 'features/Post/DeletePost/api/DeletePost.api'
 
-export const useDeleteUserPost = ({postId}: {postId: number}) => {
+export const useDeleteUserPost = (postId: number) => {
     const dispatch = useAppDispatch()
     const router = useRouter()
     const [modalIsOpen, setModalIsOpen] = useState(false)

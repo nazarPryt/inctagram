@@ -16,18 +16,14 @@ type PropsType = {
 export const ViewUserPost = ({data}: PropsType) => {
     const [edit, setEdit] = useState(false)
 
-    const images = [...data.images]
-        .filter(img => img.width === 1440)
-        .sort((a, b) => b.uploadId.localeCompare(a.uploadId))
-
     return (
         <ViewUserPostWrapper>
-            <ViewUserPostSlider className={'left'} images={images} />
+            <ViewUserPostSlider className={'left'} images={data.images} />
             {edit ? (
-                <EditPost edit={edit} setEdit={setEdit} data={data} />
+                <EditPost userId={data.id} edit={edit} setEdit={setEdit} data={data} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={248} postId={data.id} />
+                    <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} userId={248} />
                     <ViewUserPostDescription description={data.description} createdAt={data.createdAt} />
                     <ViewUserPostComments />
                     <ViewUserPostFeatures />

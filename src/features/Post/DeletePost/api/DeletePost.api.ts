@@ -10,5 +10,6 @@ export const deleteUserPostApi = api.injectEndpoints({
             invalidatesTags: ['Posts'],
         }),
     }),
+    overrideExisting: true,
 })
 export const {useDeletePostMutation} = deleteUserPostApi

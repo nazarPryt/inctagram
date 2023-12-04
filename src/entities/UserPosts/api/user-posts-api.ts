@@ -5,7 +5,7 @@ export const userPostApi = api.injectEndpoints({
     endpoints: build => ({
         getUserPosts: build.query<PostsType, number>({
             query: () => ({
-                url: `posts/all`,
+                url: `posts/user`,
                 method: 'GET',
             }),
             providesTags: () => ['Posts'],

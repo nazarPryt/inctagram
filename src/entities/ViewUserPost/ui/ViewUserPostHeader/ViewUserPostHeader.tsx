@@ -4,24 +4,23 @@ import {EditPostIcon} from 'features/Post/EditPost/ui/icon/EditPostIcon'
 import Link from 'next/link'
 import React, {Dispatch, SetStateAction, useState} from 'react'
 import {PATH} from 'shared/constants/PATH'
-import {useTranslation} from 'shared/hooks/useTranslation'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import {Popover} from 'shared/ui/Popover/Popover'
 import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
 import {DeletePostModal} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
 import {useDeleteUserPost} from 'features/Post/DeletePost/hook/useDeleteUserPost'
 import {PopOverIcon} from '../../../Post/ui/PostHeader/popOverIcon'
+import {PostByIdType} from '../../api/type'
 
 type PropsType = {
-    userId: number
-    postId: number
+    data: PostByIdType
+    userId: number | null
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({userId, postId, setEdit, edit}: PropsType) => {
-    const {t} = useTranslation()
+export const ViewUserPostHeader = ({userId, setEdit, edit, data}: PropsType) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost({postId})
+    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
 
     const handleEditPost = () => {
         setEdit(true)

@@ -40,3 +40,8 @@ export const IconButtonStyled = styled('button').withConfig({
     }
   }
 `
+// export const Nazar = styled.button<{nazar?: string}>`
+//     width: 100px;
+//     height: 100px;
+//     background: ${({nazar}) => (nazar === 'yes' ? 'green' : 'red')};
+// `

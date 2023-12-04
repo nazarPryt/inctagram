@@ -1,3 +1,4 @@
+import {createPostAC} from 'features/CreatePost/model/slice/createPostSlice'
 import {LibraryPictureType} from 'features/CreatePost/model/types/createPostSchema'
 import React, {RefObject, useEffect} from 'react'
 import AvatarEditor from 'react-avatar-editor'
@@ -6,7 +7,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
-import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {Wrapper} from './styled'
 
 type CanvasContainerType = {
@@ -15,7 +16,13 @@ type CanvasContainerType = {
 }
 
 export const CanvasContainer: React.FC<CanvasContainerType> = props => {
+    const dispatch = useAppDispatch()
     const {defaultWidth, defaultHeight, libraryPictures} = useAppSelector(state => state.createPost)
+
+    const onSlideChangeHandler = (swiper: any) => {
+        dispatch(createPostAC.setPreviewImage(libraryPictures[swiper.activeIndex].img))
+    }
+
     return (
         <Wrapper width={defaultWidth} height={defaultHeight}>
             <Swiper
@@ -24,6 +31,7 @@ export const CanvasContainer: React.FC<CanvasContainerType> = props => {
                 slidesPerView={1}
                 navigation
                 keyboard
+                onSlideChange={onSlideChangeHandler}
                 pagination={{clickable: true}}
                 scrollbar={{draggable: true}}
             >

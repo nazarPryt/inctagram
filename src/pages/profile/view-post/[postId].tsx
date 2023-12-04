@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {useRouter} from 'next/router'
 import {UserPostsModal} from 'widgets/UserPostsModal/UserPostsModal'
@@ -9,12 +9,8 @@ import {useGetUserPostQuery} from 'entities/ViewUserPost/api/get-post-api'
 export default function ShowPostPage() {
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const postId = Number(router.query.postId)
-    const {data, isLoading} = useGetUserPostQuery(postId)
-
-    useEffect(() => {
-        setOpen(true)
-    }, [])
+    const postId = router.query.postId
+    const {data, isLoading} = useGetUserPostQuery(postId as string, {skip: !postId})
 
     if (isLoading) {
         return <Loader />
@@ -22,7 +18,7 @@ export default function ShowPostPage() {
 
     if (data) {
         return (
-            <UserPostsModal open={open} onClose={setOpen}>
+            <UserPostsModal open={true} onClose={setOpen}>
                 <ViewUserPost data={data} />
             </UserPostsModal>
         )
