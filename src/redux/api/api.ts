@@ -44,14 +44,14 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
                 result = await baseQuery(args, api, extraOptions)
             }
         } catch (e) {
-            await baseQuery(
-                {
-                    url: 'auth/logout',
-                    method: 'POST',
-                },
-                api,
-                extraOptions
-            )
+            // await baseQuery(
+            //     {
+            //         url: 'auth/logout',
+            //         method: 'POST',
+            //     },
+            //     api,
+            //     extraOptions
+            // )
             console.log(e)
         }
     }
@@ -60,7 +60,7 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
 export const api = createApi({
     reducerPath: 'api',
-    tagTypes: ['User', 'Posts', 'Post'],
+    tagTypes: ['User', 'Posts', 'Post', 'Me'],
     baseQuery: baseQueryWithReAuth,
     endpoints: () => ({}),
 })
