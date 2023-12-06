@@ -49,13 +49,11 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                         console.log('resRefresh.status: ', resRefresh.status)
 
                         const newRefreshToken = resRefresh.headers['set-cookie']![0]
-                        // const parsedRefreshToken = parseRefreshToken(resRefresh)
 
                         const resMe = await axios.get(`auth/me`, {
                             withCredentials: true,
                             headers: {
                                 Authorization: 'Bearer ' + resRefresh.data.accessToken,
-                                // Cookie: `refreshToken=${parsedRefreshToken}`,
                             },
                             baseURL,
                         })
@@ -63,7 +61,6 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                             `${newRefreshToken}`,
                             `${accessToken}=${resRefresh.data.accessToken}; Path=/`,
                         ])
-                        console.log('resMe.status: ', resMe.status)
                         console.log('resMe.data: ', resMe.data)
                         return (originalRequest.data = resMe.data)
                     } else {
