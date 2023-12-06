@@ -1,7 +1,7 @@
 import * as process from 'process'
 import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
 import cookie from 'react-cookies'
-import {accessToken} from 'shared/constants/constants'
+import {accessToken, refreshToken} from 'shared/constants/constants'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -44,15 +44,8 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
                 result = await baseQuery(args, api, extraOptions)
             }
         } catch (e) {
-            // await baseQuery(
-            //     {
-            //         url: 'auth/logout',
-            //         method: 'POST',
-            //     },
-            //     api,
-            //     extraOptions
-            // )
-            console.log(e)
+            cookie.remove(accessToken)
+            cookie.remove(refreshToken)
         }
     }
     return result

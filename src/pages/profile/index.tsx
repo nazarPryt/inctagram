@@ -1,11 +1,7 @@
-import React from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {AllPostsList} from 'widgets/AllPostsList/AllPostsList'
-import {useAuthUser} from 'features/Auth/Me/hook/UseAuthUser'
 
 export default function Home() {
-    const {isLoading} = useAuthUser()
-
     return <AllPostsList posts={data.items} />
 }
 
