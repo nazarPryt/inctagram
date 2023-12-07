@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
-import React from 'react'
 
 const Wrapper = styled.div`
     display: flex;

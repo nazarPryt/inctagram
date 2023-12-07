@@ -1,6 +1,6 @@
 import {store} from '_app/store/store'
 import {Provider} from 'react-redux'
-import React, {ReactNode} from 'react'
+import {ReactNode} from 'react'
 import {lightTheme} from '_app/themes/lightTheme'
 import {darkTheme} from '_app/themes/darkTheme'
 import {GlobalStyle} from '_app/themes/GlobalStyle'

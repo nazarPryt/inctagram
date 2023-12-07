@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {PATH} from 'shared/constants/PATH'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'

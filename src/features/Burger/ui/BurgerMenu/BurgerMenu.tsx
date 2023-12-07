@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef} from 'react'
+import {ComponentPropsWithoutRef} from 'react'
 import {BurgerMenuStyled, BurgerModalStyled} from 'features/Burger/ui/BurgerMenu/BurgerMenu.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {BurgerButton} from 'features/Burger/ui/BurgerButton/BurgerButton'

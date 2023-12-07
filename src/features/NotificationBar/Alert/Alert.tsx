@@ -1,6 +1,4 @@
-'use client'
-import React, {useEffect, useState} from 'react'
-
+import {useEffect, useState} from 'react'
 import errorIcon from '../../../shared/assets/icons/errorIcon.png'
 import successIcon from '../../../shared/assets/icons/success.png'
 import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'

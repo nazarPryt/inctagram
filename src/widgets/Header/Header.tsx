@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef} from 'react'
+import {ComponentPropsWithoutRef} from 'react'
 import {HeaderStyled} from 'widgets/Header/Header.styled'
 import Link from 'next/link'
 import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'

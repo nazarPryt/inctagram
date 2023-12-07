@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, ReactElement} from 'react'
+import {PropsWithChildren, ReactElement} from 'react'
 import {Aside} from 'widgets/Aside/Aside'
 import {NextPage} from 'next'
 import {AuthorizedLayoutWrapper} from '_app/Layouts/authorized/AuthorizeLayout.style'
@@ -11,8 +11,7 @@ import {PATH} from 'shared/constants/PATH'
 
 export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     const router = useRouter()
-    const {data: user, isError} = useMeQuery()
-    console.log('user', user)
+    const {isError} = useMeQuery()
 
     if (isError) {
         router.push(PATH.LOGIN)

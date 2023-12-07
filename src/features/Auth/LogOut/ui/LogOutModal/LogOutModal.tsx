@@ -1,4 +1,3 @@
-import React from 'react'
 import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {Button} from 'shared/ui/Button/Button'

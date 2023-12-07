@@ -1,4 +1,3 @@
-import React from 'react'
 import {Modal} from 'shared/ui/Modal/Modal'
 import {Button} from 'shared/ui/Button/Button'
 import {useTranslation} from 'shared/hooks/useTranslation'

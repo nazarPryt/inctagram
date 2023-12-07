@@ -1,4 +1,4 @@
-import React, {ComponentProps, forwardRef, ReactNode} from 'react'
+import {ComponentProps, forwardRef, ReactNode} from 'react'
 import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
 
 type NavButtonType = ComponentProps<'button'> & {

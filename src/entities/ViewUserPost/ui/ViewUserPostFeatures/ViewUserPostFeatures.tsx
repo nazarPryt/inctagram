@@ -1,4 +1,3 @@
-import React from 'react'
 import {ViewUserPostFeaturesWrapper} from 'entities/ViewUserPost/ui/ViewUserPostFeatures/ViewUserPostFeatures.styled'
 import {LikePost} from 'features/Post/Likes/LikePost/LikePost'
 import {Share} from 'features/Share/Share'

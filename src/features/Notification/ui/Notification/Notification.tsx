@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {NotificationIcon} from '../NotificationIcon/NotificationIcon'
 import {Popover} from 'shared/ui/Popover/Popover'
 import {NotificationItem} from '../NotificationItem/NotificationItem'
@@ -8,7 +8,7 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 export const Notification = () => {
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    
+
     return (
         <NotificationWrapper>
             <Popover

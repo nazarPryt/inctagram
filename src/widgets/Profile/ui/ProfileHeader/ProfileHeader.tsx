@@ -1,4 +1,3 @@
-import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
 import Link from 'next/link'

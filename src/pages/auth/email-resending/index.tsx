@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import timeManagement from 'shared/assets/pictures/timeManagement.png'

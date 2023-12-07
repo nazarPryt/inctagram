@@ -1,4 +1,4 @@
-import React, {ComponentProps, Dispatch} from 'react'
+import {ComponentProps, Dispatch} from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
 

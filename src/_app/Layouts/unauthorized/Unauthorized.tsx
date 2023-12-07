@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, ReactElement} from 'react'
+import {PropsWithChildren, ReactElement} from 'react'
 import {NextPage} from 'next'
 import {NotificationBar} from 'features/NotificationBar/NotificationBar'
 import {Header} from 'widgets/Header/Header'
@@ -10,8 +10,7 @@ import {PATH} from 'shared/constants/PATH'
 
 export const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
     const router = useRouter()
-    const {data: user, isSuccess} = useMeQuery()
-    console.log('user', user)
+    const {isSuccess} = useMeQuery()
 
     if (isSuccess) {
         router.push(PATH.HOME)
