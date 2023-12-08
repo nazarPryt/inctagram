@@ -1,4 +1,3 @@
-import React from 'react'
 import {CurrentSubscriptionWrapper} from './CurrentSubscription.styled'
 import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
 

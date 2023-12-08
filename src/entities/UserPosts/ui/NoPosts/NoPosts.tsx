@@ -1,4 +1,3 @@
-import React from 'react'
 import {NoPostsWrapper} from 'entities/UserPosts/ui/NoPosts/icon/NoPosts.styled'
 import {NoPostsIcon} from 'entities/UserPosts/ui/NoPosts/NoPostsIcon'
 

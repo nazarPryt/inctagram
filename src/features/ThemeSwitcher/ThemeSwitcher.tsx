@@ -1,5 +1,3 @@
-'use client'
-import React from 'react'
 import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {setThemeAppAC} from '_app/store/appSlice'
 import {IconButton} from '../../shared/ui/IconButton/IconButton'

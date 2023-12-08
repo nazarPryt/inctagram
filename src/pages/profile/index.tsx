@@ -1,4 +1,3 @@
-import React from 'react'
 import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
 import {AllPostsList} from 'widgets/AllPostsList/AllPostsList'
 

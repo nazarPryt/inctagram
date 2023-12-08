@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef, forwardRef, useState} from 'react'
+import {ComponentPropsWithoutRef, forwardRef, useState} from 'react'
 import {BurgerButtonStyled} from 'features/Burger/ui/BurgerButton/BurgerButton.styled'
 
 type DefaultButtonPropsType = ComponentPropsWithoutRef<'button'>

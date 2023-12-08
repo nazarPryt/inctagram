@@ -1,4 +1,4 @@
-import React, {forwardRef, useState} from 'react'
+import {forwardRef, useState} from 'react'
 import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
 import {LikeCommentWrapper} from 'features/Post/Likes/LikeComment/LikeComment.styled'
 import {IconButtonType} from 'shared/ui/IconButton/IconButton'

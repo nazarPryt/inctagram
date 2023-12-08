@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef} from 'react'
+import {ComponentPropsWithoutRef} from 'react'
 import {ViewUserPostSliderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider.styled'
 import Image from 'next/image'
 import {Swiper, SwiperSlide} from 'swiper/react'

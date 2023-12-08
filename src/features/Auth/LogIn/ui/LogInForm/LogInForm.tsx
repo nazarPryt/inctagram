@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
 import {useTranslation} from 'shared/hooks/useTranslation'

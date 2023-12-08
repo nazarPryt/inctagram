@@ -8,7 +8,7 @@ export const profileAPI = api.injectEndpoints({
                 url: `users/profile/${userID}`,
                 method: 'GET',
             }),
-            providesTags: () => ['User'],
+            providesTags: ['User'],
         }),
     }),
     overrideExisting: true,

@@ -1,5 +1,5 @@
 import type {AppProps} from 'next/app'
-import React, {ReactElement, ReactNode} from 'react'
+import {ReactElement, ReactNode} from 'react'
 import {NextPage} from 'next'
 import {Providers} from '_app/Provider'
 import {useLoader} from 'shared/hooks/useLoader'
@@ -21,11 +21,11 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
 
     return (
         <Providers>
-                {getLayout(
-                    <>
-                        <Component {...pageProps} />
-                    </>
-                )}
+            {getLayout(
+                <>
+                    <Component {...pageProps} />
+                </>
+            )}
         </Providers>
     )
 }

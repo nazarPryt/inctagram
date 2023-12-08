@@ -1,4 +1,3 @@
-import React from 'react'
 import {ActiveSessionStyled} from 'features/User/Device/ui/ActiveSession/ActiveSession.styled'
 import {PcIcon} from 'features/User/Device/ui/icons/PCIcon'
 import {MobileIcon} from 'features/User/Device/ui/icons/MobileIcon'

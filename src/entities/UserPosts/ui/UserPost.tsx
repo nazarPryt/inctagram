@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react'
+import {forwardRef} from 'react'
 import {UserPostWrapper} from 'entities/UserPosts/ui/UserPost.styled'
 import Image from 'next/image'
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'

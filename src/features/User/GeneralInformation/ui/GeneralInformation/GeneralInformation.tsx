@@ -1,4 +1,3 @@
-import React from 'react'
 import {GeneralInformationWrapper} from 'features/User/GeneralInformation/ui/GeneralInformation/styled'
 import {GeneralInformationForm} from 'features/User/GeneralInformation/ui/GeneralInformationForm/GeneralInformationForm'
 import {Avatar} from 'features/User/Avatar/ui/Avatar/Avatar'

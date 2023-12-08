@@ -1,4 +1,3 @@
-import React from 'react'
 import {NotificationItemWrapper} from './NotificationItem.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
 
