@@ -6,15 +6,12 @@ import {darkTheme} from '_app/themes/darkTheme'
 import {GlobalStyle} from '_app/themes/GlobalStyle'
 import {ThemeProvider} from 'styled-components'
 import {useAppSelector} from 'shared/hooks/reduxHooks'
-import StyledComponentsRegistry from 'shared/lib/StyledComponentsRegistry'
 
 export function Providers({children}: {children: ReactNode}) {
     return (
-        <StyledComponentsRegistry>
-            <Provider store={store}>
-                <ThemeStyled>{children}</ThemeStyled>
-            </Provider>
-        </StyledComponentsRegistry>
+        <Provider store={store}>
+            <ThemeStyled>{children}</ThemeStyled>
+        </Provider>
     )
 }
 
