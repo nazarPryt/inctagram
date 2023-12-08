@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent, forwardRef} from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from 'shared/hooks/useTranslation'
@@ -13,7 +13,7 @@ type DatePickerPropsType = {
     control: Control<GeneralInformationFormData, {dateOfBirthday: Date}>
 }
 
-export const CustomDatePicker = React.forwardRef<DatePicker, DatePickerPropsType>((props, ref) => {
+export const CustomDatePicker = forwardRef<DatePicker, DatePickerPropsType>((props, ref) => {
     const {t} = useTranslation()
     const years = range(1923, getYear(new Date()) + 1, 1) //todo
 

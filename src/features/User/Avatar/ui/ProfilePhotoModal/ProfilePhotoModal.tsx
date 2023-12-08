@@ -1,5 +1,4 @@
 import {BaseModalProps, Modal} from 'shared/ui/Modal/Modal'
-import React from 'react'
 import {InputFile} from 'shared/ui/InputFile/InputFile'
 import AvatarEditor from 'react-avatar-editor'
 import {ProfilePhotoModalFooter} from 'features/User/Avatar/ui/ProfilePhotoModalFooter/ProfilePhotoModalFooter'

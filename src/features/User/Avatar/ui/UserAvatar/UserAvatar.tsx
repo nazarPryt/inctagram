@@ -1,4 +1,3 @@
-import React, {FC} from 'react'
 import {useDeleteUserAvatar} from 'features/User/Avatar/hook/useDeleteUserAvatar'
 import Image from 'next/image'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
@@ -6,7 +5,7 @@ import DeleteAvatarIcon from 'shared/assets/icons/deleteAvatar.svg'
 import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 import {UserAvatarStyled} from 'features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
 
-export const UserAvatar: FC<{avatar: string | undefined}> = ({avatar}) => {
+export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
     const {handleDeleteAvatar, isLoading} = useDeleteUserAvatar()
 
     return (

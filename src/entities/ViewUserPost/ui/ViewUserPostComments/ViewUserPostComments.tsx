@@ -1,4 +1,3 @@
-import React from 'react'
 import {ViewUserPostCommentsWrapper} from 'entities/ViewUserPost/ui/ViewUserPostComments/ViewUserPostComments.styled'
 import {Comment} from 'entities/Comment/ui/Comment'
 

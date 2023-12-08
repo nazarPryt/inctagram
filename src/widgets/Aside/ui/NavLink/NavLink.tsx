@@ -1,4 +1,4 @@
-import React, {ComponentProps, ReactNode} from 'react'
+import {ComponentProps, ReactNode} from 'react'
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import {NavIconWrapper, NavLinkWrapper} from 'widgets/Aside/ui/NavLink/NavLink.styled'

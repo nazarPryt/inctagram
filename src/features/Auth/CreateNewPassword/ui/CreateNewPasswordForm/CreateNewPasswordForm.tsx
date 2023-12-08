@@ -1,4 +1,3 @@
-import React from 'react'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
 import {Button} from 'shared/ui/Button/Button'

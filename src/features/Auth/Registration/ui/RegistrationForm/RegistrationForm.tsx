@@ -1,4 +1,3 @@
-import React from 'react'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {AuthPageStyled} from 'shared/styles/RegistrationPage'
 import {IconButton} from 'shared/ui/IconButton/IconButton'

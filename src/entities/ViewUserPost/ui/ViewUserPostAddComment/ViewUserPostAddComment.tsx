@@ -1,4 +1,3 @@
-import React from 'react'
 import {ViewUserPostAddCommentWrapper} from 'entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment.styled'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {useCommentPost} from 'features/Post/CommentPost/hook/UseCommentPost'

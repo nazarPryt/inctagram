@@ -1,4 +1,3 @@
-import React from 'react'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {ForgotPasswordForm} from 'features/Auth/ForgotPassword/ui/ForgotPasswordForm/ForgotPasswordForm'
 

@@ -1,6 +1,5 @@
 import {Modal} from 'shared/ui/Modal/Modal'
 import {Button} from 'shared/ui/Button/Button'
-import React from 'react'
 import {RegistrationModalWrapper} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
 

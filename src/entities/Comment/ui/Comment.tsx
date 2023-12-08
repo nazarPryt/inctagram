@@ -1,4 +1,3 @@
-import React from 'react'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'

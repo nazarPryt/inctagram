@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {Modal} from 'shared/ui/Modal/Modal'

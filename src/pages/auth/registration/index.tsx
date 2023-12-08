@@ -1,4 +1,3 @@
-import React from 'react'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {RegistrationForm} from 'features/Auth/Registration/ui/RegistrationForm/RegistrationForm'
 

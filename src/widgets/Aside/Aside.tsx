@@ -1,4 +1,3 @@
-import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AsideWrapper} from 'widgets/Aside/Aside.styled'
 import {NavLink} from 'widgets/Aside/ui/NavLink/NavLink'
@@ -22,7 +21,6 @@ export const Aside = () => {
                 <NavLink href={PATH.MY_PROFILE} name={t.aside.myProfile} icon={<MyProfileIcon />} />
                 <NavLink href={PATH.MESSENGER} name={t.aside.messenger} icon={<MessengerIcon />} />
                 <NavLink href={PATH.SEARCH} name={t.aside.search} icon={<SearchIcon />} />
-                <NavLink href={'/profile/refresh'} name={'refresh'} icon={<SearchIcon />} />
                 <NavLink href={PATH.STATISTICS} name={t.aside.statistics} icon={<StatisticsIcon />} />
                 <NavLink href={PATH.FAVORITES} name={t.aside.favorites} icon={<FavoritesIcon />} />
                 <LogOutModal />

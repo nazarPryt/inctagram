@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const NoPostsIcon = () => {
     return (
         <svg version='1.1' x='0px' y='0px' viewBox='0 0 100 100'>

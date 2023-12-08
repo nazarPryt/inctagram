@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef, ElementRef, forwardRef} from 'react'
+import {ComponentPropsWithoutRef, ElementRef, forwardRef} from 'react'
 
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import {

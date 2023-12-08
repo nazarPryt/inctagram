@@ -1,7 +1,6 @@
-import React from 'react'
 import Image from 'next/image'
 import {useTranslation} from 'shared/hooks/useTranslation'
-import congratulation from '../../../shared/assets/pictures/congratulation.png'
+import congratulationImg from '../../../shared/assets/pictures/congratulation.png'
 import {PATH} from 'shared/constants/PATH'
 import {ConfirmationPageWrapper} from 'shared/styles/RegistrationConfirmPage'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
@@ -19,7 +18,7 @@ export default function ConfirmedRegistrationPage() {
                     {t.auth.signUp.success.btn}
                 </Button>
                 <span>
-                    <Image src={congratulation} alt={'congratulation'} />
+                    <Image src={congratulationImg} alt={'congratulation'} />
                 </span>
             </ConfirmationPageWrapper>
         </AuthContainer>

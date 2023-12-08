@@ -1,4 +1,3 @@
-import React from 'react'
 import {Post} from 'entities/Post/Post'
 import {PostCardType} from 'entities/UserPosts/api/types'
 import {AllPostsListWrapper} from 'widgets/AllPostsList/AllPostsList.styled'

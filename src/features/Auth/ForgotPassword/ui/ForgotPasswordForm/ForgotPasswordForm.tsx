@@ -1,4 +1,3 @@
-import React from 'react'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {Button} from 'shared/ui/Button/Button'
 import {PATH} from 'shared/constants/PATH'

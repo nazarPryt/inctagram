@@ -1,7 +1,6 @@
-import React from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import re from 'shared/assets/pictures/congratulation.png'
+import congratulationImg from 'shared/assets/pictures/congratulation.png'
 import Image from 'next/image'
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {MergeAccountsPageWrapper} from 'shared/styles/MergeAccountsPage'
@@ -17,7 +16,7 @@ export default function MergeAccountsPage() {
                 <Button variant={'outlined'}>{t.auth.signUp.merge.btnFirst}</Button>
                 <Button variant={'outlined'}>{t.auth.signUp.merge.btnSec}</Button>
                 <span>
-                    <Image src={re} alt={'re'} />
+                    <Image src={congratulationImg} alt={'re'} />
                 </span>
             </MergeAccountsPageWrapper>
         </AuthContainer>

@@ -1,7 +1,7 @@
 import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
 import {NextPageContext} from 'next'
 import {Loader} from 'shared/ui/Loader'
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import {useRouter} from 'next/router'
 import {PATH} from 'shared/constants/PATH'
 import {useCheckRecoveryCodeMutation} from 'features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'

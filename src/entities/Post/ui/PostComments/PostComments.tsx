@@ -1,4 +1,3 @@
-import React from 'react'
 import {Comment} from 'entities/Comment/ui/Comment'
 import {PostCommentsWrapper} from 'entities/Post/ui/PostComments/PostComments.styled'
 

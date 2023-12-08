@@ -1,7 +1,7 @@
-import React from 'react'
 import {IsEmptyStyled} from './IsEmpty.styled'
 import Image from 'next/image'
 import emptyFolder from './icon/emptyfolder.png'
+
 export const IsEmpty = () => {
     return (
         <IsEmptyStyled>

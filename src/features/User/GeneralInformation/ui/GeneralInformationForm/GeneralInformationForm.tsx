@@ -1,4 +1,3 @@
-import React, {FC} from 'react'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {InputText} from 'shared/ui/InputText/InputText'
 import {TextArea} from 'shared/ui/TextArea/TextArea'
@@ -8,7 +7,7 @@ import {UserProfile} from 'redux/types/authTypes'
 import {useGeneralInformationForm} from 'features/User/GeneralInformation/hook/useGeneralInformationForm'
 import {Button} from 'shared/ui/Button/Button'
 
-export const GeneralInformationForm: FC<{data: UserProfile}> = ({data}) => {
+export const GeneralInformationForm = ({data}: {data: UserProfile}) => {
     const {t} = useTranslation()
     const {register, handleSubmit, errors, control, datePickerRef} = useGeneralInformationForm({data})
 

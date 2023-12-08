@@ -1,6 +1,3 @@
-'use client'
-import React from 'react'
-
 import {Alert} from 'features/NotificationBar/Alert/Alert'
 import {useAppSelector} from 'shared/hooks/reduxHooks'
 import {NotificationBarWrapper} from 'features/NotificationBar/styled'

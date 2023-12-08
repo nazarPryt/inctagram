@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const MobileIcon = () => {
     return (
         <svg width='20' height='34' viewBox='0 0 20 34' fill='none' xmlns='http://www.w3.org/2000/svg'>

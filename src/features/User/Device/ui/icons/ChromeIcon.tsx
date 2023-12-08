@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const ChromeIcon = () => {
     return (
         <svg width='36' height='36' viewBox='0 0 36 36' fill='none'>

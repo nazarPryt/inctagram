@@ -1,4 +1,3 @@
-import React from 'react'
 import {NotificationIconWrapper} from './NotificationIcon.styled'
 
 type PropsType = {

@@ -1,4 +1,3 @@
-import React from 'react'
 import {CurrentDeviceStyled} from 'features/User/Device/ui/CurrentDevice/CurrentDevice.styled'
 import {ChromeIcon} from 'features/User/Device/ui/icons/ChromeIcon'
 

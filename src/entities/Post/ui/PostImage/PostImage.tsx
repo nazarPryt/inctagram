@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'next/image'
 import {PostImageWrapper} from 'entities/Post/ui/PostImage/PostImage.styled'
 import {Swiper, SwiperSlide} from 'swiper/react'

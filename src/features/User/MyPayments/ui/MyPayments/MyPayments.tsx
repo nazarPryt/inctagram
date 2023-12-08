@@ -1,4 +1,3 @@
-import React from 'react'
 import {MyPaymentsStyled} from './MyPayments.styled'
 import {Loader} from 'shared/ui/Loader'
 import {IsEmpty} from 'features/User/MyPayments/ui/IsEmpty'

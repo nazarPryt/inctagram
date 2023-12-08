@@ -1,4 +1,3 @@
-import React from 'react'
 import {DevicesStyled} from 'features/User/Device/ui/Devices/Devices.styled'
 import {CurrentDevice} from 'features/User/Device/ui/CurrentDevice/CurrentDevice'
 import {Button} from 'shared/ui/Button/Button'

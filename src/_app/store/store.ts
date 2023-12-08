@@ -3,8 +3,8 @@ import {setupListeners} from '@reduxjs/toolkit/query'
 import {appReducer} from '_app/store/appSlice'
 import {userReducer} from '_app/store/userSlice'
 import {api} from 'redux/api/api'
-import {createPostReducer} from '../../features/CreatePost/model/slice/createPostSlice'
-import {editorPanelReducer} from '../../features/CreatePost/model/slice/editorPanelSlice'
+import {createPostReducer} from 'features/CreatePost/model/slice/createPostSlice'
+import {editorPanelReducer} from 'features/CreatePost/model/slice/editorPanelSlice'
 
 export const store = configureStore({
     reducer: {

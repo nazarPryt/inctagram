@@ -1,4 +1,3 @@
-import React from 'react'
 import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from 'shared/ui/Table'
 import {MyPaymentType} from 'features/User/MyPayments/api'
 import {MyPaymentsTableStyled} from './MyPaymentsTable.styled'

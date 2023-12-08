@@ -1,4 +1,3 @@
-import React from 'react'
 import {IconButton} from 'shared/ui/IconButton/IconButton'
 import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
 

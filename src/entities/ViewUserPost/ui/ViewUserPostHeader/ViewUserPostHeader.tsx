@@ -2,7 +2,7 @@ import {ViewUserPostHeaderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostHe
 import {DeletePostIcon} from 'features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from 'features/Post/EditPost/ui/icon/EditPostIcon'
 import Link from 'next/link'
-import React, {Dispatch, SetStateAction, useState} from 'react'
+import {Dispatch, SetStateAction, useState} from 'react'
 import {PATH} from 'shared/constants/PATH'
 import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 import {Popover} from 'shared/ui/Popover/Popover'

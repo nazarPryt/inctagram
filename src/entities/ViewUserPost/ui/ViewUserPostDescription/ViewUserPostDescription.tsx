@@ -1,4 +1,3 @@
-import React from 'react'
 import {ViewUserPostDescriptionWrapper} from 'entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription.styled'
 import {formatDistance, subDays} from 'date-fns'
 

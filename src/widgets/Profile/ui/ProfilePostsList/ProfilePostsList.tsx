@@ -1,4 +1,3 @@
-import React from 'react'
 import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
 import {Loader} from 'shared/ui/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
