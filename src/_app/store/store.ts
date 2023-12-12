@@ -14,10 +14,7 @@ export const store = configureStore({
         editorPanel: editorPanelReducer,
         [api.reducerPath]: api.reducer,
     },
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }).concat(api.middleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
 })
 setupListeners(store.dispatch)
 

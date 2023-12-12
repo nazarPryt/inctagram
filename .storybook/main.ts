@@ -1,4 +1,3 @@
-import type {StorybookConfig} from '@storybook/nextjs'
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const path = require('path')
@@ -28,7 +27,7 @@ module.exports = {
     typescript: {
         reactDocgen: 'react-docgen',
     },
-    webpackFinal: config => {
+    webpackFinal: (config: any) => {
         config.resolve.plugins = config.resolve.plugins || []
         config.resolve.plugins.push(
             new TsconfigPathsPlugin({

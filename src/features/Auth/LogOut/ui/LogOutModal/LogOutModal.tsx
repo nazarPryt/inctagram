@@ -5,8 +5,10 @@ import {useTranslation} from 'shared/hooks/useTranslation'
 import {useLogOut} from 'features/Auth/LogOut/hook/useLogOut'
 import {LogOutModalWrapper} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal.styled'
 import {LogOutIcon} from 'features/Auth/LogOut/ui/icons/LogOutIcon'
+import {useAppSelector} from 'shared/hooks/reduxHooks'
 
 export const LogOutModal = () => {
+    const userEmail = useAppSelector(state => state.userAuth.email)
     const {t} = useTranslation()
     const {handleCloseModal, handleModalOpen, handleLogOut, isOpen} = useLogOut()
 
@@ -18,7 +20,7 @@ export const LogOutModal = () => {
                 <LogOutModalWrapper>
                     <p>
                         {t.generalInfo.logoutModal.description}
-                        <br /> <span>user.email</span>?
+                        <br /> <span>{userEmail}</span>?
                     </p>
                     <div className={'buttonsWrapper'}>
                         <Button variant={'outlined'} onClick={handleLogOut}>

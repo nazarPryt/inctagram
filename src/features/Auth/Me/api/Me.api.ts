@@ -1,4 +1,5 @@
 import {api} from 'redux/api/api'
+import {SetUser} from '_app/store/userSlice'
 
 type authMeDataType = {
     userId: number
@@ -12,6 +13,14 @@ export const meApi = api.injectEndpoints({
             query: () => ({
                 url: `auth/me`,
             }),
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
+                try {
+                    const res = await queryFulfilled
+                    dispatch(SetUser(res.data))
+                } catch (e) {
+                    console.log(e)
+                }
+            },
             providesTags: ['Me'],
         }),
     }),

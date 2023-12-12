@@ -1,11 +1,12 @@
 import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useState} from 'react'
-import cookie from 'react-cookies'
-import {accessToken} from 'shared/constants/constants'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useLogOutMutation} from 'features/Auth/LogOut/api/logOut.api'
+import {useRouter} from 'next/router'
+import {PATH} from 'shared/constants/PATH'
 
 export const useLogOut = () => {
+    const router = useRouter()
     const dispatch = useAppDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [logOut] = useLogOutMutation()
@@ -14,8 +15,8 @@ export const useLogOut = () => {
         await logOut()
             .unwrap()
             .then(async () => {
-                cookie.remove(accessToken)
                 setIsOpen(false)
+                router.push(PATH.LOGIN)
             })
             .catch((error: any) => {
                 console.log(error)
