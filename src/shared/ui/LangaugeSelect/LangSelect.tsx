@@ -26,7 +26,7 @@ const Country = [
 ]
 
 export const LangSelect = () => {
-    const {locale, push, pathname, query, asPath, locales, defaultLocale} = useRouter()
+    const {push, pathname, query, asPath, defaultLocale} = useRouter()
     const [value, setValue] = useState(defaultLocale)
     const changeLangHandler = (country: string) => {
         setValue(country)
