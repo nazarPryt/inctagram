@@ -1,6 +1,6 @@
 {
     "name": "final",
-    "homepage": "https://inctagram-three.vercel.app",
+    "homepage": "https://instareplica.fun",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -80,9 +80,9 @@
             "next/core-web-vitals",
             "plugin:storybook/recommended"
         ],
-
-
-        "plugins": ["react-hooks"],
+        "plugins": [
+            "react-hooks"
+        ],
         "rules": {
             "react-hooks/exhaustive-deps": 0
         }
