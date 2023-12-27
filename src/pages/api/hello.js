@@ -1,6 +1,8 @@
 import nookies from 'nookies'
 
 export default async function handler(req, res) {
+    const cookies = nookies.get(req)
+    console.log('cookies', cookies)
     const blogData = [
         {
             id: 1,
@@ -15,5 +17,5 @@ export default async function handler(req, res) {
             image: '/images/blog2.jpg',
         },
     ]
-    res.status(200).json(blogData)
+    res.status(200).json(cookies)
 }

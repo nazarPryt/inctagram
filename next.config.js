@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/i,
@@ -9,9 +9,24 @@ module.exports = {
         //https://levelup.gitconnected.com/how-to-use-svg-icons-in-a-next-js-project-f6f8256f9e12
         return config
     },
-    images: {domains: ['storage.yandexcloud.net', 'loremflickr.com']},
+    compiler: {styledComponents: true},
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'storage.yandexcloud.net',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'loremflickr.com',
+                pathname: '**',
+            },
+        ],
+    },
     i18n: {
         locales: ['en', 'ru'],
         defaultLocale: 'en',
     },
 }
+module.exports = nextConfig

@@ -4,28 +4,28 @@ import {serverAuthAPI} from 'shared/server-api/server-api'
 import {PATH} from 'shared/constants/PATH'
 import {Loader} from 'shared/ui/Loader'
 
-export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const user = await serverAuthAPI.authMe(ctx)
-    console.log('serverAuthAPI.authMe (user): ', user)
-    if (user) {
-        return {
-            props: {
-                user,
-            },
-            redirect: {
-                destination: PATH.HOME,
-                permanent: true,
-            },
-        }
-    } else {
-        return {
-            redirect: {
-                destination: PATH.LOGIN,
-                permanent: true,
-            },
-        }
-    }
-}
+// export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+//     const user = await serverAuthAPI.authMe(ctx)
+//     console.log('serverAuthAPI.authMe (user): ', user)
+//     if (user) {
+//         return {
+//             props: {
+//                 user,
+//             },
+//             redirect: {
+//                 destination: PATH.HOME,
+//                 permanent: true,
+//             },
+//         }
+//     } else {
+//         return {
+//             redirect: {
+//                 destination: PATH.LOGIN,
+//                 permanent: true,
+//             },
+//         }
+//     }
+// }
 
 const Home = () => {
     return <Loader />

@@ -1,5 +1,6 @@
 export const PATH = {
     // Auth
+    AUTH: '/auth',
     LOGIN: '/auth/login',
     LOG_OUT: '/auth/logout',
     REGISTRATION: '/auth/registration',
@@ -11,7 +12,7 @@ export const PATH = {
     PRIVACY_POLICY: '/auth/privacy-policy',
     TERMS_OF_SERVICE: '/auth/terms-of-service',
 
-    // Aside
+    // profile
     HOME: '/profile',
     MY_PROFILE: '/profile/my-profile',
     USER_PROFILE: '/profile/user-profile',

@@ -2,7 +2,7 @@ import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/docu
 import {ServerStyleSheet} from 'styled-components'
 import {Favicon} from '_app/Favicon/Favicon'
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const sheet = new ServerStyleSheet()
 
@@ -10,8 +10,8 @@ class MyDocument extends Document {
             ctx.renderPage({
                 enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
             })
-
             const initialProps = await Document.getInitialProps(ctx)
+
             return {
                 ...initialProps,
                 styles: (
@@ -30,10 +30,6 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head lang='en'>
-                    {
-                        // @ts-ignore
-                        this.props.styleTags
-                    }
                     <meta charSet='utf-8' />
                     <Favicon />
                 </Head>
@@ -45,5 +41,3 @@ class MyDocument extends Document {
         )
     }
 }
-
-export default MyDocument

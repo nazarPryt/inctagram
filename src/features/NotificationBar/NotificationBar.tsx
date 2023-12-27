@@ -1,8 +1,9 @@
 import {useAppSelector} from 'shared/hooks/reduxHooks'
 import {NotificationBarWrapper} from 'features/NotificationBar/styled'
 import dynamic from 'next/dynamic'
+import {Alert} from './Alert/Alert'
 
-const DynamicAlert = dynamic(() => import('features/NotificationBar/Alert/Alert').then(module => module.Alert))
+//const DynamicAlert = dynamic(() => import('features/NotificationBar/Alert/Alert').then(module => module.Alert))
 
 export const NotificationBar = () => {
     const notifications = useAppSelector(state => state.app.notifications)
@@ -10,7 +11,7 @@ export const NotificationBar = () => {
     return (
         <NotificationBarWrapper>
             {notifications.map(alert => {
-                return <DynamicAlert key={alert.id} id={alert.id} message={alert.message} type={alert.type} />
+                return <Alert key={alert.id} id={alert.id} message={alert.message} type={alert.type} />
             })}
         </NotificationBarWrapper>
     )

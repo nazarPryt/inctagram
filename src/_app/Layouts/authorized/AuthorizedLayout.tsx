@@ -10,12 +10,12 @@ import {useMeQuery} from 'features/Auth/Me/api/Me.api'
 import {PATH} from 'shared/constants/PATH'
 
 export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
-    const router = useRouter()
-    const {isError} = useMeQuery()
-
-    if (isError) {
-        router.push(PATH.LOGIN)
-    }
+    // const router = useRouter()
+    // const {isError} = useMeQuery()
+    //
+    // if (isError) {
+    //     router.push(PATH.LOGIN)
+    // }
 
     return (
         <Container>

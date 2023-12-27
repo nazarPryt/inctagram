@@ -9,12 +9,12 @@ import {useMeQuery} from 'features/Auth/Me/api/Me.api'
 import {PATH} from 'shared/constants/PATH'
 
 export const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
-    const router = useRouter()
-    const {isSuccess} = useMeQuery()
-
-    if (isSuccess) {
-        router.push(PATH.HOME)
-    }
+    // const router = useRouter()
+    // const {isSuccess} = useMeQuery()
+    //
+    // if (isSuccess) {
+    //     router.push(PATH.HOME)
+    // }
     return (
         <UnauthorizedStyled>
             <Container>
