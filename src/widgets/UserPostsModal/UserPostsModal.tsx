@@ -1,4 +1,4 @@
-import {ComponentProps, Dispatch} from 'react'
+import {ComponentProps, Dispatch, SetStateAction} from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
 
@@ -9,7 +9,7 @@ import {CloseIcon} from 'shared/assets/icons/CloseIcon'
 
 export type ModalProps = {
     open: boolean
-    onClose: Dispatch<React.SetStateAction<boolean>>
+    onClose: Dispatch<SetStateAction<boolean>>
 } & ComponentProps<'div'>
 
 export const UserPostsModal = ({open, onClose, children}: ModalProps) => {

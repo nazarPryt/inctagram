@@ -5,7 +5,7 @@ import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {Loader} from 'shared/ui/Loader/Loader'
 
 export const GeneralInformation = () => {
-    const {data, isLoading} = useGetUserProfileQuery(34)
+    const {data, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
         return <Loader />

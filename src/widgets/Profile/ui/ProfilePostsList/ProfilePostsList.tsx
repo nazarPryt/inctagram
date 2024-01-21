@@ -3,14 +3,20 @@ import {Loader} from 'shared/ui/Loader/Loader'
 import {UserPost} from 'entities/UserPosts/ui/UserPost'
 import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
 import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
+import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
 
 export const ProfilePostsList = () => {
-    const userId = 248
-    const {data: posts, isLoading} = useGetUserPostsQuery(userId as number)
+    const userId = useAppSelector(state => state.userAuth.userId) as number
+    const endCursorPostId = null
+
+    const {data: posts, isLoading} = useGetUserPostsQuery({userId, endCursorPostId})
+
+    const isNoPosts = posts && posts.items.length === 0
+
     if (isLoading) {
         return <Loader />
     }
-    if (posts && posts.items.length === 0) {
+    if (isNoPosts) {
         return <NoPosts />
     }
 

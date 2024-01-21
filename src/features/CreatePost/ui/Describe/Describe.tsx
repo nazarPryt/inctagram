@@ -15,7 +15,7 @@ export const Describe = () => {
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
     // TODO userID
-    const {data, isLoading} = useGetUserProfileQuery(136)
+    const {data, isLoading} = useGetUserProfileQuery()
     const UserImage = data?.avatars.length ? (
         <Image src={data.avatars[0].url} width={data.avatars[0].width} height={data.avatars[0].height} alt={'avatar'} />
     ) : (
