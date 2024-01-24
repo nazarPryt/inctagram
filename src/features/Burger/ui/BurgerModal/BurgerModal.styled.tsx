@@ -1,6 +1,5 @@
-import styled, {keyframes} from 'styled-components'
-
 import * as SheetPrimitive from '@radix-ui/react-dialog'
+import styled, {keyframes} from 'styled-components'
 const overlayShow = keyframes`
     from {
         opacity: 0;
@@ -20,6 +19,7 @@ const contentShow = keyframes`
         transform: translate(-50%, -50%) scale(1);
     }
 `
+
 export const SheetOverlayStyled = styled(SheetPrimitive.Overlay)`
     position: fixed;
     top: 0;
@@ -43,7 +43,9 @@ export const SheetContentStyled = styled(SheetPrimitive.Content)`
     padding: 1.5rem;
     gap: 1rem;
     background-color: ${props => props.theme.bodyColor[100]};
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
     animation: ${contentShow} 150ms step-end(0.16, 1, 0.3, 1);
 
     @media (min-width: 640px) {

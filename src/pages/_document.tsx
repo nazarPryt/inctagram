@@ -1,6 +1,6 @@
+import {Favicon} from '_app/Favicon/Favicon'
 import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components'
-import {Favicon} from '_app/Favicon/Favicon'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
@@ -12,6 +12,7 @@ class MyDocument extends Document {
             })
 
             const initialProps = await Document.getInitialProps(ctx)
+
             return {
                 ...initialProps,
                 styles: (
@@ -29,12 +30,12 @@ class MyDocument extends Document {
     render() {
         return (
             <Html>
-                <Head lang='en'>
+                <Head lang={'en'}>
                     {
                         // @ts-ignore
                         this.props.styleTags
                     }
-                    <meta charSet='utf-8' />
+                    <meta charSet={'utf-8'} />
                     <Favicon />
                 </Head>
                 <body>

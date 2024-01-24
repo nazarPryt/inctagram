@@ -4,8 +4,8 @@ const postApi = api.injectEndpoints({
     endpoints: build => ({
         getPosts: build.query({
             query: () => ({
-                url: `posts`,
                 method: 'GET',
+                url: `posts`,
             }),
         }),
     }),

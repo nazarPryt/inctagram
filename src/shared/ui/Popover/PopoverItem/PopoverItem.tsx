@@ -1,10 +1,11 @@
-import React, {ComponentProps, ComponentPropsWithoutRef, forwardRef, ReactNode} from 'react'
-import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
+import React, {ComponentProps, ComponentPropsWithoutRef, ReactNode, forwardRef} from 'react'
+
 import {InputText} from 'shared/ui/InputText/InputText'
+import {NavButtonWrapper} from 'widgets/Aside/ui/NavButton/NavButton.styled'
 
 type PopoverItemProps = {
-    name: string
     icon: ReactNode
+    name: string
 } & ComponentProps<'button'>
 
 export const PopoverItem = forwardRef<HTMLButtonElement, PopoverItemProps>((props, ref) => {

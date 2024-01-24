@@ -1,10 +1,11 @@
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {Dispatch, SetStateAction} from 'react'
+import {useForm} from 'react-hook-form'
+
+import {yupResolver} from '@hookform/resolvers/yup'
+import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useEditUserPostMutation} from 'features/Post/EditPost/api/editPost.api'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import * as yup from 'yup'
 
 const schema = yup.object({
     description: yup.string().required(`Description can't be empty`),
@@ -20,8 +21,8 @@ export const useEditPost = ({postId, setEdit}: UseEditPostType) => {
     const dispatch = useAppDispatch()
     const [updateUserPost, {isLoading}] = useEditUserPostMutation()
     const {
-        handleSubmit,
         formState: {errors},
+        handleSubmit,
         register,
         ...rest
     } = useForm<FormData>({
@@ -34,7 +35,7 @@ export const useEditPost = ({postId, setEdit}: UseEditPostType) => {
             .then(() => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'success', message: 'Your description was successfully updated'},
+                        notifications: {message: 'Your description was successfully updated', type: 'success'},
                     })
                 )
                 setEdit(false)
@@ -42,17 +43,17 @@ export const useEditPost = ({postId, setEdit}: UseEditPostType) => {
             .catch(error => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: error.message},
+                        notifications: {message: error.message, type: 'error'},
                     })
                 )
             })
     }
 
     return {
-        handleSubmit: handleSubmit(onSubmit),
         errors,
-        register,
+        handleSubmit: handleSubmit(onSubmit),
         isLoading,
+        register,
         ...rest,
     }
 }

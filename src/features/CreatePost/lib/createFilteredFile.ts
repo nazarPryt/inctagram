@@ -1,5 +1,6 @@
 import {RefObject} from 'react'
 import AvatarEditor from 'react-avatar-editor'
+
 import {dataURLtoFile} from './dataURLtoFile'
 
 export const createFilteredFile = async (editorRef: RefObject<AvatarEditor>, filter: string) => {

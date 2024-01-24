@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 
 export default function UserProfilePage() {
     const router = useRouter()
+
     return (
         <>
             <p>UserProfilePage </p>

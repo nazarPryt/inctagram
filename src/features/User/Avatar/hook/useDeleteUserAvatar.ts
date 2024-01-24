@@ -1,6 +1,6 @@
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useDeleteAvatarMutation} from 'features/User/Avatar/api/avatar.api'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
 
 export const useDeleteUserAvatar = () => {
     const dispatch = useAppDispatch()
@@ -13,15 +13,16 @@ export const useDeleteUserAvatar = () => {
             .then(() => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'success', message: 'Your Avatar was successfully removed'},
+                        notifications: {message: 'Your Avatar was successfully removed', type: 'success'},
                     })
                 )
             })
             .catch(error =>
                 dispatch(
-                    SetAppNotificationAC({notifications: {type: 'error', message: error.data.messages[0].message}})
+                    SetAppNotificationAC({notifications: {message: error.data.messages[0].message, type: 'error'}})
                 )
             )
     }
+
     return {handleDeleteAvatar, isLoading}
 }

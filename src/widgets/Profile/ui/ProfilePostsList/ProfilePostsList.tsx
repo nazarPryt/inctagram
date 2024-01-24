@@ -1,15 +1,16 @@
-import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
-import {Loader} from 'shared/ui/Loader/Loader'
-import {UserPost} from 'entities/UserPosts/ui/UserPost'
-import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
 import {useGetUserPostsQuery} from 'entities/UserPosts/api/user-posts-api'
+import {NoPosts} from 'entities/UserPosts/ui/NoPosts/NoPosts'
+import {UserPost} from 'entities/UserPosts/ui/UserPost'
+import {Loader} from 'shared/ui/Loader/Loader'
+import {ProfilePostsListWrapper} from 'widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
+
 import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
 
 export const ProfilePostsList = () => {
     const userId = useAppSelector(state => state.userAuth.userId) as number
     const endCursorPostId = null
 
-    const {data: posts, isLoading} = useGetUserPostsQuery({userId, endCursorPostId})
+    const {data: posts, isLoading} = useGetUserPostsQuery({endCursorPostId, userId})
 
     const isNoPosts = posts && posts.items.length === 0
 
@@ -30,10 +31,10 @@ export const ProfilePostsList = () => {
 
                     return (
                         <UserPost
-                            key={post.id}
                             imagesLength={post.images.length}
-                            src={images[0]?.url}
+                            key={post.id}
                             postId={post.id}
+                            src={images[0]?.url}
                         />
                     )
                 })}

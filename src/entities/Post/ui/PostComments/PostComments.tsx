@@ -5,12 +5,12 @@ type PostDescriptionType = {}
 export const PostComments = ({}: PostDescriptionType) => {
     return (
         <PostCommentsWrapper>
-            <Comment isLiked={true} comment={'post.description'} userID={1} img={'https://loremflickr.com/500/500'} />
-            <Comment isLiked={false} comment={'post.description'} userID={2} img={'https://loremflickr.com/500/500'} />
-            <Comment isLiked={true} comment={'post.description'} userID={3} img={'https://loremflickr.com/500/500'} />
-            <Comment isLiked={false} comment={'post.description'} userID={4} img={'https://loremflickr.com/500/500'} />
-            <Comment isLiked={false} comment={'post.description'} userID={5} img={'https://loremflickr.com/500/500'} />
-            <Comment isLiked={false} comment={'post.description'} userID={6} img={'https://loremflickr.com/500/500'} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked userID={1} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked={false} userID={2} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked userID={3} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked={false} userID={4} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked={false} userID={5} />
+            <Comment comment={'post.description'} img={'https://loremflickr.com/500/500'} isLiked={false} userID={6} />
         </PostCommentsWrapper>
     )
 }

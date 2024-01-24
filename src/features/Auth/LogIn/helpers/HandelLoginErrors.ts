@@ -1,5 +1,6 @@
-import {SetAppNotificationAC} from '_app/store/appSlice'
 import {UseFormSetError} from 'react-hook-form'
+
+import {SetAppNotificationAC} from '_app/store/appSlice'
 
 export const HandelLoginErrors = (
     error: any,
@@ -11,13 +12,13 @@ export const HandelLoginErrors = (
     } else if (error.data.messages) {
         dispatch(
             SetAppNotificationAC({
-                notifications: {type: 'error', message: error.data.messages},
+                notifications: {message: error.data.messages, type: 'error'},
             })
         )
     } else {
         dispatch(
             SetAppNotificationAC({
-                notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
+                notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
             })
         )
     }

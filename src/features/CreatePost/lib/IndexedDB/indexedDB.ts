@@ -1,12 +1,13 @@
-import {openDB, DBSchema, IDBPDatabase} from 'idb'
+import {DBSchema, IDBPDatabase, openDB} from 'idb'
+
 import {LibraryPictureType} from '../../model/types/createPostSchema'
 
 export interface UserDB extends DBSchema {
     draftImages: {
         key: number
         value: {
-            drafts: LibraryPictureType[]
             description: string
+            drafts: LibraryPictureType[]
         }
     }
 }
@@ -16,18 +17,21 @@ let dbPromise: Promise<IDBPDatabase<UserDB>> | null = null
 if (typeof window !== 'undefined') {
     dbPromise = openDB<UserDB>('userDatabase', 1, {
         upgrade(db) {
-            db.createObjectStore('draftImages', {keyPath: 'key', autoIncrement: true})
+            db.createObjectStore('draftImages', {autoIncrement: true, keyPath: 'key'})
         },
     })
 }
 
 const addToDraft = async (data: LibraryPictureType[], description: string) => {
-    if (!dbPromise) return
+    if (!dbPromise) {
+        return
+    }
 
     const db = await dbPromise
     const tx = db.transaction('draftImages', 'readwrite')
     const store = tx.objectStore('draftImages')
-    await store.add({drafts: data, description})
+
+    await store.add({description, drafts: data})
     await tx.done
 }
 
@@ -41,6 +45,7 @@ const clearIndexedDB = (objectStoreName: string): Promise<string> => {
 
         request.onsuccess = function (event) {
             const db = (event.target as IDBRequest).result
+
             if (db instanceof IDBDatabase) {
                 const transaction = db.transaction(objectStoreName, 'readwrite')
                 const objectStore = transaction.objectStore(objectStoreName)
@@ -60,12 +65,15 @@ const clearIndexedDB = (objectStoreName: string): Promise<string> => {
 }
 
 const getAllDrafts = async () => {
-    if (!dbPromise) return []
+    if (!dbPromise) {
+        return []
+    }
 
     const db = await dbPromise
     const tx = db.transaction('draftImages', 'readonly')
     const store = tx.objectStore('draftImages')
+
     return store.getAll()
 }
 
-export {addToDraft, getAllDrafts, clearIndexedDB}
+export {addToDraft, clearIndexedDB, getAllDrafts}

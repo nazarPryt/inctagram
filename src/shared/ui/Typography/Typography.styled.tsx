@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 interface TypographyProps {
     fontSize?: string
-    lineHeight?: string
     fontWeight?: string
+    lineHeight?: string
 }
 
 const TypographyMixin = styled.p<TypographyProps>`
@@ -119,18 +119,18 @@ export const Error = styled(TypographyMixin)`
 `
 
 export const TypographyStyle = {
+    BoldText14,
+    BoldText16,
+    Error,
     H1,
     H2,
     H3,
     Large,
-    RegularText16,
-    BoldText16,
-    RegularText14,
     MediumText14,
-    BoldText14,
-    SmallText,
-    SemiBoldSmallText,
     RegularLink,
+    RegularText14,
+    RegularText16,
+    SemiBoldSmallText,
     SmallLink,
-    Error,
+    SmallText,
 }

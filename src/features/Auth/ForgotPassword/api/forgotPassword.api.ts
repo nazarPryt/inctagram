@@ -5,9 +5,9 @@ export const forgotPasswordAPI = api.injectEndpoints({
     endpoints: build => ({
         forgotPassword: build.mutation<void, ForgotPasswordArgType>({
             query: body => ({
-                url: 'auth/password-recovery',
-                method: 'POST',
                 body,
+                method: 'POST',
+                url: 'auth/password-recovery',
             }),
         }),
     }),

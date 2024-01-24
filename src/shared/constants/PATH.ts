@@ -1,24 +1,24 @@
 export const PATH = {
-    // Auth
-    LOGIN: '/auth/login',
-    LOG_OUT: '/auth/logout',
-    REGISTRATION: '/auth/registration',
-    FORGOT_PASSWORD: '/auth/forgot-password',
-    EXPIRED_LINK: '/auth/email-resending',
-    REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
     CREATE_NEW_PASSWORD: '/auth/create-new-password',
-    UPDATE_TOKENS: '/auth/update-tokens',
-    PRIVACY_POLICY: '/auth/privacy-policy',
-    TERMS_OF_SERVICE: '/auth/terms-of-service',
-
+    EXPIRED_LINK: '/auth/email-resending',
+    FAVORITES: '/profile/favorites',
+    FORGOT_PASSWORD: '/auth/forgot-password',
     // Aside
     HOME: '/profile',
-    MY_PROFILE: '/profile/my-profile',
-    USER_PROFILE: '/profile/user-profile',
-    PROFILE_SETTINGS: '/profile/profile-settings',
+    LOG_OUT: '/auth/logout',
+    // Auth
+    LOGIN: '/auth/login',
     MESSENGER: '/profile/messenger',
+    MY_PROFILE: '/profile/my-profile',
+    PRIVACY_POLICY: '/auth/privacy-policy',
+
+    PROFILE_SETTINGS: '/profile/profile-settings',
+    REGISTRATION: '/auth/registration',
+    REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
     SEARCH: '/profile/search',
-    FAVORITES: '/profile/favorites',
     STATISTICS: '/profile/statistics',
+    TERMS_OF_SERVICE: '/auth/terms-of-service',
+    UPDATE_TOKENS: '/auth/update-tokens',
+    USER_PROFILE: '/profile/user-profile',
     VIEW_POST: '/profile/view-post',
 } as const

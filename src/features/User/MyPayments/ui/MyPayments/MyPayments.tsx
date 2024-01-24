@@ -1,8 +1,9 @@
-import {MyPaymentsStyled} from './MyPayments.styled'
-import {Loader} from 'shared/ui/Loader'
-import {IsEmpty} from 'features/User/MyPayments/ui/IsEmpty'
 import {useMyPaymentsQuery} from 'features/User/MyPayments/api'
+import {IsEmpty} from 'features/User/MyPayments/ui/IsEmpty'
 import {MyPaymentsTable} from 'features/User/MyPayments/ui/MyPaymentsTable'
+import {Loader} from 'shared/ui/Loader'
+
+import {MyPaymentsStyled} from './MyPayments.styled'
 
 export const MyPayments = () => {
     const {data: payments, isLoading} = useMyPaymentsQuery()
@@ -17,5 +18,6 @@ export const MyPayments = () => {
             </MyPaymentsStyled>
         )
     }
+
     return <IsEmpty />
 }

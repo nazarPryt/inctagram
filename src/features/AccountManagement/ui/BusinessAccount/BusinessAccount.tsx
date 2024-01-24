@@ -1,22 +1,26 @@
+import {Controller} from 'react-hook-form'
+
+import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
 import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
-import {BusinessFormWrapper} from './BusinessAccount.styled'
+
+import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
+import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
 import {PayPal} from '../PayPal/PayPal'
 import {Stripe} from '../Stripe/Stripe'
-import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
-import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
-import {Controller} from 'react-hook-form'
-import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
+import {BusinessFormWrapper} from './BusinessAccount.styled'
 
 export const BusinessAccount = () => {
     const {data: costs} = useGetSubscriptionCostsQuery()
-    const {handleSubmit, control, setValue} = useCreateNewSubscription()
+    const {control, handleSubmit, setValue} = useCreateNewSubscription()
 
     const handleStripePaymentType = () => {
         setValue('paymentType', 'STRIPE')
+
         return handleSubmit()
     }
     const handlePaypalPaymentType = () => {
         setValue('paymentType', 'PAYPAL')
+
         return handleSubmit()
     }
 
@@ -26,26 +30,26 @@ export const BusinessAccount = () => {
             <AccountManagementContainer>
                 <Controller
                     control={control}
-                    name='typeSubscription'
+                    name={'typeSubscription'}
                     render={({field: {onChange, value}}) => (
                         <>
                             <RadioInput
-                                label={`$10 per month`}
-                                value={'MONTHLY'}
-                                onChange={onChange}
                                 checked={value === 'MONTHLY'}
-                            />
-                            <RadioInput
+                                label={`$10 per month`}
                                 onChange={onChange}
-                                label={'$50 per half-year'}
-                                value={'SEMI_ANNUALLY'}
-                                checked={value === 'SEMI_ANNUALLY'}
+                                value={'MONTHLY'}
                             />
                             <RadioInput
+                                checked={value === 'SEMI_ANNUALLY'}
+                                label={'$50 per half-year'}
+                                onChange={onChange}
+                                value={'SEMI_ANNUALLY'}
+                            />
+                            <RadioInput
+                                checked={value === 'YEARLY'}
                                 label={'$100 per year'}
                                 onChange={onChange}
                                 value={'YEARLY'}
-                                checked={value === 'YEARLY'}
                             />
                         </>
                     )}

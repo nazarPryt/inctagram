@@ -1,4 +1,5 @@
 import React, {ComponentProps, forwardRef} from 'react'
+
 import {InputFileWrapper} from './InputFile.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
@@ -8,8 +9,8 @@ type InputFileProps = DefaultInputPropsType & {
 }
 export const InputFile = forwardRef<HTMLInputElement, InputFileProps>((props, ref) => {
     return (
-        <InputFileWrapper htmlFor='InputFile'>
-            <input type='file' id='InputFile' ref={ref} {...props} hidden />
+        <InputFileWrapper htmlFor={'InputFile'}>
+            <input id={'InputFile'} ref={ref} type={'file'} {...props} hidden />
             {props.title}
         </InputFileWrapper>
     )

@@ -9,7 +9,7 @@ export const AllPostsList = (props: PostsListType) => {
     return (
         <AllPostsListWrapper>
             {props.posts.map(post => (
-                <Post post={post} key={post.id} />
+                <Post key={post.id} post={post} />
             ))}
         </AllPostsListWrapper>
     )

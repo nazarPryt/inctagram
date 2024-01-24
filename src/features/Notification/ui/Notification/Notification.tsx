@@ -1,9 +1,11 @@
 import {useState} from 'react'
-import {NotificationIcon} from '../NotificationIcon/NotificationIcon'
+
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {Popover} from 'shared/ui/Popover/Popover'
+
+import {NotificationIcon} from '../NotificationIcon/NotificationIcon'
 import {NotificationItem} from '../NotificationItem/NotificationItem'
 import {NotificationWrapper} from './Notification.styled'
-import {useTranslation} from 'shared/hooks/useTranslation'
 
 export const Notification = () => {
     const {t} = useTranslation()
@@ -13,8 +15,8 @@ export const Notification = () => {
         <NotificationWrapper>
             <Popover
                 icon={<NotificationIcon hasNotification notificationCount={3} />}
-                setIsPopoverOpen={setIsPopoverOpen}
                 isPopoverOpen={isPopoverOpen}
+                setIsPopoverOpen={setIsPopoverOpen}
             >
                 <h3>{t.header.notification.notifications}:</h3>
                 <NotificationItem isNew />

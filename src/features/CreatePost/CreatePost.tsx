@@ -1,33 +1,34 @@
 import {ChangeEvent, useEffect, useRef, useState} from 'react'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import CreateIcon from '../../shared/assets/icons/create.svg'
-
-import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
 import AvatarEditor from 'react-avatar-editor'
-import {EditorPanel} from './ui/EditorPanel/EditorPanel'
-import {PresetFilters} from './ui/PresetFilters/PresetFilters'
-import {createFilteredFile} from './lib/createFilteredFile'
-import {EditorButtons} from './ui/EditorButtons/EditorButtons'
-import {Describe} from './ui/Describe/Describe'
-import {CanvasContainer} from './ui/CanvasContainer/CanvasContainer'
-import {useAppDispatch, useAppSelector} from '../../shared/hooks/reduxHooks'
+
+import {useTranslation} from 'shared/hooks/useTranslation'
+
 import {SetAppNotificationAC} from '../../_app/store/appSlice'
+import CreateIcon from '../../shared/assets/icons/create.svg'
+import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
+import {useAppDispatch, useAppSelector} from '../../shared/hooks/reduxHooks'
 import {Loader} from '../../shared/ui/Loader'
 import {Modal} from '../../shared/ui/Modal/Modal'
 import {NavButton} from '../../widgets/Aside/ui/NavButton/NavButton'
-import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
-import {createPostAC} from './model/slice/createPostSlice'
-import {useCreatePostMutation, useUploadImageMutation} from './service/createPost'
-import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
-import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
+import {createFilteredFile} from './lib/createFilteredFile'
+import {createPostAC} from './model/slice/createPostSlice'
 import {editorPanelAC} from './model/slice/editorPanelSlice'
+import {useCreatePostMutation, useUploadImageMutation} from './service/createPost'
+import {EditorWrapper, EmptyImageWrapper, ModalContentWrapper} from './styled'
+import {CanvasContainer} from './ui/CanvasContainer/CanvasContainer'
+import {CloseOrSaveToDraft} from './ui/CloseOrSaveToDraft/CloseOrSaveToDraft'
+import {CreatePostPanel} from './ui/CreatePostPanel/CreatePostPanel'
+import {Describe} from './ui/Describe/Describe'
+import {EditorButtons} from './ui/EditorButtons/EditorButtons'
+import {EditorPanel} from './ui/EditorPanel/EditorPanel'
+import {PresetFilters} from './ui/PresetFilters/PresetFilters'
 
 export const CreatePost = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
-    const {previewImage, defaultHeight, defaultWidth} = useAppSelector(state => state.createPost)
-    const {step, libraryPictures, uploadId, describeText} = useAppSelector(state => state.createPost)
+    const {defaultHeight, defaultWidth, previewImage} = useAppSelector(state => state.createPost)
+    const {describeText, libraryPictures, step, uploadId} = useAppSelector(state => state.createPost)
     const [post, {isLoading: isLoadingImage}] = useUploadImageMutation()
     const [postDescribe, {isLoading: isLoadingPost}] = useCreatePostMutation()
     const editorRef = useRef<AvatarEditor>(null)
@@ -36,40 +37,46 @@ export const CreatePost = () => {
     const [hasData, setHasData] = useState(false)
 
     const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return
-        let url = URL.createObjectURL(e.target.files[0])
+        if (!e.target.files) {
+            return
+        }
+        const url = URL.createObjectURL(e.target.files[0])
+
         dispatch(createPostAC.setPreviewImage(url))
         dispatch(createPostAC.setStep(t.create.steps.cropping))
         dispatch(createPostAC.setCurrentImageId(url))
         dispatch(
             createPostAC.setLibraryPictures({
+                filter: '',
+                height: defaultHeight,
                 id: url,
                 img: url,
-                zoom: '1',
-                filter: '',
                 readyToSend: null,
                 width: defaultWidth,
-                height: defaultHeight,
+                zoom: '1',
             })
         )
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
         const currImage = libraryPictures.find(el => el.img === img)
+
         if (editorRef.current && currImage) {
             const file = await createFilteredFile(editorRef, filter)
-            dispatch(createPostAC.uploadFile({img, file}))
+
+            dispatch(createPostAC.uploadFile({file, img}))
         } else {
             const file = await createFilteredFile(editorRef, filter)
+
             dispatch(
                 createPostAC.setLibraryPictures({
+                    filter: '',
+                    height: defaultHeight,
                     id: img,
                     img,
-                    zoom: '1',
-                    filter: '',
                     readyToSend: file,
                     width: defaultWidth,
-                    height: defaultHeight,
+                    zoom: '1',
                 })
             )
         }
@@ -94,6 +101,7 @@ export const CreatePost = () => {
         dispatch(editorPanelAC.setCloseAllPopup(false))
         if (step === t.create.steps.addPhoto) {
             dispatch(createPostAC.clearAllState())
+
             return dispatch(createPostAC.setStep(step))
         }
 
@@ -103,6 +111,7 @@ export const CreatePost = () => {
 
         if (step === t.create.steps.describe) {
             handleSave()
+
             return dispatch(createPostAC.setStep(step))
         }
 
@@ -114,6 +123,7 @@ export const CreatePost = () => {
     const handleSave = async () => {
         for (const image of libraryPictures) {
             const file = image.readyToSend
+
             if (file) {
                 const formData = new FormData()
 
@@ -125,7 +135,7 @@ export const CreatePost = () => {
                         dispatch(createPostAC.setUploadId({uploadId: res.images[0].uploadId}))
                         dispatch(
                             SetAppNotificationAC({
-                                notifications: {type: 'success', message: t.create.savePhoto.success.message},
+                                notifications: {message: t.create.savePhoto.success.message, type: 'success'},
                             })
                         )
                     })
@@ -133,7 +143,7 @@ export const CreatePost = () => {
                     .catch(error => {
                         dispatch(
                             SetAppNotificationAC({
-                                notifications: {type: 'error', message: error.message},
+                                notifications: {message: error.message, type: 'error'},
                             })
                         )
                     })
@@ -143,9 +153,10 @@ export const CreatePost = () => {
 
     const handleCreatePost = () => {
         const postData = {
-            description: describeText,
             childrenMetadata: uploadId,
+            description: describeText,
         }
+
         postDescribe(postData)
             .unwrap()
             .then(() => {
@@ -155,8 +166,8 @@ export const CreatePost = () => {
                 dispatch(
                     SetAppNotificationAC({
                         notifications: {
-                            type: 'success',
                             message: t.create.createPost.success.message,
+                            type: 'success',
                         },
                     })
                 )
@@ -165,7 +176,7 @@ export const CreatePost = () => {
             .catch(error => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: error.message},
+                        notifications: {message: error.message, type: 'error'},
                     })
                 )
             })
@@ -177,6 +188,7 @@ export const CreatePost = () => {
 
     const checkData = async () => {
         const data = await getAllDrafts()
+
         setHasData(data.length > 0)
 
         setIsOpen(true)
@@ -184,18 +196,18 @@ export const CreatePost = () => {
 
     return (
         <>
-            <NavButton title={t.aside.create} icon={<CreateIcon />} onClick={checkData} />
+            <NavButton icon={<CreateIcon />} onClick={checkData} title={t.aside.create} />
 
-            <Modal title={t.create.modalTitle} isOpen={isOpen} handleClose={handleClose}>
+            <Modal handleClose={handleClose} isOpen={isOpen} title={t.create.modalTitle}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader />}
 
                     {step !== t.create.steps.addPhoto && (
                         <EditorButtons
                             isLoading={isLoadingImage}
-                            title={step}
-                            step={step}
                             onChangeStep={handleChangeStep}
+                            step={step}
+                            title={step}
                         />
                     )}
                     <EditorWrapper $isAddPhoto={step === t.create.steps.addPhoto}>
@@ -210,14 +222,14 @@ export const CreatePost = () => {
                         {step === t.create.steps.filters && <PresetFilters prepareImageToSend={prepareImageToSend} />}
                         {step === t.create.steps.describe && <Describe />}
                         {step === t.create.steps.addPhoto && (
-                            <CreatePostPanel hasData={hasData} handleCreatePost={handleUploadImage} />
+                            <CreatePostPanel handleCreatePost={handleUploadImage} hasData={hasData} />
                         )}
                         {step === t.create.steps.cropping || step === t.create.steps.filters ? (
                             <EditorPanel handleCreatePost={handleUploadImage} />
                         ) : null}
                     </EditorWrapper>
                 </ModalContentWrapper>
-                <CloseOrSaveToDraft isNotice={isNotice} handleClose={setIsNotice} handleDelete={handleClose} />
+                <CloseOrSaveToDraft handleClose={setIsNotice} handleDelete={handleClose} isNotice={isNotice} />
             </Modal>
         </>
     )

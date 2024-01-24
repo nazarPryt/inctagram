@@ -1,12 +1,13 @@
 import {forwardRef, useState} from 'react'
-import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
+
 import {LikeCommentWrapper} from 'features/Post/Likes/LikeComment/LikeComment.styled'
-import {IconButtonType} from 'shared/ui/IconButton/IconButton'
 import {LikedIcon} from 'features/Post/Likes/icons/LikedIcon'
+import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
+import {IconButtonType} from 'shared/ui/IconButton/IconButton'
 
 type LikeCommentType = {
-    isLiked: boolean
     commentId: number
+    isLiked: boolean
 } & Omit<IconButtonType, 'children'>
 
 export const LikeComment = forwardRef<HTMLButtonElement, LikeCommentType>(({commentId, isLiked, ...rest}, ref) => {
@@ -16,8 +17,9 @@ export const LikeComment = forwardRef<HTMLButtonElement, LikeCommentType>(({comm
         setLike(!like)
         console.log('comment-is-liked: ', like)
     }
+
     return (
-        <LikeCommentWrapper {...rest} ref={ref} onClick={handleClick}>
+        <LikeCommentWrapper {...rest} onClick={handleClick} ref={ref}>
             {like ? <LikedIcon /> : <NotLikedIcon />}
         </LikeCommentWrapper>
     )

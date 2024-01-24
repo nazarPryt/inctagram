@@ -1,10 +1,10 @@
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
+import {PATH} from 'shared/constants/PATH'
+import {useTranslation} from 'shared/hooks/useTranslation'
 import {Loader} from 'shared/ui/Loader'
+import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
+import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
 
 export const ProfileHeader = () => {
     const {t} = useTranslation()
@@ -46,5 +46,6 @@ export const ProfileHeader = () => {
             </ProfileHeaderWrapper>
         )
     }
+
     return <div>error</div>
 }

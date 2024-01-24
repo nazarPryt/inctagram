@@ -1,6 +1,6 @@
+import {Avatar} from 'features/User/Avatar/ui/Avatar/Avatar'
 import {GeneralInformationWrapper} from 'features/User/GeneralInformation/ui/GeneralInformation/styled'
 import {GeneralInformationForm} from 'features/User/GeneralInformation/ui/GeneralInformationForm/GeneralInformationForm'
-import {Avatar} from 'features/User/Avatar/ui/Avatar/Avatar'
 import {useGetUserProfileQuery} from 'redux/api/profileAPI'
 import {Loader} from 'shared/ui/Loader/Loader'
 
@@ -19,5 +19,6 @@ export const GeneralInformation = () => {
             </GeneralInformationWrapper>
         )
     }
+
     return <div>Network error</div>
 }

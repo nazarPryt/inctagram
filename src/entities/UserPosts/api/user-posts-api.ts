@@ -1,16 +1,16 @@
-import {api} from 'redux/api/api'
 import {PostsType} from 'entities/UserPosts/api/types'
+import {api} from 'redux/api/api'
 
-type userPostApiType = {userId: number; endCursorPostId: number | null}
+type userPostApiType = {endCursorPostId: null | number; userId: number}
 
 export const userPostApi = api.injectEndpoints({
     endpoints: build => ({
         getUserPosts: build.query<PostsType, userPostApiType>({
-            query: ({userId, endCursorPostId}) => ({
-                url: `public-posts/user/${userId}/${endCursorPostId}`,
-                method: 'GET',
-            }),
             providesTags: () => ['Posts'],
+            query: ({endCursorPostId, userId}) => ({
+                method: 'GET',
+                url: `public-posts/user/${userId}/${endCursorPostId}`,
+            }),
         }),
     }),
 })

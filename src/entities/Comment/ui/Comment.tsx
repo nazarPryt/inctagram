@@ -1,20 +1,20 @@
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
-import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
 import {CommentWrapper} from 'entities/Comment/ui/Comment.styled'
 import {LikeComment} from 'features/Post/Likes/LikeComment/LikeComment'
+import Link from 'next/link'
+import {PATH} from 'shared/constants/PATH'
+import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 
 type CommentType = {
     comment: string
-    userID: number
     img: string
     isLiked: boolean
+    userID: number
 }
 
-export const Comment = ({comment, userID, img, isLiked}: CommentType) => {
+export const Comment = ({comment, img, isLiked, userID}: CommentType) => {
     return (
         <CommentWrapper>
-            <AvatarIcon userID={userID} img={img} />
+            <AvatarIcon img={img} userID={userID} />
             <div className={'content'}>
                 <Link href={`${PATH.USER_PROFILE}/${userID}`}>URLProfile</Link>
                 <p>{comment}</p>

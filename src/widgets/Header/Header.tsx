@@ -1,15 +1,18 @@
 import {ComponentPropsWithoutRef} from 'react'
+
+import {Notification} from 'features/Notification/ui/Notification/Notification'
+import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
-import {HeaderStyled} from './Header.styled'
-import dynamic from 'next/dynamic'
-import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
 import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
-import {Notification} from 'features/Notification/ui/Notification/Notification'
+
+import {HeaderStyled} from './Header.styled'
 
 const DynamicBurgerMenu = dynamic(() =>
     import('features/Burger/ui/BurgerMenu/BurgerMenu').then(module => module.BurgerMenu)
 )
+
 export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
     return (
         <HeaderStyled {...props}>
@@ -18,7 +21,7 @@ export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
                 Inctagram
             </Link>
             <ThemeSwitcher />
-            <div className='block'>
+            <div className={'block'}>
                 <Notification />
                 <LangSelect />
             </div>

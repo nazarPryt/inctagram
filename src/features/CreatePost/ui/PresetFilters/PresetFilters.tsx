@@ -1,9 +1,11 @@
-import {Filter, FiltersWrapper} from './styled'
-import Image from 'next/image'
 import React from 'react'
-import {FILTERS_DATA} from '../../model/types/const'
-import {createPostAC} from '../../model/slice/createPostSlice'
+
+import Image from 'next/image'
+
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {createPostAC} from '../../model/slice/createPostSlice'
+import {FILTERS_DATA} from '../../model/types/const'
+import {Filter, FiltersWrapper} from './styled'
 
 type PresetFiltersType = {
     prepareImageToSend: (img: string, filter: string) => void
@@ -11,12 +13,12 @@ type PresetFiltersType = {
 
 export const PresetFilters: React.FC<PresetFiltersType> = props => {
     const dispatch = useAppDispatch()
-    const {previewImage, defaultHeight, defaultWidth} = useAppSelector(state => state.createPost)
+    const {defaultHeight, defaultWidth, previewImage} = useAppSelector(state => state.createPost)
 
     const handleSetFilter = (filter: string) => {
         dispatch(createPostAC.setPreviewFilter(filter))
 
-        dispatch(createPostAC.uploadFilterImage({img: previewImage, filter}))
+        dispatch(createPostAC.uploadFilterImage({filter, img: previewImage}))
 
         props.prepareImageToSend(previewImage, filter)
     }
@@ -25,14 +27,14 @@ export const PresetFilters: React.FC<PresetFiltersType> = props => {
         <FiltersWrapper>
             {FILTERS_DATA.map(el => (
                 <Filter
-                    key={el.id}
                     filter={el.filter}
-                    width={defaultWidth}
                     height={defaultHeight}
+                    key={el.id}
                     onClick={() => handleSetFilter(el.filter)}
+                    width={defaultWidth}
                 >
                     <div>
-                        <Image src={previewImage} width={defaultWidth} height={defaultHeight} alt={'filter photo'} />
+                        <Image alt={'filter photo'} height={defaultHeight} src={previewImage} width={defaultWidth} />
                         {el.title}
                     </div>
                 </Filter>

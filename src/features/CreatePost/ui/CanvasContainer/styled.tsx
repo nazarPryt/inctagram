@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div<{width: number; height: number}>`
+export const Wrapper = styled.div<{height: number; width: number}>`
     //display: flex;
     //justify-content: center;
     width: calc(${props => props.width}px + 20px);

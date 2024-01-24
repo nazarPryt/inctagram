@@ -1,5 +1,6 @@
-import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from 'shared/ui/Table'
 import {MyPaymentType} from 'features/User/MyPayments/api'
+import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from 'shared/ui/Table'
+
 import {MyPaymentsTableStyled} from './MyPaymentsTable.styled'
 
 type PropsType = {

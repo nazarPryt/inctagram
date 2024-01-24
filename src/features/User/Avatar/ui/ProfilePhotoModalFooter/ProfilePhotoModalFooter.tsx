@@ -1,5 +1,7 @@
 import {ComponentProps} from 'react'
+
 import {Button} from 'shared/ui/Button/Button'
+
 import {ProfilePhotoModalFooterStyled} from './ProfilePhotoModalFooter.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
@@ -11,9 +13,9 @@ type PropsProps = DefaultInputPropsType & {
 export const ProfilePhotoModalFooter = (props: PropsProps) => {
     return (
         <ProfilePhotoModalFooterStyled>
-            <input type='range' value={props.value} onChange={props.onChange} min={1} max={2} step='0.1' />
+            <input max={2} min={1} onChange={props.onChange} step={'0.1'} type={'range'} value={props.value} />
             <div>
-                <Button type={'button'} onClick={() => props.clearImagePreview()}>
+                <Button onClick={() => props.clearImagePreview()} type={'button'}>
                     delete
                 </Button>
                 <Button onClick={() => props.savePhoto()}>Save</Button>

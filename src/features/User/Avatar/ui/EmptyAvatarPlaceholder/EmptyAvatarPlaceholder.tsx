@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
     display: flex;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
     margin-bottom: 30px;
     background-color: ${props => props.theme.bodyColor['500']};
 `
+
 export const EmptyAvatarPlaceholder = () => {
     return (
         <Wrapper>

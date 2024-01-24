@@ -1,9 +1,10 @@
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import {useState} from 'react'
+
 import {SetAppNotificationAC} from '_app/store/appSlice'
 import {useLogOutMutation} from 'features/Auth/LogOut/api/logOut.api'
 import {useRouter} from 'next/router'
 import {PATH} from 'shared/constants/PATH'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
 
 export const useLogOut = () => {
     const router = useRouter()
@@ -22,7 +23,7 @@ export const useLogOut = () => {
                 console.log(error)
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
+                        notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
                     })
                 )
             })
@@ -34,5 +35,6 @@ export const useLogOut = () => {
     const handleModalOpen = () => {
         setIsOpen(true)
     }
-    return {handleCloseModal, handleModalOpen, isOpen, handleLogOut}
+
+    return {handleCloseModal, handleLogOut, handleModalOpen, isOpen}
 }

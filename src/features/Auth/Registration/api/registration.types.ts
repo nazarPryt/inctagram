@@ -1,22 +1,17 @@
-import * as yup from 'yup'
 import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
 import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
 import {userNamePattern, userNamePatternError} from 'features/Auth/Registration/helpers/userNamePatern'
+import * as yup from 'yup'
 
 export type RegistrationRequestType = {
-    userName: string
     email: string
     password: string
+    userName: string
 }
 
 export const RegistrationFormSchema = yup
     .object({
-        userName: yup
-            .string()
-            .trim()
-            .required('User name is required')
-            .min(6, 'Your userName is too short, min 6 characters')
-            .max(30, 'Your userName is too long, max 30 characters'),
+        checkbox: yup.boolean().oneOf([true], 'checkbox').required(),
         // .matches(userNamePattern, userNamePatternError),
         email: yup.string().trim().required('Email is required').matches(emailPattern, 'email is not valid'),
         password: yup
@@ -30,7 +25,12 @@ export const RegistrationFormSchema = yup
             .string()
             .trim()
             .oneOf([yup.ref('password')], 'Your passwords do not match.'),
-        checkbox: yup.boolean().oneOf([true], 'checkbox').required(),
+        userName: yup
+            .string()
+            .trim()
+            .required('User name is required')
+            .min(6, 'Your userName is too short, min 6 characters')
+            .max(30, 'Your userName is too long, max 30 characters'),
     })
     .required('You have to confirm password.')
 

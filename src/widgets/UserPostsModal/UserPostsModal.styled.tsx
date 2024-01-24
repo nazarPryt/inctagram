@@ -1,5 +1,5 @@
-import styled, {keyframes} from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
+import styled, {keyframes} from 'styled-components'
 
 const overlayShow = keyframes`
     from {
@@ -20,6 +20,7 @@ const contentShow = keyframes`
         transform: translate(-50%, -50%) scale(1);
     }
 `
+
 export const DialogOverlay = styled(Dialog.Overlay)`
     position: fixed;
     inset: 0;
@@ -30,7 +31,9 @@ export const DialogOverlay = styled(Dialog.Overlay)`
 export const DialogContent = styled(Dialog.Content)`
     background-color: transparent;
     border-radius: 9px;
-    box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    box-shadow:
+        hsl(206 22% 7% / 35%) 0 10px 38px -10px,
+        hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
     position: fixed;
     top: 50%;
     left: 50%;

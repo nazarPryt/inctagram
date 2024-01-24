@@ -1,15 +1,18 @@
 import {ComponentPropsWithoutRef} from 'react'
+
 import {ViewUserPostSliderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider.styled'
 import Image from 'next/image'
+import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
-import {PostByIdImages} from 'entities/ViewUserPost/api/type'
-import {A11y, Autoplay, Navigation, Pagination, Keyboard} from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+
+// import 'swiper/css'
+// import 'swiper/css/navigation'
+// import 'swiper/css/pagination'
+
+import {PostByIdTypeImages} from '../../api/type'
 
 type PropsType = {
-    images: PostByIdImages[]
+    images: PostByIdTypeImages[]
 } & ComponentPropsWithoutRef<'div'>
 
 export const ViewUserPostSlider = ({className, images}: PropsType) => {
@@ -18,30 +21,26 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
     return (
         <ViewUserPostSliderWrapper className={className}>
             <Swiper
-                className={'Swiper'}
-                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
-                spaceBetween={0}
-                slidesPerView={1}
-                navigation={true}
-                keyboard={true}
-                pagination={{clickable: true}}
-                scrollbar={{draggable: true}}
                 autoplay={{
                     delay: 7000,
-                    pauseOnMouseEnter: true,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
                 }}
+                className={'Swiper'}
+                keyboard
+                modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
+                navigation
+                pagination={{clickable: true}}
+                scrollbar={{draggable: true}}
+                slidesPerView={1}
+                spaceBetween={0}
             >
                 {imagesToShow.map(photo => {
-                    console.log('photo', photo)
-                    if (photo.width === 1440) {
-                        //todo ask if exist better way how to show JUST hight resolution pictures
-                        return (
-                            <SwiperSlide key={photo.uploadId} className={'slide'}>
-                                <Image src={photo.url} alt={'Post-Image'} height={photo.height} width={photo.width} />
-                            </SwiperSlide>
-                        )
-                    }
+                    return (
+                        <SwiperSlide className={'slide'} key={photo.uploadId}>
+                            <Image alt={'Post-Image'} height={photo.height} src={photo.url} width={photo.width} />
+                        </SwiperSlide>
+                    )
                 })}
             </Swiper>
         </ViewUserPostSliderWrapper>

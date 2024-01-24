@@ -1,39 +1,40 @@
-import {ViewUserPostHeader} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
-import {TextArea} from 'shared/ui/TextArea/TextArea'
 import {Dispatch, SetStateAction} from 'react'
-import {useEditPost} from 'features/Post/EditPost/hook/UseEditPost'
+
 import {PostByIdType} from 'entities/ViewUserPost/api/type'
+import {ViewUserPostHeader} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
+import {useEditPost} from 'features/Post/EditPost/hook/UseEditPost'
 import {EditPostWrapper} from 'features/Post/EditPost/ui/EditPost.styled'
 import {Button} from 'shared/ui/Button/Button'
+import {TextArea} from 'shared/ui/TextArea/TextArea'
 
 type PropsType = EditPostUserIdPropsType & EditPostPropsType
 type EditPostPropsType = {
+    data: PostByIdType
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
-    data: PostByIdType
 }
 type EditPostUserIdPropsType = {
-    userId: number | null
+    userId: null | number
 }
 
-export const EditPost = ({edit, setEdit, data, userId}: PropsType) => {
-    const {register, handleSubmit, errors, isLoading} = useEditPost({postId: data.id, setEdit})
+export const EditPost = ({data, edit, setEdit, userId}: PropsType) => {
+    const {errors, handleSubmit, isLoading, register} = useEditPost({postId: data.id, setEdit})
 
     return (
         <EditPostWrapper onSubmit={handleSubmit}>
-            <ViewUserPostHeader edit={edit} setEdit={setEdit} userId={userId} data={data} />
+            <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} userId={userId} />
             <TextArea
                 className={'textArea'}
                 defaultValue={data.description}
                 {...register('description')}
                 error={errors.description?.message}
-                label='Add Publication descriptions'
+                label={'Add Publication descriptions'}
             />
             <div className={'buttonsWrapper'}>
-                <Button type={'button'} disabled={isLoading} variant={'outlined'} onClick={() => setEdit(false)}>
+                <Button disabled={isLoading} onClick={() => setEdit(false)} type={'button'} variant={'outlined'}>
                     Back
                 </Button>
-                <Button type={'submit'} disabled={isLoading}>
+                <Button disabled={isLoading} type={'submit'}>
                     Save Changes
                 </Button>
             </div>

@@ -1,13 +1,13 @@
 export type NewSubscriptionType = {
-    typeSubscription: SubscriptionType
-    paymentType: PaymentType
     amount: number
     baseUrl: string
+    paymentType: PaymentType
+    typeSubscription: SubscriptionType
 }
 
 export type SubscriptionType = 'MONTHLY' | 'SEMI_ANNUALLY' | 'YEARLY'
 
-export type PaymentType = 'STRIPE' | 'PAYPAL'
+export type PaymentType = 'PAYPAL' | 'STRIPE'
 
 export type ResponseCreateSubscriptionType = {
     url: string
@@ -18,11 +18,11 @@ export type Data = {
     typeDescription: SubscriptionType
 }
 export type CurrentSubscriptionData = {
-    userId: number
-    subscriptionId: string
+    autoRenewal: boolean
     dateOfPayment: string
     endDateOfSubscription: string
-    autoRenewal: boolean
+    subscriptionId: string
+    userId: number
 }
 
 export type CurrentSubscriptionResponseType = {

@@ -1,14 +1,16 @@
-import {PostHeaderWrapper} from 'entities/Post/ui/PostHeader/PostHeader.styled'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
-import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
 import {useState} from 'react'
-import {Popover} from 'shared/ui/Popover/Popover'
-import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
+
+import {PostHeaderWrapper} from 'entities/Post/ui/PostHeader/PostHeader.styled'
+import {CopyLinkIcon} from 'features/Post/CopyLink/CopyLinkIcon'
 import {EmailReportIcon} from 'features/Post/EmailReport/EmailReportIcon'
 import {UnfollowUserIcon} from 'features/UnfollowUser/UnfollowUserIcon'
-import {CopyLinkIcon} from 'features/Post/CopyLink/CopyLinkIcon'
+import Link from 'next/link'
+import {PATH} from 'shared/constants/PATH'
+import {useTranslation} from 'shared/hooks/useTranslation'
+import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
+import {Popover} from 'shared/ui/Popover/Popover'
+import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
+
 import {PopOverIcon} from './popOverIcon'
 
 type PostHeaderType = {
@@ -41,10 +43,10 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
                 </Link>
                 <span>22 {t.home.minutesAgo}</span>
             </div>
-            <Popover icon={<PopOverIcon />} setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
-                <PopoverItem onClick={handleActionOne} name={t.home.options.report} icon={<EmailReportIcon />} />
-                <PopoverItem onClick={handleActionTwo} name={t.home.options.unfollow} icon={<UnfollowUserIcon />} />
-                <PopoverItem onClick={handleActionThree} name={t.home.options.copyLink} icon={<CopyLinkIcon />} />
+            <Popover icon={<PopOverIcon />} isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen}>
+                <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />
+                <PopoverItem icon={<UnfollowUserIcon />} name={t.home.options.unfollow} onClick={handleActionTwo} />
+                <PopoverItem icon={<CopyLinkIcon />} name={t.home.options.copyLink} onClick={handleActionThree} />
             </Popover>
         </PostHeaderWrapper>
     )

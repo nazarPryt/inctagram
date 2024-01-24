@@ -1,4 +1,5 @@
 import PaypalIcon from 'shared/assets/icons/paypal.svg'
+
 import {PayPalWrapper} from './PayPal.styled'
 
 type PropsType = {

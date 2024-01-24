@@ -1,11 +1,10 @@
-import {store} from '_app/store/store'
-import {Provider} from 'react-redux'
 import {ReactNode} from 'react'
-import {lightTheme} from '_app/themes/lightTheme'
-import {darkTheme} from '_app/themes/darkTheme'
-import {GlobalStyle} from '_app/themes/GlobalStyle'
-import {ThemeProvider} from 'styled-components'
+import {Provider} from 'react-redux'
+
+import {GlobalStyles, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
+import {store} from '_app/store/store'
 import {useAppSelector} from 'shared/hooks/reduxHooks'
+import {ThemeProvider} from 'styled-components'
 
 export function Providers({children}: {children: ReactNode}) {
     return (
@@ -20,7 +19,7 @@ export function ThemeStyled({children}: {children: ReactNode}) {
 
     return (
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStyle />
+            <GlobalStyles />
             {children}
         </ThemeProvider>
     )

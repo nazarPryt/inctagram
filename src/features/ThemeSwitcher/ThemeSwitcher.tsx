@@ -1,8 +1,8 @@
-import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
 import {setThemeAppAC} from '_app/store/appSlice'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
 import MoonIcon from 'shared/assets/icons/moon.svg'
 import SunIcon from 'shared/assets/icons/sun.svg'
+import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
+import {IconButton} from 'shared/ui/IconButton/IconButton'
 
 export const ThemeSwitcher = () => {
     const dispatch = useAppDispatch()
@@ -13,6 +13,7 @@ export const ThemeSwitcher = () => {
     const handleThemeChange = () => {
         dispatch(setThemeAppAC({theme}))
     }
+
     return (
         <>
             {theme === 'light' ? (

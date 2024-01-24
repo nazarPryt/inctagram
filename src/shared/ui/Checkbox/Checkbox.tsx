@@ -1,7 +1,8 @@
-import {CheckboxWrapper} from './Checkbox.styled'
-import {ComponentProps, forwardRef, ReactNode} from 'react'
+import {ComponentProps, ReactNode, forwardRef} from 'react'
+
 import CheckedIcon from '../../assets/icons/Check-box.svg'
 import UnCheckedIcon from '../../assets/icons/checkbox-unchecked.svg'
+import {CheckboxWrapper} from './Checkbox.styled'
 
 type DefaultInputPropsType = ComponentProps<'input'>
 type CheckboxType = DefaultInputPropsType & {
@@ -9,10 +10,11 @@ type CheckboxType = DefaultInputPropsType & {
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxType>((props, ref) => {
-    const {label, checked, ...rest} = props
+    const {checked, label, ...rest} = props
+
     return (
         <CheckboxWrapper>
-            <input type={'checkbox'} checked={checked} ref={ref} {...rest} />
+            <input checked={checked} ref={ref} type={'checkbox'} {...rest} />
             <div className={'checkboxIcon'}>{checked ? <CheckedIcon /> : <UnCheckedIcon />}</div>
             {label}
         </CheckboxWrapper>

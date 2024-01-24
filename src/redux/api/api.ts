@@ -1,6 +1,8 @@
-import * as process from 'process'
-import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
 import cookie from 'react-cookies'
+
+import * as process from 'process'
+
+import {BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {accessToken, refreshToken} from 'shared/constants/constants'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -14,11 +16,12 @@ export const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set('authorization', `Bearer ${token}`)
         }
+
         return headers
     },
 })
 
-const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
+const baseQueryWithReAuth: BaseQueryFn<FetchArgs | string, unknown, FetchBaseQueryError> = async (
     args,
     api,
     extraOptions
@@ -31,8 +34,8 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
         try {
             const refreshResult = (await baseQuery(
                 {
-                    url: 'auth/update-tokens',
                     method: 'POST',
+                    url: 'auth/update-tokens',
                 },
                 api,
                 extraOptions
@@ -48,14 +51,15 @@ const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
             cookie.remove(refreshToken)
         }
     }
+
     return result
 }
 
 export const api = createApi({
-    reducerPath: 'api',
-    tagTypes: ['User', 'Posts', 'Post', 'Me'],
     baseQuery: baseQueryWithReAuth,
     endpoints: () => ({}),
+    reducerPath: 'api',
+    tagTypes: ['User', 'Posts', 'Post', 'Me'],
 })
 
 // const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (

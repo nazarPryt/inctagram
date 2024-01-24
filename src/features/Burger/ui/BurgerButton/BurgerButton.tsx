@@ -1,4 +1,5 @@
 import {ComponentPropsWithoutRef, forwardRef, useState} from 'react'
+
 import {BurgerButtonStyled} from 'features/Burger/ui/BurgerButton/BurgerButton.styled'
 
 type DefaultButtonPropsType = ComponentPropsWithoutRef<'button'>
@@ -10,10 +11,10 @@ export const BurgerButton = forwardRef<HTMLButtonElement, DefaultButtonPropsType
     }
 
     return (
-        <BurgerButtonStyled isMenuOpen={isMenuOpen} ref={ref} onClick={handleChangeMenu} {...props}>
-            <span className='menu_button_line top'></span>
-            <span className='menu_button_line mid'></span>
-            <span className='menu_button_line botm'></span>
+        <BurgerButtonStyled isMenuOpen={isMenuOpen} onClick={handleChangeMenu} ref={ref} {...props}>
+            <span className={'menu_button_line top'}></span>
+            <span className={'menu_button_line mid'}></span>
+            <span className={'menu_button_line botm'}></span>
         </BurgerButtonStyled>
     )
 })

@@ -1,15 +1,17 @@
 import {ComponentPropsWithoutRef} from 'react'
-import {BurgerMenuStyled, BurgerModalStyled} from 'features/Burger/ui/BurgerMenu/BurgerMenu.styled'
-import {useTranslation} from 'shared/hooks/useTranslation'
+
+import {LogOutModal} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal'
 import {BurgerButton} from 'features/Burger/ui/BurgerButton/BurgerButton'
+import {BurgerMenuStyled, BurgerModalStyled} from 'features/Burger/ui/BurgerMenu/BurgerMenu.styled'
+import {Sheet, SheetClose, SheetContent, SheetTrigger} from 'features/Burger/ui/BurgerModal/BurgerModal'
+import {CreatePost} from 'features/CreatePost/CreatePost'
 import Link from 'next/link'
 import {PATH} from 'shared/constants/PATH'
-import {CreatePost} from 'features/CreatePost/CreatePost'
-import {LogOutModal} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal'
-import {Sheet, SheetClose, SheetContent, SheetTrigger} from 'features/Burger/ui/BurgerModal/BurgerModal'
+import {useTranslation} from 'shared/hooks/useTranslation'
 
 export function BurgerMenu(props: ComponentPropsWithoutRef<'div'>) {
     const {t} = useTranslation()
+
     return (
         <BurgerModalStyled {...props}>
             <Sheet>

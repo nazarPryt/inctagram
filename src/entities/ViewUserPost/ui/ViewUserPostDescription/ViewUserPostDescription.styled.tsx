@@ -6,9 +6,10 @@ export const ViewUserPostDescriptionWrapper = styled.p`
     flex-direction: column;
     color: ${props => props.theme.textColor[500]};
 
-    span {
+    .day {
         padding-right: 5px;
         align-self: flex-end;
         color: ${props => props.theme.textColor[900]};
+        margin-bottom: 8px;
     }
 `

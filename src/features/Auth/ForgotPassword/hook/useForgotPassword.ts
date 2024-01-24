@@ -1,11 +1,12 @@
-import * as yup from 'yup'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
 import {useState} from 'react'
-import {useForgotPasswordMutation} from 'features/Auth/ForgotPassword/api/forgotPassword.api'
+import {useForm} from 'react-hook-form'
+
+import {yupResolver} from '@hookform/resolvers/yup'
 import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useForgotPasswordMutation} from 'features/Auth/ForgotPassword/api/forgotPassword.api'
 import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import * as yup from 'yup'
 
 const schema = yup.object({
     email: yup.string().trim().required('Email is required').matches(emailPattern, 'email is not valid'),
@@ -16,21 +17,21 @@ type FormData = yup.InferType<typeof schema>
 
 export const useForgotPassword = () => {
     const dispatch = useAppDispatch()
-    const [token, setToken] = useState<string | null>(null)
+    const [token, setToken] = useState<null | string>(null)
     const [isOpen, setIsModalOpen] = useState(false)
     const [forgotPassword, {isLoading}] = useForgotPasswordMutation()
 
     const {
-        handleSubmit,
-        setValue,
-        getValues,
-        reset,
         formState: {errors, isValid},
+        getValues,
+        handleSubmit,
+        reset,
+        setValue,
         ...rest
     } = useForm<FormData>({
-        resolver: yupResolver(schema),
         mode: 'onTouched',
         reValidateMode: 'onChange',
+        resolver: yupResolver(schema),
     })
     const onSubmit = async (data: FormData) => {
         forgotPassword(data)
@@ -41,7 +42,7 @@ export const useForgotPassword = () => {
             .catch(() => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
+                        notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
                     })
                 )
             })
@@ -50,22 +51,22 @@ export const useForgotPassword = () => {
         setIsModalOpen(false)
         reset()
     }
-    const handleChangeCaptcha = (value: string | null) => {
+    const handleChangeCaptcha = (value: null | string) => {
         setToken(value)
         setValue('recaptcha', value!)
     }
     const email = getValues('email')
 
     return {
-        isOpen,
-        handleModalClose,
         email,
-        handleChangeCaptcha,
-        token,
-        isLoading,
-        isValid,
-        handleSubmit: handleSubmit(onSubmit),
         errors,
+        handleChangeCaptcha,
+        handleModalClose,
+        handleSubmit: handleSubmit(onSubmit),
+        isLoading,
+        isOpen,
+        isValid,
+        token,
         ...rest,
     }
 }

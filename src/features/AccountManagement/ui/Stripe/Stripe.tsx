@@ -1,4 +1,5 @@
 import StripeIcon from 'shared/assets/icons/stripe.svg'
+
 import {StripeWrapper} from './Stripe.styled'
 
 type PropsType = {

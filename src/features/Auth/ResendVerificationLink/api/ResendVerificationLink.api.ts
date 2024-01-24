@@ -5,9 +5,9 @@ export const ResendVerificationLinkAPI = api.injectEndpoints({
     endpoints: build => ({
         resendConfirmationLink: build.mutation<ResponseType, {email: string}>({
             query: body => ({
-                url: `auth/registration-email-resending`,
-                method: 'POST',
                 body,
+                method: 'POST',
+                url: `auth/registration-email-resending`,
             }),
         }),
     }),

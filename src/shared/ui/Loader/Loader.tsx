@@ -9,6 +9,7 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `
+
 export const Loader = styled.span`
     position: fixed;
     top: 50%;

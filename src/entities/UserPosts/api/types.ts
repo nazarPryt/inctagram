@@ -1,22 +1,22 @@
 export type PostsType = {
-    totalCount: number
-    pagesCount: number
+    items: PostCardType[]
     page: number
     pageSize: number
-    items: PostCardType[]
+    pagesCount: number
+    totalCount: number
 }
 export type PostCardImageType = {
+    fileSize: number
+    height: number
+    uploadId: string
     url: string
     width: number
-    height: number
-    fileSize: number
-    uploadId: string
 }
 export type PostCardType = {
-    id: number
-    description: string
-    location: string
-    images: PostCardImageType[]
     createdAt: string
+    description: string
+    id: number
+    images: PostCardImageType[]
+    location: string
     updatedAt: string
 }

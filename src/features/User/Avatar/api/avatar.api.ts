@@ -3,23 +3,23 @@ import {UserAvatar} from 'redux/types/profileTypes'
 
 export const avatarAPI = api.injectEndpoints({
     endpoints: build => ({
-        uploadAvatar: build.mutation<UserAvatar, FormData | File>({
-            query: body => ({
-                url: `users/profile/avatar`,
-                method: 'POST',
-                body,
-            }),
-            invalidatesTags: ['User'],
-        }),
-
         deleteAvatar: build.mutation({
             query: body => ({
-                url: `users/profile/avatar`,
-                method: 'DELETE',
                 body,
+                method: 'DELETE',
+                url: `users/profile/avatar`,
+            }),
+        }),
+
+        uploadAvatar: build.mutation<UserAvatar, File | FormData>({
+            invalidatesTags: ['User'],
+            query: body => ({
+                body,
+                method: 'POST',
+                url: `users/profile/avatar`,
             }),
         }),
     }),
 })
 
-export const {useUploadAvatarMutation, useDeleteAvatarMutation} = avatarAPI
+export const {useDeleteAvatarMutation, useUploadAvatarMutation} = avatarAPI

@@ -1,5 +1,5 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
-import {typography} from '_app/themes/mixins'
 
 export const HeaderStyled = styled.header`
     display: flex;
@@ -15,7 +15,8 @@ export const HeaderStyled = styled.header`
     a {
         padding: 12px 0;
         text-decoration: none;
-        ${typography.Large()}
+        ${props => props.theme.typography.Large};
+
         color: ${props => props.theme.textColor['100']};
     }
 

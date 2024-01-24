@@ -2,19 +2,19 @@ import {configureStore} from '@reduxjs/toolkit'
 import {setupListeners} from '@reduxjs/toolkit/query'
 import {appReducer} from '_app/store/appSlice'
 import {userReducer} from '_app/store/userSlice'
-import {api} from 'redux/api/api'
 import {createPostReducer} from 'features/CreatePost/model/slice/createPostSlice'
 import {editorPanelReducer} from 'features/CreatePost/model/slice/editorPanelSlice'
+import {api} from 'redux/api/api'
 
 export const store = configureStore({
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
     reducer: {
+        [api.reducerPath]: api.reducer,
         app: appReducer,
-        userAuth: userReducer,
         createPost: createPostReducer,
         editorPanel: editorPanelReducer,
-        [api.reducerPath]: api.reducer,
+        userAuth: userReducer,
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
 })
 setupListeners(store.dispatch)
 

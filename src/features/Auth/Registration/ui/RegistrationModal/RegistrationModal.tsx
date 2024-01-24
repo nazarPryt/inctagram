@@ -1,15 +1,15 @@
-import {Modal} from 'shared/ui/Modal/Modal'
-import {Button} from 'shared/ui/Button/Button'
 import {RegistrationModalWrapper} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal.styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
+import {Button} from 'shared/ui/Button/Button'
+import {Modal} from 'shared/ui/Modal/Modal'
 
 type PropsType = {
-    isOpen: boolean
     email: string
     handleModalClose: () => void
+    isOpen: boolean
 }
 
-export const RegistrationModal = ({isOpen, email, handleModalClose}: PropsType) => {
+export const RegistrationModal = ({email, handleModalClose, isOpen}: PropsType) => {
     const {t} = useTranslation()
 
     return (

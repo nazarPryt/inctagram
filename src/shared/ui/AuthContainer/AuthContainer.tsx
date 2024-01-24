@@ -1,5 +1,6 @@
-import styled from 'styled-components'
 import {ReactNode} from 'react'
+
+import styled from 'styled-components'
 
 export const AuthContainerWrapper = styled.section`
     display: flex;

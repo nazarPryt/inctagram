@@ -1,6 +1,7 @@
 import {Component} from 'react'
-import styled, {css} from 'styled-components'
+
 import {ButtonProps} from 'shared/ui/Button/Button'
+import styled, {css} from 'styled-components'
 
 export const ComponentButton = styled(Component<ButtonProps>).withConfig({
     shouldForwardProp: prop => !['fullwidth'].includes(prop),

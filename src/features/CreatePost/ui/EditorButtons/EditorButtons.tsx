@@ -1,14 +1,16 @@
 import React from 'react'
+
 import ArrowLeft from 'shared/assets/icons/arrowLeft.svg'
-import {EditorButtonsWrapper} from './styled'
 import {useTranslation} from 'shared/hooks/useTranslation'
 import {Button} from 'shared/ui/Button/Button'
 
+import {EditorButtonsWrapper} from './styled'
+
 type EditorButtonsType = {
-    title: string
-    step: string
     isLoading: boolean
     onChangeStep: (step: string) => void
+    step: string
+    title: string
 }
 
 export const EditorButtons: React.FC<EditorButtonsType> = props => {
@@ -21,13 +23,14 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
         'SENDING',
     ]
     const nextStep = STEPS.findIndex(el => el === props.step)
+
     return (
         <EditorButtonsWrapper>
             <div>
                 <Button
-                    variant={'text'}
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep - 1])}
+                    variant={'text'}
                 >
                     <ArrowLeft />
                 </Button>
@@ -35,9 +38,9 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
             <span>{props.title}</span>
             <div>
                 <Button
-                    variant={'text'}
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep + 1])}
+                    variant={'text'}
                 >
                     {props.step === t.create.steps.describe
                         ? t.create.editorButtons.publish

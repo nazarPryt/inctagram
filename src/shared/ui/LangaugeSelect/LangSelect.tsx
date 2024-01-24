@@ -1,32 +1,34 @@
-import {useRouter} from 'next/router'
 import React, {useEffect, useState} from 'react'
+
+import {useRouter} from 'next/router'
+import {CustomSelect} from 'shared/ui/Select'
+
 import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
 import FlagEngIcon from '../../assets/icons/FlagUnitedKingdom.svg'
-import {CustomSelect} from 'shared/ui/Select'
 
 const Country = [
     {
-        value: 'ru',
         label: (
             <>
                 <FlagRussiaIcon />
                 Русский
             </>
         ),
+        value: 'ru',
     },
     {
-        value: 'en',
         label: (
             <>
                 <FlagEngIcon />
                 English
             </>
         ),
+        value: 'en',
     },
 ]
 
 export const LangSelect = () => {
-    const {push, pathname, query, asPath, defaultLocale} = useRouter()
+    const {asPath, defaultLocale, pathname, push, query} = useRouter()
     const [value, setValue] = useState(defaultLocale)
     const changeLangHandler = (country: string) => {
         setValue(country)
@@ -36,6 +38,7 @@ export const LangSelect = () => {
 
     useEffect(() => {
         const lang = localStorage.getItem('lang')
+
         if (lang) {
             setValue(lang)
             push({pathname, query}, asPath, {locale: lang})
@@ -47,10 +50,10 @@ export const LangSelect = () => {
     return (
         <div>
             <CustomSelect
-                value={value!}
                 defaultValue={defaultLocale}
                 onChange={value => changeLangHandler(value)}
                 options={Country}
+                value={value!}
                 // width={'163px'}
             />
         </div>

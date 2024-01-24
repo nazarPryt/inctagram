@@ -1,4 +1,5 @@
 import React, {ComponentProps} from 'react'
+
 import {TableHeadCellStyled} from 'shared/ui/Table/TableHeadCell/TableHeadCell.styled'
 
 type TableHeadCellProps = ComponentProps<'th'>

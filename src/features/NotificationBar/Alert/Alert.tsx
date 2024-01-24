@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react'
+
+import {NotificationType, RemoveAppNotificationAC} from '_app/store/appSlice'
+import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'
+import Image from 'next/image'
+import {useAppDispatch} from 'shared/hooks/reduxHooks'
+
 import errorIcon from '../../../shared/assets/icons/errorIcon.png'
 import successIcon from '../../../shared/assets/icons/success.png'
-import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'
-import {NotificationType, RemoveAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import Image from 'next/image'
 
 export const Alert = (props: NotificationType) => {
     const dispatch = useAppDispatch()
@@ -62,15 +64,15 @@ export const Alert = (props: NotificationType) => {
             <AlertItem onMouseEnter={handlePauseTimer} onMouseLeave={handleStartTimer}>
                 <p>{props.message}</p>
                 <CloseAlertIcon onClick={handleClose} />
-                <ProgressBar type={props.type} style={{width: `${width}%`}} />
+                <ProgressBar style={{width: `${width}%`}} type={props.type} />
                 {props.type === 'error' && (
                     <AlertIcon>
-                        <Image src={errorIcon} alt={'errorIcon'} />
+                        <Image alt={'errorIcon'} src={errorIcon} />
                     </AlertIcon>
                 )}
                 {props.type === 'success' && (
                     <AlertIcon>
-                        <Image src={successIcon} alt={'successIcon'} />
+                        <Image alt={'successIcon'} src={successIcon} />
                     </AlertIcon>
                 )}
             </AlertItem>

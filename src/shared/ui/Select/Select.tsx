@@ -1,34 +1,36 @@
+import {ComponentProps, FC, ReactNode, forwardRef, useEffect} from 'react'
+
 import * as Select from '@radix-ui/react-select'
-import {ComponentProps, FC, forwardRef, ReactNode, useEffect} from 'react'
+
 import {ArrowDownIcon} from '../../assets/icons/ArrowDownIcon'
 import {Typography} from '../Typography'
 import {SelectContent, SelectIcon, SelectTrigger, SelectWrapper, StyledItem} from './Select.styled'
 
-export type Option = {label: string | ReactNode; value: string}
+export type Option = {label: ReactNode | string; value: string}
 
 type ConditionalMultipleProps = {
     multiple?: true
-    value: string
     onChange: (value: string) => void
+    value: string
 }
 
 type CommonProps = {
-    disabled?: boolean
-    placeholder?: string
-    options: Array<Option>
-    label?: string
     defaultValue?: string
+    disabled?: boolean
+    label?: string
+    options: Array<Option>
+    placeholder?: string
 }
 export type SelectProps = CommonProps & ConditionalMultipleProps
 
 export const CustomSelect: FC<SelectProps> = ({
-    placeholder,
-    value,
-    options,
-    label,
     defaultValue,
     disabled,
+    label,
     onChange,
+    options,
+    placeholder,
+    value,
 }) => {
     const triggerValue = options.find(el => el.value === value)?.label
 
@@ -38,21 +40,22 @@ export const CustomSelect: FC<SelectProps> = ({
         //     document.body.style.overflow = 'auto'
         // }
     }, [])
+
     return (
         <SelectWrapper>
-            <Typography variant={'regular_text_14'} as='label'>
+            <Typography as={'label'} variant={'regular_text_14'}>
                 {label}
             </Typography>
-            <Select.Root disabled={disabled} onValueChange={onChange} defaultValue={defaultValue}>
+            <Select.Root defaultValue={defaultValue} disabled={disabled} onValueChange={onChange}>
                 <SelectTrigger style={{margin: 0}}>
                     <Select.Value placeholder={placeholder || ''}>{triggerValue}</Select.Value>
                     <SelectIcon>
                         <ArrowDownIcon />
                     </SelectIcon>
                 </SelectTrigger>
-                <SelectContent style={{margin: 0}} position={'popper'}>
+                <SelectContent position={'popper'} style={{margin: 0}}>
                     {options.map((option, i) => (
-                        <SelectItem value={option.value} key={option.value}>
+                        <SelectItem key={option.value} value={option.value}>
                             {option.label}
                         </SelectItem>
                     ))}
@@ -75,4 +78,5 @@ const SelectItem = forwardRef<HTMLDivElement, SelectItemType>(({children, ...pro
         </StyledItem>
     )
 })
+
 SelectItem.displayName = 'SelectItem'

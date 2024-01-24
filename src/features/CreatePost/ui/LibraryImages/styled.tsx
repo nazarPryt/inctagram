@@ -122,7 +122,7 @@ export const LibraryWrapper = styled.div<{$countPictures: number}>`
         `}
 `
 
-export const LibraryPicture = styled.div<{image: string; filter: string}>`
+export const LibraryPicture = styled.div<{filter: string; image: string}>`
     width: 80px;
     height: 80px;
     background-image: url('${props => props.image}');

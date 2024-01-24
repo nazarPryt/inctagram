@@ -1,23 +1,24 @@
 import React, {ComponentPropsWithoutRef, Dispatch, FC, ReactNode, SetStateAction} from 'react'
-import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
+
 import {IconButton} from '../IconButton/IconButton'
+import {PopoverContentWrapper, PopoverWrapper} from './Popover.styled'
 
 type PopoverContentProps = {
-    onActionHandler?: () => void
     children: ReactNode
-    setIsPopoverOpen: Dispatch<SetStateAction<boolean>>
-    isPopoverOpen: boolean
     icon: ReactNode
+    isPopoverOpen: boolean
+    onActionHandler?: () => void
+    setIsPopoverOpen: Dispatch<SetStateAction<boolean>>
 } & ComponentPropsWithoutRef<'div'>
 
 export const Popover: FC<PopoverContentProps> = props => {
-    const {onActionHandler, icon, isPopoverOpen, setIsPopoverOpen, children, ...rest} = props
+    const {children, icon, isPopoverOpen, onActionHandler, setIsPopoverOpen, ...rest} = props
     const handleTogglePopover = () => {
         setIsPopoverOpen(prevIsOpen => !prevIsOpen)
     }
 
     return (
-        <PopoverWrapper id='popoverWrapper' {...rest}>
+        <PopoverWrapper id={'popoverWrapper'} {...rest}>
             <IconButton active={isPopoverOpen} onClick={handleTogglePopover}>
                 {icon}
             </IconButton>

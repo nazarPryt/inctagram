@@ -1,10 +1,12 @@
 import type {AppProps} from 'next/app'
+
 import {ReactElement, ReactNode} from 'react'
-import {NextPage} from 'next'
+
 import {Providers} from '_app/Provider'
+import {NextPage} from 'next'
 import {useLoader} from 'shared/hooks/useLoader'
+
 import 'shared/styles/nprogress.css'
-import '@fontsource-variable/inter'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode

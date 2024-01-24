@@ -1,14 +1,15 @@
-import ZoomIcon from '../../../../shared/assets/icons/zoom.svg'
 import React, {ChangeEvent, MouseEvent, RefObject, useState} from 'react'
-import {ZoomWrapper} from './styled'
-import {createPostAC} from '../../model/slice/createPostSlice'
+
+import ZoomIcon from '../../../../shared/assets/icons/zoom.svg'
 import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import {createPostAC} from '../../model/slice/createPostSlice'
 import {editorPanelAC} from '../../model/slice/editorPanelSlice'
+import {ZoomWrapper} from './styled'
 
 export const ZoomImage = () => {
     const dispatch = useAppDispatch()
     const {onZoom} = useAppSelector(state => state.editorPanel)
-    const {previewZoom, currentImageId, libraryPictures} = useAppSelector(state => state.createPost)
+    const {currentImageId, libraryPictures, previewZoom} = useAppSelector(state => state.createPost)
 
     const handleZoom = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(createPostAC.setLibraryPicturesZoom(e.target.value))
@@ -19,17 +20,18 @@ export const ZoomImage = () => {
     const handleClickZoom = () => {
         dispatch(editorPanelAC.setOnZoom(!onZoom))
     }
+
     return (
         <div className={`zoom ${onZoom && 'active'}`} onClick={handleClickZoom}>
             <ZoomIcon onClick={handleClickZoom} />
             <ZoomWrapper hidden={onZoom}>
                 <input
-                    type='range'
-                    value={currentImage?.zoom || previewZoom}
-                    onChange={handleZoom}
-                    min={1}
                     max={12}
-                    step='0.1'
+                    min={1}
+                    onChange={handleZoom}
+                    step={'0.1'}
+                    type={'range'}
+                    value={currentImage?.zoom || previewZoom}
                 />
             </ZoomWrapper>
         </div>
