@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Popover} from 'shared/ui/Popover/Popover'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Popover} from '@/shared/ui/Popover/Popover'
 
 import {NotificationIcon} from '../NotificationIcon/NotificationIcon'
 import {NotificationItem} from '../NotificationItem/NotificationItem'

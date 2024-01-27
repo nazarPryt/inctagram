@@ -1,9 +1,9 @@
-import {useDeleteUserAvatar} from 'features/User/Avatar/hook/useDeleteUserAvatar'
-import {UserAvatarStyled} from 'features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
+import {useDeleteUserAvatar} from '@/features/User/Avatar/hook/useDeleteUserAvatar'
+import {UserAvatarStyled} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
+import DeleteAvatarIcon from '@/shared/assets/icons/deleteAvatar.svg'
+import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {IconButton} from '@/shared/ui/IconButton/IconButton'
 import Image from 'next/image'
-import DeleteAvatarIcon from 'shared/assets/icons/deleteAvatar.svg'
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
 
 export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
     const {handleDeleteAvatar, isLoading} = useDeleteUserAvatar()

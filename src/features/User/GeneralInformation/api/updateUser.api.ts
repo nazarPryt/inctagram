@@ -1,5 +1,5 @@
-import {api} from 'redux/api/api'
-import {ResponseType} from 'redux/types/authTypes'
+import {api} from '@/redux/api/api'
+import {ResponseType} from '@/redux/types/authTypes'
 
 import {UpdateUserRequest} from './updateUser.type'
 

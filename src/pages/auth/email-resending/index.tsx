@@ -1,14 +1,14 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
-import {useResendConfirmationLink} from 'features/Auth/ResendVerificationLink/hook/useResendConfirmationLink'
-import {EmailResendWrapper} from 'features/Auth/ResendVerificationLink/ui/EmailResendPage'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
+import {useResendConfirmationLink} from '@/features/Auth/ResendVerificationLink/hook/useResendConfirmationLink'
+import {EmailResendWrapper} from '@/features/Auth/ResendVerificationLink/ui/EmailResendPage'
+import timeManagement from '@/shared/assets/pictures/timeManagement.png'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
+import {Button} from '@/shared/ui/Button/Button'
+import {Loader} from '@/shared/ui/Loader/Loader'
 import {NextPageContext} from 'next'
 import Image from 'next/image'
-import timeManagement from 'shared/assets/pictures/timeManagement.png'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
-import {Loader} from 'shared/ui/Loader/Loader'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {email} = ctx.query

@@ -1,7 +1,7 @@
-import {useMyPaymentsQuery} from 'features/User/MyPayments/api'
-import {IsEmpty} from 'features/User/MyPayments/ui/IsEmpty'
-import {MyPaymentsTable} from 'features/User/MyPayments/ui/MyPaymentsTable'
-import {Loader} from 'shared/ui/Loader'
+import {useMyPaymentsQuery} from '@/features/User/MyPayments/api'
+import {IsEmpty} from '@/features/User/MyPayments/ui/IsEmpty'
+import {MyPaymentsTable} from '@/features/User/MyPayments/ui/MyPaymentsTable'
+import {Loader} from '@/shared/ui/Loader'
 
 import {MyPaymentsStyled} from './MyPayments.styled'
 

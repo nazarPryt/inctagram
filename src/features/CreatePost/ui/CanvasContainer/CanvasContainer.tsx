@@ -1,16 +1,16 @@
 import {RefObject, useEffect} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
-import {createPostAC} from 'features/CreatePost/model/slice/createPostSlice'
-import {LibraryPictureType} from 'features/CreatePost/model/types/createPostSchema'
+import {createPostAC} from '@/features/CreatePost/model/slice/createPostSlice'
+import {LibraryPictureType} from '@/features/CreatePost/model/types/createPostSchema'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
 
 // import 'swiper/css'
 // import 'swiper/css/navigation'
 // import 'swiper/css/pagination'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {Wrapper} from './styled'
 
 type CanvasContainerType = {
@@ -38,7 +38,7 @@ export const CanvasContainer = ({editorRef, prepareImageToSend}: CanvasContainer
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {libraryPictures.map(img => {
+                {libraryPictures.map((img: any) => {
                     return (
                         <SwiperSlide key={img.id}>
                             <SlideComponent editorRef={editorRef} img={img} prepareImageToSend={prepareImageToSend} />
@@ -68,7 +68,7 @@ const SlideComponent = ({editorRef, img, prepareImageToSend}: SlidePropsType) =>
     }
 
     useEffect(() => {
-        const imageIndex = libraryPictures.findIndex(picture => picture.id === currentImageId)
+        const imageIndex = libraryPictures.findIndex((picture: any) => picture.id === currentImageId)
 
         swiper.slideTo(imageIndex)
     }, [currentImageId])

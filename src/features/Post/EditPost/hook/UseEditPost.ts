@@ -1,10 +1,10 @@
 import {Dispatch, SetStateAction} from 'react'
 import {useForm} from 'react-hook-form'
 
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {useEditUserPostMutation} from '@/features/Post/EditPost/api/editPost.api'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useEditUserPostMutation} from 'features/Post/EditPost/api/editPost.api'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import * as yup from 'yup'
 
 const schema = yup.object({

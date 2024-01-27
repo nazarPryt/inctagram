@@ -1,4 +1,4 @@
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized/AuthorizedLayout'
 import {useRouter} from 'next/router'
 
 export default function UserProfilePage() {

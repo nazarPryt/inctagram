@@ -8,7 +8,6 @@ export const NotificationIconWrapper = styled.div`
         background-color: ${props => props.theme.palette.danger['500']};
         position: absolute;
         top: 4px;
-        font-size: ${props => props.theme.typography.fontSizeNotification};
         color: white;
         right: 8px;
         width: 13px;

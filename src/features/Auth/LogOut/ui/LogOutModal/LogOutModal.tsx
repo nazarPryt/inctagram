@@ -1,11 +1,11 @@
-import {useLogOut} from 'features/Auth/LogOut/hook/useLogOut'
-import {LogOutModalWrapper} from 'features/Auth/LogOut/ui/LogOutModal/LogOutModal.styled'
-import {LogOutIcon} from 'features/Auth/LogOut/ui/icons/LogOutIcon'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Button} from 'shared/ui/Button/Button'
-import {Modal} from 'shared/ui/Modal/Modal'
-import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
+import {useLogOut} from '@/features/Auth/LogOut/hook/useLogOut'
+import {LogOutModalWrapper} from '@/features/Auth/LogOut/ui/LogOutModal/LogOutModal.styled'
+import {LogOutIcon} from '@/features/Auth/LogOut/ui/icons/LogOutIcon'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@/shared/ui/Button/Button'
+import {Modal} from '@/shared/ui/Modal/Modal'
+import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
 
 export const LogOutModal = () => {
     const userEmail = useAppSelector(state => state.userAuth.email)

@@ -1,9 +1,14 @@
 import {ComponentProps, Dispatch, SetStateAction} from 'react'
 
+import {
+    DialogClose,
+    DialogContent,
+    DialogContentBox,
+    DialogOverlay,
+} from '@/widgets/UserPostsModal/UserPostsModal.styled'
+import {CloseIcon} from '@nazar-pryt/inctagram-ui-kit'
 import * as Dialog from '@radix-ui/react-dialog'
 import {useRouter} from 'next/router'
-import {CloseIcon} from 'shared/assets/icons/CloseIcon'
-import {DialogClose, DialogContent, DialogContentBox, DialogOverlay} from 'widgets/UserPostsModal/UserPostsModal.styled'
 
 //https://www.radix-ui.com/docs/primitives/components/dialog
 

@@ -1,6 +1,6 @@
 import {ComponentProps} from 'react'
 
-import {Button} from 'shared/ui/Button/Button'
+import {Button} from '@/shared/ui/Button/Button'
 
 import {ProfilePhotoModalFooterStyled} from './ProfilePhotoModalFooter.styled'
 

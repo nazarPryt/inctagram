@@ -1,10 +1,10 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import congratulationImg from '@/shared/assets/pictures/congratulation.png'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {MergeAccountsPageWrapper} from '@/shared/styles/MergeAccountsPage'
+import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
+import {Button} from '@/shared/ui/Button/Button'
 import Image from 'next/image'
-import congratulationImg from 'shared/assets/pictures/congratulation.png'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {MergeAccountsPageWrapper} from 'shared/styles/MergeAccountsPage'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
 
 export default function MergeAccountsPage() {
     const {t} = useTranslation()

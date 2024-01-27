@@ -1,5 +1,5 @@
-import {api} from 'redux/api/api'
-import {UserProfile} from 'redux/types/authTypes'
+import {api} from '@/redux/api/api'
+import {UserProfile} from '@/redux/types/authTypes'
 
 export const profileAPI = api.injectEndpoints({
     endpoints: build => ({

@@ -1,4 +1,4 @@
-import {useTranslation} from 'shared/hooks/useTranslation'
+import {useTranslation} from '@/shared/hooks/useTranslation'
 
 import {NotificationItemWrapper} from './NotificationItem.styled'
 

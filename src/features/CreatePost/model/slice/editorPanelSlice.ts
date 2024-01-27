@@ -1,6 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
-import {CreatePostSchema} from '../types/createPostSchema'
 import {EditorPanelSchema} from '../types/editorPanelSchema'
 
 const editorPanelSlice = createSlice({

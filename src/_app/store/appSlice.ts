@@ -1,5 +1,5 @@
+import {GenerateId} from '@/shared/utils/generateID'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
-import {GenerateId} from 'shared/utils/generateID'
 
 export type ThemeAppType = 'dark' | 'light'
 export type TabsSettingsType = 'accountManagement' | 'devices' | 'generalInformation' | 'myPayments'

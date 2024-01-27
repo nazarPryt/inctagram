@@ -1,8 +1,8 @@
-import {CommentWrapper} from 'entities/Comment/ui/Comment.styled'
-import {LikeComment} from 'features/Post/Likes/LikeComment/LikeComment'
+import {CommentWrapper} from '@/entities/Comment/ui/Comment.styled'
+import {LikeComment} from '@/features/Post/Likes/LikeComment/LikeComment'
+import {PATH} from '@/shared/constants/PATH'
+import {AvatarIcon} from '@/shared/ui/AvatarIcon/AvatarIcon'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
 
 type CommentType = {
     comment: string

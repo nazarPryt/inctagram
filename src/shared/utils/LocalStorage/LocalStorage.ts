@@ -1,5 +1,4 @@
-'use client'
-export const ACCESS_TOKEN = 'ACCESS_TOKEN'
+const ACCESS_TOKEN = 'ACCESS_TOKEN'
 
 export type LocalStorageType = {
     accessToken: string

@@ -1,6 +1,5 @@
-import {ComponentPropsWithoutRef, ElementRef, forwardRef} from 'react'
+import {ComponentPropsWithoutRef, ElementRef, HTMLAttributes, forwardRef} from 'react'
 
-import * as SheetPrimitive from '@radix-ui/react-dialog'
 import {
     SheetCloseStyled,
     SheetContentStyled,
@@ -9,7 +8,8 @@ import {
     SheetHeaderStyled,
     SheetOverlayStyled,
     SheetTitleStyled,
-} from 'features/Burger/ui/BurgerModal/BurgerModal.styled'
+} from '@/features/Burger/ui/BurgerModal/BurgerModal.styled'
+import * as SheetPrimitive from '@radix-ui/react-dialog'
 
 const Sheet = SheetPrimitive.Root
 const SheetClose = SheetPrimitive.Close
@@ -31,7 +31,7 @@ SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 interface SheetContentProps extends ComponentPropsWithoutRef<typeof SheetPrimitive.Content> {}
 
-const SheetContent = forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
+const SheetContent = forwardRef<ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
     ({children, className, ...props}, ref) => (
         <SheetPortal>
             <SheetOverlay />
@@ -47,13 +47,13 @@ const SheetContent = forwardRef<React.ElementRef<typeof SheetPrimitive.Content>,
 
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
-const SheetHeader = ({className, ...props}: React.HTMLAttributes<HTMLDivElement>) => (
+const SheetHeader = ({className, ...props}: HTMLAttributes<HTMLDivElement>) => (
     <SheetHeaderStyled className={className} {...props} />
 )
 
 SheetHeader.displayName = 'SheetHeader'
 
-const SheetFooter = ({className, ...props}: React.HTMLAttributes<HTMLDivElement>) => (
+const SheetFooter = ({className, ...props}: HTMLAttributes<HTMLDivElement>) => (
     <SheetFooterStyled className={className} {...props} />
 )
 

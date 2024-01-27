@@ -2,8 +2,8 @@ import cookie from 'react-cookies'
 
 import * as process from 'process'
 
+import {accessToken, refreshToken} from '@/shared/constants/constants'
 import {BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {accessToken, refreshToken} from 'shared/constants/constants'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 

@@ -1,10 +1,10 @@
 import {ChangeEvent, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useUploadAvatarMutation} from 'features/User/Avatar/api/avatar.api'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {BaseModalProps} from 'shared/ui/Modal/Modal'
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {useUploadAvatarMutation} from '@/features/User/Avatar/api/avatar.api'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {BaseModalProps} from '@/shared/ui/Modal/Modal'
 
 export const useUploadUserAvatar = (props: BaseModalProps) => {
     const [avatar, {isLoading}] = useUploadAvatarMutation()

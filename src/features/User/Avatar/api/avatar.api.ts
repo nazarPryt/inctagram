@@ -1,5 +1,5 @@
-import {api} from 'redux/api/api'
-import {UserAvatar} from 'redux/types/profileTypes'
+import {api} from '@/redux/api/api'
+import {UserAvatar} from '@/redux/types/profileTypes'
 
 export const avatarAPI = api.injectEndpoints({
     endpoints: build => ({

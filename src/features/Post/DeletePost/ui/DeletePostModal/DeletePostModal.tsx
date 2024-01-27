@@ -1,7 +1,8 @@
-import {DeletePostModalWrapper} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal.styled'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Button} from 'shared/ui/Button/Button'
-import {Modal} from 'shared/ui/Modal/Modal'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@/shared/ui/Button/Button'
+import {Modal} from '@/shared/ui/Modal/Modal'
+
+import {DeletePostModalWrapper} from './DeletePostModal.styled'
 
 type PropsType = {
     handleDeletePost: () => void

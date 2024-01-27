@@ -1,5 +1,6 @@
-import {Comment} from 'entities/Comment/ui/Comment'
-import {ViewUserPostCommentsWrapper} from 'entities/ViewUserPost/ui/ViewUserPostComments/ViewUserPostComments.styled'
+import {Comment} from '@/entities/Comment/ui/Comment'
+
+import {ViewUserPostCommentsWrapper} from './ViewUserPostComments.styled'
 
 export const ViewUserPostComments = () => {
     const comment =

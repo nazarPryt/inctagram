@@ -1,6 +1,6 @@
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Button} from 'shared/ui/Button/Button'
-import {Modal} from 'shared/ui/Modal/Modal'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@/shared/ui/Button/Button'
+import {Modal} from '@/shared/ui/Modal/Modal'
 
 import {ModalConfirmChangedPasswordWrapper} from './ModalConfirmChangedPassword.styled'
 

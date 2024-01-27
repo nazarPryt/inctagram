@@ -1,10 +1,11 @@
 import {useState} from 'react'
 
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useResendConfirmationLinkMutation} from 'features/Auth/ResendVerificationLink/api/ResendVerificationLink.api'
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {PATH} from '@/shared/constants/PATH'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {useRouter} from 'next/navigation'
-import {PATH} from 'shared/constants/PATH'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
+
+import {useResendConfirmationLinkMutation} from '../api/ResendVerificationLink.api'
 
 export const useResendConfirmationLink = ({email}: {email: string}) => {
     const dispatch = useAppDispatch()

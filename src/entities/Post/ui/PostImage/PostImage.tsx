@@ -1,5 +1,5 @@
-import {PostImageWrapper} from 'entities/Post/ui/PostImage/PostImage.styled'
-import {PostCardImageType} from 'entities/UserPosts/api/types'
+import {PostImageWrapper} from '@/entities/Post/ui/PostImage/PostImage.styled'
+import {PostCardImageType} from '@/entities/UserPosts/api/types'
 import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'

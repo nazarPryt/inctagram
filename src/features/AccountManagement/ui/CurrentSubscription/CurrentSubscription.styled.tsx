@@ -13,12 +13,12 @@ export const CurrentSubscriptionWrapper = styled.div`
     .name {
         align-self: flex-start;
         color: ${props => props.theme.textColor['900']};
-        ${props => props.theme.typography.regular_text_14};
+        ${typography.regular_text_14}
     }
 
     .date {
         align-self: flex-start;
         color: ${props => props.theme.textColor['100']};
-        ${props => props.theme.typography.bold_text_14};
+        ${typography.bold_text_14};
     }
 `

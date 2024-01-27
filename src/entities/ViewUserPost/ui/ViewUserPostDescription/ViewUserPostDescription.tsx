@@ -1,6 +1,7 @@
 import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import {formatDistance, subDays} from 'date-fns'
-import {ViewUserPostDescriptionWrapper} from 'entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription.styled'
+
+import {ViewUserPostDescriptionWrapper} from './ViewUserPostDescription.styled'
 
 type PropsType = {
     createdAt: string

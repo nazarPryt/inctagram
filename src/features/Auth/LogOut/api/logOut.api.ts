@@ -1,7 +1,7 @@
 import cookie from 'react-cookies'
 
-import {api} from 'redux/api/api'
-import {accessToken, refreshToken} from 'shared/constants/constants'
+import {api} from '@/redux/api/api'
+import {accessToken, refreshToken} from '@/shared/constants/constants'
 
 export const logOutAPI = api.injectEndpoints({
     endpoints: build => ({

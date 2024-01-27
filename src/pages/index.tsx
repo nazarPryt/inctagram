@@ -1,8 +1,8 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import {PATH} from '@/shared/constants/PATH'
+import {serverAuthAPI} from '@/shared/server-api/server-api'
+import {Loader} from '@/shared/ui/Loader'
 import {GetServerSideProps, GetServerSidePropsContext} from 'next'
-import {PATH} from 'shared/constants/PATH'
-import {serverAuthAPI} from 'shared/server-api/server-api'
-import {Loader} from 'shared/ui/Loader'
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const user = await serverAuthAPI.authMe(ctx)

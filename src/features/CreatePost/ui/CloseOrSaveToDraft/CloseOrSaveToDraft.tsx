@@ -1,7 +1,8 @@
-import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
-import {Button} from '../../../../shared/ui/Button/Button'
-import {Modal} from '../../../../shared/ui/Modal/Modal'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@/shared/ui/Button/Button'
+import {Modal} from '@/shared/ui/Modal/Modal'
+
 import {addToDraft, clearIndexedDB} from '../../lib/IndexedDB/indexedDB'
 import {SaveToDraftWrapper} from './styled'
 

@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react'
 
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
-import {InputFile} from '../../../../shared/ui/InputFile/InputFile'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {InputFile} from '@/shared/ui/InputFile/InputFile'
+
 import {SelectPhotoWrapper} from './styled'
 
 type SelectPhotoType = {

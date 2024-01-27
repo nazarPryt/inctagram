@@ -1,13 +1,13 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {useCreateNewPasswordMutation} from '@/features/Auth/CreateNewPassword/api/createNewPassword.api'
+import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
+import {PATH} from '@/shared/constants/PATH'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useCreateNewPasswordMutation} from 'features/Auth/CreateNewPassword/api/createNewPassword.api'
-import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import * as yup from 'yup'
 
 type NewPassType = {

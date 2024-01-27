@@ -1,11 +1,11 @@
-import {useCreateNewPassword} from 'features/Auth/CreateNewPassword/hook/useCreateNewPass'
-import {ModalConfirmChangedPassword} from 'features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AuthPageStyled} from 'shared/styles/RegistrationPage'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
-import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
-import {Loader} from 'shared/ui/Loader'
+import {useCreateNewPassword} from '@/features/Auth/CreateNewPassword/hook/useCreateNewPass'
+import {ModalConfirmChangedPassword} from '@/features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
+import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
+import {Button} from '@/shared/ui/Button/Button'
+import {InputPassword} from '@/shared/ui/InputPassword/InputPassword'
+import {Loader} from '@/shared/ui/Loader'
 
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) => {
     const {t} = useTranslation()

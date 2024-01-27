@@ -1,9 +1,9 @@
 import {ReactNode} from 'react'
 import {Provider} from 'react-redux'
 
+import {store} from '@/_app/store/store'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {GlobalStyles, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
-import {store} from '_app/store/store'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
 import {ThemeProvider} from 'styled-components'
 
 export function Providers({children}: {children: ReactNode}) {

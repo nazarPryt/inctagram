@@ -1,18 +1,18 @@
 import {Dispatch, SetStateAction, useState} from 'react'
 
-import {ViewUserPostHeaderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader.styled'
-import {useDeleteUserPost} from 'features/Post/DeletePost/hook/useDeleteUserPost'
-import {DeletePostModal} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
-import {DeletePostIcon} from 'features/Post/DeletePost/ui/icon/DeletePostIcon'
-import {EditPostIcon} from 'features/Post/EditPost/ui/icon/EditPostIcon'
+import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
+import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
+import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
+import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
+import {PATH} from '@/shared/constants/PATH'
+import {AvatarIcon} from '@/shared/ui/AvatarIcon/AvatarIcon'
+import {Popover} from '@/shared/ui/Popover/Popover'
+import {PopoverItem} from '@/shared/ui/Popover/PopoverItem/PopoverItem'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
-import {Popover} from 'shared/ui/Popover/Popover'
-import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
 
 import {PopOverIcon} from '../../../Post/ui/PostHeader/popOverIcon'
 import {PostByIdType} from '../../api/type'
+import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
 type PropsType = {
     data: PostByIdType

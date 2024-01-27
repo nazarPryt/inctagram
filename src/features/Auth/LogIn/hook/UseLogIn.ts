@@ -1,14 +1,14 @@
 import cookie from 'react-cookies'
 import {useForm} from 'react-hook-form'
 
+import {useLoginMutation} from '@/features/Auth/LogIn/api/login.api'
+import {HandelLoginErrors} from '@/features/Auth/LogIn/helpers/HandelLoginErrors'
+import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
+import {PATH} from '@/shared/constants/PATH'
+import {accessToken} from '@/shared/constants/constants'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
-import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
-import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {accessToken} from 'shared/constants/constants'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import * as yup from 'yup'
 
 const getLoginFormSchema = (emailErrorMessage: string) => {

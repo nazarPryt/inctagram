@@ -1,5 +1,5 @@
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
-import {AllPostsList} from 'widgets/AllPostsList/AllPostsList'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized/AuthorizedLayout'
+import {AllPostsList} from '@/widgets/AllPostsList/AllPostsList'
 
 export default function Home() {
     return <AllPostsList posts={data.items} />

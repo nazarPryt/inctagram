@@ -1,8 +1,8 @@
 import React from 'react'
 
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
 import ArrowLeft from 'shared/assets/icons/arrowLeft.svg'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Button} from 'shared/ui/Button/Button'
 
 import {EditorButtonsWrapper} from './styled'
 

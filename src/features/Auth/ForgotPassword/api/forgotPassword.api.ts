@@ -1,5 +1,5 @@
-import {api} from 'redux/api/api'
-import {ForgotPasswordArgType} from 'redux/types/authTypes'
+import {api} from '@/redux/api/api'
+import {ForgotPasswordArgType} from '@/redux/types/authTypes'
 
 export const forgotPasswordAPI = api.injectEndpoints({
     endpoints: build => ({

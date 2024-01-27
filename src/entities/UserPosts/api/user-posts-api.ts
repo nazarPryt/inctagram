@@ -1,5 +1,5 @@
-import {PostsType} from 'entities/UserPosts/api/types'
-import {api} from 'redux/api/api'
+import {PostsType} from '@/entities/UserPosts/api/types'
+import {api} from '@/redux/api/api'
 
 type userPostApiType = {endCursorPostId: null | number; userId: number}
 

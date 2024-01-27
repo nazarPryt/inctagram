@@ -1,7 +1,7 @@
 import {Controller} from 'react-hook-form'
 
-import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
-import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
+import {AccountManagementContainer} from '@/shared/styles/AccountManagementContainer.styled'
+import {RadioInput} from '@/shared/ui/RadioInput/RadioInput'
 
 import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
 import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'

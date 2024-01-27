@@ -1,8 +1,8 @@
 import React from 'react'
 
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import Image from 'next/image'
 
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {FILTERS_DATA} from '../../model/types/const'
 import {Filter, FiltersWrapper} from './styled'

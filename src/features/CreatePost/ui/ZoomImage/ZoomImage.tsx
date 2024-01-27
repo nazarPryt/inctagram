@@ -1,7 +1,8 @@
-import React, {ChangeEvent, MouseEvent, RefObject, useState} from 'react'
+import React, {ChangeEvent} from 'react'
 
-import ZoomIcon from '../../../../shared/assets/icons/zoom.svg'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
+import ZoomIcon from '@/shared/assets/icons/zoom.svg'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {editorPanelAC} from '../../model/slice/editorPanelSlice'
 import {ZoomWrapper} from './styled'
@@ -15,7 +16,7 @@ export const ZoomImage = () => {
         dispatch(createPostAC.setLibraryPicturesZoom(e.target.value))
     }
 
-    const currentImage = libraryPictures.find(image => image.id === currentImageId)
+    const currentImage = libraryPictures.find((image: any) => image.id === currentImageId)
 
     const handleClickZoom = () => {
         dispatch(editorPanelAC.setOnZoom(!onZoom))

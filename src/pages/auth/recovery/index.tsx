@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
 
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {useCheckRecoveryCodeMutation} from 'features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import {useCheckRecoveryCodeMutation} from '@/features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
+import {PATH} from '@/shared/constants/PATH'
+import {Loader} from '@/shared/ui/Loader'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {Loader} from 'shared/ui/Loader'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {code, email} = ctx.query

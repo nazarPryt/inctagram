@@ -1,4 +1,4 @@
-import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
+import {AccountManagementContainer} from '@/shared/styles/AccountManagementContainer.styled'
 
 import {CurrentSubscriptionWrapper} from './CurrentSubscription.styled'
 

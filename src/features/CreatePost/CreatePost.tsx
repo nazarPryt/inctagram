@@ -1,15 +1,15 @@
 import {ChangeEvent, useEffect, useRef, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
-import {useTranslation} from 'shared/hooks/useTranslation'
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import CreateIcon from '@/shared/assets/icons/create.svg'
+import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Loader} from '@/shared/ui/Loader'
+import {Modal} from '@/shared/ui/Modal/Modal'
+import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
 
-import {SetAppNotificationAC} from '../../_app/store/appSlice'
-import CreateIcon from '../../shared/assets/icons/create.svg'
-import {EmptyAvatar} from '../../shared/assets/icons/emptyAvatar'
-import {useAppDispatch, useAppSelector} from '../../shared/hooks/reduxHooks'
-import {Loader} from '../../shared/ui/Loader'
-import {Modal} from '../../shared/ui/Modal/Modal'
-import {NavButton} from '../../widgets/Aside/ui/NavButton/NavButton'
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
 import {createFilteredFile} from './lib/createFilteredFile'
 import {createPostAC} from './model/slice/createPostSlice'
@@ -59,7 +59,7 @@ export const CreatePost = () => {
     }
 
     const prepareImageToSend = async (img: string, filter: string) => {
-        const currImage = libraryPictures.find(el => el.img === img)
+        const currImage = libraryPictures.find((el: any) => el.img === img)
 
         if (editorRef.current && currImage) {
             const file = await createFilteredFile(editorRef, filter)

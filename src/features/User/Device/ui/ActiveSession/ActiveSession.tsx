@@ -1,8 +1,8 @@
-import {LogOutIcon} from 'features/Auth/LogOut/ui/icons/LogOutIcon'
-import {ActiveSessionStyled} from 'features/User/Device/ui/ActiveSession/ActiveSession.styled'
-import {MobileIcon} from 'features/User/Device/ui/icons/MobileIcon'
-import {PcIcon} from 'features/User/Device/ui/icons/PCIcon'
-import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
+import {LogOutIcon} from '@/features/Auth/LogOut/ui/icons/LogOutIcon'
+import {ActiveSessionStyled} from '@/features/User/Device/ui/ActiveSession/ActiveSession.styled'
+import {MobileIcon} from '@/features/User/Device/ui/icons/MobileIcon'
+import {PcIcon} from '@/features/User/Device/ui/icons/PCIcon'
+import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
 
 type PropsType = {
     IP: string

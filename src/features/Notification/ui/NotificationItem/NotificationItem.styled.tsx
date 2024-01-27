@@ -8,10 +8,6 @@ export const NotificationItemWrapper = styled.div`
         margin: 0 5px 10px 0;
     }
 
-    span {
-        line-height: ${props => props.theme.typography.lineHeightM};
-    }
-
     div {
         display: flex;
     }

@@ -1,5 +1,5 @@
-import {Comment} from 'entities/Comment/ui/Comment'
-import {PostCommentsWrapper} from 'entities/Post/ui/PostComments/PostComments.styled'
+import {Comment} from '@/entities/Comment/ui/Comment'
+import {PostCommentsWrapper} from '@/entities/Post/ui/PostComments/PostComments.styled'
 
 type PostDescriptionType = {}
 export const PostComments = ({}: PostDescriptionType) => {

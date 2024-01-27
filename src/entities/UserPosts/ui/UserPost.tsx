@@ -1,8 +1,8 @@
 import {forwardRef} from 'react'
 
-import {UserPostWrapper} from 'entities/UserPosts/ui/UserPost.styled'
+import {UserPostWrapper} from '@/entities/UserPosts/ui/UserPost.styled'
+import {PATH} from '@/shared/constants/PATH'
 import Image from 'next/image'
-import {PATH} from 'shared/constants/PATH'
 
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'
 

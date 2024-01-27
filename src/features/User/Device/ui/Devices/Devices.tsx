@@ -1,7 +1,7 @@
-import {ActiveSession} from 'features/User/Device/ui/ActiveSession/ActiveSession'
-import {CurrentDevice} from 'features/User/Device/ui/CurrentDevice/CurrentDevice'
-import {DevicesStyled} from 'features/User/Device/ui/Devices/Devices.styled'
-import {Button} from 'shared/ui/Button/Button'
+import {ActiveSession} from '@/features/User/Device/ui/ActiveSession/ActiveSession'
+import {CurrentDevice} from '@/features/User/Device/ui/CurrentDevice/CurrentDevice'
+import {DevicesStyled} from '@/features/User/Device/ui/Devices/Devices.styled'
+import {Button} from '@/shared/ui/Button/Button'
 
 export const Devices = () => {
     const handleLogOut = () => {

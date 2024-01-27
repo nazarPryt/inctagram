@@ -120,9 +120,6 @@ export const SelectTrigger = styled(Select.SelectTrigger)`
     box-sizing: border-box;
     height: 36px;
     padding: 6px 12px;
-
-    font-size: ${props => props.theme.typography.fontSizeM};
-    line-height: ${props => props.theme.typography.lineHeightM};
     color: ${props => props.theme.textColor['100']};
 
     background-color: ${props => props.theme.bodyColor['700']};
@@ -146,7 +143,6 @@ export const SelectTrigger = styled(Select.SelectTrigger)`
         gap: 2px;
         height: 24px;
         padding: 0 2px 0 6px;
-        font-size: ${props => props.theme.typography.fontSizeS};
     }
 
     &.error {
@@ -196,31 +192,21 @@ export const SelectContent = styled(Select.Content)`
     position: relative;
     z-index: 500;
     display: flex;
-    width: var(--radix-select-trigger-width);
-    max-height: var(--radix-select-content-available-height);
 
     background-color: ${props => props.theme.bodyColor['900']};
     border: 1px solid ${props => props.theme.bodyColor['100']};
     border-radius: 0 0 0.125rem 0.125rem;
-
-    &.pagination {
-        width: var(--radix-select-trigger-width);
-    }
 `
 export const StyledItem = styled(Select.Item)`
     display: flex;
     padding: 6px 12px;
     gap: 12px;
     width: 100%;
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightM};
     color: ${props => props.theme.textColor['100']};
     background-color: ${props => props.theme.bodyColor['900']};
 
     &.pagination {
         padding: 0 0 0 6px;
-        font-size: ${props => props.theme.typography.fontSizeS};
-        line-height: ${props => props.theme.typography.lineHeightM};
     }
 
     &[data-highlighted] {

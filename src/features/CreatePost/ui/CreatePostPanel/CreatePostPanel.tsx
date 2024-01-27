@@ -1,8 +1,9 @@
 import React, {ChangeEvent} from 'react'
 
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
-import {Button} from '../../../../shared/ui/Button/Button'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@/shared/ui/Button/Button'
+
 import {clearIndexedDB, getAllDrafts} from '../../lib/IndexedDB/indexedDB'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPictureType} from '../../model/types/createPostSchema'

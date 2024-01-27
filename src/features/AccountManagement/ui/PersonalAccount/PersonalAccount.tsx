@@ -1,8 +1,8 @@
 import {ChangeEvent, Dispatch, SetStateAction} from 'react'
 
-import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
+import {AccountManagementContainer} from '@/shared/styles/AccountManagementContainer.styled'
+import {RadioInput} from '@/shared/ui/RadioInput/RadioInput'
 
-import {AccountManagementContainer} from '../../../../shared/styles/AccountManagementContainer.styled'
 import {Option} from '../../AccountManagement'
 
 type PropsType = {

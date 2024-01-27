@@ -1,6 +1,5 @@
-import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
-import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
-import {userNamePattern, userNamePatternError} from 'features/Auth/Registration/helpers/userNamePatern'
+import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
+import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
 import * as yup from 'yup'
 
 export type RegistrationRequestType = {

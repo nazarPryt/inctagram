@@ -1,7 +1,7 @@
+import {accessToken, refreshToken} from '@/shared/constants/constants'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
-import {accessToken, refreshToken} from 'shared/constants/constants'
 
 //https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
 // const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string

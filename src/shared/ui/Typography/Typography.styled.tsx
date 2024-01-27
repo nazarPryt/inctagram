@@ -7,7 +7,6 @@ interface TypographyProps {
 }
 
 const TypographyMixin = styled.p<TypographyProps>`
-    font-family: ${props => props.theme.typography.fontFamilyPrimary};
     color: ${props => props.theme.textColor['500']};
     white-space: pre-line;
 
@@ -28,93 +27,40 @@ const TypographyMixin = styled.p<TypographyProps>`
     }
 `
 
-export const H1 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXL};
-    line-height: ${props => props.theme.typography.lineHeightL};
-    font-weight: ${props => props.theme.typography.fontWeightBold};
-`
+export const H1 = styled(TypographyMixin)``
 
-export const H2 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeL};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightBold};
-`
+export const H2 = styled(TypographyMixin)``
 
-export const H3 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeM};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightSemiBold};
-`
+export const H3 = styled(TypographyMixin)``
 
-export const Large = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXXL};
-    line-height: ${props => props.theme.typography.lineHeightL};
-    font-weight: ${props => props.theme.typography.fontWeightSemiBold};
-`
+export const Large = styled(TypographyMixin)``
 
-export const RegularText16 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeM};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
-`
+export const RegularText16 = styled(TypographyMixin)``
 
-export const BoldText16 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeM};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightBold};
-`
+export const BoldText16 = styled(TypographyMixin)``
 
-export const RegularText14 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
-`
+export const RegularText14 = styled(TypographyMixin)``
 
-export const MediumText14 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightMedium};
-`
+export const MediumText14 = styled(TypographyMixin)``
 
-export const BoldText14 = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightBold};
-`
+export const BoldText14 = styled(TypographyMixin)``
 
-export const SmallText = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightXS};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
-`
-export const SemiBoldSmallText = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXS};
-    line-height: ${props => props.theme.typography.lineHeightS};
-    font-weight: ${props => props.theme.typography.fontWeightSemiBold};
-`
+export const SmallText = styled(TypographyMixin)``
+export const SemiBoldSmallText = styled(TypographyMixin)``
 
 export const RegularLink = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeS};
-    line-height: ${props => props.theme.typography.lineHeightM};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
     color: ${props => props.theme.palette.primary['500']};
     text-decoration-line: underline;
     cursor: pointer;
 `
 
 export const SmallLink = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXS};
-    line-height: ${props => props.theme.typography.lineHeightS};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
     color: ${props => props.theme.palette.primary['500']};
     text-decoration-line: underline;
     cursor: pointer;
 `
 
 export const Error = styled(TypographyMixin)`
-    font-size: ${props => props.theme.typography.fontSizeXS};
-    line-height: ${props => props.theme.typography.lineHeightS};
-    font-weight: ${props => props.theme.typography.fontWeightRegular};
     color: ${props => props.theme.palette.danger['500']};
 `
 

@@ -1,7 +1,6 @@
+import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {ProfileAvatarWrapper} from '@/widgets/Profile/ui/ProfileAvatar/ProfileAvatar.styled'
 import Image from 'next/image'
-import {ProfileAvatarWrapper} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar.styled'
-
-import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
 
 export const ProfileAvatar = ({src}: {src: string | undefined}) => {
     return (

@@ -1,4 +1,5 @@
-import {api} from '../../../redux/api/api'
+import {api} from '@/redux/api/api'
+
 import {CreatePostResponse, UploadPost, UploadedImageResponse} from './types'
 
 export const createPostAPI = api.injectEndpoints({

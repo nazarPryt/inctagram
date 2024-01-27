@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
 
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {useRegistrationConfirmationMutation} from 'features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import {useRegistrationConfirmationMutation} from '@/features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
+import {PATH} from '@/shared/constants/PATH'
+import {Loader} from '@/shared/ui/Loader/Loader'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {Loader} from 'shared/ui/Loader/Loader'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {code, email} = ctx.query

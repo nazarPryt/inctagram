@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {useRegistrationMutation} from '@/features/Auth/Registration/api/registration.api'
+import {RegistrationFormData, RegistrationFormSchema} from '@/features/Auth/Registration/api/registration.types'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useRegistrationMutation} from 'features/Auth/Registration/api/registration.api'
-import {RegistrationFormData, RegistrationFormSchema} from 'features/Auth/Registration/api/registration.types'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 
 export const useRegistrationForm = () => {
     const dispatch = useAppDispatch()

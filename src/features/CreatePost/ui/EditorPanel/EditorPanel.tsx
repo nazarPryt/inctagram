@@ -1,7 +1,8 @@
-import React, {ChangeEvent, MouseEvent, useRef, useState} from 'react'
+import React, {ChangeEvent} from 'react'
 
-import {useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+
 import {LibraryImages} from '../LibraryImages/LibraryImages'
 import {SelectResize} from '../SelectResize/SelectResize'
 import {ZoomImage} from '../ZoomImage/ZoomImage'

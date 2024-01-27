@@ -1,7 +1,7 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {CreateNewPasswordForm} from 'features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
+import {CreateNewPasswordForm} from '@/features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
+import {Loader} from '@/shared/ui/Loader/Loader'
 import {NextPageContext} from 'next'
-import {Loader} from 'shared/ui/Loader/Loader'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {recoveryCode} = ctx.query

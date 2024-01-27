@@ -1,14 +1,14 @@
 import React, {ChangeEvent, useRef} from 'react'
 
-import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {InputFile} from 'shared/ui/InputFile/InputFile'
+import AddIcon from '@/shared/assets/icons/addIcon.svg'
+import CloseIcon from '@/shared/assets/icons/close.svg'
+import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {IconButton} from '@/shared/ui/IconButton/IconButton'
+import {InputFile} from '@/shared/ui/InputFile/InputFile'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
-import AddIcon from '../../../../shared/assets/icons/addIcon.svg'
-import CloseIcon from '../../../../shared/assets/icons/close.svg'
-import {EmptyAvatar} from '../../../../shared/assets/icons/emptyAvatar'
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {editorPanelAC} from '../../model/slice/editorPanelSlice'
 import {LibraryPicture, LibraryWrapper} from './styled'
@@ -24,7 +24,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
     const selectPhotoRef = useRef<HTMLInputElement>(null)
 
     const handleChangeGeneralPicture = async (id: string) => {
-        const pictureFromGallery = libraryPictures.find(el => el.id === id && el)
+        const pictureFromGallery = libraryPictures.find((el: any) => el.id === id && el)
 
         if (pictureFromGallery) {
             handleSetPreviewPicture(pictureFromGallery.id)
@@ -37,10 +37,10 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
     }
 
     const handleDeletePicture = async (id: string, index: number) => {
-        const newLibrary = libraryPictures.find(el => el.id === id)
+        const newLibrary = libraryPictures.find((el: any) => el.id === id)
 
         newLibrary && (await dispatch(createPostAC.deleteImageFromLibrary(newLibrary)))
-        const newLibrariesPictures = libraryPictures.filter(el => el.id !== id)
+        const newLibrariesPictures = libraryPictures.filter((el: any) => el.id !== id)
 
         if (newLibrariesPictures.length > index) {
             handleSetPreviewPicture(newLibrariesPictures[index].id)
@@ -71,7 +71,7 @@ export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) =
                     width={360}
                 >
                     <div className={'OVER'}>
-                        {libraryPictures.map((el, index) => (
+                        {libraryPictures.map((el: any, index: number) => (
                             <SwiperSlide key={el.id}>
                                 <LibraryPicture
                                     filter={el.filter}

@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {useForgotPasswordMutation} from '@/features/Auth/ForgotPassword/api/forgotPassword.api'
+import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useForgotPasswordMutation} from 'features/Auth/ForgotPassword/api/forgotPassword.api'
-import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
 import * as yup from 'yup'
 
 const schema = yup.object({

@@ -1,5 +1,5 @@
-import {MyPaymentType} from 'features/User/MyPayments/api'
-import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from 'shared/ui/Table'
+import {MyPaymentType} from '@/features/User/MyPayments/api'
+import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from '@nazar-pryt/inctagram-ui-kit'
 
 import {MyPaymentsTableStyled} from './MyPaymentsTable.styled'
 

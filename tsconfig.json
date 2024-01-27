@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "baseUrl": "src",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -14,11 +13,10 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "types": ["node"],
         "paths": {
             "@/*": ["./src/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "codegen.ts"],
+    "include": ["next-env.d.ts", "process.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]
 }

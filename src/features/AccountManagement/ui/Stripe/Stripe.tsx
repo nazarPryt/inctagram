@@ -1,4 +1,4 @@
-import StripeIcon from 'shared/assets/icons/stripe.svg'
+import StripeIcon from '@/shared/assets/icons/stripe.svg'
 
 import {StripeWrapper} from './Stripe.styled'
 

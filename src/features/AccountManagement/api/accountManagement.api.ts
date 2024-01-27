@@ -1,4 +1,4 @@
-import {api} from 'redux/api/api'
+import {api} from '@/redux/api/api'
 
 import {
     CurrentSubscriptionResponseType,
