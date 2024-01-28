@@ -1,10 +1,10 @@
 import {forwardRef} from 'react'
 
-import {UserPostWrapper} from '@/entities/UserPosts/ui/UserPost.styled'
 import {PATH} from '@/shared/constants/PATH'
 import Image from 'next/image'
 
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'
+import {UserPostWrapper} from './UserPost.styled'
 
 type UserPostType = {
     imagesLength: number

@@ -1,6 +1,5 @@
 import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
-import {Button} from '@/shared/ui/Button/Button'
-import {TextArea} from '@/shared/ui/TextArea/TextArea'
+import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ViewUserPostAddCommentWrapper} from './ViewUserPostAddComment.styled'
 

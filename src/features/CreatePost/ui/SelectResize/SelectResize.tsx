@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Crop1x1 from '@/shared/assets/icons/crop1x1.svg'
 import Crop4x5 from '@/shared/assets/icons/crop4x5.svg'
 import Crop16x9 from '@/shared/assets/icons/crop16x9.svg'

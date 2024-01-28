@@ -2,10 +2,7 @@ import {useCreateNewPassword} from '@/features/Auth/CreateNewPassword/hook/useCr
 import {ModalConfirmChangedPassword} from '@/features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
-import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
-import {Button} from '@/shared/ui/Button/Button'
-import {InputPassword} from '@/shared/ui/InputPassword/InputPassword'
-import {Loader} from '@/shared/ui/Loader'
+import {AuthContainer, Button, InputPassword, Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) => {
     const {t} = useTranslation()

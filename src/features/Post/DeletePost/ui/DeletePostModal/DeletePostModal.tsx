@@ -1,6 +1,6 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button} from '@/shared/ui/Button/Button'
 import {Modal} from '@/shared/ui/Modal/Modal'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {DeletePostModalWrapper} from './DeletePostModal.styled'
 

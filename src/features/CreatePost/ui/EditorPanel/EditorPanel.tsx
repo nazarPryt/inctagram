@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent} from 'react'
 
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -12,7 +12,7 @@ type EditorButtonsType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const EditorPanel: React.FC<EditorButtonsType> = ({handleCreatePost}) => {
+export const EditorPanel = ({handleCreatePost}: EditorButtonsType) => {
     const {t} = useTranslation()
     const {defaultHeight, defaultWidth, libraryPictures, step} = useAppSelector(state => state.createPost)
     const hasDisableButtons = step !== t.create.steps.filters && step !== t.create.steps.describe

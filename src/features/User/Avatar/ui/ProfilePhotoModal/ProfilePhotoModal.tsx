@@ -2,11 +2,12 @@ import AvatarEditor from 'react-avatar-editor'
 
 import {useUploadUserAvatar} from '@/features/User/Avatar/hook/useUploadUserAvatar'
 import {EmptyAvatarPlaceholder} from '@/features/User/Avatar/ui/EmptyAvatarPlaceholder/EmptyAvatarPlaceholder'
-import {ProfilePhotoModalWrapper} from '@/features/User/Avatar/ui/ProfilePhotoModal/ProfilePhotoModal.styled'
 import {ProfilePhotoModalFooter} from '@/features/User/Avatar/ui/ProfilePhotoModalFooter/ProfilePhotoModalFooter'
 import {InputFile} from '@/shared/ui/InputFile/InputFile'
-import {Loader} from '@/shared/ui/Loader/Loader'
 import {BaseModalProps, Modal} from '@/shared/ui/Modal/Modal'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+
+import {ProfilePhotoModalWrapper} from './ProfilePhotoModal.styled'
 
 export const ProfilePhotoModal = (props: BaseModalProps) => {
     const {handleChangePhoto, handleClear, handleSave, handleZoom, isLoading, picture, setEditorRef} =

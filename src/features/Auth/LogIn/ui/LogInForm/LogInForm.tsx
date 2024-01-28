@@ -2,14 +2,16 @@ import {useLogIn} from '@/features/Auth/LogIn/hook/UseLogIn'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
-import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
-import {Button} from '@/shared/ui/Button/Button'
-import {IconButton} from '@/shared/ui/IconButton/IconButton'
-import {InputPassword} from '@/shared/ui/InputPassword/InputPassword'
-import {InputText} from '@/shared/ui/InputText/InputText'
+import {
+    AuthContainer,
+    Button,
+    GitHubIcon,
+    GoogleIcon,
+    IconButton,
+    InputPassword,
+    InputText,
+} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
-import GithubWhite from 'shared/assets/icons/githubWhite.svg'
-import GoogleIcon from 'shared/assets/icons/google.svg'
 
 export const LogInForm = () => {
     const {errors, handleSubmit, isLoading, isValid, register} = useLogIn()
@@ -24,7 +26,7 @@ export const LogInForm = () => {
                         <GoogleIcon />
                     </IconButton>
                     <IconButton disabled={isLoading} onClick={() => {}}>
-                        <GithubWhite />
+                        <GitHubIcon />
                     </IconButton>
                 </div>
                 <form onSubmit={handleSubmit}>

@@ -1,7 +1,8 @@
-import {ReactNode, useEffect} from 'react'
+import {MouseEvent, ReactNode, useEffect} from 'react'
+
+import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {CloseIcon} from '../../assets/icons/CloseIcon'
-import {IconButton} from '../IconButton/IconButton'
 import {ModalContent, ModalWrapper} from './Modal.styled'
 import {ReactPortal} from './ReactPortal'
 
@@ -17,7 +18,7 @@ export const Modal = ({children, handleClose, isOpen, title}: BaseModalProps) =>
         document.body.classList.remove('isModalOpen')
         handleClose()
     }
-    const onModalClick = (event: React.MouseEvent<HTMLElement>) => {
+    const onModalClick = (event: MouseEvent<HTMLElement>) => {
         event.stopPropagation()
     }
 

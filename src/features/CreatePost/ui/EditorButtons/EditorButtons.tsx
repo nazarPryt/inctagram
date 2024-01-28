@@ -1,8 +1,5 @@
-import React from 'react'
-
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
-import ArrowLeft from 'shared/assets/icons/arrowLeft.svg'
+import {ArrowLeft, Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {EditorButtonsWrapper} from './styled'
 
@@ -13,7 +10,7 @@ type EditorButtonsType = {
     title: string
 }
 
-export const EditorButtons: React.FC<EditorButtonsType> = props => {
+export const EditorButtons = (props: EditorButtonsType) => {
     const {t} = useTranslation()
     const STEPS = [
         t.create.steps.addPhoto,

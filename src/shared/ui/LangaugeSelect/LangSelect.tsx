@@ -1,28 +1,15 @@
 import React, {useEffect, useState} from 'react'
 
+import {Select} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
-import {CustomSelect} from 'shared/ui/Select'
-
-import {FlagRussiaIcon} from '../../assets/icons/FlagRussiaIcon'
-import FlagEngIcon from '../../assets/icons/FlagUnitedKingdom.svg'
 
 const Country = [
     {
-        label: (
-            <>
-                <FlagRussiaIcon />
-                Русский
-            </>
-        ),
+        label: 'Русский',
         value: 'ru',
     },
     {
-        label: (
-            <>
-                <FlagEngIcon />
-                English
-            </>
-        ),
+        label: 'English',
         value: 'en',
     },
 ]
@@ -49,9 +36,8 @@ export const LangSelect = () => {
 
     return (
         <div>
-            <CustomSelect
-                defaultValue={defaultLocale}
-                onChange={value => changeLangHandler(value)}
+            <Select
+                onChange={(value: any) => changeLangHandler(value)}
                 options={Country}
                 value={value!}
                 // width={'163px'}

@@ -1,10 +1,9 @@
 import {useGeneralInformationForm} from '@/features/User/GeneralInformation/hook/useGeneralInformationForm'
-import {GeneralInformationFormWrapper} from '@/features/User/GeneralInformation/ui/GeneralInformationForm/styled'
 import {UserProfile} from '@/redux/types/authTypes'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button} from '@/shared/ui/Button/Button'
-import {InputText} from '@/shared/ui/InputText/InputText'
-import {TextArea} from '@/shared/ui/TextArea/TextArea'
+import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
+
+import {GeneralInformationFormWrapper} from './styled'
 
 export const GeneralInformationForm = ({data}: {data: UserProfile}) => {
     const {t} = useTranslation()

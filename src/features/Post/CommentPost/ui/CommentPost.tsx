@@ -1,5 +1,5 @@
 import {CommentIcon} from '@/features/Post/CommentPost/ui/CommentIcon'
-import {IconButton} from '@/shared/ui/IconButton/IconButton'
+import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
 export const CommentPost = () => {
     return (

@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent} from 'react'
 
 import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
 import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'

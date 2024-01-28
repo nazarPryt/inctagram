@@ -1,11 +1,11 @@
-import React, {ChangeEvent, useRef} from 'react'
+import {ChangeEvent, useRef} from 'react'
 
 import AddIcon from '@/shared/assets/icons/addIcon.svg'
 import CloseIcon from '@/shared/assets/icons/close.svg'
 import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
-import {IconButton} from '@/shared/ui/IconButton/IconButton'
 import {InputFile} from '@/shared/ui/InputFile/InputFile'
+import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
@@ -16,7 +16,7 @@ import {LibraryPicture, LibraryWrapper} from './styled'
 type LibraryImagesType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
 }
-export const LibraryImages: React.FC<LibraryImagesType> = ({handleCreatePost}) => {
+export const LibraryImages = ({handleCreatePost}: LibraryImagesType) => {
     const dispatch = useAppDispatch()
     const {onLibrary} = useAppSelector(state => state.editorPanel)
     const {libraryPictures} = useAppSelector(state => state.createPost)

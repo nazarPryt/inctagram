@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent} from 'react'
 
 import ZoomIcon from '@/shared/assets/icons/zoom.svg'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'

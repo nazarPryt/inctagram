@@ -1,9 +1,7 @@
-import React from 'react'
-
 import * as process from 'process'
 
+import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
 import Image from 'next/image'
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
 
 import {PATH} from '../../constants/PATH'
 import {AvatarIconWrapper} from './AvatarIcon.styled'

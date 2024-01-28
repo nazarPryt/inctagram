@@ -2,7 +2,7 @@ import {Avatar} from '@/features/User/Avatar/ui/Avatar/Avatar'
 import {GeneralInformationWrapper} from '@/features/User/GeneralInformation/ui/GeneralInformation/styled'
 import {GeneralInformationForm} from '@/features/User/GeneralInformation/ui/GeneralInformationForm/GeneralInformationForm'
 import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
-import {Loader} from '@/shared/ui/Loader/Loader'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 export const GeneralInformation = () => {
     const {data, isLoading} = useGetUserProfileQuery()

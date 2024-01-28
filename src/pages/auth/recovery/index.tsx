@@ -3,7 +3,7 @@ import {useEffect} from 'react'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
 import {useCheckRecoveryCodeMutation} from '@/features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
 import {PATH} from '@/shared/constants/PATH'
-import {Loader} from '@/shared/ui/Loader'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
 

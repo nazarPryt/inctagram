@@ -1,8 +1,6 @@
-import React from 'react'
-
-import {TabsSettingsType, setProfileSettingsTabsAC} from '_app/store/appSlice'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {ProfileSettingsAccordionStyled} from 'shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion.styled'
+import {TabsSettingsType, setProfileSettingsTabsAC} from '@/_app/store/appSlice'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {ProfileSettingsAccordionStyled} from '@/shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion.styled'
 
 import {useAppDispatch, useAppSelector} from '../../hooks/reduxHooks'
 import {TabButton} from '../TabButton/TabButton'

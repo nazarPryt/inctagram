@@ -5,10 +5,7 @@ import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationMod
 import {PATH} from '@/shared/constants/PATH'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
-import {Button} from '@/shared/ui/Button/Button'
-import {InputText} from '@/shared/ui/InputText/InputText'
-import {Loader} from '@/shared/ui/Loader/Loader'
+import {AuthContainer, Button, InputText, Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ForgotPasswordWrapper} from './ForgotPasswordForm.styled'
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import Image from 'next/image'
 
@@ -11,7 +9,7 @@ type PresetFiltersType = {
     prepareImageToSend: (img: string, filter: string) => void
 }
 
-export const PresetFilters: React.FC<PresetFiltersType> = props => {
+export const PresetFilters = (props: PresetFiltersType) => {
     const dispatch = useAppDispatch()
     const {defaultHeight, defaultWidth, previewImage} = useAppSelector(state => state.createPost)
 

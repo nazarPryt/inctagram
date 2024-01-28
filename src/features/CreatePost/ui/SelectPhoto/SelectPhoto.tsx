@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent} from 'react'
 
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {InputFile} from '@/shared/ui/InputFile/InputFile'
@@ -9,7 +9,7 @@ type SelectPhotoType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const SelectPhoto: React.FC<SelectPhotoType> = props => {
+export const SelectPhoto = (props: SelectPhotoType) => {
     const {t} = useTranslation()
 
     return (

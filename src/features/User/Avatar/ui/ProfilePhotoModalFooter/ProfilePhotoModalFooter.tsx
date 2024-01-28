@@ -1,6 +1,6 @@
 import {ComponentProps} from 'react'
 
-import {Button} from '@/shared/ui/Button/Button'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ProfilePhotoModalFooterStyled} from './ProfilePhotoModalFooter.styled'
 

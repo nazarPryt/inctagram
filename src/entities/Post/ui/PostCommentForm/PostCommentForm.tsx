@@ -1,11 +1,11 @@
 import {useState} from 'react'
 
-import {PostCommentFormWrapper} from '@/entities/Post/ui/PostCommentForm/PostCommentForm.styled'
 import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button} from '@/shared/ui/Button/Button'
 import {Modal} from '@/shared/ui/Modal/Modal'
-import {TextArea} from '@/shared/ui/TextArea/TextArea'
+import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
+
+import {PostCommentFormWrapper} from './PostCommentForm.styled'
 
 export const PostCommentForm = () => {
     const {t} = useTranslation()

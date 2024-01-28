@@ -2,8 +2,9 @@ import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
 import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
 import {UserPost} from '@/entities/UserPosts/ui/UserPost'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
-import {Loader} from '@/shared/ui/Loader/Loader'
-import {ProfilePostsListWrapper} from '@/widgets/Profile/ui/ProfilePostsList/ProfilePostsList.styled'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+
+import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 
 export const ProfilePostsList = () => {
     const userId = useAppSelector(state => state.userAuth.userId) as number

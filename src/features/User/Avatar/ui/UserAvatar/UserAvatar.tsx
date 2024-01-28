@@ -2,7 +2,7 @@ import {useDeleteUserAvatar} from '@/features/User/Avatar/hook/useDeleteUserAvat
 import {UserAvatarStyled} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
 import DeleteAvatarIcon from '@/shared/assets/icons/deleteAvatar.svg'
 import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
-import {IconButton} from '@/shared/ui/IconButton/IconButton'
+import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
 export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {

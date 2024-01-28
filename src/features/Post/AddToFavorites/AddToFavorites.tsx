@@ -1,5 +1,5 @@
 import {FavoriteIcon} from '@/features/Post/AddToFavorites/FavoriteIcon'
-import {IconButton} from '@/shared/ui/IconButton/IconButton'
+import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
 export const AddToFavorites = () => {
     return (

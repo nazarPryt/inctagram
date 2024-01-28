@@ -4,8 +4,7 @@ import {PostByIdType} from '@/entities/ViewUserPost/api/type'
 import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
 import {useEditPost} from '@/features/Post/EditPost/hook/UseEditPost'
 import {EditPostWrapper} from '@/features/Post/EditPost/ui/EditPost.styled'
-import {Button} from '@/shared/ui/Button/Button'
-import {TextArea} from '@/shared/ui/TextArea/TextArea'
+import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 type PropsType = EditPostUserIdPropsType & EditPostPropsType
 type EditPostPropsType = {

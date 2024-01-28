@@ -6,7 +6,7 @@ import {Providers} from '@/_app/Provider'
 import {useLoader} from '@/shared/hooks/useLoader'
 import {NextPage} from 'next'
 
-import 'shared/styles/nprogress.css'
+import '@/shared/styles/nprogress.css'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode

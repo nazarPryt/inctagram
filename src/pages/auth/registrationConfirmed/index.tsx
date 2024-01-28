@@ -3,8 +3,7 @@ import congratulationImg from '@/shared/assets/pictures/congratulation.png'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {ConfirmationPageWrapper} from '@/shared/styles/RegistrationConfirmPage'
-import {AuthContainer} from '@/shared/ui/AuthContainer/AuthContainer'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import {AuthContainer, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
 export default function ConfirmedRegistrationPage() {

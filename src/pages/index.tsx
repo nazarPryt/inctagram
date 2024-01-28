@@ -1,7 +1,7 @@
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
 import {PATH} from '@/shared/constants/PATH'
 import {serverAuthAPI} from '@/shared/server-api/server-api'
-import {Loader} from '@/shared/ui/Loader'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {GetServerSideProps, GetServerSidePropsContext} from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {

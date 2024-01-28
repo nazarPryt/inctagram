@@ -3,14 +3,13 @@ import AvatarEditor from 'react-avatar-editor'
 
 import {createPostAC} from '@/features/CreatePost/model/slice/createPostSlice'
 import {LibraryPictureType} from '@/features/CreatePost/model/types/createPostSchema'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
 
 // import 'swiper/css'
 // import 'swiper/css/navigation'
-// import 'swiper/css/pagination'
-import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
-
+// import 'swiper/css/pagination' //todo import css
 import {Wrapper} from './styled'
 
 type CanvasContainerType = {

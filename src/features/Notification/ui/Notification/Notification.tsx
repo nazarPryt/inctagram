@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Popover} from '@/shared/ui/Popover/Popover'
+import {Popover} from '@nazar-pryt/inctagram-ui-kit'
 
 import {NotificationIcon} from '../NotificationIcon/NotificationIcon'
 import {NotificationItem} from '../NotificationItem/NotificationItem'
@@ -15,8 +15,8 @@ export const Notification = () => {
         <NotificationWrapper>
             <Popover
                 icon={<NotificationIcon hasNotification notificationCount={3} />}
-                isPopoverOpen={isPopoverOpen}
-                setIsPopoverOpen={setIsPopoverOpen}
+                isOpen={isPopoverOpen}
+                onOpenChange={setIsPopoverOpen}
             >
                 <h3>{t.header.notification.notifications}:</h3>
                 <NotificationItem isNew />

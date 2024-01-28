@@ -1,8 +1,8 @@
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {BackToPrevious} from '@/shared/ui/BackToPrevious/BackToPrevious'
 import {TextContainer} from '@/shared/ui/TextContainer/TextContainer'
+import {BackToPrevious} from '@nazar-pryt/inctagram-ui-kit'
 
 export default function TermsOfServicePage() {
     const {t} = useTranslation()

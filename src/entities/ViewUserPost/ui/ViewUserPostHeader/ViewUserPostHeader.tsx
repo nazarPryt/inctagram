@@ -6,11 +6,9 @@ import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
 import {PATH} from '@/shared/constants/PATH'
 import {AvatarIcon} from '@/shared/ui/AvatarIcon/AvatarIcon'
-import {Popover} from '@/shared/ui/Popover/Popover'
-import {PopoverItem} from '@/shared/ui/Popover/PopoverItem/PopoverItem'
+import {DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
-import {PopOverIcon} from '../../../Post/ui/PostHeader/popOverIcon'
 import {PostByIdType} from '../../api/type'
 import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
@@ -44,7 +42,7 @@ export const ViewUserPostHeader = ({data, edit, setEdit, userId}: PropsType) => 
                     </Link>
                 </div>
                 {!edit && (
-                    <Popover icon={<PopOverIcon />} isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen}>
+                    <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                         <PopoverItem icon={<EditPostIcon />} name={'Edit Post'} onClick={handleEditPost} />
                         <PopoverItem icon={<DeletePostIcon />} name={'Delete Post'} onClick={handleModalOpen} />
                     </Popover>

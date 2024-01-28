@@ -4,7 +4,7 @@ import {AvatarFormWrapper} from '@/features/User/Avatar/ui/Avatar/Avatar.styled'
 import {ProfilePhotoModal} from '@/features/User/Avatar/ui/ProfilePhotoModal/ProfilePhotoModal'
 import {UserAvatar} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button} from '@/shared/ui/Button/Button'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 export const Avatar = ({avatar}: {avatar: string | undefined}) => {
     const {t} = useTranslation()
