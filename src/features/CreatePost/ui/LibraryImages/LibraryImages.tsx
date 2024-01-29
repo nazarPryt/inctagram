@@ -1,11 +1,7 @@
 import {ChangeEvent, useRef} from 'react'
 
-import AddIcon from '@/shared/assets/icons/addIcon.svg'
-import CloseIcon from '@/shared/assets/icons/close.svg'
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
-import {InputFile} from '@/shared/ui/InputFile/InputFile'
-import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
+import {AddIcon, CloseIcon, EmptyAvatar, IconButton, InputFile} from '@nazar-pryt/inctagram-ui-kit'
 import {A11y, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 

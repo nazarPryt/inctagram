@@ -1,6 +1,6 @@
 import * as process from 'process'
 
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {EmptyAvatar} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
 import {PATH} from '../../constants/PATH'

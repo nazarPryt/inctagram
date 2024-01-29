@@ -1,5 +1,4 @@
-import {ShareIcon} from '@/features/Share/ShareIcon'
-import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
+import {IconButton, ShareIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 export const Share = () => {
     return (

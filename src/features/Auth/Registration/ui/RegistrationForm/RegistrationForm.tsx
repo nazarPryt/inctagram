@@ -5,10 +5,10 @@ import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationMod
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
-import {Checkbox} from '@/shared/ui/Checkbox/Checkbox'
 import {
     AuthContainer,
     Button,
+    Checkbox,
     GitHubIcon,
     GoogleIcon,
     IconButton,

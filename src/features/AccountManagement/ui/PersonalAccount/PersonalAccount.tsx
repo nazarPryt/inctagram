@@ -1,7 +1,7 @@
 import {ChangeEvent, Dispatch, SetStateAction} from 'react'
 
 import {AccountManagementContainer} from '@/shared/styles/AccountManagementContainer.styled'
-import {RadioInput} from '@/shared/ui/RadioInput/RadioInput'
+import {RadioInput} from '@nazar-pryt/inctagram-ui-kit'
 
 import {Option} from '../../AccountManagement'
 

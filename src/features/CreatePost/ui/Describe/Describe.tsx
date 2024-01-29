@@ -1,12 +1,9 @@
 import {ChangeEvent} from 'react'
 
 import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
-import SkeletonAvatar from '@/shared/assets/icons/skeletonCycle.svg'
-import SkeletonTitle from '@/shared/assets/icons/skeletonTitle.svg'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {TextArea} from '@nazar-pryt/inctagram-ui-kit'
+import {EmptyAvatar, Skeleton, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
 import {createPostAC} from '../../model/slice/createPostSlice'
@@ -30,9 +27,9 @@ export const Describe = () => {
     return (
         <DescribeWrapper>
             <div className={'headerBlock'}>
-                <AvatarWrapper>{data ? UserImage : <SkeletonAvatar />}</AvatarWrapper>
+                <AvatarWrapper>{data ? UserImage : <Skeleton circle height={40} width={40} />}</AvatarWrapper>
                 <div className={'userNameWrapper'}>
-                    <span>{data ? data.userName : <SkeletonTitle />}</span>
+                    <span>{data ? data.userName : <Skeleton height={30} width={100} />}</span>
                 </div>
             </div>
             <TextArea defaultValue={describeText} label={t.create.describe} onChange={e => changeTextHandler(e)} />

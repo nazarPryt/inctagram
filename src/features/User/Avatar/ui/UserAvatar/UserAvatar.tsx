@@ -1,8 +1,6 @@
 import {useDeleteUserAvatar} from '@/features/User/Avatar/hook/useDeleteUserAvatar'
 import {UserAvatarStyled} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
-import DeleteAvatarIcon from '@/shared/assets/icons/deleteAvatar.svg'
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
-import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
+import {DeleteAvatar, EmptyAvatar, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
 export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
@@ -14,7 +12,7 @@ export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
                 <div className={'avatar'}>
                     <Image alt={'imgUrl'} height={192} src={avatar} width={192} />
                     <IconButton disabled={isLoading} onClick={handleDeleteAvatar}>
-                        <DeleteAvatarIcon />
+                        <DeleteAvatar />
                     </IconButton>
                 </div>
             ) : (

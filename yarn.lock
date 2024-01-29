@@ -1271,10 +1271,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@nazar-pryt/inctagram-ui-kit@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@nazar-pryt/inctagram-ui-kit/-/inctagram-ui-kit-0.0.26.tgz#086e81779b10cad0e88772d59f3f255bf9a36b79"
-  integrity sha512-JXhDhyUWZbEhjXqCz0ZhLmqf1MvuUU4n1lYiuB9EuFnAzuhUZ443kocN1jVtNHXjnoEbGFF0cglOOTIY/4Cw1Q==
+"@nazar-pryt/inctagram-ui-kit@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@nazar-pryt/inctagram-ui-kit/-/inctagram-ui-kit-0.0.27.tgz#1d8c8832c724596e950e442e0701eb46c6792e35"
+  integrity sha512-3GKmk80CLzqEK4rpX5G3zqUTsn2igFvL46uxwgV6NeE2hbO6423J9lv3OYUtjGyX1y+fhy+dO7kDUePS2ah/zA==
   dependencies:
     "@headlessui-float/react" "0.13.0"
     "@headlessui/react" "1.7.17"

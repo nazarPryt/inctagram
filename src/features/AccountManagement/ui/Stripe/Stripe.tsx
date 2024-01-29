@@ -1,4 +1,4 @@
-import StripeIcon from '@/shared/assets/icons/stripe.svg'
+import {StripeIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 import {StripeWrapper} from './Stripe.styled'
 

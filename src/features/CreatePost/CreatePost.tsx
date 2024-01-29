@@ -2,13 +2,11 @@ import {ChangeEvent, useEffect, useRef, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
 import {SetAppNotificationAC} from '@/_app/store/appSlice'
-import CreateIcon from '@/shared/assets/icons/create.svg'
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Modal} from '@/shared/ui/Modal/Modal'
 import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+import {EmptyAvatar, Loader, SquarePlusIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 import {getAllDrafts} from './lib/IndexedDB/indexedDB'
 import {createFilteredFile} from './lib/createFilteredFile'
@@ -196,7 +194,7 @@ export const CreatePost = () => {
 
     return (
         <>
-            <NavButton icon={<CreateIcon />} onClick={checkData} title={t.aside.create} />
+            <NavButton icon={<SquarePlusIcon />} onClick={checkData} title={t.aside.create} />
 
             <Modal handleClose={handleClose} isOpen={isOpen} title={t.create.modalTitle}>
                 <ModalContentWrapper>

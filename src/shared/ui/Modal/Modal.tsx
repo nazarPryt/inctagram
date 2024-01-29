@@ -1,8 +1,7 @@
 import {MouseEvent, ReactNode, useEffect} from 'react'
 
-import {IconButton} from '@nazar-pryt/inctagram-ui-kit'
+import {CloseIcon, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
-import {CloseIcon} from '../../assets/icons/CloseIcon'
 import {ModalContent, ModalWrapper} from './Modal.styled'
 import {ReactPortal} from './ReactPortal'
 

@@ -1,47 +1,21 @@
-import React, {useEffect, useState} from 'react'
-
 import {Select} from '@nazar-pryt/inctagram-ui-kit'
+import {SelectOptionType} from '@nazar-pryt/inctagram-ui-kit/dist/components/Select/Select'
 import {useRouter} from 'next/router'
 
-const Country = [
-    {
-        label: 'Русский',
-        value: 'ru',
-    },
-    {
-        label: 'English',
-        value: 'en',
-    },
-]
-
 export const LangSelect = () => {
-    const {asPath, defaultLocale, pathname, push, query} = useRouter()
-    const [value, setValue] = useState(defaultLocale)
-    const changeLangHandler = (country: string) => {
-        setValue(country)
-        push({pathname, query}, asPath, {locale: country})
-        localStorage.setItem('lang', country)
+    const {asPath, locale, locales, pathname, push, query} = useRouter()
+
+    const options: SelectOptionType[] = [
+        {label: 'ru', value: 'ru'},
+        {label: 'en', value: 'en'},
+    ]
+    const changeLangHandler = (locale: string) => {
+        push({pathname, query}, asPath, {locale})
     }
-
-    useEffect(() => {
-        const lang = localStorage.getItem('lang')
-
-        if (lang) {
-            setValue(lang)
-            push({pathname, query}, asPath, {locale: lang})
-        } else {
-            push({pathname, query}, asPath, {locale: defaultLocale})
-        }
-    }, [])
 
     return (
         <div>
-            <Select
-                onChange={(value: any) => changeLangHandler(value)}
-                options={Country}
-                value={value!}
-                // width={'163px'}
-            />
+            <Select onChange={changeLangHandler} options={options} value={locale!} />
         </div>
     )
 }

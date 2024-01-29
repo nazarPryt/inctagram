@@ -1,7 +1,7 @@
 import {ChangeEvent} from 'react'
 
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {InputFile} from '@/shared/ui/InputFile/InputFile'
+import {InputFile} from '@nazar-pryt/inctagram-ui-kit'
 
 import {SelectPhotoWrapper} from './styled'
 

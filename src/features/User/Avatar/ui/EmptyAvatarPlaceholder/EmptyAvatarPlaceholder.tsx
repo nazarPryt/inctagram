@@ -1,4 +1,4 @@
-import {EmptyAvatar} from '@/shared/assets/icons/emptyAvatar'
+import {EmptyAvatar} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`

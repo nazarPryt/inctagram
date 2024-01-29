@@ -1,4 +1,4 @@
-import PaypalIcon from '@/shared/assets/icons/paypal.svg'
+import {PaypalIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 import {PayPalWrapper} from './PayPal.styled'
 

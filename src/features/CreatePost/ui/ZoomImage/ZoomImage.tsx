@@ -1,7 +1,7 @@
 import {ChangeEvent} from 'react'
 
-import ZoomIcon from '@/shared/assets/icons/zoom.svg'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {IconButton, Zoom} from '@nazar-pryt/inctagram-ui-kit'
 
 import {createPostAC} from '../../model/slice/createPostSlice'
 import {editorPanelAC} from '../../model/slice/editorPanelSlice'
@@ -24,7 +24,9 @@ export const ZoomImage = () => {
 
     return (
         <div className={`zoom ${onZoom && 'active'}`} onClick={handleClickZoom}>
-            <ZoomIcon onClick={handleClickZoom} />
+            <IconButton onClick={handleClickZoom}>
+                <Zoom />
+            </IconButton>
             <ZoomWrapper hidden={onZoom}>
                 <input
                     max={12}

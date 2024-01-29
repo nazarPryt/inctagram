@@ -1,7 +1,6 @@
 import {ComponentPropsWithoutRef} from 'react'
 
-import {Notification} from '@/features/Notification/ui/Notification/Notification'
-import {ThemeSwitcher} from '@/features/ThemeSwitcher/ThemeSwitcher'
+import {BurgerMenu} from '@/features/Burger/ui/BurgerMenu/BurgerMenu'
 import {PATH} from '@/shared/constants/PATH'
 import {LangSelect} from '@/shared/ui/LangaugeSelect/LangSelect'
 import dynamic from 'next/dynamic'
@@ -16,13 +15,13 @@ const DynamicBurgerMenu = dynamic(() =>
 export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
     return (
         <HeaderStyled {...props}>
-            <DynamicBurgerMenu className={'BurgerMenu'} />
+            <BurgerMenu className={'BurgerMenu'} />
             <Link className={'InctagramLogo'} href={PATH.HOME}>
                 Inctagram
             </Link>
-            <ThemeSwitcher />
+            {/*<ThemeSwitcher />*/}
             <div className={'block'}>
-                <Notification />
+                {/*<Notification />*/}
                 <LangSelect />
             </div>
         </HeaderStyled>

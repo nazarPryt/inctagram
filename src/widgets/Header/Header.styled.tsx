@@ -1,4 +1,3 @@
-import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
