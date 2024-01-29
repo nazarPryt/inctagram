@@ -1,4 +1,4 @@
-import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 
 export const HandleServerError = (error: any, dispatch: any) => {
     if (error.data.messages) {

@@ -1,5 +1,5 @@
-import {SetUser} from '@/_app/store/userSlice'
 import {api} from '@/redux/api/api'
+import {SetUser} from '@/shared/store/userSlice'
 
 type authMeDataType = {
     email: string

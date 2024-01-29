@@ -1,6 +1,6 @@
 import {UseFormSetError} from 'react-hook-form'
 
-import {SetAppNotificationAC} from '@/_app/store/appSlice'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 
 export const HandelLoginErrors = (
     error: any,

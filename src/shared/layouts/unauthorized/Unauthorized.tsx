@@ -1,6 +1,5 @@
 import {PropsWithChildren, ReactElement} from 'react'
 
-import {UnauthorizedStyled} from '@/_app/Layouts/unauthorized/Unauthorized.styled'
 import {useMeQuery} from '@/features/Auth/Me/api/Me.api'
 import {NotificationBar} from '@/features/NotificationBar/NotificationBar'
 import {PATH} from '@/shared/constants/PATH'
@@ -9,7 +8,9 @@ import {Container} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPage} from 'next'
 import {useRouter} from 'next/router'
 
-export const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
+import {UnauthorizedStyled} from './Unauthorized.styled'
+
+const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
     const router = useRouter()
     const {isSuccess} = useMeQuery()
 
@@ -20,7 +21,7 @@ export const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
     return (
         <UnauthorizedStyled>
             <Container>
-                <Header />
+                <Header isLoggedIn={isSuccess} />
             </Container>
             {children}
             <NotificationBar />

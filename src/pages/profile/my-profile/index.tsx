@@ -1,4 +1,4 @@
-import {getAuthorizedLayout} from '@/_app/Layouts/authorized/AuthorizedLayout'
+import {getAuthorizedLayout} from '@/shared/layouts/authorized'
 import {Profile} from '@/widgets/Profile/Profile'
 
 export default function MyProfilePage() {

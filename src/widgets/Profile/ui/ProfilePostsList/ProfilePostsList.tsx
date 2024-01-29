@@ -2,9 +2,9 @@ import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
 import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
 import {UserPost} from '@/entities/UserPosts/ui/UserPost'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
+import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
 export const ProfilePostsList = () => {
     const userId = useAppSelector(state => state.userAuth.userId) as number
@@ -15,7 +15,7 @@ export const ProfilePostsList = () => {
     const isNoPosts = posts && posts.items.length === 0
 
     if (isLoading) {
-        return <Loader />
+        return <ProfilePostsListSkeleton />
     }
     if (isNoPosts) {
         return <NoPosts />

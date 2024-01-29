@@ -1,5 +1,5 @@
-import {TabsSettingsType, setProfileSettingsTabsAC} from '@/_app/store/appSlice'
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {TabsSettingsType, setProfileSettingsTabsAC} from '@/shared/store/appSlice'
 import {ProfileSettingsAccordionStyled} from '@/shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion.styled'
 
 import {useAppDispatch, useAppSelector} from '../../hooks/reduxHooks'

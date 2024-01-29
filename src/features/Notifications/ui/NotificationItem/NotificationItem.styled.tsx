@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const NotificationItemWrapper = styled.div`
-    border-top: 1px solid ${props => props.theme.bodyColor['100']};
+    border-bottom: 1px solid ${props => props.theme.bodyColor['100']};
     padding: 10px 0;
 
     h4 {

@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
-import {getAuthorizedLayout} from '@/_app/Layouts/authorized/AuthorizedLayout'
 import {ViewUserPost} from '@/entities/ViewUserPost/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/get-post-api'
+import {getAuthorizedLayout} from '@/shared/layouts/authorized'
 import {UserPostsModal} from '@/widgets/UserPostsModal/UserPostsModal'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'

@@ -1,9 +1,9 @@
 import {ChangeEvent, useEffect, useRef, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
-import {SetAppNotificationAC} from '@/_app/store/appSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {Modal} from '@/shared/ui/Modal/Modal'
 import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
 import {EmptyAvatar, Loader, SquarePlusIcon} from '@nazar-pryt/inctagram-ui-kit'

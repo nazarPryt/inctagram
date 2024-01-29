@@ -1,5 +1,4 @@
-import {Select} from '@nazar-pryt/inctagram-ui-kit'
-import {SelectOptionType} from '@nazar-pryt/inctagram-ui-kit/dist/components/Select/Select'
+import {Select, SelectOptionType} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
 
 export const LangSelect = () => {
@@ -13,9 +12,5 @@ export const LangSelect = () => {
         push({pathname, query}, asPath, {locale})
     }
 
-    return (
-        <div>
-            <Select onChange={changeLangHandler} options={options} value={locale!} />
-        </div>
-    )
+    return <Select onChange={changeLangHandler} options={options} value={locale!} />
 }

@@ -1,23 +1,24 @@
 import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {ProfileAvatar} from '@/widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
-import {ProfileHeaderWrapper} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
+
+import {ProfileHeaderWrapper} from './ProfileHeader.styled'
+import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
 export const ProfileHeader = () => {
     const {t} = useTranslation()
     const {data: userData, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
-        return <Loader />
+        return <ProfileHeaderSkeleton />
     }
 
     if (userData) {
         return (
             <ProfileHeaderWrapper>
-                <ProfileAvatar src={userData.avatars[0]?.url} />
+                <Avatar size={205} src={userData.avatars[0]?.url} userName={userData.firstName} />
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>

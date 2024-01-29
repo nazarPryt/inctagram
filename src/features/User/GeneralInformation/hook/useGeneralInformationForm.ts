@@ -2,10 +2,10 @@ import {useRef} from 'react'
 import DatePicker from 'react-datepicker'
 import {useForm} from 'react-hook-form'
 
-import {SetAppNotificationAC} from '@/_app/store/appSlice'
 import {useUpdateUserMutation} from '@/features/User/GeneralInformation/api/updateUser.api'
 import {UserProfile} from '@/redux/types/authTypes'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {toDate} from 'date-fns'
 

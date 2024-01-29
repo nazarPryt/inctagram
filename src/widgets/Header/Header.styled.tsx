@@ -27,6 +27,7 @@ export const HeaderStyled = styled.header`
 
     .block {
         display: flex;
+        align-items: center;
         gap: 15px;
     }
 `

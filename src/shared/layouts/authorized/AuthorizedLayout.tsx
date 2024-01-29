@@ -11,9 +11,9 @@ import {useRouter} from 'next/router'
 
 import {AuthorizedLayoutWrapper} from './AuthorizeLayout.style'
 
-export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
+const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     const router = useRouter()
-    const {isError} = useMeQuery()
+    const {isError, isSuccess} = useMeQuery()
 
     if (isError) {
         router.push(PATH.LOGIN)
@@ -22,7 +22,7 @@ export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     return (
         <Container>
             <AuthorizedLayoutWrapper>
-                <Header />
+                <Header isLoggedIn={isSuccess} />
                 <Aside />
                 <section>{children}</section>
             </AuthorizedLayoutWrapper>

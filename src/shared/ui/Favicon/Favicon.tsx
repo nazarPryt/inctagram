@@ -1,4 +1,4 @@
-export const Favicon = (): JSX.Element => {
+export const Favicon = () => {
     return (
         <>
             <link href={'/favicons/apple-touch-icon.png'} rel={'apple-touch-icon'} sizes={'180x180'} />

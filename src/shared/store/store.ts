@@ -1,8 +1,8 @@
-import {appReducer} from '@/_app/store/appSlice'
-import {userReducer} from '@/_app/store/userSlice'
 import {createPostReducer} from '@/features/CreatePost/model/slice/createPostSlice'
 import {editorPanelReducer} from '@/features/CreatePost/model/slice/editorPanelSlice'
 import {api} from '@/redux/api/api'
+import {appReducer} from '@/shared/store/appSlice'
+import {userReducer} from '@/shared/store/userSlice'
 import {configureStore} from '@reduxjs/toolkit'
 import {setupListeners} from '@reduxjs/toolkit/query'
 

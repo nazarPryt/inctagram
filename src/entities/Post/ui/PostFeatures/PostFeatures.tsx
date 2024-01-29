@@ -8,7 +8,7 @@ import {PostFeaturesWrapper} from './PostFeatures.styled'
 export const PostFeatures = () => {
     return (
         <PostFeaturesWrapper>
-            <div>
+            <div className={'features'}>
                 <LikePost />
                 <CommentPost />
                 <Share />

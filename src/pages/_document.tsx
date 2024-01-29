@@ -1,4 +1,4 @@
-import {Favicon} from '@/_app/Favicon/Favicon'
+import {Favicon} from '@/shared/ui/Favicon/Favicon'
 import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components'
 
@@ -30,11 +30,7 @@ class MyDocument extends Document {
     render() {
         return (
             <Html>
-                <Head lang={'en'}>
-                    {
-                        // @ts-ignore
-                        this.props.styleTags
-                    }
+                <Head>
                     <meta charSet={'utf-8'} />
                     <Favicon />
                 </Head>

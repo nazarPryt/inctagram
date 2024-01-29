@@ -1,9 +1,10 @@
-import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized/Unauthorized'
-import congratulationImg from '@/shared/assets/pictures/congratulation.png'
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {MergeAccountsPageWrapper} from '@/shared/styles/MergeAccountsPage'
 import {AuthContainer, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
+
+import congratulationImg from '../../../../public/pictures/congratulation.png'
 
 export default function MergeAccountsPage() {
     const {t} = useTranslation()

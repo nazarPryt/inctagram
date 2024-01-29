@@ -69,7 +69,7 @@ const SlideComponent = ({editorRef, img, prepareImageToSend}: SlidePropsType) =>
     useEffect(() => {
         const imageIndex = libraryPictures.findIndex((picture: any) => picture.id === currentImageId)
 
-        swiper.slideTo(imageIndex)
+        swiper.slideTo(imageIndex, 0)
     }, [currentImageId])
 
     return (

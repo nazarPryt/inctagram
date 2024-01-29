@@ -17,7 +17,7 @@ export const LikeComment = forwardRef<HTMLButtonElement, LikeCommentType>(({comm
     }
 
     return (
-        <LikeCommentWrapper {...rest} onClick={handleClick} ref={ref}>
+        <LikeCommentWrapper {...rest} colorful onClick={handleClick} ref={ref}>
             {like ? <LikedIcon /> : <NotLikedIcon />}
         </LikeCommentWrapper>
     )

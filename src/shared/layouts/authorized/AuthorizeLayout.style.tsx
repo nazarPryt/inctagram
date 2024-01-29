@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const AuthorizedLayoutWrapper = styled.div`
     display: grid;
+    grid-template-columns: 160px 1fr;
     grid-template-areas: 'header header header' 'aside section section' 'aside section section';
 
     header {
@@ -12,14 +13,12 @@ export const AuthorizedLayoutWrapper = styled.div`
         }
     }
     aside {
-        width: 100%;
-        max-width: 220px;
-        min-width: 145px;
         grid-area: aside;
     }
 
     section {
         grid-area: section;
+        margin-left: 20px;
     }
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {
