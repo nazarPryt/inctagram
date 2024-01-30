@@ -18,7 +18,9 @@ export const ProfileHeader = () => {
     if (userData) {
         return (
             <ProfileHeaderWrapper>
-                <Avatar size={205} src={userData.avatars[0]?.url} userName={userData.firstName} />
+                <div>
+                    <Avatar size={205} src={userData.avatars[0]?.url} userName={userData.firstName} />
+                </div>
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>

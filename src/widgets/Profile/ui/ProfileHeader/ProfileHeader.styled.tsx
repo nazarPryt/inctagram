@@ -44,4 +44,8 @@ export const ProfileHeaderWrapper = styled.div`
             flex-direction: column;
         }
     }
+    @media (max-width: ${props => props.theme.viewPort[768]}px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `

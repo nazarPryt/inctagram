@@ -138,6 +138,7 @@ export const en = {
             title: 'Add a Profile Photo',
         },
         addProfilePhoto: 'Add a Profile Photo',
+        changeProfilePhoto: 'Change Profile Photo',
         inputs: {
             aboutMe: 'About me',
             city: 'City',

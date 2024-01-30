@@ -142,6 +142,7 @@ export const ru: LocaleType = {
             title: 'Добавить фото профиля',
         },
         addProfilePhoto: 'Добавить фото профиля',
+        changeProfilePhoto: 'Изменить фото профиля',
         inputs: {
             aboutMe: 'Обо мне',
             city: 'Город',

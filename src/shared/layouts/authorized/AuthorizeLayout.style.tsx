@@ -22,6 +22,8 @@ export const AuthorizedLayoutWrapper = styled.div`
     }
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {
+        grid-template-columns: 1fr;
+
         aside {
             display: none;
         }

@@ -1,3 +1,4 @@
+import {IconColor} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const UserAvatarStyled = styled.span`
@@ -9,6 +10,8 @@ export const UserAvatarStyled = styled.span`
     border-radius: 50%;
     margin-bottom: 30px;
     background-color: ${props => props.theme.bodyColor['500']};
+
+    ${IconColor}
 
     .avatar {
         position: relative;

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Popover} from '@nazar-pryt/inctagram-ui-kit'
+import {Popover, Scrollbar} from '@nazar-pryt/inctagram-ui-kit'
 
 import {NotificationWrapper} from './Notification.styled'
 import {NotificationIcon} from './ui/NotificationIcon'
@@ -19,9 +19,26 @@ export const Notifications = () => {
         >
             <NotificationWrapper>
                 <h3>{t.header.notification.notifications}:</h3>
-                <NotificationItem isNew />
-                <NotificationItem isNew />
-                <NotificationItem isNew={false} />
+                <Scrollbar maxHeight={440}>
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew />
+                    <NotificationItem isNew={false} />
+                </Scrollbar>
             </NotificationWrapper>
         </Popover>
     )

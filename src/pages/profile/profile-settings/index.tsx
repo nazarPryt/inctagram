@@ -2,22 +2,46 @@ import {AccountManagement} from '@/features/AccountManagement/AccountManagement'
 import {Devices} from '@/features/User/Device/ui/Devices/Devices'
 import {GeneralInformation} from '@/features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
 import {MyPayments} from '@/features/User/MyPayments/ui/MyPayments'
-import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {getAuthorizedLayout} from '@/shared/layouts/authorized'
-import {ProfileSettingsWrapper} from '@/shared/styles/ProfileSettingsPage'
-import {ProfileSettingsAccordion} from '@/shared/ui/ProfileSettingsAccordion/ProfileSettingsAccordion'
+import {TabContent, Tabs} from '@nazar-pryt/inctagram-ui-kit'
 
 export default function ProfileSettingsPage() {
-    const profileSettingActiveTab = useAppSelector(state => state.app.profileSettingsTabs)
-
     return (
-        <ProfileSettingsWrapper>
-            <ProfileSettingsAccordion />
-            {profileSettingActiveTab === 'generalInformation' && <GeneralInformation />}
-            {profileSettingActiveTab === 'devices' && <Devices />}
-            {profileSettingActiveTab === 'accountManagement' && <AccountManagement />}
-            {profileSettingActiveTab === 'myPayments' && <MyPayments />}
-        </ProfileSettingsWrapper>
+        <Tabs
+            defaultValue={'generalInformation'}
+            fullWidth
+            tabs={[
+                {
+                    title: 'General Information',
+                    value: 'generalInformation',
+                },
+                {
+                    title: 'Devices',
+                    value: 'devices',
+                },
+                {
+                    title: 'Account Management',
+                    value: 'accountManagement',
+                },
+                {
+                    title: 'My Payments',
+                    value: 'myPayments',
+                },
+            ]}
+        >
+            <TabContent value={'generalInformation'}>
+                <GeneralInformation />
+            </TabContent>
+            <TabContent value={'devices'}>
+                <Devices />
+            </TabContent>
+            <TabContent value={'accountManagement'}>
+                <AccountManagement />
+            </TabContent>
+            <TabContent value={'myPayments'}>
+                <MyPayments />
+            </TabContent>
+        </Tabs>
     )
 }
 ProfileSettingsPage.getLayout = getAuthorizedLayout

@@ -11,6 +11,12 @@ export const HeaderStyled = styled.header`
     z-index: 2;
     background-color: ${props => props.theme.bodyColor['700']};
 
+    .block {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+
     a {
         padding: 12px 0;
         text-decoration: none;
@@ -23,11 +29,5 @@ export const HeaderStyled = styled.header`
         a {
             display: none;
         }
-    }
-
-    .block {
-        display: flex;
-        align-items: center;
-        gap: 15px;
     }
 `
