@@ -2,7 +2,7 @@ import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const CurrentSubscriptionWrapper = styled.div`
-    .container {
+    .card {
         flex-direction: row;
     }
 

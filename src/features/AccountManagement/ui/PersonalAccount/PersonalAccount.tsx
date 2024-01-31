@@ -1,6 +1,7 @@
 import {ChangeEvent, Dispatch, SetStateAction} from 'react'
 
-import {AccountManagementContainer} from '@/shared/styles/AccountManagementContainer.styled'
+import {PersonalAccountStyled} from '@/features/AccountManagement/ui/PersonalAccount/PersonalAccount.styled'
+import {Card} from '@/shared/ui/Card/Card'
 import {RadioInput} from '@nazar-pryt/inctagram-ui-kit'
 
 import {Option} from '../../AccountManagement'
@@ -15,9 +16,9 @@ export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) =>
     }
 
     return (
-        <>
+        <PersonalAccountStyled>
             <h4> Account type:</h4>
-            <AccountManagementContainer>
+            <Card className={'card'}>
                 <RadioInput
                     checked={selectedValue === 'personal'}
                     label={'Personal'}
@@ -30,7 +31,7 @@ export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) =>
                     onChange={handleRadioChange}
                     value={'business'}
                 />
-            </AccountManagementContainer>
-        </>
+            </Card>
+        </PersonalAccountStyled>
     )
 }

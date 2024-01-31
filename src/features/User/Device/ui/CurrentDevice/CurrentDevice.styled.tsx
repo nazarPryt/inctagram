@@ -1,13 +1,11 @@
+import {Card} from '@/shared/ui/Card/Card'
 import styled from 'styled-components'
 
-export const CurrentDeviceStyled = styled.div`
+export const CurrentDeviceStyled = styled(Card)`
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 20px;
     margin-bottom: 15px;
-    background-color: ${props => props.theme.bodyColor[500]};
-    border: 1px solid ${props => props.theme.bodyColor[300]};
 
     path {
         fill: ${props => props.theme.textColor[300]};

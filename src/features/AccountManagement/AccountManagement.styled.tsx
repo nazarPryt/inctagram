@@ -4,8 +4,8 @@ export const AccountManagementWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 780px;
-    padding: 20px;
+    gap: 20px;
+    padding: 30px 0;
 
     svg {
         margin-right: 5px;

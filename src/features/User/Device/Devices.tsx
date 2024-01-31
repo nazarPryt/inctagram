@@ -1,8 +1,8 @@
-import {ActiveSession} from '@/features/User/Device/ui/ActiveSession/ActiveSession'
-import {CurrentDevice} from '@/features/User/Device/ui/CurrentDevice/CurrentDevice'
 import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {DevicesStyled} from './Devices.styled'
+import {ActiveSession} from './ui/ActiveSession/ActiveSession'
+import {CurrentDevice} from './ui/CurrentDevice/CurrentDevice'
 
 export const Devices = () => {
     const handleLogOut = () => {

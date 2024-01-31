@@ -1,5 +1,5 @@
 import {AccountManagement} from '@/features/AccountManagement/AccountManagement'
-import {Devices} from '@/features/User/Device/ui/Devices/Devices'
+import {Devices} from '@/features/User/Device/Devices'
 import {GeneralInformation} from '@/features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
 import {MyPayments} from '@/features/User/MyPayments/ui/MyPayments'
 import {getAuthorizedLayout} from '@/shared/layouts/authorized'

@@ -12,5 +12,5 @@ export const LangSelect = () => {
         push({pathname, query}, asPath, {locale})
     }
 
-    return <Select onChange={changeLangHandler} options={options} value={locale!} />
+    return <Select onChange={changeLangHandler} options={options} value={locale!} width={80} />
 }

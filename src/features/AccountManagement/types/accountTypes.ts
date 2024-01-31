@@ -5,7 +5,7 @@ export type NewSubscriptionType = {
     typeSubscription: SubscriptionType
 }
 
-export type SubscriptionType = 'MONTHLY' | 'SEMI_ANNUALLY' | 'YEARLY'
+export type SubscriptionType = 'DAY' | 'MONTHLY' | 'WEEKLY'
 
 export type PaymentType = 'PAYPAL' | 'STRIPE'
 
@@ -13,7 +13,7 @@ export type ResponseCreateSubscriptionType = {
     url: string
 }
 
-export type Data = {
+export type SubscriptionDataType = {
     amount: number
     typeDescription: SubscriptionType
 }

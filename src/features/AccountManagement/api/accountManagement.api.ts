@@ -2,9 +2,9 @@ import {api} from '@/redux/api/api'
 
 import {
     CurrentSubscriptionResponseType,
-    Data,
     NewSubscriptionType,
     ResponseCreateSubscriptionType,
+    SubscriptionDataType,
 } from '../types/accountTypes'
 
 export const accountManagementAPI = api.injectEndpoints({
@@ -22,7 +22,7 @@ export const accountManagementAPI = api.injectEndpoints({
                 url: `subscriptions/current-subscriptions`,
             }),
         }),
-        getSubscriptionCosts: build.query<Data[], void>({
+        getSubscriptionCosts: build.query<{data: SubscriptionDataType[]}, void>({
             query: () => ({
                 method: 'GET',
                 url: `subscriptions/cost-of-subscriptions`,
