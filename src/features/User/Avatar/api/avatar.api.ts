@@ -4,6 +4,7 @@ import {UserAvatar} from '@/redux/types/profileTypes'
 export const avatarAPI = api.injectEndpoints({
     endpoints: build => ({
         deleteAvatar: build.mutation({
+            invalidatesTags: ['User'],
             query: body => ({
                 body,
                 method: 'DELETE',

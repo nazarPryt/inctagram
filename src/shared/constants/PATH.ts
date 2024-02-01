@@ -3,16 +3,13 @@ export const PATH = {
     EXPIRED_LINK: '/auth/email-resending',
     FAVORITES: '/profile/favorites',
     FORGOT_PASSWORD: '/auth/forgot-password',
-    // Aside
     HOME: '/profile',
     LOG_OUT: '/auth/logout',
-    // Auth
     LOGIN: '/auth/login',
     MESSENGER: '/profile/messenger',
     MY_PROFILE: '/profile/my-profile',
     PRIVACY_POLICY: '/auth/privacy-policy',
-
-    PROFILE_SETTINGS: '/profile/profile-settings',
+    PROFILE_SETTINGS: '/profile/settings',
     REGISTRATION: '/auth/registration',
     REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
     SEARCH: '/profile/search',

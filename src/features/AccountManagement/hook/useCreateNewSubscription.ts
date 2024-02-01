@@ -9,6 +9,7 @@ import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {PaymentType, SubscriptionType} from '../types/accountTypes'
 
 const urlToRedirect = `${process.env.NEXT_PUBLIC_DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+
 const schema = yup.object({
     amount: yup.number().default(10).required(),
     baseUrl: yup.string().default(urlToRedirect).required(),
@@ -20,7 +21,7 @@ type FormData = yup.InferType<typeof schema>
 
 export const useCreateNewSubscription = () => {
     const router = useRouter()
-    const [createNewSubscription] = useCreateNewSubscriptionMutation()
+    const [createNewSubscription, {isLoading: isMakingPayment}] = useCreateNewSubscriptionMutation()
     const {
         control,
         formState: {errors, isValid},
@@ -49,6 +50,7 @@ export const useCreateNewSubscription = () => {
         control,
         errors,
         handleSubmit: handleSubmit(onSubmit),
+        isMakingPayment,
         isValid,
         setValue,
         ...rest,

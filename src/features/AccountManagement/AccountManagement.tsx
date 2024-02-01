@@ -1,30 +1,21 @@
 import {useState} from 'react'
 
 import {AccountManagementWrapper} from './AccountManagement.styled'
-import {useGetCurrentSubscriptionQuery} from './api/accountManagement.api'
+import {useShowCurrentSubscription} from './hook/useShowCurrentSubscription'
 import {BusinessAccount} from './ui/BusinessAccount/BusinessAccount'
-import {CurrentSubscription} from './ui/CurrentSubscription/CurrentSubscription'
 import {PersonalAccount} from './ui/PersonalAccount/PersonalAccount'
 
-export type Option = 'business' | 'personal'
+export type AccountTypeOption = 'business' | 'personal'
 
 export const AccountManagement = () => {
-    const {data: subscriptions, isLoading} = useGetCurrentSubscriptionQuery()
-    const [selectedValue, setSelectedValue] = useState<Option>('personal')
+    const {renderCurrentSubscription} = useShowCurrentSubscription() //todo ask if its ok? (return render component from hook)
+    const [accountType, setAccountType] = useState<AccountTypeOption>('personal')
 
     return (
         <AccountManagementWrapper>
-            {subscriptions &&
-                subscriptions.data.length > 0 &&
-                subscriptions.data.map(subscription => (
-                    <CurrentSubscription
-                        expireAt={subscription.dateOfPayment}
-                        key={subscription.subscriptionId}
-                        nextPayment={subscription.endDateOfSubscription}
-                    />
-                ))}
-            <PersonalAccount selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
-            {selectedValue === 'business' && <BusinessAccount />}
+            {renderCurrentSubscription()}
+            <PersonalAccount accountType={accountType} setAccountType={setAccountType} />
+            {accountType === 'business' && <BusinessAccount />}
         </AccountManagementWrapper>
     )
 }

@@ -32,6 +32,12 @@ export function ThemeStyled({children}: {children: ReactNode}) {
                 html {
                     font-family: ${inter.style.fontFamily};
                 }
+                body,
+                header {
+                    transition:
+                        200ms background-color,
+                        200ms color;
+                }
             `}</style>
             <GlobalStyles />
             {children}

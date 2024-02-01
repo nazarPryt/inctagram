@@ -7,6 +7,10 @@ export const AccountManagementWrapper = styled.div`
     gap: 20px;
     padding: 30px 0;
 
+    .skeleton {
+        width: 100%;
+    }
+
     svg {
         margin-right: 5px;
     }

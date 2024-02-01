@@ -1,7 +1,7 @@
 import {Controller} from 'react-hook-form'
 
 import {Card} from '@/shared/ui/Card/Card'
-import {IconButton, RadioInput} from '@nazar-pryt/inctagram-ui-kit'
+import {IconButton, Loader, RadioInput, Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
 import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
@@ -10,9 +10,8 @@ import {StripeIcon} from '../../icons/stripeIcon'
 import {BusinessFormWrapper} from './BusinessAccount.styled'
 
 export const BusinessAccount = () => {
-    const {data: costs} = useGetSubscriptionCostsQuery()
-
-    const {control, handleSubmit, setValue} = useCreateNewSubscription()
+    const {data: costs, isLoading} = useGetSubscriptionCostsQuery()
+    const {control, handleSubmit, isMakingPayment, setValue} = useCreateNewSubscription()
 
     const handleStripePaymentType = () => {
         setValue('paymentType', 'STRIPE')
@@ -27,12 +26,15 @@ export const BusinessAccount = () => {
 
     return (
         <BusinessFormWrapper onSubmit={handleSubmit}>
+            {isMakingPayment && <Loader />}
             <h4>Your subscription costs:</h4>
+
             <Controller
                 control={control}
                 name={'typeSubscription'}
                 render={({field: {onChange, value}}) => (
                     <Card className={'card'}>
+                        {isLoading && <Skeleton containerClassName={'skeleton'} count={3} height={20} />}
                         {costs &&
                             costs.data.map(subscription => (
                                 <RadioInput
@@ -47,11 +49,11 @@ export const BusinessAccount = () => {
                 )}
             />
             <div className={'paymentButtonsBox'}>
-                <IconButton onClick={handlePaypalPaymentType}>
+                <IconButton disabled={isMakingPayment} onClick={handlePaypalPaymentType}>
                     <PaypalIcon />
                 </IconButton>
                 or
-                <IconButton onClick={handleStripePaymentType}>
+                <IconButton disabled={isMakingPayment} onClick={handleStripePaymentType}>
                     <StripeIcon />
                 </IconButton>
             </div>

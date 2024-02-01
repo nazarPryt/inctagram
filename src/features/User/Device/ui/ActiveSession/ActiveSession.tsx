@@ -1,8 +1,8 @@
-import {ActiveSessionStyled} from '@/features/User/Device/ui/ActiveSession/ActiveSession.styled'
-import {MobileIcon} from '@/features/User/Device/ui/icons/MobileIcon'
-import {PcIcon} from '@/features/User/Device/ui/icons/PCIcon'
-import {NavButton} from '@/widgets/Aside/ui/NavButton/NavButton'
-import {LogOutIcon} from '@nazar-pryt/inctagram-ui-kit'
+import {LogOutIcon, NavButton} from '@nazar-pryt/inctagram-ui-kit'
+
+import {MobileIcon} from '../icons/MobileIcon'
+import {PcIcon} from '../icons/PCIcon'
+import {ActiveSessionStyled} from './ActiveSession.styled'
 
 type PropsType = {
     IP: string

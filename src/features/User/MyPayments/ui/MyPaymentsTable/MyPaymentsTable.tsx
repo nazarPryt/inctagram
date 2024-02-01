@@ -21,7 +21,7 @@ export const MyPaymentsTable = (props: PropsType) => {
             <TableBody>
                 {props.payments.map(subscription => {
                     return (
-                        <TableRow key={subscription.subscriptionId}>
+                        <TableRow key={subscription.dateOfPayment}>
                             <TableCell>{new Date(subscription.dateOfPayment).toLocaleDateString('ru-RU')}</TableCell>
                             <TableCell>
                                 {new Date(subscription.endDateOfSubscription).toLocaleDateString('ru-RU')}

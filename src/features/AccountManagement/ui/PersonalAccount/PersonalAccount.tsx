@@ -4,15 +4,15 @@ import {PersonalAccountStyled} from '@/features/AccountManagement/ui/PersonalAcc
 import {Card} from '@/shared/ui/Card/Card'
 import {RadioInput} from '@nazar-pryt/inctagram-ui-kit'
 
-import {Option} from '../../AccountManagement'
+import {AccountTypeOption} from '../../AccountManagement'
 
 type PropsType = {
-    selectedValue: Option
-    setSelectedValue: Dispatch<SetStateAction<Option>>
+    accountType: AccountTypeOption
+    setAccountType: Dispatch<SetStateAction<AccountTypeOption>>
 }
-export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) => {
+export const PersonalAccount = ({accountType, setAccountType}: PropsType) => {
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedValue(event.target.value as Option)
+        setAccountType(event.target.value as AccountTypeOption)
     }
 
     return (
@@ -20,13 +20,13 @@ export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) =>
             <h4> Account type:</h4>
             <Card className={'card'}>
                 <RadioInput
-                    checked={selectedValue === 'personal'}
+                    checked={accountType === 'personal'}
                     label={'Personal'}
                     onChange={handleRadioChange}
                     value={'personal'}
                 />
                 <RadioInput
-                    checked={selectedValue === 'business'}
+                    checked={accountType === 'business'}
                     label={'Business'}
                     onChange={handleRadioChange}
                     value={'business'}

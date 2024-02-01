@@ -9,6 +9,11 @@ export const BusinessFormWrapper = styled.form`
         display: flex;
         flex-direction: column;
         gap: 10px;
+
+        .skeleton {
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     .paymentButtonsBox {

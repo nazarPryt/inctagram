@@ -1,5 +1,4 @@
-import {ChromeIcon} from '@/features/User/Device/ui/icons/ChromeIcon'
-
+import {ChromeIcon} from '../icons/ChromeIcon'
 import {CurrentDeviceStyled} from './CurrentDevice.styled'
 
 type PropsType = {
