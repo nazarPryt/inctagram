@@ -1,28 +1,33 @@
-import {DeviceType} from '@/features/User/Device/api/devices.types'
 import {api} from '@/redux/api/api'
+
+import {DeviceType} from './devices.types'
 
 export const devicesAPI = api.injectEndpoints({
     endpoints: build => ({
-        deleteSession: build.mutation({
-            query: deviceId => ({
-                method: 'DELETE',
-                url: `sessions/${deviceId}`,
-            }),
-        }),
-
         getAllSessions: build.query<DeviceType[], void>({
+            providesTags: ['Sessions'],
             query: () => ({
                 url: `sessions`,
             }),
         }),
 
         terminateAllSessions: build.mutation<void, void>({
+            invalidatesTags: ['Sessions'],
             query: () => ({
                 method: 'DELETE',
                 url: `sessions/terminate-all`,
             }),
         }),
+
+        terminateSession: build.mutation({
+            invalidatesTags: ['Sessions'],
+            query: deviceId => ({
+                method: 'DELETE',
+                url: `sessions/${deviceId}`,
+            }),
+        }),
     }),
+    overrideExisting: true,
 })
 
-export const {useDeleteSessionMutation, useGetAllSessionsQuery, useTerminateAllSessionsMutation} = devicesAPI
+export const {useGetAllSessionsQuery, useTerminateAllSessionsMutation, useTerminateSessionMutation} = devicesAPI

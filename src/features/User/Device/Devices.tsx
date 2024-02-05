@@ -1,51 +1,71 @@
-import {useGetAllSessionsQuery} from '@/features/User/Device/api/devices.api'
 import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {DevicesStyled} from './Devices.styled'
+import {useGetAllSessionsQuery} from './api/devices.api'
 import {useTerminateAllSessions} from './hook/useTerminateAllSessions'
+import {useTerminateSession} from './hook/useTerminateSession'
 import {ActiveSession} from './ui/ActiveSession/ActiveSession'
 import {CurrentDevice} from './ui/CurrentDevice/CurrentDevice'
+import {DevicesSkeleton} from './ui/DevicesSkeleton/DevicesSkeleton'
 
 export const Devices = () => {
     const {data, isLoading} = useGetAllSessionsQuery()
-
-    console.log(data, data)
+    const {handleLogOut, isTerminatingSession} = useTerminateSession()
     const {handleTerminateAllSession, isTerminatingAll} = useTerminateAllSessions()
-    const handleLogOut = () => {
-        alert('handle LogOut session')
+
+    const isButtonDisabled = isTerminatingSession || isTerminatingAll
+
+    if (isLoading) {
+        return <DevicesSkeleton />
     }
 
-    return (
-        <DevicesStyled>
-            <h1>This devices</h1>
-            <CurrentDevice online />
+    if (data && !!data.length) {
+        const currentDevice = data[0] //todo wait backend for fix
 
-            <Button
-                className={'terminateAllSession'}
-                disabled={isTerminatingAll}
-                onClick={handleTerminateAllSession}
-                variant={'outlined'}
-            >
-                Terminate all other session
-            </Button>
+        return (
+            <DevicesStyled>
+                <h1>This devices</h1>
+                <CurrentDevice
+                    browserName={currentDevice.browserName}
+                    browserVersion={currentDevice.browserVersion}
+                    deviceId={currentDevice.deviceId}
+                    ip={currentDevice.ip}
+                    lastActive={currentDevice.lastActive}
+                    online
+                    osName={currentDevice.osName}
+                    osVersion={currentDevice.osVersion}
+                />
 
-            <h1>Active sessions</h1>
-            <div>
-                <ActiveSession
-                    IP={'22.345.345.12'}
-                    deviceName={'Apple iMac 27'}
-                    deviceType={'PC'}
-                    handleLogOut={handleLogOut}
-                    lastVisit={'22.09.2022'}
-                />
-                <ActiveSession
-                    IP={'22.345.345.12'}
-                    deviceName={'Iphone 14 Pro Max'}
-                    deviceType={'Phone'}
-                    handleLogOut={handleLogOut}
-                    lastVisit={'22.09.2022'}
-                />
-            </div>
-        </DevicesStyled>
-    )
+                <Button
+                    className={'terminateAllSession'}
+                    disabled={isButtonDisabled}
+                    onClick={handleTerminateAllSession}
+                    variant={'outlined'}
+                >
+                    Terminate all other session
+                </Button>
+
+                <h1>Active sessions</h1>
+                <div className={'allSessionsBox'}>
+                    {data.map(session => {
+                        return (
+                            <ActiveSession
+                                IP={session.ip}
+                                browserName={`${session.browserName} ${session.browserVersion}`}
+                                deviceId={session.deviceId}
+                                deviceName={`${session.osName} ${session.osVersion}`}
+                                deviceType={'PC'}
+                                disabled={isButtonDisabled}
+                                handleLogOut={handleLogOut}
+                                key={session.deviceId}
+                                lastVisit={session.lastActive}
+                            />
+                        )
+                    })}
+                </div>
+            </DevicesStyled>
+        )
+    }
+
+    return null
 }

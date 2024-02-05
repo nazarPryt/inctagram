@@ -5,8 +5,11 @@ export const CurrentDeviceStyled = styled(Card)`
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 15px;
 
+    .deviceIcon {
+        width: 36px;
+        height: 36px;
+    }
     path {
         fill: ${props => props.theme.textColor[300]};
     }
