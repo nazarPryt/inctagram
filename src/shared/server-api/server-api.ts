@@ -1,4 +1,6 @@
+import {PostsType} from '@/entities/UserPosts/api/types'
 import {accessToken, refreshToken} from '@/shared/constants/constants'
+import {PublicProfileType} from '@/shared/server-api/server-api.type'
 import {PublicPostsType} from '@/widgets/PublicPostsList/api/publicPosts.type'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
@@ -115,11 +117,9 @@ const publicAPI = axios.create({
 })
 
 export const serverPublicAPI = {
-    async getAllPublicPosts() {
+    async getAllPublicPosts(params: any) {
         try {
-            const res = await publicAPI.get<PublicPostsType>(`public-posts/all`)
-
-            return res.data.items
+            return await publicAPI.get<PublicPostsType>(`public-posts/all`, {params})
         } catch (e) {
             console.log(e)
         }
@@ -129,6 +129,20 @@ export const serverPublicAPI = {
             const res = await publicAPI.get<{totalCount: number}>(`public-user`)
 
             return res.data.totalCount
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    async getPublicUserProfile(profileId: number) {
+        try {
+            return await publicAPI.get<PublicProfileType>(`public-user/profile/${profileId}`)
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    async getUserPosts(profileId: number) {
+        try {
+            return await publicAPI.get<PostsType>(`public-posts/user/${profileId}`)
         } catch (e) {
             console.log(e)
         }

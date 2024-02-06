@@ -5,10 +5,7 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 
 import {PostPhotosStyled} from './PostPhotos.styled'
 
-type PostItemType = {
-    photos: PublicPostsTypeItemsImages[]
-}
-export const PostPhotos = ({photos}: PostItemType) => {
+export const PostPhotos = ({images}: {images: PublicPostsTypeItemsImages[]}) => {
     return (
         <PostPhotosStyled>
             <Swiper
@@ -21,7 +18,7 @@ export const PostPhotos = ({photos}: PostItemType) => {
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {photos.map((photo, index) => {
+                {images.map((photo, index) => {
                     if (photo.height === 360) {
                         return (
                             <SwiperSlide className={'slide'} key={index}>

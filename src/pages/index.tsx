@@ -1,7 +1,7 @@
 import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
 import {PublicPostsList} from '@/widgets/PublicPostsList/PublicPostsList'
-import {PublicPostsType, PublicPostsTypeItems} from '@/widgets/PublicPostsList/api/publicPosts.type'
+import {PublicPostsTypeItems} from '@/widgets/PublicPostsList/api/publicPosts.type'
 import {RegisteredUsers} from '@/widgets/RegisteredUsers/RegisteredUsers'
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
@@ -10,15 +10,19 @@ type PropsType = {
     totalCount: number
 }
 export const getStaticProps = (async context => {
-    const totalCount = await serverPublicAPI.getAllUsersCount()
-    const posts = await serverPublicAPI.getAllPublicPosts()
+    const params = {pageSize: 4, sortDirection: 'desc'}
 
-    console.log('posts', posts)
+    const totalCount = await serverPublicAPI.getAllUsersCount()
+    const res = await serverPublicAPI.getAllPublicPosts(params)
+    const posts = res!.data.items
+
     if (totalCount && posts) {
+        console.log('posts', posts)
+
         return {props: {posts, totalCount}}
     }
 
-    return {props: {posts: [], totalCount: 0}}
+    return {notFound: true}
 }) satisfies GetStaticProps<PropsType>
 
 const Home = ({posts, totalCount}: InferGetStaticPropsType<typeof getStaticProps>) => {

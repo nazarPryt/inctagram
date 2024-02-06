@@ -5,14 +5,11 @@ import {PostItemStyled} from '../PostItem/PostItem.styled'
 import {PostPhotos} from '../PostPhotos/PostPhotos'
 import {PostUserInfo} from '../PostUserInfo/PostUserInfo'
 
-type PostItemType = {
-    post: PublicPostsTypeItems
-}
-export const PostItem = ({post}: PostItemType) => {
+export const PostItem = ({post}: {post: PublicPostsTypeItems}) => {
     return (
         <PostItemStyled>
-            <PostPhotos photos={post.images} />
-            <PostUserInfo avatarOwner={post.avatarOwner} userName={post.userName} />
+            <PostPhotos images={post.images} />
+            <PostUserInfo avatarOwner={post.avatarOwner} ownerId={post.ownerId} userName={post.userName} />
             <PostDescription createdAt={post.createdAt} description={post.description} />
         </PostItemStyled>
     )

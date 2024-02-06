@@ -16,19 +16,20 @@ const DynamicBurgerMenu = dynamic(() =>
 
 type HeaderType = {
     isLoggedIn: boolean
+    publicMode?: boolean
 } & ComponentPropsWithoutRef<'div'>
-export const Header = ({isLoggedIn, ...rest}: HeaderType) => {
+export const Header = ({isLoggedIn, publicMode = false, ...rest}: HeaderType) => {
     return (
         <HeaderStyled {...rest}>
-            <DynamicBurgerMenu className={'BurgerMenu'} />
-            <Link className={'InctagramLogo'} href={PATH.HOME}>
+            {!publicMode && <DynamicBurgerMenu className={'BurgerMenu'} />}
+            <Link className={'InctagramLogo'} href={'/'}>
                 Inctagram
             </Link>
             <ThemeSwitcher />
             <div className={'block'}>
                 {isLoggedIn && <Notifications />}
                 <LangSelect />
-                {!isLoggedIn && (
+                {publicMode && (
                     <>
                         <Button asT={Link} href={PATH.LOGIN} variant={'outlined'}>
                             Log In

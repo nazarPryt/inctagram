@@ -10,12 +10,18 @@ import {NotificationItem} from './ui/NotificationItem'
 export const Notifications = () => {
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+    const [notificationCount, setNotificationCount] = useState(5)
+
+    const handleOpenPopover = () => {
+        setIsPopoverOpen(prev => !prev)
+        setNotificationCount(0)
+    }
 
     return (
         <Popover
-            icon={<NotificationIcon notificationCount={5} />}
+            icon={<NotificationIcon notificationCount={notificationCount} />}
             isOpen={isPopoverOpen}
-            onOpenChange={setIsPopoverOpen}
+            onOpenChange={handleOpenPopover}
         >
             <NotificationWrapper>
                 <h3>{t.header.notification.notifications}:</h3>

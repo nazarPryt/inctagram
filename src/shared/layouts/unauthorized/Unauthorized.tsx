@@ -21,7 +21,7 @@ const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
     return (
         <UnauthorizedStyled>
             <Container>
-                <Header isLoggedIn={isSuccess} />
+                <Header isLoggedIn={isSuccess} publicMode />
                 {children}
             </Container>
             <NotificationBar />
