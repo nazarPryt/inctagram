@@ -1,32 +1,33 @@
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized/Unauthorized'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {serverPublicAPI} from '@/shared/server-api/server-api'
+import {PublicPostsList} from '@/widgets/PublicPostsList/PublicPostsList'
+import {PublicPostsType, PublicPostsTypeItems} from '@/widgets/PublicPostsList/api/publicPosts.type'
+import {RegisteredUsers} from '@/widgets/RegisteredUsers/RegisteredUsers'
+import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
-// export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-//     const user = await serverAuthAPI.authMe(ctx)
-//
-//     console.log('serverAuthAPI.authMe (user): ', user)
-//     if (user) {
-//         return {
-//             props: {
-//                 user,
-//             },
-//             redirect: {
-//                 destination: PATH.HOME,
-//                 permanent: true,
-//             },
-//         }
-//     } else {
-//         return {
-//             redirect: {
-//                 destination: PATH.LOGIN,
-//                 permanent: true,
-//             },
-//         }
-//     }
-// }
+type PropsType = {
+    posts: PublicPostsTypeItems[]
+    totalCount: number
+}
+export const getStaticProps = (async context => {
+    const totalCount = await serverPublicAPI.getAllUsersCount()
+    const posts = await serverPublicAPI.getAllPublicPosts()
 
-const Home = () => {
-    return <Loader />
+    console.log('posts', posts)
+    if (totalCount && posts) {
+        return {props: {posts, totalCount}}
+    }
+
+    return {props: {posts: [], totalCount: 0}}
+}) satisfies GetStaticProps<PropsType>
+
+const Home = ({posts, totalCount}: InferGetStaticPropsType<typeof getStaticProps>) => {
+    return (
+        <>
+            <RegisteredUsers totalCount={totalCount} />
+            <PublicPostsList posts={posts} />
+        </>
+    )
 }
 
 Home.getLayout = getLayoutWithHeader

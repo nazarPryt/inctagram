@@ -1,4 +1,5 @@
 import {accessToken, refreshToken} from '@/shared/constants/constants'
+import {PublicPostsType} from '@/widgets/PublicPostsList/api/publicPosts.type'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
@@ -6,9 +7,9 @@ import nookies from 'nookies'
 //https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
 // const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string
 
-export const customAxios = (ctx: GetServerSidePropsContext) => {
-    const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
 
+export const customAxios = (ctx: GetServerSidePropsContext) => {
     const instance = axios.create({
         baseURL,
         withCredentials: true,
@@ -108,6 +109,31 @@ export const serverAuthAPI = {
     },
 }
 
+const publicAPI = axios.create({
+    baseURL,
+    withCredentials: true,
+})
+
+export const serverPublicAPI = {
+    async getAllPublicPosts() {
+        try {
+            const res = await publicAPI.get<PublicPostsType>(`public-posts/all`)
+
+            return res.data.items
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    async getAllUsersCount() {
+        try {
+            const res = await publicAPI.get<{totalCount: number}>(`public-user`)
+
+            return res.data.totalCount
+        } catch (e) {
+            console.log(e)
+        }
+    },
+}
 /////////////////////////////////////////////////////////////////////////
 
 type authMeDataType = {

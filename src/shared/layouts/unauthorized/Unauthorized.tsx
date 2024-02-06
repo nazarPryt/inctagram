@@ -22,8 +22,8 @@ const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
         <UnauthorizedStyled>
             <Container>
                 <Header isLoggedIn={isSuccess} />
+                {children}
             </Container>
-            {children}
             <NotificationBar />
         </UnauthorizedStyled>
     )

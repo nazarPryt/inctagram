@@ -1,3 +1,4 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
@@ -17,16 +18,16 @@ export const HeaderStyled = styled.header`
         gap: 50px;
     }
 
-    a {
+    .InctagramLogo {
         padding: 12px 0;
         text-decoration: none;
-        ${props => props.theme.typography.Large};
+        ${typography.Large};
 
         color: ${props => props.theme.textColor['100']};
     }
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {
-        a {
+        .InctagramLogo {
             display: none;
         }
     }

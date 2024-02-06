@@ -3,7 +3,7 @@ export const PATH = {
     EXPIRED_LINK: '/auth/email-resending',
     FAVORITES: '/profile/favorites',
     FORGOT_PASSWORD: '/auth/forgot-password',
-    HOME: '/profile',
+    HOME: '/',
     LOG_OUT: '/auth/logout',
     LOGIN: '/auth/login',
     MESSENGER: '/profile/messenger',

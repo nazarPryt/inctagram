@@ -1,0 +1,1 @@
+export { PostsListSkeleton } from './PostsListSkeleton'
