@@ -1,7 +1,7 @@
+import {AllPostsType} from '@/entities/Post/api/all-posts-api.type'
 import {PostsType} from '@/entities/UserPosts/api/types'
 import {accessToken, refreshToken} from '@/shared/constants/constants'
 import {PublicProfileType} from '@/shared/server-api/server-api.type'
-import {PublicPostsType} from '@/widgets/PublicPostsList/api/publicPosts.type'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
@@ -111,19 +111,12 @@ export const serverAuthAPI = {
     },
 }
 
-const publicAPI = axios.create({
+export const publicAPI = axios.create({
     baseURL,
     withCredentials: true,
 })
 
 export const serverPublicAPI = {
-    async getAllPublicPosts(params: any) {
-        try {
-            return await publicAPI.get<PublicPostsType>(`public-posts/all`, {params})
-        } catch (e) {
-            console.log(e)
-        }
-    },
     async getAllUsersCount() {
         try {
             const res = await publicAPI.get<{totalCount: number}>(`public-user`)

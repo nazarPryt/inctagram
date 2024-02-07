@@ -1,22 +1,26 @@
 import {useState} from 'react'
 
+import {AllPostsTypeItemsOwner} from '@/entities/Post/api/all-posts-api.type'
 import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {AvatarIcon} from '@/shared/ui/AvatarIcon/AvatarIcon'
-import {PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
+import {formatDistance, subDays} from 'date-fns'
 import Link from 'next/link'
 
 import {PostHeaderWrapper} from './PostHeader.styled'
 import {PopOverIcon} from './popOverIcon'
 
 type PostHeaderType = {
-    img: string
-    userID: number
+    avatarOwner: string
+    createdAt: string
+    owner: AllPostsTypeItemsOwner
+    ownerId: number
+    userName: string
 }
 
-export const PostHeader = ({img, userID}: PostHeaderType) => {
+export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, userName}: PostHeaderType) => {
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleActionOne = () => {
@@ -31,15 +35,16 @@ export const PostHeader = ({img, userID}: PostHeaderType) => {
         console.log('Action Three')
         setIsPopoverOpen(false)
     }
+    const day = formatDistance(subDays(new Date(createdAt), 0), new Date(), {addSuffix: true})
 
     return (
         <PostHeaderWrapper>
             <div className={'PostHeader'}>
-                <AvatarIcon img={img} userID={userID} />
-                <Link className={'link'} href={`${PATH.USER_PROFILE}/${userID}`}>
-                    URLProfile
+                <Avatar alt={'ds'} size={40} src={avatarOwner} userName={userName} />
+                <Link className={'link'} href={`${PATH.USER_PROFILE}/${ownerId}`}>
+                    {userName}
                 </Link>
-                <span>22 {t.home.minutesAgo}</span>
+                <span>{day}</span>
             </div>
             <Popover icon={<PopOverIcon />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />

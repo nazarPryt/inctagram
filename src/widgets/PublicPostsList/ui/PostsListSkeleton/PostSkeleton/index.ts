@@ -1,1 +1,0 @@
-export { PostSkeleton } from './PostSkeleton'

@@ -5,8 +5,7 @@ import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/Del
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
 import {PATH} from '@/shared/constants/PATH'
-import {AvatarIcon} from '@/shared/ui/AvatarIcon/AvatarIcon'
-import {DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
 import {PostByIdType} from '../../api/type'
@@ -16,9 +15,8 @@ type PropsType = {
     data: PostByIdType
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
-    userId: null | number
 }
-export const ViewUserPostHeader = ({data, edit, setEdit, userId}: PropsType) => {
+export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
 
@@ -36,9 +34,9 @@ export const ViewUserPostHeader = ({data, edit, setEdit, userId}: PropsType) => 
             />
             <ViewUserPostHeaderWrapper>
                 <div className={'avaLink'}>
-                    <AvatarIcon img={'https://loremflickr.com/500/500'} userID={userId} />
-                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${userId}`}>
-                        URLProfile
+                    <Avatar alt={`${data.userName} avatar`} size={40} src={data.avatarOwner} userName={data.userName} />
+                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${data.ownerId}`}>
+                        {data.userName}
                     </Link>
                 </div>
                 {!edit && (

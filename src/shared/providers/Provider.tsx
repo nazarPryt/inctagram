@@ -9,6 +9,9 @@ import {ThemeProvider} from 'styled-components'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -27,7 +30,6 @@ export function ThemeStyled({children}: {children: ReactNode}) {
 
     return (
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <link href={'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'} rel={'stylesheet'} />
             <style global jsx>{`
                 html {
                     font-family: ${inter.style.fontFamily};

@@ -23,6 +23,7 @@ export const AuthorizedLayoutWrapper = styled.div`
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {
         grid-template-columns: 1fr;
+        grid-template-areas: 'header' 'section';
 
         aside {
             display: none;
@@ -31,6 +32,9 @@ export const AuthorizedLayoutWrapper = styled.div`
             .BurgerMenu {
                 display: block;
             }
+        }
+        section {
+            margin: 0;
         }
     }
 `

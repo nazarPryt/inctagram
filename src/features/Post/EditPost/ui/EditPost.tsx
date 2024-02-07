@@ -21,7 +21,7 @@ export const EditPost = ({data, edit, setEdit, userId}: PropsType) => {
 
     return (
         <EditPostWrapper onSubmit={handleSubmit}>
-            <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} userId={userId} />
+            <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} />
             <TextArea
                 className={'textArea'}
                 defaultValue={data.description}

@@ -1,28 +1,30 @@
-export type PublicPostsType = {
-    items: PublicPostsTypeItems[]
+export type ParamsType = {pageSize?: number; sortBy?: string; sortDirection?: 'asc' | 'desc'}
+
+export type AllPostsType = {
+    items: AllPostsTypeItems[]
     pageSize: number
     totalCount: number
     totalUsers: number
 }
-export type PublicPostsTypeItemsImages = {
+export type AllPostsTypeItemsImages = {
     fileSize: number
     height: number
     uploadId: string
     url: string
     width: number
 }
-export type PublicPostsTypeItemsOwner = {
+export type AllPostsTypeItemsOwner = {
     firstName: string
     lastName: string
 }
-export type PublicPostsTypeItems = {
+export type AllPostsTypeItems = {
     avatarOwner: string
     createdAt: string
     description: string
     id: number
-    images: PublicPostsTypeItemsImages[]
-    location: string
-    owner: PublicPostsTypeItemsOwner
+    images: AllPostsTypeItemsImages[]
+    location?: any
+    owner: AllPostsTypeItemsOwner
     ownerId: number
     updatedAt: string
     userName: string

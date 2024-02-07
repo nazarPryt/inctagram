@@ -7,7 +7,7 @@ import {ViewUserPostFeaturesWrapper} from './ViewUserPostFeatures.styled'
 export const ViewUserPostFeatures = () => {
     return (
         <ViewUserPostFeaturesWrapper>
-            <div>
+            <div className={'box'}>
                 <LikePost />
                 <Share />
             </div>

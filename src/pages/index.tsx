@@ -1,24 +1,23 @@
+import {AllPostsTypeItems, ParamsType} from '@/entities/Post/api/all-posts-api.type'
+import {getAllPublicPosts} from '@/entities/Post/api/all-posts-server-api'
 import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
 import {PublicPostsList} from '@/widgets/PublicPostsList/PublicPostsList'
-import {PublicPostsTypeItems} from '@/widgets/PublicPostsList/api/publicPosts.type'
 import {RegisteredUsers} from '@/widgets/RegisteredUsers/RegisteredUsers'
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
 type PropsType = {
-    posts: PublicPostsTypeItems[]
+    posts: AllPostsTypeItems[]
     totalCount: number
 }
 export const getStaticProps = (async context => {
-    const params = {pageSize: 4, sortDirection: 'desc'}
+    const params: ParamsType = {pageSize: 4, sortDirection: 'desc'}
 
     const totalCount = await serverPublicAPI.getAllUsersCount()
-    const res = await serverPublicAPI.getAllPublicPosts(params)
+    const res = await getAllPublicPosts(params)
     const posts = res!.data.items
 
     if (totalCount && posts) {
-        console.log('posts', posts)
-
         return {props: {posts, totalCount}}
     }
 

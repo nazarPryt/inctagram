@@ -1,11 +1,11 @@
+import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
 import {PATH} from '@/shared/constants/PATH'
-import {PublicPostsTypeItems} from '@/widgets/PublicPostsList/api/publicPosts.type'
-import {Avatar, BlockedIcon, IconButton} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
 import {PostUserInfoStyled} from './PostUserInfo.styled'
 
-type PostUserInfoType = Pick<PublicPostsTypeItems, 'avatarOwner' | 'ownerId' | 'userName'>
+type PostUserInfoType = Pick<AllPostsTypeItems, 'avatarOwner' | 'ownerId' | 'userName'>
 
 export const PostUserInfo = ({avatarOwner, ownerId, userName}: PostUserInfoType) => {
     return (

@@ -5,7 +5,7 @@ import {CreatePostResponse, UploadPost, UploadedImageResponse} from './types'
 export const createPostAPI = api.injectEndpoints({
     endpoints: build => ({
         CreatePost: build.mutation<CreatePostResponse, UploadPost>({
-            invalidatesTags: ['Posts'],
+            invalidatesTags: ['UserPosts'],
             query: body => ({
                 body,
                 method: 'POST',
@@ -13,7 +13,7 @@ export const createPostAPI = api.injectEndpoints({
             }),
         }),
         UploadImage: build.mutation<UploadedImageResponse, File | FormData>({
-            invalidatesTags: ['Posts'],
+            invalidatesTags: ['UserPosts'],
             query: body => ({
                 body,
                 method: 'POST',

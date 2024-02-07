@@ -1,11 +1,11 @@
-import {PublicPostsTypeItemsImages} from '@/widgets/PublicPostsList/api/publicPosts.type'
+import {AllPostsTypeItemsImages} from '@/entities/Post/api/all-posts-api.type'
 import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
 import {PostPhotosStyled} from './PostPhotos.styled'
 
-export const PostPhotos = ({images}: {images: PublicPostsTypeItemsImages[]}) => {
+export const PostPhotos = ({images}: {images: AllPostsTypeItemsImages[]}) => {
     return (
         <PostPhotosStyled>
             <Swiper

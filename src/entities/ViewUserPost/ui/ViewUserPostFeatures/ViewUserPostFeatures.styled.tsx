@@ -6,4 +6,7 @@ export const ViewUserPostFeaturesWrapper = styled.div`
 
     padding: 5px 0;
     border-top: 1px solid ${props => props.theme.bodyColor[100]};
+    .box {
+        display: flex;
+    }
 `

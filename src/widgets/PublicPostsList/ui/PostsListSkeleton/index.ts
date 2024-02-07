@@ -1,1 +1,0 @@
-export { PostsListSkeleton } from './PostsListSkeleton'

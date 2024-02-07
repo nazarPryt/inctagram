@@ -21,7 +21,7 @@ export const PostHeaderWrapper = styled.div`
             &:after {
                 content: '';
                 position: absolute;
-                top: 5px;
+                top: 7px;
                 right: -15px;
                 width: 8px;
                 height: 8px;
