@@ -24,7 +24,7 @@ export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
             >
                 {images.map(photo => {
                     return (
-                        <SwiperSlide key={photo.uploadId}>
+                        <SwiperSlide key={photo.url}>
                             <Image alt={'Post-Image'} height={photo.height} src={photo.url} width={photo.width} />
                         </SwiperSlide>
                     )
