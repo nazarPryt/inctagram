@@ -6,6 +6,8 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {PostImageWrapper} from './PostImage.styled'
 
 export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
+    const photosToShow = images.filter(image => image.height === 1440)
+
     return (
         <PostImageWrapper>
             <Swiper
@@ -22,7 +24,7 @@ export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {images.map(photo => {
+                {photosToShow.map(photo => {
                     return (
                         <SwiperSlide key={photo.url}>
                             <Image alt={'Post-Image'} height={photo.height} src={photo.url} width={photo.width} />
