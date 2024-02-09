@@ -4,20 +4,15 @@ import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
-import {ViewUserPostSliderWrapper} from './ViewUserPostSlider.styled'
-
-// import 'swiper/css'
-// import 'swiper/css/navigation'
-// import 'swiper/css/pagination'
-
 import {PostByIdTypeImages} from '../../api/type'
+import {ViewUserPostSliderWrapper} from './ViewUserPostSlider.styled'
 
 type PropsType = {
     images: PostByIdTypeImages[]
 } & ComponentPropsWithoutRef<'div'>
 
 export const ViewUserPostSlider = ({className, images}: PropsType) => {
-    const imagesToShow = images.filter(img => img.width === 1440).sort((a, b) => b.uploadId.localeCompare(a.uploadId))
+    const imagesToShow = images.filter(img => img.width === 1440)
 
     return (
         <ViewUserPostSliderWrapper className={className}>

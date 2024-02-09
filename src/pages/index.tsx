@@ -18,7 +18,7 @@ export const getStaticProps = (async context => {
     const posts = res!.data.items
 
     if (totalCount && posts) {
-        return {props: {posts, totalCount}}
+        return {props: {posts, totalCount}, revalidate: 60}
     }
 
     return {notFound: true}
