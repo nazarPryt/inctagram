@@ -1,9 +1,9 @@
 export type UploadedImage = {
+    fileSize: number
+    height: number
+    uploadId: string
     url: string
     width: number
-    height: number
-    fileSize: number
-    uploadId: string
 }
 
 export type UploadedImageResponse = {
@@ -15,15 +15,15 @@ export type ImageMetaData = {
 }
 
 export type CreatePostResponse = {
-    id: number
-    description: string
-    location: string
-    images: UploadedImageResponse[]
     createdAt: string
+    description: string
+    id: number
+    images: UploadedImageResponse[]
+    location: string
     updatedAt: string
 }
 
 export type UploadPost = {
-    description: string
     childrenMetadata: ImageMetaData[]
+    description: string
 }

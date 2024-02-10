@@ -1,20 +1,20 @@
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
+import {CommentWrapper} from '@/entities/Comment/ui/Comment.styled'
+import {LikeComment} from '@/features/Post/Likes/LikeComment/LikeComment'
+import {PATH} from '@/shared/constants/PATH'
+import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {CommentWrapper} from 'entities/Comment/ui/Comment.styled'
-import {LikeComment} from 'features/Post/Likes/LikeComment/LikeComment'
 
 type CommentType = {
     comment: string
-    userID: number
     img: string
     isLiked: boolean
+    userID: number
 }
 
-export const Comment = ({comment, userID, img, isLiked}: CommentType) => {
+export const Comment = ({comment, img, isLiked, userID}: CommentType) => {
     return (
         <CommentWrapper>
-            <AvatarIcon userID={userID} img={img} />
+            <Avatar src={img} />
             <div className={'content'}>
                 <Link href={`${PATH.USER_PROFILE}/${userID}`}>URLProfile</Link>
                 <p>{comment}</p>

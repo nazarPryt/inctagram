@@ -1,17 +1,17 @@
-import Image from 'next/image'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import timeManagement from 'shared/assets/pictures/timeManagement.png'
-import {Loader} from 'shared/ui/Loader/Loader'
-import {EmailResendWrapper} from 'features/Auth/ResendVerificationLink/ui/EmailResendPage'
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
-import {RegistrationModal} from 'features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
+import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
+import {useResendConfirmationLink} from '@/features/Auth/ResendVerificationLink/hook/useResendConfirmationLink'
+import {EmailResendWrapper} from '@/features/Auth/ResendVerificationLink/ui/EmailResendPage'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {AuthContainer, Button, Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
-import {useResendConfirmationLink} from 'features/Auth/ResendVerificationLink/hook/useResendConfirmationLink'
+import Image from 'next/image'
+
+import timeManagement from '../../../../public/pictures/timeManagement.png'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {email} = ctx.query
+
     return {
         props: {
             email,
@@ -20,7 +20,7 @@ export async function getServerSideProps(ctx: NextPageContext) {
 }
 export default function EmailResendingPage({email}: {email: string}) {
     const {t} = useTranslation()
-    const {isLoading, handleResend, handleModalClose, isModalOpen} = useResendConfirmationLink({email})
+    const {handleModalClose, handleResend, isLoading, isModalOpen} = useResendConfirmationLink({email})
 
     return (
         <AuthContainer>
@@ -28,11 +28,11 @@ export default function EmailResendingPage({email}: {email: string}) {
             <EmailResendWrapper>
                 <h1>{t.auth.signUp.expiredLink.title}</h1>
                 <p>{t.auth.signUp.expiredLink.description}</p>
-                <Button onClick={handleResend} disabled={isLoading}>
+                <Button disabled={isLoading} onClick={handleResend}>
                     {t.auth.signUp.expiredLink.btn}
                 </Button>
                 <span>
-                    <Image src={timeManagement} alt={'timeManagement picture'} />
+                    <Image alt={'timeManagement picture'} src={timeManagement} />
                 </span>
             </EmailResendWrapper>
             <RegistrationModal email={email} handleModalClose={handleModalClose} isOpen={isModalOpen} />

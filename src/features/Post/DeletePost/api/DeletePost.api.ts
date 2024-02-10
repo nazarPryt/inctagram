@@ -1,13 +1,13 @@
-import {api} from 'redux/api/api'
+import {api} from '@/redux/api/api'
 
 export const deleteUserPostApi = api.injectEndpoints({
     endpoints: build => ({
         deletePost: build.mutation<void, number>({
+            invalidatesTags: ['UserPosts'],
             query: postId => ({
-                url: `posts/${postId}`,
                 method: 'DELETE',
+                url: `posts/${postId}`,
             }),
-            invalidatesTags: ['Posts'],
         }),
     }),
     overrideExisting: true,

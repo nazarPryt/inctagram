@@ -1,25 +1,35 @@
-import {useDeleteUserAvatar} from 'features/User/Avatar/hook/useDeleteUserAvatar'
+import {useDeleteUserAvatar} from '@/features/User/Avatar/hook/useDeleteUserAvatar'
+import {UserAvatarStyled} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
+import {DeleteAvatar, Dialog, EmptyAvatar, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import DeleteAvatarIcon from 'shared/assets/icons/deleteAvatar.svg'
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
-import {UserAvatarStyled} from 'features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
 
 export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
-    const {handleDeleteAvatar, isLoading} = useDeleteUserAvatar()
+    const {dialog, handleCloseDialog, handleDeleteAvatar, handleOpenDialog, isLoading} = useDeleteUserAvatar()
 
     return (
-        <UserAvatarStyled>
-            {avatar ? (
-                <div className={'avatar'}>
-                    <Image src={avatar} alt={'imgUrl'} width={192} height={192} />
-                    <IconButton onClick={handleDeleteAvatar} disabled={isLoading}>
-                        <DeleteAvatarIcon />
-                    </IconButton>
-                </div>
-            ) : (
-                <EmptyAvatar />
-            )}
-        </UserAvatarStyled>
+        <>
+            <UserAvatarStyled>
+                {avatar ? (
+                    <div className={'avatar'}>
+                        <Image alt={'imgUrl'} height={192} src={avatar} width={192} />
+                        <IconButton disabled={isLoading} onClick={handleOpenDialog}>
+                            <DeleteAvatar />
+                        </IconButton>
+                    </div>
+                ) : (
+                    <EmptyAvatar />
+                )}
+            </UserAvatarStyled>
+            <Dialog
+                cancelButtonText={'No'}
+                confirmButtonText={'Yes'}
+                onCancelButtonClick={handleCloseDialog}
+                onConfirmButtonClick={handleDeleteAvatar}
+                open={dialog}
+                title={'Delete user Avatar'}
+            >
+                <p>Do you really want to delete your avatar?</p>
+            </Dialog>
+        </>
     )
 }

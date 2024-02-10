@@ -1,13 +1,14 @@
-import * as yup from 'yup'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useCreateNewPasswordMutation} from 'features/Auth/CreateNewPassword/api/createNewPassword.api'
 import {useState} from 'react'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
+import {useForm} from 'react-hook-form'
+
+import {useCreateNewPasswordMutation} from '@/features/Auth/CreateNewPassword/api/createNewPassword.api'
+import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
+import {PATH} from '@/shared/constants/PATH'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
+import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {passwordPattern, passwordPatternError} from 'features/Auth/Registration/helpers/passwordPattern'
+import * as yup from 'yup'
 
 type NewPassType = {
     newPassword: string
@@ -36,20 +37,21 @@ export const useCreateNewPassword = (recoveryCode: string) => {
     const [isOpen, setIsOpen] = useState(false)
     const [askNewPassword, {isLoading}] = useCreateNewPasswordMutation()
     const {
+        formState: {errors, isValid},
         handleSubmit,
         reset,
-        formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
-        resolver: yupResolver(schema),
         mode: 'onTouched',
         reValidateMode: 'onChange',
+        resolver: yupResolver(schema),
     })
     const onSubmit = async (data: FormData) => {
         const toSend: NewPassType = {
             newPassword: data.password,
             recoveryCode,
         }
+
         askNewPassword({...toSend})
             .unwrap()
             .then(() => {
@@ -58,7 +60,7 @@ export const useCreateNewPassword = (recoveryCode: string) => {
             .catch(() => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: 'Something went wrong, Try again please!!'},
+                        notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
                     })
                 )
             })
@@ -71,12 +73,12 @@ export const useCreateNewPassword = (recoveryCode: string) => {
     }
 
     return {
+        errors,
+        handleModalClose,
+        handleSubmit: handleSubmit(onSubmit),
         isLoading,
         isOpen,
-        handleModalClose,
         isValid,
-        handleSubmit: handleSubmit(onSubmit),
-        errors,
         ...rest,
     }
 }

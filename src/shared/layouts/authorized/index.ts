@@ -1,0 +1,1 @@
+export {getAuthorizedLayout} from './AuthorizedLayout'

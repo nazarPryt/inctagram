@@ -1,32 +1,37 @@
-import * as yup from 'yup'
 import {useForm} from 'react-hook-form'
+
+import {PATH} from '@/shared/constants/PATH'
 import {yupResolver} from '@hookform/resolvers/yup'
-import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {useRouter} from 'next/router'
+import * as yup from 'yup'
+
+import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {PaymentType, SubscriptionType} from '../types/accountTypes'
 
+const urlToRedirect = `${process.env.NEXT_PUBLIC_DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+
 const schema = yup.object({
-    typeSubscription: yup.string<SubscriptionType>().required(),
+    amount: yup.number().default(10).required(),
+    baseUrl: yup.string().default(urlToRedirect).required(),
     paymentType: yup.string<PaymentType>().required(),
-    amount: yup.number().default(1).required(),
-    baseUrl: yup.string().default(process.env.NEXT_PUBLIC_DOMAIN_URL).required(),
+    typeSubscription: yup.string<SubscriptionType>().required(),
 })
 
 type FormData = yup.InferType<typeof schema>
 
 export const useCreateNewSubscription = () => {
     const router = useRouter()
-    const [createNewSubscription] = useCreateNewSubscriptionMutation()
+    const [createNewSubscription, {isLoading: isMakingPayment}] = useCreateNewSubscriptionMutation()
     const {
-        handleSubmit,
-        setValue,
         control,
         formState: {errors, isValid},
+        handleSubmit,
+        setValue,
         ...rest
     } = useForm<FormData>({
-        resolver: yupResolver(schema),
-        defaultValues: {typeSubscription: 'MONTHLY'},
+        defaultValues: {typeSubscription: 'DAY'},
         mode: 'onChange',
+        resolver: yupResolver(schema),
     })
 
     const onSubmit = async (data: FormData) => {
@@ -42,11 +47,12 @@ export const useCreateNewSubscription = () => {
     }
 
     return {
-        isValid,
-        handleSubmit: handleSubmit(onSubmit),
-        errors,
-        setValue,
         control,
+        errors,
+        handleSubmit: handleSubmit(onSubmit),
+        isMakingPayment,
+        isValid,
+        setValue,
         ...rest,
     }
 }

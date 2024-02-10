@@ -1,5 +1,5 @@
+import {NotificationType} from '@/shared/store/appSlice'
 import styled, {css, keyframes} from 'styled-components'
-import {NotificationType} from '_app/store/appSlice'
 
 const SlideRight = keyframes`
   from {
@@ -19,6 +19,7 @@ const SlideLeft = keyframes`
     left: -120%;
   }
 `
+
 export const NotificationBarWrapper = styled.div`
     display: flex;
     flex-direction: column;

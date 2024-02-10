@@ -1,25 +1,26 @@
-import {api} from '../../../redux/api/api'
-import {CreatePostResponse, UploadedImageResponse, UploadPost} from './types'
+import {api} from '@/redux/api/api'
+
+import {CreatePostResponse, UploadPost, UploadedImageResponse} from './types'
 
 export const createPostAPI = api.injectEndpoints({
     endpoints: build => ({
-        UploadImage: build.mutation<UploadedImageResponse, FormData | File>({
-            query: body => ({
-                url: `posts/image`,
-                method: 'POST',
-                body,
-            }),
-            invalidatesTags: ['Posts'],
-        }),
         CreatePost: build.mutation<CreatePostResponse, UploadPost>({
+            invalidatesTags: ['UserPosts'],
             query: body => ({
-                url: `posts`,
-                method: 'POST',
                 body,
+                method: 'POST',
+                url: `posts`,
             }),
-            invalidatesTags: ['Posts'],
+        }),
+        UploadImage: build.mutation<UploadedImageResponse, File | FormData>({
+            invalidatesTags: ['UserPosts'],
+            query: body => ({
+                body,
+                method: 'POST',
+                url: `posts/image`,
+            }),
         }),
     }),
 })
 
-export const {useUploadImageMutation, useCreatePostMutation} = createPostAPI
+export const {useCreatePostMutation, useUploadImageMutation} = createPostAPI

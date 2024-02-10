@@ -1,15 +1,25 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {CreatePostSchema} from '../types/createPostSchema'
+import {PayloadAction, createSlice} from '@reduxjs/toolkit'
+
 import {EditorPanelSchema} from '../types/editorPanelSchema'
 
 const editorPanelSlice = createSlice({
-    name: 'createPost',
     initialState: {
+        onLibrary: false,
         onSelectResize: false,
         onZoom: false,
-        onLibrary: false,
     } as EditorPanelSchema,
+    name: 'createPost',
     reducers: {
+        setCloseAllPopup: (state: EditorPanelSchema, action: PayloadAction<boolean>) => {
+            state.onSelectResize = action.payload
+            state.onZoom = action.payload
+            state.onLibrary = action.payload
+        },
+        setOnLibrary: (state: EditorPanelSchema, action: PayloadAction<boolean>) => {
+            state.onSelectResize = false
+            state.onZoom = false
+            state.onLibrary = action.payload
+        },
         setOnSelectResize: (state: EditorPanelSchema, action: PayloadAction<boolean>) => {
             state.onSelectResize = action.payload
             state.onZoom = false
@@ -19,16 +29,6 @@ const editorPanelSlice = createSlice({
             state.onSelectResize = false
             state.onZoom = action.payload
             state.onLibrary = false
-        },
-        setOnLibrary: (state: EditorPanelSchema, action: PayloadAction<boolean>) => {
-            state.onSelectResize = false
-            state.onZoom = false
-            state.onLibrary = action.payload
-        },
-        setCloseAllPopup: (state: EditorPanelSchema, action: PayloadAction<boolean>) => {
-            state.onSelectResize = action.payload
-            state.onZoom = action.payload
-            state.onLibrary = action.payload
         },
     },
 })

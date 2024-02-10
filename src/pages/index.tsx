@@ -1,59 +1,36 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {useRouter} from 'next/router'
-import {GetServerSideProps, GetServerSidePropsContext} from 'next'
-import {serverAuthAPI} from 'shared/server-api/server-api'
-import {PATH} from 'shared/constants/PATH'
-import {Loader} from 'shared/ui/Loader'
-import nookies from 'nookies'
+import {AllPostsTypeItems, ParamsType} from '@/entities/Post/api/all-posts-api.type'
+import {getAllPublicPosts} from '@/entities/Post/api/all-posts-server-api'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {serverPublicAPI} from '@/shared/server-api/server-api'
+import {PublicPostsList} from '@/widgets/PublicPostsList/PublicPostsList'
+import {RegisteredUsers} from '@/widgets/RegisteredUsers/RegisteredUsers'
+import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
-// export const checkAuth = async (ctx: GetServerSidePropsContext) => {
-//     const cookies = nookies.get(ctx)
-//
-//     console.log('getServerSide checkAuth start')
-//     console.log('cookies: ', cookies)
-//     if ('accessToken') {
-//         const user = await serverAuthAPI.authMe('accessToken')
-//         return {
-//             props: {
-//                 user,
-//             },
-//             redirect: {
-//                 destination: PATH.HOME,
-//                 permanent: false,
-//             },
-//         }
-//     } else {
-//         return {}
-//     }
-// }
-
-export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const user = await serverAuthAPI.authMe(ctx)
-    console.log('serverAuthAPI.authMe (user): ', user)
-    if (user) {
-        return {
-            props: {
-                user,
-            },
-            redirect: {
-                destination: PATH.HOME,
-                permanent: true,
-            },
-        }
-    } else {
-        return {
-            redirect: {
-                destination: PATH.LOGIN,
-                permanent: true,
-            },
-        }
-    }
+type PropsType = {
+    posts: AllPostsTypeItems[]
+    totalCount: number
 }
+export const getStaticProps = (async context => {
+    const params: ParamsType = {pageSize: 4, sortDirection: 'desc'}
 
-const Home = ({user}: {user: any}) => {
-    const router = useRouter()
+    const totalCount = await serverPublicAPI.getAllUsersCount()
+    const res = await getAllPublicPosts(params)
+    const posts = res!.data.items
 
-    return <Loader />
+    if (totalCount && posts) {
+        return {props: {posts, totalCount}, revalidate: 60}
+    }
+
+    return {notFound: true}
+}) satisfies GetStaticProps<PropsType>
+
+const Home = ({posts, totalCount}: InferGetStaticPropsType<typeof getStaticProps>) => {
+    return (
+        <>
+            <RegisteredUsers totalCount={totalCount} />
+            <PublicPostsList posts={posts} />
+        </>
+    )
 }
 
 Home.getLayout = getLayoutWithHeader

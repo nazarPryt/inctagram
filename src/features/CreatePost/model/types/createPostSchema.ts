@@ -2,23 +2,23 @@ import {ImageMetaData} from '../../service/types'
 
 export type CreatePostSchema = {
     currentImageId: string
-    previewImage: string
-    previewFilter: string
-    previewZoom: string
-    defaultWidth: number
     defaultHeight: number
-    step: string
-    libraryPictures: LibraryPictureType[]
-    uploadId: ImageMetaData[]
+    defaultWidth: number
     describeText: string
+    libraryPictures: LibraryPictureType[]
+    previewFilter: string
+    previewImage: string
+    previewZoom: string
+    step: string
+    uploadId: ImageMetaData[]
 }
 
 export type LibraryPictureType = {
+    filter: string
+    height: number
     id: string
     img: string
-    zoom: string | '1'
-    filter: string
-    width: number
-    height: number
     readyToSend: File | null
+    width: number
+    zoom: '1' | string
 }

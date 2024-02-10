@@ -1,16 +1,12 @@
-import {AuthPageStyled} from 'shared/styles/RegistrationPage'
-import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
-import {Button} from 'shared/ui/Button/Button'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {useCreateNewPassword} from 'features/Auth/CreateNewPassword/hook/useCreateNewPass'
-
-import {Loader} from 'shared/ui/Loader'
-import {ModalConfirmChangedPassword} from 'features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
+import {useCreateNewPassword} from '@/features/Auth/CreateNewPassword/hook/useCreateNewPass'
+import {ModalConfirmChangedPassword} from '@/features/Auth/CreateNewPassword/ui/ModalConfirmChangedPassword'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
+import {AuthContainer, Button, InputPassword, Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) => {
     const {t} = useTranslation()
-    const {handleSubmit, register, errors, isValid, handleModalClose, isOpen, isLoading} = useCreateNewPassword(
+    const {errors, handleModalClose, handleSubmit, isLoading, isOpen, isValid, register} = useCreateNewPassword(
         recoveryCode as string
     )
 
@@ -19,7 +15,7 @@ export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) =>
             {isLoading && <Loader />}
             <AuthPageStyled>
                 <h1>{t.auth.newPassword.title}</h1>
-                <form onSubmit={handleSubmit} className={'createNewPassForm'}>
+                <form className={'createNewPassForm'} onSubmit={handleSubmit}>
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
                     <InputPassword
                         label={t.auth.confirmPassword}
@@ -27,7 +23,7 @@ export const CreateNewPasswordForm = ({recoveryCode}: {recoveryCode: string}) =>
                         error={errors.passwordConfirmation?.message}
                     />
                     <p>{t.auth.newPassword.description}</p>
-                    <Button type={'submit'} disabled={!isValid}>
+                    <Button disabled={!isValid} type={'submit'}>
                         {t.auth.newPassword.btn}
                     </Button>
                 </form>

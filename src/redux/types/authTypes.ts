@@ -1,12 +1,12 @@
 export type ResponseType = {
-    statusCode: number
+    error: string
     messages: [
         {
-            message: string
             field: string
-        }
+            message: string
+        },
     ]
-    error: string
+    statusCode: number
 }
 
 export type UserResponseType = {
@@ -16,21 +16,21 @@ export type UserResponseType = {
 }
 
 export interface UserProfile {
-    id: number
-    userName: string
-    firstName: string
-    lastName: string
-    city: string
-    dateOfBirth: Date
     aboutMe: string
     avatars: UserProfileAvatars[]
+    city: string
+    dateOfBirth: Date
+    firstName: string
+    id: number
+    lastName: string
+    userName: string
 }
 
 export interface UserProfileAvatars {
+    fileSize: number
+    height: number
     url: string
     width: number
-    height: number
-    fileSize: number
 }
 
 export type ForgotPasswordArgType = {
@@ -44,7 +44,7 @@ export type NewPasswordArgType = {
 }
 
 export type UserType = {
-    email: string | null
-    userId: number | null
+    email: null | string
+    userId: null | number
     userName: string | undefined
 }

@@ -1,5 +1,4 @@
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {NotLikedIcon} from 'features/Post/Likes/icons/NotLikedIcon'
+import {IconButton, NotLikedIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 export const LikePost = () => {
     return (

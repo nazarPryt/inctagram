@@ -1,15 +1,15 @@
-import * as yup from 'yup'
-import {useForm} from 'react-hook-form'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {useLoginMutation} from 'features/Auth/LogIn/api/login.api'
-import {emailPattern} from 'features/Auth/Registration/helpers/emailPattern'
-import {HandelLoginErrors} from 'features/Auth/LogIn/helpers/HandelLoginErrors'
 import cookie from 'react-cookies'
-import {accessToken} from 'shared/constants/constants'
+import {useForm} from 'react-hook-form'
+
+import {useLoginMutation} from '@/features/Auth/LogIn/api/login.api'
+import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
+import {PATH} from '@/shared/constants/PATH'
+import {accessToken} from '@/shared/constants/constants'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
+import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
+import * as yup from 'yup'
 
 const getLoginFormSchema = (emailErrorMessage: string) => {
     return yup.object({
@@ -26,38 +26,43 @@ const getLoginFormSchema = (emailErrorMessage: string) => {
 export const useLogIn = () => {
     const router = useRouter()
     const schema = getLoginFormSchema('email is required')
+
     type FormData = yup.InferType<typeof schema>
 
     const [login, {isLoading}] = useLoginMutation()
     const dispatch = useAppDispatch()
 
     const {
+        formState: {errors, isValid},
         handleSubmit,
         setError,
-        formState: {errors, isValid},
         ...rest
     } = useForm<FormData>({
-        resolver: yupResolver(schema),
+        defaultValues: {email: 'korib99371@ikuromi.com', password: '11223344qwerTY!'},
         mode: 'onTouched',
         reValidateMode: 'onChange',
-        defaultValues: {email: 'xokavem670@bustayes.com', password: '11223344qwerTY!'},
+        resolver: yupResolver(schema),
     })
     const onSubmit = async (data: FormData) => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                cookie.save(accessToken, payload.accessToken, {path: '/', httpOnly: false})
+                cookie.save(accessToken, payload.accessToken, {httpOnly: false, path: '/'})
                 await router.push(PATH.HOME)
             })
-            .catch(error => {
-                HandelLoginErrors(error, dispatch, setError)
-            })
+            .catch(() =>
+                dispatch(
+                    SetAppNotificationAC({
+                        notifications: {message: 'Cant login', type: 'error'},
+                    })
+                )
+            )
     }
 
     return {
+        errors,
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
-        errors,
         isValid,
         ...rest,
     }

@@ -1,20 +1,22 @@
 import {forwardRef} from 'react'
-import {UserPostWrapper} from 'entities/UserPosts/ui/UserPost.styled'
+
+import {PATH} from '@/shared/constants/PATH'
 import Image from 'next/image'
+
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'
-import {PATH} from 'shared/constants/PATH'
+import {UserPostWrapper} from './UserPost.styled'
 
 type UserPostType = {
-    src: string
     imagesLength: number
     postId: number
+    src: string
 }
 
 export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
     return (
         <UserPostWrapper href={`${PATH.VIEW_POST}/${props.postId}`} ref={ref}>
             {props.imagesLength > 2 && <MorePhotosIcon />}
-            <Image src={props.src} alt={'PostPhoto'} width={230} height={235} />
+            <Image alt={'PostPhoto'} height={235} src={props.src} width={230} />
         </UserPostWrapper>
     )
 })

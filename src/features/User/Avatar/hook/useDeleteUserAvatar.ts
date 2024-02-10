@@ -1,27 +1,38 @@
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useDeleteAvatarMutation} from 'features/User/Avatar/api/avatar.api'
+import {useState} from 'react'
+
+import {useDeleteAvatarMutation} from '@/features/User/Avatar/api/avatar.api'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 
 export const useDeleteUserAvatar = () => {
     const dispatch = useAppDispatch()
+    const [dialog, setDialog] = useState(false)
 
     const [deleteAvatar, {isLoading}] = useDeleteAvatarMutation()
 
+    const handleCloseDialog = () => {
+        setDialog(false)
+    }
+    const handleOpenDialog = () => {
+        setDialog(true)
+    }
     const handleDeleteAvatar = () => {
         deleteAvatar({})
             .unwrap()
             .then(() => {
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'success', message: 'Your Avatar was successfully removed'},
+                        notifications: {message: 'Your Avatar was successfully removed', type: 'success'},
                     })
                 )
+                handleCloseDialog()
             })
             .catch(error =>
                 dispatch(
-                    SetAppNotificationAC({notifications: {type: 'error', message: error.data.messages[0].message}})
+                    SetAppNotificationAC({notifications: {message: error.data.messages[0].message, type: 'error'}})
                 )
             )
     }
-    return {handleDeleteAvatar, isLoading}
+
+    return {dialog, handleCloseDialog, handleDeleteAvatar, handleOpenDialog, isLoading}
 }

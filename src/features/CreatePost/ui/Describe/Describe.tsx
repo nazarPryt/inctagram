@@ -1,23 +1,22 @@
-import React, {ChangeEvent} from 'react'
+import {ChangeEvent} from 'react'
+
+import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {EmptyAvatar, Skeleton, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import {AvatarWrapper, DescribeWrapper} from './styled'
-import {TextArea} from 'shared/ui/TextArea/TextArea'
-import {useGetUserProfileQuery} from 'redux/api/profileAPI'
-import SkeletonAvatar from 'shared/assets/icons/skeletonCycle.svg'
-import SkeletonTitle from 'shared/assets/icons/skeletonTitle.svg'
-import {useAppDispatch, useAppSelector} from 'shared/hooks/reduxHooks'
+
 import {createPostAC} from '../../model/slice/createPostSlice'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {EmptyAvatar} from 'shared/assets/icons/emptyAvatar'
+import {AvatarWrapper, DescribeWrapper} from './styled'
 
 export const Describe = () => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const describeText = useAppSelector(state => state.createPost.describeText)
-    // TODO userID
-    const {data, isLoading} = useGetUserProfileQuery(136)
+
+    const {data, isLoading} = useGetUserProfileQuery()
     const UserImage = data?.avatars.length ? (
-        <Image src={data.avatars[0].url} width={data.avatars[0].width} height={data.avatars[0].height} alt={'avatar'} />
+        <Image alt={'avatar'} height={data.avatars[0].height} src={data.avatars[0].url} width={data.avatars[0].width} />
     ) : (
         <EmptyAvatar />
     )
@@ -27,13 +26,13 @@ export const Describe = () => {
 
     return (
         <DescribeWrapper>
-            <div className='headerBlock'>
-                <AvatarWrapper>{data ? UserImage : <SkeletonAvatar />}</AvatarWrapper>
-                <div className='userNameWrapper'>
-                    <span>{data ? data.userName : <SkeletonTitle />}</span>
+            <div className={'headerBlock'}>
+                <AvatarWrapper>{data ? UserImage : <Skeleton circle height={40} width={40} />}</AvatarWrapper>
+                <div className={'userNameWrapper'}>
+                    <span>{data ? data.userName : <Skeleton height={30} width={100} />}</span>
                 </div>
             </div>
-            <TextArea defaultValue={describeText} onChange={e => changeTextHandler(e)} label={t.create.describe} />
+            <TextArea defaultValue={describeText} label={t.create.describe} onChange={e => changeTextHandler(e)} />
             <div>{t.create.addLocation} : tobeContinued...</div>
         </DescribeWrapper>
     )

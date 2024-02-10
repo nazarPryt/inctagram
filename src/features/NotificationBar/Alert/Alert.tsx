@@ -1,10 +1,13 @@
 import {useEffect, useState} from 'react'
-import errorIcon from '../../../shared/assets/icons/errorIcon.png'
-import successIcon from '../../../shared/assets/icons/success.png'
-import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from 'features/NotificationBar/styled'
-import {NotificationType, RemoveAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
+
+import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from '@/features/NotificationBar/styled'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {NotificationType, RemoveAppNotificationAC} from '@/shared/store/appSlice'
 import Image from 'next/image'
+
+import errorIcon from '../../../../public/pictures/errorIcon.png'
+import successIcon from '../../../../public/pictures/success.png'
+//import successIcon from '@/public/pictures/success.png' //todo check alias import from public folder
 
 export const Alert = (props: NotificationType) => {
     const dispatch = useAppDispatch()
@@ -62,15 +65,15 @@ export const Alert = (props: NotificationType) => {
             <AlertItem onMouseEnter={handlePauseTimer} onMouseLeave={handleStartTimer}>
                 <p>{props.message}</p>
                 <CloseAlertIcon onClick={handleClose} />
-                <ProgressBar type={props.type} style={{width: `${width}%`}} />
+                <ProgressBar style={{width: `${width}%`}} type={props.type} />
                 {props.type === 'error' && (
                     <AlertIcon>
-                        <Image src={errorIcon} alt={'errorIcon'} />
+                        <Image alt={'errorIcon'} src={errorIcon} />
                     </AlertIcon>
                 )}
                 {props.type === 'success' && (
                     <AlertIcon>
-                        <Image src={successIcon} alt={'successIcon'} />
+                        <Image alt={'successIcon'} src={successIcon} />
                     </AlertIcon>
                 )}
             </AlertItem>

@@ -1,8 +1,9 @@
-import {getAuthorizedLayout} from '_app/Layouts/authorized/AuthorizedLayout'
+import {getAuthorizedLayout} from '@/shared/layouts/authorized'
 import {useRouter} from 'next/router'
 
 export default function UserProfilePage() {
     const router = useRouter()
+
     return (
         <>
             <p>UserProfilePage </p>

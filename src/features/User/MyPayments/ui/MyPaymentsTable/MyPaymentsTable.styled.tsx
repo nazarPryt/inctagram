@@ -1,4 +1,6 @@
+import {Table} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
-import {Table} from 'shared/ui/Table'
 
-export const MyPaymentsTableStyled = styled(Table)``
+export const MyPaymentsTableStyled = styled(Table)`
+    width: 100%;
+`

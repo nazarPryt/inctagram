@@ -1,14 +1,15 @@
-import {Alert} from 'features/NotificationBar/Alert/Alert'
-import {useAppSelector} from 'shared/hooks/reduxHooks'
-import {NotificationBarWrapper} from 'features/NotificationBar/styled'
+import {NotificationBarWrapper} from '@/features/NotificationBar/styled'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
+
+import {Alert} from './Alert/Alert'
 
 export const NotificationBar = () => {
     const notifications = useAppSelector(state => state.app.notifications)
 
     return (
         <NotificationBarWrapper>
-            {notifications.map(alert => {
-                return <Alert key={alert.id} id={alert.id} message={alert.message} type={alert.type} />
+            {notifications.map((alert: any) => {
+                return <Alert id={alert.id} key={alert.id} message={alert.message} type={alert.type} />
             })}
         </NotificationBarWrapper>
     )

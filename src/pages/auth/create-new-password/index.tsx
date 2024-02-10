@@ -1,10 +1,11 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {CreateNewPasswordForm} from 'features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
-import {Loader} from 'shared/ui/Loader/Loader'
+import {CreateNewPasswordForm} from '@/features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {recoveryCode} = ctx.query
+
     return {
         props: {
             recoveryCode,
@@ -15,6 +16,7 @@ export default function CreateNewPasswordPage({recoveryCode}: {recoveryCode: str
     if (recoveryCode) {
         return <CreateNewPasswordForm recoveryCode={recoveryCode} />
     }
+
     return <Loader />
 }
 

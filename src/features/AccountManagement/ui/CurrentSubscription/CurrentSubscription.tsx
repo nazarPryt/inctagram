@@ -1,22 +1,25 @@
-import {CurrentSubscriptionWrapper} from './CurrentSubscription.styled'
-import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
+import {Card} from '@/shared/ui/Card/Card'
 
-export const CurrentSubscription = () => {
+import {CurrentSubscriptionWrapper} from './CurrentSubscription.styled'
+
+type CurrentSubscriptionType = {
+    nextPayment: string
+    startAt: string
+}
+export const CurrentSubscription = ({nextPayment, startAt}: CurrentSubscriptionType) => {
     return (
         <CurrentSubscriptionWrapper>
             <h4>Current Subscription:</h4>
-            <AccountManagementContainer>
-                <div className='container'>
-                    <div className='block'>
-                        <span className='name'>Expire at</span>
-                        <span className='date'>12.12.2022</span>
-                    </div>
-                    <div className='block'>
-                        <span className='name'>Next payment</span>
-                        <span className='date'>13.02.2023</span>
-                    </div>
+            <Card className={'card'}>
+                <div className={'block'}>
+                    <span className={'name'}>Start at</span>
+                    <span className={'date'}>{new Date(startAt).toLocaleDateString('ru-RU')}</span>
                 </div>
-            </AccountManagementContainer>
+                <div className={'block'}>
+                    <span className={'name'}>Next payment</span>
+                    <span className={'date'}>{new Date(nextPayment).toLocaleDateString('ru-RU')}</span>
+                </div>
+            </Card>
         </CurrentSubscriptionWrapper>
     )
 }

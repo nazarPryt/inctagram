@@ -1,10 +1,10 @@
-import {ViewUserPostAddCommentWrapper} from 'entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment.styled'
-import {TextArea} from 'shared/ui/TextArea/TextArea'
-import {useCommentPost} from 'features/Post/CommentPost/hook/UseCommentPost'
-import {Button} from 'shared/ui/Button/Button'
+import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
+import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
+
+import {ViewUserPostAddCommentWrapper} from './ViewUserPostAddComment.styled'
 
 export const ViewUserPostAddComment = () => {
-    const {register, handleSubmit, errors} = useCommentPost()
+    const {errors, handleSubmit, register} = useCommentPost()
 
     return (
         <ViewUserPostAddCommentWrapper onSubmit={handleSubmit}>

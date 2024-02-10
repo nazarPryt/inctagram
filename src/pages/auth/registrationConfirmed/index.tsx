@@ -1,14 +1,15 @@
+import {PATH} from '@/shared/constants/PATH'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {ConfirmationPageWrapper} from '@/shared/styles/RegistrationConfirmPage'
+import {AuthContainer, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import congratulationImg from '../../../shared/assets/pictures/congratulation.png'
-import {PATH} from 'shared/constants/PATH'
-import {ConfirmationPageWrapper} from 'shared/styles/RegistrationConfirmPage'
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
+
+import congratulationImg from '../../../../public/pictures/congratulation.png'
 
 export default function ConfirmedRegistrationPage() {
     const {t} = useTranslation()
+
     return (
         <AuthContainer>
             <ConfirmationPageWrapper>
@@ -18,7 +19,7 @@ export default function ConfirmedRegistrationPage() {
                     {t.auth.signUp.success.btn}
                 </Button>
                 <span>
-                    <Image src={congratulationImg} alt={'congratulation'} />
+                    <Image alt={'congratulation'} src={congratulationImg} />
                 </span>
             </ConfirmationPageWrapper>
         </AuthContainer>

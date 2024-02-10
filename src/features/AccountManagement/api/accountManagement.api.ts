@@ -1,34 +1,35 @@
-import {api} from 'redux/api/api'
+import {api} from '@/redux/api/api'
+
 import {
     CurrentSubscriptionResponseType,
-    Data,
     NewSubscriptionType,
     ResponseCreateSubscriptionType,
+    SubscriptionDataType,
 } from '../types/accountTypes'
 
 export const accountManagementAPI = api.injectEndpoints({
     endpoints: build => ({
         createNewSubscription: build.mutation<ResponseCreateSubscriptionType, NewSubscriptionType>({
             query: body => ({
-                url: 'subscriptions',
-                method: 'POST',
                 body,
-            }),
-        }),
-        getSubscriptionCosts: build.query<Data[], void>({
-            query: () => ({
-                url: `subscriptions/cost-of-subscriptions`,
-                method: 'GET',
+                method: 'POST',
+                url: 'subscriptions',
             }),
         }),
         getCurrentSubscription: build.query<CurrentSubscriptionResponseType, void>({
             query: () => ({
-                url: `subscriptions/current-subscriptions`,
                 method: 'GET',
+                url: `subscriptions/current-subscriptions`,
+            }),
+        }),
+        getSubscriptionCosts: build.query<{data: SubscriptionDataType[]}, void>({
+            query: () => ({
+                method: 'GET',
+                url: `subscriptions/cost-of-subscriptions`,
             }),
         }),
     }),
 })
 
-export const {useCreateNewSubscriptionMutation, useGetSubscriptionCostsQuery, useGetCurrentSubscriptionQuery} =
+export const {useCreateNewSubscriptionMutation, useGetCurrentSubscriptionQuery, useGetSubscriptionCostsQuery} =
     accountManagementAPI

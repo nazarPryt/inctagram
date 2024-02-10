@@ -1,19 +1,21 @@
-import {SelectPhoto} from '../SelectPhoto/SelectPhoto'
-import {Button} from '../../../../shared/ui/Button/Button'
 import React, {ChangeEvent} from 'react'
-import {useTranslation} from '../../../../shared/hooks/useTranslation'
-import {createPostAC} from '../../model/slice/createPostSlice'
-import {useAppDispatch, useAppSelector} from '../../../../shared/hooks/reduxHooks'
-import {CreatePostPanelWrapper} from './styled'
+
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
+
 import {clearIndexedDB, getAllDrafts} from '../../lib/IndexedDB/indexedDB'
+import {createPostAC} from '../../model/slice/createPostSlice'
 import {LibraryPictureType} from '../../model/types/createPostSchema'
+import {SelectPhoto} from '../SelectPhoto/SelectPhoto'
+import {CreatePostPanelWrapper} from './styled'
 
 type PropsType = {
     handleCreatePost: (e: ChangeEvent<HTMLInputElement>) => void
     hasData: boolean
 }
 
-export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
+export const CreatePostPanel = ({handleCreatePost, hasData}: PropsType) => {
     const dispatch = useAppDispatch()
     const {step} = useAppSelector(state => state.createPost)
     const {t} = useTranslation()
@@ -25,13 +27,13 @@ export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
                 return {...el, img: URL.createObjectURL(el.readyToSend)}
             } else {
                 return {
-                    img: el.img,
-                    id: el.id,
-                    zoom: el.zoom,
                     filter: el.filter,
+                    height: el.height,
+                    id: el.id,
+                    img: el.img,
                     readyToSend: null,
                     width: el.width,
-                    height: el.height,
+                    zoom: el.zoom,
                 }
             }
         })
@@ -51,7 +53,7 @@ export const CreatePostPanel = ({hasData, handleCreatePost}: PropsType) => {
                 <div>
                     <SelectPhoto handleCreatePost={handleCreatePost} />
                     {hasData && (
-                        <Button variant={'outlined'} onClick={openDraft}>
+                        <Button onClick={openDraft} variant={'outlined'}>
                             Open Draft
                         </Button>
                     )}

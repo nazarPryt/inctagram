@@ -1,4 +1,5 @@
 import {useForm} from 'react-hook-form'
+
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
@@ -10,8 +11,8 @@ type FormData = yup.InferType<typeof schema>
 
 export const useCommentPost = () => {
     const {
-        handleSubmit,
         formState: {errors},
+        handleSubmit,
         register,
         ...rest
     } = useForm<FormData>({
@@ -23,8 +24,8 @@ export const useCommentPost = () => {
     }
 
     return {
-        handleSubmit: handleSubmit(onSubmit),
         errors,
+        handleSubmit: handleSubmit(onSubmit),
         register,
         ...rest,
     }

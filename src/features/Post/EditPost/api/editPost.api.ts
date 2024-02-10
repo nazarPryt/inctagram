@@ -1,14 +1,14 @@
-import {api} from 'redux/api/api'
+import {api} from '@/redux/api/api'
 
 export const editPostApi = api.injectEndpoints({
     endpoints: build => ({
-        editUserPost: build.mutation<void, {postId: number; description: string}>({
-            query: ({postId, description}) => ({
-                url: `posts/${postId}`,
-                method: 'PUT',
-                body: {description},
-            }),
+        editUserPost: build.mutation<void, {description: string; postId: number}>({
             invalidatesTags: ['Post'],
+            query: ({description, postId}) => ({
+                body: {description},
+                method: 'PUT',
+                url: `posts/${postId}`,
+            }),
         }),
     }),
     overrideExisting: true,

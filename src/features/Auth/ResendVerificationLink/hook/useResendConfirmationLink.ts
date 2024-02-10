@@ -1,9 +1,11 @@
-import {useResendConfirmationLinkMutation} from 'features/Auth/ResendVerificationLink/api/ResendVerificationLink.api'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {PATH} from 'shared/constants/PATH'
-import {useRouter} from 'next/navigation'
 import {useState} from 'react'
+
+import {PATH} from '@/shared/constants/PATH'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
+import {useRouter} from 'next/navigation'
+
+import {useResendConfirmationLinkMutation} from '../api/ResendVerificationLink.api'
 
 export const useResendConfirmationLink = ({email}: {email: string}) => {
     const dispatch = useAppDispatch()
@@ -17,7 +19,7 @@ export const useResendConfirmationLink = ({email}: {email: string}) => {
             .then(() => setIsModalOpen(true))
             .catch(error =>
                 dispatch(
-                    SetAppNotificationAC({notifications: {type: 'error', message: error.data.messages[0].message}})
+                    SetAppNotificationAC({notifications: {message: error.data.messages[0].message, type: 'error'}})
                 )
             )
     }

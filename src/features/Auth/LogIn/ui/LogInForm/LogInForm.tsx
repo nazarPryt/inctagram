@@ -1,18 +1,20 @@
+import {useLogIn} from '@/features/Auth/LogIn/hook/UseLogIn'
+import {PATH} from '@/shared/constants/PATH'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
+import {
+    AuthContainer,
+    Button,
+    GitHubIcon,
+    GoogleIcon,
+    IconButton,
+    InputPassword,
+    InputText,
+} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AuthPageStyled} from 'shared/styles/RegistrationPage'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import {Button} from 'shared/ui/Button/Button'
-import {IconButton} from 'shared/ui/IconButton/IconButton'
-import {InputPassword} from 'shared/ui/InputPassword/InputPassword'
-import {InputText} from 'shared/ui/InputText/InputText'
-import GoogleIcon from 'shared/assets/icons/google.svg'
-import GithubWhite from 'shared/assets/icons/githubWhite.svg'
-import {useLogIn} from 'features/Auth/LogIn/hook/UseLogIn'
 
 export const LogInForm = () => {
-    const {register, handleSubmit, isLoading, errors, isValid} = useLogIn()
+    const {errors, handleSubmit, isLoading, isValid, register} = useLogIn()
     const {t} = useTranslation()
 
     return (
@@ -20,11 +22,11 @@ export const LogInForm = () => {
             <AuthPageStyled>
                 <h1>{t.auth.signIn.title}</h1>
                 <div className={'oauthWrapper'}>
-                    <IconButton onClick={() => {}} disabled={isLoading} colorful>
+                    <IconButton colorful disabled={isLoading} onClick={() => {}}>
                         <GoogleIcon />
                     </IconButton>
-                    <IconButton onClick={() => {}} disabled={isLoading}>
-                        <GithubWhite />
+                    <IconButton disabled={isLoading} onClick={() => {}}>
+                        <GitHubIcon />
                     </IconButton>
                 </div>
                 <form onSubmit={handleSubmit}>
@@ -38,12 +40,12 @@ export const LogInForm = () => {
                     <Link className={'link'} href={PATH.FORGOT_PASSWORD}>
                         {t.auth.signIn.linkFirst}
                     </Link>
-                    <Button type={'submit'} disabled={!isValid || isLoading}>
+                    <Button disabled={!isValid || isLoading} type={'submit'}>
                         {t.auth.signIn.button}
                     </Button>
                 </form>
                 <p>{t.auth.signIn.description}</p>
-                <Button asT={'a'} variant={'text'} href={PATH.REGISTRATION}>
+                <Button asT={'a'} href={PATH.REGISTRATION} variant={'text'}>
                     {t.auth.signIn.linkSecond}
                 </Button>
             </AuthPageStyled>

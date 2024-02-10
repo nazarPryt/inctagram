@@ -1,23 +1,44 @@
 import {ComponentPropsWithoutRef} from 'react'
-import {HeaderStyled} from 'widgets/Header/Header.styled'
-import Link from 'next/link'
-import {ThemeSwitcher} from 'features/ThemeSwitcher/ThemeSwitcher'
-import {PATH} from 'shared/constants/PATH'
-import {LangSelect} from 'shared/ui/LangaugeSelect/LangSelect'
-import {BurgerMenu} from 'features/Burger/ui/BurgerMenu/BurgerMenu'
-import {Notification} from 'features/Notification/ui/Notification/Notification'
 
-export const Header = (props: ComponentPropsWithoutRef<'div'>) => {
+import {Notifications} from '@/features/Notifications'
+import {ThemeSwitcher} from '@/features/ThemeSwitcher'
+import {PATH} from '@/shared/constants/PATH'
+import {LangSelect} from '@/shared/ui/LangaugeSelect'
+import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+
+import {HeaderStyled} from './Header.styled'
+
+const DynamicBurgerMenu = dynamic(() =>
+    import('@/features/Burger/ui/BurgerMenu/BurgerMenu').then(module => module.BurgerMenu)
+)
+
+type HeaderType = {
+    isLoggedIn: boolean
+    publicMode?: boolean
+} & ComponentPropsWithoutRef<'div'>
+export const Header = ({isLoggedIn, publicMode = false, ...rest}: HeaderType) => {
     return (
-        <HeaderStyled {...props}>
-            <BurgerMenu className={'BurgerMenu'} />
-            <Link className={'InctagramLogo'} href={PATH.HOME}>
+        <HeaderStyled {...rest}>
+            {!publicMode && <DynamicBurgerMenu className={'BurgerMenu'} />}
+            <Link className={'InctagramLogo'} href={'/'}>
                 Inctagram
             </Link>
             <ThemeSwitcher />
-            <div className='block'>
-                <Notification />
+            <div className={'block'}>
+                {isLoggedIn && <Notifications />}
                 <LangSelect />
+                {publicMode && (
+                    <>
+                        <Button asT={Link} href={PATH.LOGIN} variant={'outlined'}>
+                            Log In
+                        </Button>
+                        <Button asT={Link} href={PATH.REGISTRATION}>
+                            Sign Up
+                        </Button>
+                    </>
+                )}
             </div>
         </HeaderStyled>
     )

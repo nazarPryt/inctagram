@@ -1,25 +1,26 @@
-import {api} from 'redux/api/api'
-import {UserAvatar} from 'redux/types/profileTypes'
+import {api} from '@/redux/api/api'
+import {UserAvatar} from '@/redux/types/profileTypes'
 
 export const avatarAPI = api.injectEndpoints({
     endpoints: build => ({
-        uploadAvatar: build.mutation<UserAvatar, FormData | File>({
-            query: body => ({
-                url: `users/profile/avatar`,
-                method: 'POST',
-                body,
-            }),
+        deleteAvatar: build.mutation({
             invalidatesTags: ['User'],
+            query: body => ({
+                body,
+                method: 'DELETE',
+                url: `users/profile/avatar`,
+            }),
         }),
 
-        deleteAvatar: build.mutation({
+        uploadAvatar: build.mutation<UserAvatar, File | FormData>({
+            invalidatesTags: ['User'],
             query: body => ({
-                url: `users/profile/avatar`,
-                method: 'DELETE',
                 body,
+                method: 'POST',
+                url: `users/profile/avatar`,
             }),
         }),
     }),
 })
 
-export const {useUploadAvatarMutation, useDeleteAvatarMutation} = avatarAPI
+export const {useDeleteAvatarMutation, useUploadAvatarMutation} = avatarAPI

@@ -1,3 +1,4 @@
+import {IconColor} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const ModalContentWrapper = styled.div`
@@ -15,6 +16,7 @@ export const EmptyImageWrapper = styled.div`
     height: 250px;
     margin-bottom: 25px;
     background-color: #171717;
+    ${IconColor}
 `
 
 export const EditorWrapper = styled.div<{$isAddPhoto: boolean}>`

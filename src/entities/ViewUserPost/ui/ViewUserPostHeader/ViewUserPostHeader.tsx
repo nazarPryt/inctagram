@@ -1,24 +1,22 @@
-import {ViewUserPostHeaderWrapper} from 'entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader.styled'
-import {DeletePostIcon} from 'features/Post/DeletePost/ui/icon/DeletePostIcon'
-import {EditPostIcon} from 'features/Post/EditPost/ui/icon/EditPostIcon'
-import Link from 'next/link'
 import {Dispatch, SetStateAction, useState} from 'react'
-import {PATH} from 'shared/constants/PATH'
-import {AvatarIcon} from 'shared/ui/AvatarIcon/AvatarIcon'
-import {Popover} from 'shared/ui/Popover/Popover'
-import {PopoverItem} from 'shared/ui/Popover/PopoverItem/PopoverItem'
-import {DeletePostModal} from 'features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
-import {useDeleteUserPost} from 'features/Post/DeletePost/hook/useDeleteUserPost'
-import {PopOverIcon} from '../../../Post/ui/PostHeader/popOverIcon'
+
+import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
+import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
+import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
+import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
+import {PATH} from '@/shared/constants/PATH'
+import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
+import Link from 'next/link'
+
 import {PostByIdType} from '../../api/type'
+import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
 type PropsType = {
     data: PostByIdType
-    userId: number | null
     edit: boolean
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({userId, setEdit, edit, data}: PropsType) => {
+export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
 
@@ -30,21 +28,21 @@ export const ViewUserPostHeader = ({userId, setEdit, edit, data}: PropsType) => 
     return (
         <>
             <DeletePostModal
-                isOpen={modalIsOpen}
-                handleModalClose={handleModalClose}
                 handleDeletePost={handleDeletePost}
+                handleModalClose={handleModalClose}
+                isOpen={modalIsOpen}
             />
             <ViewUserPostHeaderWrapper>
                 <div className={'avaLink'}>
-                    <AvatarIcon img={'https://loremflickr.com/500/500'} userID={userId} />
-                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${userId}`}>
-                        URLProfile
+                    <Avatar alt={`${data.userName} avatar`} size={40} src={data.avatarOwner} userName={data.userName} />
+                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${data.ownerId}`}>
+                        {data.userName}
                     </Link>
                 </div>
                 {!edit && (
-                    <Popover icon={<PopOverIcon />} setIsPopoverOpen={setIsPopoverOpen} isPopoverOpen={isPopoverOpen}>
-                        <PopoverItem onClick={handleEditPost} name={'Edit Post'} icon={<EditPostIcon />} />
-                        <PopoverItem onClick={handleModalOpen} name={'Delete Post'} icon={<DeletePostIcon />} />
+                    <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                        <PopoverItem icon={<EditPostIcon />} name={'Edit Post'} onClick={handleEditPost} />
+                        <PopoverItem icon={<DeletePostIcon />} name={'Delete Post'} onClick={handleModalOpen} />
                     </Popover>
                 )}
             </ViewUserPostHeaderWrapper>

@@ -1,16 +1,19 @@
-import {ViewUserPostDescriptionWrapper} from 'entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription.styled'
+import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import {formatDistance, subDays} from 'date-fns'
 
+import {ViewUserPostDescriptionWrapper} from './ViewUserPostDescription.styled'
+
 type PropsType = {
-    description: string
     createdAt: string
+    description: string
 }
-export const ViewUserPostDescription = ({description, createdAt}: PropsType) => {
-    const day = formatDistance(subDays(new Date(createdAt), 1), new Date(), {addSuffix: true}) //todo fix format of day when post was created
+export const ViewUserPostDescription = ({createdAt, description}: PropsType) => {
+    const day = formatDistance(subDays(new Date(createdAt), 1), new Date(), {addSuffix: true})
 
     return (
         <ViewUserPostDescriptionWrapper>
-            {description} <span>{day}</span>
+            <ReadMore maxLength={100} text={description} />
+            <span className={'day'}>{day}</span>
         </ViewUserPostDescriptionWrapper>
     )
 }

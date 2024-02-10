@@ -1,27 +1,35 @@
-import {ActiveSessionStyled} from 'features/User/Device/ui/ActiveSession/ActiveSession.styled'
-import {PcIcon} from 'features/User/Device/ui/icons/PCIcon'
-import {MobileIcon} from 'features/User/Device/ui/icons/MobileIcon'
-import {NavButton} from 'widgets/Aside/ui/NavButton/NavButton'
-import {LogOutIcon} from 'features/Auth/LogOut/ui/icons/LogOutIcon'
+import {LogOutIcon, NavButton} from '@nazar-pryt/inctagram-ui-kit'
+
+import {MobileIcon} from '../icons/MobileIcon'
+import {PcIcon} from '../icons/PCIcon'
+import {ActiveSessionStyled} from './ActiveSession.styled'
 
 type PropsType = {
-    deviceType: 'PC' | 'Phone'
-    deviceName: string
     IP: string
+    browserName: string
+    deviceId: number
+    deviceName: string
+    deviceType: 'PC' | 'Phone'
+    disabled: boolean
+    handleLogOut: (deviceId: number) => void
     lastVisit: string
-    handleLogOut: () => void
 }
 export const ActiveSession = (props: PropsType) => {
+    const handleLogOutSession = () => {
+        props.handleLogOut(props.deviceId)
+    }
+
     return (
         <ActiveSessionStyled>
             {props.deviceType === 'PC' ? <PcIcon /> : ''}
             {props.deviceType === 'Phone' ? <MobileIcon /> : ''}
             <div className={'deviceData'}>
                 <h2>{props.deviceName}</h2>
+                <p>Browser: {props.browserName}</p>
                 <p>IP: {props.IP}</p>
-                <span>Last visit: {props.lastVisit}</span>
+                <span>Last visit: {new Date(props.lastVisit).toLocaleDateString('ru-RU')}</span>
             </div>
-            <NavButton icon={<LogOutIcon />} title={'LogOut'} onClick={props.handleLogOut} />
+            <NavButton disabled={props.disabled} icon={<LogOutIcon />} onClick={handleLogOutSession} title={'LogOut'} />
         </ActiveSessionStyled>
     )
 }

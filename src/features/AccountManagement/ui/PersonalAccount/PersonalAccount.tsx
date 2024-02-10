@@ -1,34 +1,37 @@
 import {ChangeEvent, Dispatch, SetStateAction} from 'react'
-import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
-import {Option} from '../../AccountManagement'
-import {AccountManagementContainer} from '../../../../shared/styles/AccountManagementContainer.styled'
+
+import {PersonalAccountStyled} from '@/features/AccountManagement/ui/PersonalAccount/PersonalAccount.styled'
+import {Card} from '@/shared/ui/Card/Card'
+import {RadioInput} from '@nazar-pryt/inctagram-ui-kit'
+
+import {AccountTypeOption} from '../../AccountManagement'
 
 type PropsType = {
-    selectedValue: Option
-    setSelectedValue: Dispatch<SetStateAction<Option>>
+    accountType: AccountTypeOption
+    setAccountType: Dispatch<SetStateAction<AccountTypeOption>>
 }
-export const PersonalAccount = ({selectedValue, setSelectedValue}: PropsType) => {
+export const PersonalAccount = ({accountType, setAccountType}: PropsType) => {
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedValue(event.target.value as Option)
+        setAccountType(event.target.value as AccountTypeOption)
     }
 
     return (
-        <>
+        <PersonalAccountStyled>
             <h4> Account type:</h4>
-            <AccountManagementContainer>
+            <Card className={'card'}>
                 <RadioInput
+                    checked={accountType === 'personal'}
                     label={'Personal'}
-                    value={'personal'}
-                    checked={selectedValue === 'personal'}
                     onChange={handleRadioChange}
+                    value={'personal'}
                 />
                 <RadioInput
+                    checked={accountType === 'business'}
                     label={'Business'}
-                    value={'business'}
-                    checked={selectedValue === 'business'}
                     onChange={handleRadioChange}
+                    value={'business'}
                 />
-            </AccountManagementContainer>
-        </>
+            </Card>
+        </PersonalAccountStyled>
     )
 }

@@ -1,7 +1,8 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const CurrentSubscriptionWrapper = styled.div`
-    .container {
+    .card {
         flex-direction: row;
     }
 
@@ -12,16 +13,12 @@ export const CurrentSubscriptionWrapper = styled.div`
     .name {
         align-self: flex-start;
         color: ${props => props.theme.textColor['900']};
-        font-size: ${props => props.theme.typography.fontSizeM};
-        font-weight: ${props => props.theme.typography.fontWeightMedium};
-        line-height: ${props => props.theme.typography.lineHeightL};
+        ${typography.regular_text_14}
     }
 
     .date {
         align-self: flex-start;
         color: ${props => props.theme.textColor['100']};
-        font-size: ${props => props.theme.typography.fontSizeM};
-        font-weight: ${props => props.theme.typography.fontWeightSemiBold};
-        line-height: ${props => props.theme.typography.lineHeightL};
+        ${typography.bold_text_14};
     }
 `

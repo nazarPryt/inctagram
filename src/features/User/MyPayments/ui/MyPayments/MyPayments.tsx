@@ -1,14 +1,15 @@
+import {useMyPaymentsQuery} from '@/features/User/MyPayments/api'
+import {IsEmpty} from '@/features/User/MyPayments/ui/IsEmpty'
+import {MyPaymentsTable} from '@/features/User/MyPayments/ui/MyPaymentsTable'
+import {TableSkeleton} from '@nazar-pryt/inctagram-ui-kit'
+
 import {MyPaymentsStyled} from './MyPayments.styled'
-import {Loader} from 'shared/ui/Loader'
-import {IsEmpty} from 'features/User/MyPayments/ui/IsEmpty'
-import {useMyPaymentsQuery} from 'features/User/MyPayments/api'
-import {MyPaymentsTable} from 'features/User/MyPayments/ui/MyPaymentsTable'
 
 export const MyPayments = () => {
     const {data: payments, isLoading} = useMyPaymentsQuery()
 
     if (isLoading) {
-        return <Loader />
+        return <TableSkeleton columns={5} rows={10} />
     }
     if (payments && payments.length !== 0) {
         return (
@@ -17,5 +18,6 @@ export const MyPayments = () => {
             </MyPaymentsStyled>
         )
     }
+
     return <IsEmpty />
 }

@@ -1,9 +1,10 @@
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useUploadAvatarMutation} from 'features/User/Avatar/api/avatar.api'
 import {ChangeEvent, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
-import {BaseModalProps} from 'shared/ui/Modal/Modal'
+
+import {useUploadAvatarMutation} from '@/features/User/Avatar/api/avatar.api'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
+import {BaseModalProps} from '@/shared/ui/Modal/Modal'
 
 export const useUploadUserAvatar = (props: BaseModalProps) => {
     const [avatar, {isLoading}] = useUploadAvatarMutation()
@@ -11,14 +12,15 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
 
     const [editor, setEditor] = useState<AvatarEditor | null>(null)
     const [picture, setPicture] = useState({
+        croppedImg: '',
         img: '',
         zoom: '1.3',
-        croppedImg: '',
     })
 
     const handleSave = () => {
         if (editor) {
             const canvas = editor.getImage()
+
             canvas.toBlob((blob: any) => {
                 const formData = new FormData()
 
@@ -29,7 +31,7 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
                         props.handleClose()
                         dispatch(
                             SetAppNotificationAC({
-                                notifications: {type: 'success', message: 'Your Avatar was successfully uploaded'},
+                                notifications: {message: 'Your Avatar was successfully uploaded', type: 'success'},
                             })
                         )
                     })
@@ -37,7 +39,7 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
                     .catch(error => {
                         dispatch(
                             SetAppNotificationAC({
-                                notifications: {type: 'error', message: error.message},
+                                notifications: {message: error.message, type: 'error'},
                             })
                         )
                     })
@@ -46,9 +48,12 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
     }
 
     const handleChangePhoto = (e: ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return
+        if (!e.target.files) {
+            return
+        }
 
-        let url = URL.createObjectURL(e.target.files[0])
+        const url = URL.createObjectURL(e.target.files[0])
+
         setPicture({
             ...picture,
             img: url,
@@ -69,5 +74,6 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
     const setEditorRef = (ref: AvatarEditor | null) => {
         setEditor(ref)
     }
-    return {handleSave, isLoading, setEditorRef, handleZoom, handleClear, handleChangePhoto, picture}
+
+    return {handleChangePhoto, handleClear, handleSave, handleZoom, isLoading, picture, setEditorRef}
 }

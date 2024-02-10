@@ -1,13 +1,14 @@
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {AuthContainer} from 'shared/ui/AuthContainer/AuthContainer'
-import congratulationImg from 'shared/assets/pictures/congratulation.png'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {MergeAccountsPageWrapper} from '@/shared/styles/MergeAccountsPage'
+import {AuthContainer, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {MergeAccountsPageWrapper} from 'shared/styles/MergeAccountsPage'
-import {Button} from 'shared/ui/Button/Button'
+
+import congratulationImg from '../../../../public/pictures/congratulation.png'
 
 export default function MergeAccountsPage() {
     const {t} = useTranslation()
+
     return (
         <AuthContainer>
             <MergeAccountsPageWrapper>
@@ -16,7 +17,7 @@ export default function MergeAccountsPage() {
                 <Button variant={'outlined'}>{t.auth.signUp.merge.btnFirst}</Button>
                 <Button variant={'outlined'}>{t.auth.signUp.merge.btnSec}</Button>
                 <span>
-                    <Image src={congratulationImg} alt={'re'} />
+                    <Image alt={'re'} src={congratulationImg} />
                 </span>
             </MergeAccountsPageWrapper>
         </AuthContainer>

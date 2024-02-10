@@ -1,61 +1,62 @@
-import {RadioInput} from 'shared/ui/RadioInput/RadioInput'
-import {BusinessFormWrapper} from './BusinessAccount.styled'
-import {PayPal} from '../PayPal/PayPal'
-import {Stripe} from '../Stripe/Stripe'
-import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
-import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
 import {Controller} from 'react-hook-form'
-import {AccountManagementContainer} from 'shared/styles/AccountManagementContainer.styled'
+
+import {Card} from '@/shared/ui/Card/Card'
+import {IconButton, Loader, RadioInput, Skeleton} from '@nazar-pryt/inctagram-ui-kit'
+
+import {useGetSubscriptionCostsQuery} from '../../api/accountManagement.api'
+import {useCreateNewSubscription} from '../../hook/useCreateNewSubscription'
+import {PaypalIcon} from '../../icons/paypalIcon'
+import {StripeIcon} from '../../icons/stripeIcon'
+import {BusinessFormWrapper} from './BusinessAccount.styled'
 
 export const BusinessAccount = () => {
-    const {data: costs} = useGetSubscriptionCostsQuery()
-    const {handleSubmit, control, setValue} = useCreateNewSubscription()
+    const {data: costs, isLoading} = useGetSubscriptionCostsQuery()
+    const {control, handleSubmit, isMakingPayment, setValue} = useCreateNewSubscription()
 
     const handleStripePaymentType = () => {
         setValue('paymentType', 'STRIPE')
+
         return handleSubmit()
     }
     const handlePaypalPaymentType = () => {
         setValue('paymentType', 'PAYPAL')
+
         return handleSubmit()
     }
 
     return (
         <BusinessFormWrapper onSubmit={handleSubmit}>
+            {isMakingPayment && <Loader />}
             <h4>Your subscription costs:</h4>
-            <AccountManagementContainer>
-                <Controller
-                    control={control}
-                    name='typeSubscription'
-                    render={({field: {onChange, value}}) => (
-                        <>
-                            <RadioInput
-                                label={`$10 per month`}
-                                value={'MONTHLY'}
-                                onChange={onChange}
-                                checked={value === 'MONTHLY'}
-                            />
-                            <RadioInput
-                                onChange={onChange}
-                                label={'$50 per half-year'}
-                                value={'SEMI_ANNUALLY'}
-                                checked={value === 'SEMI_ANNUALLY'}
-                            />
-                            <RadioInput
-                                label={'$100 per year'}
-                                onChange={onChange}
-                                value={'YEARLY'}
-                                checked={value === 'YEARLY'}
-                            />
-                        </>
-                    )}
-                />
-            </AccountManagementContainer>
-            <span>
-                <PayPal onClick={handlePaypalPaymentType} />
+
+            <Controller
+                control={control}
+                name={'typeSubscription'}
+                render={({field: {onChange, value}}) => (
+                    <Card className={'card'}>
+                        {isLoading && <Skeleton containerClassName={'skeleton'} count={3} height={20} />}
+                        {costs &&
+                            costs.data.map(subscription => (
+                                <RadioInput
+                                    checked={value === subscription.typeDescription}
+                                    key={subscription.amount}
+                                    label={`$${subscription.amount} per ${subscription.typeDescription}`}
+                                    onChange={onChange}
+                                    value={subscription.typeDescription}
+                                />
+                            ))}
+                    </Card>
+                )}
+            />
+            <div className={'paymentButtonsBox'}>
+                <IconButton disabled={isMakingPayment} onClick={handlePaypalPaymentType}>
+                    <PaypalIcon />
+                </IconButton>
                 or
-                <Stripe onClick={handleStripePaymentType} />
-            </span>
+                <IconButton disabled={isMakingPayment} onClick={handleStripePaymentType}>
+                    <StripeIcon />
+                </IconButton>
+            </div>
         </BusinessFormWrapper>
     )
 }

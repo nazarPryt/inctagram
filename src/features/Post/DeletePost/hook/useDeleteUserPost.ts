@@ -1,9 +1,10 @@
 import {useState} from 'react'
-import {PATH} from 'shared/constants/PATH'
+
+import {useDeletePostMutation} from '@/features/Post/DeletePost/api/DeletePost.api'
+import {PATH} from '@/shared/constants/PATH'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
+import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {useRouter} from 'next/router'
-import {useAppDispatch} from 'shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '_app/store/appSlice'
-import {useDeletePostMutation} from 'features/Post/DeletePost/api/DeletePost.api'
 
 export const useDeleteUserPost = (postId: number) => {
     const dispatch = useAppDispatch()
@@ -26,7 +27,7 @@ export const useDeleteUserPost = (postId: number) => {
             .catch(err =>
                 dispatch(
                     SetAppNotificationAC({
-                        notifications: {type: 'error', message: err},
+                        notifications: {message: err, type: 'error'},
                     })
                 )
             )

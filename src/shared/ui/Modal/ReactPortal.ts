@@ -1,5 +1,5 @@
-import {createPortal} from 'react-dom'
 import {ReactNode} from 'react'
+import {createPortal} from 'react-dom'
 
 interface Props {
     children: ReactNode
@@ -18,7 +18,9 @@ export const ReactPortal = ({children, wrapperId}: Props) => {
 
 export const createWrapperAndAppendToBody = (wrapperId: string) => {
     const wrapperElement = document.createElement('div')
+
     wrapperElement.setAttribute('id', wrapperId)
     document.body.appendChild(wrapperElement)
+
     return wrapperElement
 }

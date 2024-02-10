@@ -1,23 +1,26 @@
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {ProfileHeaderWrapper} from 'widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
+import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
+import {PATH} from '@/shared/constants/PATH'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
-import {PATH} from 'shared/constants/PATH'
-import {ProfileAvatar} from 'widgets/Profile/ui/ProfileAvatar/ProfileAvatar'
-import {useGetUserProfileQuery} from 'redux/api/profileAPI'
-import {Loader} from 'shared/ui/Loader'
+
+import {ProfileHeaderWrapper} from './ProfileHeader.styled'
+import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
 export const ProfileHeader = () => {
     const {t} = useTranslation()
-    const {data: userData, isLoading} = useGetUserProfileQuery(13)
+    const {data: userData, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
-        return <Loader />
+        return <ProfileHeaderSkeleton />
     }
 
     if (userData) {
         return (
             <ProfileHeaderWrapper>
-                <ProfileAvatar src={userData.avatars[0]?.url} />
+                <div>
+                    <Avatar size={205} src={userData.avatars[0]?.url} userName={userData.firstName} />
+                </div>
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>
@@ -46,5 +49,6 @@ export const ProfileHeader = () => {
             </ProfileHeaderWrapper>
         )
     }
+
     return <div>error</div>
 }

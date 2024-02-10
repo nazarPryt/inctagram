@@ -1,5 +1,5 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
-import {typography} from '_app/themes/mixins'
 
 export const HeaderStyled = styled.header`
     display: flex;
@@ -12,21 +12,23 @@ export const HeaderStyled = styled.header`
     z-index: 2;
     background-color: ${props => props.theme.bodyColor['700']};
 
-    a {
+    .block {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .InctagramLogo {
         padding: 12px 0;
         text-decoration: none;
-        ${typography.Large()}
+        ${typography.Large};
+
         color: ${props => props.theme.textColor['100']};
     }
 
     @media (max-width: ${props => props.theme.viewPort[768]}px) {
-        a {
+        .InctagramLogo {
             display: none;
         }
-    }
-
-    .block {
-        display: flex;
-        gap: 15px;
     }
 `

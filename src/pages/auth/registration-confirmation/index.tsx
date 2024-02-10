@@ -1,13 +1,15 @@
 import {useEffect} from 'react'
-import {Loader} from 'shared/ui/Loader/Loader'
-import {PATH} from 'shared/constants/PATH'
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {useRouter} from 'next/router'
+
+import {useRegistrationConfirmationMutation} from '@/features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
+import {PATH} from '@/shared/constants/PATH'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
-import {useRegistrationConfirmationMutation} from 'features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
+import {useRouter} from 'next/router'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {code, email} = ctx.query
+
     //todo we can make all logic with REDIRECT wright here
     return {
         props: {
@@ -27,6 +29,7 @@ export default function ConfirmationPage({code, email}: {code: string; email: st
             .then(() => router.replace(PATH.REGISTRATION_CONFIRMED))
             .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
     }
+
     useEffect(() => {
         if (code && email) {
             handleConfirm()

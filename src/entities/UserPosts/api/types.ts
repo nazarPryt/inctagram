@@ -1,22 +1,29 @@
 export type PostsType = {
-    totalCount: number
-    pagesCount: number
-    page: number
+    items: PostsTypeItems[]
     pageSize: number
-    items: PostCardType[]
+    totalCount: number
+    totalUsers: number
 }
-export type PostCardImageType = {
+export type PostsTypeItemsImages = {
+    fileSize: number
+    height: number
+    uploadId: string
     url: string
     width: number
-    height: number
-    fileSize: number
-    uploadId: string
 }
-export type PostCardType = {
-    id: number
-    description: string
-    location: string
-    images: PostCardImageType[]
+export type PostsTypeItemsOwner = {
+    firstName: string
+    lastName: string
+}
+export type PostsTypeItems = {
+    avatarOwner: string
     createdAt: string
+    description: string
+    id: number
+    images: PostsTypeItemsImages[]
+    location?: any
+    owner: PostsTypeItemsOwner
+    ownerId: number
     updatedAt: string
+    userName: string
 }

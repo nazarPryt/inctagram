@@ -1,13 +1,15 @@
-import {getLayoutWithHeader} from '_app/Layouts/unauthorized/Unauthorized'
-import {NextPageContext} from 'next'
-import {Loader} from 'shared/ui/Loader'
 import {useEffect} from 'react'
+
+import {useCheckRecoveryCodeMutation} from '@/features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
+import {PATH} from '@/shared/constants/PATH'
+import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
+import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
-import {PATH} from 'shared/constants/PATH'
-import {useCheckRecoveryCodeMutation} from 'features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {code, email} = ctx.query
+
     return {
         props: {
             code,
@@ -25,6 +27,7 @@ export default function RecoveryPage({code, email}: {code: string; email: string
             .then(() => router.replace(`${PATH.CREATE_NEW_PASSWORD}?recoveryCode=${code}`))
             .catch(() => router.replace(`${PATH.EXPIRED_LINK}?email=${email}`))
     }
+
     useEffect(() => {
         if (code) {
             handleConfirm()

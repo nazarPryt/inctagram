@@ -1,17 +1,16 @@
-import React from 'react'
-import ArrowLeft from 'shared/assets/icons/arrowLeft.svg'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {ArrowLeft, Button} from '@nazar-pryt/inctagram-ui-kit'
+
 import {EditorButtonsWrapper} from './styled'
-import {useTranslation} from 'shared/hooks/useTranslation'
-import {Button} from 'shared/ui/Button/Button'
 
 type EditorButtonsType = {
-    title: string
-    step: string
     isLoading: boolean
     onChangeStep: (step: string) => void
+    step: string
+    title: string
 }
 
-export const EditorButtons: React.FC<EditorButtonsType> = props => {
+export const EditorButtons = (props: EditorButtonsType) => {
     const {t} = useTranslation()
     const STEPS = [
         t.create.steps.addPhoto,
@@ -21,13 +20,14 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
         'SENDING',
     ]
     const nextStep = STEPS.findIndex(el => el === props.step)
+
     return (
         <EditorButtonsWrapper>
             <div>
                 <Button
-                    variant={'text'}
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep - 1])}
+                    variant={'text'}
                 >
                     <ArrowLeft />
                 </Button>
@@ -35,9 +35,9 @@ export const EditorButtons: React.FC<EditorButtonsType> = props => {
             <span>{props.title}</span>
             <div>
                 <Button
-                    variant={'text'}
                     disabled={props.isLoading}
                     onClick={() => props.onChangeStep(STEPS[nextStep + 1])}
+                    variant={'text'}
                 >
                     {props.step === t.create.steps.describe
                         ? t.create.editorButtons.publish

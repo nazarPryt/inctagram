@@ -8,7 +8,7 @@ export const FiltersWrapper = styled.div`
     max-width: 435px;
 `
 
-export const Filter = styled.div<{filter: string; width: number; height: number}>`
+export const Filter = styled.div<{filter: string; height: number; width: number}>`
     display: flex;
     flex-direction: column;
     align-items: center;
