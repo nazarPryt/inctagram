@@ -28,12 +28,9 @@ export const ProfileHeaderWrapper = styled.div`
         justify-content: space-between;
         align-items: center;
     }
-    .settingsLink {
-        color: ${props => props.theme.textColor[100]};
-        background-color: ${props => props.theme.bodyColor[300]};
-        font-weight: 600;
-        text-decoration: none;
-        padding: 6px 24px;
+    .settingsBox {
+        display: flex;
+        gap: 10px;
     }
     .profileStatistics {
         display: flex;

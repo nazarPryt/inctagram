@@ -1,3 +1,4 @@
+import {PostsType} from '@/entities/UserPosts/api/types'
 import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
 import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
 import {UserPost} from '@/entities/UserPosts/ui/UserPost'
@@ -6,15 +7,17 @@ import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
-export const ProfilePostsList = () => {
-    const userId = useAppSelector(state => state.userAuth.userId) as number
-    const endCursorPostId = null
+type PropsType = {isLoadingPosts?: boolean; posts: Pick<PostsType, 'items'>}
 
-    const {data: posts, isLoading} = useGetUserPostsQuery({endCursorPostId, userId})
+export const ProfilePostsList = ({isLoadingPosts, posts}: PropsType) => {
+    //const userId = useAppSelector(state => state.userAuth.userId) as number
+    // const endCursorPostId = null
+    //
+    // const {data: posts, isLoading} = useGetUserPostsQuery({endCursorPostId, userId})
 
     const isNoPosts = posts && posts.items.length === 0
 
-    if (isLoading) {
+    if (isLoadingPosts) {
         return <ProfilePostsListSkeleton />
     }
     if (isNoPosts) {

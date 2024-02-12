@@ -1,12 +1,14 @@
 import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 
+import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
+import {getPublicUserProfile} from '@/entities/PublicProfile/api/public-profile-server-api'
 import {PostsType} from '@/entities/UserPosts/api/types'
 import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
-import {PublicProfileType} from '@/shared/server-api/server-api.type'
-import {PublicProfile} from '@/widgets/PublicProfile/PublicProfile'
+import {Profile} from '@/widgets/Profile/Profile'
 
 type PropsType = {
+    profileId: number
     user: PublicProfileType
     userPosts: Pick<PostsType,'items'>
 }
@@ -15,11 +17,10 @@ export const getServerSideProps = (async ctx => {
     const profileId = ctx.params!.profileId
 
     if(profileId){
-        const res = await serverPublicAPI.getPublicUserProfile(+profileId)
+        const res = await getPublicUserProfile(+profileId)
         const rese = await serverPublicAPI.getUserPosts(+profileId)
 
-
-        return { props: { user: res!.data,  userPosts: rese!.data } }
+        return { props: { profileId: +profileId,  user: res!.data, userPosts: rese!.data } }
     }
 
     return {notFound: true}
@@ -27,16 +28,12 @@ export const getServerSideProps = (async ctx => {
 
 
 
-const PublicUserProfilePage = ({user, userPosts}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
-
-
-
+const UserProfilePage = ({profileId, user,userPosts}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
     return (
-       <PublicProfile user={user} userPosts={userPosts}/>
+       <Profile user={user} userPosts={userPosts}/>
     )
 }
 
 
-
-PublicUserProfilePage.getLayout = getLayoutWithHeader
-export default PublicUserProfilePage
+UserProfilePage.getLayout = getLayoutWithHeader
+export default UserProfilePage
