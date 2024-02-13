@@ -5,14 +5,20 @@ import {Profile} from '@/widgets/Profile/Profile'
 
 export const MyProfile = () => {
     const userId = useAppSelector(state => state.userAuth.userId) as number
-
+    const isLoggedIn = true
     const endCursorPostId = null
     const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId)
-    const {data: userPosts, isLoading: isLoadingPosts} = useGetUserPostsQuery({endCursorPostId, userId})
+    const {data: posts, isLoading: isLoadingPosts} = useGetUserPostsQuery({endCursorPostId, userId})
 
-    if (userPosts && user) {
+    if (posts && user) {
         return (
-            <Profile isLoadingPosts={isLoadingPosts} isLoadingUser={isLoadingUser} user={user} userPosts={userPosts} />
+            <Profile
+                isLoadingPosts={isLoadingPosts}
+                isLoadingUser={isLoadingUser}
+                mode={{isLoggedIn}}
+                user={user}
+                userPosts={posts}
+            />
         )
     }
 

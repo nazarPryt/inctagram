@@ -30,7 +30,7 @@ export const getServerSideProps = (async ctx => {
 
 const UserProfilePage = ({profileId, user,userPosts}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
     return (
-       <Profile user={user} userPosts={userPosts}/>
+       <Profile mode={'public'} user={user} userPosts={userPosts}/>
     )
 }
 

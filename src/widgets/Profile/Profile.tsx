@@ -8,13 +8,14 @@ import {ProfilePostsList} from './ui/ProfilePostsList/ProfilePostsList'
 type ProfileType = {
     isLoadingPosts?: boolean
     isLoadingUser?: boolean
+    mode: 'public' | {isLoggedIn: boolean}
     user: PublicProfileType
     userPosts: Pick<PostsType, 'items'>
 }
-export const Profile = ({isLoadingPosts, isLoadingUser, user, userPosts}: ProfileType) => {
+export const Profile = ({isLoadingPosts, isLoadingUser, mode, user, userPosts}: ProfileType) => {
     return (
         <ProfileWrapper>
-            <ProfileHeader isLoadingUser={isLoadingUser} user={user} />
+            <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
             <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} />
         </ProfileWrapper>
     )
