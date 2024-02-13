@@ -1,3 +1,4 @@
+import {IconColor} from '@nazar-pryt/inctagram-ui-kit'
 import * as Dialog from '@radix-ui/react-dialog'
 import styled, {keyframes} from 'styled-components'
 
@@ -49,6 +50,7 @@ export const DialogClose = styled(Dialog.Close)`
     cursor: pointer;
     background-color: transparent;
     border: none;
+    ${IconColor}
 `
 
 export const DialogContentBox = styled.div`

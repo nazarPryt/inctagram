@@ -7,17 +7,23 @@ export const useGetAllPosts = () => {
     const params: ParamsType = {pageSize: 2}
     const [endCursorPostId, setEndCursorPostId] = useState<null | number>(null)
 
-    const {data, isLoading} = useGetAllPostsQuery({endCursorPostId, params}, {refetchOnMountOrArgChange: true})
+    const {currentData, data, isLoading} = useGetAllPostsQuery(
+        {endCursorPostId, params},
+        {refetchOnFocus: true, refetchOnMountOrArgChange: true}
+    )
 
-    const isHavePosts = data && data.items.length
+    if (data && currentData) {
+        const isHavePosts = data && data.items.length
+        const hasMore = data.totalCount > currentData.items.length
 
-    const fetchMoreData = () => {
-        setTimeout(() => {
+        const fetchMoreData = () => {
             const lastPostId = isHavePosts ? data.items[data.items.length - 1].id : null
 
             setEndCursorPostId(lastPostId)
-        }, 1500)
-    }
+        }
 
-    return {data, fetchMoreData, isHavePosts, isLoading}
+        return {data, fetchMoreData, hasMore, isHavePosts, isLoading}
+    } else {
+        return {data, fetchMoreData: () => {}, hasMore: false, isHavePosts: false, isLoading}
+    }
 }

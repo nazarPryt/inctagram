@@ -21,7 +21,7 @@ export default function ShowPostPage() {
     if (data) {
         return (
             <UserPostsModal onClose={setOpen} open>
-                <ViewUserPost data={data} />
+                <ViewUserPost data={data} mode={'myProfile'} />
             </UserPostsModal>
         )
     }

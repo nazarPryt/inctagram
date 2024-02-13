@@ -38,7 +38,7 @@ export const useLogIn = () => {
         setError,
         ...rest
     } = useForm<FormData>({
-        defaultValues: {email: 'korib99371@ikuromi.com', password: '11223344qwerTY!'},
+        defaultValues: {email: 'webok64315@rohoza.com', password: '11223344qwerTY!'},
         mode: 'onTouched',
         reValidateMode: 'onChange',
         resolver: yupResolver(schema),

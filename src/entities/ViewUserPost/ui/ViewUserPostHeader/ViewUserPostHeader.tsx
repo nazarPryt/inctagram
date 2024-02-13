@@ -5,6 +5,7 @@ import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/Del
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
 import {PATH} from '@/shared/constants/PATH'
+import {ProfileHeaderMode} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -14,9 +15,10 @@ import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 type PropsType = {
     data: PostByIdType
     edit: boolean
+    mode: ProfileHeaderMode
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
+export const ViewUserPostHeader = ({data, edit, mode, setEdit}: PropsType) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
 
@@ -24,6 +26,8 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
         setEdit(true)
         setIsPopoverOpen(false)
     }
+
+    const showPopover = !edit && mode === 'myProfile'
 
     return (
         <>
@@ -39,7 +43,7 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
                         {data.userName}
                     </Link>
                 </div>
-                {!edit && (
+                {showPopover && (
                     <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                         <PopoverItem icon={<EditPostIcon />} name={'Edit Post'} onClick={handleEditPost} />
                         <PopoverItem icon={<DeletePostIcon />} name={'Delete Post'} onClick={handleModalOpen} />

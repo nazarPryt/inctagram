@@ -17,11 +17,14 @@ export const getStaticProps = (async context => {
     const res = await getAllPublicPosts(params)
     const posts = res!.data.items
 
+    console.log(res)
     if (totalCount && posts) {
         return {props: {posts, totalCount}, revalidate: 60}
+    } else {
+        return {props: {posts: [], totalCount: 0}, revalidate: 60}
     }
 
-    return {notFound: true}
+    // return {notFound: true}
 }) satisfies GetStaticProps<PropsType>
 
 const Home = ({posts, totalCount}: InferGetStaticPropsType<typeof getStaticProps>) => {

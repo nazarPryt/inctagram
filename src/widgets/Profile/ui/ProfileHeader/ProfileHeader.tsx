@@ -1,3 +1,5 @@
+import {ReactNode} from 'react'
+
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -7,43 +9,29 @@ import Link from 'next/link'
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-export type ProfileHeaderMode = {
-    mode: 'fellow' | 'myProfile' | 'public'
-}
+export type ProfileHeaderMode = 'fellow' | 'myProfile' | 'publick'
 
-type PropsType = {isLoadingUser?: boolean; user: PublicProfileType} & ProfileHeaderMode
+type NameItem = {
+    [key in ProfileHeaderMode]: ReactNode
+}
+type PropsType = {isLoadingUser?: boolean; mode: ProfileHeaderMode; user: PublicProfileType}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()
 
-    const renderSettingsBox = () => {
-        console.log('mode', mode)
-        switch (mode) {
-            case 'public': {
-                console.log('case public')
-
-                return <></>
-            }
-            case 'myProfile': {
-                console.log('case {isLoggedIn: true}')
-
-                return (
-                    <Button asT={Link} href={PATH.PROFILE_SETTINGS} variant={'contained'}>
-                        {t.profile.settingsBtn}
-                    </Button>
-                )
-            }
-            case 'fellow': {
-                console.log('case {isLoggedIn: false}')
-
-                return (
-                    <div className={'settingsBox'}>
-                        <Button>Follow</Button>
-                        <Button variant={'contained'}>Send Message</Button>
-                    </div>
-                )
-            }
-        }
+    const renderSettingsBox: NameItem = {
+        fellow: (
+            <div className={'settingsBox'}>
+                <Button>Follow</Button>
+                <Button variant={'contained'}>Send Message</Button>
+            </div>
+        ),
+        myProfile: (
+            <Button asT={Link} href={PATH.PROFILE_SETTINGS} variant={'contained'}>
+                {t.profile.settingsBtn}
+            </Button>
+        ),
+        publick: <></>,
     }
 
     if (isLoadingUser) {
@@ -58,7 +46,7 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
             <div className={'profileData'}>
                 <div className={'profileHeader'}>
                     <h2>{user.userName}</h2>
-                    {renderSettingsBox()}
+                    {renderSettingsBox[mode]}
                 </div>
                 <div className={'profileStatistics'}>
                     <div>

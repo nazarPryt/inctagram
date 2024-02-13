@@ -9,12 +9,14 @@ import {ViewUserPostFeatures} from '@/entities/ViewUserPost/ui/ViewUserPostFeatu
 import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
 import {ViewUserPostSlider} from '@/entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
+import {ProfileHeaderMode} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader'
 
 type PropsType = {
     data: PostByIdType
+    mode: ProfileHeaderMode
 }
 
-export const ViewUserPost = ({data}: PropsType) => {
+export const ViewUserPost = ({data, mode}: PropsType) => {
     const [edit, setEdit] = useState(false)
 
     return (
@@ -24,11 +26,11 @@ export const ViewUserPost = ({data}: PropsType) => {
                 <EditPost data={data} edit={edit} setEdit={setEdit} userId={data.id} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} />
+                    <ViewUserPostHeader data={data} edit={edit} mode={mode} setEdit={setEdit} />
                     <ViewUserPostDescription createdAt={data.createdAt} description={data.description} />
                     <ViewUserPostComments />
-                    <ViewUserPostFeatures />
-                    <ViewUserPostAddComment />
+                    <ViewUserPostFeatures mode={mode} />
+                    <ViewUserPostAddComment mode={mode} />
                 </div>
             )}
         </ViewUserPostWrapper>
