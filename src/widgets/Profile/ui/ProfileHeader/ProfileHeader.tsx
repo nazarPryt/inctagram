@@ -7,24 +7,35 @@ import Link from 'next/link'
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-type PropsType = {isLoadingUser?: boolean; mode: 'public' | {isLoggedIn: boolean}; user: PublicProfileType}
+export type ProfileHeaderMode = {
+    mode: 'fellow' | 'myProfile' | 'public'
+}
+
+type PropsType = {isLoadingUser?: boolean; user: PublicProfileType} & ProfileHeaderMode
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()
 
     const renderSettingsBox = () => {
+        console.log('mode', mode)
         switch (mode) {
             case 'public': {
+                console.log('case public')
+
                 return <></>
             }
-            case {isLoggedIn: true}: {
+            case 'myProfile': {
+                console.log('case {isLoggedIn: true}')
+
                 return (
                     <Button asT={Link} href={PATH.PROFILE_SETTINGS} variant={'contained'}>
                         {t.profile.settingsBtn}
                     </Button>
                 )
             }
-            case {isLoggedIn: false}: {
+            case 'fellow': {
+                console.log('case {isLoggedIn: false}')
+
                 return (
                     <div className={'settingsBox'}>
                         <Button>Follow</Button>
