@@ -2,7 +2,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import {Post} from '@/entities/Post/Post'
 import {useGetAllPosts} from '@/entities/Post/hook/useGetAllPosts'
-import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
+import {NoPosts} from '@/shared/ui/NoPosts/NoPosts'
 import {ScrollToTop} from '@/shared/ui/ScrollToTop/ScrollToTop'
 
 import {AllPostsListWrapper} from './AllPostsList.styled'

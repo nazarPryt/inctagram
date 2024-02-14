@@ -13,9 +13,6 @@ export const ViewUserPostWrapper = styled.div`
     .left {
         display: flex;
         justify-content: center;
-        width: 56%;
-        height: 100%;
-        min-height: 450px;
         min-width: 300px;
         overflow: hidden;
     }

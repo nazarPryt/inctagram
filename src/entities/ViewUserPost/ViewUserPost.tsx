@@ -12,22 +12,22 @@ import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
 import {ComponentMode} from '@/shared/hooks/useMode'
 
 type PropsType = {
-    data: PostByIdType
     mode: ComponentMode
+    post: PostByIdType
 }
 
-export const ViewUserPost = ({data, mode}: PropsType) => {
+export const ViewUserPost = ({mode, post}: PropsType) => {
     const [edit, setEdit] = useState(false)
 
     return (
         <ViewUserPostWrapper>
-            <ViewUserPostSlider className={'left'} images={data.images} />
+            <ViewUserPostSlider className={'left'} images={post.images} />
             {edit ? (
-                <EditPost data={data} edit={edit} setEdit={setEdit} userId={data.id} />
+                <EditPost data={post} edit={edit} setEdit={setEdit} userId={post.id} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader data={data} edit={edit} mode={mode} setEdit={setEdit} />
-                    <ViewUserPostDescription createdAt={data.createdAt} description={data.description} />
+                    <ViewUserPostHeader data={post} edit={edit} mode={mode} setEdit={setEdit} />
+                    <ViewUserPostDescription createdAt={post.createdAt} description={post.description} />
                     <ViewUserPostComments />
                     <ViewUserPostFeatures mode={mode} />
                     <ViewUserPostAddComment mode={mode} />

@@ -1,11 +1,14 @@
 import {PostsType} from '@/entities/UserPosts/api/types'
-import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
 import {UserPost} from '@/entities/UserPosts/ui/UserPost'
+import {NoPosts} from '@/shared/ui/NoPosts'
 
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
-type PropsType = {isLoadingPosts?: boolean; posts: Pick<PostsType, 'items'> | undefined}
+type PropsType = {
+    isLoadingPosts?: boolean
+    posts: Pick<PostsType, 'items'> | undefined
+}
 
 export const ProfilePostsList = ({isLoadingPosts, posts}: PropsType) => {
     if (isLoadingPosts) {

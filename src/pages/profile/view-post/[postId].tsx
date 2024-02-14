@@ -12,16 +12,16 @@ export default function ShowPostPage() {
     const router = useRouter()
     const postId = router.query.postId ? +router.query.postId : null
 
-    const {data, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
+    const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
 
     if (isLoading) {
         return <Loader />
     }
 
-    if (data) {
+    if (post) {
         return (
             <UserPostsModal onClose={setOpen} open>
-                <ViewUserPost data={data} mode={'myProfile'} />
+                <ViewUserPost mode={'myProfile'} post={post} />
             </UserPostsModal>
         )
     }
