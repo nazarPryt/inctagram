@@ -9,11 +9,11 @@ import {ViewUserPostFeatures} from '@/entities/ViewUserPost/ui/ViewUserPostFeatu
 import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
 import {ViewUserPostSlider} from '@/entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
-import {ProfileHeaderMode} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader'
+import {ComponentMode} from '@/shared/hooks/useMode'
 
 type PropsType = {
     data: PostByIdType
-    mode: ProfileHeaderMode
+    mode: ComponentMode
 }
 
 export const ViewUserPost = ({data, mode}: PropsType) => {

@@ -9,17 +9,13 @@ export const MyProfile = () => {
     const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId)
     const {data: posts, isLoading: isLoadingPosts} = useGetUserPostsQuery({endCursorPostId, userId})
 
-    if (posts && user) {
-        return (
-            <Profile
-                isLoadingPosts={isLoadingPosts}
-                isLoadingUser={isLoadingUser}
-                mode={'myProfile'}
-                user={user}
-                userPosts={posts}
-            />
-        )
-    }
-
-    return null
+    return (
+        <Profile
+            isLoadingPosts={isLoadingPosts}
+            isLoadingUser={isLoadingUser}
+            mode={'myProfile'}
+            user={user}
+            userPosts={posts}
+        />
+    )
 }

@@ -1,10 +1,10 @@
 import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
-import {ProfileHeaderMode} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader'
+import {ComponentMode} from '@/shared/hooks/useMode'
 import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ViewUserPostAddCommentWrapper} from './ViewUserPostAddComment.styled'
 type PropsType = {
-    mode: ProfileHeaderMode
+    mode: ComponentMode
 }
 export const ViewUserPostAddComment = ({mode}: PropsType) => {
     const {errors, handleSubmit, register} = useCommentPost()

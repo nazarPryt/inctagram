@@ -5,30 +5,32 @@ import {UserPost} from '@/entities/UserPosts/ui/UserPost'
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
-type PropsType = {isLoadingPosts?: boolean; posts: Pick<PostsType, 'items'>}
+type PropsType = {isLoadingPosts?: boolean; posts: Pick<PostsType, 'items'> | undefined}
 
 export const ProfilePostsList = ({isLoadingPosts, posts}: PropsType) => {
-    const isNoPosts = posts.items.length === 0
-
     if (isLoadingPosts) {
         return <ProfilePostsListSkeleton />
     }
-    if (isNoPosts) {
-        return <NoPosts />
+
+    if (posts) {
+        const isNoPosts = posts.items.length === 0
+
+        return (
+            <ProfilePostsListWrapper>
+                {isNoPosts && <NoPosts />}
+                {posts.items.map(post => {
+                    return (
+                        <UserPost
+                            imagesLength={post.images.length}
+                            key={post.id}
+                            postId={post.id}
+                            src={post.images[0]?.url}
+                        />
+                    )
+                })}
+            </ProfilePostsListWrapper>
+        )
     }
 
-    return (
-        <ProfilePostsListWrapper>
-            {posts.items.map(post => {
-                return (
-                    <UserPost
-                        imagesLength={post.images.length}
-                        key={post.id}
-                        postId={post.id}
-                        src={post.images[0]?.url}
-                    />
-                )
-            })}
-        </ProfilePostsListWrapper>
-    )
+    return null
 }

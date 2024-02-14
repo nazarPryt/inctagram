@@ -5,7 +5,7 @@ import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/Del
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
 import {PATH} from '@/shared/constants/PATH'
-import {ProfileHeaderMode} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader'
+import {ComponentMode} from '@/shared/hooks/useMode'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -15,7 +15,7 @@ import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 type PropsType = {
     data: PostByIdType
     edit: boolean
-    mode: ProfileHeaderMode
+    mode: ComponentMode
     setEdit: Dispatch<SetStateAction<boolean>>
 }
 export const ViewUserPostHeader = ({data, edit, mode, setEdit}: PropsType) => {
