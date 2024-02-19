@@ -1,23 +1,24 @@
 import {useState} from 'react'
 
-import {ViewUserPostWrapper} from '@/entities/ViewUserPost/ViewUserPost.styled'
-import {PostByIdType} from '@/entities/ViewUserPost/api/type'
-import {ViewUserPostAddComment} from '@/entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment'
-import {ViewUserPostComments} from '@/entities/ViewUserPost/ui/ViewUserPostComments/ViewUserPostComments'
-import {ViewUserPostDescription} from '@/entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription'
-import {ViewUserPostFeatures} from '@/entities/ViewUserPost/ui/ViewUserPostFeatures/ViewUserPostFeatures'
-import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
-import {ViewUserPostSlider} from '@/entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
-import {ComponentMode} from '@/shared/hooks/useMode'
+import {useMode} from '@/shared/hooks/useMode'
+
+import {ViewUserPostWrapper} from './ViewUserPost.styled'
+import {PostByIdType} from './api/type'
+import {ViewUserPostAddComment} from './ui/ViewUserPostAddComment'
+import {ViewUserPostComments} from './ui/ViewUserPostComments'
+import {ViewUserPostDescription} from './ui/ViewUserPostDescription'
+import {ViewUserPostFeatures} from './ui/ViewUserPostFeatures'
+import {ViewUserPostHeader} from './ui/ViewUserPostHeader'
+import {ViewUserPostSlider} from './ui/ViewUserPostSlider'
 
 type PropsType = {
-    mode: ComponentMode
     post: PostByIdType
 }
 
-export const ViewUserPost = ({mode, post}: PropsType) => {
+export const ViewUserPost = ({post}: PropsType) => {
     const [edit, setEdit] = useState(false)
+    const {mode} = useMode(post.ownerId)
 
     return (
         <ViewUserPostWrapper>

@@ -1,5 +1,3 @@
-import {useState} from 'react'
-
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PostsType} from '@/entities/UserPosts/api/types'
 import {ViewUserPost} from '@/entities/ViewUserPost/ViewUserPost'
@@ -22,18 +20,20 @@ type ProfileType = {
 }
 export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {
     const {back} = useRouter()
-    const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
+    const {data: post, isLoading} = useGetUserPostQuery(postId, {refetchOnMountOrArgChange: true, skip: !postId})
 
     const handleCloseModal = () => {
         back()
     }
 
+    const showPostModal = Boolean(post && postId)
+
     return (
         <>
             {isLoading && <Loader />}
-            {post && postId && (
-                <Modal onClose={handleCloseModal} open showTitle={false}>
-                    <ViewUserPost mode={mode} post={post} />
+            {showPostModal && (
+                <Modal onClose={handleCloseModal} open showTitle={false} size={'full'}>
+                    {post && <ViewUserPost post={post} />}
                 </Modal>
             )}
             <ProfileWrapper>

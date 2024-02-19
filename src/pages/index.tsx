@@ -23,8 +23,6 @@ export const getStaticProps = (async context => {
     } else {
         return {props: {posts: [], totalCount: 0}, revalidate: 60}
     }
-
-    // return {notFound: true}
 }) satisfies GetStaticProps<PropsType>
 
 const Home = ({posts, totalCount}: InferGetStaticPropsType<typeof getStaticProps>) => {

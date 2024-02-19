@@ -5,7 +5,7 @@ import {CreatePostResponse, UploadPost, UploadedImageResponse} from './types'
 export const createPostAPI = api.injectEndpoints({
     endpoints: build => ({
         CreatePost: build.mutation<CreatePostResponse, UploadPost>({
-            invalidatesTags: ['UserPosts'],
+            invalidatesTags: ['UserPosts', 'AllPosts'],
             query: body => ({
                 body,
                 method: 'POST',

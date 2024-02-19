@@ -12,15 +12,17 @@ export default function UserProfilePage() {
 
     const {mode} = useMode(userId)
 
-    console.log('query', query)
     if (query.id?.length) {
         postId = +query.id[1]
     }
     const endCursorPostId = null
-    const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {skip: !userId})
+    const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {
+        refetchOnMountOrArgChange: true,
+        skip: !userId,
+    })
     const {data: userPosts, isLoading: isLoadingPosts} = useGetUserPostsQuery(
         {endCursorPostId, userId},
-        {skip: !userId}
+        {refetchOnMountOrArgChange: true, skip: !userId}
     )
 
     return (

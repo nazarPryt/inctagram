@@ -4,7 +4,6 @@ import {api} from '@/redux/api/api'
 export const publicProfileApi = api.injectEndpoints({
     endpoints: build => ({
         getPublicProfile: build.query<PublicProfileType, number>({
-            providesTags: ['PublicProfile'],
             query: userId => ({
                 method: 'GET',
                 url: `public-user/profile/${userId}`,

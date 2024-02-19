@@ -1,0 +1,1 @@
+export {ViewUserPostSlider} from './ViewUserPostSlider'

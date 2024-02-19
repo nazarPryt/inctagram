@@ -1,10 +1,5 @@
-import {forwardRef, useState} from 'react'
+import {forwardRef} from 'react'
 
-import {ViewUserPost} from '@/entities/ViewUserPost/ViewUserPost'
-import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/get-post-api'
-import {PATH} from '@/shared/constants/PATH'
-import {UserPostsModal} from '@/widgets/UserPostsModal/UserPostsModal'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 

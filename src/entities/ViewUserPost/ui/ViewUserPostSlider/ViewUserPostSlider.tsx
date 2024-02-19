@@ -22,7 +22,8 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 }}
-                className={'Swiper'}
+                className={'swiper'}
+                grabCursor
                 keyboard
                 modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
                 navigation
@@ -33,8 +34,14 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
             >
                 {imagesToShow.map(photo => {
                     return (
-                        <SwiperSlide className={'slide'} key={photo.uploadId}>
-                            <Image alt={'Post-Image'} height={photo.height} src={photo.url} width={photo.width} />
+                        <SwiperSlide className={'swiper-slide'} key={photo.uploadId}>
+                            <Image
+                                alt={'Post-Image'}
+                                height={photo.height}
+                                priority
+                                src={photo.url}
+                                width={photo.width}
+                            />
                         </SwiperSlide>
                     )
                 })}

@@ -3,9 +3,11 @@ import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {getPublicUserProfile} from '@/entities/PublicProfile/api/public-profile-server-api'
 import {PostsType} from '@/entities/UserPosts/api/types'
+import {useMode} from '@/shared/hooks/useMode'
 import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
 import {Profile} from '@/widgets/Profile'
+import {useRouter} from 'next/router'
 
 type PropsType = {
     profileId: number
@@ -14,7 +16,7 @@ type PropsType = {
 }
 
 export const getServerSideProps = (async ctx => {
-    const params = ctx.params!.profileId
+    const params = ctx.params!.id
     const profileId = params![0]
 
     if(profileId){
@@ -30,8 +32,16 @@ export const getServerSideProps = (async ctx => {
 
 
 const UserProfilePage = ({profileId, user,userPosts}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
+    const {query} = useRouter()
+
+    let postId = null
+
+    if (query.id && query.id?.length > 1) {
+        postId = +query.id[1]
+    }
+
     return (
-       <Profile mode={'publick'} postId={null} user={user} userPosts={userPosts}/>
+       <Profile mode={'publick'} postId={postId} user={user} userPosts={userPosts}/>
     )
 }
 
