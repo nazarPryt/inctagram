@@ -21,6 +21,7 @@ export const createPostAPI = api.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useCreatePostMutation, useUploadImageMutation} = createPostAPI

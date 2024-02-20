@@ -9,7 +9,7 @@ type PropsType = {
 export const ViewUserPostAddComment = ({mode}: PropsType) => {
     const {errors, handleSubmit, register} = useCommentPost()
 
-    if (mode === 'myProfile') {
+    if (mode !== 'publick') {
         return (
             <ViewUserPostAddCommentWrapper onSubmit={handleSubmit}>
                 <TextArea placeholder={'Add a Comment...'} {...register('comment')} error={errors.comment?.message} />

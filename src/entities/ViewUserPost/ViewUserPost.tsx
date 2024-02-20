@@ -27,7 +27,7 @@ export const ViewUserPost = ({post}: PropsType) => {
                 <EditPost data={post} edit={edit} setEdit={setEdit} userId={post.id} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader data={post} edit={edit} mode={mode} setEdit={setEdit} />
+                    <ViewUserPostHeader data={post} edit={edit} setEdit={setEdit} />
                     <ViewUserPostDescription createdAt={post.createdAt} description={post.description} />
                     <ViewUserPostComments />
                     <ViewUserPostFeatures mode={mode} />

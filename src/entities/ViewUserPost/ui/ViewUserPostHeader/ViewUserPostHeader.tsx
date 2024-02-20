@@ -5,7 +5,7 @@ import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/Del
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
 import {PATH} from '@/shared/constants/PATH'
-import {ComponentMode, useMode} from '@/shared/hooks/useMode'
+import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -15,10 +15,10 @@ import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 type PropsType = {
     data: PostByIdType
     edit: boolean
-    mode: ComponentMode
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({data, edit, mode, setEdit}: PropsType) => {
+export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
+    const {mode} = useMode(data.ownerId)
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
     const handleEditPost = () => {

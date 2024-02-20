@@ -2,6 +2,7 @@ import {PostWrapper} from '@/entities/Post/Post.styled'
 import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
 import {PostCommentForm} from '@/entities/Post/ui/PostCommentForm/PostCommentForm'
 import {PostComments} from '@/entities/Post/ui/PostComments/PostComments'
+import {PostDescription} from '@/entities/Post/ui/PostDescription/PostDescription'
 import {PostFeatures} from '@/entities/Post/ui/PostFeatures/PostFeatures'
 import {PostHeader} from '@/entities/Post/ui/PostHeader/PostHeader'
 import {PostImage} from '@/entities/Post/ui/PostImage/PostImage'
@@ -23,7 +24,13 @@ export const Post = ({post}: PostType) => {
             />
             <PostImage images={post.images} />
             <PostFeatures />
-            <PostComments />
+            <PostDescription
+                avatarOwner={post.avatarOwner}
+                description={post.description}
+                ownerId={post.ownerId}
+                userName={post.userName}
+            />
+            {/*<PostComments />*/}
             <PostLikes />
             <PostCommentForm />
         </PostWrapper>

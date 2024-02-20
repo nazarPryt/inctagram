@@ -23,5 +23,6 @@ export const logOutAPI = api.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 })
 export const {useLogOutMutation} = logOutAPI

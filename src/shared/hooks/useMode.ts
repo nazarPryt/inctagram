@@ -13,8 +13,7 @@ export const useMode = (profileId: number) => {
 
     if (userId === profileId) {
         mode = 'myProfile'
-    }
-    if (userId !== profileId) {
+    } else if (userId && userId !== profileId) {
         mode = 'fellow'
     }
 

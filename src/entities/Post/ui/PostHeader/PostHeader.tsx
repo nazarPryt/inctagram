@@ -40,11 +40,12 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, userName}: P
     return (
         <PostHeaderWrapper>
             <div className={'PostHeader'}>
-                <Avatar alt={'ds'} size={40} src={avatarOwner} userName={userName} />
+                <Avatar alt={`${userName} avatar}`} size={40} src={avatarOwner} userName={userName} />
                 <Link className={'link'} href={`${PATH.USER_PROFILE}/${ownerId}`}>
                     {userName}
                 </Link>
-                <span>{day}</span>
+                <span className={'dot'} />
+                <span className={'day'}>{day}</span>
             </div>
             <Popover icon={<PopOverIcon />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />
