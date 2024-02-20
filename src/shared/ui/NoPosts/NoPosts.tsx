@@ -1,5 +1,5 @@
-import {NoPostsIcon} from '@/entities/UserPosts/ui/NoPosts/NoPostsIcon'
-import {NoPostsWrapper} from '@/entities/UserPosts/ui/NoPosts/icon/NoPosts.styled'
+import {NoPostsWrapper} from './NoPosts.styled'
+import {NoPostsIcon} from './icon/NoPostsIcon'
 
 export const NoPosts = () => {
     return (

@@ -1,7 +1,7 @@
 import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
 
 import {PublicPostsListStyled} from './PublicPostsList.styled'
-import {PostItem} from './ui/PostItem/PostItem'
+import {PostItem} from './ui/PostItem'
 
 export const PublicPostsList = ({posts}: {posts: AllPostsTypeItems[]}) => {
     return (

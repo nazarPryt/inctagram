@@ -28,7 +28,6 @@ export const RegistrationForm = () => {
 
     return (
         <AuthContainer>
-            {isLoading && <Loader />}
             <AuthPageStyled>
                 <h1>{t.auth.signUp.title}</h1>
                 <div className={'oauthWrapper'}>

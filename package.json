@@ -13,9 +13,8 @@
     },
     "dependencies": {
         "@hookform/resolvers": "3.3.2",
-        "@nazar-pryt/inctagram-ui-kit": "^0.0.28",
+        "@nazar-pryt/inctagram-ui-kit": "^0.0.31",
         "@radix-ui/react-dialog": "1.0.4",
-        "@radix-ui/react-select": "1.2.2",
         "@react-oauth/google": "0.11.1",
         "@reduxjs/toolkit": "1.9.5",
         "axios": "1.6.5",

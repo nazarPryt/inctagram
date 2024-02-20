@@ -1,30 +1,27 @@
-import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
-import {NoPosts} from '@/entities/UserPosts/ui/NoPosts/NoPosts'
+import {PostsType} from '@/entities/UserPosts/api/types'
 import {UserPost} from '@/entities/UserPosts/ui/UserPost'
-import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {NoPosts} from '@/shared/ui/NoPosts'
 
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
-export const ProfilePostsList = () => {
-    const userId = useAppSelector(state => state.userAuth.userId) as number
-    const endCursorPostId = null
+type PropsType = {
+    isLoadingPosts?: boolean
+    posts: Pick<PostsType, 'items'> | undefined
+}
 
-    const {data: posts, isLoading} = useGetUserPostsQuery({endCursorPostId, userId})
-
-    const isNoPosts = posts && posts.items.length === 0
-
-    if (isLoading) {
+export const ProfilePostsList = ({isLoadingPosts, posts}: PropsType) => {
+    if (isLoadingPosts) {
         return <ProfilePostsListSkeleton />
     }
-    if (isNoPosts) {
-        return <NoPosts />
-    }
 
-    return (
-        <ProfilePostsListWrapper>
-            {posts &&
-                posts.items.map(post => {
+    if (posts) {
+        const isNoPosts = posts.items.length === 0
+
+        return (
+            <ProfilePostsListWrapper>
+                {isNoPosts && <NoPosts />}
+                {posts.items.map(post => {
                     return (
                         <UserPost
                             imagesLength={post.images.length}
@@ -34,6 +31,9 @@ export const ProfilePostsList = () => {
                         />
                     )
                 })}
-        </ProfilePostsListWrapper>
-    )
+            </ProfilePostsListWrapper>
+        )
+    }
+
+    return null
 }

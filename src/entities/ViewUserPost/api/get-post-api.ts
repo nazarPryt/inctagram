@@ -4,7 +4,7 @@ import {api} from '@/redux/api/api'
 const postApi = api.injectEndpoints({
     endpoints: build => ({
         GetUserPost: build.query<PostByIdType, null | number>({
-            providesTags: () => ['Post'],
+            // providesTags: ['Post'],
             query: postId => ({
                 method: 'GET',
                 url: `public-posts/${postId}`,

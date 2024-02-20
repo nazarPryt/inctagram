@@ -16,6 +16,7 @@ export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 }}
+                grabCursor
                 keyboard
                 modules={[Navigation, Pagination, Autoplay, A11y, Keyboard]}
                 navigation
@@ -23,6 +24,7 @@ export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
                 scrollbar={{draggable: true}}
                 slidesPerView={1}
                 spaceBetween={0}
+                width={500}
             >
                 {photosToShow.map(photo => {
                     return (

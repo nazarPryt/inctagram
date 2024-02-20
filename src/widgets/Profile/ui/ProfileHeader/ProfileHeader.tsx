@@ -1,34 +1,51 @@
-import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
+import {ReactNode} from 'react'
+
+import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PATH} from '@/shared/constants/PATH'
+import {ComponentMode} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-export const ProfileHeader = () => {
-    const {t} = useTranslation()
-    const {data: userData, isLoading} = useGetUserProfileQuery()
+type NameItem = {
+    [key in ComponentMode]: ReactNode
+}
+type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
 
-    if (isLoading) {
-        return <ProfileHeaderSkeleton />
+export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
+    const {t} = useTranslation()
+
+    const renderSettingsBox: NameItem = {
+        fellow: (
+            <div className={'settingsBox'}>
+                <Button>Follow</Button>
+                <Button variant={'contained'}>Send Message</Button>
+            </div>
+        ),
+        myProfile: (
+            <Button asT={Link} href={PATH.PROFILE_SETTINGS} variant={'contained'}>
+                {t.profile.settingsBtn}
+            </Button>
+        ),
+        publick: <></>,
     }
 
-    if (userData) {
+    if (isLoadingUser) {
+        return <ProfileHeaderSkeleton />
+    }
+    if (user) {
         return (
             <ProfileHeaderWrapper>
                 <div>
-                    <Avatar size={205} src={userData.avatars[0]?.url} userName={userData.firstName} />
+                    <Avatar size={205} src={user.avatars[0]?.url} userName={user.userName} />
                 </div>
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
-                        <h2>
-                            {userData.firstName} {userData.lastName}
-                        </h2>
-                        <Link className={'settingsLink'} href={PATH.PROFILE_SETTINGS}>
-                            {t.profile.settingsBtn}
-                        </Link>
+                        <h2>{user.userName}</h2>
+                        {renderSettingsBox[mode]}
                     </div>
                     <div className={'profileStatistics'}>
                         <div>
@@ -44,11 +61,11 @@ export const ProfileHeader = () => {
                             {t.profile.publications}
                         </div>
                     </div>
-                    <p>{userData.aboutMe}</p>
+                    <p>{user.aboutMe}</p>
                 </div>
             </ProfileHeaderWrapper>
         )
     }
 
-    return <div>error</div>
+    return null
 }

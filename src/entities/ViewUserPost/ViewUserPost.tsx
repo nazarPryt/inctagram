@@ -1,34 +1,37 @@
 import {useState} from 'react'
 
-import {ViewUserPostWrapper} from '@/entities/ViewUserPost/ViewUserPost.styled'
-import {PostByIdType} from '@/entities/ViewUserPost/api/type'
-import {ViewUserPostAddComment} from '@/entities/ViewUserPost/ui/ViewUserPostAddComment/ViewUserPostAddComment'
-import {ViewUserPostComments} from '@/entities/ViewUserPost/ui/ViewUserPostComments/ViewUserPostComments'
-import {ViewUserPostDescription} from '@/entities/ViewUserPost/ui/ViewUserPostDescription/ViewUserPostDescription'
-import {ViewUserPostFeatures} from '@/entities/ViewUserPost/ui/ViewUserPostFeatures/ViewUserPostFeatures'
-import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader/ViewUserPostHeader'
-import {ViewUserPostSlider} from '@/entities/ViewUserPost/ui/ViewUserPostSlider/ViewUserPostSlider'
 import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
+import {useMode} from '@/shared/hooks/useMode'
+
+import {ViewUserPostWrapper} from './ViewUserPost.styled'
+import {PostByIdType} from './api/type'
+import {ViewUserPostAddComment} from './ui/ViewUserPostAddComment'
+import {ViewUserPostComments} from './ui/ViewUserPostComments'
+import {ViewUserPostDescription} from './ui/ViewUserPostDescription'
+import {ViewUserPostFeatures} from './ui/ViewUserPostFeatures'
+import {ViewUserPostHeader} from './ui/ViewUserPostHeader'
+import {ViewUserPostSlider} from './ui/ViewUserPostSlider'
 
 type PropsType = {
-    data: PostByIdType
+    post: PostByIdType
 }
 
-export const ViewUserPost = ({data}: PropsType) => {
+export const ViewUserPost = ({post}: PropsType) => {
     const [edit, setEdit] = useState(false)
+    const {mode} = useMode(post.ownerId)
 
     return (
         <ViewUserPostWrapper>
-            <ViewUserPostSlider className={'left'} images={data.images} />
+            <ViewUserPostSlider className={'left'} images={post.images} />
             {edit ? (
-                <EditPost data={data} edit={edit} setEdit={setEdit} userId={data.id} />
+                <EditPost data={post} edit={edit} setEdit={setEdit} userId={post.id} />
             ) : (
                 <div className={'right'}>
-                    <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} />
-                    <ViewUserPostDescription createdAt={data.createdAt} description={data.description} />
+                    <ViewUserPostHeader data={post} edit={edit} setEdit={setEdit} />
+                    <ViewUserPostDescription createdAt={post.createdAt} description={post.description} />
                     <ViewUserPostComments />
-                    <ViewUserPostFeatures />
-                    <ViewUserPostAddComment />
+                    <ViewUserPostFeatures mode={mode} />
+                    <ViewUserPostAddComment mode={mode} />
                 </div>
             )}
         </ViewUserPostWrapper>

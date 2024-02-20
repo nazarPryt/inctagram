@@ -2,6 +2,7 @@ import {ReactNode} from 'react'
 import {Provider} from 'react-redux'
 
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {Auth} from '@/shared/providers/Auth/Auth'
 import {store} from '@/shared/store/store'
 import {GlobalStyles, ToastContainerStyled, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
 import {Inter} from 'next/font/google'
@@ -19,7 +20,9 @@ export function Providers({children}: {children: ReactNode}) {
     return (
         <>
             <Provider store={store}>
+                {/*<Auth>*/}
                 <ThemeStyled>{children}</ThemeStyled>
+                {/*</Auth>*/}
             </Provider>
         </>
     )
@@ -33,12 +36,6 @@ export function ThemeStyled({children}: {children: ReactNode}) {
             <style global jsx>{`
                 html {
                     font-family: ${inter.style.fontFamily};
-                }
-                body,
-                header {
-                    transition:
-                        200ms background-color,
-                        200ms color;
                 }
             `}</style>
             <GlobalStyles />

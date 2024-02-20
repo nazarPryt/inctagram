@@ -1,3 +1,4 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const PostHeaderWrapper = styled.div`
@@ -9,25 +10,32 @@ export const PostHeaderWrapper = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
 
         .link {
-            position: relative;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
+            ${typography.H3}
             color: ${props => props.theme.textColor[100]};
+        }
+        .dot {
+            position: relative;
+            width: 5px;
+            height: 5px;
 
             &:after {
                 content: '';
                 position: absolute;
-                top: 7px;
-                right: -15px;
-                width: 8px;
-                height: 8px;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
                 border-radius: 50%;
                 background-color: ${props => props.theme.textColor[100]};
             }
+        }
+        .day {
+            ${typography.small_text}
+            color: ${props => props.theme.textColor[900]};
         }
     }
 `

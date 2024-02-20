@@ -1,11 +1,20 @@
 import {AllPostsTypeItemsImages} from '@/entities/Post/api/all-posts-api.type'
+import {PATH} from '@/shared/constants/PATH'
 import Image from 'next/image'
+import Link from 'next/link'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
 import {PostPhotosStyled} from './PostPhotos.styled'
 
-export const PostPhotos = ({images}: {images: AllPostsTypeItemsImages[]}) => {
+type PropsType = {
+    images: AllPostsTypeItemsImages[]
+    ownerId: number
+    postId: number
+}
+export const PostPhotos = ({images, ownerId, postId}: PropsType) => {
+    const photosToShow = images.filter(photo => photo.height === 360)
+
     return (
         <PostPhotosStyled>
             <Swiper
@@ -18,19 +27,19 @@ export const PostPhotos = ({images}: {images: AllPostsTypeItemsImages[]}) => {
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {images.map((photo, index) => {
-                    if (photo.height === 360) {
-                        return (
-                            <SwiperSlide className={'slide'} key={index}>
+                {photosToShow.map((photo, index) => {
+                    return (
+                        <SwiperSlide className={'slide'} key={index}>
+                            <Link href={`${PATH.PUBLIC.PROFILE}/${ownerId}/${postId}`}>
                                 <Image
                                     alt={'Picture of the author'}
                                     height={photo.height}
                                     src={photo.url}
                                     width={photo.width}
                                 />
-                            </SwiperSlide>
-                        )
-                    }
+                            </Link>
+                        </SwiperSlide>
+                    )
                 })}
             </Swiper>
         </PostPhotosStyled>

@@ -1,17 +1,26 @@
+import {PostByIdType} from '@/entities/ViewUserPost/api/type'
 import {AddToFavorites} from '@/features/Post/AddToFavorites/AddToFavorites'
 import {LikePost} from '@/features/Post/Likes/LikePost/LikePost'
 import {Share} from '@/features/Share/Share'
+import {ComponentMode} from '@/shared/hooks/useMode'
 
 import {ViewUserPostFeaturesWrapper} from './ViewUserPostFeatures.styled'
 
-export const ViewUserPostFeatures = () => {
-    return (
-        <ViewUserPostFeaturesWrapper>
-            <div className={'box'}>
-                <LikePost />
-                <Share />
-            </div>
-            <AddToFavorites />
-        </ViewUserPostFeaturesWrapper>
-    )
+type PropsType = {
+    mode: ComponentMode
+}
+export const ViewUserPostFeatures = ({mode}: PropsType) => {
+    if (mode === 'myProfile') {
+        return (
+            <ViewUserPostFeaturesWrapper>
+                <div className={'box'}>
+                    <LikePost />
+                    <Share />
+                </div>
+                <AddToFavorites />
+            </ViewUserPostFeaturesWrapper>
+        )
+    }
+
+    return null
 }

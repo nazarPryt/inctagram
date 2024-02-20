@@ -1,1 +1,0 @@
-export {PublicProfileHeader} from './PublicProfileHeader'

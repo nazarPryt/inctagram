@@ -1,7 +1,7 @@
 import {forwardRef} from 'react'
 
-import {PATH} from '@/shared/constants/PATH'
 import Image from 'next/image'
+import {useRouter} from 'next/router'
 
 import {MorePhotosIcon} from './MorePhotosIcon/MorePhotosIcon'
 import {UserPostWrapper} from './UserPost.styled'
@@ -13,8 +13,10 @@ type UserPostType = {
 }
 
 export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
+    const {asPath} = useRouter()
+
     return (
-        <UserPostWrapper href={`${PATH.VIEW_POST}/${props.postId}`} ref={ref}>
+        <UserPostWrapper href={`${asPath}/${props.postId}`} ref={ref}>
             {props.imagesLength > 2 && <MorePhotosIcon />}
             <Image alt={'PostPhoto'} height={235} src={props.src} width={230} />
         </UserPostWrapper>

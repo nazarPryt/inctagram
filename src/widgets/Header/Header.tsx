@@ -18,7 +18,7 @@ type HeaderType = {
     isLoggedIn: boolean
     publicMode?: boolean
 } & ComponentPropsWithoutRef<'div'>
-export const Header = ({isLoggedIn, publicMode = false, ...rest}: HeaderType) => {
+export const Header = ({isLoggedIn = false, publicMode = false, ...rest}: HeaderType) => {
     return (
         <HeaderStyled {...rest}>
             {!publicMode && <DynamicBurgerMenu className={'BurgerMenu'} />}

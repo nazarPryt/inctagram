@@ -1,1 +1,0 @@
-export {PublicProfilePostsList} from './PublicProfilePostsList'

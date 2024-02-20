@@ -2,9 +2,9 @@ import {UserResponseType, UserType} from '@/redux/types/authTypes'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
 const initialState: UserType = {
-    email: null,
-    userId: null,
-    userName: undefined,
+    email: '',
+    userId: 0,
+    userName: '',
 }
 
 export const userSlice = createSlice({
