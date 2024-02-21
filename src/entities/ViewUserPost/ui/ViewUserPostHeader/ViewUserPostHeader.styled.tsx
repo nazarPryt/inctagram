@@ -7,6 +7,7 @@ export const ViewUserPostHeaderWrapper = styled.div`
     align-items: center;
     padding: 5px 0;
     border-bottom: 1px solid ${props => props.theme.bodyColor[100]};
+    margin-bottom: 15px;
 
     .avaLink {
         display: flex;

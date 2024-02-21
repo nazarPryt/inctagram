@@ -1,6 +1,6 @@
-import {MyPaymentType} from '@/features/User/MyPayments/api'
 import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from '@nazar-pryt/inctagram-ui-kit'
 
+import {MyPaymentType} from '../../api'
 import {MyPaymentsTableStyled} from './MyPaymentsTable.styled'
 
 type PropsType = {

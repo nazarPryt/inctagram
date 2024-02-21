@@ -16,7 +16,7 @@ export const PostDescription = ({avatarOwner, description, ownerId, userName}: P
             <PostDescriptionStyled>
                 <Avatar src={avatarOwner} />
                 <p className={'content'}>
-                    <Link href={`/${PATH.PUBLIC.PROFILE}/${ownerId}`}>{userName}</Link>
+                    <Link href={`${PATH.USER_PROFILE}/${ownerId}`}>{userName}</Link>
                     <ReadMore maxLength={90} text={description} />
                 </p>
             </PostDescriptionStyled>

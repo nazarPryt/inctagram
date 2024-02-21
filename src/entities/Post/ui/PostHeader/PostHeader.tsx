@@ -5,12 +5,11 @@ import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Avatar, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar, DotsHorizontal, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import {formatDistance, subDays} from 'date-fns'
 import Link from 'next/link'
 
 import {PostHeaderWrapper} from './PostHeader.styled'
-import {PopOverIcon} from './popOverIcon'
 
 type PostHeaderType = {
     avatarOwner: string
@@ -47,7 +46,7 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, userName}: P
                 <span className={'dot'} />
                 <span className={'day'}>{day}</span>
             </div>
-            <Popover icon={<PopOverIcon />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+            <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />
                 <PopoverItem icon={<PersonRemoveIcon />} name={t.home.options.unfollow} onClick={handleActionTwo} />
                 <PopoverItem icon={<CopyLinkIcon />} name={t.home.options.copyLink} onClick={handleActionThree} />

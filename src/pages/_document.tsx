@@ -1,4 +1,4 @@
-import {Favicon} from '@/shared/ui/Favicon/Favicon'
+import {Favicon} from '@/_app/Favicon'
 import Document, {DocumentContext, Head, Html, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components'
 

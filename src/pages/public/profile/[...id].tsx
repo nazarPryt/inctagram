@@ -1,10 +1,9 @@
 import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {getPublicUserProfile} from '@/entities/PublicProfile/api/public-profile-server-api'
 import {PostsType} from '@/entities/UserPosts/api/types'
-import {useMode} from '@/shared/hooks/useMode'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
 import {Profile} from '@/widgets/Profile'
 import {useRouter} from 'next/router'

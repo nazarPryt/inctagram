@@ -1,5 +1,5 @@
-import {createPostReducer} from '@/features/CreatePost/model/slice/createPostSlice'
-import {editorPanelReducer} from '@/features/CreatePost/model/slice/editorPanelSlice'
+import {createPostReducer} from '@/features/Post/CreatePost/model/slice/createPostSlice'
+import {editorPanelReducer} from '@/features/Post/CreatePost/model/slice/editorPanelSlice'
 import {api} from '@/redux/api/api'
 import {appReducer} from '@/shared/store/appSlice'
 import {userReducer} from '@/shared/store/userSlice'

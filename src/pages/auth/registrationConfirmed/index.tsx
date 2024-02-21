@@ -1,11 +1,11 @@
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {ConfirmationPageWrapper} from '@/shared/styles/RegistrationConfirmPage'
 import {AuthContainer, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 
-import congratulationImg from '../../../../public/pictures/congratulation.png'
+import congratulationImg from '../../../../public/pictures/congratulation.png' //todo make alies import
 
 export default function ConfirmedRegistrationPage() {
     const {t} = useTranslation()

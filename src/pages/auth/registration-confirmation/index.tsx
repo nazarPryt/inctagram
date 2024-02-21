@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 
-import {useRegistrationConfirmationMutation} from '@/features/Auth/RegistrationConfirmation/api/registrationConfirmation.api'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
+import {useRegistrationConfirmationMutation} from '@/features/Auth/RegistrationConfirmation'
 import {PATH} from '@/shared/constants/PATH'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
@@ -32,11 +32,11 @@ export default function ConfirmationPage({code, email}: {code: string; email: st
 
     useEffect(() => {
         if (code && email) {
-            handleConfirm()
+            void handleConfirm()
         }
     }, [])
 
-    return <Loader />
+    return <Loader fullScreen />
 }
 
 ConfirmationPage.getLayout = getLayoutWithHeader

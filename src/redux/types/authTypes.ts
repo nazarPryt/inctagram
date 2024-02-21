@@ -38,11 +38,6 @@ export type ForgotPasswordArgType = {
     recaptcha: string
 }
 
-export type NewPasswordArgType = {
-    newPassword: string
-    recoveryCode: string
-}
-
 export type UserType = {
     email: string
     userId: number

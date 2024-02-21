@@ -4,9 +4,9 @@ import {DevicesStyled} from './Devices.styled'
 import {useGetAllSessionsQuery} from './api/devices.api'
 import {useTerminateAllSessions} from './hook/useTerminateAllSessions'
 import {useTerminateSession} from './hook/useTerminateSession'
-import {ActiveSession} from './ui/ActiveSession/ActiveSession'
-import {CurrentDevice} from './ui/CurrentDevice/CurrentDevice'
-import {DevicesSkeleton} from './ui/DevicesSkeleton/DevicesSkeleton'
+import {ActiveSession} from './ui/ActiveSession'
+import {CurrentDevice} from './ui/CurrentDevice'
+import {DevicesSkeleton} from './ui/DevicesSkeleton'
 
 export const Devices = () => {
     const {data, isLoading} = useGetAllSessionsQuery()

@@ -1,5 +1,5 @@
 import {LogOutModal} from '@/features/Auth/LogOut/ui/LogOutModal/LogOutModal'
-import {CreatePost} from '@/features/CreatePost/CreatePost'
+import {CreatePost} from '@/features/Post/CreatePost/CreatePost'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AsideWrapper} from '@/widgets/Aside/Aside.styled'

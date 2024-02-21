@@ -2,8 +2,8 @@ import type {AppProps} from 'next/app'
 
 import {ReactElement, ReactNode} from 'react'
 
+import {Providers} from '@/_app/Providers/Provider'
 import {useLoader} from '@/shared/hooks/useLoader'
-import {Providers} from '@/shared/providers/Provider'
 import {NextPage} from 'next'
 
 import '@/shared/styles/nprogress.css'

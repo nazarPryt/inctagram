@@ -1,4 +1,4 @@
-import {GenerateId} from '@/shared/utils/generateID'
+import {GenerateID} from '@/shared/utils/GenerateId/GenerateID'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
 export type ThemeAppType = 'dark' | 'light'
@@ -27,7 +27,7 @@ export const appSlice = createSlice({
             }
         },
         SetAppNotificationAC: (state, action: PayloadAction<{notifications: Omit<NotificationType, 'id'>}>) => {
-            const id = GenerateId()
+            const id = GenerateID()
 
             state.notifications.push({...action.payload.notifications, id})
         },

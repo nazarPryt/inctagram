@@ -1,5 +1,6 @@
 import {api} from '@/redux/api/api'
-import {NewPasswordArgType} from '@/redux/types/authTypes'
+
+import {NewPasswordArgType} from './createNewPassword.types'
 
 export const createNewPasswordAPI = api.injectEndpoints({
     endpoints: build => ({

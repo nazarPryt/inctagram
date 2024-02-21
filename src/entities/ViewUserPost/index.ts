@@ -1,0 +1,1 @@
+export {ViewUserPost} from './ViewUserPost'

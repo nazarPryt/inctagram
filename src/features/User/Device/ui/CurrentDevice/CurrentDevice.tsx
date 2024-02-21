@@ -1,8 +1,7 @@
-import {OperaIcon} from '@/features/User/Device/ui/icons/OperaIcon'
-
 import {DeviceType} from '../../api/devices.types'
 import {ChromeIcon} from '../icons/ChromeIcon'
 import {MozillaIcon} from '../icons/MozillaIcon'
+import {OperaIcon} from '../icons/OperaIcon'
 import {SafariIcon} from '../icons/SafariIcon'
 import {CurrentDeviceStyled} from './CurrentDevice.styled'
 

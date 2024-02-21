@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const PostImageWrapper = styled.div`
+    width: 1440px;
     //~~~~swiper-button-next
     .swiper-button-next:before,
     .swiper-button-next:after {

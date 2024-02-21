@@ -2,12 +2,12 @@ import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationMod
 import {useResendConfirmationLink} from '@/features/Auth/ResendVerificationLink/hook/useResendConfirmationLink'
 import {EmailResendWrapper} from '@/features/Auth/ResendVerificationLink/ui/EmailResendPage'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {AuthContainer, Button, Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 import Image from 'next/image'
 
-import timeManagement from '../../../../public/pictures/timeManagement.png'
+import timeManagement from '../../../../public/pictures/timeManagement.png' // todo make alies import
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 
 export async function getServerSideProps(ctx: NextPageContext) {
     const {email} = ctx.query

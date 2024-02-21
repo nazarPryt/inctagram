@@ -1,14 +1,14 @@
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
-import {TextContainer} from '@/shared/ui/TextContainer/TextContainer'
+import {TermsPage} from '@/shared/styles/TermsPage'
 import {BackToPrevious} from '@nazar-pryt/inctagram-ui-kit'
 
 export default function TermsOfServicePage() {
     const {t} = useTranslation()
 
     return (
-        <TextContainer>
+        <TermsPage>
             <BackToPrevious href={PATH.REGISTRATION} title={'Back to sign in'} />
             <p>{t.auth.signUp.termsOfService}</p>
             <span>
@@ -64,7 +64,7 @@ export default function TermsOfServicePage() {
                 adipiscing diam. Viverra nam libero justo laoreet. Id neque aliquam vestibulum morbi blandit cursus. Vel
                 facilisis volutpat est velit egestas dui id ornare. Feugiat nibh sed pulvinar proin.
             </span>
-        </TextContainer>
+        </TermsPage>
     )
 }
 TermsOfServicePage.getLayout = getLayoutWithHeader

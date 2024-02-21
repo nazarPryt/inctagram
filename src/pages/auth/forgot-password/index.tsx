@@ -1,5 +1,5 @@
-import {ForgotPasswordForm} from '@/features/Auth/ForgotPassword/ui/ForgotPasswordForm/ForgotPasswordForm'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
+import {ForgotPasswordForm} from '@/features/Auth/ForgotPassword/ui/ForgotPasswordForm'
 
 export default function ForgotPasswordPage() {
     return <ForgotPasswordForm />

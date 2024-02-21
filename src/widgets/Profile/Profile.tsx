@@ -1,6 +1,6 @@
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PostsType} from '@/entities/UserPosts/api/types'
-import {ViewUserPost} from '@/entities/ViewUserPost/ViewUserPost'
+import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/get-post-api'
 import {ComponentMode} from '@/shared/hooks/useMode'
 import {Loader, Modal} from '@nazar-pryt/inctagram-ui-kit'

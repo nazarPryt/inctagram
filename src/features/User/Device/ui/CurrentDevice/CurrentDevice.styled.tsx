@@ -1,4 +1,4 @@
-import {Card} from '@/shared/ui/Card/Card'
+import {Card} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const CurrentDeviceStyled = styled(Card)`

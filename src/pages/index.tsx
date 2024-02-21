@@ -1,9 +1,9 @@
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {AllPostsTypeItems, ParamsType} from '@/entities/Post/api/all-posts-api.type'
 import {getAllPublicPosts} from '@/entities/Post/api/all-posts-server-api'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {serverPublicAPI} from '@/shared/server-api/server-api'
-import {PublicPostsList} from '@/widgets/PublicPostsList/PublicPostsList'
-import {RegisteredUsers} from '@/widgets/RegisteredUsers/RegisteredUsers'
+import {PublicPostsList} from '@/widgets/PublicPostsList'
+import {RegisteredUsers} from '@/widgets/RegisteredUsers'
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
 type PropsType = {
@@ -17,7 +17,6 @@ export const getStaticProps = (async context => {
     const res = await getAllPublicPosts(params)
     const posts = res!.data.items
 
-    console.log(res)
     if (totalCount && posts) {
         return {props: {posts, totalCount}, revalidate: 60}
     } else {

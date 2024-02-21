@@ -1,5 +1,6 @@
-import {MyPaymentType} from '@/features/User/MyPayments/api/myPayment.type'
 import {api} from '@/redux/api/api'
+
+import {MyPaymentType} from './myPayment.type'
 
 export const myPaymentsAPI = api.injectEndpoints({
     endpoints: build => ({

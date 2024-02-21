@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {useCheckRecoveryCodeMutation} from '@/features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
 import {PATH} from '@/shared/constants/PATH'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'
@@ -34,6 +34,6 @@ export default function RecoveryPage({code, email}: {code: string; email: string
         }
     }, [])
 
-    return <Loader />
+    return <Loader fullScreen />
 }
 RecoveryPage.getLayout = getLayoutWithHeader

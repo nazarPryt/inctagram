@@ -1,5 +1,5 @@
-import {CreateNewPasswordForm} from '@/features/Auth/CreateNewPassword/ui/CreateNewPasswordForm/CreateNewPasswordForm'
-import {getLayoutWithHeader} from '@/shared/layouts/unauthorized'
+import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
+import {CreateNewPasswordForm} from '@/features/Auth/CreateNewPassword/ui/CreateNewPasswordForm'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 

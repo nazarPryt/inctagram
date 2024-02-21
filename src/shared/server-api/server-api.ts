@@ -1,4 +1,3 @@
-import {AllPostsType} from '@/entities/Post/api/all-posts-api.type'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PostsType} from '@/entities/UserPosts/api/types'
 import {accessToken, refreshToken} from '@/shared/constants/constants'
