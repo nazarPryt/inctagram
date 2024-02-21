@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const GeneralInformationWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 780px;
+    gap: 30px;
     padding: 20px;
 
     .avatarImage {

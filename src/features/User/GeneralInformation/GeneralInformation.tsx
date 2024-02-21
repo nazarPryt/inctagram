@@ -1,15 +1,15 @@
 import {Avatar} from '@/features/User/Avatar/ui/Avatar/Avatar'
 import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
-import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 
 import {GeneralInformationWrapper} from './GeneralInformation.styled'
 import {GeneralInformationForm} from './ui/GeneralInformationForm'
+import {GeneralInformationSkeleton} from './ui/GeneralInformationSkeleton'
 
 export const GeneralInformation = () => {
     const {data, isLoading} = useGetUserProfileQuery()
 
     if (isLoading) {
-        return <Loader />
+        return <GeneralInformationSkeleton />
     }
 
     if (data) {
