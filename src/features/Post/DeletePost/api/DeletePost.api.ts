@@ -1,6 +1,6 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const deleteUserPostApi = api.injectEndpoints({
+export const deleteUserPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         deletePost: build.mutation<void, number>({
             invalidatesTags: ['UserPosts'],

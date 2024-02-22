@@ -1,10 +1,10 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {AllPostsType, ParamsType} from './all-posts-api.type'
 
 // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
 
-const allPostsApi = api.injectEndpoints({
+const allPostsApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getAllPosts: build.query<AllPostsType, {endCursorPostId: null | number; params: ParamsType}>({
             // Refetch when the page arg changes

@@ -1,8 +1,7 @@
-import {GenerateID} from '@/shared/utils/GenerateId/GenerateID'
+import {GenerateID} from '@/shared/utils/GenerateId'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
 export type ThemeAppType = 'dark' | 'light'
-export type TabsSettingsType = 'accountManagement' | 'devices' | 'generalInformation' | 'myPayments'
 
 export type NotificationType = {
     id: string
@@ -11,7 +10,6 @@ export type NotificationType = {
 }
 const initialState = {
     notifications: [] as NotificationType[],
-    profileSettingsTabs: 'generalInformation' as TabsSettingsType,
     theme: 'dark' as ThemeAppType,
 }
 
@@ -31,9 +29,6 @@ export const appSlice = createSlice({
 
             state.notifications.push({...action.payload.notifications, id})
         },
-        setProfileSettingsTabsAC: (state, action: PayloadAction<{tab: TabsSettingsType}>) => {
-            state.profileSettingsTabs = action.payload.tab
-        },
         setThemeAppAC: (state, action: PayloadAction<{theme: ThemeAppType}>) => {
             state.theme = action.payload.theme
         },
@@ -41,4 +36,4 @@ export const appSlice = createSlice({
 })
 
 export const appReducer = appSlice.reducer
-export const {RemoveAppNotificationAC, SetAppNotificationAC, setProfileSettingsTabsAC, setThemeAppAC} = appSlice.actions
+export const {RemoveAppNotificationAC, SetAppNotificationAC, setThemeAppAC} = appSlice.actions

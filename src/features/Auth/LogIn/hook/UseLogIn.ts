@@ -1,12 +1,12 @@
 import cookie from 'react-cookies'
 import {useForm} from 'react-hook-form'
 
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useLoginMutation} from '@/features/Auth/LogIn/api/login.api'
 import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
 import {PATH} from '@/shared/constants/PATH'
 import {accessToken} from '@/shared/constants/constants'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
 import * as yup from 'yup'

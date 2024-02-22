@@ -1,4 +1,4 @@
-import {useMeQuery} from '@/features/Auth/Me/api/Me.api'
+import {useMeQuery} from '@/features/Auth/Me/api/me.api'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 
 export const useAuth = () => {

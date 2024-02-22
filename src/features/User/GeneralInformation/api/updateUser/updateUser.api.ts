@@ -1,11 +1,10 @@
-import {api} from '@/redux/api/api'
-import {ResponseType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {UpdateUserRequest} from './updateUser.type'
 
-export const updateUserAPI = api.injectEndpoints({
+export const updateUserAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        updateUser: build.mutation<ResponseType, UpdateUserRequest>({
+        updateUser: build.mutation<void, UpdateUserRequest>({
             invalidatesTags: ['User'],
             query: body => ({
                 body,

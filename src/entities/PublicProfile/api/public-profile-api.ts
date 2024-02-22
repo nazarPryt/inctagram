@@ -1,7 +1,8 @@
-import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const publicProfileApi = api.injectEndpoints({
+import {PublicProfileType} from './public-profile.type'
+
+export const publicProfileApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getPublicProfile: build.query<PublicProfileType, number>({
             query: userId => ({

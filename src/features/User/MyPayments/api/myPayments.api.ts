@@ -1,8 +1,8 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {MyPaymentType} from './myPayment.type'
 
-export const myPaymentsAPI = api.injectEndpoints({
+export const myPaymentsAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         myPayments: build.query<MyPaymentType[], void>({
             query: () => ({

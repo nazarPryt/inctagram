@@ -1,10 +1,10 @@
-import {RegistrationRequestType} from '@/features/Auth/Registration/api/registration.types'
-import {api} from '@/redux/api/api'
-import {ResponseType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const registrationAPI = api.injectEndpoints({
+import {RegistrationRequestType} from './registration.types'
+
+export const registrationAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        registration: build.mutation<ResponseType, RegistrationRequestType>({
+        registration: build.mutation<void, RegistrationRequestType>({
             query: body => ({
                 body,
                 method: 'POST',

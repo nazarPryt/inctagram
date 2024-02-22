@@ -1,4 +1,4 @@
-import {NotificationType} from '@/shared/store/appSlice'
+import {NotificationType} from '@/_app/Store/slices/appSlice'
 import styled, {css, keyframes} from 'styled-components'
 
 const SlideRight = keyframes`

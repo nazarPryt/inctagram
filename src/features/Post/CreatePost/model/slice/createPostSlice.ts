@@ -1,6 +1,6 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
-import {ImageMetaData} from '../../api/types'
+import {ImageMetaData} from '../../api/createPost.types'
 import {CreatePostSchema, LibraryPictureType} from '../types/createPostSchema'
 
 const createPostSlice = createSlice({

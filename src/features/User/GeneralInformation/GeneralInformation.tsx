@@ -1,5 +1,5 @@
 import {Avatar} from '@/features/User/Avatar/ui/Avatar/Avatar'
-import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
+import {useGetUserProfileQuery} from '@/features/User/GeneralInformation/api/userProfile/userProfile.api'
 
 import {GeneralInformationWrapper} from './GeneralInformation.styled'
 import {GeneralInformationForm} from './ui/GeneralInformationForm'

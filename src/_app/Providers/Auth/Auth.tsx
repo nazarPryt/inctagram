@@ -1,6 +1,6 @@
 import {ReactNode} from 'react'
 
-import {useMeQuery} from '@/features/Auth/Me/api/Me.api'
+import {useMeQuery} from '@/features/Auth/Me/api/me.api'
 import {PATH} from '@/shared/constants/PATH'
 import {useAuth} from '@/shared/hooks/useAuth'
 import {useRouter} from 'next/router'

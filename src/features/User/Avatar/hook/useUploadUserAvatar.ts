@@ -1,8 +1,8 @@
 import {ChangeEvent, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {BaseModalProps} from '@/shared/ui/Modal/Modal'
 
 import {useUploadAvatarMutation} from '../api/avatar.api'

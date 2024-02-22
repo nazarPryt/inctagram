@@ -1,8 +1,9 @@
-import {UserResponseType, UserType} from '@/redux/types/authTypes'
+import {MeDataType} from '@/features/Auth/Me/api/me.types'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
-const initialState: UserType = {
+const initialState: MeDataType = {
     email: '',
+    isBlocked: false,
     userId: 0,
     userName: '',
 }
@@ -11,7 +12,7 @@ export const userSlice = createSlice({
     initialState,
     name: 'userAuth',
     reducers: {
-        SetUser: (state, action: PayloadAction<UserResponseType>) => {
+        SetUser: (state, action: PayloadAction<MeDataType>) => {
             state = {...action.payload}
 
             return state

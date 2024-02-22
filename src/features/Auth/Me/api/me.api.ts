@@ -1,15 +1,11 @@
-import {api} from '@/redux/api/api'
-import {SetUser} from '@/shared/store/userSlice'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {SetUser} from '@/_app/Store/slices/userSlice'
 
-type authMeDataType = {
-    email: string
-    userId: number
-    userName: string
-}
+import {MeDataType} from './me.types'
 
-export const meApi = api.injectEndpoints({
+export const meApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        me: build.query<authMeDataType, void>({
+        me: build.query<MeDataType, void>({
             async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 try {
                     const res = await queryFulfilled

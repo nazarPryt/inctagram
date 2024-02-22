@@ -1,8 +1,8 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {DeviceType} from './devices.types'
 
-export const devicesAPI = api.injectEndpoints({
+export const devicesAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getAllSessions: build.query<DeviceType[], void>({
             providesTags: ['Sessions'],

@@ -1,6 +1,6 @@
 import {PropsWithChildren, ReactElement} from 'react'
 
-import {useMeQuery} from '@/features/Auth/Me/api/Me.api'
+import {useMeQuery} from '@/features/Auth/Me/api/me.api'
 import {NotificationBar} from '@/features/NotificationBar/NotificationBar'
 import {PATH} from '@/shared/constants/PATH'
 import {useAuth} from '@/shared/hooks/useAuth'

@@ -2,16 +2,16 @@ import {useRef} from 'react'
 import DatePicker from 'react-datepicker'
 import {useForm} from 'react-hook-form'
 
-import {UserProfile} from '@/redux/types/authTypes'
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {toDate} from 'date-fns'
 
-import {useUpdateUserMutation} from '../api/updateUser.api'
+import {useUpdateUserMutation} from '../api/updateUser/updateUser.api'
+import {UserProfileType} from '../api/userProfile/userProfile.types'
 import {GeneralInformationFormData, GeneralInformationSchema} from './GeneralInformationSchema'
 
-export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
+export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const dispatch = useAppDispatch()
     const [updateProfile] = useUpdateUserMutation()
 

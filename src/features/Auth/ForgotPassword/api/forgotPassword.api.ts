@@ -1,7 +1,8 @@
-import {api} from '@/redux/api/api'
-import {ForgotPasswordArgType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const forgotPasswordAPI = api.injectEndpoints({
+import {ForgotPasswordArgType} from './forgotPassword.types'
+
+export const forgotPasswordAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         forgotPassword: build.mutation<void, ForgotPasswordArgType>({
             query: body => ({

@@ -1,12 +1,12 @@
 import {ChangeEvent, useEffect, useRef, useState} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {getAllDrafts} from '@/features/Post/CreatePost/lib/IndexedDB/indexedDB'
 import {createPostAC} from '@/features/Post/CreatePost/model/slice/createPostSlice'
 import {editorPanelAC} from '@/features/Post/CreatePost/model/slice/editorPanelSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {Modal} from '@/shared/ui/Modal/Modal'
 import {EmptyAvatar, Loader, NavButton, SquarePlusIcon} from '@nazar-pryt/inctagram-ui-kit'
 

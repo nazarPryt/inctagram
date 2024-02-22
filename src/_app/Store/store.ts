@@ -1,18 +1,18 @@
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {appReducer} from '@/_app/Store/slices/appSlice'
+import {userReducer} from '@/_app/Store/slices/userSlice'
 import {createPostReducer} from '@/features/Post/CreatePost/model/slice/createPostSlice'
 import {editorPanelReducer} from '@/features/Post/CreatePost/model/slice/editorPanelSlice'
-import {api} from '@/redux/api/api'
-import {appReducer} from '@/shared/store/appSlice'
-import {userReducer} from '@/shared/store/userSlice'
 import {configureStore} from '@reduxjs/toolkit'
 import {setupListeners} from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(rtkQuery.middleware),
     reducer: {
-        [api.reducerPath]: api.reducer,
         app: appReducer,
         createPost: createPostReducer,
         editorPanel: editorPanelReducer,
+        [rtkQuery.reducerPath]: rtkQuery.reducer,
         userAuth: userReducer,
     },
 })

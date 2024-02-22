@@ -1,4 +1,4 @@
-import {ImageMetaData} from '../../api/types'
+import {ImageMetaData} from '../../api/createPost.types'
 
 export type CreatePostSchema = {
     currentImageId: string

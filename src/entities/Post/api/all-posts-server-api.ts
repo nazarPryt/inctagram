@@ -1,9 +1,10 @@
-import {AllPostsType, ParamsType} from '@/entities/Post/api/all-posts-api.type'
-import {publicAPI} from '@/shared/server-api/server-api'
+import {axiosPublic} from '@/_app/Api/server/axiosPublic'
+
+import {AllPostsType, ParamsType} from './all-posts-api.type'
 
 export const getAllPublicPosts = async (params: ParamsType) => {
     try {
-        return await publicAPI.get<AllPostsType>(`public-posts/all`, {params})
+        return await axiosPublic.get<AllPostsType>(`public-posts/all`, {params})
     } catch (e) {
         console.log(e)
     }

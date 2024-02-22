@@ -1,16 +1,14 @@
-import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {PostsType} from '@/entities/UserPosts/api/types'
+//https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
+
+import {MeDataType} from '@/features/Auth/Me/api/me.types'
 import {accessToken, refreshToken} from '@/shared/constants/constants'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
 
-//https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
-// const domainURL = process.env.NEXT_PUBLIC_DOMAIN_URL as string
-
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
 
-export const customAxios = (ctx: GetServerSidePropsContext) => {
+export const axiosAuth = (ctx: GetServerSidePropsContext) => {
     const instance = axios.create({
         baseURL,
         withCredentials: true,
@@ -76,7 +74,7 @@ export const customAxios = (ctx: GetServerSidePropsContext) => {
                 } catch (e) {
                     originalRequest._isRetry = false
                     console.log('User is not authorized (in interceptors.response)')
-                    await serverAuthAPI.logOut(ctx)
+                    // await serverAuthAPI.logOut(ctx)
 
                     return
                 }
@@ -93,7 +91,7 @@ export const serverAuthAPI = {
     async authMe(ctx: GetServerSidePropsContext) {
         console.log('authMe serverside start')
         try {
-            const res = await customAxios(ctx).get<authMeDataType>(`auth/me`)
+            const res = await axiosAuth(ctx).get<MeDataType>(`auth/me`)
 
             console.log('authMe serverside success')
 
@@ -108,42 +106,4 @@ export const serverAuthAPI = {
         nookies.destroy(ctx, refreshToken)
         console.log('logOut serverside is success')
     },
-}
-
-export const publicAPI = axios.create({
-    baseURL,
-    withCredentials: true,
-})
-
-export const serverPublicAPI = {
-    async getAllUsersCount() {
-        try {
-            const res = await publicAPI.get<{totalCount: number}>(`public-user`)
-
-            return res.data.totalCount
-        } catch (e) {
-            console.log(e)
-        }
-    },
-    async getPublicUserProfile(profileId: number) {
-        try {
-            return await publicAPI.get<PublicProfileType>(`public-user/profile/${profileId}`)
-        } catch (e) {
-            console.log(e)
-        }
-    },
-    async getUserPosts(profileId: number) {
-        try {
-            return await publicAPI.get<PostsType>(`public-posts/user/${profileId}`)
-        } catch (e) {
-            console.log(e)
-        }
-    },
-}
-/////////////////////////////////////////////////////////////////////////
-
-type authMeDataType = {
-    email: string
-    userId: number
-    userName: string
 }

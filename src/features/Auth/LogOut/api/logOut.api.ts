@@ -1,15 +1,15 @@
 import cookie from 'react-cookies'
 
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 import {accessToken, refreshToken} from '@/shared/constants/constants'
 
-export const logOutAPI = api.injectEndpoints({
+export const logOutAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         logOut: build.mutation<void, void>({
             async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 try {
                     await queryFulfilled
-                    dispatch(api.util?.resetApiState())
+                    dispatch(rtkQuery.util?.resetApiState())
                     cookie.remove(accessToken)
                     cookie.remove(refreshToken)
                 } catch (e) {

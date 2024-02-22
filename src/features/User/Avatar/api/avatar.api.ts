@@ -1,8 +1,8 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {UserAvatar} from './avatar.type'
 
-export const avatarAPI = api.injectEndpoints({
+export const avatarAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         deleteAvatar: build.mutation({
             invalidatesTags: ['User'],

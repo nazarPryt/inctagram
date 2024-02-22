@@ -1,9 +1,9 @@
 import {useState} from 'react'
 
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useLogOutMutation} from '@/features/Auth/LogOut/api/logOut.api'
 import {PATH} from '@/shared/constants/PATH'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {useRouter} from 'next/router'
 
 export const useLogOut = () => {

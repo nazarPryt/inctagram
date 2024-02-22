@@ -1,9 +1,8 @@
-import {api} from '@/redux/api/api'
-import {ResponseType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const ResendVerificationLinkAPI = api.injectEndpoints({
+export const ResendVerificationLinkAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        resendConfirmationLink: build.mutation<ResponseType, {email: string}>({
+        resendConfirmationLink: build.mutation<void, {email: string}>({
             query: body => ({
                 body,
                 method: 'POST',

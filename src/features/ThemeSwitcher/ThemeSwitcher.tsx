@@ -1,5 +1,5 @@
+import {setThemeAppAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
-import {setThemeAppAC} from '@/shared/store/appSlice'
 import {IconButton, MoonIcon, SunIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 export const ThemeSwitcher = () => {

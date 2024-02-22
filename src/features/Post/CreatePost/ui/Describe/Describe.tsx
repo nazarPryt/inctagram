@@ -1,6 +1,6 @@
 import {ChangeEvent} from 'react'
 
-import {useGetUserProfileQuery} from '@/redux/api/profileAPI'
+import {useGetUserProfileQuery} from '@/features/User/GeneralInformation/api/userProfile/userProfile.api'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {EmptyAvatar, Skeleton, TextArea} from '@nazar-pryt/inctagram-ui-kit'

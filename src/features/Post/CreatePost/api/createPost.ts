@@ -1,8 +1,8 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {CreatePostResponse, UploadPost, UploadedImageResponse} from './types'
+import {CreatePostResponse, UploadPost, UploadedImageResponse} from './createPost.types'
 
-export const createPostAPI = api.injectEndpoints({
+export const createPostAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         CreatePost: build.mutation<CreatePostResponse, UploadPost>({
             invalidatesTags: ['UserPosts', 'AllPosts'],

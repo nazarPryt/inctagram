@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
 
+import {NotificationType, RemoveAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from '@/features/NotificationBar/styled'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {NotificationType, RemoveAppNotificationAC} from '@/shared/store/appSlice'
 import Image from 'next/image'
 
 import errorIcon from '../../../../public/pictures/errorIcon.png'

@@ -1,4 +1,4 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
 import {
     CurrentSubscriptionResponseType,
@@ -7,7 +7,7 @@ import {
     SubscriptionDataType,
 } from './accountManagement.types'
 
-export const accountManagementAPI = api.injectEndpoints({
+export const accountManagementAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         createNewSubscription: build.mutation<ResponseCreateSubscriptionType, NewSubscriptionType>({
             query: body => ({

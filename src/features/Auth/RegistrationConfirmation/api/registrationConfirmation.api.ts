@@ -1,9 +1,8 @@
-import {api} from '@/redux/api/api'
-import {ResponseType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const registrationConfirmationAPI = api.injectEndpoints({
+export const registrationConfirmationAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        registrationConfirmation: build.mutation<ResponseType, {confirmationCode: string}>({
+        registrationConfirmation: build.mutation<void, {confirmationCode: string}>({
             query: body => ({
                 body,
                 method: 'POST',

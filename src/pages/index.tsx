@@ -1,7 +1,7 @@
+import {serverPublicAPI} from '@/_app/Api/server/axiosPublic'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {AllPostsTypeItems, ParamsType} from '@/entities/Post/api/all-posts-api.type'
 import {getAllPublicPosts} from '@/entities/Post/api/all-posts-server-api'
-import {serverPublicAPI} from '@/shared/server-api/server-api'
 import {PublicPostsList} from '@/widgets/PublicPostsList'
 import {RegisteredUsers} from '@/widgets/RegisteredUsers'
 import {GetStaticProps, InferGetStaticPropsType} from 'next'

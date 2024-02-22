@@ -1,11 +1,11 @@
-import {UserProfile} from '@/redux/types/authTypes'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
+import {UserProfileType} from '../../api/userProfile/userProfile.types'
 import {useGeneralInformationForm} from '../../hook/useGeneralInformationForm'
 import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 
-export const GeneralInformationForm = ({data}: {data: UserProfile}) => {
+export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
     const {control, datePickerRef, errors, handleSubmit, register} = useGeneralInformationForm({data})
 
