@@ -27,13 +27,13 @@ export const Notifications = () => {
                 <h3>{t.header.notification.notifications}:</h3>
                 <Scrollbar maxHeight={400}>
                     <NotificationItem isNew />
+                    <NotificationItem />
                     <NotificationItem isNew />
                     <NotificationItem isNew />
+                    <NotificationItem />
                     <NotificationItem isNew />
                     <NotificationItem isNew />
-                    <NotificationItem isNew />
-                    <NotificationItem isNew />
-                    <NotificationItem isNew />
+                    <NotificationItem />
                     <NotificationItem isNew />
                     <NotificationItem isNew />
                     <NotificationItem isNew />

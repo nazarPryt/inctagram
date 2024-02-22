@@ -16,8 +16,8 @@ export const Comment = ({comment, img, isLiked, userID}: CommentType) => {
         <CommentWrapper>
             <Avatar src={img} />
             <div className={'content'}>
-                <Link href={`/${PATH.PUBLIC.PROFILE}/${userID}`}>URLProfile</Link>
                 <p>
+                    <Link href={`/${PATH.PUBLIC.PROFILE}/${userID}`}>URLProfile</Link>
                     <ReadMore maxLength={90} text={comment} />
                 </p>
 

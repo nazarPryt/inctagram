@@ -1,8 +1,6 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {PostsType} from './types'
-
-type userPostApiType = {endCursorPostId: null | number; userId: number}
+import {PostsType, userPostApiType} from './types'
 
 export const userPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({

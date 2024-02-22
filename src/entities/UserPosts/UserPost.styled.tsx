@@ -14,4 +14,10 @@ export const UserPostWrapper = styled(Link)`
     img {
         object-fit: cover;
     }
+    .morePhotos {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+    }
 `
