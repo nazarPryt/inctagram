@@ -27,6 +27,8 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
     }
 
     const showPopover = !edit && mode === 'myProfile'
+    const userLink =
+        mode === 'publick' ? `/${PATH.PUBLIC.PROFILE}/${data.ownerId}` : `${PATH.USER_PROFILE}/${data.ownerId}`
 
     return (
         <>
@@ -38,7 +40,7 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
             <ViewUserPostHeaderWrapper>
                 <div className={'avaLink'}>
                     <Avatar alt={`${data.userName} avatar`} size={40} src={data.avatarOwner} userName={data.userName} />
-                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${data.ownerId}`}>
+                    <Link className={'link'} href={userLink}>
                         {data.userName}
                     </Link>
                 </div>

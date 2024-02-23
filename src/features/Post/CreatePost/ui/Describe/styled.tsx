@@ -1,36 +1,26 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const DescribeWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 290px;
+    width: 420px;
 
     .headerBlock {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
+        margin-bottom: 10px;
 
         span {
-            font-size: 21px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 24px;
-        }
-
-        .userNameWrapper {
-            display: flex;
-
-            svg {
-                width: 100%;
-                height: 100%;
-            }
+            ${typography.Bold_text_16}
         }
     }
 
     div {
         label {
-            top: -20px;
+            top: -5px;
+            color: ${props => props.theme.textColor[900]};
         }
 
         textarea {
@@ -39,15 +29,7 @@ export const DescribeWrapper = styled.div`
             height: 140px;
         }
     }
-`
-export const AvatarWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-
-    img {
-        border-radius: 50%;
+    .footer {
+        justify-self: flex-end;
     }
 `

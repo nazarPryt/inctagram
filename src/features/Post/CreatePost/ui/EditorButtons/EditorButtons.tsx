@@ -1,5 +1,5 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {ArrowLeft, Button} from '@nazar-pryt/inctagram-ui-kit'
+import {ArrowLeft, Button, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {EditorButtonsWrapper} from './styled'
 
@@ -24,13 +24,9 @@ export const EditorButtons = (props: EditorButtonsType) => {
     return (
         <EditorButtonsWrapper>
             <div>
-                <Button
-                    disabled={props.isLoading}
-                    onClick={() => props.onChangeStep(STEPS[nextStep - 1])}
-                    variant={'text'}
-                >
+                <IconButton disabled={props.isLoading} onClick={() => props.onChangeStep(STEPS[nextStep - 1])}>
                     <ArrowLeft />
-                </Button>
+                </IconButton>
             </div>
             <span>{props.title}</span>
             <div>

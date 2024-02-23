@@ -3,11 +3,10 @@ import {ChangeEvent} from 'react'
 import {useGetUserProfileQuery} from '@/features/User/GeneralInformation/api/userProfile/userProfile.api'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {EmptyAvatar, Skeleton, TextArea} from '@nazar-pryt/inctagram-ui-kit'
-import Image from 'next/image'
+import {Avatar, EmptyAvatar, Skeleton, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {createPostAC} from '../../model/slice/createPostSlice'
-import {AvatarWrapper, DescribeWrapper} from './styled'
+import {DescribeWrapper} from './styled'
 
 export const Describe = () => {
     const {t} = useTranslation()
@@ -15,25 +14,26 @@ export const Describe = () => {
     const describeText = useAppSelector(state => state.createPost.describeText)
 
     const {data, isLoading} = useGetUserProfileQuery()
-    const UserImage = data?.avatars.length ? (
-        <Image alt={'avatar'} height={data.avatars[0].height} src={data.avatars[0].url} width={data.avatars[0].width} />
-    ) : (
-        <EmptyAvatar />
-    )
+
+    const UserImage = data && !!data.avatars.length ? data.avatars[0].url : ''
     const changeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(createPostAC.setDescribeText(e.target.value.trim()))
     }
+    const re =
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius eum laudantium odio repellendus sint. Asperiores debitis est excepturi impedit nesciunt nostrum odio possimus, rerum sapiente sit tempora tenetur. Aspernatur culpa cupiditate eius excepturi, exercitationem laborum maxime sit tempore vel! Accusamus alias eos error minus praesentium qui quo repellat velit voluptate?'
 
     return (
         <DescribeWrapper>
             <div className={'headerBlock'}>
-                <AvatarWrapper>{data ? UserImage : <Skeleton circle height={40} width={40} />}</AvatarWrapper>
-                <div className={'userNameWrapper'}>
-                    <span>{data ? data.userName : <Skeleton height={30} width={100} />}</span>
-                </div>
+                {data && <Avatar size={36} src={UserImage} userName={data.userName} />}
+
+                {isLoading && <Skeleton circle height={36} width={36} />}
+
+                <span>{data && data.userName}</span>
+                {isLoading && <Skeleton height={20} width={100} />}
             </div>
             <TextArea defaultValue={describeText} label={t.create.describe} onChange={e => changeTextHandler(e)} />
-            <div>{t.create.addLocation} : tobeContinued...</div>
+            <div className={'footer'}>{t.create.addLocation} : tobeContinued...</div>
         </DescribeWrapper>
     )
 }

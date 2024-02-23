@@ -22,7 +22,6 @@ export const EmptyImageWrapper = styled.div`
 export const EditorWrapper = styled.div<{$isAddPhoto: boolean}>`
     display: flex;
     justify-content: center;
-    gap: 25px;
     position: relative;
     object-fit: contain;
     flex-direction: ${props => (props.$isAddPhoto ? 'column' : 'row')};

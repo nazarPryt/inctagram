@@ -1,6 +1,7 @@
 import {CommentWrapper} from '@/entities/Comment/ui/Comment.styled'
 import {LikeComment} from '@/features/Post/Likes/LikeComment/LikeComment'
 import {PATH} from '@/shared/constants/PATH'
+import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -12,12 +13,15 @@ type CommentType = {
 }
 
 export const Comment = ({comment, img, isLiked, userID}: CommentType) => {
+    const {mode} = useMode(userID)
+    const userLink = mode === 'publick' ? `/${PATH.PUBLIC.PROFILE}/${userID}` : `${PATH.USER_PROFILE}/${userID}`
+
     return (
         <CommentWrapper>
             <Avatar src={img} />
             <div className={'content'}>
                 <p>
-                    <Link href={`/${PATH.PUBLIC.PROFILE}/${userID}`}>URLProfile</Link>
+                    <Link href={userLink}>URLProfile</Link>
                     <ReadMore maxLength={90} text={comment} />
                 </p>
 

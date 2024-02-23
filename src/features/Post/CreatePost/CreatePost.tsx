@@ -197,7 +197,7 @@ export const CreatePost = () => {
 
             <Modal handleClose={handleClose} isOpen={isOpen} title={t.create.modalTitle}>
                 <ModalContentWrapper>
-                    {(isLoadingImage || isLoadingPost) && <Loader />}
+                    {(isLoadingImage || isLoadingPost) && <Loader fullScreen />}
 
                     {step !== t.create.steps.addPhoto && (
                         <EditorButtons

@@ -5,10 +5,9 @@ export const EditPostWrapper = styled.form`
     flex-direction: column;
     justify-content: flex-start;
     gap: 20px;
-    padding: 0 15px;
     background-color: ${props => props.theme.bodyColor[300]};
-    width: 40%;
-    min-width: 200px;
+    padding: 0 15px;
+    width: 60%;
 
     .textArea {
         min-height: 130px;

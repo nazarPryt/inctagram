@@ -1,5 +1,6 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
+import {TextArea} from '@/shared/ui/TextArea'
+import {Button, InputText} from '@nazar-pryt/inctagram-ui-kit'
 
 import {UserProfileType} from '../../api/userProfile/userProfile.types'
 import {useGeneralInformationForm} from '../../hook/useGeneralInformationForm'
@@ -8,6 +9,8 @@ import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
     const {control, datePickerRef, errors, handleSubmit, register} = useGeneralInformationForm({data})
+
+    console.log('errors', errors)
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit}>
