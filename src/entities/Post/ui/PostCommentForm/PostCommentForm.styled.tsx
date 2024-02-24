@@ -9,9 +9,14 @@ export const PostCommentFormWrapper = styled.div`
         border: none;
         color: ${props => props.theme.textColor['900']};
     }
-    .textAreaWrapper {
+    form {
         display: flex;
         align-items: center;
         gap: 20px;
+
+        textarea {
+            background-color: inherit;
+            min-height: 20px;
+        }
     }
 `

@@ -25,6 +25,7 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
         ...rest
     } = useForm<GeneralInformationFormData>({
         defaultValues: {...data, dateOfBirth: new Date(data.dateOfBirth)},
+        mode: 'all',
         resolver: yupResolver(GeneralInformationSchema),
     })
 

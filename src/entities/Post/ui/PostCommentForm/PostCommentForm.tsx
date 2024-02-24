@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Controller} from 'react-hook-form'
 
 import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -10,7 +11,7 @@ import {PostCommentFormWrapper} from './PostCommentForm.styled'
 export const PostCommentForm = () => {
     const {t} = useTranslation()
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const {errors, handleSubmit, register} = useCommentPost()
+    const {control, errors, handleSubmit} = useCommentPost()
 
     const handleCloseModal = () => {
         setIsModalOpen(false)
@@ -19,8 +20,19 @@ export const PostCommentForm = () => {
     return (
         <PostCommentFormWrapper>
             <button onClick={() => setIsModalOpen(true)}>{`${t.home.viewComm} ${114}`}</button>
-            <form className={'textAreaWrapper'} onSubmit={handleSubmit}>
-                <TextArea placeholder={t.home.addComm} {...register('comment')} error={errors.comment?.message} />
+            <form onSubmit={handleSubmit}>
+                <Controller
+                    control={control}
+                    name={'comment'}
+                    render={({field}) => (
+                        <TextArea
+                            {...field}
+                            error={errors.comment?.message}
+                            maxLength={100}
+                            placeholder={t.home.addComm}
+                        />
+                    )}
+                />
                 <Button variant={'outlined'}>{t.home.publish}</Button>
             </form>
             <Modal handleClose={handleCloseModal} isOpen={isModalOpen} title={'modal'}>

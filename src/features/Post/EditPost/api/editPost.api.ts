@@ -5,7 +5,7 @@ import {EditPostRequest} from './editPost.types'
 export const editPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         editUserPost: build.mutation<void, EditPostRequest>({
-            invalidatesTags: ['Post'],
+            invalidatesTags: ['ViewUserPost'],
             query: ({description, postId}) => ({
                 body: {description},
                 method: 'PUT',

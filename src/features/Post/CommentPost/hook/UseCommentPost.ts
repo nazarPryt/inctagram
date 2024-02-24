@@ -4,7 +4,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 const schema = yup.object({
-    comment: yup.string().required('Comment cant be empty'),
+    comment: yup.string().required('Comment cant be empty').max(100, 'Comment may have max 100 letters'),
 })
 
 type FormData = yup.InferType<typeof schema>
@@ -16,6 +16,7 @@ export const useCommentPost = () => {
         register,
         ...rest
     } = useForm<FormData>({
+        mode: 'all',
         resolver: yupResolver(schema),
     })
 

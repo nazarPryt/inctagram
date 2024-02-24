@@ -1,6 +1,7 @@
+import {Controller} from 'react-hook-form'
+
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {TextArea} from '@/shared/ui/TextArea'
-import {Button, InputText} from '@nazar-pryt/inctagram-ui-kit'
+import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {UserProfileType} from '../../api/userProfile/userProfile.types'
 import {useGeneralInformationForm} from '../../hook/useGeneralInformationForm'
@@ -9,8 +10,6 @@ import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
     const {control, datePickerRef, errors, handleSubmit, register} = useGeneralInformationForm({data})
-
-    console.log('errors', errors)
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit}>
@@ -23,11 +22,19 @@ export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
             <InputText {...register('lastName')} label={t.generalInfo.inputs.lastname}></InputText>
             {/*<CustomDatePicker control={control} {...register('dateOfBirth')} ref={datePickerRef} />*/}
             <InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>
-            <TextArea
-                {...register('aboutMe')}
-                error={errors.aboutMe?.message}
-                label={t.generalInfo.inputs.aboutMe}
-            ></TextArea>
+            <Controller
+                control={control}
+                name={'aboutMe'}
+                render={({field}) => (
+                    <TextArea
+                        {...field}
+                        error={errors.aboutMe?.message}
+                        label={t.generalInfo.inputs.aboutMe}
+                        maxLength={200}
+                    />
+                )}
+            />
+
             <Button className={'buttonSave'} type={'submit'}>
                 {t.generalInfo.saveChanges}
             </Button>
