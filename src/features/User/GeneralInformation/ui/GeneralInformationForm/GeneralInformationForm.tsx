@@ -1,6 +1,7 @@
 import {Controller} from 'react-hook-form'
 
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {ControlledDatePicker} from '@/shared/ui/ControlledDatePicker'
 import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {UserProfileType} from '../../api/userProfile/userProfile.types'
@@ -20,7 +21,7 @@ export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
             ></InputText>
             <InputText {...register('firstName')} label={t.generalInfo.inputs.firstname}></InputText>
             <InputText {...register('lastName')} label={t.generalInfo.inputs.lastname}></InputText>
-            {/*<CustomDatePicker control={control} {...register('dateOfBirth')} ref={datePickerRef} />*/}
+            <ControlledDatePicker control={control} name={'dateOfBirth'} />
             <InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>
             <Controller
                 control={control}
