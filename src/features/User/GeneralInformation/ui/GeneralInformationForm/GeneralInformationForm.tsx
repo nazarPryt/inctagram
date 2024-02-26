@@ -10,7 +10,7 @@ import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 
 export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
-    const {control, datePickerRef, errors, handleSubmit, register} = useGeneralInformationForm({data})
+    const {control, errors, handleSubmit, register} = useGeneralInformationForm({data})
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit}>

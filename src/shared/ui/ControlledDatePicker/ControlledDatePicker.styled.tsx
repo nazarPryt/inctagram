@@ -4,7 +4,7 @@ export const ControlledDatePickerStyled = styled.div`
     .react-datepicker__header,
     .react-datepicker,
     .react-datepicker__today-button {
-        background-color: ${props => props.theme.bodyColor[900]};
+        background-color: ${props => props.theme.bodyColor[500]};
     }
 
     .react-datepicker__current-month {
@@ -64,7 +64,7 @@ export const ControlledDatePickerStyled = styled.div`
         color: ${props => props.theme.textColor[100]} !important;
     }
     .react-datepicker__day:hover {
-        color: ${props => props.theme.bodyColor[900]} !important;
+        color: ${props => props.theme.bodyColor[500]} !important;
     }
 
     .react-datepicker__day--outside-month {
@@ -77,12 +77,12 @@ export const ControlledDatePickerStyled = styled.div`
     }
 
     input {
-        width: 158px;
+        width: 100%;
         height: 36px;
         position: relative;
         padding: 5px;
         font-size: 16px;
-        border: 0.5px solid ${props => props.theme.bodyColor[300]};
+        border: 1px solid ${props => props.theme.bodyColor[300]};
         outline: none !important;
     }
 
@@ -94,7 +94,7 @@ export const ControlledDatePickerStyled = styled.div`
 
     input,
     .react-datepicker-ignore-onclickoutside {
-        background-color: ${props => props.theme.bodyColor[900]};
+        background-color: ${props => props.theme.bodyColor[500]};
 
         color: ${props => props.theme.textColor[100]};
     }
@@ -106,10 +106,5 @@ export const ControlledDatePickerStyled = styled.div`
     .react-datepicker__day-name,
     .react-datepicker__day {
         color: #4c4c4c;
-    }
-    .DatePickerHeader {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
     }
 `
