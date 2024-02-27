@@ -1,6 +1,14 @@
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
-export const ControlledDatePickerStyled = styled.div`
+export const ControlledDatePickerStyled = styled.div<{$error?: boolean}>`
+    label {
+        ${typography.regular_text_14}
+        lette
+    }
+    .react-datepicker-wrapper {
+        width: 100%;
+    }
     .react-datepicker__header,
     .react-datepicker,
     .react-datepicker__today-button {
@@ -79,24 +87,26 @@ export const ControlledDatePickerStyled = styled.div`
     input {
         width: 100%;
         height: 36px;
+
         position: relative;
         padding: 5px;
         font-size: 16px;
-        border: 1px solid ${props => props.theme.bodyColor[300]};
-        outline: none !important;
+        border: none;
+        outline: 1px solid ${props => (props.$error ? 'red' : props.theme.bodyColor[300])}!important;
+        //outline: none !important;
     }
 
     .react-datepicker__day--selected,
     .react-datepicker__day--today {
         border-radius: 50%;
-        background-color: #4283f6;
+        background-color: ${props => props.theme.palette.primary[500]};
     }
 
     input,
     .react-datepicker-ignore-onclickoutside {
-        background-color: ${props => props.theme.bodyColor[500]};
+        background-color: inherit;
 
-        color: ${props => props.theme.textColor[100]};
+        color: ${props => (props.$error ? 'red' : props.theme.textColor[100])};
     }
 
     .react-datepicker__triangle {
@@ -105,6 +115,16 @@ export const ControlledDatePickerStyled = styled.div`
 
     .react-datepicker__day-name,
     .react-datepicker__day {
-        color: #4c4c4c;
+        color: ${props => props.theme.textColor[100]};
+    }
+    .error {
+        color: red;
+        ${typography.small_text}
+        margin-top: 3px;
+
+        a {
+            color: red;
+            ${typography.small_link}
+        }
     }
 `
