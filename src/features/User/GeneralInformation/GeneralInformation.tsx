@@ -1,7 +1,7 @@
 import {Avatar} from '@/features/User/Avatar/ui/Avatar/Avatar'
-import {useGetUserProfileQuery} from '@/features/User/GeneralInformation/api/userProfile/userProfile.api'
 
 import {GeneralInformationWrapper} from './GeneralInformation.styled'
+import {useGetUserProfileQuery} from './api/userProfile/userProfile.api'
 import {GeneralInformationForm} from './ui/GeneralInformationForm'
 import {GeneralInformationSkeleton} from './ui/GeneralInformationSkeleton'
 

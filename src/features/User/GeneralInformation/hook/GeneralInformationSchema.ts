@@ -8,6 +8,7 @@ export const GeneralInformationSchema = yup.object().shape({
         .required('About me information field is required')
         .max(200, 'About me field must be not more than 200 characters long'),
     city: yup.string().required('City is required'),
+    country: yup.string().required('Country is required'),
     dateOfBirth: yup
         .date()
         .nullable()

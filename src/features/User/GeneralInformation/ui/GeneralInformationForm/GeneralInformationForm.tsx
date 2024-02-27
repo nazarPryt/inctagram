@@ -1,5 +1,6 @@
 import {Controller} from 'react-hook-form'
 
+import {CitySelector} from '@/features/User/GeneralInformation/ui/CitySelector/CitySelector'
 import {ControlledDatePicker} from '@/features/User/GeneralInformation/ui/ControlledDatePicker'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
@@ -22,7 +23,8 @@ export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
             <InputText {...register('firstName')} label={t.generalInfo.inputs.firstname}></InputText>
             <InputText {...register('lastName')} label={t.generalInfo.inputs.lastname}></InputText>
             <ControlledDatePicker control={control} error={errors.dateOfBirth?.message} name={'dateOfBirth'} />
-            <InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>
+            <CitySelector control={control} error={errors.city?.message} />
+            {/*<InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>*/}
             <Controller
                 control={control}
                 name={'aboutMe'}
