@@ -21,60 +21,35 @@ export const DatePickerHeader = ({
     const yearsList: SelectOptionType[] = years.map(year => ({label: year, value: year}))
     const monthsList: SelectOptionType[] = months.map(month => ({label: month, value: month}))
 
-    // const yearsList = years.map(option => (
-    //     <option key={option} value={option}>
-    //         {option}
-    //     </option>
-    // ))
-    //
-    // const monthsList = months.map(option => (
-    //     <option key={option} value={option}>
-    //         {option}
-    //     </option>
-    // ))
-
     return (
         <DatePickerHeaderStyled>
             <IconButton disabled={prevMonthButtonDisabled} onClick={decreaseMonth} type={'button'}>
                 <ArrowBack />
             </IconButton>
-            {/*<select*/}
-            {/*    onChange={({target: {value}}) => {*/}
-            {/*        console.log('month', value)*/}
-            {/*        changeMonth(months.indexOf(value))*/}
-            {/*    }}*/}
-            {/*    value={months[getMonth(date)]}*/}
-            {/*>*/}
-            {/*    {monthsList}*/}
-            {/*</select>*/}
-
-            {/*<select*/}
-            {/*    onChange={({target: {value}}) => {*/}
-            {/*        console.log('value', value)*/}
-            {/*        changeYear(Number(value))*/}
-            {/*    }}*/}
-            {/*    value={getYear(date)}*/}
-            {/*>*/}
-            {/*    {yearsList}*/}
-            {/*</select>*/}
 
             <Select
                 onChange={(value: string) => {
-                    console.log('month-value: ', value)
-                    changeMonth(months.indexOf(value))
+                    if (changeMonth) {
+                        changeMonth(months.indexOf(value))
+                    }
                 }}
                 options={monthsList}
-                value={months[getMonth(date)]}
+                portal={false}
+                value={months[getMonth(date as Date)]}
+                width={150}
             />
             <Select
-                onChange={(value: any) => {
-                    console.log('value', value)
-
-                    changeYear(Number(value))
+                onChange={(value: number) => {
+                    if (changeYear) {
+                        changeYear(Number(value))
+                    }
                 }}
                 options={yearsList}
-                value={getYear(date)}
+                portal={false}
+                value={getYear(date as Date)}
+                width={120}
             />
+
             <IconButton disabled={nextMonthButtonDisabled} onClick={increaseMonth} type={'button'}>
                 <ArrowForward />
             </IconButton>

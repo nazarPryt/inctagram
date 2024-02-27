@@ -1,6 +1,5 @@
 import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
-import formatDistance from 'date-fns/formatDistance'
-import subDays from 'date-fns/subDays'
+import {formatDistance, subDays} from 'date-fns'
 
 import {PostDescriptionStyled} from './PostDescription.styled'
 

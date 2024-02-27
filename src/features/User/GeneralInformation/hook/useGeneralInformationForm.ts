@@ -1,5 +1,3 @@
-import {useRef} from 'react'
-import DatePicker from 'react-datepicker'
 import {useForm} from 'react-hook-form'
 
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
@@ -13,7 +11,7 @@ import {GeneralInformationFormData, GeneralInformationSchema} from './GeneralInf
 
 export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const dispatch = useAppDispatch()
-    const [updateProfile] = useUpdateUserMutation()
+    const [updateProfile, {isLoading}] = useUpdateUserMutation()
 
     const {
         control,
@@ -28,32 +26,33 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     })
 
     const onSubmit = async (data: GeneralInformationFormData) => {
-        const result = data.dateOfBirth.toLocaleDateString('ru-RU')
+        const result = String(toDate(data.dateOfBirth).toISOString())
 
         console.log('result', result)
-        // await updateProfile({
-        //     aboutMe: data.aboutMe,
-        //     city: data.city,
-        //     dateOfBirth: result,
-        //     firstName: data.firstName,
-        //     lastName: data.lastName,
-        //     userName: data.userName,
-        // })
-        //     .unwrap()
-        //     .then(() =>
-        //         dispatch(
-        //             SetAppNotificationAC({
-        //                 notifications: {message: 'Yous Profile was successfully updated', type: 'success'},
-        //             })
-        //         )
-        //     )
-        //     .catch(error => dispatch(SetAppNotificationAC({notifications: {message: error.message, type: 'error'}})))
+        await updateProfile({
+            aboutMe: data.aboutMe,
+            city: data.city,
+            dateOfBirth: result,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            userName: data.userName,
+        })
+            .unwrap()
+            .then(() =>
+                dispatch(
+                    SetAppNotificationAC({
+                        notifications: {message: 'Yous Profile was successfully updated', type: 'success'},
+                    })
+                )
+            )
+            .catch(error => dispatch(SetAppNotificationAC({notifications: {message: error.message, type: 'error'}})))
     }
 
     return {
         control,
         errors,
         handleSubmit: handleSubmit(onSubmit),
+        isLoading,
         register,
         ...rest,
     }
