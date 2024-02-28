@@ -1,10 +1,10 @@
 import {Dispatch, SetStateAction, useState} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
 import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
-import {PATH} from '@/shared/constants/PATH'
 import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'

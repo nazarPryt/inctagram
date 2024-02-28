@@ -2,12 +2,10 @@ import {useEffect, useState} from 'react'
 
 import {NotificationType, RemoveAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {AlertIcon, AlertItem, AlertWrapper, CloseAlertIcon, ProgressBar} from '@/features/NotificationBar/styled'
+import errorIcon from '@/public/pictures/errorIcon.png'
+import successIcon from '@/public/pictures/success.png'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import Image from 'next/image'
-
-import errorIcon from '../../../../public/pictures/errorIcon.png'
-import successIcon from '../../../../public/pictures/success.png'
-//import successIcon from '@/public/pictures/success.png' //todo check alias import from public folder
 
 export const Alert = (props: NotificationType) => {
     const dispatch = useAppDispatch()

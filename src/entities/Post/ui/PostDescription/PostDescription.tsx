@@ -1,4 +1,4 @@
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
 import {Avatar, ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 

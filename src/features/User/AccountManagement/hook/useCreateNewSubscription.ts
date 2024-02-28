@@ -1,6 +1,7 @@
 import {useForm} from 'react-hook-form'
 
-import {PATH} from '@/shared/constants/PATH'
+import {appSettings} from '@/_app/AppSettings'
+import {PATH} from '@/_app/AppSettings/PATH'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
 import * as yup from 'yup'
@@ -8,7 +9,7 @@ import * as yup from 'yup'
 import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {PaymentType, SubscriptionType} from '../api/accountManagement.types'
 
-const urlToRedirect = `${process.env.NEXT_PUBLIC_DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+const urlToRedirect = `${appSettings.DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
 
 const schema = yup.object({
     amount: yup.number().default(10).required(),

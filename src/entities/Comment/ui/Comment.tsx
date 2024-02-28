@@ -1,6 +1,6 @@
+import {PATH} from '@/_app/AppSettings/PATH'
 import {CommentWrapper} from '@/entities/Comment/ui/Comment.styled'
 import {LikeComment} from '@/features/Post/Likes/LikeComment/LikeComment'
-import {PATH} from '@/shared/constants/PATH'
 import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'

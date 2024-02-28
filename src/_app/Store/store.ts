@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {countryApi, rtkQuery} from '@/_app/Api/client/rtkQuery'
 import {appReducer} from '@/_app/Store/slices/appSlice'
 import {userReducer} from '@/_app/Store/slices/userSlice'
 import {createPostReducer} from '@/features/Post/CreatePost/model/slice/createPostSlice'
@@ -7,9 +7,11 @@ import {configureStore} from '@reduxjs/toolkit'
 import {setupListeners} from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(rtkQuery.middleware),
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(rtkQuery.middleware).concat(countryApi.middleware),
     reducer: {
         app: appReducer,
+        [countryApi.reducerPath]: countryApi.reducer,
         createPost: createPostReducer,
         editorPanel: editorPanelReducer,
         [rtkQuery.reducerPath]: rtkQuery.reducer,

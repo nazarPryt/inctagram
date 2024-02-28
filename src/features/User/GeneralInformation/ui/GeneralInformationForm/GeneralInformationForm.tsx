@@ -1,6 +1,6 @@
 import {Controller} from 'react-hook-form'
 
-import {CitySelector} from '@/features/User/GeneralInformation/ui/CitySelector/CitySelector'
+import {CitySelector} from '@/features/CitySelector/CitySelector'
 import {ControlledDatePicker} from '@/features/User/GeneralInformation/ui/ControlledDatePicker'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'

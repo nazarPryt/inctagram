@@ -1,8 +1,9 @@
+import {appSettings} from '@/_app/AppSettings'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
 import {PostsType} from '@/entities/UserPosts/api/types'
 import axios from 'axios'
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
+const baseURL = appSettings.BASE_URL
 
 export const axiosPublic = axios.create({
     baseURL,

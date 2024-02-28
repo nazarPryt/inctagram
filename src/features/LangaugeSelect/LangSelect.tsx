@@ -1,8 +1,8 @@
 import flagRus from '@/public/pictures/flagRus.png'
+import flagUK from '@/public/pictures/flagUK.png'
 import {Select, SelectOptionType} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import {useRouter} from 'next/router' //todo make alies import
-import flagUK from '@/public/pictures/flagUK.png'
+import {useRouter} from 'next/router'
 
 export const LangSelect = () => {
     const {asPath, locale, pathname, push, query} = useRouter()

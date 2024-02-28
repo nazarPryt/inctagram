@@ -1,8 +1,8 @@
 import {PropsWithChildren, ReactElement} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useMeQuery} from '@/features/Auth/Me/api/me.api'
 import {NotificationBar} from '@/features/NotificationBar/NotificationBar'
-import {PATH} from '@/shared/constants/PATH'
 import {useAuth} from '@/shared/hooks/useAuth'
 import {Header} from '@/widgets/Header/Header'
 import {Container} from '@nazar-pryt/inctagram-ui-kit'

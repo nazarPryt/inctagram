@@ -1,6 +1,6 @@
 import cookie from 'react-cookies'
 
-import {accessToken, refreshToken} from '@/shared/constants/constants'
+import {appSettings} from '@/_app/AppSettings'
 import {BaseQueryFn, FetchArgs, FetchBaseQueryError} from '@reduxjs/toolkit/dist/query/react'
 
 import {baseQuery} from './baseQuery'
@@ -26,13 +26,13 @@ export const baseQueryWithReAuth: BaseQueryFn<FetchArgs | string, unknown, Fetch
             )) as {data: {accessToken: string}}
 
             if (refreshResult.data.accessToken) {
-                cookie.save(accessToken, refreshResult.data.accessToken as string, {httpOnly: false})
+                cookie.save(appSettings.accessToken, refreshResult.data.accessToken as string, {httpOnly: false})
                 // retry the initial query
                 result = await baseQuery(args, api, extraOptions)
             }
         } catch (e) {
-            cookie.remove(accessToken)
-            cookie.remove(refreshToken)
+            cookie.remove(appSettings.accessToken)
+            cookie.remove(appSettings.refreshToken)
         }
     }
 

@@ -8,7 +8,7 @@ import {PersonalAccount} from './ui/PersonalAccount'
 export type AccountTypeOption = 'business' | 'personal'
 
 export const AccountManagement = () => {
-    const {renderCurrentSubscription} = useShowCurrentSubscription() //todo ask if its ok? (return render component from hook)
+    const {renderCurrentSubscription} = useShowCurrentSubscription()
     const [accountType, setAccountType] = useState<AccountTypeOption>('personal')
 
     return (

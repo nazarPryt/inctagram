@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
-import {PATH} from '@/shared/constants/PATH'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {useRouter} from 'next/navigation'
 

@@ -1,6 +1,6 @@
+import emptyFolder from '@/public/pictures/emptyfolder.png'
 import Image from 'next/image'
 
-import emptyFolder from '../../../../../../public/pictures/emptyfolder.png' //todo make alies import from public
 import {IsEmptyStyled} from './IsEmpty.styled'
 
 export const IsEmpty = () => {

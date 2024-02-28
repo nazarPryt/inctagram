@@ -1,8 +1,8 @@
 import {Controller} from 'react-hook-form'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useRegistrationForm} from '@/features/Auth/Registration/hook/UseRegistrationForm'
 import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
-import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
 import {

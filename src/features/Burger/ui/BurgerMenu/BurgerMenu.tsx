@@ -1,11 +1,11 @@
 import {ComponentPropsWithoutRef} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {LogOutModal} from '@/features/Auth/LogOut/ui/LogOutModal/LogOutModal'
 import {BurgerButton} from '@/features/Burger/ui/BurgerButton/BurgerButton'
 import {BurgerMenuStyled, BurgerModalStyled} from '@/features/Burger/ui/BurgerMenu/BurgerMenu.styled'
 import {Sheet, SheetClose, SheetContent, SheetTrigger} from '@/features/Burger/ui/BurgerModal/BurgerModal'
 import {CreatePost} from '@/features/Post/CreatePost/CreatePost'
-import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import Link from 'next/link'
 

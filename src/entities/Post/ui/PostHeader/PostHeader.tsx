@@ -1,9 +1,9 @@
 import {useState} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {AllPostsTypeItemsOwner} from '@/entities/Post/api/all-posts-api.type'
 import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
-import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Avatar, DotsHorizontal, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import {formatDistance, subDays} from 'date-fns'

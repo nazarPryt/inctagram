@@ -1,16 +1,17 @@
 import ReCAPTCHA from 'react-google-recaptcha'
 
-import {useForgotPassword} from '@/features/Auth/ForgotPassword/hook/useForgotPassword'
+import {appSettings} from '@/_app/AppSettings'
+import {PATH} from '@/_app/AppSettings/PATH'
 import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
-import {PATH} from '@/shared/constants/PATH'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthContainer, Button, InputText, Loader} from '@nazar-pryt/inctagram-ui-kit'
 
+import {useForgotPassword} from '../../hook/useForgotPassword'
 import {ForgotPasswordWrapper} from './ForgotPasswordForm.styled'
 
 export const ForgotPasswordForm = () => {
-    const KEY = process.env.NEXT_PUBLIC_RECAPTCHA_KEY
+    const KEY = appSettings.RECAPTCHA_KEY
     const {t} = useTranslation()
     const theme = useAppSelector(state => state.app.theme)
 

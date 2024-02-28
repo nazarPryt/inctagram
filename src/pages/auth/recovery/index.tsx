@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
 import {useCheckRecoveryCodeMutation} from '@/features/Auth/CheckRecoveryCode/api/checkRecoveryCode.api'
-import {PATH} from '@/shared/constants/PATH'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {NextPageContext} from 'next'
 import {useRouter} from 'next/router'

@@ -13,6 +13,10 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const dispatch = useAppDispatch()
     const [updateProfile, {isLoading}] = useUpdateUserMutation()
 
+    const cityArr = data.city.split(',')
+    const country = cityArr[0] ? cityArr[0] : ''
+    const city = cityArr[1] ? cityArr[1] : ''
+
     const {
         control,
         formState: {errors},
@@ -20,7 +24,7 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
         register,
         ...rest
     } = useForm<GeneralInformationFormData>({
-        defaultValues: {...data, dateOfBirth: new Date(data.dateOfBirth)},
+        defaultValues: {...data, city, country, dateOfBirth: new Date(data.dateOfBirth)},
         mode: 'all',
         resolver: yupResolver(GeneralInformationSchema),
     })

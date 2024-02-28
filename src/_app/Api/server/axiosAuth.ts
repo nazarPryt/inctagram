@@ -1,12 +1,12 @@
 //https://gist.github.com/xstevenyung/560c880992b3ad6892923cbad582bd81  <-- Axios Instance Example
 
+import {appSettings} from '@/_app/AppSettings'
 import {MeDataType} from '@/features/Auth/Me/api/me.types'
-import {accessToken, refreshToken} from '@/shared/constants/constants'
 import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL as string
+const baseURL = appSettings.BASE_URL
 
 export const axiosAuth = (ctx: GetServerSidePropsContext) => {
     const instance = axios.create({
@@ -61,7 +61,7 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
 
                         ctx.res.setHeader('Set-Cookie', [
                             `${newRefreshToken}`,
-                            `${accessToken}=${resRefresh.data.accessToken}; Path=/`,
+                            `${appSettings.accessToken}=${resRefresh.data.accessToken}; Path=/`,
                         ])
                         console.log('resMe.data: ', resMe.data)
 
@@ -102,8 +102,8 @@ export const serverAuthAPI = {
     },
     async logOut(ctx: GetServerSidePropsContext) {
         console.log('logOut serverside')
-        nookies.destroy(ctx, accessToken)
-        nookies.destroy(ctx, refreshToken)
+        nookies.destroy(ctx, appSettings.accessToken)
+        nookies.destroy(ctx, appSettings.refreshToken)
         console.log('logOut serverside is success')
     },
 }

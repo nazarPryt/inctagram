@@ -1,5 +1,5 @@
+import {PATH} from '@/_app/AppSettings/PATH'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
-import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {TermsPage} from '@/shared/styles/TermsPage'
 import {BackToPrevious} from '@nazar-pryt/inctagram-ui-kit'

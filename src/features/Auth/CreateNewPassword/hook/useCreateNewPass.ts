@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
-import {PATH} from '@/shared/constants/PATH'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'

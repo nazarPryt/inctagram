@@ -3,11 +3,10 @@ import type {AppProps} from 'next/app'
 import {ReactElement, ReactNode, useEffect} from 'react'
 import cookie from 'react-cookies'
 
+import {appSettings} from '@/_app/AppSettings'
 import {Providers} from '@/_app/Providers/Provider'
-import {accessToken} from '@/shared/constants/constants'
 import {useLoader} from '@/shared/hooks/useLoader'
 import {NextPage} from 'next'
-import {cookies} from 'next/headers'
 
 import '@/shared/styles/nprogress.css'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -28,11 +27,11 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
     useLoader()
 
     const getLayout = Component.getLayout ?? (page => page)
-    // const access = cookie.load(accessToken)
-    //
+    const access = cookie.load(appSettings.accessToken)
+
     // useEffect(() => {
     //     // Create a WebSocket connection
-    //     const socket = new WebSocket(`wss://inctagram.work/notifications?accessToken=${access}`)
+    //     const socket = new WebSocket(`wss://inctagram.work/notifications?${appSettings.accessToken}=${access}`)
     //
     //     // WebSocket event handlers
     //     socket.addEventListener('open', event => {

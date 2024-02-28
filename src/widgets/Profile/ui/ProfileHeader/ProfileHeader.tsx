@@ -1,7 +1,7 @@
 import {ReactNode} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {PATH} from '@/shared/constants/PATH'
 import {ComponentMode} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'

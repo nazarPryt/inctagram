@@ -2,7 +2,7 @@ import {forwardRef} from 'react'
 import DatePicker from 'react-datepicker'
 import {Control, Controller} from 'react-hook-form'
 
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import Link from 'next/link'
 

@@ -1,5 +1,5 @@
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useLogIn} from '@/features/Auth/LogIn/hook/UseLogIn'
-import {PATH} from '@/shared/constants/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
 import {
