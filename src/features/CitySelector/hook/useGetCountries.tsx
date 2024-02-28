@@ -1,11 +1,23 @@
+import {useEffect} from 'react'
+import {UseFormGetValues} from 'react-hook-form'
+
+import {GeneralInformationFormData} from '@/features/User/GeneralInformation/hook/GeneralInformationSchema'
 import {SelectOptionType} from '@nazar-pryt/inctagram-ui-kit'
 
-import {useGetAllCountriesQuery} from '../api'
+import {useGetAllCountriesQuery, useGetCountryCitiesMutation} from '../api'
 import {CountryIcon} from '../ui/CountryIcon'
 
-export const useGetCountries = () => {
-    const {data, isLoading} = useGetAllCountriesQuery()
+type PropsType = {
+    getValues: UseFormGetValues<GeneralInformationFormData>
+}
+export const useGetCountries = ({getValues}: PropsType) => {
+    const {data, isLoading: isLoadingCountries} = useGetAllCountriesQuery()
+    const [getCities, {isLoading: isLoadingCities}] = useGetCountryCitiesMutation()
 
+    // const country = getValues('country')
+    //
+    // console.log('country', country)
+    // const cityOptions: SelectOptionType[] = []
     let countryOptions: SelectOptionType[] = []
 
     if (data && data.data.length) {
@@ -20,6 +32,8 @@ export const useGetCountries = () => {
 
     return {
         countryOptions,
-        isLoading,
+        getCities,
+        isLoadingCities,
+        isLoadingCountries,
     }
 }

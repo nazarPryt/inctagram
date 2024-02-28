@@ -1,6 +1,6 @@
 import type {AppProps} from 'next/app'
 
-import {ReactElement, ReactNode, useEffect} from 'react'
+import {ReactElement, ReactNode} from 'react'
 import cookie from 'react-cookies'
 
 import {appSettings} from '@/_app/AppSettings'
@@ -28,29 +28,6 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
 
     const getLayout = Component.getLayout ?? (page => page)
     const access = cookie.load(appSettings.accessToken)
-
-    // useEffect(() => {
-    //     // Create a WebSocket connection
-    //     const socket = new WebSocket(`wss://inctagram.work/notifications?${appSettings.accessToken}=${access}`)
-    //
-    //     // WebSocket event handlers
-    //     socket.addEventListener('open', event => {
-    //         console.log('WebSocket connection opened', event)
-    //     })
-    //     socket.addEventListener('message', event => {
-    //         const message = event.data
-    //
-    //         console.log('Received message:', message)
-    //     })
-    //     socket.addEventListener('close', event => {
-    //         console.log('WebSocket connection closed', event)
-    //     })
-    //
-    //     return () => {
-    //         // Close the WebSocket connection
-    //         socket.close()
-    //     }
-    // }, [])
 
     return <Providers>{getLayout(<Component {...pageProps} />)}</Providers>
 }

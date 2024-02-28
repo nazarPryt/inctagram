@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import {Control, Controller} from 'react-hook-form'
+import {useEffect, useState} from 'react'
+import {Control, Controller, UseFormGetValues, UseFormSetValue, UseFormWatch} from 'react-hook-form'
 
 import {Select, SelectOptionType} from '@nazar-pryt/inctagram-ui-kit'
 
@@ -10,18 +10,42 @@ import {useGetCountries} from './hook/useGetCountries'
 type CitySelectorType = {
     control: Control<GeneralInformationFormData>
     error?: string
+    getValues: UseFormGetValues<GeneralInformationFormData>
+    setValue: UseFormSetValue<GeneralInformationFormData>
+    watch: UseFormWatch<GeneralInformationFormData>
 }
-export const CitySelector = ({control, error}: CitySelectorType) => {
+export const CitySelector = ({control, error, getValues, setValue, watch}: CitySelectorType) => {
+    const [cityOptions, setCityOptions] = useState<SelectOptionType[]>([])
     const isError = !!error?.length
-    const cityOptions: SelectOptionType[] = [
-        {label: 'city', value: 'city'},
-        {label: 'city2', value: 'city2'},
-    ]
-    const {countryOptions, isLoading} = useGetCountries()
+
+    const {countryOptions, getCities, isLoadingCities, isLoadingCountries} = useGetCountries({getValues})
+    const country = getValues('country')
+    const watchCountry = watch('country')
+
+    // console.log('watchCountry', watchCountry)
+    // console.log('country', country)
+
+    useEffect(() => {
+        getCities({country})
+            .unwrap()
+            .then(res => {
+                const cityOptions = res.data.map(city => {
+                    return {
+                        label: city,
+                        value: city,
+                    }
+                })
+
+                setCityOptions(cityOptions)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [country])
 
     return (
         <CitySelectorStyled>
-            {!isLoading && (
+            {!isLoadingCountries && (
                 <Controller
                     control={control}
                     name={'country'}
@@ -41,18 +65,20 @@ export const CitySelector = ({control, error}: CitySelectorType) => {
                 />
             )}
 
-            <Controller
-                control={control}
-                name={'city'}
-                render={({field: {onChange, value}}) => {
-                    return (
-                        <label>
-                            Select city
-                            <Select onChange={onChange} options={cityOptions} placeholder={value} value={value} />
-                        </label>
-                    )
-                }}
-            ></Controller>
+            {!isLoadingCities && watchCountry && (
+                <Controller
+                    control={control}
+                    name={'city'}
+                    render={({field: {onChange, value}}) => {
+                        return (
+                            <label>
+                                Select city
+                                <Select onChange={onChange} options={cityOptions} placeholder={value} value={value} />
+                            </label>
+                        )
+                    }}
+                ></Controller>
+            )}
             {isError && <p>{error}</p>}
         </CitySelectorStyled>
     )

@@ -11,7 +11,9 @@ import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 
 export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
-    const {control, errors, handleSubmit, isLoading, register} = useGeneralInformationForm({data})
+    const {control, errors, getValues, handleSubmit, isLoading, register, setValue, watch} = useGeneralInformationForm({
+        data,
+    })
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit}>
@@ -23,7 +25,13 @@ export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
             <InputText {...register('firstName')} label={t.generalInfo.inputs.firstname}></InputText>
             <InputText {...register('lastName')} label={t.generalInfo.inputs.lastname}></InputText>
             <ControlledDatePicker control={control} error={errors.dateOfBirth?.message} name={'dateOfBirth'} />
-            <CitySelector control={control} error={errors.city?.message} />
+            <CitySelector
+                control={control}
+                error={errors.city?.message}
+                getValues={getValues}
+                setValue={setValue}
+                watch={watch}
+            />
             {/*<InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>*/}
             <Controller
                 control={control}
