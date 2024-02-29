@@ -23,7 +23,7 @@ export const useDeleteUserPost = (postId: number) => {
         deletePost(postId)
             .then(() => {
                 setModalIsOpen(false)
-                router.push(PATH.MY_PROFILE)
+                // router.reload()
             })
             .catch(err =>
                 dispatch(

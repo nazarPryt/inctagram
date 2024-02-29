@@ -1,8 +1,6 @@
-import {ReactNode} from 'react'
-
 import {PATH} from '@/_app/AppSettings/PATH'
 import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {ComponentMode} from '@/shared/hooks/useMode'
+import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
@@ -10,15 +8,12 @@ import Link from 'next/link'
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-type NameItem = {
-    [key in ComponentMode]: ReactNode
-}
 type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()
 
-    const renderSettingsBox: NameItem = {
+    const renderSettingsBox: ModeItems = {
         fellow: (
             <div className={'settingsBox'}>
                 <Button>Follow</Button>
