@@ -33,25 +33,23 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
         const dateOfBirth = String(toDate(data.dateOfBirth).toISOString())
         const city = `${data.country}, ${data.city}`
 
-        console.log('city', city)
-
-        // await updateProfile({
-        //     aboutMe: data.aboutMe,
-        //     city,
-        //     dateOfBirth,
-        //     firstName: data.firstName,
-        //     lastName: data.lastName,
-        //     userName: data.userName,
-        // })
-        //     .unwrap()
-        //     .then(() =>
-        //         dispatch(
-        //             SetAppNotificationAC({
-        //                 notifications: {message: 'Yous Profile was successfully updated', type: 'success'},
-        //             })
-        //         )
-        //     )
-        //     .catch(error => dispatch(SetAppNotificationAC({notifications: {message: error.message, type: 'error'}})))
+        await updateProfile({
+            aboutMe: data.aboutMe,
+            city,
+            dateOfBirth,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            userName: data.userName,
+        })
+            .unwrap()
+            .then(() =>
+                dispatch(
+                    SetAppNotificationAC({
+                        notifications: {message: 'Yous Profile was successfully updated', type: 'success'},
+                    })
+                )
+            )
+            .catch(error => dispatch(SetAppNotificationAC({notifications: {message: error.message, type: 'error'}})))
     }
 
     return {

@@ -1,7 +1,8 @@
-import {forwardRef} from 'react'
+import {forwardRef, useState} from 'react'
 
+import brokenImage from '@/public/pictures/brokenImage.webp'
 import {MorePhotos} from '@nazar-pryt/inctagram-ui-kit'
-import Image from 'next/image'
+import Image, {StaticImageData} from 'next/image'
 import {useRouter} from 'next/router'
 
 import {UserPostWrapper} from './UserPost.styled'
@@ -13,6 +14,7 @@ type UserPostType = {
 }
 
 export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref) => {
+    const [image, setImage] = useState<StaticImageData | string>(props.src)
     const {asPath} = useRouter()
 
     return (
@@ -22,7 +24,15 @@ export const UserPost = forwardRef<HTMLAnchorElement, UserPostType>((props, ref)
                     <MorePhotos />
                 </span>
             )}
-            <Image alt={'PostPhoto'} height={235} src={props.src} width={230} />
+            <Image
+                alt={'PostPhoto'}
+                height={235}
+                onError={() => {
+                    setImage(brokenImage)
+                }}
+                src={image}
+                width={230}
+            />
         </UserPostWrapper>
     )
 })

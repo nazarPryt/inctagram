@@ -13,7 +13,6 @@ export const createPostAPI = rtkQuery.injectEndpoints({
             }),
         }),
         UploadImage: build.mutation<UploadedImageResponse, File | FormData>({
-            invalidatesTags: ['UserPosts', 'AllPosts'],
             query: body => ({
                 body,
                 method: 'POST',

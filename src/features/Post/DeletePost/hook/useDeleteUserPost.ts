@@ -23,7 +23,7 @@ export const useDeleteUserPost = (postId: number) => {
         deletePost(postId)
             .then(() => {
                 setModalIsOpen(false)
-                // router.reload()
+                router.reload() //todo fix reload need to close ViewUserPost modal if it opened
             })
             .catch(err =>
                 dispatch(

@@ -7,6 +7,9 @@ export const PostPhotosStyled = styled.div`
         height: 230px;
     }
     .slide {
+        img {
+            object-fit: cover;
+        }
     }
 
     //~~~~swiper-button-next
