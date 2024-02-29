@@ -1,3 +1,6 @@
+import {useState} from 'react'
+
+import errorIcon from '@/public/pictures/errorIcon.png'
 import Image from 'next/image'
 
 import {CountryType} from '../../api'
@@ -9,9 +12,20 @@ import {CountryIconStyled} from './CountryIcon.styled'
  * */
 
 export const CountryIcon = ({country}: {country: CountryType}) => {
+    const [img, setImg] = useState<any>(country.flag)
+
     return (
         <CountryIconStyled>
-            <Image alt={'icon'} height={10} quality={20} src={country.flag} width={10} />
+            <Image
+                alt={'icon'}
+                height={10}
+                onError={() => {
+                    setImg(errorIcon)
+                }}
+                quality={20}
+                src={img}
+                width={10}
+            />
         </CountryIconStyled>
     )
 }

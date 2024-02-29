@@ -20,6 +20,7 @@ export const Post = ({post}: PostType) => {
                 createdAt={post.createdAt}
                 owner={post.owner}
                 ownerId={post.ownerId}
+                postId={post.id}
                 userName={post.userName}
             />
             <PostImage images={post.images} />
