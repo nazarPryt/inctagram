@@ -1,5 +1,5 @@
 import {PATH} from '@/_app/AppSettings/PATH'
-import {AllPostsTypeItemsImages} from '@/entities/Post/api/all-posts-api.type'
+import {AllPostsTypeItemsImages} from '@/entities/Post/api/allPosts.types'
 import Image from 'next/image'
 import Link from 'next/link'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'

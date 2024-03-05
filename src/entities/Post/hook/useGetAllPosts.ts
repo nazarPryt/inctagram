@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
-import {useGetAllPostsQuery} from '@/entities/Post/api/all-posts-api'
-import {ParamsType} from '@/entities/Post/api/all-posts-api.type'
+import {useGetAllPostsQuery} from '@/entities/Post/api/allPosts.api'
+import {ParamsType} from '@/entities/Post/api/allPosts.types'
 
 export const useGetAllPosts = () => {
     const params: ParamsType = {pageSize: 2}

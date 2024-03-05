@@ -1,10 +1,10 @@
 import {axiosPublic} from '@/_app/Api/server/axiosPublic'
 
-import {PublicProfileType} from './public-profile.type'
+import {PublicProfileTypes} from './publicProfile.types'
 
 export const getPublicUserProfile = async (profileId: number) => {
     try {
-        return await axiosPublic.get<PublicProfileType>(`public-user/profile/${profileId}`)
+        return await axiosPublic.get<PublicProfileTypes>(`public-user/profile/${profileId}`)
     } catch (e) {
         console.log(e)
     }

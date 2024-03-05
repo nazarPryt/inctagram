@@ -1,4 +1,4 @@
-export type PublicProfileType = {
+export type PublicProfileTypes = {
     aboutMe: string
     avatars: PublicProfileTypeAvatars[]
     id: number

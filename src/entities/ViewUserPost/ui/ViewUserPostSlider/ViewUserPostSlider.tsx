@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
-import {PostByIdTypeImages} from '../../api/type'
+import {PostByIdTypeImages} from '../../api/getPost.types'
 import {ViewUserPostSliderWrapper} from './ViewUserPostSlider.styled'
 
 type PropsType = {

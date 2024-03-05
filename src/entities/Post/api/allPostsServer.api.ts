@@ -1,6 +1,6 @@
 import {axiosPublic} from '@/_app/Api/server/axiosPublic'
 
-import {AllPostsType, ParamsType} from './all-posts-api.type'
+import {AllPostsType, ParamsType} from './allPosts.types'
 
 export const getAllPublicPosts = async (params: ParamsType) => {
     try {

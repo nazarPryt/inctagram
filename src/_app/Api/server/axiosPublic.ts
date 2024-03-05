@@ -1,6 +1,6 @@
 import {appSettings} from '@/_app/AppSettings'
-import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {PostsType} from '@/entities/UserPosts/api/types'
+import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import axios from 'axios'
 
 const baseURL = appSettings.BASE_URL
@@ -22,7 +22,7 @@ export const serverPublicAPI = {
     },
     async getPublicUserProfile(profileId: number) {
         try {
-            return await axiosPublic.get<PublicProfileType>(`public-user/profile/${profileId}`)
+            return await axiosPublic.get<PublicProfileTypes>(`public-user/profile/${profileId}`)
         } catch (e) {
             console.log(e)
         }

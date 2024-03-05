@@ -1,7 +1,7 @@
-import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {PostsType} from '@/entities/UserPosts/api/types'
+import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {ViewUserPost} from '@/entities/ViewUserPost'
-import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/get-post-api'
+import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
 import {ComponentMode} from '@/shared/hooks/useMode'
 import {Loader, Modal} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
@@ -15,7 +15,7 @@ type ProfileType = {
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
-    user: PublicProfileType | undefined
+    user: PublicProfileTypes | undefined
     userPosts: Pick<PostsType, 'items'> | undefined
 }
 export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {

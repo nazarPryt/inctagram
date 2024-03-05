@@ -1,6 +1,6 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {AllPostsType, ParamsType} from './all-posts-api.type'
+import {AllPostsType, ParamsType} from './allPosts.types'
 
 // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
 
@@ -29,3 +29,4 @@ const allPostsApi = rtkQuery.injectEndpoints({
 })
 
 export const {useGetAllPostsQuery} = allPostsApi
+//https://github.com/ershisan99/flashcards-example-project/blob/master/src/services/decks/decks.service.ts

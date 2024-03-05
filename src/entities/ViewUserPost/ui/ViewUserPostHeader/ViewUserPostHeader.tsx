@@ -9,7 +9,7 @@ import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
-import {PostByIdType} from '../../api/type'
+import {PostByIdType} from '../../api/getPost.types'
 import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
 type PropsType = {

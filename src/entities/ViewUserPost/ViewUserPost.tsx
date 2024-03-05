@@ -4,7 +4,7 @@ import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
 import {useMode} from '@/shared/hooks/useMode'
 
 import {ViewUserPostWrapper} from './ViewUserPost.styled'
-import {PostByIdType} from './api/type'
+import {PostByIdType} from './api/getPost.types'
 import {ViewUserPostAddComment} from './ui/ViewUserPostAddComment'
 import {ViewUserPostComments} from './ui/ViewUserPostComments'
 import {ViewUserPostDescription} from './ui/ViewUserPostDescription'

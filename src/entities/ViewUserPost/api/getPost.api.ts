@@ -1,6 +1,6 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {PostByIdType} from './type'
+import {PostByIdType} from './getPost.types'
 
 const postApi = rtkQuery.injectEndpoints({
     endpoints: build => ({

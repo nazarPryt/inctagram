@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction} from 'react'
 import {Controller} from 'react-hook-form'
 
-import {PostByIdType} from '@/entities/ViewUserPost/api/type'
+import {PostByIdType} from '@/entities/ViewUserPost/api/getPost.types'
 import {ViewUserPostHeader} from '@/entities/ViewUserPost/ui/ViewUserPostHeader'
 import {useEditPost} from '@/features/Post/EditPost/hook/UseEditPost'
 import {EditPostWrapper} from '@/features/Post/EditPost/ui/EditPost.styled'

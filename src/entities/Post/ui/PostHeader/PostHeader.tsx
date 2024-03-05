@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
-import {AllPostsTypeItemsOwner} from '@/entities/Post/api/all-posts-api.type'
+import {AllPostsTypeItemsOwner} from '@/entities/Post/api/allPosts.types'
 import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
 import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
 import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'

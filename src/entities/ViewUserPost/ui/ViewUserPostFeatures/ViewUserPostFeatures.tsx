@@ -1,4 +1,3 @@
-import {PostByIdType} from '@/entities/ViewUserPost/api/type'
 import {AddToFavorites} from '@/features/Post/AddToFavorites/AddToFavorites'
 import {LikePost} from '@/features/Post/Likes/LikePost/LikePost'
 import {Share} from '@/features/Post/Share/Share'
