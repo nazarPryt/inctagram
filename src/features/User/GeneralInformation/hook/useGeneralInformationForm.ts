@@ -13,7 +13,7 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const dispatch = useAppDispatch()
     const [updateProfile, {isLoading}] = useUpdateUserMutation()
 
-    const cityArr = data.city.split(',')
+    const cityArr = data.city ? data.city.split(',') : []
     const country = cityArr[0] ? cityArr[0] : ''
     const city = cityArr[1] ? cityArr[1] : ''
 
