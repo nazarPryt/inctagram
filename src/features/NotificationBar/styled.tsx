@@ -1,4 +1,4 @@
-import {NotificationType} from '@/shared/store/appSlice'
+import {NotificationType} from '@/_app/Store/slices/appSlice'
 import styled, {css, keyframes} from 'styled-components'
 
 const SlideRight = keyframes`
@@ -28,7 +28,7 @@ export const NotificationBarWrapper = styled.div`
     position: fixed;
     bottom: 10px;
     left: 10px;
-    z-index: 100;
+    z-index: 104;
 `
 
 export const AlertWrapper = styled.div<Pick<NotificationType, 'type'> & {$exit: boolean}>`

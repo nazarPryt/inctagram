@@ -1,7 +1,7 @@
 import {AddToFavorites} from '@/features/Post/AddToFavorites/AddToFavorites'
 import {CommentPost} from '@/features/Post/CommentPost/ui/CommentPost'
 import {LikePost} from '@/features/Post/Likes/LikePost/LikePost'
-import {Share} from '@/features/Share/Share'
+import {Share} from '@/features/Post/Share/Share'
 
 import {PostFeaturesWrapper} from './PostFeatures.styled'
 

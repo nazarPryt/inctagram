@@ -1,7 +1,8 @@
-import {useDeleteUserAvatar} from '@/features/User/Avatar/hook/useDeleteUserAvatar'
-import {UserAvatarStyled} from '@/features/User/Avatar/ui/UserAvatar/UserAvatar.styled'
 import {DeleteAvatar, Dialog, EmptyAvatar, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
+
+import {useDeleteUserAvatar} from '../../hook/useDeleteUserAvatar'
+import {UserAvatarStyled} from './UserAvatar.styled'
 
 export const UserAvatar = ({avatar}: {avatar: string | undefined}) => {
     const {dialog, handleCloseDialog, handleDeleteAvatar, handleOpenDialog, isLoading} = useDeleteUserAvatar()

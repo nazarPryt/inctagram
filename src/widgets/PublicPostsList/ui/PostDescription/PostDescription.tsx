@@ -1,6 +1,6 @@
+import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
 import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
-import formatDistance from 'date-fns/formatDistance'
-import subDays from 'date-fns/subDays'
+import {formatDistance, subDays} from 'date-fns'
 
 import {PostDescriptionStyled} from './PostDescription.styled'
 
@@ -9,13 +9,11 @@ type PostDescriptionType = {
     description: string
 }
 export const PostDescription = ({createdAt, description}: PostDescriptionType) => {
-    const day = formatDistance(subDays(new Date(createdAt), 0), new Date(), {
-        addSuffix: true,
-    })
+    const timeAgo = useFormatDistance(createdAt)
 
     return (
         <PostDescriptionStyled>
-            <span className={'day'}>{day}</span>
+            <span className={'day'}>{timeAgo}</span>
             <p>
                 <ReadMore maxLength={80} text={description} />
             </p>

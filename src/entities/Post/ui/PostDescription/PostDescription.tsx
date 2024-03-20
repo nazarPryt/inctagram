@@ -1,4 +1,4 @@
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
 import {Avatar, ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -14,9 +14,9 @@ export const PostDescription = ({avatarOwner, description, ownerId, userName}: P
     if (description) {
         return (
             <PostDescriptionStyled>
-                <Avatar src={avatarOwner} />
+                <Avatar src={avatarOwner} userName={userName} />
                 <p className={'content'}>
-                    <Link href={`/${PATH.PUBLIC.PROFILE}/${ownerId}`}>{userName}</Link>
+                    <Link href={`${PATH.USER_PROFILE}/${ownerId}`}>{userName}</Link>
                     <ReadMore maxLength={90} text={description} />
                 </p>
             </PostDescriptionStyled>

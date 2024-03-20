@@ -1,6 +1,12 @@
+import {ReactNode} from 'react'
+
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 
 export type ComponentMode = 'fellow' | 'myProfile' | 'publick'
+
+export type ModeItems = {
+    [key in ComponentMode]: ReactNode
+}
 /**
  *      fellow - if we are logged in, but looking on other people profile
  *      myProfile - our profile

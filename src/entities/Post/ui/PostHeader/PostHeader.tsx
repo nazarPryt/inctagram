@@ -1,26 +1,35 @@
 import {useState} from 'react'
 
-import {AllPostsTypeItemsOwner} from '@/entities/Post/api/all-posts-api.type'
+import {appSettings} from '@/_app/AppSettings'
+import {PATH} from '@/_app/AppSettings/PATH'
+import {AllPostsTypeItemsOwner} from '@/entities/Post/api/allPosts.types'
 import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
+import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
+import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
+import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
-import {PATH} from '@/shared/constants/PATH'
+import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
+import {ModeItems, useMode} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Avatar, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
-import {formatDistance, subDays} from 'date-fns'
+import {writeTextInClipboardAsync} from '@/shared/utils/WriteReadClipboard'
+import {Avatar, DotsHorizontal, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
 import {PostHeaderWrapper} from './PostHeader.styled'
-import {PopOverIcon} from './popOverIcon'
 
 type PostHeaderType = {
     avatarOwner: string
     createdAt: string
     owner: AllPostsTypeItemsOwner
     ownerId: number
+    postId: number
     userName: string
 }
 
-export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, userName}: PostHeaderType) => {
+export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, userName}: PostHeaderType) => {
+    const timeAgo = useFormatDistance(createdAt)
+    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(postId)
+    const {mode} = useMode(ownerId)
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const handleActionOne = () => {
@@ -31,27 +40,47 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, userName}: P
         console.log('Action Two')
         setIsPopoverOpen(false)
     }
-    const handleActionThree = () => {
-        console.log('Action Three')
+    const handleCopyLink = () => {
+        void writeTextInClipboardAsync(`${appSettings.DOMAIN_URL}/${PATH.USER_PROFILE}/${ownerId}/${postId}`)
         setIsPopoverOpen(false)
     }
-    const day = formatDistance(subDays(new Date(createdAt), 0), new Date(), {addSuffix: true})
-
-    return (
-        <PostHeaderWrapper>
-            <div className={'PostHeader'}>
-                <Avatar alt={`${userName} avatar}`} size={40} src={avatarOwner} userName={userName} />
-                <Link className={'link'} href={`${PATH.USER_PROFILE}/${ownerId}`}>
-                    {userName}
-                </Link>
-                <span className={'dot'} />
-                <span className={'day'}>{day}</span>
-            </div>
-            <Popover icon={<PopOverIcon />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+    const renderPopoverItems: ModeItems = {
+        fellow: (
+            <>
                 <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />
                 <PopoverItem icon={<PersonRemoveIcon />} name={t.home.options.unfollow} onClick={handleActionTwo} />
-                <PopoverItem icon={<CopyLinkIcon />} name={t.home.options.copyLink} onClick={handleActionThree} />
-            </Popover>
-        </PostHeaderWrapper>
+                <PopoverItem icon={<CopyLinkIcon />} name={t.home.options.copyLink} onClick={handleCopyLink} />
+            </>
+        ),
+        myProfile: (
+            <>
+                <PopoverItem icon={<DeletePostIcon />} name={'Delete Post'} onClick={handleModalOpen} />
+                <PopoverItem icon={<CopyLinkIcon />} name={t.home.options.copyLink} onClick={handleCopyLink} />
+            </>
+        ),
+        publick: <></>,
+    }
+
+    return (
+        <>
+            <DeletePostModal
+                handleDeletePost={handleDeletePost}
+                handleModalClose={handleModalClose}
+                isOpen={modalIsOpen}
+            />
+            <PostHeaderWrapper>
+                <div className={'PostHeader'}>
+                    <Avatar alt={`${userName} avatar}`} size={40} src={avatarOwner} userName={userName} />
+                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${ownerId}`}>
+                        {userName}
+                    </Link>
+                    <span className={'dot'} />
+                    <span className={'day'}>{timeAgo}</span>
+                </div>
+                <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                    {renderPopoverItems[mode]}
+                </Popover>
+            </PostHeaderWrapper>
+        </>
     )
 }

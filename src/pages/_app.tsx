@@ -2,11 +2,16 @@ import type {AppProps} from 'next/app'
 
 import {ReactElement, ReactNode} from 'react'
 
+import {Providers} from '@/_app/Providers/Provider'
 import {useLoader} from '@/shared/hooks/useLoader'
-import {Providers} from '@/shared/providers/Provider'
 import {NextPage} from 'next'
 
 import '@/shared/styles/nprogress.css'
+import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-toastify/dist/ReactToastify.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
     getLayout?: (page: ReactElement) => ReactNode

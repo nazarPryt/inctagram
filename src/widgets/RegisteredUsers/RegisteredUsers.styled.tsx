@@ -1,5 +1,4 @@
-import {Card} from '@/shared/ui/Card/Card'
-import {typography} from '@nazar-pryt/inctagram-ui-kit'
+import {Card, typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
 export const RegisteredUsersStyled = styled(Card)`

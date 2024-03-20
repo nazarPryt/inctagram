@@ -1,9 +1,11 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const editPostApi = api.injectEndpoints({
+import {EditPostRequest} from './editPost.types'
+
+export const editPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        editUserPost: build.mutation<void, {description: string; postId: number}>({
-            invalidatesTags: ['Post'],
+        editUserPost: build.mutation<void, EditPostRequest>({
+            invalidatesTags: ['ViewUserPost'],
             query: ({description, postId}) => ({
                 body: {description},
                 method: 'PUT',

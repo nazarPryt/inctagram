@@ -1,8 +1,8 @@
 import {useState} from 'react'
 
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {useRouter} from 'next/navigation'
 
 import {useResendConfirmationLinkMutation} from '../api/ResendVerificationLink.api'

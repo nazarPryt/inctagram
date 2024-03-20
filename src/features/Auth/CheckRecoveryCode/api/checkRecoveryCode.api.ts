@@ -1,6 +1,6 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const checkRecoveryCodeAPI = api.injectEndpoints({
+export const checkRecoveryCodeAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         checkRecoveryCode: build.mutation<void, {recoveryCode: string}>({
             query: body => ({

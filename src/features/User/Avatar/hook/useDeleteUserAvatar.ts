@@ -1,8 +1,9 @@
 import {useState} from 'react'
 
-import {useDeleteAvatarMutation} from '@/features/User/Avatar/api/avatar.api'
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
+
+import {useDeleteAvatarMutation} from '../api/avatar.api'
 
 export const useDeleteUserAvatar = () => {
     const dispatch = useAppDispatch()

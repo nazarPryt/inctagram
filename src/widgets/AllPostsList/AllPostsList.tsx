@@ -2,11 +2,11 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import {Post} from '@/entities/Post/Post'
 import {useGetAllPosts} from '@/entities/Post/hook/useGetAllPosts'
-import {NoPosts} from '@/shared/ui/NoPosts/NoPosts'
-import {ScrollToTop} from '@/shared/ui/ScrollToTop/ScrollToTop'
+import {ScrollToTop} from '@/features/ScrollToTop'
+import {NoPosts} from '@/shared/ui/NoPosts'
 
 import {AllPostsListWrapper} from './AllPostsList.styled'
-import {AllPostsListSkeleton, HomePostSkeleton} from './AllPostsListSkeleton'
+import {AllPostsListSkeleton, HomePostSkeleton} from './ui/AllPostsListSkeleton'
 
 export const AllPostsList = () => {
     const {data, fetchMoreData, hasMore, isHavePosts, isLoading} = useGetAllPosts()

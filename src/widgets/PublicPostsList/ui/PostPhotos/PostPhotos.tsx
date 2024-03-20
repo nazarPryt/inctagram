@@ -1,5 +1,5 @@
-import {AllPostsTypeItemsImages} from '@/entities/Post/api/all-posts-api.type'
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
+import {AllPostsTypeItemsImages} from '@/entities/Post/api/allPosts.types'
 import Image from 'next/image'
 import Link from 'next/link'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
@@ -13,8 +13,6 @@ type PropsType = {
     postId: number
 }
 export const PostPhotos = ({images, ownerId, postId}: PropsType) => {
-    const photosToShow = images.filter(photo => photo.height === 360)
-
     return (
         <PostPhotosStyled>
             <Swiper
@@ -27,7 +25,7 @@ export const PostPhotos = ({images, ownerId, postId}: PropsType) => {
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {photosToShow.map((photo, index) => {
+                {images.map((photo, index) => {
                     return (
                         <SwiperSlide className={'slide'} key={index}>
                             <Link href={`${PATH.PUBLIC.PROFILE}/${ownerId}/${postId}`}>

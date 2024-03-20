@@ -1,10 +1,8 @@
+import notFoundImage from '@/public/pictures/404.png'
 import {Button} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
-import Link from 'next/link'
 import {useRouter} from 'next/router'
 import styled from 'styled-components'
-
-import notFoundImage from '../../public/pictures/404.png'
 
 export const NotFoundStyled = styled.div`
     position: relative;

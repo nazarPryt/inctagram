@@ -1,5 +1,5 @@
-import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
-import {PATH} from '@/shared/constants/PATH'
+import {PATH} from '@/_app/AppSettings/PATH'
+import {AllPostsTypeItems} from '@/entities/Post/api/allPosts.types'
 import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 

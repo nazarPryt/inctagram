@@ -1,5 +1,5 @@
-import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/public-profile-api'
-import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
+import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
+import {useGetUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {Profile} from '@/widgets/Profile'
 import {useRouter} from 'next/router'

@@ -1,4 +1,4 @@
-import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
+import {AllPostsTypeItems} from '@/entities/Post/api/allPosts.types'
 
 import {PublicPostsListStyled} from './PublicPostsList.styled'
 import {PostItem} from './ui/PostItem'

@@ -1,7 +1,8 @@
-import {api} from '@/redux/api/api'
-import {NewPasswordArgType} from '@/redux/types/authTypes'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const createNewPasswordAPI = api.injectEndpoints({
+import {NewPasswordArgType} from './createNewPassword.types'
+
+export const createNewPasswordAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         createNewPassword: build.mutation<void, NewPasswordArgType>({
             query: body => ({

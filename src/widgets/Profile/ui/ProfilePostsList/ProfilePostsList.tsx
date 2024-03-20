@@ -1,5 +1,5 @@
-import {PostsType} from '@/entities/UserPosts/api/types'
-import {UserPost} from '@/entities/UserPosts/ui/UserPost'
+import {UserPost} from '@/entities/UserPosts/UserPost'
+import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {NoPosts} from '@/shared/ui/NoPosts'
 
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'

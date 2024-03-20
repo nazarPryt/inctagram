@@ -4,7 +4,7 @@ import {EditPost} from '@/features/Post/EditPost/ui/EditPost'
 import {useMode} from '@/shared/hooks/useMode'
 
 import {ViewUserPostWrapper} from './ViewUserPost.styled'
-import {PostByIdType} from './api/type'
+import {PostByIdType} from './api/getPost.types'
 import {ViewUserPostAddComment} from './ui/ViewUserPostAddComment'
 import {ViewUserPostComments} from './ui/ViewUserPostComments'
 import {ViewUserPostDescription} from './ui/ViewUserPostDescription'
@@ -24,7 +24,7 @@ export const ViewUserPost = ({post}: PropsType) => {
         <ViewUserPostWrapper>
             <ViewUserPostSlider className={'left'} images={post.images} />
             {edit ? (
-                <EditPost data={post} edit={edit} setEdit={setEdit} userId={post.id} />
+                <EditPost data={post} edit={edit} setEdit={setEdit} />
             ) : (
                 <div className={'right'}>
                     <ViewUserPostHeader data={post} edit={edit} setEdit={setEdit} />

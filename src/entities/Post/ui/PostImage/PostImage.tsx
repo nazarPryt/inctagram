@@ -1,4 +1,4 @@
-import {PostsTypeItemsImages} from '@/entities/UserPosts/api/types'
+import {PostsTypeItemsImages} from '@/entities/UserPosts/api/userPosts.types'
 import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'

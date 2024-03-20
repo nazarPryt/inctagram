@@ -1,12 +1,12 @@
 import cookie from 'react-cookies'
 import {useForm} from 'react-hook-form'
 
+import {appSettings} from '@/_app/AppSettings'
+import {PATH} from '@/_app/AppSettings/PATH'
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useLoginMutation} from '@/features/Auth/LogIn/api/login.api'
 import {emailPattern} from '@/features/Auth/Registration/helpers/emailPattern'
-import {PATH} from '@/shared/constants/PATH'
-import {accessToken} from '@/shared/constants/constants'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
 import * as yup from 'yup'
@@ -38,7 +38,7 @@ export const useLogIn = () => {
         setError,
         ...rest
     } = useForm<FormData>({
-        defaultValues: {email: 'bemapof779@ricorit.com', password: '11223344qwerTY!'},
+        defaultValues: {email: 'xohafe4475@sfpixel.com', password: '11223344qwerTY!'},
         mode: 'onTouched',
         reValidateMode: 'onChange',
         resolver: yupResolver(schema),
@@ -47,7 +47,7 @@ export const useLogIn = () => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                cookie.save(accessToken, payload.accessToken, {httpOnly: false, path: '/'})
+                cookie.save(appSettings.accessToken, payload.accessToken, {httpOnly: false, path: '/'})
                 await router.push(PATH.HOME)
             })
             .catch(() =>

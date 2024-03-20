@@ -1,4 +1,5 @@
 export const CommentIcon = () => {
+    //todo move to ui-kit
     return (
         <svg fill={'none'} height={'24'} viewBox={'0 0 24 24'} width={'24'}>
             <path

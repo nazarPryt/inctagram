@@ -1,0 +1,1 @@
+export {toTimeAgo} from './toTimeAgo'

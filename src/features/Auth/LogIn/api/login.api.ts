@@ -1,8 +1,10 @@
-import {api} from '@/redux/api/api'
+import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-export const loginAPI = api.injectEndpoints({
+import {LoginRequest, LoginResponse} from './login.types'
+
+export const loginAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        login: build.mutation<{accessToken: 'string'}, {email: string; password: string}>({
+        login: build.mutation<LoginResponse, LoginRequest>({
             query: body => ({
                 body,
                 method: 'POST',

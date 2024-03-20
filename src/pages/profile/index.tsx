@@ -1,4 +1,4 @@
-import {getAuthorizedLayout} from '@/shared/layouts/authorized'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
 import {AllPostsList} from '@/widgets/AllPostsList'
 
 export default function Home() {

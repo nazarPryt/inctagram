@@ -1,7 +1,7 @@
-import {PublicProfileType} from '@/entities/PublicProfile/api/public-profile.type'
-import {PostsType} from '@/entities/UserPosts/api/types'
-import {ViewUserPost} from '@/entities/ViewUserPost/ViewUserPost'
-import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/get-post-api'
+import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {ViewUserPost} from '@/entities/ViewUserPost'
+import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
 import {ComponentMode} from '@/shared/hooks/useMode'
 import {Loader, Modal} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
@@ -15,7 +15,7 @@ type ProfileType = {
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
-    user: PublicProfileType | undefined
+    user: PublicProfileTypes | undefined
     userPosts: Pick<PostsType, 'items'> | undefined
 }
 export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {
@@ -31,11 +31,11 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
     return (
         <>
             {isLoading && <Loader />}
-            {showPostModal && (
-                <Modal onClose={handleCloseModal} open showTitle={false} size={'full'}>
-                    {post && <ViewUserPost post={post} />}
-                </Modal>
-            )}
+
+            <Modal onClose={handleCloseModal} open={showPostModal} showTitle={false} size={'full'}>
+                {post && <ViewUserPost post={post} />}
+            </Modal>
+
             <ProfileWrapper>
                 <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
                 <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} />

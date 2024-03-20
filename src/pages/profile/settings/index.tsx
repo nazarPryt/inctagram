@@ -1,8 +1,8 @@
-import {AccountManagement} from '@/features/AccountManagement/AccountManagement'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
+import {AccountManagement} from '@/features/User/AccountManagement'
 import {Devices} from '@/features/User/Device/Devices'
-import {GeneralInformation} from '@/features/User/GeneralInformation/ui/GeneralInformation/GeneralInformation'
-import {MyPayments} from '@/features/User/MyPayments/ui/MyPayments'
-import {getAuthorizedLayout} from '@/shared/layouts/authorized'
+import {GeneralInformation} from '@/features/User/GeneralInformation'
+import {MyPayments} from '@/features/User/MyPayments'
 import {TabContent, Tabs} from '@nazar-pryt/inctagram-ui-kit'
 
 export default function ProfileSettingsPage() {

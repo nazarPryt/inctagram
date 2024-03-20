@@ -1,5 +1,5 @@
-import {MyProfile} from '@/features/User/MyProfile/MyProfile'
-import {getAuthorizedLayout} from '@/shared/layouts/authorized'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
+import {MyProfile} from '@/features/User/MyProfile'
 
 export default function MyProfilePage() {
     return <MyProfile />

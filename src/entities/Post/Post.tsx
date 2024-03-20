@@ -1,5 +1,5 @@
 import {PostWrapper} from '@/entities/Post/Post.styled'
-import {AllPostsTypeItems} from '@/entities/Post/api/all-posts-api.type'
+import {AllPostsTypeItems} from '@/entities/Post/api/allPosts.types'
 import {PostCommentForm} from '@/entities/Post/ui/PostCommentForm/PostCommentForm'
 import {PostComments} from '@/entities/Post/ui/PostComments/PostComments'
 import {PostDescription} from '@/entities/Post/ui/PostDescription/PostDescription'
@@ -20,6 +20,7 @@ export const Post = ({post}: PostType) => {
                 createdAt={post.createdAt}
                 owner={post.owner}
                 ownerId={post.ownerId}
+                postId={post.id}
                 userName={post.userName}
             />
             <PostImage images={post.images} />

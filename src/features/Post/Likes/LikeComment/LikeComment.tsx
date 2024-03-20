@@ -1,7 +1,8 @@
 import {forwardRef, useState} from 'react'
 
-import {LikeCommentWrapper} from '@/features/Post/Likes/LikeComment/LikeComment.styled'
 import {IconButtonType, LikedIcon, NotLikedIcon} from '@nazar-pryt/inctagram-ui-kit'
+
+import {LikeCommentWrapper} from './LikeComment.styled'
 
 type LikeCommentType = {
     commentId: number

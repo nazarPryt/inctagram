@@ -1,9 +1,9 @@
 import {ComponentPropsWithoutRef} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
+import {LangSelect} from '@/features/LangaugeSelect'
 import {Notifications} from '@/features/Notifications'
 import {ThemeSwitcher} from '@/features/ThemeSwitcher'
-import {PATH} from '@/shared/constants/PATH'
-import {LangSelect} from '@/shared/ui/LangaugeSelect'
 import {Button} from '@nazar-pryt/inctagram-ui-kit'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'

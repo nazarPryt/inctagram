@@ -1,7 +1,7 @@
+import emptyFolder from '@/public/pictures/emptyfolder.png'
 import Image from 'next/image'
 
 import {IsEmptyStyled} from './IsEmpty.styled'
-import emptyFolder from './icon/emptyfolder.png'
 
 export const IsEmpty = () => {
     return (

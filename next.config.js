@@ -13,12 +13,17 @@ const nextConfig = {
                 protocol: 'https',
             },
             {
+                hostname: 'upload.wikimedia.org',
+                port: '',
+                protocol: 'https',
+            },
+            {
                 hostname: 'loremflickr.com',
                 port: '',
                 protocol: 'https',
             },
             {
-                hostname: 'storage.yandexcloud.net',
+                hostname: 'staging-it-incubator.s3.eu-central-1.amazonaws.com',
                 port: '',
                 protocol: 'https',
             },

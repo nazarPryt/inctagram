@@ -1,13 +1,19 @@
-import {useGeneralInformationForm} from '@/features/User/GeneralInformation/hook/useGeneralInformationForm'
-import {UserProfile} from '@/redux/types/authTypes'
+import {Controller} from 'react-hook-form'
+
+import {CitySelector} from '@/features/CitySelector/CitySelector'
+import {ControlledDatePicker} from '@/features/User/GeneralInformation/ui/ControlledDatePicker'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Button, InputText, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
-import {GeneralInformationFormWrapper} from './styled'
+import {UserProfileType} from '../../api/userProfile/userProfile.types'
+import {useGeneralInformationForm} from '../../hook/useGeneralInformationForm'
+import {GeneralInformationFormWrapper} from './GeneralInformationForm.styled'
 
-export const GeneralInformationForm = ({data}: {data: UserProfile}) => {
+export const GeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const {t} = useTranslation()
-    const {control, datePickerRef, errors, handleSubmit, register} = useGeneralInformationForm({data})
+    const {control, errors, getValues, handleSubmit, isLoading, register, setValue, watch} = useGeneralInformationForm({
+        data,
+    })
 
     return (
         <GeneralInformationFormWrapper onSubmit={handleSubmit}>
@@ -18,14 +24,29 @@ export const GeneralInformationForm = ({data}: {data: UserProfile}) => {
             ></InputText>
             <InputText {...register('firstName')} label={t.generalInfo.inputs.firstname}></InputText>
             <InputText {...register('lastName')} label={t.generalInfo.inputs.lastname}></InputText>
-            {/*<CustomDatePicker control={control} {...register('dateOfBirth')} ref={datePickerRef} />*/}
-            <InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>
-            <TextArea
-                {...register('aboutMe')}
-                error={errors.aboutMe?.message}
-                label={t.generalInfo.inputs.aboutMe}
-            ></TextArea>
-            <Button className={'buttonSave'} type={'submit'}>
+            <ControlledDatePicker control={control} error={errors.dateOfBirth?.message} name={'dateOfBirth'} />
+            <CitySelector
+                control={control}
+                error={errors.city?.message}
+                getValues={getValues}
+                setValue={setValue}
+                watch={watch}
+            />
+            {/*<InputText {...register('city')} label={t.generalInfo.inputs.city}></InputText>*/}
+            <Controller
+                control={control}
+                name={'aboutMe'}
+                render={({field}) => (
+                    <TextArea
+                        {...field}
+                        error={errors.aboutMe?.message}
+                        label={t.generalInfo.inputs.aboutMe}
+                        maxLength={200}
+                    />
+                )}
+            />
+
+            <Button className={'buttonSave'} disabled={isLoading} type={'submit'}>
                 {t.generalInfo.saveChanges}
             </Button>
         </GeneralInformationFormWrapper>

@@ -1,16 +1,13 @@
 import {useState} from 'react'
 
-import {useGetAllPostsQuery} from '@/entities/Post/api/all-posts-api'
-import {ParamsType} from '@/entities/Post/api/all-posts-api.type'
+import {useGetAllPostsQuery} from '@/entities/Post/api/allPosts.api'
+import {ParamsType} from '@/entities/Post/api/allPosts.types'
 
 export const useGetAllPosts = () => {
     const params: ParamsType = {pageSize: 2}
     const [endCursorPostId, setEndCursorPostId] = useState<null | number>(null)
 
-    const {currentData, data, isLoading} = useGetAllPostsQuery(
-        {endCursorPostId, params},
-        {refetchOnFocus: true, refetchOnMountOrArgChange: true}
-    )
+    const {currentData, data, isLoading} = useGetAllPostsQuery({endCursorPostId, params})
 
     if (data && currentData) {
         const isHavePosts = data && data.items.length

@@ -1,15 +1,15 @@
 import {Dispatch, SetStateAction, useState} from 'react'
 
+import {PATH} from '@/_app/AppSettings/PATH'
 import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
 import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EditPostIcon} from '@/features/Post/EditPost/ui/icon/EditPostIcon'
-import {PATH} from '@/shared/constants/PATH'
 import {useMode} from '@/shared/hooks/useMode'
 import {Avatar, DotsHorizontal, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
-import {PostByIdType} from '../../api/type'
+import {PostByIdType} from '../../api/getPost.types'
 import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
 type PropsType = {
@@ -27,6 +27,8 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
     }
 
     const showPopover = !edit && mode === 'myProfile'
+    const userLink =
+        mode === 'publick' ? `/${PATH.PUBLIC.PROFILE}/${data.ownerId}` : `${PATH.USER_PROFILE}/${data.ownerId}`
 
     return (
         <>
@@ -38,7 +40,7 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
             <ViewUserPostHeaderWrapper>
                 <div className={'avaLink'}>
                     <Avatar alt={`${data.userName} avatar`} size={40} src={data.avatarOwner} userName={data.userName} />
-                    <Link className={'link'} href={`${PATH.USER_PROFILE}/${data.ownerId}`}>
+                    <Link className={'link'} href={userLink}>
                         {data.userName}
                     </Link>
                 </div>

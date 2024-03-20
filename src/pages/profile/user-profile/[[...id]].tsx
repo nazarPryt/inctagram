@@ -1,7 +1,7 @@
-import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/public-profile-api'
-import {useGetUserPostsQuery} from '@/entities/UserPosts/api/user-posts-api'
+import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
+import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
+import {useGetUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 import {useMode} from '@/shared/hooks/useMode'
-import {getAuthorizedLayout} from '@/shared/layouts/authorized'
 import {Profile} from '@/widgets/Profile'
 import {useRouter} from 'next/router'
 

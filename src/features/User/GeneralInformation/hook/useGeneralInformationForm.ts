@@ -1,21 +1,21 @@
-import {useRef} from 'react'
-import DatePicker from 'react-datepicker'
 import {useForm} from 'react-hook-form'
 
-import {useUpdateUserMutation} from '@/features/User/GeneralInformation/api/updateUser.api'
-import {UserProfile} from '@/redux/types/authTypes'
+import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {SetAppNotificationAC} from '@/shared/store/appSlice'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {toDate} from 'date-fns'
 
+import {useUpdateUserMutation} from '../api/updateUser/updateUser.api'
+import {UserProfileType} from '../api/userProfile/userProfile.types'
 import {GeneralInformationFormData, GeneralInformationSchema} from './GeneralInformationSchema'
 
-export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
+export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     const dispatch = useAppDispatch()
-    const [updateProfile] = useUpdateUserMutation()
+    const [updateProfile, {isLoading}] = useUpdateUserMutation()
 
-    const datePickerRef = useRef<DatePicker>(null)
+    const cityArr = data.city ? data.city.split(',') : []
+    const country = cityArr[0] ? cityArr[0] : ''
+    const city = cityArr[1] ? cityArr[1] : ''
 
     const {
         control,
@@ -24,17 +24,19 @@ export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
         register,
         ...rest
     } = useForm<GeneralInformationFormData>({
-        defaultValues: {...data, dateOfBirth: new Date(data.dateOfBirth)},
+        defaultValues: {...data, city, country, dateOfBirth: new Date(data.dateOfBirth)},
+        mode: 'all',
         resolver: yupResolver(GeneralInformationSchema),
     })
 
     const onSubmit = async (data: GeneralInformationFormData) => {
-        const result = String(toDate(data.dateOfBirth).toISOString())
+        const dateOfBirth = String(toDate(data.dateOfBirth).toISOString())
+        const city = `${data.country}, ${data.city}`
 
         await updateProfile({
             aboutMe: data.aboutMe,
-            city: data.city,
-            dateOfBirth: result,
+            city,
+            dateOfBirth,
             firstName: data.firstName,
             lastName: data.lastName,
             userName: data.userName,
@@ -52,9 +54,9 @@ export const useGeneralInformationForm = ({data}: {data: UserProfile}) => {
 
     return {
         control,
-        datePickerRef,
         errors,
         handleSubmit: handleSubmit(onSubmit),
+        isLoading,
         register,
         ...rest,
     }
