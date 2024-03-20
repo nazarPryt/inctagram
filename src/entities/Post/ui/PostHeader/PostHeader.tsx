@@ -8,10 +8,10 @@ import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPo
 import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
+import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
 import {ModeItems, useMode} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {writeTextInClipboardAsync} from '@/shared/utils/WriteReadClipboard'
-import {toTimeAgo} from '@/shared/utils/toTimeAgo'
 import {Avatar, DotsHorizontal, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -27,6 +27,7 @@ type PostHeaderType = {
 }
 
 export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, userName}: PostHeaderType) => {
+    const timeAgo = useFormatDistance(createdAt)
     const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(postId)
     const {mode} = useMode(ownerId)
     const {t} = useTranslation()
@@ -74,7 +75,7 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, user
                         {userName}
                     </Link>
                     <span className={'dot'} />
-                    <span className={'day'}>{toTimeAgo(createdAt)}</span>
+                    <span className={'day'}>{timeAgo}</span>
                 </div>
                 <Popover icon={<DotsHorizontal />} isOpen={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                     {renderPopoverItems[mode]}

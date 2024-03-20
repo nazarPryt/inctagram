@@ -1,9 +1,7 @@
 import type {AppProps} from 'next/app'
 
 import {ReactElement, ReactNode} from 'react'
-import cookie from 'react-cookies'
 
-import {appSettings} from '@/_app/AppSettings'
 import {Providers} from '@/_app/Providers/Provider'
 import {useLoader} from '@/shared/hooks/useLoader'
 import {NextPage} from 'next'
@@ -27,7 +25,6 @@ export default function App({Component, pageProps: {session, ...pageProps}}: App
     useLoader()
 
     const getLayout = Component.getLayout ?? (page => page)
-    const access = cookie.load(appSettings.accessToken)
 
     return <Providers>{getLayout(<Component {...pageProps} />)}</Providers>
 }

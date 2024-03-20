@@ -31,11 +31,11 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
     return (
         <>
             {isLoading && <Loader />}
-            {showPostModal && (
-                <Modal onClose={handleCloseModal} open showTitle={false} size={'full'}>
-                    {post && <ViewUserPost post={post} />}
-                </Modal>
-            )}
+
+            <Modal onClose={handleCloseModal} open={showPostModal} showTitle={false} size={'full'}>
+                {post && <ViewUserPost post={post} />}
+            </Modal>
+
             <ProfileWrapper>
                 <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
                 <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} />

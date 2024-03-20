@@ -1,5 +1,5 @@
+import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
 import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
-import {formatDistance, subDays} from 'date-fns'
 
 import {ViewUserPostDescriptionWrapper} from './ViewUserPostDescription.styled'
 
@@ -8,12 +8,12 @@ type PropsType = {
     description: string
 }
 export const ViewUserPostDescription = ({createdAt, description}: PropsType) => {
-    const day = formatDistance(subDays(new Date(createdAt), 0), new Date(), {addSuffix: true})
+    const timeAgo = useFormatDistance(createdAt)
 
     return (
         <ViewUserPostDescriptionWrapper>
             <ReadMore maxLength={100} text={description} />
-            <span className={'day'}>{day}</span>
+            <span className={'day'}>{timeAgo}</span>
         </ViewUserPostDescriptionWrapper>
     )
 }
