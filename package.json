@@ -39,7 +39,8 @@
         "sharp": "0.32.6",
         "styled-components": "6.1.1",
         "swiper": "10.0.4",
-        "yup": "1.2.0"
+        "yup": "1.2.0",
+        "zod": "3.22.4"
     },
     "devDependencies": {
         "@it-incubator/eslint-config": "1.0.1",
