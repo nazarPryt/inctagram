@@ -3,7 +3,6 @@ import {useForm} from 'react-hook-form'
 
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
-import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/router'
@@ -21,8 +20,7 @@ const schema = yup.object({
         .trim()
         .required('Password is required')
         .min(6, 'Your password is too short, min 6 characters')
-        .max(20, 'Your password is too long, max 20 characters')
-        .matches(passwordPattern, passwordPatternError),
+        .max(20, 'Your password is too long, max 20 characters'),
     passwordConfirmation: yup
         .string()
         .trim()

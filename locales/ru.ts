@@ -142,7 +142,7 @@ export const ru: LocaleType = {
         imageSizeError: 'Файл должен быть не больше 10 мб.',
         imageUploadError: 'Ошибка загрузки файла.',
         loginFailed: 'Ошибка входа',
-        loginIncorrectData: 'Неправильный email или пароль',
+        loginIncorrectData: ' Почта или пароль некорректны. Пожалуйста, попробуйте еще раз',
         loginIncorrectPassword: `Неправильный пароль. Попробуйте ещё раз`,
         maxFieldLength: (max: number) => `Максимальное количество символов - ${max}`,
         maxFirstname: (max: number) => `Максимальная длинна имени не должна превышать  ${max} символов`,
