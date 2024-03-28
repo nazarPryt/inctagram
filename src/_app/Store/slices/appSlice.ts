@@ -31,6 +31,7 @@ export const appSlice = createSlice({
         },
         setThemeAppAC: (state, action: PayloadAction<{theme: ThemeAppType}>) => {
             state.theme = action.payload.theme
+            localStorage.setItem('themeSwitcher', action.payload.theme)
         },
     },
 })
