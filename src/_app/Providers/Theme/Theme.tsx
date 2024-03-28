@@ -1,6 +1,7 @@
-import {ReactNode} from 'react'
+import {ReactNode, useEffect, useState} from 'react'
 
-import {useAppSelector} from '@/shared/hooks/reduxHooks'
+import {setThemeAppAC} from '@/_app/Store/slices/appSlice'
+import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {GlobalStyles, ToastContainerStyled, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
 import {Inter} from 'next/font/google'
 import {ThemeProvider} from 'styled-components'
@@ -8,7 +9,19 @@ import {ThemeProvider} from 'styled-components'
 const inter = Inter({subsets: ['latin']})
 
 export function Theme({children}: {children: ReactNode}) {
-    const theme = useAppSelector(state => state.app.theme)
+    const dispatch = useAppDispatch()
+
+    const themeApp = useAppSelector(state => state.app.theme)
+    const [theme, setTheme] = useState('')
+
+    useEffect(() => {
+        const themeLocal = localStorage.getItem('themeSwitcher')
+
+        if (themeLocal) {
+            setTheme(themeLocal)
+            dispatch(setThemeAppAC({theme: themeLocal === 'light' ? 'light' : 'dark'}))
+        }
+    }, [themeApp])
 
     return (
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
