@@ -1,8 +1,6 @@
 import {Controller} from 'react-hook-form'
 
 import {PATH} from '@/_app/AppSettings/PATH'
-import {useRegistrationForm} from '@/features/Auth/Registration/hook/UseRegistrationForm'
-import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {AuthPageStyled} from '@/shared/styles/RegistrationPage'
 import {
@@ -14,10 +12,11 @@ import {
     IconButton,
     InputPassword,
     InputText,
-    Loader,
 } from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
+import {useRegistrationForm} from '../../hook/UseRegistrationForm'
+import {RegistrationModal} from '../../ui/RegistrationModal/RegistrationModal'
 import {RegistrationCheckboxWrapper} from './RegistrationForm.styled'
 
 export const RegistrationForm = () => {

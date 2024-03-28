@@ -1,12 +1,12 @@
-import {PostWrapper} from '@/entities/Post/Post.styled'
-import {AllPostsTypeItems} from '@/entities/Post/api/allPosts.types'
-import {PostCommentForm} from '@/entities/Post/ui/PostCommentForm/PostCommentForm'
-import {PostComments} from '@/entities/Post/ui/PostComments/PostComments'
-import {PostDescription} from '@/entities/Post/ui/PostDescription/PostDescription'
-import {PostFeatures} from '@/entities/Post/ui/PostFeatures/PostFeatures'
-import {PostHeader} from '@/entities/Post/ui/PostHeader/PostHeader'
-import {PostImage} from '@/entities/Post/ui/PostImage/PostImage'
-import {PostLikes} from '@/entities/Post/ui/PostLikes/PostLikes'
+import {PostWrapper} from './Post.styled'
+import {AllPostsTypeItems} from './api/allPosts.types'
+import {PostCommentForm} from './ui/PostCommentForm'
+import {PostComments} from './ui/PostComments'
+import {PostDescription} from './ui/PostDescription'
+import {PostFeatures} from './ui/PostFeatures'
+import {PostHeader} from './ui/PostHeader'
+import {PostImage} from './ui/PostImage'
+import {PostLikes} from './ui/PostLikes'
 
 type PostType = {
     post: AllPostsTypeItems

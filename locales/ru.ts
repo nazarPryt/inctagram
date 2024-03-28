@@ -1,3 +1,5 @@
+import {emailRFCRegex} from '@/shared/regex/regex'
+
 import {LocaleType} from './en'
 
 export const ru: LocaleType = {
@@ -134,6 +136,49 @@ export const ru: LocaleType = {
             describe: 'Описание фото',
             filters: 'Фильтра для фото',
         },
+    },
+    errors: {
+        emailExists: 'Пользователь с такой электронной почтой уже существует',
+        emailNotFound: 'Пользователь с такими электронным адресом не существует',
+        emailRFCRegex: 'Превышена максимальная длина email',
+        imageFormatError: 'Файл должен иметь формат jpg или png.',
+        imageSizeError: 'Файл должен быть не больше 10 мб.',
+        imageUploadError: 'Ошибка загрузки файла.',
+        loginFailed: 'Ошибка входа',
+        loginIncorrectData: ' Почта или пароль некорректны. Пожалуйста, попробуйте еще раз',
+        loginIncorrectPassword: `Неправильный пароль. Попробуйте ещё раз`,
+        maxFieldLength: (max: number) => `Максимальное количество символов - ${max}`,
+        maxFirstname: (max: number) => `Максимальная длинна имени не должна превышать  ${max} символов`,
+        maxLastname: (max: number) => `Максимальная длина фамилии не должна превышать  ${max} символов`,
+        maxLengthPost: 'Максимальное количество символов для поста равно 500',
+        maxPassword: (max: number) => `Пароль должен быть не более ${max} символов`,
+        maxUsername: (max: number) => `Максимальная длина имени пользователя не должна превышать  ${max} символов`,
+        minPassword: (min: number) => `Пароль должен должен быть длиной не менее ${min} символов`,
+        minUsername: (min: number) => `Длина имени пользователя должна быть не менее ${min} символов`,
+        noResponse: 'Сервер не отвечает',
+        nonemptyConfirm: 'Повторно введите пароль',
+        nonemptyEmail: 'Введите адрес электронной почты',
+        nonemptyFirstname: 'Введите имя',
+        nonemptyLastname: 'Введите фамилию',
+        nonemptyPassword: 'Введите пароль',
+        nonemptyUsername: 'Введите имя пользователя',
+        passwordsMustMatch: 'Пароли должны совпадать',
+        regexAboutMe: 'Поле должно содержать 0-9, a-z, A-Z, . _ -',
+        regexEmail: 'Электронная почта должна соответствовать типу example@example.com',
+        regexFirstname: 'Имя должно содержать а-я, А-Я',
+        regexLastname: 'Фамилия должна содержать а-я, А-Я',
+        regexPasswordMustContain:
+            'Пароль должен содержать следующие символы 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / :' +
+            ' ; < = > ? @ [ \\ ] ^ _` { | } ~',
+        regexUsername:
+            'Username может содержать только латинские буквы a-z, A-Z, цифры 0-9, дефис (-) и нижнее подчеркивание (_)',
+        requestFailed: 'Ошибка при выполнении запроса',
+        requiredTerms: 'Нужно подтвердить согласие с правилами сервиса и политикой безопасности',
+        // under13: (elem: ReactElement) => `Возраст пользователя должен быть старше 13 лет. ${elem} `,
+        tellUsSomethingAboutYou: 'Поле не должно быть пустым',
+        under13: 'Возраст пользователя должен быть старше 13 лет.',
+        usernameExists: 'Пользователь с таким именем уже существует',
+        whereAreYouLive: 'Укажите в каком городе вы живете',
     },
     generalInfo: {
         addModal: {
