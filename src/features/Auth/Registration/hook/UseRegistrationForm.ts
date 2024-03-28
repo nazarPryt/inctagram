@@ -5,7 +5,7 @@ import {useTranslation} from '@/shared/hooks/useTranslation'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import {useRegistrationMutation} from '../api/registration.api'
-import {RegistrationFormData, createRegistrationFormSchema} from '../api/registration.schema'
+import {RegistrationFormData, createRegistrationFormSchema} from '../helpers/registration.schema'
 
 export const useRegistrationForm = () => {
     const {t} = useTranslation()

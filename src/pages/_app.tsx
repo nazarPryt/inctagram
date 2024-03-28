@@ -7,6 +7,7 @@ import {useLoader} from '@/shared/hooks/useLoader'
 import {NextPage} from 'next'
 
 import '@/shared/styles/nprogress.css'
+import '@/shared/styles/swiperCustomize.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'swiper/css'

@@ -1,3 +1,5 @@
+import {emailRFCRegex} from '@/shared/regex/regex'
+
 export const en = {
     //auth
 
@@ -134,6 +136,7 @@ export const en = {
     errors: {
         emailExists: 'User with this email is already registered',
         emailNotFound: "User with this email doesn't exist",
+        emailRFCRegex: 'Maximum email length exceeded',
         imageFormatError: 'File must be jpeg or png type',
         imageSizeError: 'File must be less than 10 MB.',
         imageUploadError: 'Upload error.',
@@ -150,7 +153,7 @@ export const en = {
         minUsername: (min: number) => `Username must be at least ${min} characters`,
         noResponse: 'Server does not response',
         nonemptyConfirm: 'Confirm your password',
-        nonemptyEmail: 'Enter your email',
+        nonemptyEmail: 'Email is required',
         nonemptyFirstname: 'Enter your name',
         nonemptyLastname: 'Enter your last name',
         nonemptyPassword: 'Enter your password',
@@ -163,7 +166,7 @@ export const en = {
         regexPasswordMustContain:
             'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^' +
             ' _` { | } ~',
-        regexUsername: 'Username must contain  0-9, a-z, A-Z, . _ -',
+        regexUsername: 'Username can contain only letters a-z, A-Z, numbers 0-9, dashes (-) and underscores (_)',
         requestFailed: 'Request Failed',
         requiredTerms: 'Terms and Privacy Policy must be true',
         tellUsSomethingAboutYou: 'The field must not be empty',

@@ -1,6 +1,6 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {RegistrationRequestType} from './registration.schema'
+import {RegistrationRequestType} from '../helpers/registration.schema'
 
 export const registrationAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({

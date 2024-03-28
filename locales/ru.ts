@@ -1,3 +1,5 @@
+import {emailRFCRegex} from '@/shared/regex/regex'
+
 import {LocaleType} from './en'
 
 export const ru: LocaleType = {
@@ -138,6 +140,7 @@ export const ru: LocaleType = {
     errors: {
         emailExists: 'Пользователь с такой электронной почтой уже существует',
         emailNotFound: 'Пользователь с такими электронным адресом не существует',
+        emailRFCRegex: 'Превышена максимальная длина email',
         imageFormatError: 'Файл должен иметь формат jpg или png.',
         imageSizeError: 'Файл должен быть не больше 10 мб.',
         imageUploadError: 'Ошибка загрузки файла.',
@@ -167,7 +170,8 @@ export const ru: LocaleType = {
         regexPasswordMustContain:
             'Пароль должен содержать следующие символы 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / :' +
             ' ; < = > ? @ [ \\ ] ^ _` { | } ~',
-        regexUsername: 'Имя пользователя должно содержать 0-9, a-z, A-Z, . _ -',
+        regexUsername:
+            'Username может содержать только латинские буквы a-z, A-Z, цифры 0-9, дефис (-) и нижнее подчеркивание (_)',
         requestFailed: 'Ошибка при выполнении запроса',
         requiredTerms: 'Нужно подтвердить согласие с правилами сервиса и политикой безопасности',
         // under13: (elem: ReactElement) => `Возраст пользователя должен быть старше 13 лет. ${elem} `,
