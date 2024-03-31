@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import {useForm} from 'react-hook-form'
 
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
@@ -11,8 +11,8 @@ import {ForgotPasswordFormData, createForgotPasswordSchema} from '../helpers/for
 
 export const useForgotPassword = () => {
     const dispatch = useAppDispatch()
+    const recaptchaRef = useRef(null)
     const {t} = useTranslation()
-    const [token, setToken] = useState<null | string>(null)
     const [isOpen, setIsModalOpen] = useState(false)
     const [forgotPassword, {isLoading}] = useForgotPasswordMutation()
 
@@ -37,7 +37,7 @@ export const useForgotPassword = () => {
             })
             .catch(error => {
                 console.log(error)
-                if (error.data.messages[0].field === 'email') {
+                if (error.data.messages.length && error.data.messages[0].field === 'email') {
                     setError('email', {
                         message: t.errors.emailWasntFound(data.email),
                         type: 'manual',
@@ -45,9 +45,16 @@ export const useForgotPassword = () => {
                 } else {
                     dispatch(
                         SetAppNotificationAC({
-                            notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
+                            notifications: {message: t.errors.tryAgain, type: 'error'},
                         })
                     )
+                }
+            })
+            .finally(() => {
+                setValue('recaptcha', '', {shouldValidate: true})
+                if (recaptchaRef.current) {
+                    // @ts-ignore
+                    recaptchaRef.current.reset()
                 }
             })
     }
@@ -55,22 +62,18 @@ export const useForgotPassword = () => {
         setIsModalOpen(false)
         reset()
     }
-    const handleChangeCaptcha = (value: null | string) => {
-        setToken(value)
-        setValue('recaptcha', value!)
-    }
+
     const email = getValues('email')
 
     return {
         email,
         errors,
-        handleChangeCaptcha,
         handleModalClose,
         handleSubmit: handleSubmit(onSubmit),
         isLoading,
         isOpen,
         isValid,
-        token,
+        recaptchaRef,
         ...rest,
     }
 }

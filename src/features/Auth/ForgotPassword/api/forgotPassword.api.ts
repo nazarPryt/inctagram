@@ -1,10 +1,10 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {ForgotPasswordArgType} from './forgotPassword.types'
+import {ForgotPasswordFormData} from '../helpers/forgotPassword.schema'
 
 export const forgotPasswordAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        forgotPassword: build.mutation<void, ForgotPasswordArgType>({
+        forgotPassword: build.mutation<void, ForgotPasswordFormData>({
             query: body => ({
                 body,
                 method: 'POST',

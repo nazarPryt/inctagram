@@ -13,7 +13,6 @@ export const ru: LocaleType = {
         search: 'Поиск',
         statistics: 'Статистика',
     },
-    //auth
     auth: {
         confirmPassword: 'Подтверждение пароля',
         email: 'Почта',
@@ -137,6 +136,7 @@ export const ru: LocaleType = {
             filters: 'Фильтра для фото',
         },
     },
+    currentLanguage: 'ru',
     errors: {
         emailExists: 'Пользователь с такой электронной почтой уже существует',
         emailNotFound: 'Пользователь с такими электронным адресом не существует',
@@ -177,6 +177,7 @@ export const ru: LocaleType = {
         requiredTerms: 'Нужно подтвердить согласие с правилами сервиса и политикой безопасности',
         // under13: (elem: ReactElement) => `Возраст пользователя должен быть старше 13 лет. ${elem} `,
         tellUsSomethingAboutYou: 'Поле не должно быть пустым',
+        tryAgain: 'Что-то пошло не так, попробуйте еще раз!!',
         under13: 'Возраст пользователя должен быть старше 13 лет.',
         usernameExists: 'Пользователь с таким именем уже существует',
         whereAreYouLive: 'Укажите в каком городе вы живете',

@@ -1,8 +1,6 @@
 import {emailRFCRegex} from '@/shared/regex/regex'
 
 export const en = {
-    //auth
-
     aside: {
         create: 'Create',
         favorites: 'Favorites',
@@ -133,6 +131,7 @@ export const en = {
             filters: 'Filters',
         },
     },
+    currentLanguage: 'en',
     errors: {
         emailExists: 'User with this email is already registered',
         emailNotFound: "User with this email doesn't exist",
@@ -171,6 +170,7 @@ export const en = {
         requestFailed: 'Request Failed',
         requiredTerms: 'Terms and Privacy Policy must be true',
         tellUsSomethingAboutYou: 'The field must not be empty',
+        tryAgain: 'Something went wrong, Try again please!!',
         under13: 'A user under 13 cannot create a profile.',
         usernameExists: 'User with this username is already registered',
         whereAreYouLive: 'Please indicate which city you live in',

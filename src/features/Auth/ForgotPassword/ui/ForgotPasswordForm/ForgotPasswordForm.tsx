@@ -1,5 +1,6 @@
-import {ElementType} from 'react'
+import {ElementType, useEffect, useRef} from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
+import {Controller} from 'react-hook-form'
 
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
@@ -18,18 +19,8 @@ export const ForgotPasswordForm = () => {
     const {t} = useTranslation()
     const theme = useAppSelector(state => state.app.theme)
 
-    const {
-        control,
-        email,
-        errors,
-        handleChangeCaptcha,
-        handleModalClose,
-        handleSubmit,
-        isLoading,
-        isOpen,
-        isValid,
-        register,
-    } = useForgotPassword()
+    const {control, email, errors, handleModalClose, handleSubmit, isLoading, isOpen, isValid, recaptchaRef, register} =
+        useForgotPassword()
 
     return (
         <>
@@ -45,7 +36,21 @@ export const ForgotPasswordForm = () => {
                     <Button asT={'a'} href={PATH.LOGIN} variant={'text'}>
                         {t.auth.forgotPassword.link}
                     </Button>
-                    <ReCAPTCHA {...register('recaptcha')} onChange={handleChangeCaptcha} sitekey={KEY} theme={theme} />
+                    <Controller
+                        control={control}
+                        name={'recaptcha'}
+                        render={({field: {onChange}}) => {
+                            return (
+                                <ReCAPTCHA
+                                    hl={t.currentLanguage}
+                                    onChange={onChange}
+                                    ref={recaptchaRef}
+                                    sitekey={KEY}
+                                    theme={theme}
+                                />
+                            )
+                        }}
+                    />
                 </ForgotPasswordWrapper>
             </AuthContainer>
             <Dialog

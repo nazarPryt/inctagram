@@ -10,7 +10,7 @@ export const createForgotPasswordSchema = (t: LocaleType) => {
             .min(1, t.errors.nonemptyEmail)
             .email(t.errors.regexEmail)
             .regex(emailRFCRegex, t.errors.emailRFCRegex),
-        recaptcha: z.string().trim().min(1, t.errors.nonemptyPassword),
+        recaptcha: z.string().trim().min(1),
     })
 }
 
