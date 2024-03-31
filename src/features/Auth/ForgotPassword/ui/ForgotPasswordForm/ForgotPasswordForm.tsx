@@ -1,15 +1,17 @@
+import {ElementType} from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
-import {RegistrationModal} from '@/features/Auth/Registration/ui/RegistrationModal/RegistrationModal'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {DevTool} from '@hookform/devtools'
 import {AuthContainer, Button, Dialog, InputText, Loader} from '@nazar-pryt/inctagram-ui-kit'
+import dynamic from 'next/dynamic'
 
 import {useForgotPassword} from '../../hook/useForgotPassword'
 import {ForgotPasswordWrapper} from './ForgotPasswordForm.styled'
+
+const DevT: ElementType = dynamic(() => import('@hookform/devtools').then(module => module.DevTool), {ssr: false})
 
 export const ForgotPasswordForm = () => {
     const KEY = appSettings.RECAPTCHA_KEY
@@ -45,17 +47,17 @@ export const ForgotPasswordForm = () => {
                     </Button>
                     <ReCAPTCHA {...register('recaptcha')} onChange={handleChangeCaptcha} sitekey={KEY} theme={theme} />
                 </ForgotPasswordWrapper>
-                {/*<RegistrationModal email={email} handleModalClose={handleModalClose} isOpen={isOpen} />*/}
-                <Dialog
-                    confirmButtonText={t.auth.modal.btn}
-                    onConfirmButtonClick={handleModalClose}
-                    open={isOpen}
-                    title={t.auth.modal.title}
-                >
-                    <p>{t.auth.modal.description}</p>
-                </Dialog>
             </AuthContainer>
-            <DevTool control={control} /> {/* set up the dev tool */}
+            <Dialog
+                confirmButtonText={t.auth.modal.btn}
+                onClose={handleModalClose}
+                onConfirmButtonClick={handleModalClose}
+                open={isOpen}
+                title={t.auth.modal.title}
+            >
+                {t.auth.modal.description} {email}
+            </Dialog>
+            <DevT control={control} /> {/* set up the dev tool */}
         </>
     )
 }

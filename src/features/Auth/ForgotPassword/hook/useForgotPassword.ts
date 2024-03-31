@@ -26,7 +26,7 @@ export const useForgotPassword = () => {
         ...rest
     } = useForm<ForgotPasswordFormData>({
         mode: 'all',
-        reValidateMode: 'onBlur',
+        reValidateMode: 'onChange',
         resolver: zodResolver(createForgotPasswordSchema(t)),
     })
     const onSubmit = async (data: ForgotPasswordFormData) => {
@@ -49,9 +49,6 @@ export const useForgotPassword = () => {
                         })
                     )
                 }
-            })
-            .finally(() => {
-                reset()
             })
     }
     const handleModalClose = () => {
