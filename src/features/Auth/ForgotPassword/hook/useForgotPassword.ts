@@ -2,20 +2,16 @@ import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
-import {useForgotPasswordMutation} from '@/features/Auth/ForgotPassword/api/forgotPassword.api'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {zodResolver} from '@hookform/resolvers/zod'
 
-const schema = yup.object({
-    email: yup.string().trim().required('Email is required'),
-    recaptcha: yup.string().nonNullable().trim().required('Token is required'),
-})
-
-type FormData = yup.InferType<typeof schema>
+import {useForgotPasswordMutation} from '../api/forgotPassword.api'
+import {ForgotPasswordFormData, createForgotPasswordSchema} from '../helpers/forgotPassword.schema'
 
 export const useForgotPassword = () => {
     const dispatch = useAppDispatch()
+    const {t} = useTranslation()
     const [token, setToken] = useState<null | string>(null)
     const [isOpen, setIsModalOpen] = useState(false)
     const [forgotPassword, {isLoading}] = useForgotPasswordMutation()
@@ -25,25 +21,37 @@ export const useForgotPassword = () => {
         getValues,
         handleSubmit,
         reset,
+        setError,
         setValue,
         ...rest
-    } = useForm<FormData>({
-        mode: 'onTouched',
-        reValidateMode: 'onChange',
-        resolver: yupResolver(schema),
+    } = useForm<ForgotPasswordFormData>({
+        mode: 'all',
+        reValidateMode: 'onBlur',
+        resolver: zodResolver(createForgotPasswordSchema(t)),
     })
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: ForgotPasswordFormData) => {
         forgotPassword(data)
             .unwrap()
             .then(() => {
                 setIsModalOpen(true)
             })
-            .catch(() => {
-                dispatch(
-                    SetAppNotificationAC({
-                        notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
+            .catch(error => {
+                console.log(error)
+                if (error.data.messages[0].field === 'email') {
+                    setError('email', {
+                        message: t.errors.emailWasntFound(data.email),
+                        type: 'manual',
                     })
-                )
+                } else {
+                    dispatch(
+                        SetAppNotificationAC({
+                            notifications: {message: 'Something went wrong, Try again please!!', type: 'error'},
+                        })
+                    )
+                }
+            })
+            .finally(() => {
+                reset()
             })
     }
     const handleModalClose = () => {

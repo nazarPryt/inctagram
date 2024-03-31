@@ -141,6 +141,7 @@ export const ru: LocaleType = {
         emailExists: 'Пользователь с такой электронной почтой уже существует',
         emailNotFound: 'Пользователь с такими электронным адресом не существует',
         emailRFCRegex: 'Превышена максимальная длина email',
+        emailWasntFound: (email: string) => `Пользователь с этим адресом электронной почты ${email} не найден`,
         imageFormatError: 'Файл должен иметь формат jpg или png.',
         imageSizeError: 'Файл должен быть не больше 10 мб.',
         imageUploadError: 'Ошибка загрузки файла.',

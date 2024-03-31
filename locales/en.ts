@@ -137,6 +137,7 @@ export const en = {
         emailExists: 'User with this email is already registered',
         emailNotFound: "User with this email doesn't exist",
         emailRFCRegex: 'Maximum email length exceeded',
+        emailWasntFound: (email: string) => `User with this email ${email} not founded`,
         imageFormatError: 'File must be jpeg or png type',
         imageSizeError: 'File must be less than 10 MB.',
         imageUploadError: 'Upload error.',
