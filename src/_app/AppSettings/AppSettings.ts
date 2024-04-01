@@ -13,6 +13,7 @@ class AppSettings {
         DOMAIN_URL: process.env.NEXT_PUBLIC_DOMAIN_URL as string,
         OG_IMAGE_URL: process.env.NEXT_PUBLIC_OG_IMAGE_URL as string,
         RECAPTCHA_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_KEY as string,
+        WS_URL: process.env.NEXT_PUBLIC_WS_URL as string,
     }
 }
 export const appSettings = new AppSettings()

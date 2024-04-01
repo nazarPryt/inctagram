@@ -11,6 +11,7 @@ const EnvSchema = z
         DOMAIN_URL: z.string().trim().min(1).url(),
         OG_IMAGE_URL: z.string().trim().min(1).url(),
         RECAPTCHA_KEY: z.string().trim().min(1),
+        WS_URL: z.string().trim().min(1).url(),
     })
     .strict()
 
