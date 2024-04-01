@@ -17,7 +17,7 @@ export default function CreateNewPasswordPage({recoveryCode}: {recoveryCode: str
         return <CreateNewPasswordForm recoveryCode={recoveryCode} />
     }
 
-    return <Loader />
+    return <Loader fullScreen />
 }
 
 CreateNewPasswordPage.getLayout = getLayoutWithHeader

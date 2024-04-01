@@ -30,7 +30,7 @@ export const ForgotPasswordForm = () => {
                     <h1>{t.auth.forgotPassword.title}</h1>
                     <InputText {...register('email')} error={errors.email?.message} label={'Email'} />
                     <p>{t.auth.forgotPassword.description}</p>
-                    <Button disabled={!isValid} fullwidth type={'submit'}>
+                    <Button disabled={!isValid || isLoading} fullwidth type={'submit'}>
                         {t.auth.forgotPassword.btnFirst}
                     </Button>
                     <Button asT={'a'} href={PATH.LOGIN} variant={'text'}>
@@ -60,7 +60,7 @@ export const ForgotPasswordForm = () => {
                 open={isOpen}
                 title={t.auth.modal.title}
             >
-                {t.auth.modal.description} {email}
+                {t.auth.modal.description} <i>{email}</i>
             </Dialog>
             <DevT control={control} /> {/* set up the dev tool */}
         </>
