@@ -1,6 +1,5 @@
 import {ReactNode, useEffect, useState} from 'react'
 
-import {useConnectWebSocket} from '@/_app/Api/client/webSocket'
 import {setThemeAppAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {GlobalStyles, ToastContainerStyled, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
@@ -12,7 +11,6 @@ const inter = Inter({subsets: ['latin']})
 export function Theme({children}: {children: ReactNode}) {
     const dispatch = useAppDispatch()
 
-    useConnectWebSocket()
     const themeApp = useAppSelector(state => state.app.theme)
     const [theme, setTheme] = useState('')
 

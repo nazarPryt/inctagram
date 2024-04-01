@@ -17,6 +17,9 @@ export class WebSocketApi {
         this.socket.on('connect', () => {
             console.log('Web Socket Connected')
         })
+        this.socket.on('connect_error', error => {
+            console.log('Web Socket connect_error', error)
+        })
 
         this.socket.on('disconnect', () => {
             console.log('Web Socket Disconnected')
