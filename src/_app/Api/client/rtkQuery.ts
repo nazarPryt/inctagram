@@ -11,7 +11,7 @@ export const rtkQuery = createApi({
 })
 
 export const countryApi = createApi({
-    baseQuery: fetchBaseQuery({baseUrl: appSettings.COUNTRIES_URL}),
+    baseQuery: fetchBaseQuery({baseUrl: appSettings.env.COUNTRIES_URL}),
     endpoints: () => ({}),
     reducerPath: 'countryApi',
     tagTypes: ['AllCountries', 'CountryCities'],

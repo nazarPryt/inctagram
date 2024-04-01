@@ -19,10 +19,10 @@ export const useLogIn = () => {
         formState: {errors, isValid},
         handleSubmit,
         setError,
+        setValue,
         ...rest
     } = useForm<LoginFormData>({
-        defaultValues: {email: 'nexari5063@sentrau.com', password: '11223344qwerTY!'},
-        mode: 'onTouched',
+        mode: 'all',
         reValidateMode: 'onChange',
         resolver: zodResolver(createLoginSchema(t)),
     })
@@ -30,7 +30,7 @@ export const useLogIn = () => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                cookie.save(appSettings.accessToken, payload.accessToken, {httpOnly: false, path: '/'})
+                cookie.save(appSettings.constants.accessToken, payload.accessToken, {httpOnly: false, path: '/'})
                 await router.push(PATH.HOME)
             })
             .catch(error => {
@@ -42,10 +42,15 @@ export const useLogIn = () => {
                 }
             })
     }
+    const handleTestAccount = () => {
+        setValue('email', appSettings.constants.testEmail)
+        setValue('password', appSettings.constants.testPassword)
+    }
 
     return {
         errors,
         handleSubmit: handleSubmit(onSubmit),
+        handleTestAccount,
         isLoading,
         isValid,
         ...rest,
