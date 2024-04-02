@@ -1,6 +1,6 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 
-import {GetNotificationsType, getNotificationsSchema} from '../helpers/notifications.schema'
+import {getNotificationsSchema} from '../helpers/notifications.schema'
 
 export const getNotificationsApi = rtkQuery.injectEndpoints({
     endpoints: build => ({

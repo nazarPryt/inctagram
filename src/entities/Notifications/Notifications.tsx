@@ -17,14 +17,13 @@ export const Notifications = () => {
 
     const handleOpenPopover = () => {
         setIsPopoverOpen(prev => !prev)
-        // setNotificationCount(0)
     }
 
     const notifications = useMemo(() => (data ? data.items ?? [] : []), [data])
 
     useEffect(() => {
         if (data && data.totalCount) {
-            setNotificationCount(data.totalCount)
+            setNotificationCount(data.items.filter(notification => !notification.isRead).length)
         }
     }, [data])
 
@@ -37,7 +36,7 @@ export const Notifications = () => {
             <NotificationWrapper>
                 <h3>{t.header.notification.notifications}:</h3>
                 {isLoading && <Loader />}
-                <Scrollbar maxHeight={400}>
+                <Scrollbar maxHeight={400} maxWidth={350}>
                     <NotificationList notifications={notifications} />
                 </Scrollbar>
             </NotificationWrapper>

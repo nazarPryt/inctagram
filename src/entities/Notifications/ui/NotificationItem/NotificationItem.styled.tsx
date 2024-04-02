@@ -1,7 +1,8 @@
 import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
-export const NotificationItemWrapper = styled.div`
+export const NotificationItemWrapper = styled.button`
+    all: unset;
     cursor: pointer;
     border-bottom: 1px solid ${props => props.theme.bodyColor['100']};
     padding: 10px;
@@ -22,6 +23,7 @@ export const NotificationItemWrapper = styled.div`
 
     .text {
         ${typography.Medium_text_14}
+        text-wrap: pretty;
     }
 
     .new {

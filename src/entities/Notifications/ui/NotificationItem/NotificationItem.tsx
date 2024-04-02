@@ -1,3 +1,4 @@
+import {useMarkAsReadMutation} from '@/features/Notification/MarkAsRead/api/markAsRead.api'
 import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
@@ -11,9 +12,18 @@ type PropsType = {
 export const NotificationItem = ({notification}: PropsType) => {
     const notifyAt = useFormatDistance(notification.notifyAt)
     const {t} = useTranslation()
+    const [markAsRead, {isLoading}] = useMarkAsReadMutation()
+
+    const handleMarkAsRead = () => {
+        markAsRead({ids: [+notification.id]})
+            .unwrap()
+            .then(res => {
+                console.log('res', res)
+            })
+    }
 
     return (
-        <NotificationItemWrapper>
+        <NotificationItemWrapper disabled={isLoading} onClick={handleMarkAsRead}>
             <div>
                 <h4>{t.header.notification.newNotification}</h4>{' '}
                 {!notification.isRead && <p className={'new'}>{t.header.notification.new}</p>}
