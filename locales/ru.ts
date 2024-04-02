@@ -221,6 +221,7 @@ export const ru: LocaleType = {
             new: 'Новое',
             newNotification: 'Новое уведомление!',
             notifications: 'Уведомелния',
+            oldNotification: 'Уже прочтено',
         },
     },
     home: {

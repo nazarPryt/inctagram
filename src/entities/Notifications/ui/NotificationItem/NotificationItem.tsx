@@ -16,10 +16,16 @@ export const NotificationItem = ({notification}: PropsType) => {
 
     return (
         <NotificationItemWrapper>
-            <div>
-                <h4>{t.header.notification.newNotification}</h4>
-                {!notification.isRead && <p className={'new'}>{t.header.notification.new}</p>}
-            </div>
+            {notification.isRead ? (
+                <div>
+                    <h4>{t.header.notification.oldNotification}</h4>
+                </div>
+            ) : (
+                <div>
+                    <h4>{t.header.notification.newNotification}</h4>
+                    <p className={'new'}>{t.header.notification.new}</p>
+                </div>
+            )}
 
             <p className={'text'}>
                 <ReadMore maxLength={100} text={notification.message} />

@@ -213,6 +213,7 @@ export const en = {
             new: 'New',
             newNotification: 'New notification!',
             notifications: 'Notifications',
+            oldNotification: 'Already read',
         },
     },
     home: {
