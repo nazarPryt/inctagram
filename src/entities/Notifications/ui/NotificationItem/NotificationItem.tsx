@@ -1,7 +1,7 @@
-import {useMarkAsReadMutation} from '@/features/Notification/MarkAsRead/api/markAsRead.api'
+import {useDeleteNotification} from '@/features/Notification/DeleteNotification/hook/useDeleteNotification'
 import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {ReadMore} from '@nazar-pryt/inctagram-ui-kit'
+import {CloseIcon, IconButton, ReadMore} from '@nazar-pryt/inctagram-ui-kit'
 
 import {NotificationType} from '../../helpers/notifications.schema'
 import {NotificationItemWrapper} from './NotificationItem.styled'
@@ -10,29 +10,24 @@ type PropsType = {
     notification: NotificationType
 }
 export const NotificationItem = ({notification}: PropsType) => {
-    const notifyAt = useFormatDistance(notification.notifyAt)
+    const {handleDeleteNotification, isDeleting} = useDeleteNotification(notification.id)
     const {t} = useTranslation()
-    const [markAsRead, {isLoading}] = useMarkAsReadMutation()
-
-    const handleMarkAsRead = () => {
-        markAsRead({ids: [+notification.id]})
-            .unwrap()
-            .then(res => {
-                console.log('res', res)
-            })
-    }
+    const notifyAt = useFormatDistance(notification.notifyAt)
 
     return (
-        <NotificationItemWrapper disabled={isLoading} onClick={handleMarkAsRead}>
+        <NotificationItemWrapper>
             <div>
-                <h4>{t.header.notification.newNotification}</h4>{' '}
+                <h4>{t.header.notification.newNotification}</h4>
                 {!notification.isRead && <p className={'new'}>{t.header.notification.new}</p>}
             </div>
 
             <p className={'text'}>
                 <ReadMore maxLength={100} text={notification.message} />
             </p>
-            <span className={'createdAt'}>{notifyAt}</span>
+            <span className={'notifyAt'}>{notifyAt}</span>
+            <IconButton className={'deleteBtn'} disabled={isDeleting} onClick={handleDeleteNotification}>
+                <CloseIcon />
+            </IconButton>
         </NotificationItemWrapper>
     )
 }

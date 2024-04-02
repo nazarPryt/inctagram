@@ -1,6 +1,7 @@
 import {useEffect, useMemo, useState} from 'react'
 
 import {useGetNotificationsQuery} from '@/entities/Notifications/api/getNotifications.api'
+import {useGetNotifications} from '@/entities/Notifications/hook/useGetNotifications'
 import {NotificationList} from '@/entities/Notifications/ui/NotificationList'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Loader, Popover, Scrollbar} from '@nazar-pryt/inctagram-ui-kit'
@@ -10,32 +11,22 @@ import {NotificationIcon} from './ui/NotificationIcon'
 import {NotificationItem} from './ui/NotificationItem'
 
 export const Notifications = () => {
-    const {data, isLoading} = useGetNotificationsQuery(0)
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const [notificationCount, setNotificationCount] = useState(0)
+    const {newNotifications, notifications} = useGetNotifications()
 
     const handleOpenPopover = () => {
         setIsPopoverOpen(prev => !prev)
     }
 
-    const notifications = useMemo(() => (data ? data.items ?? [] : []), [data])
-
-    useEffect(() => {
-        if (data && data.totalCount) {
-            setNotificationCount(data.items.filter(notification => !notification.isRead).length)
-        }
-    }, [data])
-
     return (
         <Popover
-            icon={<NotificationIcon notificationCount={notificationCount} />}
+            icon={<NotificationIcon notificationCount={newNotifications} />}
             isOpen={isPopoverOpen}
             onOpenChange={handleOpenPopover}
         >
             <NotificationWrapper>
                 <h3>{t.header.notification.notifications}:</h3>
-                {isLoading && <Loader />}
                 <Scrollbar maxHeight={400} maxWidth={350}>
                     <NotificationList notifications={notifications} />
                 </Scrollbar>
