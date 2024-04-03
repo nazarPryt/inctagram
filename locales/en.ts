@@ -210,6 +210,11 @@ export const en = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'You dont have notifications',
+                subTitle: 'No Notification',
+                title: 'Woo',
+            },
             new: 'New',
             newNotification: 'New notification!',
             notifications: 'Notifications',

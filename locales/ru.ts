@@ -218,6 +218,11 @@ export const ru: LocaleType = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'У тебя нету уведомлений',
+                subTitle: 'Пусто',
+                title: 'Ой',
+            },
             new: 'Новое',
             newNotification: 'Новое уведомление!',
             notifications: 'Уведомелния',

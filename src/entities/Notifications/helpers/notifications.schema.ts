@@ -9,8 +9,8 @@ const notificationSchema = z.object({
 
 export const getNotificationsSchema = z.object({
     items: z.array(notificationSchema),
-    pageSize: z.number().positive(),
-    totalCount: z.number().positive(),
+    pageSize: z.number(),
+    totalCount: z.number(),
 })
 
 export type NotificationType = z.infer<typeof notificationSchema>
