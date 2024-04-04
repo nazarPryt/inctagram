@@ -87,6 +87,10 @@ export const en = {
         },
         username: 'Username',
     },
+    common: {
+        currentLanguage: 'en',
+        test: 'Test',
+    },
     create: {
         addLocation: 'Add location',
         createPost: {
@@ -131,7 +135,6 @@ export const en = {
             filters: 'Filters',
         },
     },
-    currentLanguage: 'en',
     errors: {
         emailExists: 'User with this email is already registered',
         emailNotFound: "User with this email doesn't exist",
@@ -207,9 +210,15 @@ export const en = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'You dont have notifications',
+                subTitle: 'No Notification',
+                title: 'Woo',
+            },
             new: 'New',
             newNotification: 'New notification!',
             notifications: 'Notifications',
+            oldNotification: 'Already read',
         },
     },
     home: {

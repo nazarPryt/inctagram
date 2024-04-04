@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {PaymentType, SubscriptionType} from '../api/accountManagement.types'
 
-const urlToRedirect = `${appSettings.DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+const urlToRedirect = `${appSettings.env.DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
 
 const schema = yup.object({
     amount: yup.number().default(10).required(),
@@ -31,7 +31,7 @@ export const useCreateNewSubscription = () => {
         ...rest
     } = useForm<FormData>({
         defaultValues: {typeSubscription: 'DAY'},
-        mode: 'onChange',
+        mode: 'all',
         resolver: yupResolver(schema),
     })
 

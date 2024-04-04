@@ -3,7 +3,7 @@ import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.typ
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import axios from 'axios'
 
-const baseURL = appSettings.BASE_URL
+const baseURL = appSettings.env.BASE_URL
 
 export const axiosPublic = axios.create({
     baseURL,

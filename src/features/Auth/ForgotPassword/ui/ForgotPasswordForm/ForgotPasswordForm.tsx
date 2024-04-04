@@ -1,4 +1,4 @@
-import {ElementType, useEffect, useRef} from 'react'
+import {ElementType} from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {Controller} from 'react-hook-form'
 
@@ -15,7 +15,7 @@ import {ForgotPasswordWrapper} from './ForgotPasswordForm.styled'
 const DevT: ElementType = dynamic(() => import('@hookform/devtools').then(module => module.DevTool), {ssr: false})
 
 export const ForgotPasswordForm = () => {
-    const KEY = appSettings.RECAPTCHA_KEY
+    const KEY = appSettings.env.RECAPTCHA_KEY
     const {t} = useTranslation()
     const theme = useAppSelector(state => state.app.theme)
 
@@ -42,7 +42,7 @@ export const ForgotPasswordForm = () => {
                         render={({field: {onChange}}) => {
                             return (
                                 <ReCAPTCHA
-                                    hl={t.currentLanguage}
+                                    hl={t.common.currentLanguage}
                                     onChange={onChange}
                                     ref={recaptchaRef}
                                     sitekey={KEY}

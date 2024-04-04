@@ -41,7 +41,7 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, user
         setIsPopoverOpen(false)
     }
     const handleCopyLink = () => {
-        void writeTextInClipboardAsync(`${appSettings.DOMAIN_URL}/${PATH.USER_PROFILE}/${ownerId}/${postId}`)
+        void writeTextInClipboardAsync(`${appSettings.env.DOMAIN_URL}/${PATH.USER_PROFILE}/${ownerId}/${postId}`)
         setIsPopoverOpen(false)
     }
     const renderPopoverItems: ModeItems = {

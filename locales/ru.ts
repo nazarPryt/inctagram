@@ -92,6 +92,10 @@ export const ru: LocaleType = {
         },
         username: 'Имя пользователя',
     },
+    common: {
+        currentLanguage: 'ru',
+        test: 'Тест',
+    },
     create: {
         addLocation: 'Добавить места',
         createPost: {
@@ -136,7 +140,7 @@ export const ru: LocaleType = {
             filters: 'Фильтра для фото',
         },
     },
-    currentLanguage: 'ru',
+
     errors: {
         emailExists: 'Пользователь с такой электронной почтой уже существует',
         emailNotFound: 'Пользователь с такими электронным адресом не существует',
@@ -214,9 +218,15 @@ export const ru: LocaleType = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'У тебя нету уведомлений',
+                subTitle: 'Пусто',
+                title: 'Ой',
+            },
             new: 'Новое',
             newNotification: 'Новое уведомление!',
             notifications: 'Уведомелния',
+            oldNotification: 'Уже прочтено',
         },
     },
     home: {
