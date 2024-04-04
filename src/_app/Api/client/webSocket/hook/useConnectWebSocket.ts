@@ -18,9 +18,9 @@ export const useConnectWebSocket = () => {
 
     const connectWS = () => {
         WebSocketApi.createConnection(accessToken)
-        WebSocketApi.socket?.on(SocketEvents.notifications, data => {
-            console.log(SocketEvents.notifications, data)
-            const res = notificationSocketResponseSchema.parse(data)
+        WebSocketApi.socket?.on(SocketEvents.notifications, response => {
+            console.log(SocketEvents.notifications, response)
+            const res = notificationSocketResponseSchema.parse(response)
             const newMessage: NotificationType = {
                 id: res.id,
                 isRead: res.isRead,
@@ -39,6 +39,10 @@ export const useConnectWebSocket = () => {
     useEffect(() => {
         if (isLoggedIn) {
             connectWS()
+        }
+
+        return () => {
+            WebSocketApi.disconnect()
         }
     }, [isLoggedIn])
 }

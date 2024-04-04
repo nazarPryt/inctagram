@@ -4,17 +4,19 @@ import {useGetNotificationsQuery} from '../api/getNotifications.api'
 
 export const useGetNotifications = () => {
     const {data} = useGetNotificationsQuery(0)
-    const [newNotifications, setNewNotifications] = useState(0)
+    const [amountOfNewNotifications, setAmountOfNewNotifications] = useState(0)
     const notifications = useMemo(() => (data ? data.items ?? [] : []), [data])
 
     useEffect(() => {
         if (data && data.totalCount) {
-            setNewNotifications(data.items.filter(notification => !notification.isRead).length)
+            const updatedAmount = data.items.filter(notification => !notification.isRead).length
+
+            setAmountOfNewNotifications(updatedAmount)
         }
     }, [data])
 
     return {
-        newNotifications,
+        amountOfNewNotifications,
         notifications,
     }
 }

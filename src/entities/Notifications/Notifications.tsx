@@ -13,7 +13,7 @@ import {NotificationList} from './ui/NotificationList'
 export const Notifications = () => {
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const {newNotifications, notifications} = useGetNotifications()
+    const {amountOfNewNotifications, notifications} = useGetNotifications()
 
     useMarkAsRead({isPopoverOpen, notifications})
 
@@ -25,7 +25,7 @@ export const Notifications = () => {
 
     return (
         <Popover
-            icon={<NotificationIcon notificationCount={newNotifications} />}
+            icon={<NotificationIcon amountOfNewNotifications={amountOfNewNotifications} />}
             isOpen={isPopoverOpen}
             onOpenChange={handleOpenPopover}
         >

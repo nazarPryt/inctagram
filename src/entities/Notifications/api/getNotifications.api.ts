@@ -1,4 +1,5 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {sortByNotifyAt} from '@/entities/Notifications/helpers/sortByNotifyAt'
 
 import {getNotificationsSchema} from '../helpers/notifications.schema'
 
@@ -11,7 +12,9 @@ export const getNotificationsApi = rtkQuery.injectEndpoints({
                 url: `notifications/${cursor}`,
             }),
             transformResponse: response => {
-                return getNotificationsSchema.parse(response)
+                const parsedResponse = getNotificationsSchema.parse(response)
+
+                return sortByNotifyAt(parsedResponse)
             },
         }),
     }),

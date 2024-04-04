@@ -25,4 +25,7 @@ export class WebSocketApi {
             console.log('Web Socket Disconnected')
         })
     }
+    static disconnect() {
+        this.socket?.disconnect()
+    }
 }
