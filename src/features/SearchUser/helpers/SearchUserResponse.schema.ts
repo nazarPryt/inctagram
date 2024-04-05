@@ -19,3 +19,6 @@ export const SearchUserResponseSchema = z.object({
     prevCursor: z.number(),
     totalCount: z.number(),
 })
+
+export type SearchUserItemType = z.infer<typeof SearchUserItemSchema>
+export type SearchUserResponseType = z.infer<typeof SearchUserResponseSchema>

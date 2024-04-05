@@ -7,7 +7,7 @@ export const rtkQuery = createApi({
     baseQuery: baseQueryWithReAuth,
     endpoints: () => ({}),
     reducerPath: 'api',
-    tagTypes: ['User', 'AllPosts', 'ViewUserPost', 'Me', 'Sessions', 'UserPosts', 'Notifications'],
+    tagTypes: ['User', 'AllPosts', 'ViewUserPost', 'Me', 'Sessions', 'UserPosts', 'Notifications', 'SearchUser'],
 })
 
 export const countryApi = createApi({
