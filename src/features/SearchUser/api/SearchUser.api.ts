@@ -20,4 +20,4 @@ export const searchUserAPI = rtkQuery.injectEndpoints({
     overrideExisting: true,
 })
 
-export const {useSearchUserQuery} = searchUserAPI
+export const {useLazySearchUserQuery, useSearchUserQuery} = searchUserAPI
