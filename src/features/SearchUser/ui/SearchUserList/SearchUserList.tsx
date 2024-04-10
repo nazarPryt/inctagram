@@ -11,7 +11,6 @@ type PropsType = {
 export const SearchUserList = ({isLoading, users}: PropsType) => {
     const empty = users && users.length === 0
 
-    console.log('users', users)
     if (isLoading) {
         return <SearchUserListSkeleton />
     }
