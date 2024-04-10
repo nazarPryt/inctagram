@@ -12,7 +12,7 @@ export const SearchUserItemSchema = z.object({
 
 export const SearchUserResponseSchema = z.object({
     items: z.array(SearchUserItemSchema),
-    nextCursor: z.number(),
+    nextCursor: z.number().nullable(),
     page: z.number(),
     pageSize: z.number(),
     pagesCount: z.number(),

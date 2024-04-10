@@ -6,18 +6,28 @@ import {SearchUserListStyled} from './SearchUserList.styled'
 
 type PropsType = {
     isLoading: boolean
-    users: SearchUserItemType[]
+    users: SearchUserItemType[] | null
 }
 export const SearchUserList = ({isLoading, users}: PropsType) => {
+    const empty = users && users.length === 0
+
+    console.log('users', users)
     if (isLoading) {
         return <SearchUserListSkeleton />
     }
+    if (empty) {
+        return <div>not found</div>
+    }
 
-    return (
-        <SearchUserListStyled>
-            {users.map(user => {
-                return <SearchUserItem key={user.id} user={user} />
-            })}
-        </SearchUserListStyled>
-    )
+    if (users) {
+        return (
+            <SearchUserListStyled>
+                {users.map(user => {
+                    return <SearchUserItem key={user.id} user={user} />
+                })}
+            </SearchUserListStyled>
+        )
+    }
+
+    return <div>enter user name</div>
 }
