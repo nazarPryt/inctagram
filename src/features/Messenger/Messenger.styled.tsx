@@ -6,7 +6,6 @@ export const MessengerStyled = styled.div`
     }
     .wrapper {
         display: flex;
-        //grid-template-columns: 270px 1fr;
         outline: 1px solid ${props => props.theme.bodyColor[100]};
         height: calc(100vh - 200px);
     }

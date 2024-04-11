@@ -9,6 +9,7 @@ export const ChatStyled = styled.div`
     .chat {
         flex: 1;
         overflow-y: scroll;
+        padding: 10px;
     }
 
     .chatInfo {

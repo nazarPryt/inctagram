@@ -19,6 +19,7 @@ export const MessageStyled = styled.div<{$owner?: boolean}>`
 
         p {
             background-color: ${props => props.theme.bodyColor[300]};
+            color: ${props => props.theme.textColor[100]};
             padding: 10px 20px;
             border-radius: 0 10px 10px 10px;
             max-width: max-content;
@@ -33,8 +34,9 @@ export const MessageStyled = styled.div<{$owner?: boolean}>`
                 .messageContent {
                     align-items: flex-end;
                     p {
-                        background-color: ${props => props.theme.palette.primary[900]};
+                        background-color: ${props => props.theme.palette.primary[300]};
                         border-radius: 10px 0 10px 10px;
+                        color: white;
                     }
                 }
             `
