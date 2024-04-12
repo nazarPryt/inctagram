@@ -1,4 +1,3 @@
-import {appSettings} from '@/_app/AppSettings/AppSettings'
 import {z} from 'zod'
 
 //https://it-incubator.io/dev/blog/env-variables-in-app-settings-with-zod-validation

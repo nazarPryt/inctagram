@@ -20,4 +20,20 @@ export const ChatStyled = styled.div`
         ${typography.regular_text_16}
         padding: 10px;
     }
+    form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 0 5px;
+        border-top: 1px solid ${props => props.theme.bodyColor[100]};
+    }
+    .emoji {
+        position: relative;
+
+        .picker {
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+        }
+    }
 `

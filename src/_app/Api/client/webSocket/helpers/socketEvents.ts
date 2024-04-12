@@ -3,5 +3,6 @@ export const SocketEvents = {
     MESSAGE_DELETED: 'MESSAGE_DELETED',
     MESSAGE_SENT: 'MESSAGE_SENT',
     RECEIVE_MESSAGE: 'RECEIVE_MESSAGE',
+    UPDATE_MESSAGE: 'UPDATE_MESSAGE',
     notifications: 'NOTIFICATION',
 } as const

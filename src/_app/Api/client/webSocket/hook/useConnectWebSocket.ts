@@ -37,6 +37,12 @@ export const useConnectWebSocket = () => {
         WebSocketApi.socket?.on(SocketEvents.ERROR, response => {
             console.log('SocketEvents.ERROR', response)
         })
+        WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
+            console.log('SocketEvents.RECEIVE_MESSAGE', response)
+        })
+        WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, response => {
+            console.log('SocketEvents.MESSAGE_SENT', response)
+        })
     }
 
     useEffect(() => {
