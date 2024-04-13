@@ -40,8 +40,15 @@ export const useConnectWebSocket = () => {
         WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
             console.log('SocketEvents.RECEIVE_MESSAGE', response)
         })
-        WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, response => {
-            console.log('SocketEvents.MESSAGE_SENT', response)
+        WebSocketApi.socket?.emitWithAck(
+            SocketEvents.MESSAGE_SENT,
+            (response: any) => {
+                console.log('SocketEvents.MESSAGE_SENT', response)
+            },
+            () => {}
+        )
+        WebSocketApi.socket?.onAny(response => {
+            console.log('WebSocketApi.socket?.onAny', response)
         })
     }
 

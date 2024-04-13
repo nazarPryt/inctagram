@@ -21,22 +21,17 @@ export const Chat = () => {
         setText(prev => prev + e.emoji)
         setOpen(false)
     }
-    const newMessage: MessageType = {
-        createdAt: 'ds',
-        id: 222,
-        messageText: 'some message text',
-        messageType: 'string',
-        ownerId: userId,
-        receiverId: 3,
-        status: 'SENT',
-        updatedAt: 'sd',
+    const newMessage = {
+        message: 'some message text',
+        receiverId: 253,
     }
 
     const handleSend = () => {
         console.log('handleSend')
-        WebSocketApi.socket?.send(SocketEvents.RECEIVE_MESSAGE, newMessage, (response: any) => {
-            console.log('SocketEvents.MESSAGE_SENT', response)
-        })
+        // WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage, (response: any) => {
+        //     console.log('SocketEvents.MESSAGE_SENT', response)
+        // })
+        WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage)
     }
     const handleOpenEmoji = () => {
         setOpen(prev => !prev)
