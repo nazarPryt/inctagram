@@ -140,7 +140,6 @@ export const ru: LocaleType = {
             filters: 'Фильтра для фото',
         },
     },
-
     errors: {
         emailExists: 'Пользователь с такой электронной почтой уже существует',
         emailNotFound: 'Пользователь с такими электронным адресом не существует',
@@ -186,6 +185,7 @@ export const ru: LocaleType = {
         usernameExists: 'Пользователь с таким именем уже существует',
         whereAreYouLive: 'Укажите в каком городе вы живете',
     },
+
     generalInfo: {
         addModal: {
             saveBtn: 'Сохранить',
@@ -240,6 +240,9 @@ export const ru: LocaleType = {
         },
         publish: 'Опубликовать',
         viewComm: 'Просмотреть все комментарии ',
+    },
+    messenger: {
+        empty: {p: 'У вас еще не было разговоров', title: 'Список чатов пуст'},
     },
     myPost: {
         modal: {

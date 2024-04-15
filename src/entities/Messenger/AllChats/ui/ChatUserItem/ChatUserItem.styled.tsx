@@ -1,7 +1,7 @@
 import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
-export const ChatUserStyled = styled.div`
+export const ChatUserItemStyled = styled.div`
     display: flex;
     gap: 20px;
 

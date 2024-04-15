@@ -233,6 +233,9 @@ export const en = {
         publish: 'Publish',
         viewComm: 'View All Comments ',
     },
+    messenger: {
+        empty: {p: 'You didnt have conversation yet', title: 'Chat List is empty'},
+    },
     myPost: {
         modal: {
             btn1: 'Yes',

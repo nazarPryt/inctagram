@@ -1,24 +1,24 @@
-import {ChatType} from '@/features/Messenger/helpers/allChats.schema'
+import {GetAllChatsItemType} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
 import {toTimeAgo} from '@/shared/utils/toTimeAgo'
 import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 
-import {ChatUserStyled} from './ChatUser.styled'
+import {ChatUserItemStyled} from './ChatUserItem.styled'
 
 type PropsType = {
-    chat: ChatType
+    chat: GetAllChatsItemType
 }
 
-export const ChatUser = ({chat}: PropsType) => {
+export const ChatUserItem = ({chat}: PropsType) => {
     const avatarImg = chat.avatars.length ? chat.avatars[0].url : ''
 
     return (
-        <ChatUserStyled>
+        <ChatUserItemStyled>
             <Avatar size={48} src={avatarImg} />
             <div>
                 <h5 className={'userName'}>{chat.userName}</h5>
                 <p className={'lastMessage'}>{chat.messageText}</p>
             </div>
             <div>{toTimeAgo(chat.createdAt)}</div>
-        </ChatUserStyled>
+        </ChatUserItemStyled>
     )
 }

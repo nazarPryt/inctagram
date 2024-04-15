@@ -1,8 +1,8 @@
-import {MessageStatusSchema} from '@/features/Messenger/helpers/Message.schema'
+import {MessageStatusSchema} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {userAvatarSchema} from '@/shared/schemas/UserAvatar.schema'
 import {z} from 'zod'
 
-export const ChatSchema = z.object({
+export const GetAllChatsItemSchema = z.object({
     avatars: z.array(userAvatarSchema),
     createdAt: z.string(),
     id: z.number(),
@@ -15,10 +15,10 @@ export const ChatSchema = z.object({
     userName: z.string(),
 })
 
-export const AllChatsSchema = z.object({
-    items: z.array(ChatSchema),
+export const GetAllChatsSchema = z.object({
+    items: z.array(GetAllChatsItemSchema),
     pageSize: z.number(),
     totalCount: z.number(),
 })
-export type AllChatsType = z.infer<typeof AllChatsSchema>
-export type ChatType = z.infer<typeof ChatSchema>
+export type GetAllChatsType = z.infer<typeof GetAllChatsSchema>
+export type GetAllChatsItemType = z.infer<typeof GetAllChatsItemSchema>

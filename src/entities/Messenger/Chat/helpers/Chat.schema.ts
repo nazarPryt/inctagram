@@ -12,5 +12,13 @@ export const MessageSchema = z.object({
     status: MessageStatusSchema,
     updatedAt: z.string(),
 })
+
+export const GetChatSchema = z.object({
+    items: z.array(MessageSchema),
+    pageSize: z.number(),
+    totalCount: z.number(),
+})
+
 export type MessageType = z.infer<typeof MessageSchema>
+export type GetChatType = z.infer<typeof GetChatSchema>
 export type MessageStatusType = z.infer<typeof MessageStatusSchema>

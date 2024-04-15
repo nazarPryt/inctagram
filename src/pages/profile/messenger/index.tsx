@@ -1,5 +1,5 @@
 import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
-import {Messenger} from '@/features/Messenger'
+import {Messenger} from '@/widgets/Messanger'
 
 export default function MessengerPage() {
     return <Messenger />

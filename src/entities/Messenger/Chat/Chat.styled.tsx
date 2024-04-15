@@ -6,12 +6,6 @@ export const ChatStyled = styled.div`
     display: flex;
     flex-direction: column;
 
-    .chat {
-        flex: 1;
-        overflow-y: scroll;
-        padding: 10px;
-    }
-
     .chatInfo {
         display: flex;
         gap: 10px;

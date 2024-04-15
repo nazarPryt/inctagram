@@ -2,8 +2,8 @@ import {useState} from 'react'
 
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {SocketEvents} from '@/_app/Api/client/webSocket/helpers/socketEvents'
-import {MessageType} from '@/features/Messenger/helpers/Message.schema'
-import {Message} from '@/features/Messenger/ui/Message'
+import {useGetChatMessagesQuery} from '@/entities/Messenger/Chat/api/chat.api'
+import {ChatMessagesList} from '@/entities/Messenger/Chat/ui/ChatMessagesList'
 import {EmojiIcon} from '@/public/EmojiIcon'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'
@@ -14,9 +14,13 @@ import {ChatStyled} from './Chat.styled'
 
 export const Chat = () => {
     const theme = useAppSelector(store => store.app.theme)
+    const {data, isLoading} = useGetChatMessagesQuery(128)
+
+    console.log('data', data)
     const [open, setOpen] = useState(false)
     const [text, setText] = useState('')
     const {userId} = useAuth()
+
     const handleEmoji = (e: EmojiClickData) => {
         setText(prev => prev + e.emoji)
         setOpen(false)
@@ -24,14 +28,15 @@ export const Chat = () => {
     const newMessage = {
         message: 'some message text',
         receiverId: 253,
+        // userId: 7,
     }
 
     const handleSend = () => {
         console.log('handleSend')
-        // WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage, (response: any) => {
-        //     console.log('SocketEvents.MESSAGE_SENT', response)
-        // })
-        WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage)
+        WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage, (response: any) => {
+            console.log('SocketEvents.MESSAGE_SENT', response)
+        })
+        WebSocketApi.socket?.send(SocketEvents.RECEIVE_MESSAGE, newMessage)
     }
     const handleOpenEmoji = () => {
         setOpen(prev => !prev)
@@ -46,18 +51,9 @@ export const Chat = () => {
                 <Avatar size={48} src={'https://loremflickr.com/48/48'} />
                 <h5>Ekaterina Ivanova</h5>
             </div>
-            <div className={'chat'}>
-                <Message />
-                <Message owner />
-                <Message />
-                <Message />
-                <Message />
-                <Message owner />
-                <Message />
-                <Message />
-                <Message owner />
-                <Message />
-            </div>
+
+            <ChatMessagesList />
+
             <form>
                 <InputText onChange={handleInputChange} placeholder={'Type a message...'} value={text} />
                 <div className={'emoji'}>

@@ -38,7 +38,9 @@ export const LogInForm = () => {
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
                     <div className={'box'}>
-                        <Button onClick={handleTestAccount}>{t.common.test}</Button>
+                        <Button disabled={!isValid || isLoading} onClick={handleTestAccount}>
+                            {t.common.test}
+                        </Button>
                         <Link className={'link'} href={PATH.FORGOT_PASSWORD}>
                             {t.auth.signIn.linkFirst}
                         </Link>
