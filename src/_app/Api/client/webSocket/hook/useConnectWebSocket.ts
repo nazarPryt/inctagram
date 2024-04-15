@@ -11,6 +11,12 @@ import {useAuth} from '@/shared/hooks/useAuth'
 
 import {SocketEvents} from '../helpers/socketEvents'
 
+// const socketActions = {
+//     [SocketEvents.notifications]: (response: any, dispatch: any) => {
+//         //logic here
+//     },
+// }
+
 export const useConnectWebSocket = () => {
     const accessToken = cookie.load(appSettings.constants.accessToken)
     const {isLoggedIn} = useAuth()
@@ -19,6 +25,7 @@ export const useConnectWebSocket = () => {
     const connectWS = () => {
         WebSocketApi.createConnection(accessToken)
         WebSocketApi.socket?.on(SocketEvents.notifications, response => {
+            // socketActions[SocketEvents.notifications](response, dispatch)
             console.log(SocketEvents.notifications, response)
             const res = notificationSocketResponseSchema.parse(response)
             const newMessage: NotificationType = {

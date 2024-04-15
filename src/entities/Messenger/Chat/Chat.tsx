@@ -14,9 +14,14 @@ import {ChatStyled} from './Chat.styled'
 
 export const Chat = () => {
     const theme = useAppSelector(store => store.app.theme)
-    const {data, isLoading} = useGetChatMessagesQuery(128)
+    const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
 
-    console.log('data', data)
+    console.log('selectedChatId: ', selectedChatId)
+    const {data, isLoading} = useGetChatMessagesQuery(selectedChatId, {skip: !selectedChatId})
+    const messages = data ? data.items ?? [] : []
+
+    console.log('messages: ', messages)
+
     const [open, setOpen] = useState(false)
     const [text, setText] = useState('')
     const {userId} = useAuth()
@@ -36,13 +41,18 @@ export const Chat = () => {
         WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage, (response: any) => {
             console.log('SocketEvents.MESSAGE_SENT', response)
         })
-        WebSocketApi.socket?.send(SocketEvents.RECEIVE_MESSAGE, newMessage)
+        WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage)
     }
     const handleOpenEmoji = () => {
         setOpen(prev => !prev)
     }
     const handleInputChange = (e: any) => {
         setText(e.target.value)
+    }
+    const empty = 'sdsd'
+
+    if (!empty) {
+        return <div>Select a chat to start messaging</div>
     }
 
     return (
@@ -52,7 +62,7 @@ export const Chat = () => {
                 <h5>Ekaterina Ivanova</h5>
             </div>
 
-            <ChatMessagesList />
+            <ChatMessagesList isLoading={isLoading} messages={messages} />
 
             <form>
                 <InputText onChange={handleInputChange} placeholder={'Type a message...'} value={text} />

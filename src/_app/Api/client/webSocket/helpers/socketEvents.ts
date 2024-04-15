@@ -1,8 +1,8 @@
 export const SocketEvents = {
-    ERROR: 'ERROR',
-    MESSAGE_DELETED: 'MESSAGE_DELETED',
-    MESSAGE_SENT: 'MESSAGE_SENT',
-    RECEIVE_MESSAGE: 'RECEIVE_MESSAGE',
-    UPDATE_MESSAGE: 'UPDATE_MESSAGE',
-    notifications: 'NOTIFICATION',
+    ERROR: 'error',
+    MESSAGE_DELETED: 'message-deleted',
+    MESSAGE_SENT: 'message-sent',
+    RECEIVE_MESSAGE: 'receive-message',
+    UPDATE_MESSAGE: 'update-message',
+    notifications: 'notifications',
 } as const
