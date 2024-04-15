@@ -1,7 +1,6 @@
-import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
-import {ChatMessagesListSkeleton} from '@/entities/Messenger/Chat/ui/ChatMessagesListSkeleton'
-import {EmptyChatMessagesList} from '@/entities/Messenger/Chat/ui/EmptyChatMessagesList'
-
+import {MessageType} from '../../helpers/Chat.schema'
+import {ChatMessagesListSkeleton} from '../../ui/ChatMessagesListSkeleton'
+import {EmptyChatMessagesList} from '../../ui/EmptyChatMessagesList'
 import {Message} from '../Message'
 import {ChatMessagesListStyled} from './ChatMessagesList.styled'
 

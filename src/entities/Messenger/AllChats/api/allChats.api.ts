@@ -1,9 +1,11 @@
 import {rtkQuery} from '@/_app/Api/client/rtkQuery'
-import {GetAllChatsSchema} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
+
+import {GetAllChatsSchema} from '../helpers/getAllChatsSchema'
 
 export const allChatsAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getAllChats: build.query({
+            providesTags: ['Chats'],
             query: () => ({
                 method: 'GET',
                 url: 'messanger',
