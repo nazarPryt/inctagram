@@ -16,7 +16,7 @@ export const Message = ({message}: PropType) => {
 
     return (
         <MessageStyled $owner={owner}>
-            {owner && <MessageStatus />}
+            {owner && <MessageStatus status={message.status} />}
             {!owner && (
                 <div className={'avatar'}>
                     <Avatar size={48} src={'https://loremflickr.com/48/48'} />

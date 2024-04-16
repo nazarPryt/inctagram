@@ -1,10 +1,14 @@
+import {MessageStatusType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {CheckMessageIcon} from '@/public/CheckMessageIcon'
 
 import {MessageStatusStyled} from './MessageStatus.styled'
 
-export const MessageStatus = () => {
+type PropsType = {
+    status: MessageStatusType
+}
+export const MessageStatus = ({status}: PropsType) => {
     return (
-        <MessageStatusStyled>
+        <MessageStatusStyled $status={status}>
             <CheckMessageIcon />
         </MessageStatusStyled>
     )

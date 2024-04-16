@@ -3,7 +3,6 @@ import {ChatMessagesList} from '@/entities/Messenger/Chat/ui/ChatMessagesList'
 import {EmptyChatMessagesList} from '@/entities/Messenger/Chat/ui/EmptyChatMessagesList'
 import {SendMessageForm} from '@/features/Messenger/SendChatMessage/ui/SendMessageForm'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
-import {useAuth} from '@/shared/hooks/useAuth'
 import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
 
 import {ChatStyled} from './Chat.styled'
@@ -16,8 +15,6 @@ export const Chat = () => {
         skip: !selectedChatId,
     })
     const messages = data ? data.items ?? [] : []
-
-    const {userId} = useAuth()
 
     if (!selectedChatId) {
         return <EmptyChatMessagesList />
