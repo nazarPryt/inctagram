@@ -234,7 +234,11 @@ export const en = {
         viewComm: 'View All Comments ',
     },
     messenger: {
-        empty: {p: 'You didnt have conversation yet', title: 'Chat List is empty'},
+        empty: {
+            chat: 'Select a chat to start messaging',
+            p: 'You didnt have conversation yet',
+            title: 'Chat List is empty',
+        },
     },
     myPost: {
         modal: {

@@ -10,7 +10,7 @@ export const AllChats = () => {
 
     return (
         <AllChatsStyled>
-            <InputText placeholder={'Search user'} search value={''} />
+            <InputText placeholder={'Search chats...'} search value={''} />
             <ChatUsersList chats={chats} isLoading={isLoading} />
         </AllChatsStyled>
     )

@@ -1,21 +1,21 @@
+import {IconColor, typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled, {css} from 'styled-components'
 
 export const MessageStyled = styled.div<{$owner?: boolean}>`
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 30px;
 
-    .messageInfo {
-        display: flex;
-        flex-direction: column;
-        color: gray;
-        font-weight: 300;
+    .avatar {
+        width: 50px;
+        height: 50px;
     }
     .messageContent {
         max-width: 80%;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
 
         p {
             background-color: ${props => props.theme.bodyColor[300]};
@@ -23,6 +23,12 @@ export const MessageStyled = styled.div<{$owner?: boolean}>`
             padding: 10px 20px;
             border-radius: 0 10px 10px 10px;
             max-width: max-content;
+        }
+        span {
+            ${typography.small_text}
+            svg {
+                fill: 'red';
+            }
         }
     }
 
@@ -35,7 +41,7 @@ export const MessageStyled = styled.div<{$owner?: boolean}>`
                     align-items: flex-end;
                     p {
                         background-color: ${props => props.theme.palette.primary[300]};
-                        border-radius: 10px 0 10px 10px;
+                        border-radius: 10px 10px 0 10px;
                         color: white;
                     }
                 }

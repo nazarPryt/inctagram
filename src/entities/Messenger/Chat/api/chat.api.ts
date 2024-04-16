@@ -29,7 +29,11 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 url: `messanger/${dialoguePartnerId}`,
             }),
             transformResponse: response => {
-                return GetChatSchema.parse(response)
+                const validatedResponse = GetChatSchema.parse(response)
+
+                validatedResponse.items.reverse()
+
+                return validatedResponse
             },
         }),
     }),

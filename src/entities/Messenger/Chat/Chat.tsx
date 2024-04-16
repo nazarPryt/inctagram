@@ -1,5 +1,6 @@
 import {useGetChatMessagesQuery} from '@/entities/Messenger/Chat/api/chat.api'
 import {ChatMessagesList} from '@/entities/Messenger/Chat/ui/ChatMessagesList'
+import {EmptyChatMessagesList} from '@/entities/Messenger/Chat/ui/EmptyChatMessagesList'
 import {SendMessageForm} from '@/features/Messenger/SendChatMessage/ui/SendMessageForm'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'
@@ -10,13 +11,16 @@ import {ChatStyled} from './Chat.styled'
 export const Chat = () => {
     const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
 
-    const {data, isLoading} = useGetChatMessagesQuery(selectedChatId, {skip: !selectedChatId})
+    const {data, isLoading} = useGetChatMessagesQuery(selectedChatId, {
+        refetchOnMountOrArgChange: true,
+        skip: !selectedChatId,
+    })
     const messages = data ? data.items ?? [] : []
 
     const {userId} = useAuth()
 
     if (!selectedChatId) {
-        return <div>Select a chat to start messaging</div>
+        return <EmptyChatMessagesList />
     }
 
     return (

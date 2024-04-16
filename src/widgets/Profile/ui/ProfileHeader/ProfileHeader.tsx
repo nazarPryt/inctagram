@@ -1,9 +1,12 @@
 import {PATH} from '@/_app/AppSettings/PATH'
+import {SetSelectedChatIdAC} from '@/_app/Store/slices/messengerSlice'
 import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
@@ -12,12 +15,19 @@ type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProf
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()
-
+    const router = useRouter()
+    const dispatch = useAppDispatch()
+    const handler = () => {
+        dispatch(SetSelectedChatIdAC(user!.id))
+        void router.push(PATH.MESSENGER)
+    }
     const renderSettingsBox: ModeItems = {
         fellow: (
             <div className={'settingsBox'}>
                 <Button>Follow</Button>
-                <Button variant={'contained'}>Send Message</Button>
+                <Button onClick={handler} variant={'contained'}>
+                    Send Message
+                </Button>
             </div>
         ),
         myProfile: (
