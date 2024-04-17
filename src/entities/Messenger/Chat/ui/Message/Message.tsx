@@ -1,3 +1,5 @@
+import {useEffect, useRef} from 'react'
+
 import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {MessageStatus} from '@/entities/Messenger/Chat/ui/MessageStatus'
 import {useAuth} from '@/shared/hooks/useAuth'
@@ -9,13 +11,21 @@ import {MessageStyled} from './Message.styled'
 type PropType = {
     message: MessageType
 }
+
 export const Message = ({message}: PropType) => {
     const {userId} = useAuth()
 
+    const ref = useRef<HTMLDivElement | null>(null)
     const owner = message.ownerId === userId
 
+    useEffect(() => {
+        if (ref && ref.current) {
+            ref.current.scrollIntoView({behavior: 'smooth'})
+        }
+    }, [message])
+
     return (
-        <MessageStyled $owner={owner}>
+        <MessageStyled $owner={owner} ref={ref}>
             {owner && <MessageStatus status={message.status} />}
             {!owner && (
                 <div className={'avatar'}>

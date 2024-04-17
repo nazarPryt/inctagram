@@ -2,15 +2,15 @@ import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 
 import {serverPublicAPI} from '@/_app/Api/server/axiosPublic'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
-import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
 import {getPublicUserProfile} from '@/entities/PublicProfile/api/publicProfileServer.api'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {Profile} from '@/widgets/Profile'
 import {useRouter} from 'next/router'
 
 type PropsType = {
     profileId: number
-    user: PublicProfileTypes
+    user: PublicProfileType
     userPosts: Pick<PostsType,'items'>
 }
 

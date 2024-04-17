@@ -1,6 +1,6 @@
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetSelectedChatIdAC} from '@/_app/Store/slices/messengerSlice'
-import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -11,7 +11,7 @@ import {useRouter} from 'next/router'
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileTypes | undefined}
+type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()

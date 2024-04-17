@@ -23,7 +23,7 @@ export const ChatUserItem = ({chat}: PropsType) => {
 
     return (
         <ChatUserItemStyled $selected={isSelected} onClick={handleClick}>
-            <Avatar size={48} src={avatarImg} />
+            <Avatar size={48} src={avatarImg} userName={chat.userName} />
             <div>
                 <h5 className={'userName'}>{chat.userName}</h5>
                 <p className={'lastMessage'}>{chat.messageText}</p>

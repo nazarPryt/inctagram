@@ -1,8 +1,10 @@
 import {Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 
+import {ChatUserItemStyled} from '../../ui/ChatUserItem/ChatUserItem.styled'
+
 export const ChatUserSkeleton = () => {
     return (
-        <div>
+        <ChatUserItemStyled>
             <div>
                 <Skeleton circle height={48} width={48} />
             </div>
@@ -13,7 +15,7 @@ export const ChatUserSkeleton = () => {
             <div>
                 <Skeleton height={10} width={30} />
             </div>
-        </div>
+        </ChatUserItemStyled>
     )
 }
 export const ChatUserListSkeleton = () => {

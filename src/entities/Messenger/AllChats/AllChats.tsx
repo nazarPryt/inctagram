@@ -8,6 +8,8 @@ export const AllChats = () => {
     const {data, isLoading} = useGetAllChatsQuery({})
     const chats = data ? data.items ?? [] : []
 
+    console.log('chats: ', chats)
+
     return (
         <AllChatsStyled>
             <InputText placeholder={'Search chats...'} search value={''} />

@@ -1,7 +1,7 @@
 import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled, {css} from 'styled-components'
 
-export const ChatUserItemStyled = styled.button<{$selected: boolean}>`
+export const ChatUserItemStyled = styled.button<{$selected?: boolean}>`
     all: unset;
     display: flex;
     align-items: center;

@@ -26,9 +26,6 @@ export const MessageStyled = styled.div<{$owner?: boolean}>`
         }
         span {
             ${typography.small_text}
-            svg {
-                fill: 'red';
-            }
         }
     }
 

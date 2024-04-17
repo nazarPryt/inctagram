@@ -18,6 +18,7 @@ export const rtkQuery = createApi({
         'SearchUser',
         'Messages',
         'Chats',
+        'PublicProfile',
     ],
 })
 
