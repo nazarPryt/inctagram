@@ -1,26 +1,27 @@
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
 
-import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
-import {useRegistrationMutation} from '@/features/Auth/Registration/api/registration.api'
-import {RegistrationFormData, RegistrationFormSchema} from '@/features/Auth/Registration/api/registration.types'
-import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {yupResolver} from '@hookform/resolvers/yup'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {zodResolver} from '@hookform/resolvers/zod'
+
+import {useRegistrationMutation} from '../api/registration.api'
+import {RegistrationFormData, createRegistrationFormSchema} from '../helpers/registration.schema'
 
 export const useRegistrationForm = () => {
-    const dispatch = useAppDispatch()
+    const {t} = useTranslation()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const {
         control,
         formState: {errors, isValid},
         handleSubmit,
         reset,
+        setError,
         ...rest
-    } = useForm({
+    } = useForm<RegistrationFormData>({
         defaultValues: {checkbox: false},
-        mode: 'onTouched',
+        mode: 'all',
         reValidateMode: 'onChange',
-        resolver: yupResolver(RegistrationFormSchema),
+        resolver: zodResolver(createRegistrationFormSchema(t)),
     })
 
     const [addNewUser, {isLoading}] = useRegistrationMutation()
@@ -29,10 +30,22 @@ export const useRegistrationForm = () => {
         await addNewUser({email: data.email, password: data.password, userName: data.userName})
             .unwrap()
             .then(() => setIsModalOpen(true))
-            .catch(error =>
-                dispatch(
-                    SetAppNotificationAC({notifications: {message: error.data.messages[0].message, type: 'error'}})
-                )
+            .catch(
+                error =>
+                    error.data?.messages.map(() => {
+                        if (error.data.messages[0].field === 'userName') {
+                            setError(`${error.data.messages[0].field}` as 'root', {
+                                message: t.errors.usernameExists,
+                                type: 'manual',
+                            })
+                        }
+                        if (error.data.messages[0].field === 'email') {
+                            setError(`${error.data.messages[0].field}` as 'root', {
+                                message: t.errors.emailExists,
+                                type: 'manual',
+                            })
+                        }
+                    })
             )
     }
     const handleModalClose = () => {

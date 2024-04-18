@@ -10,8 +10,8 @@ export const logOutAPI = rtkQuery.injectEndpoints({
                 try {
                     await queryFulfilled
                     dispatch(rtkQuery.util?.resetApiState())
-                    cookie.remove(appSettings.accessToken)
-                    cookie.remove(appSettings.refreshToken)
+                    cookie.remove(appSettings.constants.accessToken)
+                    cookie.remove(appSettings.constants.refreshToken)
                 } catch (e) {
                     console.log(e)
                 }

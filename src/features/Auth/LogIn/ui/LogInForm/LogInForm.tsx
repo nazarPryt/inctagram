@@ -14,7 +14,7 @@ import {
 import Link from 'next/link'
 
 export const LogInForm = () => {
-    const {errors, handleSubmit, isLoading, isValid, register} = useLogIn()
+    const {errors, handleSubmit, handleTestAccount, isLoading, isValid, register} = useLogIn()
     const {t} = useTranslation()
 
     return (
@@ -37,9 +37,14 @@ export const LogInForm = () => {
                         error={errors.email?.message}
                     />
                     <InputPassword label={t.auth.password} {...register('password')} error={errors.password?.message} />
-                    <Link className={'link'} href={PATH.FORGOT_PASSWORD}>
-                        {t.auth.signIn.linkFirst}
-                    </Link>
+                    <div className={'box'}>
+                        <Button disabled={isLoading} onClick={handleTestAccount}>
+                            {t.common.test}
+                        </Button>
+                        <Link className={'link'} href={PATH.FORGOT_PASSWORD}>
+                            {t.auth.signIn.linkFirst}
+                        </Link>
+                    </div>
                     <Button disabled={!isValid || isLoading} type={'submit'}>
                         {t.auth.signIn.button}
                     </Button>

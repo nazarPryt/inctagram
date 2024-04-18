@@ -12,8 +12,6 @@ type PropsType = {
 } & ComponentPropsWithoutRef<'div'>
 
 export const ViewUserPostSlider = ({className, images}: PropsType) => {
-    const imagesToShow = images.filter(img => img.width === 1440)
-
     return (
         <ViewUserPostSliderWrapper className={className}>
             <Swiper
@@ -32,7 +30,7 @@ export const ViewUserPostSlider = ({className, images}: PropsType) => {
                 slidesPerView={1}
                 spaceBetween={0}
             >
-                {imagesToShow.map(photo => {
+                {images.map(photo => {
                     return (
                         <SwiperSlide className={'swiper-slide'} key={photo.uploadId}>
                             <Image

@@ -16,11 +16,16 @@ export const AuthPageStyled = styled.div`
         form {
           display: flex;
           flex-direction: column;
-            
+            .box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+            }
           .link {
             color: ${props => props.theme.textColor[900]};
             text-align: right;
-            margin-bottom: 30px;
+            
           } 
         }
   

@@ -1,7 +1,8 @@
-import {PostImageWrapper} from '@/entities/Post/ui/PostImage/PostImage.styled'
 import styled from 'styled-components'
 
-export const ViewUserPostSliderWrapper = styled(PostImageWrapper)`
+export const ViewUserPostSliderWrapper = styled.div`
+    width: 1440px;
+
     .swiper {
         width: 100%;
         height: 100%;

@@ -1,3 +1,5 @@
+import {emailRFCRegex} from '@/shared/regex/regex'
+
 import {LocaleType} from './en'
 
 export const ru: LocaleType = {
@@ -11,7 +13,6 @@ export const ru: LocaleType = {
         search: 'Поиск',
         statistics: 'Статистика',
     },
-    //auth
     auth: {
         confirmPassword: 'Подтверждение пароля',
         email: 'Почта',
@@ -91,6 +92,10 @@ export const ru: LocaleType = {
         },
         username: 'Имя пользователя',
     },
+    common: {
+        currentLanguage: 'ru',
+        test: 'Тест',
+    },
     create: {
         addLocation: 'Добавить места',
         createPost: {
@@ -135,6 +140,52 @@ export const ru: LocaleType = {
             filters: 'Фильтра для фото',
         },
     },
+    errors: {
+        emailExists: 'Пользователь с такой электронной почтой уже существует',
+        emailNotFound: 'Пользователь с такими электронным адресом не существует',
+        emailRFCRegex: 'Превышена максимальная длина email',
+        emailWasntFound: (email: string) => `Пользователь с этим адресом электронной почты ${email} не найден`,
+        imageFormatError: 'Файл должен иметь формат jpg или png.',
+        imageSizeError: 'Файл должен быть не больше 10 мб.',
+        imageUploadError: 'Ошибка загрузки файла.',
+        loginFailed: 'Ошибка входа',
+        loginIncorrectData: ' Почта или пароль некорректны. Пожалуйста, попробуйте еще раз',
+        loginIncorrectPassword: `Неправильный пароль. Попробуйте ещё раз`,
+        maxFieldLength: (max: number) => `Максимальное количество символов - ${max}`,
+        maxFirstname: (max: number) => `Максимальная длинна имени не должна превышать  ${max} символов`,
+        maxLastname: (max: number) => `Максимальная длина фамилии не должна превышать  ${max} символов`,
+        maxLengthPost: 'Максимальное количество символов для поста равно 500',
+        maxPassword: (max: number) => `Пароль должен быть не более ${max} символов`,
+        maxUsername: (max: number) => `Максимальная длина имени пользователя не должна превышать  ${max} символов`,
+        minPassword: (min: number) => `Пароль должен должен быть длиной не менее ${min} символов`,
+        minUsername: (min: number) => `Длина имени пользователя должна быть не менее ${min} символов`,
+        noResponse: 'Сервер не отвечает',
+        nonemptyConfirm: 'Повторно введите пароль',
+        nonemptyEmail: 'Введите адрес электронной почты',
+        nonemptyFirstname: 'Введите имя',
+        nonemptyLastname: 'Введите фамилию',
+        nonemptyPassword: 'Введите пароль',
+        nonemptyUsername: 'Введите имя пользователя',
+        passwordsMustMatch: 'Пароли должны совпадать',
+        regexAboutMe: 'Поле должно содержать 0-9, a-z, A-Z, . _ -',
+        regexEmail: 'Электронная почта должна соответствовать типу example@example.com',
+        regexFirstname: 'Имя должно содержать а-я, А-Я',
+        regexLastname: 'Фамилия должна содержать а-я, А-Я',
+        regexPasswordMustContain:
+            'Пароль должен содержать следующие символы 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / :' +
+            ' ; < = > ? @ [ \\ ] ^ _` { | } ~',
+        regexUsername:
+            'Username может содержать только латинские буквы a-z, A-Z, цифры 0-9, дефис (-) и нижнее подчеркивание (_)',
+        requestFailed: 'Ошибка при выполнении запроса',
+        requiredTerms: 'Нужно подтвердить согласие с правилами сервиса и политикой безопасности',
+        // under13: (elem: ReactElement) => `Возраст пользователя должен быть старше 13 лет. ${elem} `,
+        tellUsSomethingAboutYou: 'Поле не должно быть пустым',
+        tryAgain: 'Что-то пошло не так, попробуйте еще раз!!',
+        under13: 'Возраст пользователя должен быть старше 13 лет.',
+        usernameExists: 'Пользователь с таким именем уже существует',
+        whereAreYouLive: 'Укажите в каком городе вы живете',
+    },
+
     generalInfo: {
         addModal: {
             saveBtn: 'Сохранить',
@@ -167,9 +218,15 @@ export const ru: LocaleType = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'У тебя нету уведомлений',
+                subTitle: 'Пусто',
+                title: 'Ой',
+            },
             new: 'Новое',
             newNotification: 'Новое уведомление!',
             notifications: 'Уведомелния',
+            oldNotification: 'Уже прочтено',
         },
     },
     home: {
@@ -184,6 +241,14 @@ export const ru: LocaleType = {
         publish: 'Опубликовать',
         viewComm: 'Просмотреть все комментарии ',
     },
+    messenger: {
+        empty: {
+            chat: 'Выберите чат, чтобы начать общение',
+            noMessages: 'Начните вводить свое сообщение здесь',
+            p: 'У вас еще не было разговоров',
+            title: 'Список чатов пуст',
+        },
+    },
     myPost: {
         modal: {
             btn1: 'Да',
@@ -197,5 +262,8 @@ export const ru: LocaleType = {
         following: 'Подписки',
         publications: 'Публикации',
         settingsBtn: 'Настройки профиля',
+    },
+    search: {
+        empty: {p: 'Нет недавних запросов', title: 'Упс! Это место выглядит пустым!'},
     },
 }

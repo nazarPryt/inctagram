@@ -1,13 +1,7 @@
 import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
+import {SearchUser} from '@/features/SearchUser'
 
 export default function SearchPage() {
-    const icon = '😘'
-    const icon2 = `\ud83c\uddfa\ud83c\udde6`
-
-    return (
-        <div>
-            🇺🇦 {icon2}SearchPage {icon}
-        </div>
-    )
+    return <SearchUser />
 }
 SearchPage.getLayout = getAuthorizedLayout

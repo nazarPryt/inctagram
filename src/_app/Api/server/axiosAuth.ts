@@ -6,7 +6,7 @@ import axios from 'axios'
 import {GetServerSidePropsContext} from 'next'
 import nookies from 'nookies'
 
-const baseURL = appSettings.BASE_URL
+const baseURL = appSettings.env.BASE_URL
 
 export const axiosAuth = (ctx: GetServerSidePropsContext) => {
     const instance = axios.create({
@@ -61,7 +61,7 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
 
                         ctx.res.setHeader('Set-Cookie', [
                             `${newRefreshToken}`,
-                            `${appSettings.accessToken}=${resRefresh.data.accessToken}; Path=/`,
+                            `${appSettings.constants.accessToken}=${resRefresh.data.accessToken}; Path=/`,
                         ])
                         console.log('resMe.data: ', resMe.data)
 
@@ -102,8 +102,8 @@ export const serverAuthAPI = {
     },
     async logOut(ctx: GetServerSidePropsContext) {
         console.log('logOut serverside')
-        nookies.destroy(ctx, appSettings.accessToken)
-        nookies.destroy(ctx, appSettings.refreshToken)
+        nookies.destroy(ctx, appSettings.constants.accessToken)
+        nookies.destroy(ctx, appSettings.constants.refreshToken)
         console.log('logOut serverside is success')
     },
 }

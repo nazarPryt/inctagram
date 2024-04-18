@@ -44,8 +44,8 @@ class MyDocument extends Document {
                         }
                         property={'og:description'}
                     />
-                    <meta content={appSettings.DOMAIN_URL} property={'og:url'} />
-                    <meta content={appSettings.OG_IMAGE_URL} property={'og:image'} />
+                    <meta content={appSettings.env.DOMAIN_URL} property={'og:url'} />
+                    <meta content={appSettings.env.OG_IMAGE_URL} property={'og:image'} />
                     <meta content={'750'} property={'og:image:width'} />
                     <meta content={'372'} property={'og:image:height'} />
                     <meta content={'Seriously!! just drop me a line :)'} property={'og:image:alt'} />

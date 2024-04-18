@@ -1,6 +1,6 @@
-export const en = {
-    //auth
+import {emailRFCRegex} from '@/shared/regex/regex'
 
+export const en = {
     aside: {
         create: 'Create',
         favorites: 'Favorites',
@@ -87,6 +87,10 @@ export const en = {
         },
         username: 'Username',
     },
+    common: {
+        currentLanguage: 'en',
+        test: 'Test',
+    },
     create: {
         addLocation: 'Add location',
         createPost: {
@@ -131,6 +135,49 @@ export const en = {
             filters: 'Filters',
         },
     },
+    errors: {
+        emailExists: 'User with this email is already registered',
+        emailNotFound: "User with this email doesn't exist",
+        emailRFCRegex: 'Maximum email length exceeded',
+        emailWasntFound: (email: string) => `User with this email ${email} not founded`,
+        imageFormatError: 'File must be jpeg or png type',
+        imageSizeError: 'File must be less than 10 MB.',
+        imageUploadError: 'Upload error.',
+        loginFailed: 'Login Failed',
+        loginIncorrectData: 'The email or password are incorrect. Try again please',
+        loginIncorrectPassword: `The password is incorrect. Try again please`,
+        maxFieldLength: (max: number) => `Maximum number of characters - ${max}`,
+        maxFirstname: (max: number) => `The maximum length of the name must not exceed ${max} characters`,
+        maxLastname: (max: number) => `The maximum length of the last name must not exceed ${max} characters`,
+        maxLengthPost: 'Max number of characters 500',
+        maxPassword: (max: number) => `Maximum number of characters ${max}`,
+        maxUsername: (max: number) => `Maximum number of characters  ${max}`,
+        minPassword: (min: number) => `Password must be at least ${min} characters`,
+        minUsername: (min: number) => `Username must be at least ${min} characters`,
+        noResponse: 'Server does not response',
+        nonemptyConfirm: 'Confirm your password',
+        nonemptyEmail: 'Email is required',
+        nonemptyFirstname: 'Enter your name',
+        nonemptyLastname: 'Enter your last name',
+        nonemptyPassword: 'Enter your password',
+        nonemptyUsername: 'Enter your Username',
+        passwordsMustMatch: 'The passwords must match',
+        regexAboutMe: 'Field must contain 0-9, a-z, A-Z, . _ -',
+        regexEmail: 'The email must match the format example@example.com',
+        regexFirstname: 'Firstname must contain a-z, A-Z',
+        regexLastname: 'Lastname must contain a-z, A-Z',
+        regexPasswordMustContain:
+            'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^' +
+            ' _` { | } ~',
+        regexUsername: 'Username can contain only letters a-z, A-Z, numbers 0-9, dashes (-) and underscores (_)',
+        requestFailed: 'Request Failed',
+        requiredTerms: 'Terms and Privacy Policy must be true',
+        tellUsSomethingAboutYou: 'The field must not be empty',
+        tryAgain: 'Something went wrong, Try again please!!',
+        under13: 'A user under 13 cannot create a profile.',
+        usernameExists: 'User with this username is already registered',
+        whereAreYouLive: 'Please indicate which city you live in',
+    },
     generalInfo: {
         addModal: {
             saveBtn: 'Save',
@@ -163,9 +210,15 @@ export const en = {
     },
     header: {
         notification: {
+            empty: {
+                p: 'You dont have notifications',
+                subTitle: 'No Notification',
+                title: 'Woo',
+            },
             new: 'New',
             newNotification: 'New notification!',
             notifications: 'Notifications',
+            oldNotification: 'Already read',
         },
     },
     home: {
@@ -180,6 +233,14 @@ export const en = {
         publish: 'Publish',
         viewComm: 'View All Comments ',
     },
+    messenger: {
+        empty: {
+            chat: 'Select a chat to start messaging',
+            noMessages: 'Start typing your message here',
+            p: 'You didnt have conversation yet',
+            title: 'Chat List is empty',
+        },
+    },
     myPost: {
         modal: {
             btn1: 'Yes',
@@ -193,6 +254,9 @@ export const en = {
         following: 'Following',
         publications: 'Publications',
         settingsBtn: 'Profile Settings',
+    },
+    search: {
+        empty: {p: 'No recent requests', title: 'Oops! This place looks empty!'},
     },
 }
 

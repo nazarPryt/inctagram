@@ -26,13 +26,18 @@ export const baseQueryWithReAuth: BaseQueryFn<FetchArgs | string, unknown, Fetch
             )) as {data: {accessToken: string}}
 
             if (refreshResult.data.accessToken) {
-                cookie.save(appSettings.accessToken, refreshResult.data.accessToken as string, {httpOnly: false})
+                cookie.remove(appSettings.constants.accessToken)
+                cookie.save(appSettings.constants.accessToken, refreshResult.data.accessToken as string, {
+                    httpOnly: false,
+                    path: '/',
+                    sameSite: false,
+                })
                 // retry the initial query
                 result = await baseQuery(args, api, extraOptions)
             }
         } catch (e) {
-            cookie.remove(appSettings.accessToken)
-            cookie.remove(appSettings.refreshToken)
+            cookie.remove(appSettings.constants.accessToken)
+            cookie.remove(appSettings.constants.refreshToken)
         }
     }
 

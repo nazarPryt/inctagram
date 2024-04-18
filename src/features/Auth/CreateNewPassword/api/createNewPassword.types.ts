@@ -1,4 +1,4 @@
-export type NewPasswordArgType = {
+export type NewPasswordRequestType = {
     newPassword: string
     recoveryCode: string
 }

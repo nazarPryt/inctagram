@@ -1,4 +1,4 @@
-import {PublicProfileTypes} from '@/entities/PublicProfile/api/publicProfile.types'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
@@ -15,7 +15,7 @@ type ProfileType = {
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
-    user: PublicProfileTypes | undefined
+    user: PublicProfileType | undefined
     userPosts: Pick<PostsType, 'items'> | undefined
 }
 export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {

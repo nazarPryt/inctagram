@@ -3,37 +3,18 @@ import {useForm} from 'react-hook-form'
 
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
-import {passwordPattern, passwordPatternError} from '@/features/Auth/Registration/helpers/passwordPattern'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {yupResolver} from '@hookform/resolvers/yup'
+import {useTranslation} from '@/shared/hooks/useTranslation'
+import {zodResolver} from '@hookform/resolvers/zod'
 import {useRouter} from 'next/router'
-import * as yup from 'yup'
 
 import {useCreateNewPasswordMutation} from '../api/createNewPassword.api'
-
-type NewPassType = {
-    newPassword: string
-    recoveryCode: string
-}
-const schema = yup.object({
-    password: yup
-        .string()
-        .trim()
-        .required('Password is required')
-        .min(6, 'Your password is too short, min 6 characters')
-        .max(20, 'Your password is too long, max 20 characters')
-        .matches(passwordPattern, passwordPatternError),
-    passwordConfirmation: yup
-        .string()
-        .trim()
-        .required('You have to confirm your Password')
-        .oneOf([yup.ref('password')], 'Your passwords do not match.'),
-})
-
-type FormData = yup.InferType<typeof schema>
+import {NewPasswordRequestType} from '../api/createNewPassword.types'
+import {createNewPasswordFormData, createNewPasswordSchema} from '../helpers/createNewPassword.schema'
 
 export const useCreateNewPassword = (recoveryCode: string) => {
     const dispatch = useAppDispatch()
+    const {t} = useTranslation()
     const router = useRouter()
     const [isOpen, setIsOpen] = useState(false)
     const [askNewPassword, {isLoading}] = useCreateNewPasswordMutation()
@@ -42,13 +23,13 @@ export const useCreateNewPassword = (recoveryCode: string) => {
         handleSubmit,
         reset,
         ...rest
-    } = useForm<FormData>({
-        mode: 'onTouched',
+    } = useForm<createNewPasswordFormData>({
+        mode: 'all',
         reValidateMode: 'onChange',
-        resolver: yupResolver(schema),
+        resolver: zodResolver(createNewPasswordSchema(t)),
     })
-    const onSubmit = async (data: FormData) => {
-        const toSend: NewPassType = {
+    const onSubmit = async (data: createNewPasswordFormData) => {
+        const toSend: NewPasswordRequestType = {
             newPassword: data.password,
             recoveryCode,
         }
