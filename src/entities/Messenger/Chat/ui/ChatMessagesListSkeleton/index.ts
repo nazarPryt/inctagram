@@ -1,1 +1,0 @@
-export {ChatMessagesListSkeleton} from './ChatMessagesListSkeleton'

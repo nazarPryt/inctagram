@@ -1,10 +1,10 @@
 import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
 
 import {MessageType} from '../../helpers/Chat.schema'
-import {ChatMessagesListSkeleton} from '../../ui/ChatMessagesListSkeleton'
 import {EmptyChatMessagesList} from '../../ui/EmptyChatMessagesList'
 import {Message} from '../Message'
 import {ChatMessagesListStyled} from './ChatMessagesList.styled'
+import {ChatMessagesListSkeleton} from './ChatMessagesListSkeleton'
 
 type PropsType = {
     isLoading: boolean

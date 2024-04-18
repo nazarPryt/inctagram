@@ -11,7 +11,12 @@ export const allChatsAPI = rtkQuery.injectEndpoints({
                 url: 'messanger',
             }),
             transformResponse: response => {
-                return GetAllChatsSchema.parse(response)
+                const validatedChats = GetAllChatsSchema.parse(response)
+
+                // sort the newest chats on the top
+                validatedChats.items.sort((a, b) => new Date(a.updatedAt).getTime() + new Date(b.updatedAt).getTime())
+
+                return validatedChats
             },
         }),
     }),

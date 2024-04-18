@@ -37,8 +37,6 @@ export const SearchUser = () => {
         search: searchQuery as string,
     })
 
-    console.log('params: ', params)
-
     const {data, isLoading} = useSearchUserQuery(params, {
         refetchOnMountOrArgChange: true,
         skip: !(JSON.stringify(params) === JSON.stringify(urlParamsFilter)),
@@ -53,8 +51,6 @@ export const SearchUser = () => {
         const {value} = event.currentTarget
 
         setSearchValue(value)
-
-        // handleSearch(value)
     }
 
     useEffect(() => {
@@ -76,16 +72,6 @@ export const SearchUser = () => {
             setParams(urlParamsFilter)
         }
     }, [urlParamsFilter])
-
-    // useEffect(() => {
-    //     if (JSON.stringify(params) === JSON.stringify(urlParamsFilter)) {
-    //         MakeSearchRequest({...params})
-    //             .unwrap()
-    //             .then(() => {
-    //                 console.log('done')
-    //             })
-    //     }
-    // }, [params])
 
     return (
         <SearchUserStyled>
