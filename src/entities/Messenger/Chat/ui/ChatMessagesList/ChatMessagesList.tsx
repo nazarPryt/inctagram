@@ -1,3 +1,5 @@
+import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
+
 import {MessageType} from '../../helpers/Chat.schema'
 import {ChatMessagesListSkeleton} from '../../ui/ChatMessagesListSkeleton'
 import {EmptyChatMessagesList} from '../../ui/EmptyChatMessagesList'
@@ -9,6 +11,8 @@ type PropsType = {
     messages: MessageType[]
 }
 export const ChatMessagesList = ({isLoading, messages}: PropsType) => {
+    useUpdateMessageStatus({messages})
+
     if (isLoading) {
         return <ChatMessagesListSkeleton />
     }

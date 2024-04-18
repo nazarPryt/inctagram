@@ -5,6 +5,7 @@ export const ChatUserItemStyled = styled.button<{$selected?: boolean}>`
     all: unset;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
     cursor: pointer;
     padding: 10px 5px;
@@ -15,6 +16,10 @@ export const ChatUserItemStyled = styled.button<{$selected?: boolean}>`
         transition: 0.2s;
     }
 
+    .box {
+        display: flex;
+        gap: 10px;
+    }
     .userName {
         ${typography.regular_text_14}
     }

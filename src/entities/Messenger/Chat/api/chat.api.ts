@@ -2,7 +2,7 @@ import {rtkQuery} from '@/_app/Api/client/rtkQuery'
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {SocketEvents} from '@/_app/Api/client/webSocket/helpers/socketEvents'
 
-import {GetChatSchema} from '../helpers/Chat.schema'
+import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 
 //https://redux-toolkit.js.org/rtk-query/usage/streaming-updates
 
@@ -13,8 +13,19 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 try {
                     await cacheDataLoaded
                     WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
-                        updateCachedData(draft => {
-                            draft.items.push(response)
+                        console.log('socket?.on(SocketEvents.RECEIVE_MESSAGE', response)
+                        const validatedMessage = MessageSchema.parse(response)
+
+                        updateCachedData((draft: GetChatType) => {
+                            const existedMessage = draft.items.find(message => message.id === validatedMessage.id)
+
+                            if (existedMessage && existedMessage.status === 'SENT') {
+                                existedMessage.status = 'RECEIVED'
+                            } else if (existedMessage && existedMessage.status === 'RECEIVED') {
+                                existedMessage.status = 'READ'
+                            } else {
+                                draft.items.push(validatedMessage)
+                            }
                         })
                     })
                 } catch (err) {

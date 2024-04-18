@@ -23,10 +23,12 @@ export const ChatUserItem = ({chat}: PropsType) => {
 
     return (
         <ChatUserItemStyled $selected={isSelected} onClick={handleClick}>
-            <Avatar size={48} src={avatarImg} userName={chat.userName} />
-            <div>
-                <h5 className={'userName'}>{chat.userName}</h5>
-                <p className={'lastMessage'}>{chat.messageText}</p>
+            <div className={'box'}>
+                <Avatar size={48} src={avatarImg} userName={chat.userName} />
+                <div>
+                    <h5 className={'userName'}>{chat.userName}</h5>
+                    <p className={'lastMessage'}>{chat.messageText}</p>
+                </div>
             </div>
             <div className={'createdAt'}>{toTimeAgo(chat.createdAt)}</div>
         </ChatUserItemStyled>

@@ -5,7 +5,7 @@ import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {notificationSocketResponseSchema} from '@/_app/Api/client/webSocket/helpers/NotifcationWS.schema'
 import {appSettings} from '@/_app/AppSettings'
 import {chatAPI} from '@/entities/Messenger/Chat/api/chat.api'
-import {MessageSchema} from '@/entities/Messenger/Chat/helpers/Chat.schema'
+import {GetChatType, MessageSchema} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {getNotificationsApi} from '@/entities/Notifications/api/getNotifications.api'
 import {NotificationType} from '@/entities/Notifications/helpers/notifications.schema'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
@@ -43,28 +43,17 @@ export const useConnectWebSocket = () => {
                 })
             )
         })
+        WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
+            console.log('SocketEvents.MESSAGE_SENT', response)
+
+            acknowledge({
+                messageId: response.id,
+                status: 'RECEIVED',
+            })
+        })
         WebSocketApi.socket?.on(SocketEvents.ERROR, response => {
             console.log('SocketEvents.ERROR', response)
         })
-        // WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
-        //     console.log('SocketEvents.RECEIVE_MESSAGE', response)
-        //     const res = MessageSchema.parse(response)
-        //     // const selectedChatId = chatAPI.util.upsertQueryData
-        //     const args = chatAPI.util.selectInvalidatedBy({api: {subscriptions: ''}}, 'getPosts')
-        //
-        //     dispatch(
-        //         chatAPI.util.updateQueryData('getChatMessages', 253, oldData => {
-        //             oldData.items.push(res)
-        //         })
-        //     )
-        // })
-        // WebSocketApi.socket?.emitWithAck(
-        //     SocketEvents.MESSAGE_SENT,
-        //     (response: any) => {
-        //         console.log('SocketEvents.MESSAGE_SENT', response)
-        //     },
-        //     () => {}
-        // )
         WebSocketApi.socket?.onAny(response => {
             console.log('WebSocketApi.socket?.onAny', response)
         })
