@@ -1,4 +1,5 @@
 import {SearchUserItemType} from '@/features/SearchUser/helpers/SearchUserResponse.schema'
+import {EmptySearchUserList} from '@/features/SearchUser/ui/EmptySearchUserList'
 import {SearchUserItem} from '@/features/SearchUser/ui/SearchUserItem'
 import {SearchUserListSkeleton} from '@/features/SearchUser/ui/SearchUserListSkeleton'
 
@@ -15,7 +16,7 @@ export const SearchUserList = ({isLoading, users}: PropsType) => {
         return <SearchUserListSkeleton />
     }
     if (empty) {
-        return <div>not found</div>
+        return <EmptySearchUserList />
     }
 
     if (users) {

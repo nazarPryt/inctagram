@@ -1,14 +1,13 @@
-import {ChangeEvent, useEffect, useState} from 'react'
+import {ChangeEvent, useState} from 'react'
 
 import {PATH} from '@/_app/AppSettings'
 import {useDebounceCallBack} from '@/shared/hooks/useDebounceCallBack'
-import {useQueryParams} from '@/shared/hooks/useQueryParams'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {InputText} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
 
 import {SearchUserStyled} from './SearchUser.styled'
-import {useLazySearchUserQuery, useSearchUserQuery} from './api/SearchUser.api'
+import {useSearchUserQuery} from './api/SearchUser.api'
 import {SearchUserParamsType} from './helpers/SearchUserParams.schema'
 import {SearchUserList} from './ui/SearchUserList'
 
@@ -20,8 +19,12 @@ export const SearchUser = () => {
         cursor: 0,
         pageNumber: 1,
         pageSize: 12,
-        search: null,
+        search: searchValue,
     })
+
+    const searchQuery = router.query.search as string
+
+    console.log('params: ', params)
     const {data, isLoading} = useSearchUserQuery(params)
 
     const users = data ? data.items ?? [] : null
@@ -31,7 +34,7 @@ export const SearchUser = () => {
             return {...prev, search: searchValue}
         })
         void router.push(PATH.SEARCH, {query: {search: term}})
-    }, 2000)
+    }, 1500)
 
     const handleClear = () => {
         setSearchValue('')
@@ -43,23 +46,6 @@ export const SearchUser = () => {
 
         handleSearch(value)
     }
-
-    const searchQuery = router.query.search as string
-
-    // console.log('searchQuery: ', searchQuery)
-    // useEffect(() => {
-    //     const paramsFromURL: SearchUserParamsType = {
-    //         ...params,
-    //         search: searchQuery && '',
-    //     }
-    //
-    //     console.log('useEffect')
-    //     setParams(paramsFromURL)
-    //     // searchUser(params)
-    // }, [router.query])
-    // useEffect(() => {
-    //     setSearchValue(searchQuery)
-    // }, [searchQuery])
 
     return (
         <SearchUserStyled>

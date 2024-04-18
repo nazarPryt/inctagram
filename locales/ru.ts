@@ -263,4 +263,7 @@ export const ru: LocaleType = {
         publications: 'Публикации',
         settingsBtn: 'Настройки профиля',
     },
+    search: {
+        empty: {p: 'Нет недавних запросов', title: 'Упс! Это место выглядит пустым!'},
+    },
 }

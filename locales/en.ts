@@ -255,6 +255,9 @@ export const en = {
         publications: 'Publications',
         settingsBtn: 'Profile Settings',
     },
+    search: {
+        empty: {p: 'No recent requests', title: 'Oops! This place looks empty!'},
+    },
 }
 
 export type LocaleType = typeof en

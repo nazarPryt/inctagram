@@ -25,15 +25,15 @@ export const chatAPI = rtkQuery.injectEndpoints({
                         if (Array.isArray(validatedData)) {
                             // Handle array logic
                             console.log('Response is an array:', validatedData)
-                            updateCachedData((draft: GetChatType) => {
-                                for (let i = 0; i < validatedData.length; i++) {
-                                    draft.items.map(message => {
-                                        if (message.id === validatedData[i].id) {
-                                            message.status = 'READ'
-                                        }
-                                    })
-                                }
-                            })
+                            // updateCachedData((draft: GetChatType) => {
+                            //     for (let i = 0; i < validatedData.length; i++) {
+                            //         // draft.items.map(message => {
+                            //         //     if (message.id === validatedData[i].id) {
+                            //         //         message.status = 'READ'
+                            //         //     }
+                            //         // })
+                            //     }
+                            // })
                         } else {
                             // Handle object logic
                             updateCachedData((draft: GetChatType) => {
