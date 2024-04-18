@@ -1,7 +1,7 @@
 import {useGetChatMessagesQuery} from '@/entities/Messenger/Chat/api/chat.api'
+import {ChatIsNotSelected} from '@/entities/Messenger/Chat/ui/ChatIsNotSelected'
 import {ChatMessagesList} from '@/entities/Messenger/Chat/ui/ChatMessagesList'
 import {ChatUserInfo} from '@/entities/Messenger/Chat/ui/ChatUserInfo/ChatUserInfo'
-import {EmptyChatMessagesList} from '@/entities/Messenger/Chat/ui/EmptyChatMessagesList'
 import {SendMessageForm} from '@/features/Messenger/SendChatMessage/ui/SendMessageForm'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 
@@ -17,7 +17,7 @@ export const Chat = () => {
     const messages = data ? data.items ?? [] : []
 
     if (!selectedChatId) {
-        return <EmptyChatMessagesList />
+        return <ChatIsNotSelected />
     }
 
     return (

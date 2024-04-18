@@ -14,6 +14,8 @@ export const ChatUserItem = ({chat}: PropsType) => {
     const dispatch = useAppDispatch()
     const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
 
+    console.log('selectedChatId: ', selectedChatId)
+
     const isSelected = chat.receiverId === selectedChatId
     const avatarImg = chat.avatars.length ? chat.avatars[0].url : ''
 

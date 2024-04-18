@@ -1,5 +1,5 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {ArrowLeft} from '@nazar-pryt/inctagram-ui-kit'
+import {ArrowDown, ArrowLeft} from '@nazar-pryt/inctagram-ui-kit'
 
 import {EmptyChatMessagesListStyled} from './EmptyChatMessagesList.styled'
 
@@ -8,9 +8,9 @@ export const EmptyChatMessagesList = () => {
 
     return (
         <EmptyChatMessagesListStyled>
-            <h3>{t.messenger.empty.chat}</h3>
+            <h3>{t.messenger.empty.noMessages}</h3>
             <span>
-                <ArrowLeft />
+                <ArrowDown />
             </span>
         </EmptyChatMessagesListStyled>
     )

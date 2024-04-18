@@ -51,6 +51,9 @@ export const useConnectWebSocket = () => {
                 status: 'RECEIVED',
             })
         })
+        WebSocketApi.socket?.on(SocketEvents.UPDATE_MESSAGE, response => {
+            console.log('SocketEvents.UPDATE_MESSAGE', response)
+        })
         WebSocketApi.socket?.on(SocketEvents.ERROR, response => {
             console.log('SocketEvents.ERROR', response)
         })

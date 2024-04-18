@@ -236,6 +236,7 @@ export const en = {
     messenger: {
         empty: {
             chat: 'Select a chat to start messaging',
+            noMessages: 'Start typing your message here',
             p: 'You didnt have conversation yet',
             title: 'Chat List is empty',
         },

@@ -8,4 +8,9 @@ export const ChatUserInfoStyled = styled.div`
     background-color: ${props => props.theme.bodyColor[500]};
     ${typography.regular_text_16}
     padding: 10px;
+
+    a {
+        ${typography.bold_text_14}
+        color: ${props => props.theme.textColor[100]};
+    }
 `
