@@ -12,7 +12,7 @@ type PropsType = {
 }
 export const ChatMessagesList = ({isLoading, messages}: PropsType) => {
     // useUpdateMessageStatus({messages})
-    // console.log('messages: ', messages)
+    console.log('messages: ', messages)
     if (isLoading) {
         return <ChatMessagesListSkeleton />
     }

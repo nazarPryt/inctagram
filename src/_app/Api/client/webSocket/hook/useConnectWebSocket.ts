@@ -43,14 +43,6 @@ export const useConnectWebSocket = () => {
                 })
             )
         })
-        WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
-            console.log('SocketEvents.MESSAGE_SENT', response)
-
-            acknowledge({
-                messageId: response.id,
-                status: 'RECEIVED',
-            })
-        })
         WebSocketApi.socket?.on(SocketEvents.UPDATE_MESSAGE, response => {
             console.log('SocketEvents.UPDATE_MESSAGE', response)
         })

@@ -13,6 +13,19 @@ export const chatAPI = rtkQuery.injectEndpoints({
             async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, getState, updateCachedData}) {
                 try {
                     await cacheDataLoaded
+                    WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
+                        console.log('SocketEvents.MESSAGE_SENT', response)
+
+                        const validatedData = MessageSchema.parse(response)
+
+                        acknowledge({
+                            messageId: validatedData.id,
+                            status: 'RECEIVED',
+                        })
+                        updateCachedData((draft: GetChatType) => {
+                            draft.items.push(validatedData)
+                        })
+                    })
                     WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
                         console.log('socket?.on(SocketEvents.RECEIVE_MESSAGE', response)
 
@@ -25,15 +38,17 @@ export const chatAPI = rtkQuery.injectEndpoints({
                         if (Array.isArray(validatedData)) {
                             // Handle array logic
                             console.log('Response is an array:', validatedData)
-                            // updateCachedData((draft: GetChatType) => {
-                            //     for (let i = 0; i < validatedData.length; i++) {
-                            //         // draft.items.map(message => {
-                            //         //     if (message.id === validatedData[i].id) {
-                            //         //         message.status = 'READ'
-                            //         //     }
-                            //         // })
-                            //     }
-                            // })
+                            updateCachedData((draft: GetChatType) => {
+                                for (let i = 0; i < validatedData.length; i++) {
+                                    const messageToChange = draft.items.find(
+                                        message => message.id === validatedData[i].id
+                                    )
+
+                                    if (messageToChange) {
+                                        messageToChange.status = 'READ'
+                                    }
+                                }
+                            })
                         } else {
                             // Handle object logic
                             updateCachedData((draft: GetChatType) => {
