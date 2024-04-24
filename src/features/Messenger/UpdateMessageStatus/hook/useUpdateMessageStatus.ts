@@ -31,7 +31,7 @@ export const useUpdateMessageStatus = ({messages}: PropsType) => {
                     .catch(() => {
                         toast('failed to marked as read', {type: 'error'})
                     })
-            }, 3000)
+            }, 5000)
         }
 
         return () => {

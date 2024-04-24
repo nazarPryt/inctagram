@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 
 export const registrationConfirmationAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({

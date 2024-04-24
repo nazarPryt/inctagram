@@ -1,4 +1,4 @@
-import {countryApi} from '@/_app/Api/client/rtkQuery'
+import {countryApi} from '@/_app/Api/client/RTKQuery'
 
 import {CountriesAndCitiesResponseApiType, CountryType} from './countriesAndCities.types'
 

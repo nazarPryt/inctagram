@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {SetUser} from '@/_app/Store/slices/userSlice'
 
 import {MeDataType} from './me.types'

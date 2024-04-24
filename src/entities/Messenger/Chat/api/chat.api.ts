@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {SocketEvents} from '@/_app/Api/client/webSocket/helpers/socketEvents'
 import {z} from 'zod'
@@ -40,12 +40,18 @@ export const chatAPI = rtkQuery.injectEndpoints({
                             console.log('Response is an array:', validatedData)
                             updateCachedData((draft: GetChatType) => {
                                 for (let i = 0; i < validatedData.length; i++) {
-                                    const messageToChange = draft.items.find(
+                                    const indexToChange = draft.items.findIndex(
                                         message => message.id === validatedData[i].id
                                     )
 
-                                    if (messageToChange) {
-                                        messageToChange.status = 'READ'
+                                    console.log('indexToChange', indexToChange)
+
+                                    if (indexToChange !== -1) {
+                                        console.log(
+                                            'draft.items[indexToChange].status: ',
+                                            draft.items[indexToChange].status
+                                        )
+                                        draft.items[indexToChange].status = 'READ'
                                     }
                                 }
                             })
@@ -64,6 +70,7 @@ export const chatAPI = rtkQuery.injectEndpoints({
                             })
                         }
                     })
+                    await cacheDataLoaded
                 } catch (err) {
                     console.log(err)
                 }

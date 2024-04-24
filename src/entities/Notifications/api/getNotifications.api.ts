@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {sortByNotifyAt} from '@/entities/Notifications/helpers/sortByNotifyAt'
 
 import {getNotificationsSchema} from '../helpers/notifications.schema'

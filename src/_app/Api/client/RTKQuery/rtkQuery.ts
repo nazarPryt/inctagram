@@ -1,4 +1,4 @@
-import {baseQueryWithReAuth} from '@/_app/Api/client/baseQueryWithReAuth'
+import {baseQueryWithReAuth} from '@/_app/Api/client/RTKQuery/baseQueryWithReAuth'
 import {appSettings} from '@/_app/AppSettings'
 import {fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react'
 import {createApi} from '@reduxjs/toolkit/query/react'
