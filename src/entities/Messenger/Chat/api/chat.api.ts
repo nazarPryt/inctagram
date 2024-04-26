@@ -37,20 +37,13 @@ export const chatAPI = rtkQuery.injectEndpoints({
                         // Check the type of the validated data
                         if (Array.isArray(validatedData)) {
                             // Handle array logic
-                            console.log('Response is an array:', validatedData)
                             updateCachedData((draft: GetChatType) => {
                                 for (let i = 0; i < validatedData.length; i++) {
                                     const indexToChange = draft.items.findIndex(
                                         message => message.id === validatedData[i].id
                                     )
 
-                                    console.log('indexToChange', indexToChange)
-
                                     if (indexToChange !== -1) {
-                                        console.log(
-                                            'draft.items[indexToChange].status: ',
-                                            draft.items[indexToChange].status
-                                        )
                                         draft.items[indexToChange].status = 'READ'
                                     }
                                 }

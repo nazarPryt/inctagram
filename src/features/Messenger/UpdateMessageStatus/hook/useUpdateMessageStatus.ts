@@ -17,7 +17,7 @@ export const useUpdateMessageStatus = ({messages}: PropsType) => {
         let timeoutID: any
 
         messages.forEach(message => {
-            if (message.status !== 'READ' && message.ownerId === userId) {
+            if (message.status !== 'READ' && message.receiverId === userId) {
                 unReadMessagesID.push(message.id)
             }
         })
@@ -25,13 +25,10 @@ export const useUpdateMessageStatus = ({messages}: PropsType) => {
             timeoutID = setTimeout(() => {
                 markAsRead({ids: unReadMessagesID})
                     .unwrap()
-                    .then(() => {
-                        toast('Notifications were marked as read', {type: 'success'})
-                    })
                     .catch(() => {
                         toast('failed to marked as read', {type: 'error'})
                     })
-            }, 5000)
+            }, 500)
         }
 
         return () => {
