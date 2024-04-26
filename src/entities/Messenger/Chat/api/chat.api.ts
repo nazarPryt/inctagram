@@ -10,7 +10,7 @@ import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 export const chatAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getChatMessages: build.query({
-            async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, getState, updateCachedData}) {
+            async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, updateCachedData}) {
                 try {
                     await cacheDataLoaded
                     WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
