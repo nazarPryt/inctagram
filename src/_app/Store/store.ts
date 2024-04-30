@@ -15,7 +15,7 @@ export const store = configureStore({
         [countryApi.reducerPath]: countryApi.reducer,
         createPost: createPostReducer,
         editorPanel: editorPanelReducer,
-        messenger: messengerReducer,
+        messengerParams: messengerReducer,
         [rtkQuery.reducerPath]: rtkQuery.reducer,
         userAuth: userReducer,
     },

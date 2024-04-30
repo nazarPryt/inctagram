@@ -10,7 +10,7 @@ import {EmojiClickData} from 'emoji-picker-react'
 import {SendMessageFormDataType, SendMessageFormSchema} from '../helpers/SendMessageForm.schema'
 
 export const useSendChatMessage = () => {
-    const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
+    const dialoguePartnerId = useAppSelector(store => store.messengerParams.dialoguePartnerId)
 
     const {
         formState: {errors, isValid},
@@ -41,7 +41,7 @@ export const useSendChatMessage = () => {
     const onSubmit: SubmitHandler<SendMessageFormDataType> = data => {
         const newMessage = {
             message: data.message,
-            receiverId: selectedChatId,
+            receiverId: dialoguePartnerId,
         }
 
         WebSocketApi.socket?.emit(SocketEvents.RECEIVE_MESSAGE, newMessage)

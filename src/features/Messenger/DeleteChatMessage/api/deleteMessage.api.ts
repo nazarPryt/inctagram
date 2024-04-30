@@ -9,10 +9,10 @@ export const deleteMessageApi = rtkQuery.injectEndpoints({
             // invalidatesTags: ['Messages'],
             async onQueryStarted(messageIdToDelete, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
-                const selectedChatId = state.messenger.selectedChatId
+                const dialoguePartnerId = state.messengerParams.dialoguePartnerId
 
                 const patchResult = dispatch(
-                    chatAPI.util.updateQueryData('getChatMessages', selectedChatId, (draft: GetChatType) => {
+                    chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, (draft: GetChatType) => {
                         draft.items = draft.items.filter(message => message.id !== messageIdToDelete)
                     })
                 )

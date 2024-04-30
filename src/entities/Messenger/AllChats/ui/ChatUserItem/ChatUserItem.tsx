@@ -1,4 +1,4 @@
-import {SetSelectedChatIdAC} from '@/_app/Store/slices/messengerSlice'
+import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
 import {GetAllChatsItemType} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'
@@ -13,16 +13,14 @@ type PropsType = {
 
 export const ChatUserItem = ({chat}: PropsType) => {
     const dispatch = useAppDispatch()
-    const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
+    const dialoguePartnerId = useAppSelector(store => store.messengerParams.dialoguePartnerId)
     const {userId} = useAuth()
 
-    console.log('selectedChatId: ', selectedChatId)
-
-    const isSelected = chat.receiverId === selectedChatId
+    const isSelected = chat.receiverId === dialoguePartnerId
     const avatarImg = chat.avatars.length ? chat.avatars[0].url : ''
 
     const handleClick = () => {
-        dispatch(SetSelectedChatIdAC(userId === chat.ownerId ? chat.receiverId : chat.ownerId))
+        dispatch(SetDialoguePartnerIdAC(userId === chat.ownerId ? chat.receiverId : chat.ownerId))
     }
 
     return (

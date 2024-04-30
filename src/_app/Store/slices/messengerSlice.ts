@@ -1,18 +1,21 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    selectedChatId: null as null | number,
+    cursor: null as null | number,
+    dialoguePartnerId: null as null | number,
+    pageSize: null as null | number,
+    searchName: null as null | string,
 }
 
 export const messengerSlice = createSlice({
     initialState,
-    name: 'messenger',
+    name: 'messengerParams',
     reducers: {
-        SetSelectedChatIdAC: (state, action: PayloadAction<number>) => {
-            state.selectedChatId = action.payload
+        SetDialoguePartnerIdAC: (state, action: PayloadAction<number>) => {
+            state.dialoguePartnerId = action.payload
         },
     },
 })
 
 export const messengerReducer = messengerSlice.reducer
-export const {SetSelectedChatIdAC} = messengerSlice.actions
+export const {SetDialoguePartnerIdAC} = messengerSlice.actions

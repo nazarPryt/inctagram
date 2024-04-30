@@ -8,21 +8,21 @@ import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {ChatStyled} from './Chat.styled'
 
 export const Chat = () => {
-    const selectedChatId = useAppSelector(store => store.messenger.selectedChatId)
+    const dialoguePartnerId = useAppSelector(store => store.messengerParams.dialoguePartnerId)
 
-    const {data, isLoading} = useGetChatMessagesQuery(selectedChatId, {
+    const {data, isLoading} = useGetChatMessagesQuery(dialoguePartnerId, {
         refetchOnMountOrArgChange: true,
-        skip: !selectedChatId,
+        skip: !dialoguePartnerId,
     })
     const messages = data ? data.items ?? [] : []
 
-    if (!selectedChatId) {
+    if (!dialoguePartnerId) {
         return <ChatIsNotSelected />
     }
 
     return (
         <ChatStyled>
-            <ChatUserInfo userId={selectedChatId} />
+            <ChatUserInfo userId={dialoguePartnerId} />
 
             <ChatMessagesList isLoading={isLoading} messages={messages} />
 

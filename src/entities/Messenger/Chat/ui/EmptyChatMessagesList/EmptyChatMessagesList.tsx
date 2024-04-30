@@ -1,5 +1,5 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {ArrowDown, ArrowLeft} from '@nazar-pryt/inctagram-ui-kit'
+import {ArrowDown} from '@nazar-pryt/inctagram-ui-kit'
 
 import {EmptyChatMessagesListStyled} from './EmptyChatMessagesList.styled'
 
