@@ -2,9 +2,11 @@ import {useEffect, useRef} from 'react'
 
 import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {MessageStatus} from '@/entities/Messenger/Chat/ui/MessageStatus'
+import {useDeleteMessage} from '@/features/Messenger/DeleteChatMessage/hook/useDeleteMessage'
+import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {useAuth} from '@/shared/hooks/useAuth'
 import {toTimeAgo} from '@/shared/utils/toTimeAgo'
-import {Avatar} from '@nazar-pryt/inctagram-ui-kit'
+import {Avatar, IconButton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {MessageStyled} from './Message.styled'
 
@@ -13,6 +15,7 @@ type PropType = {
 }
 
 export const Message = ({message}: PropType) => {
+    const {handleDeleteMessage} = useDeleteMessage()
     const {userId} = useAuth()
 
     const ref = useRef<HTMLDivElement | null>(null)
@@ -27,6 +30,11 @@ export const Message = ({message}: PropType) => {
     return (
         <MessageStyled $owner={owner} ref={ref}>
             {owner && <MessageStatus status={message.status} />}
+            {owner && (
+                <IconButton onClick={() => handleDeleteMessage(message.id)}>
+                    <DeletePostIcon />
+                </IconButton>
+            )}
             {!owner && (
                 <div className={'avatar'}>
                     <Avatar size={48} src={'https://loremflickr.com/48/48'} />
