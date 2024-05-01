@@ -2,11 +2,11 @@ import {toast} from 'react-toastify'
 
 import {useDeleteMessageMutation} from '../api/deleteMessage.api'
 
-export const useDeleteMessage = () => {
+export const useDeleteMessage = (messageId: number) => {
     const [deleteMessage] = useDeleteMessageMutation()
 
-    const handleDeleteMessage = (id: number) => {
-        deleteMessage(id)
+    const handleDeleteMessage = () => {
+        deleteMessage(messageId)
             .unwrap()
             .then(() => {
                 toast('message was deleted', {type: 'success'})

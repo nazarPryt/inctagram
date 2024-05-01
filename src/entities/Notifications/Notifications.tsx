@@ -2,11 +2,10 @@ import {useState} from 'react'
 
 import {useMarkAsRead} from '@/features/Notification/MarkAsRead/hook/useMarkAsRead'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Popover, Scrollbar} from '@nazar-pryt/inctagram-ui-kit'
+import {Popover} from '@nazar-pryt/inctagram-ui-kit'
 
 import {NotificationWrapper} from './Notification.styled'
 import {useGetNotifications} from './hook/useGetNotifications'
-import {EmptyNotificationList} from './ui/EmptyNotificationList'
 import {NotificationIcon} from './ui/NotificationIcon'
 import {NotificationList} from './ui/NotificationList'
 
@@ -21,8 +20,6 @@ export const Notifications = () => {
         setIsPopoverOpen(prev => !prev)
     }
 
-    const empty = !notifications.length
-
     return (
         <Popover
             icon={<NotificationIcon amountOfNewNotifications={amountOfNewNotifications} />}
@@ -31,10 +28,8 @@ export const Notifications = () => {
         >
             <NotificationWrapper>
                 <h3>{t.header.notification.notifications}:</h3>
-                {empty && <EmptyNotificationList />}
-                <Scrollbar maxHeight={400} maxWidth={350}>
-                    <NotificationList notifications={notifications} />
-                </Scrollbar>
+
+                <NotificationList notifications={notifications} />
             </NotificationWrapper>
         </Popover>
     )

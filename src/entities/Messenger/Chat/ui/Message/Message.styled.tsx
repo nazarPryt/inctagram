@@ -1,8 +1,24 @@
 import {typography} from '@nazar-pryt/inctagram-ui-kit'
-import {motion} from 'framer-motion'
+import {Variants, motion} from 'framer-motion'
 import styled, {css} from 'styled-components'
 
-export const MessageStyled = styled(motion.div)<{$owner?: boolean}>`
+export const MessageVariant: Variants = {
+    exit: {
+        opacity: 0,
+        transition: {duration: 0.3},
+        x: 100,
+    },
+    hidden: {opacity: 0, y: 20},
+    visible: {opacity: 1, transition: {ease: 'backIn'}, y: 0},
+}
+
+export const MessageStyled = styled(motion.div).attrs<{$owner?: boolean}>({
+    animate: 'visible',
+    exit: 'exit',
+    initial: 'hidden',
+    layout: true,
+    variants: {MessageVariant},
+})`
     display: flex;
     align-items: center;
     gap: 5px;

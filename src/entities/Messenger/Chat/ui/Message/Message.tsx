@@ -2,33 +2,31 @@ import {useEffect, useRef} from 'react'
 
 import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {MessageStatus} from '@/entities/Messenger/Chat/ui/MessageStatus'
+import {useGetPublicProfile} from '@/entities/PublicProfile/hook/useGetPublicProfile'
 import {useDeleteMessage} from '@/features/Messenger/DeleteChatMessage/hook/useDeleteMessage'
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'
 import {toTimeAgo} from '@/shared/utils/toTimeAgo'
 import {Avatar, IconButton} from '@nazar-pryt/inctagram-ui-kit'
-import {Variants} from 'framer-motion'
 
 import {MessageStyled} from './Message.styled'
 
 type PropType = {
     message: MessageType
 }
-const MessageVariant: Variants = {
-    exit: {
-        opacity: 0,
-        transition: {duration: 0.3},
-        x: 100,
-    },
-    hidden: {opacity: 0, y: 20},
-    visible: {opacity: 1, transition: {ease: 'backIn'}, y: 0},
-}
 
 export const Message = ({message}: PropType) => {
-    const {handleDeleteMessage} = useDeleteMessage()
+    const dialoguePartnerId = useAppSelector(store => store.messengerParams.dialoguePartnerId)
+
+    const {avatarUrl, userName} = useGetPublicProfile(dialoguePartnerId)
+
+    const {handleDeleteMessage} = useDeleteMessage(message.id)
+
     const {userId} = useAuth()
 
     const ref = useRef<HTMLDivElement | null>(null)
+
     const owner = message.ownerId === userId
 
     useEffect(() => {
@@ -38,24 +36,16 @@ export const Message = ({message}: PropType) => {
     }, [message])
 
     return (
-        <MessageStyled
-            $owner={owner}
-            animate={'visible'}
-            exit={'exit'}
-            initial={'hidden'}
-            layout
-            ref={ref}
-            variants={MessageVariant}
-        >
+        <MessageStyled $owner={owner} ref={ref}>
             {owner && <MessageStatus status={message.status} />}
             {owner && (
-                <IconButton onClick={() => handleDeleteMessage(message.id)}>
+                <IconButton onClick={handleDeleteMessage}>
                     <DeletePostIcon />
                 </IconButton>
             )}
             {!owner && (
                 <div className={'avatar'}>
-                    <Avatar size={48} src={'https://loremflickr.com/48/48'} />
+                    <Avatar size={48} src={avatarUrl} userName={userName} />
                 </div>
             )}
             <div className={'messageContent'}>
