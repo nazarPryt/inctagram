@@ -1,7 +1,8 @@
-import {IconColor, typography} from '@nazar-pryt/inctagram-ui-kit'
+import {typography} from '@nazar-pryt/inctagram-ui-kit'
+import {motion} from 'framer-motion'
 import styled, {css} from 'styled-components'
 
-export const MessageStyled = styled.div<{$owner?: boolean}>`
+export const MessageStyled = styled(motion.div)<{$owner?: boolean}>`
     display: flex;
     align-items: center;
     gap: 5px;

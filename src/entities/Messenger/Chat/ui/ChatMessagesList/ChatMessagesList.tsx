@@ -1,4 +1,5 @@
 import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
+import {AnimatePresence} from 'framer-motion'
 
 import {MessageType} from '../../helpers/Chat.schema'
 import {EmptyChatMessagesList} from '../../ui/EmptyChatMessagesList'
@@ -22,9 +23,11 @@ export const ChatMessagesList = ({isLoading, messages}: PropsType) => {
 
     return (
         <ChatMessagesListStyled>
-            {messages.map(message => {
-                return <Message key={message.id} message={message} />
-            })}
+            <AnimatePresence initial={false}>
+                {messages.map(message => {
+                    return <Message key={message.id} message={message} />
+                })}
+            </AnimatePresence>
         </ChatMessagesListStyled>
     )
 }
