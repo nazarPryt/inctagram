@@ -29,11 +29,11 @@ export const Message = ({message}: PropType) => {
 
     const owner = message.ownerId === userId
 
-    useEffect(() => {
-        if (ref && ref.current) {
-            ref.current.scrollIntoView({behavior: 'smooth'})
-        }
-    }, [message])
+    // useEffect(() => {
+    //     if (ref && ref.current) {
+    //         ref.current.scrollIntoView({behavior: 'smooth'})
+    //     }
+    // }, [message])
 
     return (
         <MessageStyled $owner={owner} ref={ref}>

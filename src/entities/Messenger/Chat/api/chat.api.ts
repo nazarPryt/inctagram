@@ -1,29 +1,42 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {SocketEvents} from '@/_app/Api/client/webSocket/helpers/socketEvents'
+import {RootState} from '@/_app/Store/store'
+import {ChatParamsTypes} from '@/entities/Messenger/Chat/api/chat.types'
 import {z} from 'zod'
 
 import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 
 //https://redux-toolkit.js.org/rtk-query/usage/streaming-updates
+//https://rohitbels.medium.com/pagination-infinite-loading-with-redux-toolkit-createapi-a265ac25c3bd
 
 export const chatAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getChatMessages: build.query({
+        getChatMessages: build.query<GetChatType, ChatParamsTypes>({
+            merge: (currentCache, newItems) => {
+                if (currentCache.items.length) {
+                    return {
+                        ...currentCache,
+                        ...newItems,
+                        items: [...currentCache.items, ...newItems.items],
+                    }
+                }
+
+                return newItems
+            },
             async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, updateCachedData}) {
                 try {
-                    await cacheDataLoaded
                     WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
                         console.log('SocketEvents.MESSAGE_SENT', response)
 
-                        const validatedData = MessageSchema.parse(response)
+                        const newMessage = MessageSchema.parse(response)
 
                         acknowledge({
-                            messageId: validatedData.id,
+                            messageId: newMessage.id,
                             status: 'RECEIVED',
                         })
                         updateCachedData((draft: GetChatType) => {
-                            draft.items.push(validatedData)
+                            draft.items.unshift(newMessage)
                         })
                     })
                     WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
@@ -71,14 +84,24 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 await cacheEntryRemoved
             },
             providesTags: ['Messages'],
-            query: dialoguePartnerId => ({
+            query: params => ({
                 method: 'GET',
-                url: `messanger/${dialoguePartnerId}`,
+                params,
+                url: `messanger/${params.dialoguePartnerId}`,
             }),
+            serializeQueryArgs: ({queryArgs}) => {
+                const newQueryArgs = {...queryArgs}
+
+                if (newQueryArgs.cursor) {
+                    delete newQueryArgs.cursor
+                }
+
+                return newQueryArgs
+            },
             transformResponse: response => {
                 const validatedResponse = GetChatSchema.parse(response)
 
-                validatedResponse.items.reverse()
+                // validatedResponse.items.reverse()
 
                 return validatedResponse
             },

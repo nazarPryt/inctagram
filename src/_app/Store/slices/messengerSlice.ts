@@ -1,10 +1,11 @@
+import {ChatParamsTypes} from '@/entities/Messenger/Chat/api/chat.types'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
-const initialState = {
-    cursor: null as null | number,
-    dialoguePartnerId: null as null | number,
-    pageSize: null as null | number,
-    searchName: null as null | string,
+const initialState: ChatParamsTypes = {
+    cursor: null,
+    dialoguePartnerId: null,
+    pageSize: 6,
+    searchName: null,
 }
 
 export const messengerSlice = createSlice({
@@ -14,8 +15,11 @@ export const messengerSlice = createSlice({
         SetDialoguePartnerIdAC: (state, action: PayloadAction<number>) => {
             state.dialoguePartnerId = action.payload
         },
+        SetMessageCursorAC: (state, action: PayloadAction<null | number>) => {
+            state.cursor = action.payload
+        },
     },
 })
 
 export const messengerReducer = messengerSlice.reducer
-export const {SetDialoguePartnerIdAC} = messengerSlice.actions
+export const {SetDialoguePartnerIdAC, SetMessageCursorAC} = messengerSlice.actions

@@ -1,11 +1,11 @@
-export const filterAllParams = (searchParams: Record<string, string>) => {
-    const params: Record<string, string> = searchParams
+export const filterAllParams = (params: Record<string, any>): Record<string, any> => {
+    const filteredParams: {[key: string]: any} = {}
 
-    for (const el in params) {
-        if (params[el] === '' || params[el] === '0') {
-            delete params[el]
+    for (const key in params) {
+        if (params[key] !== null && params[key] !== undefined && params[key] !== '') {
+            filteredParams[key] = params[key]
         }
     }
 
-    return params
+    return filteredParams
 }

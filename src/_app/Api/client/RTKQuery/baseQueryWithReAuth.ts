@@ -17,7 +17,7 @@ export const baseQueryWithReAuth: BaseQueryFn<FetchArgs | string, unknown, Fetch
     await mutex.waitForUnlock()
     let result = await baseQuery(args, api, extraOptions)
 
-    if (result.error && result.error.status === 401 && api.endpoint !== 'login') {
+    if (result.error && result.error.status === 401) {
         // try to get a new token
         if (!mutex.isLocked()) {
             const release = await mutex.acquire()

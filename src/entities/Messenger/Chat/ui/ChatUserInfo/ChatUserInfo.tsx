@@ -6,10 +6,10 @@ import Link from 'next/link'
 import {ChatUserInfoStyled} from './ChatUserInfo.styled'
 import {ChatUserInfoSkeleton} from './ChatUserInfoSkeleton'
 
-export const ChatUserInfo = ({userId}: {userId: number}) => {
-    const {data, isLoading} = useGetPublicProfileQuery(userId, {
+export const ChatUserInfo = ({dialoguePartnerId}: {dialoguePartnerId: number}) => {
+    const {data, isLoading} = useGetPublicProfileQuery(dialoguePartnerId, {
         refetchOnMountOrArgChange: true,
-        skip: !userId,
+        skip: !dialoguePartnerId,
     })
 
     if (isLoading) {
@@ -21,7 +21,7 @@ export const ChatUserInfo = ({userId}: {userId: number}) => {
         return (
             <ChatUserInfoStyled>
                 <Avatar size={48} src={avatarUrl} userName={data.userName} />
-                <Link href={`${PATH.USER_PROFILE}/${userId}`}>{data.userName}</Link>
+                <Link href={`${PATH.USER_PROFILE}/${dialoguePartnerId}`}>{data.userName}</Link>
             </ChatUserInfoStyled>
         )
     }

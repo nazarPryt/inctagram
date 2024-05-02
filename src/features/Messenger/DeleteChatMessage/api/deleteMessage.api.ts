@@ -6,15 +6,21 @@ import {GetChatType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 export const deleteMessageApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         deleteMessage: build.mutation<void, number>({
-            // invalidatesTags: ['Messages'],
             async onQueryStarted(messageIdToDelete, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
-                const dialoguePartnerId = state.messengerParams.dialoguePartnerId
+                const messengerParams = state.messengerParams
 
                 const patchResult = dispatch(
-                    chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, (draft: GetChatType) => {
-                        draft.items = draft.items.filter(message => message.id !== messageIdToDelete)
-                    })
+                    chatAPI.util.updateQueryData(
+                        'getChatMessages',
+                        {
+                            dialoguePartnerId: messengerParams.dialoguePartnerId,
+                            pageSize: messengerParams.pageSize,
+                        },
+                        (draft: GetChatType) => {
+                            draft.items = draft.items.filter(message => message.id !== messageIdToDelete)
+                        }
+                    )
                 )
 
                 try {
