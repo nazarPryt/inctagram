@@ -10,10 +10,10 @@ export const updateMessageApi = rtkQuery.injectEndpoints({
         updateMessageStatus: build.mutation<void, UpdateMessageType>({
             async onQueryStarted(body, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
-                const dialoguePartnerId = state.messengerParams.dialoguePartnerId
+                const messengerParams = state.messengerParams
 
                 const patchResult = dispatch(
-                    chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, (draft: GetChatType) => {
+                    chatAPI.util.updateQueryData('getChatMessages', messengerParams, (draft: GetChatType) => {
                         body.ids.forEach(id => {
                             draft.items.map(message => (message.id === id ? (message.status = 'READ') : message))
                         })

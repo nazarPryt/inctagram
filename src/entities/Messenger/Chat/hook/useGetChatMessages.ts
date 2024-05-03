@@ -10,7 +10,7 @@ export const useGetChatMessages = () => {
 
     // @ts-ignore
     const {currentData, data, isLoading} = useGetChatMessagesQuery(filteredParams, {
-        refetchOnMountOrArgChange: true,
+        // refetchOnMountOrArgChange: true,
         skip: !messengerParams.dialoguePartnerId,
     })
     const messages = data ? data.items ?? [] : []

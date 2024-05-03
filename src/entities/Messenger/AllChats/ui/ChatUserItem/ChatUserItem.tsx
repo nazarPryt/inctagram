@@ -1,4 +1,4 @@
-import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
+import {SetDialoguePartnerIdAC, SetMessageCursorAC} from '@/_app/Store/slices/messengerSlice'
 import {GetAllChatsItemType} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'

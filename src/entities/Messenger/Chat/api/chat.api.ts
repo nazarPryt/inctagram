@@ -9,10 +9,14 @@ import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 
 //https://redux-toolkit.js.org/rtk-query/usage/streaming-updates
 //https://rohitbels.medium.com/pagination-infinite-loading-with-redux-toolkit-createapi-a265ac25c3bd
+//https://stackoverflow.com/questions/70807077/implementing-infinite-scroll-on-top-when-scrolling-using-library-i-have-live-co
 
 export const chatAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getChatMessages: build.query<GetChatType, ChatParamsTypes>({
+            forceRefetch({currentArg, previousArg}) {
+                return currentArg !== previousArg
+            },
             merge: (currentCache, newItems) => {
                 if (currentCache.items.length) {
                     return {
@@ -71,7 +75,7 @@ export const chatAPI = rtkQuery.injectEndpoints({
                                 } else if (existedMessage && existedMessage.status === 'RECEIVED') {
                                     existedMessage.status = 'READ'
                                 } else {
-                                    draft.items.push(validatedData)
+                                    draft.items.unshift(validatedData)
                                 }
                             })
                         }
