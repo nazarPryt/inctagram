@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react'
+import {useRef} from 'react'
 
 import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {MessageStatus} from '@/entities/Messenger/Chat/ui/MessageStatus'
@@ -28,12 +28,6 @@ export const Message = ({message}: PropType) => {
     const ref = useRef<HTMLDivElement | null>(null)
 
     const owner = message.ownerId === userId
-
-    // useEffect(() => {
-    //     if (ref && ref.current) {
-    //         ref.current.scrollIntoView({behavior: 'smooth'})
-    //     }
-    // }, [message])
 
     return (
         <MessageStyled $owner={owner} ref={ref}>

@@ -1,5 +1,6 @@
 import {PATH} from '@/_app/AppSettings'
 import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {Avatar, Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
@@ -8,7 +9,6 @@ import {ChatUserInfoSkeleton} from './ChatUserInfoSkeleton'
 
 export const ChatUserInfo = ({dialoguePartnerId}: {dialoguePartnerId: number}) => {
     const {data, isLoading} = useGetPublicProfileQuery(dialoguePartnerId, {
-        refetchOnMountOrArgChange: true,
         skip: !dialoguePartnerId,
     })
 

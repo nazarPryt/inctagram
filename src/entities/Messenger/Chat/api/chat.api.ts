@@ -17,8 +17,6 @@ export const chatAPI = rtkQuery.injectEndpoints({
             async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, updateCachedData}) {
                 try {
                     WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
-                        console.log('SocketEvents.MESSAGE_SENT', response)
-
                         const newMessage = MessageSchema.parse(response)
 
                         acknowledge({
@@ -30,8 +28,6 @@ export const chatAPI = rtkQuery.injectEndpoints({
                         })
                     })
                     WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
-                        console.log('socket?.on(SocketEvents.RECEIVE_MESSAGE', response)
-
                         const arrayOfMessages = z.array(MessageSchema)
 
                         const validatedData =
@@ -76,15 +72,10 @@ export const chatAPI = rtkQuery.injectEndpoints({
             providesTags: ['Messages'],
             query: dialoguePartnerId => ({
                 method: 'GET',
-                // params,
                 url: `messanger/${dialoguePartnerId}`,
             }),
             transformResponse: response => {
-                const validatedResponse = GetChatSchema.parse(response)
-
-                // validatedResponse.items.reverse()
-
-                return validatedResponse
+                return GetChatSchema.parse(response)
             },
         }),
         getMoreChatMessages: build.query<GetChatType, ChatParamsTypes>({
@@ -92,25 +83,15 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 const store = getState() as RootState
                 const dialoguePartnerId = store.messengerParams.dialoguePartnerId
 
-                console.log('getMoreChatMessages')
                 try {
                     const response = await queryFulfilled
 
                     if (response.data.items.length > 0 && dialoguePartnerId) {
-                        // update conversation cache pessimistically start
-                        console.log('response', response)
                         dispatch(
                             chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, draft => {
-                                console.log("chatAPI.util.updateQueryData('getChatMessages")
                                 Object.assign(draft.items, [...draft.items, ...response.data.items])
-                                // return {
-                                //     ...draft,
-                                //     ...response.data,
-                                //     items: [...response.data.items, ...draft.items],
-                                // }
                             })
                         )
-                        // update messages cache pessimistically end
                     }
                 } catch (err) {
                     console.log(err)
@@ -126,4 +107,4 @@ export const chatAPI = rtkQuery.injectEndpoints({
     overrideExisting: true,
 })
 
-export const {useGetChatMessagesQuery} = chatAPI
+export const {useGetChatMessagesQuery, useLazyGetMoreChatMessagesQuery} = chatAPI
