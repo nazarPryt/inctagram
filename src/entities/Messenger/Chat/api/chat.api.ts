@@ -13,21 +13,7 @@ import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 
 export const chatAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getChatMessages: build.query<GetChatType, ChatParamsTypes>({
-            forceRefetch({currentArg, previousArg}) {
-                return currentArg !== previousArg
-            },
-            merge: (currentCache, newItems) => {
-                if (currentCache.items.length) {
-                    return {
-                        ...currentCache,
-                        ...newItems,
-                        items: [...currentCache.items, ...newItems.items],
-                    }
-                }
-
-                return newItems
-            },
+        getChatMessages: build.query<GetChatType, number>({
             async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, updateCachedData}) {
                 try {
                     WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
@@ -88,20 +74,11 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 await cacheEntryRemoved
             },
             providesTags: ['Messages'],
-            query: params => ({
+            query: dialoguePartnerId => ({
                 method: 'GET',
-                params,
-                url: `messanger/${params.dialoguePartnerId}`,
+                // params,
+                url: `messanger/${dialoguePartnerId}`,
             }),
-            serializeQueryArgs: ({queryArgs}) => {
-                const newQueryArgs = {...queryArgs}
-
-                if (newQueryArgs.cursor) {
-                    delete newQueryArgs.cursor
-                }
-
-                return newQueryArgs
-            },
             transformResponse: response => {
                 const validatedResponse = GetChatSchema.parse(response)
 
@@ -109,6 +86,41 @@ export const chatAPI = rtkQuery.injectEndpoints({
 
                 return validatedResponse
             },
+        }),
+        getMoreChatMessages: build.query<GetChatType, ChatParamsTypes>({
+            async onQueryStarted(arg, {dispatch, getState, queryFulfilled}) {
+                const store = getState() as RootState
+                const dialoguePartnerId = store.messengerParams.dialoguePartnerId
+
+                console.log('getMoreChatMessages')
+                try {
+                    const response = await queryFulfilled
+
+                    if (response.data.items.length > 0 && dialoguePartnerId) {
+                        // update conversation cache pessimistically start
+                        console.log('response', response)
+                        dispatch(
+                            chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, draft => {
+                                console.log("chatAPI.util.updateQueryData('getChatMessages")
+                                Object.assign(draft.items, [...draft.items, ...response.data.items])
+                                // return {
+                                //     ...draft,
+                                //     ...response.data,
+                                //     items: [...response.data.items, ...draft.items],
+                                // }
+                            })
+                        )
+                        // update messages cache pessimistically end
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+            },
+            query: params => ({
+                method: 'GET',
+                params,
+                url: `messanger/${params.dialoguePartnerId}`,
+            }),
         }),
     }),
     overrideExisting: true,
