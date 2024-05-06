@@ -25,10 +25,10 @@ export const useUpdateMessageStatus = ({messages}: PropsType) => {
             timeoutID = setTimeout(() => {
                 markAsRead({ids: unReadMessagesID})
                     .unwrap()
-                    .then(() => {
-                        toast('Notifications were marked as read', {type: 'success'})
+                    .catch(() => {
+                        toast('failed to marked as read', {type: 'error'})
                     })
-            }, 3000)
+            }, 500)
         }
 
         return () => {

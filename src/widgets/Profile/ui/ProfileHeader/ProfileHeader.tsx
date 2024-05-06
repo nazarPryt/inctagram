@@ -1,5 +1,5 @@
 import {PATH} from '@/_app/AppSettings/PATH'
-import {SetSelectedChatIdAC} from '@/_app/Store/slices/messengerSlice'
+import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
 import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
@@ -18,7 +18,7 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const router = useRouter()
     const dispatch = useAppDispatch()
     const handler = () => {
-        dispatch(SetSelectedChatIdAC(user!.id))
+        dispatch(SetDialoguePartnerIdAC(user!.id))
         void router.push(PATH.MESSENGER)
     }
     const renderSettingsBox: ModeItems = {

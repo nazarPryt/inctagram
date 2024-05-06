@@ -1,10 +1,18 @@
 import {EmojiIcon} from '@/public/EmojiIcon'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {Button, IconButton, InputText} from '@nazar-pryt/inctagram-ui-kit'
-import EmojiPicker, {Theme} from 'emoji-picker-react'
+import {Theme} from 'emoji-picker-react'
+import dynamic from 'next/dynamic'
 
 import {useSendChatMessage} from '../../hook/useSendChatMessage'
 import {SendMessageFormStyled} from './SendMessageForm.styled'
+
+const EmojiPicker = dynamic(
+    () => {
+        return import('emoji-picker-react')
+    },
+    {ssr: false}
+)
 
 export const SendMessageForm = () => {
     const theme = useAppSelector(store => store.app.theme)

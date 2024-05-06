@@ -1,15 +1,15 @@
 import {PATH} from '@/_app/AppSettings'
 import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
 import {Avatar, Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
 import {ChatUserInfoStyled} from './ChatUserInfo.styled'
 import {ChatUserInfoSkeleton} from './ChatUserInfoSkeleton'
 
-export const ChatUserInfo = ({userId}: {userId: number}) => {
-    const {data, isLoading} = useGetPublicProfileQuery(userId, {
-        refetchOnMountOrArgChange: true,
-        skip: !userId,
+export const ChatUserInfo = ({dialoguePartnerId}: {dialoguePartnerId: number}) => {
+    const {data, isLoading} = useGetPublicProfileQuery(dialoguePartnerId, {
+        skip: !dialoguePartnerId,
     })
 
     if (isLoading) {
@@ -21,7 +21,7 @@ export const ChatUserInfo = ({userId}: {userId: number}) => {
         return (
             <ChatUserInfoStyled>
                 <Avatar size={48} src={avatarUrl} userName={data.userName} />
-                <Link href={`${PATH.USER_PROFILE}/${userId}`}>{data.userName}</Link>
+                <Link href={`${PATH.USER_PROFILE}/${dialoguePartnerId}`}>{data.userName}</Link>
             </ChatUserInfoStyled>
         )
     }

@@ -1,21 +1,33 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {SocketEvents} from '@/_app/Api/client/webSocket/helpers/socketEvents'
+import {RootState} from '@/_app/Store/store'
+import {ChatParamsTypes} from '@/entities/Messenger/Chat/api/chat.types'
 import {z} from 'zod'
 
 import {GetChatSchema, GetChatType, MessageSchema} from '../helpers/Chat.schema'
 
 //https://redux-toolkit.js.org/rtk-query/usage/streaming-updates
+//https://rohitbels.medium.com/pagination-infinite-loading-with-redux-toolkit-createapi-a265ac25c3bd
+//https://stackoverflow.com/questions/70807077/implementing-infinite-scroll-on-top-when-scrolling-using-library-i-have-live-co
 
 export const chatAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getChatMessages: build.query({
-            async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, getState, updateCachedData}) {
+        getChatMessages: build.query<GetChatType, number>({
+            async onCacheEntryAdded(arg, {cacheDataLoaded, cacheEntryRemoved, updateCachedData}) {
                 try {
-                    await cacheDataLoaded
-                    WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
-                        console.log('socket?.on(SocketEvents.RECEIVE_MESSAGE', response)
+                    WebSocketApi.socket?.on(SocketEvents.MESSAGE_SENT, (response, acknowledge) => {
+                        const newMessage = MessageSchema.parse(response)
 
+                        acknowledge({
+                            messageId: newMessage.id,
+                            status: 'RECEIVED',
+                        })
+                        updateCachedData((draft: GetChatType) => {
+                            draft.items.unshift(newMessage)
+                        })
+                    })
+                    WebSocketApi.socket?.on(SocketEvents.RECEIVE_MESSAGE, response => {
                         const arrayOfMessages = z.array(MessageSchema)
 
                         const validatedData =
@@ -24,16 +36,17 @@ export const chatAPI = rtkQuery.injectEndpoints({
                         // Check the type of the validated data
                         if (Array.isArray(validatedData)) {
                             // Handle array logic
-                            console.log('Response is an array:', validatedData)
-                            // updateCachedData((draft: GetChatType) => {
-                            //     for (let i = 0; i < validatedData.length; i++) {
-                            //         // draft.items.map(message => {
-                            //         //     if (message.id === validatedData[i].id) {
-                            //         //         message.status = 'READ'
-                            //         //     }
-                            //         // })
-                            //     }
-                            // })
+                            updateCachedData((draft: GetChatType) => {
+                                for (let i = 0; i < validatedData.length; i++) {
+                                    const indexToChange = draft.items.findIndex(
+                                        message => message.id === validatedData[i].id
+                                    )
+
+                                    if (indexToChange !== -1) {
+                                        draft.items[indexToChange].status = 'READ'
+                                    }
+                                }
+                            })
                         } else {
                             // Handle object logic
                             updateCachedData((draft: GetChatType) => {
@@ -44,11 +57,12 @@ export const chatAPI = rtkQuery.injectEndpoints({
                                 } else if (existedMessage && existedMessage.status === 'RECEIVED') {
                                     existedMessage.status = 'READ'
                                 } else {
-                                    draft.items.push(validatedData)
+                                    draft.items.unshift(validatedData)
                                 }
                             })
                         }
                     })
+                    await cacheDataLoaded
                 } catch (err) {
                     console.log(err)
                 }
@@ -61,15 +75,36 @@ export const chatAPI = rtkQuery.injectEndpoints({
                 url: `messanger/${dialoguePartnerId}`,
             }),
             transformResponse: response => {
-                const validatedResponse = GetChatSchema.parse(response)
-
-                validatedResponse.items.reverse()
-
-                return validatedResponse
+                return GetChatSchema.parse(response)
             },
+        }),
+        getMoreChatMessages: build.query<GetChatType, ChatParamsTypes>({
+            async onQueryStarted(arg, {dispatch, getState, queryFulfilled}) {
+                const store = getState() as RootState
+                const dialoguePartnerId = store.messengerParams.dialoguePartnerId
+
+                try {
+                    const response = await queryFulfilled
+
+                    if (response.data.items.length > 0 && dialoguePartnerId) {
+                        dispatch(
+                            chatAPI.util.updateQueryData('getChatMessages', dialoguePartnerId, draft => {
+                                Object.assign(draft.items, [...draft.items, ...response.data.items])
+                            })
+                        )
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+            },
+            query: params => ({
+                method: 'GET',
+                params,
+                url: `messanger/${params.dialoguePartnerId}`,
+            }),
         }),
     }),
     overrideExisting: true,
 })
 
-export const {useGetChatMessagesQuery} = chatAPI
+export const {useGetChatMessagesQuery, useLazyGetMoreChatMessagesQuery} = chatAPI

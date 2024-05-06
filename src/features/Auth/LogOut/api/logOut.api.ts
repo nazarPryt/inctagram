@@ -1,6 +1,6 @@
 import cookie from 'react-cookies'
 
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {appSettings} from '@/_app/AppSettings'
 
 export const logOutAPI = rtkQuery.injectEndpoints({

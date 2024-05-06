@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 
 import {
     CurrentSubscriptionResponseType,
@@ -19,13 +19,13 @@ export const accountManagementAPI = rtkQuery.injectEndpoints({
         getCurrentSubscription: build.query<CurrentSubscriptionResponseType, void>({
             query: () => ({
                 method: 'GET',
-                url: `subscriptions/current-subscriptions`,
+                url: `subscriptions/current-payment-subscriptions`,
             }),
         }),
         getSubscriptionCosts: build.query<{data: SubscriptionDataType[]}, void>({
             query: () => ({
                 method: 'GET',
-                url: `subscriptions/cost-of-subscriptions`,
+                url: `subscriptions/cost-of-payment-subscriptions`,
             }),
         }),
     }),

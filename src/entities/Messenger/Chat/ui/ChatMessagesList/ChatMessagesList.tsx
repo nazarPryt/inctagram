@@ -1,18 +1,20 @@
-import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-import {MessageType} from '../../helpers/Chat.schema'
+import {useGetChatMessages} from '@/entities/Messenger/Chat/hook/useGetChatMessages'
+import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
+import {AnimatePresence} from 'framer-motion'
+
 import {EmptyChatMessagesList} from '../../ui/EmptyChatMessagesList'
 import {Message} from '../Message'
 import {ChatMessagesListStyled} from './ChatMessagesList.styled'
 import {ChatMessagesListSkeleton} from './ChatMessagesListSkeleton'
 
-type PropsType = {
-    isLoading: boolean
-    messages: MessageType[]
-}
-export const ChatMessagesList = ({isLoading, messages}: PropsType) => {
-    // useUpdateMessageStatus({messages})
-    // console.log('messages: ', messages)
+export const ChatMessagesList = () => {
+    const {fetchMoreData, hasMore, isLoading, messages} = useGetChatMessages()
+
+    useUpdateMessageStatus({messages})
+
     if (isLoading) {
         return <ChatMessagesListSkeleton />
     }
@@ -21,10 +23,22 @@ export const ChatMessagesList = ({isLoading, messages}: PropsType) => {
     }
 
     return (
-        <ChatMessagesListStyled>
-            {messages.map(message => {
-                return <Message key={message.id} message={message} />
-            })}
+        <ChatMessagesListStyled id={'scrollableDiv'}>
+            <AnimatePresence initial={false}>
+                <InfiniteScroll
+                    className={'chatMessagesListInfiniteScroll'}
+                    dataLength={messages.length}
+                    hasMore={hasMore}
+                    inverse
+                    loader={<span />}
+                    next={fetchMoreData}
+                    scrollableTarget={'scrollableDiv'}
+                >
+                    {messages.map(message => {
+                        return <Message key={message.id} message={message} />
+                    })}
+                </InfiniteScroll>
+            </AnimatePresence>
         </ChatMessagesListStyled>
     )
 }

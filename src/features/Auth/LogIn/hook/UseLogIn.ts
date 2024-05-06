@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form'
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {setAccessToken} from '@/shared/utils/setAccessToken'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {useRouter} from 'next/router'
 
@@ -30,11 +31,7 @@ export const useLogIn = () => {
         login({email: data.email, password: data.password})
             .unwrap()
             .then(async payload => {
-                cookie.save(appSettings.constants.accessToken, payload.accessToken, {
-                    httpOnly: false,
-                    path: '/',
-                    sameSite: false,
-                })
+                await setAccessToken(payload.accessToken)
                 await router.push(PATH.HOME)
             })
             .catch(error => {

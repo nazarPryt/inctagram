@@ -1,4 +1,4 @@
-import {rtkQuery} from '@/_app/Api/client/rtkQuery'
+import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 
 import {SearchUserParamsType} from '../helpers/SearchUserParams.schema'
 import {SearchUserResponseSchema, SearchUserResponseType} from '../helpers/SearchUserResponse.schema'
