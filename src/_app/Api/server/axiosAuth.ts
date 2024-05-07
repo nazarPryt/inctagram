@@ -3,12 +3,12 @@
 import {appSettings} from '@/_app/AppSettings'
 import {MeDataType} from '@/features/Auth/Me/api/me.types'
 import axios from 'axios'
-import {GetServerSidePropsContext} from 'next'
+import {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from 'next'
 import nookies from 'nookies'
 
 const baseURL = appSettings.env.BASE_URL
 
-export const axiosAuth = (ctx: GetServerSidePropsContext) => {
+export const axiosAuth = (req: NextApiRequest, res: NextApiResponse) => {
     const instance = axios.create({
         baseURL,
         withCredentials: true,
@@ -16,7 +16,7 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
 
     instance.interceptors.request.use(
         config => {
-            const cookies = nookies.get(ctx)
+            const cookies = nookies.get({req})
             const accessToken = cookies.accessToken
 
             if (accessToken) {
@@ -38,13 +38,14 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
             if (error.response.status == 401 && error.config && !error.config._isRetry) {
                 originalRequest._isRetry = true
                 try {
-                    const refreshTokenValue = ctx.req.cookies.refreshToken
+                    const cookies = nookies.get({req})
+                    const refreshTokenValue = cookies.refreshToken
 
                     if (refreshTokenValue) {
                         const resRefresh = await axios.post<{accessToken: string}>(
                             `auth/update-tokens`,
                             {},
-                            {baseURL, headers: ctx.req.headers, withCredentials: true}
+                            {baseURL, headers: req.headers, withCredentials: true}
                         )
 
                         console.log('resRefresh.status: ', resRefresh.status)
@@ -59,7 +60,7 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
                             withCredentials: true,
                         })
 
-                        ctx.res.setHeader('Set-Cookie', [
+                        res.setHeader('Set-Cookie', [
                             `${newRefreshToken}`,
                             `${appSettings.constants.accessToken}=${resRefresh.data.accessToken}; Path=/`,
                         ])
@@ -88,14 +89,14 @@ export const axiosAuth = (ctx: GetServerSidePropsContext) => {
 }
 
 export const serverAuthAPI = {
-    async authMe(ctx: GetServerSidePropsContext) {
+    async authMe(req: NextApiRequest, res: NextApiResponse) {
         console.log('authMe serverside start')
         try {
-            const res = await axiosAuth(ctx).get<MeDataType>(`auth/me`)
+            const response = await axiosAuth(req, res).get<MeDataType>(`auth/me`)
 
             console.log('authMe serverside success')
 
-            return res
+            return response
         } catch (e) {
             console.log('Cant make authMe request')
         }

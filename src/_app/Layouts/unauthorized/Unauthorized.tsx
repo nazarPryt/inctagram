@@ -12,17 +12,17 @@ import {useRouter} from 'next/router'
 import {UnauthorizedStyled} from './Unauthorized.styled'
 
 const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
-    const router = useRouter()
-    const {isSuccess} = useMeQuery()
-
-    if (isSuccess) {
-        router.push(PATH.HOME)
-    }
+    // const router = useRouter()
+    // const {isSuccess} = useMeQuery()
+    //
+    // if (isSuccess) {
+    //     router.push(PATH.HOME)
+    // }
 
     return (
         <UnauthorizedStyled>
             <Container>
-                <Header isLoggedIn={isSuccess} publicMode />
+                <Header isLoggedIn publicMode />
                 {children}
             </Container>
             <NotificationBar />
