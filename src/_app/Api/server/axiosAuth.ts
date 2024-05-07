@@ -16,9 +16,9 @@ export const axiosAuth = (req: NextApiRequest, res: NextApiResponse) => {
 
     instance.interceptors.request.use(
         config => {
-            const cookies = nookies.get({req})
-            const accessToken = cookies.accessToken
+            const accessToken = req.cookies.accessToken
 
+            console.log('instance.interceptors.request accessToken: ', accessToken)
             if (accessToken) {
                 config.headers.Authorization = 'Bearer ' + accessToken
             }
@@ -38,8 +38,7 @@ export const axiosAuth = (req: NextApiRequest, res: NextApiResponse) => {
             if (error.response.status == 401 && error.config && !error.config._isRetry) {
                 originalRequest._isRetry = true
                 try {
-                    const cookies = nookies.get({req})
-                    const refreshTokenValue = cookies.refreshToken
+                    const refreshTokenValue = req.cookies.refreshToken
 
                     if (refreshTokenValue) {
                         const resRefresh = await axios.post<{accessToken: string}>(
@@ -88,7 +87,7 @@ export const axiosAuth = (req: NextApiRequest, res: NextApiResponse) => {
     return instance
 }
 
-export const serverAuthAPI = {
+class serverAuth {
     async authMe(req: NextApiRequest, res: NextApiResponse) {
         console.log('authMe serverside start')
         try {
@@ -96,15 +95,16 @@ export const serverAuthAPI = {
 
             console.log('authMe serverside success')
 
-            return response
+            return response.data
         } catch (e) {
             console.log('Cant make authMe request')
         }
-    },
+    }
     async logOut(ctx: GetServerSidePropsContext) {
         console.log('logOut serverside')
         nookies.destroy(ctx, appSettings.constants.accessToken)
         nookies.destroy(ctx, appSettings.constants.refreshToken)
         console.log('logOut serverside is success')
-    },
+    }
 }
+export const serverAuthAPI = new serverAuth()
