@@ -12,7 +12,7 @@ import {useRouter} from 'next/router'
 import {AuthorizedLayoutWrapper} from './AuthorizeLayout.style'
 
 const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
-    const router = useRouter()
+    // const router = useRouter()
     // const {isError, isSuccess} = useMeQuery()
     //
     // if (isError) {
