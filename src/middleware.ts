@@ -21,15 +21,17 @@ async function refreshTokens(refresh: string): Promise<TokensResponse> {
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                cookie: `refreshToken=${refresh}`,
+                cookie: `${appSettings.constants.refreshToken}=${refresh}`,
             },
             method: 'POST',
         })
 
-        console.log('refreshTokens-response: ', response)
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
-        }
+        console.log('refreshTokens-response.status: ', response.status)
+        console.log('refreshTokens-response.headers: ', response.headers)
+        console.log('refreshTokens-response.body: ', response.body)
+        // if (!response.ok) {
+        //     throw new Error(`HTTP refreshTokens error! Status: ${response.status}`)
+        // }
 
         const responseData = await response.json()
         const refreshSetCookie = response.headers.getSetCookie()
@@ -60,16 +62,12 @@ async function me(accessToken: string) {
             method: 'GET',
         })
 
-        console.log('me-response: ', response)
+        console.log('me-response.status: ', response.status)
         // if (!response.ok) {
         //     throw new Error(`HTTP error! Status: ${response.status}`)
         // }
 
-        const responseData = await response.json()
-
-        console.log('responseMeData: ', responseData)
-
-        return responseData
+        return await response.json()
     } catch (error) {
         console.error('meRequestError: ', error)
         throw error // Rethrow the error to handle it in the calling code
@@ -96,13 +94,13 @@ export async function middleware(request: NextRequest) {
             //
             // const newRefreshToken = resRefresh.headers
 
-            const user = await me(accessTokenValue)
+            const resMe = await me(accessTokenValue)
 
-            console.log('user: ', user)
+            console.log('resMe: ', resMe)
 
-            if (user) {
+            if (resMe.userId) {
                 return NextResponse.next()
-            } else {
+            } else if (resMe.statusCode === 401) {
                 if (refreshTokenValue) {
                     const responseRefresh = await refreshTokens(refreshTokenValue)
 
