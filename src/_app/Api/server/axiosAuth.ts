@@ -64,8 +64,16 @@ export const axiosAuth = (req: NextApiRequest, res: NextApiResponse) => {
                             `${appSettings.constants.accessToken}=${resRefresh.data.accessToken}; Path=/`,
                         ])
                         console.log('resMe.data: ', resMe.data)
+                        originalRequest.headers = {
+                            'Set-Cookie': [
+                                `${newRefreshToken}`,
+                                `${appSettings.constants.accessToken}=${resRefresh.data.accessToken}; Path=/`,
+                            ],
+                        }
+                        originalRequest.data = resMe.data
+                        console.log('updated-originalRequest: ', originalRequest)
 
-                        return (originalRequest.data = resMe.data)
+                        return originalRequest
                     } else {
                         console.log('refreshToken is undefined')
 

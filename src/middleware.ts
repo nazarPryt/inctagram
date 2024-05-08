@@ -1,3 +1,5 @@
+import {log} from 'node:util'
+
 import {appSettings} from '@/_app/AppSettings'
 import {MeDataType} from '@/features/Auth/Me/api/me.types'
 import axios from 'axios'
@@ -6,8 +8,73 @@ import {type NextRequest, NextResponse} from 'next/server'
 //https://medium.com/@fran_wrote/fetch-with-token-and-refresh-in-next-js-60fd13c6f1b1
 
 const protectedRoutes = ['/profile', '/profile/*']
+
 const baseURL = appSettings.env.BASE_URL
 
+interface TokensResponse {
+    accessToken: string
+    refreshToken: string
+}
+async function refreshTokens(refresh: string): Promise<TokensResponse> {
+    try {
+        const response = await fetch(`${baseURL}auth/update-tokens`, {
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                cookie: `refreshToken=${refresh}`,
+            },
+            method: 'POST',
+        })
+
+        console.log('refreshTokens-response: ', response)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+
+        const responseData = await response.json()
+        const refreshSetCookie = response.headers.getSetCookie()
+
+        console.log('responseData: ', responseData)
+        console.log('refreshSetCookie: ', refreshSetCookie)
+
+        return {
+            accessToken: responseData.accessToken,
+            refreshToken: refreshSetCookie[0],
+        }
+    } catch (error) {
+        console.error('refreshTokensError: ', error)
+        throw error // Rethrow the error to handle it in the calling code
+    }
+}
+async function me(accessToken: string) {
+    const url = `${baseURL}auth/me`
+
+    console.log('url: ', url)
+    try {
+        const response = await fetch(url, {
+            credentials: 'include',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        })
+
+        console.log('me-response: ', response)
+        // if (!response.ok) {
+        //     throw new Error(`HTTP error! Status: ${response.status}`)
+        // }
+
+        const responseData = await response.json()
+
+        console.log('responseMeData: ', responseData)
+
+        return responseData
+    } catch (error) {
+        console.error('meRequestError: ', error)
+        throw error // Rethrow the error to handle it in the calling code
+    }
+}
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname
 
@@ -19,44 +86,45 @@ export async function middleware(request: NextRequest) {
         console.log('refreshTokenValue: ', refreshTokenValue)
         console.log('accessTokenValue: ', accessTokenValue)
 
-        if (!refreshTokenValue) {
+        if (!accessTokenValue) {
             return NextResponse.redirect(new URL('/auth/login', request.url))
         }
         try {
-            const resRefresh = await axios.post<{accessToken: string}>(
-                `auth/update-tokens`,
-                {},
-                {baseURL, withCredentials: true}
-            )
+            // const resRefresh = refreshTokens(refreshTokenValue)
 
-            console.log('resRefresh.status: ', resRefresh.status)
-            console.log('resRefresh.headers: ', resRefresh.headers)
+            // console.log('try resRefresh ', resRefresh)
+            //
+            // const newRefreshToken = resRefresh.headers
 
-            // const newRefreshToken = resRefresh.headers['set-cookie']![0]
-            const newRefreshToken = resRefresh.headers
-
-            const user = await axios.get<MeDataType>(`auth/me`, {
-                baseURL,
-                headers: {
-                    Authorization: 'Bearer ' + resRefresh.data.accessToken,
-                },
-                withCredentials: true,
-            })
+            const user = await me(accessTokenValue)
 
             console.log('user: ', user)
 
-            if (user.data.userId) {
-                return NextResponse.next({
-                    headers: {
-                        'Set-Cookie': [`${appSettings.constants.accessToken}=${resRefresh.data.accessToken}; Path=/`],
-                        newRefreshToken,
-                    } as any,
-                })
+            if (user) {
+                return NextResponse.next()
             } else {
+                if (refreshTokenValue) {
+                    const responseRefresh = await refreshTokens(refreshTokenValue)
+
+                    console.log('responseRefresh: ', responseRefresh)
+                    const user = await me(responseRefresh.accessToken)
+
+                    if (user) {
+                        return NextResponse.next({
+                            headers: {
+                                'Set-Cookie': [
+                                    `${appSettings.constants.accessToken}=${responseRefresh.accessToken}; Path=/`,
+                                    `${responseRefresh.refreshToken}`,
+                                ],
+                            } as any,
+                        })
+                    }
+                }
+
                 return NextResponse.redirect(new URL('/auth/login', request.url))
             }
         } catch (e) {
-            console.log('catch e: ', e)
+            console.log('middleware Catch error: ', e)
 
             return NextResponse.redirect(new URL('/auth/login', request.url))
         }

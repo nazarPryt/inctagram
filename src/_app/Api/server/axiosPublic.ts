@@ -11,6 +11,13 @@ export const axiosPublic = axios.create({
 })
 
 export const serverPublicAPI = {
+    async authUser(profileId: number) {
+        try {
+            return await axiosPublic.get(`api`)
+        } catch (e) {
+            console.log(e)
+        }
+    },
     async getAllUsersCount() {
         try {
             const res = await axiosPublic.get<{totalCount: number}>(`public-user`)
