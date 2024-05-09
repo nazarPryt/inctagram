@@ -14,9 +14,9 @@ import {AuthorizedLayoutWrapper} from './AuthorizeLayout.style'
 const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     // const router = useRouter()
     // const {isError, isSuccess} = useMeQuery()
-    //
+
     // if (isError) {
-    //     router.push(PATH.LOGIN)
+    //     void router.push(PATH.LOGIN)
     // }
 
     return (

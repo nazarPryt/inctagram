@@ -14,9 +14,9 @@ import {UnauthorizedStyled} from './Unauthorized.styled'
 const Unauthorized: NextPage<PropsWithChildren> = ({children}) => {
     // const router = useRouter()
     // const {isSuccess} = useMeQuery()
-    //
+
     // if (isSuccess) {
-    //     router.push(PATH.HOME)
+    //     void router.push(PATH.HOME)
     // }
 
     return (

@@ -1,13 +1,12 @@
 import {log} from 'node:util'
 
 import {appSettings} from '@/_app/AppSettings'
+import {protectedRoutes, unProtectedRoutes} from '@/_app/AppSettings/routes'
 import {MeDataType} from '@/features/Auth/Me/api/me.types'
 import axios from 'axios'
 import {cookies} from 'next/headers'
 import {type NextRequest, NextResponse} from 'next/server'
 //https://medium.com/@fran_wrote/fetch-with-token-and-refresh-in-next-js-60fd13c6f1b1
-
-const protectedRoutes = ['/profile', '/profile/*']
 
 const baseURL = appSettings.env.BASE_URL
 
@@ -28,7 +27,6 @@ async function refreshTokens(refresh: string): Promise<TokensResponse> {
 
         console.log('refreshTokens-response.status: ', response.status)
         console.log('refreshTokens-response.headers: ', response.headers)
-        console.log('refreshTokens-response.body: ', response.body)
         // if (!response.ok) {
         //     throw new Error(`HTTP refreshTokens error! Status: ${response.status}`)
         // }
@@ -75,25 +73,54 @@ async function me(accessToken: string) {
 }
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname
+    const refreshTokenValue = request.cookies.get(appSettings.constants.refreshToken)?.value
+    const accessTokenValue = cookies().get(appSettings.constants.accessToken)?.value
 
-    if (protectedRoutes.some(route => pathname.startsWith(route))) {
-        console.log('middleware protected route')
-        const refreshTokenValue = request.cookies.get(appSettings.constants.refreshToken)?.value
-        const accessTokenValue = cookies().get(appSettings.constants.accessToken)?.value
+    if (!accessTokenValue) {
+        return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
+    if (unProtectedRoutes.some(route => pathname.startsWith(route))) {
+        console.log('middleware UNProtected')
 
         console.log('refreshTokenValue: ', refreshTokenValue)
         console.log('accessTokenValue: ', accessTokenValue)
 
-        if (!accessTokenValue) {
-            return NextResponse.redirect(new URL('/auth/login', request.url))
-        }
         try {
-            // const resRefresh = refreshTokens(refreshTokenValue)
+            const resMe = await me(accessTokenValue)
 
-            // console.log('try resRefresh ', resRefresh)
-            //
-            // const newRefreshToken = resRefresh.headers
+            console.log('resMe: ', resMe)
 
+            if (resMe.userId) {
+                return NextResponse.redirect(new URL('/profile', request.url))
+            } else if (resMe.statusCode === 401) {
+                if (refreshTokenValue) {
+                    const responseRefresh = await refreshTokens(refreshTokenValue)
+
+                    console.log('responseRefresh: ', responseRefresh)
+                    const user = await me(responseRefresh.accessToken)
+
+                    if (user) {
+                        return NextResponse.redirect(new URL('/profile', request.url), {
+                            headers: {
+                                'Set-Cookie': [
+                                    `${appSettings.constants.accessToken}=${responseRefresh.accessToken}; Path=/; Secure; SameSite=None`,
+                                    `${responseRefresh.refreshToken}`,
+                                ],
+                            } as any,
+                        })
+                    }
+                }
+
+                return NextResponse.next()
+            }
+        } catch (e) {
+            console.log('middleware Catch error: ', e)
+
+            return NextResponse.next()
+        }
+    }
+    if (protectedRoutes.some(route => pathname.startsWith(route))) {
+        try {
             const resMe = await me(accessTokenValue)
 
             console.log('resMe: ', resMe)
@@ -111,7 +138,7 @@ export async function middleware(request: NextRequest) {
                         return NextResponse.next({
                             headers: {
                                 'Set-Cookie': [
-                                    `${appSettings.constants.accessToken}=${responseRefresh.accessToken}; Path=/`,
+                                    `${appSettings.constants.accessToken}=${responseRefresh.accessToken}; Path=/; Secure; SameSite=None`,
                                     `${responseRefresh.refreshToken}`,
                                 ],
                             } as any,
