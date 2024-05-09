@@ -1,16 +1,22 @@
+import {ComponentMode} from '@/shared/hooks/useMode'
+
 import {useGetAuthProfileQuery} from '../api/authProfile.api'
 
-export const useGetAuthProfile = (userName: string | undefined) => {
-    const {data} = useGetAuthProfileQuery(userName, {
-        skip: !userName,
+type PropsType = {
+    mode: ComponentMode
+    userName: string | undefined
+}
+export const useGetAuthProfile = ({mode, userName}: PropsType) => {
+    const {data: authProfile} = useGetAuthProfileQuery(userName, {
+        skip: !userName || mode === 'publick',
     })
-    const avatarUrl = data && data.avatars.length ? data.avatars[0].url : ''
+    const avatarUrl = authProfile && authProfile.avatars.length ? authProfile.avatars[0].url : ''
     // const userName = data && data.userName
-    const aboutMe = data && data.aboutMe
+    const aboutMe = authProfile && authProfile.aboutMe
 
     return {
+        authProfile,
         avatarUrl,
-        data,
         userName,
     }
 }

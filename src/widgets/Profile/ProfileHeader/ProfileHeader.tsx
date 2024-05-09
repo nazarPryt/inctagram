@@ -1,9 +1,11 @@
+import {useState} from 'react'
+
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
 import {useGetAuthProfile} from '@/entities/Profile/AuthProfile/hook/useGetAuthProfile'
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
+import {ComponentMode, ModeVariant} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
@@ -15,18 +17,20 @@ import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
+    const [openFollowers, setOpenFollowers] = useState(false)
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const router = useRouter()
-    const {data} = useGetAuthProfile(user?.userName)
-
-    console.log('data: ', data)
 
     const sendMessageHandler = () => {
         dispatch(SetDialoguePartnerIdAC(user!.id))
         void router.push(PATH.MESSENGER)
     }
-    const renderSettingsBox: ModeItems = {
+    const openFollowersHandler = () => {
+        dispatch(SetDialoguePartnerIdAC(user!.id))
+        void router.push(PATH.MESSENGER)
+    }
+    const renderSettingsBox: ModeVariant = {
         fellow: (
             <div className={'settingsBox'}>
                 <Button>Follow</Button>
@@ -62,10 +66,10 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                             <span>2 218</span>
                             {t.profile.following}
                         </div>
-                        <div>
+                        <button onClick={openFollowersHandler}>
                             <span>2 358</span>
                             {t.profile.followers}
-                        </div>
+                        </button>
                         <div>
                             <span>2 764</span>
                             {t.profile.publications}

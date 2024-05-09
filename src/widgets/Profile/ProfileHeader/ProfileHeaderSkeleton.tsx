@@ -1,4 +1,4 @@
-import {ProfileHeaderWrapper} from '@/widgets/Profile/ui/ProfileHeader/ProfileHeader.styled'
+import {ProfileHeaderWrapper} from '@/widgets/Profile/ProfileHeader/ProfileHeader.styled'
 import {Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 
 export const ProfileHeaderSkeleton = () => {

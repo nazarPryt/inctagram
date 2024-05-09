@@ -1,3 +1,4 @@
+import {useGetAuthProfileQuery} from '@/entities/Profile/AuthProfile/api/authProfile.api'
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {ViewUserPost} from '@/entities/ViewUserPost'
@@ -7,8 +8,8 @@ import {Loader, Modal} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
 
 import {ProfileWrapper} from './Profile.styled'
-import {ProfileHeader} from './ui/ProfileHeader'
-import {ProfilePostsList} from './ui/ProfilePostsList'
+import {ProfileHeader} from './ProfileHeader'
+import {ProfilePostsList} from './ProfilePostsList'
 
 type ProfileType = {
     isLoadingPosts?: boolean
@@ -22,6 +23,11 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
     const {back} = useRouter()
     const {data: post, isLoading} = useGetUserPostQuery(postId, {refetchOnMountOrArgChange: true, skip: !postId})
 
+    const {data: authProfile} = useGetAuthProfileQuery(user?.userName, {
+        skip: !user?.userName || mode === 'publick',
+    })
+
+    console.log('authProfile: ', authProfile)
     const handleCloseModal = () => {
         back()
     }
@@ -30,7 +36,7 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
 
     return (
         <>
-            {isLoading && <Loader />}
+            {isLoading && <Loader fullScreen />}
 
             <Modal onClose={handleCloseModal} open={showPostModal} showTitle={false} size={'full'}>
                 {post && <ViewUserPost post={post} />}
