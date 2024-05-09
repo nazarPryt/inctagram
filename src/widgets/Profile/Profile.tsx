@@ -1,4 +1,4 @@
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'

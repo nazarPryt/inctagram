@@ -1,6 +1,7 @@
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {useGetAuthProfile} from '@/entities/Profile/AuthProfile/hook/useGetAuthProfile'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeItems} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -15,9 +16,13 @@ type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProf
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {t} = useTranslation()
-    const router = useRouter()
     const dispatch = useAppDispatch()
-    const handler = () => {
+    const router = useRouter()
+    const {data} = useGetAuthProfile(user?.userName)
+
+    console.log('data: ', data)
+
+    const sendMessageHandler = () => {
         dispatch(SetDialoguePartnerIdAC(user!.id))
         void router.push(PATH.MESSENGER)
     }
@@ -25,7 +30,7 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
         fellow: (
             <div className={'settingsBox'}>
                 <Button>Follow</Button>
-                <Button onClick={handler} variant={'contained'}>
+                <Button onClick={sendMessageHandler} variant={'contained'}>
                     Send Message
                 </Button>
             </div>

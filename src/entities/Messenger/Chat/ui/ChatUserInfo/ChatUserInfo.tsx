@@ -1,6 +1,6 @@
 import {PATH} from '@/_app/AppSettings'
-import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {useGetPublicProfileQuery} from '@/entities/Profile/PublicProfile/api/publicProfile.api'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {Avatar, Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 
