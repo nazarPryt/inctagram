@@ -7,6 +7,7 @@ import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/public
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeVariant} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
+import {Followers} from '@/widgets/Profile/Followers'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
@@ -17,7 +18,7 @@ import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
-    const [openFollowers, setOpenFollowers] = useState(false)
+    const [isFollowersModalOpen, setIsFollowersModalOpen] = useState(false)
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -27,8 +28,10 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
         void router.push(PATH.MESSENGER)
     }
     const openFollowersHandler = () => {
-        dispatch(SetDialoguePartnerIdAC(user!.id))
-        void router.push(PATH.MESSENGER)
+        setIsFollowersModalOpen(true)
+    }
+    const handleFollowersModalClose = () => {
+        setIsFollowersModalOpen(false)
     }
     const renderSettingsBox: ModeVariant = {
         fellow: (
@@ -77,6 +80,11 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                     </div>
                     <p>{user.aboutMe}</p>
                 </div>
+                <Followers
+                    handleFollowersModalClose={handleFollowersModalClose}
+                    isFollowersModalOpen={isFollowersModalOpen}
+                    userName={user.userName}
+                />
             </ProfileHeaderWrapper>
         )
     }

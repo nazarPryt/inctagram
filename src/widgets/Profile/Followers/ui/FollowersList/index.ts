@@ -1,1 +1,1 @@
-export {FolloweList} from './FolloweList'
+export {FollowersList} from './FollowersList'

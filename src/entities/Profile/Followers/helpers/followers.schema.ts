@@ -13,7 +13,7 @@ export const FollowerSchema = z.object({
 
 export const GetFollowersSchema = z.object({
     items: z.array(FollowerSchema),
-    nextCursor: z.number(),
+    nextCursor: z.number().nullable(),
     page: z.number(),
     pageSize: z.number(),
     pagesCount: z.number(),
