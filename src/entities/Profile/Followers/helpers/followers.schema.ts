@@ -22,4 +22,4 @@ export const GetFollowersSchema = z.object({
 })
 
 export type FollowerSchemaType = z.infer<typeof FollowerSchema>
-export type GetFollowersSchemaType = z.infer<typeof GetFollowersSchema>
+export type GetFollowersType = z.infer<typeof GetFollowersSchema>

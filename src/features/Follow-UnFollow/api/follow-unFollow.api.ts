@@ -1,6 +1,7 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {RootState} from '@/_app/Store/store'
 import {authProfileApi} from '@/entities/Profile/AuthProfile/api/authProfile.api'
+import {AuthProfileType} from '@/entities/Profile/AuthProfile/helpers/authProfile.schema'
 
 export const followUnFollowAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
@@ -10,8 +11,14 @@ export const followUnFollowAPI = rtkQuery.injectEndpoints({
                 const state = getState() as RootState
                 const userName = state.params.followUnFollow.userName
                 const patchResult = dispatch(
-                    authProfileApi.util.updateQueryData('getAuthProfile', userName, draft => {
-                        Object.assign(draft, {...draft, isFollowing: !draft.isFollowing})
+                    authProfileApi.util.updateQueryData('getAuthProfile', userName, (draft: AuthProfileType) => {
+                        const updateFollowers = draft.isFollowing ? draft.followersCount - 1 : draft.followersCount + 1
+
+                        Object.assign(draft, {
+                            ...draft,
+                            followersCount: updateFollowers,
+                            isFollowing: !draft.isFollowing,
+                        })
                     })
                 )
 

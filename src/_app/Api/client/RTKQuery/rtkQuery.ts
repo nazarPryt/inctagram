@@ -20,6 +20,7 @@ export const rtkQuery = createApi({
         'Chats',
         'PublicProfile',
         'AuthProfile',
+        'Followers',
     ],
 })
 

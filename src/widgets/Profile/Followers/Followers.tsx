@@ -8,14 +8,14 @@ type PropsType = {
     userName: string
 }
 export const Followers = ({handleFollowersModalClose, isFollowersModalOpen, userName}: PropsType) => {
-    const {followers, isLoading, totalCount} = useGetFollowers({isFollowersModalOpen, userName})
+    const {followers, isLoading, totalFollowers} = useGetFollowers({isFollowersModalOpen, userName})
 
     return (
         <Modal
             onClose={handleFollowersModalClose}
             open={isFollowersModalOpen}
             size={'md'}
-            title={`${totalCount} Followers`}
+            title={`${totalFollowers} Followers`}
         >
             <FollowersList followers={followers} isLoading={isLoading} />
         </Modal>

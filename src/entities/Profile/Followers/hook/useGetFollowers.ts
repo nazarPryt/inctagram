@@ -8,11 +8,11 @@ export const useGetFollowers = ({isFollowersModalOpen, userName}: PropsType) => 
     const {data, isLoading} = useGetFollowersQuery(userName, {skip: !(userName && isFollowersModalOpen)})
 
     const followers = (data && data.items) ?? []
-    const totalCount = (data && data.totalCount) ?? 0
+    const totalFollowers = (data && data.items.length) ?? 0
 
     return {
         followers,
         isLoading,
-        totalCount,
+        totalFollowers,
     }
 }

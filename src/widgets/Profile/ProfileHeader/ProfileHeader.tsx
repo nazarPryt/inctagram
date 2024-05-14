@@ -23,7 +23,7 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const {data: authProfile} = useGetAuthProfileQuery(user?.userName, {
         skip: !user?.userName || mode === 'publick',
     })
-    const {handleFollowUnFollow} = useFollowUnFollow(authProfile.id)
+    const {handleFollowUnFollow} = useFollowUnFollow(authProfile && authProfile.id)
 
     const {t} = useTranslation()
     const dispatch = useAppDispatch()

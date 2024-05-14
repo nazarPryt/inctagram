@@ -1,12 +1,14 @@
 import {useFollowUnFollowMutation} from '@/features/Follow-UnFollow/api/follow-unFollow.api'
 
-export const useFollowUnFollow = (selectedUserId: number) => {
+export const useFollowUnFollow = (selectedUserId: number | undefined) => {
     const [followUnFollow] = useFollowUnFollowMutation()
 
     const handleFollowUnFollow = () => {
-        followUnFollow({
-            selectedUserId,
-        })
+        if (selectedUserId) {
+            followUnFollow({
+                selectedUserId,
+            })
+        }
     }
 
     return {

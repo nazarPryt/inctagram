@@ -5,7 +5,7 @@ import {GetFollowersSchema} from '../helpers/followers.schema'
 export const followersApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getFollowers: build.query({
-            providesTags: ['AuthProfile'],
+            providesTags: ['Followers'],
             query: userName => ({
                 method: 'GET',
                 url: `users/${userName}/followers`,
