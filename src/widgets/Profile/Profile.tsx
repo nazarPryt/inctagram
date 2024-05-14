@@ -1,4 +1,3 @@
-import {useGetAuthProfileQuery} from '@/entities/Profile/AuthProfile/api/authProfile.api'
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {ViewUserPost} from '@/entities/ViewUserPost'
@@ -21,13 +20,8 @@ type ProfileType = {
 }
 export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {
     const {back} = useRouter()
-    const {data: post, isLoading} = useGetUserPostQuery(postId, {refetchOnMountOrArgChange: true, skip: !postId})
+    const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
 
-    const {data: authProfile} = useGetAuthProfileQuery(user?.userName, {
-        skip: !user?.userName || mode === 'publick',
-    })
-
-    console.log('authProfile: ', authProfile)
     const handleCloseModal = () => {
         back()
     }

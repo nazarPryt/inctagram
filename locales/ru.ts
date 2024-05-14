@@ -258,10 +258,13 @@ export const ru: LocaleType = {
         },
     },
     profile: {
+        follow: 'Подписатся',
         followers: 'Подписчики',
         following: 'Подписки',
         publications: 'Публикации',
+        sendMessage: 'Написать',
         settingsBtn: 'Настройки профиля',
+        unFollow: 'Отписатся',
     },
     search: {
         empty: {p: 'Нет недавних запросов', title: 'Упс! Это место выглядит пустым!'},

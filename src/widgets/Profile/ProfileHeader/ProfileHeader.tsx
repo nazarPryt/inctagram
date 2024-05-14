@@ -2,8 +2,9 @@ import {useState} from 'react'
 
 import {PATH} from '@/_app/AppSettings/PATH'
 import {SetDialoguePartnerIdAC} from '@/_app/Store/slices/messengerSlice'
-import {useGetAuthProfile} from '@/entities/Profile/AuthProfile/hook/useGetAuthProfile'
+import {useGetAuthProfileQuery} from '@/entities/Profile/AuthProfile/api/authProfile.api'
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
+import {useFollowUnFollow} from '@/features/Follow-UnFollow/hook/useFollowUnFollow'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeVariant} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
@@ -19,6 +20,11 @@ type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProf
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const [isFollowersModalOpen, setIsFollowersModalOpen] = useState(false)
+    const {data: authProfile} = useGetAuthProfileQuery(user?.userName, {
+        skip: !user?.userName || mode === 'publick',
+    })
+    const {handleFollowUnFollow} = useFollowUnFollow(authProfile.id)
+
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -30,15 +36,22 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const openFollowersHandler = () => {
         setIsFollowersModalOpen(true)
     }
+
     const handleFollowersModalClose = () => {
         setIsFollowersModalOpen(false)
     }
     const renderSettingsBox: ModeVariant = {
         fellow: (
             <div className={'settingsBox'}>
-                <Button>Follow</Button>
+                {authProfile && authProfile.isFollowing ? (
+                    <Button onClick={handleFollowUnFollow} variant={'outlined'}>
+                        {t.profile.unFollow}
+                    </Button>
+                ) : (
+                    <Button onClick={handleFollowUnFollow}>{t.profile.follow}</Button>
+                )}
                 <Button onClick={sendMessageHandler} variant={'contained'}>
-                    Send Message
+                    {t.profile.sendMessage}
                 </Button>
             </div>
         ),
@@ -64,21 +77,25 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                         <h2>{user.userName}</h2>
                         {renderSettingsBox[mode]}
                     </div>
-                    <div className={'profileStatistics'}>
-                        <div>
-                            <span>2 218</span>
-                            {t.profile.following}
-                        </div>
-                        <button onClick={openFollowersHandler}>
-                            <span>2 358</span>
-                            {t.profile.followers}
-                        </button>
-                        <div>
-                            <span>2 764</span>
-                            {t.profile.publications}
-                        </div>
-                    </div>
-                    <p>{user.aboutMe}</p>
+                    {authProfile && (
+                        <>
+                            <div className={'profileStatistics'}>
+                                <div>
+                                    <span>{authProfile.followingCount}</span>
+                                    {t.profile.following}
+                                </div>
+                                <button onClick={openFollowersHandler}>
+                                    <span>{authProfile.followersCount}</span>
+                                    {t.profile.followers}
+                                </button>
+                                <div>
+                                    <span>{authProfile.publicationsCount}</span>
+                                    {t.profile.publications}
+                                </div>
+                            </div>
+                            <p>{user.aboutMe}</p>
+                        </>
+                    )}
                 </div>
                 <Followers
                     handleFollowersModalClose={handleFollowersModalClose}
