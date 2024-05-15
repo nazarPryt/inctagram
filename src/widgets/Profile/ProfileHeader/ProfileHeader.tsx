@@ -85,6 +85,11 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                 <div className={'profileData'}>
                     <div className={'profileHeader'}>
                         <h2>{user.userName}</h2>
+                        {authProfile && (
+                            <p>
+                                {authProfile.firstName} {authProfile.lastName}
+                            </p>
+                        )}
                         {renderSettingsBox[mode]}
                     </div>
                     {authProfileLoading && <ProfileStatisticsSkeleton />}

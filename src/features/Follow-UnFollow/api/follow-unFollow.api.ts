@@ -2,6 +2,8 @@ import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {RootState} from '@/_app/Store/store'
 import {authProfileApi} from '@/entities/Profile/AuthProfile/api/authProfile.api'
 import {AuthProfileType} from '@/entities/Profile/AuthProfile/helpers/authProfile.schema'
+import {followersApi} from '@/entities/Profile/Followers/api/followers.api'
+import {GetFollowersType} from '@/entities/Profile/Followers/helpers/followers.schema'
 import {followingApi} from '@/entities/Profile/Following/api/following.api'
 import {GetFollowingType} from '@/entities/Profile/Following/helpers/following.schema'
 
@@ -34,11 +36,22 @@ export const followUnFollowAPI = rtkQuery.injectEndpoints({
                     })
                 )
 
+                const patchResult3 = dispatch(
+                    followersApi.util.updateQueryData('getFollowers', userName, (draft: GetFollowersType) => {
+                        const indexToSwitch = draft.items.findIndex(follower => follower.userId === selectedUserId)
+
+                        if (indexToSwitch !== -1) {
+                            draft.items[indexToSwitch].isFollowing = !draft.items[indexToSwitch].isFollowing // switch to opposite
+                        }
+                    })
+                )
+
                 try {
                     await queryFulfilled
                 } catch {
                     patchResult.undo()
                     patchResult2.undo()
+                    patchResult3.undo()
                 }
             },
             query: body => ({

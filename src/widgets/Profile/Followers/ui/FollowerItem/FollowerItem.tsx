@@ -28,12 +28,12 @@ export const FollowerItem = ({follower}: PropsType) => {
                 <Link href={`${PATH.USER_PROFILE}/${follower.userId}`}>{follower.userName}</Link>
             </div>
             <div className={'buttonsGroup'}>
-                {!follower.isFollowedBy ? (
-                    <Button onClick={handleFollowUnFollow}>Follow</Button>
-                ) : (
+                {follower.isFollowing ? (
                     <Button onClick={handleFollowUnFollow} variant={'outlined'}>
                         Un Follow
                     </Button>
+                ) : (
+                    <Button onClick={handleFollowUnFollow}>Follow</Button>
                 )}
 
                 <Button disabled={removingIsLoading} onClick={handleRemoveFollower} variant={'contained'}>
