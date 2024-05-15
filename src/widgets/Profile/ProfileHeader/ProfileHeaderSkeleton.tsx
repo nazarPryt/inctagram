@@ -14,26 +14,6 @@ export const ProfileHeaderSkeleton = () => {
                         <Skeleton height={40} width={100} />
                     </div>
                 </div>
-                <div className={'profileStatistics'}>
-                    <div>
-                        <span>
-                            <Skeleton height={20} width={50} />
-                        </span>
-                        <Skeleton height={20} width={90} />
-                    </div>
-                    <div>
-                        <span>
-                            <Skeleton height={20} width={50} />
-                        </span>
-                        <Skeleton height={20} width={90} />
-                    </div>
-                    <div>
-                        <span>
-                            <Skeleton height={20} width={50} />
-                        </span>
-                        <Skeleton height={20} width={90} />
-                    </div>
-                </div>
                 <p>
                     <Skeleton height={50} />
                 </p>

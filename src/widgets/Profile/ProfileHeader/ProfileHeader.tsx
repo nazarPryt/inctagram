@@ -9,6 +9,8 @@ import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {ComponentMode, ModeVariant} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {Followers} from '@/widgets/Profile/Followers'
+import {Following} from '@/widgets/Profile/Following'
+import {ProfileStatisticsSkeleton} from '@/widgets/Profile/ProfileHeader/ProfileStatisticsSkeleton'
 import {Avatar, Button} from '@nazar-pryt/inctagram-ui-kit'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
@@ -20,7 +22,8 @@ type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProf
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const [isFollowersModalOpen, setIsFollowersModalOpen] = useState(false)
-    const {data: authProfile} = useGetAuthProfileQuery(user?.userName, {
+    const [isFollowingModalOpen, setIsFollowingModalOpen] = useState(false)
+    const {data: authProfile, isLoading: authProfileLoading} = useGetAuthProfileQuery(user?.userName, {
         skip: !user?.userName || mode === 'publick',
     })
     const {handleFollowUnFollow} = useFollowUnFollow(authProfile && authProfile.id)
@@ -39,6 +42,13 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
 
     const handleFollowersModalClose = () => {
         setIsFollowersModalOpen(false)
+    }
+    const openFollowingHandler = () => {
+        setIsFollowingModalOpen(true)
+    }
+
+    const handleFollowingModalClose = () => {
+        setIsFollowingModalOpen(false)
     }
     const renderSettingsBox: ModeVariant = {
         fellow: (
@@ -77,13 +87,14 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                         <h2>{user.userName}</h2>
                         {renderSettingsBox[mode]}
                     </div>
+                    {authProfileLoading && <ProfileStatisticsSkeleton />}
                     {authProfile && (
                         <>
                             <div className={'profileStatistics'}>
-                                <div>
+                                <button onClick={openFollowingHandler}>
                                     <span>{authProfile.followingCount}</span>
                                     {t.profile.following}
-                                </div>
+                                </button>
                                 <button onClick={openFollowersHandler}>
                                     <span>{authProfile.followersCount}</span>
                                     {t.profile.followers}
@@ -100,6 +111,11 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
                 <Followers
                     handleFollowersModalClose={handleFollowersModalClose}
                     isFollowersModalOpen={isFollowersModalOpen}
+                    userName={user.userName}
+                />
+                <Following
+                    handleFollowingModalClose={handleFollowingModalClose}
+                    isFollowingModalOpen={isFollowingModalOpen}
                     userName={user.userName}
                 />
             </ProfileHeaderWrapper>

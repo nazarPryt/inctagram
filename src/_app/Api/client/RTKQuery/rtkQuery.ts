@@ -21,6 +21,7 @@ export const rtkQuery = createApi({
         'PublicProfile',
         'AuthProfile',
         'Followers',
+        'Following',
     ],
 })
 
