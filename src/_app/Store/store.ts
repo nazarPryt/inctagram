@@ -1,6 +1,7 @@
 import {countryApi, rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {appReducer} from '@/_app/Store/slices/appSlice'
 import {messengerReducer} from '@/_app/Store/slices/messengerSlice'
+import {paramsReducer} from '@/_app/Store/slices/paramsSlice'
 import {userReducer} from '@/_app/Store/slices/userSlice'
 import {createPostReducer} from '@/features/Post/CreatePost/model/slice/createPostSlice'
 import {editorPanelReducer} from '@/features/Post/CreatePost/model/slice/editorPanelSlice'
@@ -16,6 +17,7 @@ export const store = configureStore({
         createPost: createPostReducer,
         editorPanel: editorPanelReducer,
         messengerParams: messengerReducer,
+        params: paramsReducer,
         [rtkQuery.reducerPath]: rtkQuery.reducer,
         userAuth: userReducer,
     },

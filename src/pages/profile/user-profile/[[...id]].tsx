@@ -1,5 +1,5 @@
 import {getAuthorizedLayout} from '@/_app/Layouts/authorized'
-import {useGetPublicProfileQuery} from '@/entities/PublicProfile/api/publicProfile.api'
+import {useGetPublicProfileQuery} from '@/entities/Profile/PublicProfile/api/publicProfile.api'
 import {useGetUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 import {useMode} from '@/shared/hooks/useMode'
 import {Profile} from '@/widgets/Profile'

@@ -1,5 +1,5 @@
 import {axiosPublic} from '@/_app/Api/server/axiosPublic'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 
 export const getPublicUserProfile = async (profileId: number) => {
     try {

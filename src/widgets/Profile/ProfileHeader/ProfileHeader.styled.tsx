@@ -36,9 +36,14 @@ export const ProfileHeaderWrapper = styled.div`
         display: flex;
         gap: 70px;
 
+        button,
         div {
+            all: unset;
             display: flex;
             flex-direction: column;
+        }
+        button {
+            cursor: pointer;
         }
     }
     @media (max-width: ${props => props.theme.viewPort[768]}px) {

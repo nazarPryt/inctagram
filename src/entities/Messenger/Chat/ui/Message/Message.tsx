@@ -2,7 +2,7 @@ import {useRef} from 'react'
 
 import {MessageType} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {MessageStatus} from '@/entities/Messenger/Chat/ui/MessageStatus'
-import {useGetPublicProfile} from '@/entities/PublicProfile/hook/useGetPublicProfile'
+import {useGetPublicProfile} from '@/entities/Profile/PublicProfile/hook/useGetPublicProfile'
 import {useDeleteMessage} from '@/features/Messenger/DeleteChatMessage/hook/useDeleteMessage'
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
