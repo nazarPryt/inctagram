@@ -250,10 +250,13 @@ export const en = {
         },
     },
     profile: {
+        follow: 'Follow',
         followers: 'Followers',
         following: 'Following',
         publications: 'Publications',
+        sendMessage: 'Send Message',
         settingsBtn: 'Profile Settings',
+        unFollow: 'UnFollow',
     },
     search: {
         empty: {p: 'No recent requests', title: 'Oops! This place looks empty!'},

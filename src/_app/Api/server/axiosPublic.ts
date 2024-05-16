@@ -1,5 +1,5 @@
 import {appSettings} from '@/_app/AppSettings'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import axios from 'axios'
 

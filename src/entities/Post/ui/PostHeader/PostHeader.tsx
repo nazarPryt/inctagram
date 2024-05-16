@@ -9,7 +9,7 @@ import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/Del
 import {DeletePostIcon} from '@/features/Post/DeletePost/ui/icon/DeletePostIcon'
 import {EmailReportIcon} from '@/features/Post/EmailReport/EmailReportIcon'
 import {useFormatDistance} from '@/shared/hooks/useFormatDistance'
-import {ModeItems, useMode} from '@/shared/hooks/useMode'
+import {ModeVariant, useMode} from '@/shared/hooks/useMode'
 import {useTranslation} from '@/shared/hooks/useTranslation'
 import {writeTextInClipboardAsync} from '@/shared/utils/WriteReadClipboard'
 import {Avatar, DotsHorizontal, PersonRemoveIcon, Popover, PopoverItem} from '@nazar-pryt/inctagram-ui-kit'
@@ -44,7 +44,7 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, user
         void writeTextInClipboardAsync(`${appSettings.env.DOMAIN_URL}/${PATH.USER_PROFILE}/${ownerId}/${postId}`)
         setIsPopoverOpen(false)
     }
-    const renderPopoverItems: ModeItems = {
+    const renderPopoverItems: ModeVariant = {
         fellow: (
             <>
                 <PopoverItem icon={<EmailReportIcon />} name={t.home.options.report} onClick={handleActionOne} />
