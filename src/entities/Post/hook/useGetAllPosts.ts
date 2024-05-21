@@ -1,13 +1,11 @@
-import {useState} from 'react'
-
-import {useGetAllPostsQuery} from '@/entities/Post/api/allPosts.api'
-import {ParamsType} from '@/entities/Post/api/allPosts.types'
+import {useGetAllPostsQuery, useLazyGetMorePostsQuery} from '@/entities/Post/api/allPosts.api'
+import {useAppSelector} from '@/shared/hooks/reduxHooks'
 
 export const useGetAllPosts = () => {
-    const params: ParamsType = {pageSize: 2}
-    const [endCursorPostId, setEndCursorPostId] = useState<null | number>(null)
+    const allPostsParams = useAppSelector(store => store.params.allPosts)
+    const [getMorePosts] = useLazyGetMorePostsQuery()
 
-    const {currentData, data, isLoading} = useGetAllPostsQuery({endCursorPostId, params})
+    const {currentData, data, isLoading} = useGetAllPostsQuery(allPostsParams)
 
     if (data && currentData) {
         const isHavePosts = data && data.items.length
@@ -16,7 +14,7 @@ export const useGetAllPosts = () => {
         const fetchMoreData = () => {
             const lastPostId = isHavePosts ? data.items[data.items.length - 1].id : null
 
-            setEndCursorPostId(lastPostId)
+            getMorePosts({...allPostsParams, endCursorPostId: lastPostId})
         }
 
         return {data, fetchMoreData, hasMore, isHavePosts, isLoading}
