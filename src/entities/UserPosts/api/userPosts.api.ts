@@ -1,10 +1,11 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
+import {UserPostParamsType} from '@/_app/Store/slicesTypes/paramsSliceType'
 
-import {PostsType, userPostApiType} from './userPosts.types'
+import {PostsType} from './userPosts.types'
 
 export const userPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getUserPosts: build.query<PostsType, userPostApiType>({
+        getUserPosts: build.query<PostsType, UserPostParamsType>({
             providesTags: ['UserPosts'],
             query: ({endCursorPostId, userId}) => ({
                 method: 'GET',
@@ -12,6 +13,7 @@ export const userPostApi = rtkQuery.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useGetUserPostsQuery} = userPostApi

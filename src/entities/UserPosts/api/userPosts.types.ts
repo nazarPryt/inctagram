@@ -27,4 +27,3 @@ export type PostsTypeItems = {
     updatedAt: string
     userName: string
 }
-export type userPostApiType = {endCursorPostId: null | number; userId: number}

@@ -22,7 +22,7 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
     const {back} = useRouter()
     const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
 
-    const handleCloseModal = () => {
+    const handleCloseViewUserPost = () => {
         back()
     }
 
@@ -32,7 +32,7 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
         <>
             {isLoading && <Loader fullScreen />}
 
-            <Modal onClose={handleCloseModal} open={showPostModal} showTitle={false} size={'full'}>
+            <Modal onClose={handleCloseViewUserPost} open={showPostModal} showTitle={false} size={'full'}>
                 {post && <ViewUserPost post={post} />}
             </Modal>
 

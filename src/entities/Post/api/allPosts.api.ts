@@ -1,13 +1,12 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
-import {AllPostsParamsType} from '@/_app/Store/slices/paramsSlice'
+import {AllPostsParamsType} from '@/_app/Store/slicesTypes/paramsSliceType'
 import {RootState} from '@/_app/Store/store'
-import {ChatParamsTypes} from '@/entities/Messenger/Chat/api/chat.types'
 
 import {AllPostsType} from './allPosts.types'
 
 // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
 
-const allPostsApi = rtkQuery.injectEndpoints({
+export const allPostsApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
         getAllPosts: build.query<AllPostsType, AllPostsParamsType>({
             providesTags: ['AllPosts'],
