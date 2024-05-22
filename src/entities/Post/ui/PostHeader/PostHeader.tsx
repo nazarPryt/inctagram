@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
-import {AllPostsTypeItemsOwner} from '@/entities/Post/api/allPosts.types'
+import {AllPostsItemOwnerType} from '@/entities/Post/helpers/AllPosts.schema'
 import {CopyLinkIcon} from '@/features/Post/CopyLink/CopyLinkIcon'
 import {useDeleteUserPost} from '@/features/Post/DeletePost/hook/useDeleteUserPost'
 import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal/DeletePostModal'
@@ -18,9 +18,9 @@ import Link from 'next/link'
 import {PostHeaderWrapper} from './PostHeader.styled'
 
 type PostHeaderType = {
-    avatarOwner: string
+    avatarOwner?: string
     createdAt: string
-    owner: AllPostsTypeItemsOwner
+    owner: AllPostsItemOwnerType
     ownerId: number
     postId: number
     userName: string
@@ -70,7 +70,7 @@ export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, user
             />
             <PostHeaderWrapper>
                 <div className={'PostHeader'}>
-                    <Avatar alt={`${userName} avatar}`} size={40} src={avatarOwner} userName={userName} />
+                    <Avatar alt={`${userName} avatar}`} size={40} src={avatarOwner ?? ''} userName={userName} />
                     <Link className={'link'} href={`${PATH.USER_PROFILE}/${ownerId}`}>
                         {userName}
                     </Link>

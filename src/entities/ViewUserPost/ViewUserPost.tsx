@@ -24,7 +24,7 @@ export const ViewUserPost = ({post}: PropsType) => {
         <ViewUserPostWrapper>
             <ViewUserPostSlider className={'left'} images={post.images} />
             {edit ? (
-                <EditPost data={post} edit={edit} setEdit={setEdit} />
+                <EditPost edit={edit} post={post} setEdit={setEdit} />
             ) : (
                 <div className={'right'}>
                     <ViewUserPostHeader edit={edit} post={post} setEdit={setEdit} />

@@ -1,7 +1,6 @@
 import {PostWrapper} from './Post.styled'
-import {AllPostsTypeItems} from './api/allPosts.types'
+import {AllPostsItemType} from './helpers/AllPosts.schema'
 import {PostCommentForm} from './ui/PostCommentForm'
-import {PostComments} from './ui/PostComments'
 import {PostDescription} from './ui/PostDescription'
 import {PostFeatures} from './ui/PostFeatures'
 import {PostHeader} from './ui/PostHeader'
@@ -9,7 +8,7 @@ import {PostImage} from './ui/PostImage'
 import {PostLikes} from './ui/PostLikes'
 
 type PostType = {
-    post: AllPostsTypeItems
+    post: AllPostsItemType
 }
 
 export const Post = ({post}: PostType) => {
@@ -25,12 +24,7 @@ export const Post = ({post}: PostType) => {
             />
             <PostImage images={post.images} />
             <PostFeatures />
-            <PostDescription
-                avatarOwner={post.avatarOwner}
-                description={post.description}
-                ownerId={post.ownerId}
-                userName={post.userName}
-            />
+            <PostDescription description={post.description} ownerId={post.ownerId} userName={post.userName} />
             {/*<PostComments />*/}
             <PostLikes />
             <PostCommentForm />

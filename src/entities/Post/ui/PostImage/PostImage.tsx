@@ -1,13 +1,11 @@
-import {PostsTypeItemsImages} from '@/entities/UserPosts/api/userPosts.types'
+import {ImageType} from '@/shared/schemas/Image.schema'
 import Image from 'next/image'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
 import {Swiper, SwiperSlide} from 'swiper/react'
 
 import {PostImageWrapper} from './PostImage.styled'
 
-export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
-    const photosToShow = images.filter(image => image.height === 1440)
-
+export const PostImage = ({images}: {images: ImageType[]}) => {
     return (
         <PostImageWrapper>
             <Swiper
@@ -26,7 +24,7 @@ export const PostImage = ({images}: {images: PostsTypeItemsImages[]}) => {
                 spaceBetween={0}
                 width={500}
             >
-                {photosToShow.map(photo => {
+                {images.map(photo => {
                     return (
                         <SwiperSlide key={photo.url}>
                             <Image alt={'Post-Image'} height={photo.height} src={photo.url} width={photo.width} />

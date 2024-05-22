@@ -17,11 +17,11 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>
 type UseEditPostType = {
-    data: PostByIdType
+    post: PostByIdType
     setEdit: Dispatch<SetStateAction<boolean>>
 }
 
-export const useEditPost = ({data: post, setEdit}: UseEditPostType) => {
+export const useEditPost = ({post, setEdit}: UseEditPostType) => {
     const dispatch = useAppDispatch()
     const [updateUserPost, {isLoading}] = useEditUserPostMutation()
     const {

@@ -6,19 +6,16 @@ export const useGetAllPosts = () => {
     const [getMorePosts] = useLazyGetMorePostsQuery()
 
     const {currentData, data, isLoading} = useGetAllPostsQuery(allPostsParams)
+    const posts = data ? data.items ?? [] : []
+    const totalCount = currentData ? currentData.totalCount : 0
+    const isHavePosts = data && data.items.length
+    const hasMore = totalCount > posts.length
 
-    if (data && currentData) {
-        const isHavePosts = data && data.items.length
-        const hasMore = data.totalCount > currentData.items.length
+    const fetchMoreData = () => {
+        const lastPostId = isHavePosts ? data.items[data.items.length - 1].id : null
 
-        const fetchMoreData = () => {
-            const lastPostId = isHavePosts ? data.items[data.items.length - 1].id : null
-
-            getMorePosts({...allPostsParams, endCursorPostId: lastPostId})
-        }
-
-        return {data, fetchMoreData, hasMore, isHavePosts, isLoading}
-    } else {
-        return {data, fetchMoreData: () => {}, hasMore: false, isHavePosts: false, isLoading}
+        getMorePosts({...allPostsParams, endCursorPostId: lastPostId})
     }
+
+    return {fetchMoreData, hasMore, isHavePosts, isLoading, posts}
 }

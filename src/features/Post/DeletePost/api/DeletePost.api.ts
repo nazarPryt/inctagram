@@ -1,7 +1,7 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {RootState} from '@/_app/Store/store'
 import {allPostsApi} from '@/entities/Post/api/allPosts.api'
-import {AllPostsType} from '@/entities/Post/api/allPosts.types'
+import {AllPostsType} from '@/entities/Post/helpers/AllPosts.schema'
 import {userPostApi} from '@/entities/UserPosts/api/userPosts.api'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 

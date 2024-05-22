@@ -1,20 +1,18 @@
 import {serverPublicAPI} from '@/_app/Api/server/axiosPublic'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
-import {AllPostsTypeItems, ParamsType} from '@/entities/Post/api/allPosts.types'
 import {getAllPublicPosts} from '@/entities/Post/api/allPostsServer.api'
+import {AllPostsItemType} from '@/entities/Post/helpers/AllPosts.schema'
 import {PublicPostsList} from '@/widgets/PublicPostsList'
 import {RegisteredUsers} from '@/widgets/RegisteredUsers'
 import {GetStaticProps, InferGetStaticPropsType} from 'next'
 
 type PropsType = {
-    posts: AllPostsTypeItems[]
+    posts: AllPostsItemType[]
     totalCount: number
 }
 export const getStaticProps = (async context => {
-    const params: ParamsType = {pageSize: 4, sortDirection: 'desc'}
-
     const totalCount = await serverPublicAPI.getAllUsersCount()
-    const res = await getAllPublicPosts(params)
+    const res = await getAllPublicPosts()
     const posts = res!.data.items
 
     if (totalCount && posts) {

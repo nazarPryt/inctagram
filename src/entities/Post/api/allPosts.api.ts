@@ -1,8 +1,7 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {AllPostsParamsType} from '@/_app/Store/slicesTypes/paramsSliceType'
 import {RootState} from '@/_app/Store/store'
-
-import {AllPostsType} from './allPosts.types'
+import {AllPostsSchema, AllPostsType} from '@/entities/Post/helpers/AllPosts.schema'
 
 // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
 
@@ -15,6 +14,11 @@ export const allPostsApi = rtkQuery.injectEndpoints({
                 params: {pageSize},
                 url: `/public-posts/all/${endCursorPostId}`,
             }),
+            transformResponse: response => {
+                console.log('response', response)
+
+                return AllPostsSchema.parse(response)
+            },
         }),
         getMorePosts: build.query<AllPostsType, AllPostsParamsType>({
             async onQueryStarted(arg, {dispatch, getState, queryFulfilled}) {
@@ -40,6 +44,9 @@ export const allPostsApi = rtkQuery.injectEndpoints({
                 params: {pageSize},
                 url: `/public-posts/all/${endCursorPostId}`,
             }),
+            transformResponse: response => {
+                return AllPostsSchema.parse(response)
+            },
         }),
     }),
     overrideExisting: true,
