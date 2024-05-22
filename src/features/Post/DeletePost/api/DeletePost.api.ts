@@ -12,24 +12,26 @@ export const deleteUserPostApi = rtkQuery.injectEndpoints({
             async onQueryStarted(postIdToDelete, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
                 const allPostsParams = state.params.allPosts
-                const userPostsParams = state.params.userPosts
+
+                const userId = state.userAuth.userId
+                const endCursorPostId = null
 
                 const patchResult = dispatch(
                     allPostsApi.util.updateQueryData('getAllPosts', allPostsParams, (draft: AllPostsType) => {
                         draft.items = draft.items.filter(post => post.id !== postIdToDelete)
                     })
                 )
-                // const patchResult2 = dispatch(
-                //     userPostApi.util.updateQueryData('getUserPosts', userPostsParams, (draft: PostsType) => {
-                //         draft.items = draft.items.filter(post => post.id !== postIdToDelete)
-                //     })
-                // )
+                const patchResult2 = dispatch(
+                    userPostApi.util.updateQueryData('getUserPosts', {endCursorPostId, userId}, (draft: PostsType) => {
+                        draft.items = draft.items.filter(post => post.id !== postIdToDelete)
+                    })
+                )
 
                 try {
                     await queryFulfilled
                 } catch {
                     patchResult.undo()
-                    // patchResult2.undo()
+                    patchResult2.undo()
                 }
             },
             query: postId => ({

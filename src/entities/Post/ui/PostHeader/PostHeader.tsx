@@ -28,7 +28,7 @@ type PostHeaderType = {
 
 export const PostHeader = ({avatarOwner, createdAt, owner, ownerId, postId, userName}: PostHeaderType) => {
     const timeAgo = useFormatDistance(createdAt)
-    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(postId)
+    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost({postId})
     const {mode} = useMode(ownerId)
     const {t} = useTranslation()
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)

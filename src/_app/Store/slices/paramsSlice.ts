@@ -1,4 +1,4 @@
-import {AllPostsParamsType, UserPostParamsType} from '@/_app/Store/slicesTypes/paramsSliceType'
+import {AllPostsParamsType, GetUserPostsParamsType} from '@/_app/Store/slicesTypes/paramsSliceType'
 import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
     userPosts: {
         endCursorPostId: null,
         userId: null,
-    } as UserPostParamsType,
+    } as GetUserPostsParamsType,
 }
 
 export const paramsSlice = createSlice({

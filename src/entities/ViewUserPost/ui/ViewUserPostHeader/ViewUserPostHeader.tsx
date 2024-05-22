@@ -20,7 +20,10 @@ type PropsType = {
 export const ViewUserPostHeader = ({edit, post, setEdit}: PropsType) => {
     const {mode} = useMode(post.ownerId)
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(post.id)
+    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost({
+        isModal: true,
+        postId: post.id,
+    })
     const handleEditPost = () => {
         setEdit(true)
         setIsPopoverOpen(false)

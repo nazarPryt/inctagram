@@ -4,7 +4,7 @@ export const EmptyFollowingList = () => {
     return (
         <EmptyFollowingListStyled>
             <h3>Empty List!</h3>
-            <p>User have no followers at this moments</p>
+            <p>No one is following this user</p>
         </EmptyFollowingListStyled>
     )
 }
