@@ -4,4 +4,4 @@ export type AllPostsParamsType = {
     sortBy?: string
     sortDirection?: 'asc' | 'desc'
 }
-export type GetUserPostsParamsType = {endCursorPostId: null | number; userId: null | number}
+export type GetUserPostsParamsType = {endCursorPostId: null | number; userId: number | undefined}

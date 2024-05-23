@@ -38,7 +38,7 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
 
             <ProfileWrapper>
                 <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
-                <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} />
+                <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} userId={user?.id} />
             </ProfileWrapper>
         </>
     )
