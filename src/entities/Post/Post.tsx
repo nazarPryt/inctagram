@@ -24,7 +24,12 @@ export const Post = ({post}: PostType) => {
             />
             <PostImage images={post.images} />
             <PostFeatures />
-            <PostDescription description={post.description} ownerId={post.ownerId} userName={post.userName} />
+            <PostDescription
+                avatarOwner={post.avatarOwner}
+                description={post.description}
+                ownerId={post.ownerId}
+                userName={post.userName}
+            />
             {/*<PostComments />*/}
             <PostLikes />
             <PostCommentForm />

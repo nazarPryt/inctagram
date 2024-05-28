@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import {Post} from '@/entities/Post/Post'
 import {UserPost} from '@/entities/UserPosts/UserPost'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {UserPostItemType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {useGetUserPosts} from '@/entities/UserPosts/hooks/useGetUserPosts'
 import {NoPosts} from '@/shared/ui/NoPosts'
 import {HomePostSkeleton} from '@/widgets/AllPostsList/ui/AllPostsListSkeleton'
@@ -12,20 +13,31 @@ import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
 import {ProfilePostsListSkeleton} from './ProfilePostsListSkeleton'
 
 type PropsType = {
-    isLoadingPosts?: boolean
-    posts: Pick<PostsType, 'items'> | undefined
+    serverSidePosts?: UserPostItemType[]
     userId: number
 }
 
-export const ProfilePostsList = ({isLoadingPosts, userId}: PropsType) => {
-    const {fetchMoreData, hasMore, isLoading, posts} = useGetUserPosts({userId})
+export const ProfilePostsList = ({serverSidePosts, userId}: PropsType) => {
+    const {fetchMoreData, hasMore, isLoading, posts} = useGetUserPosts(userId)
 
     if (isLoading) {
         return <ProfilePostsListSkeleton />
     }
 
-    if (!posts.length) {
+    if (!posts.length && !serverSidePosts?.length) {
         return <NoPosts />
+    }
+    const renderPosts = () => {
+        if (serverSidePosts && serverSidePosts.length) {
+            return serverSidePosts.map(post => {
+                return <UserPost key={post.id} post={post} />
+            })
+        }
+        if (posts.length) {
+            return posts.map(post => {
+                return <UserPost key={post.id} post={post} />
+            })
+        }
     }
 
     return (
@@ -38,9 +50,7 @@ export const ProfilePostsList = ({isLoadingPosts, userId}: PropsType) => {
                     loader={<ProfilePostsListSkeleton />}
                     next={fetchMoreData}
                 >
-                    {posts.map(post => {
-                        return <UserPost key={post.id} post={post} />
-                    })}
+                    {renderPosts()}
                 </InfiniteScroll>
             </AnimatePresence>
         </ProfilePostsListWrapper>

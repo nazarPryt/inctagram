@@ -13,7 +13,7 @@ const initialState = {
     },
     userPosts: {
         endCursorPostId: null,
-        userId: null,
+        userId: undefined,
     } as GetUserPostsParamsType,
 }
 

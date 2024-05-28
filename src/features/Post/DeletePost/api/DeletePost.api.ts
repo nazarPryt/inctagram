@@ -4,6 +4,7 @@ import {allPostsApi} from '@/entities/Post/api/allPosts.api'
 import {AllPostsType} from '@/entities/Post/helpers/AllPosts.schema'
 import {userPostApi} from '@/entities/UserPosts/api/userPosts.api'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {UserPostsType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 
 export const deleteUserPostApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
@@ -12,6 +13,7 @@ export const deleteUserPostApi = rtkQuery.injectEndpoints({
             async onQueryStarted(postIdToDelete, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
                 const allPostsParams = state.params.allPosts
+                const userPostsParams = state.params.userPosts
 
                 const userId = state.userAuth.userId
                 const endCursorPostId = null
@@ -22,7 +24,7 @@ export const deleteUserPostApi = rtkQuery.injectEndpoints({
                     })
                 )
                 const patchResult2 = dispatch(
-                    userPostApi.util.updateQueryData('getUserPosts', {endCursorPostId, userId}, (draft: PostsType) => {
+                    userPostApi.util.updateQueryData('getUserPosts', userId, (draft: UserPostsType) => {
                         draft.items = draft.items.filter(post => post.id !== postIdToDelete)
                     })
                 )

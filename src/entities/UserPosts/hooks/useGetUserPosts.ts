@@ -1,6 +1,6 @@
 import {useGetUserPostsQuery, useLazyGetMoreUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 
-export const useGetUserPosts = ({userId}: {userId: number}) => {
+export const useGetUserPosts = (userId: number) => {
     const {currentData, data, isLoading} = useGetUserPostsQuery(userId, {
         skip: !userId,
     })
@@ -14,7 +14,9 @@ export const useGetUserPosts = ({userId}: {userId: number}) => {
     const fetchMoreData = () => {
         const endCursorPostId = isHavePosts ? data.items[data.items.length - 1].id : null
 
-        getMorePosts({endCursorPostId, userId})
+        if (endCursorPostId && userId) {
+            getMorePosts({endCursorPostId, userId})
+        }
     }
 
     return {fetchMoreData, hasMore, isLoading, posts}

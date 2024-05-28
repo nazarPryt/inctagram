@@ -12,18 +12,8 @@ export const MyProfile = () => {
         postId = +query.postId[0]
     }
     const userId = useAppSelector(state => state.userAuth.userId)
-    const endCursorPostId = null
-    const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {skip: !userId})
-    const {data: posts, isLoading: isLoadingPosts} = useGetUserPostsQuery({endCursorPostId, userId}, {skip: !userId})
 
-    return (
-        <Profile
-            isLoadingPosts={isLoadingPosts}
-            isLoadingUser={isLoadingUser}
-            mode={'myProfile'}
-            postId={postId}
-            user={user}
-            userPosts={posts}
-        />
-    )
+    const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {skip: !userId})
+
+    return <Profile isLoadingUser={isLoadingUser} mode={'myProfile'} postId={postId} user={user} />
 }

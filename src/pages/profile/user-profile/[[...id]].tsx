@@ -15,25 +15,24 @@ export default function UserProfilePage() {
     if (query.id?.length) {
         postId = +query.id[1]
     }
-    const endCursorPostId = null
     const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {
-        refetchOnMountOrArgChange: true,
         skip: !userId,
     })
-    const {data: userPosts, isLoading: isLoadingPosts} = useGetUserPostsQuery(
-        {endCursorPostId, userId},
-        {refetchOnMountOrArgChange: true, skip: !userId}
-    )
+    const {data: userPosts, isLoading: isLoadingPosts} = useGetUserPostsQuery(userId, {skip: !userId})
 
-    return (
-        <Profile
-            isLoadingPosts={isLoadingPosts}
-            isLoadingUser={isLoadingUser}
-            mode={mode}
-            postId={postId}
-            user={user}
-            userPosts={userPosts}
-        />
-    )
+    if (user) {
+        return (
+            <Profile
+                isLoadingPosts={isLoadingPosts}
+                isLoadingUser={isLoadingUser}
+                mode={mode}
+                postId={postId}
+                user={user}
+                userPosts={userPosts}
+            />
+        )
+    }
+
+    return null
 }
 UserProfilePage.getLayout = getAuthorizedLayout

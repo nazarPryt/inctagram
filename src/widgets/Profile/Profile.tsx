@@ -1,5 +1,6 @@
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {UserPostItemType, UserPostsType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
 import {ComponentMode} from '@/shared/hooks/useMode'
@@ -11,14 +12,13 @@ import {ProfileHeader} from './ProfileHeader'
 import {ProfilePostsList} from './ProfilePostsList'
 
 type ProfileType = {
-    isLoadingPosts?: boolean
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
-    user: PublicProfileType | undefined
-    userPosts: Pick<PostsType, 'items'> | undefined
+    serverSidePosts?: UserPostItemType[]
+    user: PublicProfileType
 }
-export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {
+export const Profile = ({isLoadingUser, mode, postId, serverSidePosts, user}: ProfileType) => {
     const {back} = useRouter()
     const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
 
@@ -38,7 +38,7 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
 
             <ProfileWrapper>
                 <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
-                <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} userId={user?.id} />
+                <ProfilePostsList serverSidePosts={serverSidePosts} userId={user.id} />
             </ProfileWrapper>
         </>
     )
