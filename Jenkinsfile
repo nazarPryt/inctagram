@@ -4,12 +4,12 @@ pipeline {
     agent any
     environment {
         ENV_TYPE = "production"
-        PORT = 3181
-        NAMESPACE = "instareplica-fun"
+        PORT = 3545
+        NAMESPACE = "shotshare-nazarit-com"
         REGISTRY_HOSTNAME = "nazarpryt"
         REGISTRY = "registry.hub.docker.com"
-        PROJECT = "inctagram-main"
-        DEPLOYMENT_NAME = "inctagram-main-deployment"
+        PROJECT = "shotshare"
+        DEPLOYMENT_NAME = "shotshare-deployment"
         IMAGE_NAME = "${env.BUILD_ID}_${env.ENV_TYPE}_${env.GIT_COMMIT}"
         DOCKER_BUILD_NAME = "${env.REGISTRY_HOSTNAME}/${env.PROJECT}:${env.IMAGE_NAME}"
     }
@@ -33,7 +33,7 @@ pipeline {
              steps {
                  echo "Push image started..."
                      script {
-                          docker.withRegistry("https://${env.REGISTRY}", 'instareplica-fun') {
+                          docker.withRegistry("https://${env.REGISTRY}", 'shotshare-nazarit-com') {
                             app.push("${env.IMAGE_NAME}")
                         }
                      }
