@@ -12,11 +12,13 @@ import {ProfileHeader} from './ProfileHeader'
 import {ProfilePostsList} from './ProfilePostsList'
 
 type ProfileType = {
+    isLoadingPosts?: boolean
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
     serverSidePosts?: UserPostItemType[]
     user: PublicProfileType
+    userPosts?: any
 }
 export const Profile = ({isLoadingUser, mode, postId, serverSidePosts, user}: ProfileType) => {
     const {back} = useRouter()

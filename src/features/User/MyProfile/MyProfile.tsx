@@ -15,5 +15,5 @@ export const MyProfile = () => {
 
     const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {skip: !userId})
 
-    return <Profile isLoadingUser={isLoadingUser} mode={'myProfile'} postId={postId} user={user} />
+    return <Profile isLoadingUser={isLoadingUser} mode={'myProfile'} postId={postId} user={user!} />
 }
