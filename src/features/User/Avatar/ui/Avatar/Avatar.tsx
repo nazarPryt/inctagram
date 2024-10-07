@@ -24,7 +24,7 @@ export const Avatar = ({avatar}: {avatar: string | undefined}) => {
             <Button onClick={handleModalOpen} type={'button'} variant={'outlined'}>
                 {avatar ? t.generalInfo.changeProfilePhoto : t.generalInfo.addProfilePhoto}
             </Button>
-            <ProfilePhotoModal handleClose={handleModalClose} isOpen={isModalOpen} title={'Add a Profile Photo'} />
+            <ProfilePhotoModal onClose={handleModalClose} open={isModalOpen} title={'Add a Profile Photo'} />
         </AvatarFormWrapper>
     )
 }

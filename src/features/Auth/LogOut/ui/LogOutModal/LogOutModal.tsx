@@ -2,8 +2,7 @@ import {useLogOut} from '@/features/Auth/LogOut/hook/useLogOut'
 import {LogOutModalWrapper} from '@/features/Auth/LogOut/ui/LogOutModal/LogOutModal.styled'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Modal} from '@/shared/ui/Modal/Modal'
-import {Button, LogOutIcon, NavButton} from '@nazar-pryt/inctagram-ui-kit'
+import {Button, LogOutIcon, Modal, NavButton} from '@nazar-pryt/inctagram-ui-kit'
 
 export const LogOutModal = () => {
     const userEmail = useAppSelector(state => state.userAuth.email)
@@ -14,7 +13,7 @@ export const LogOutModal = () => {
         <>
             <NavButton icon={<LogOutIcon />} onClick={handleModalOpen} title={t.aside.logout} />
 
-            <Modal handleClose={handleCloseModal} isOpen={isOpen} title={t.generalInfo.logoutModal.title}>
+            <Modal onClose={handleCloseModal} open={isOpen} title={t.generalInfo.logoutModal.title}>
                 <LogOutModalWrapper>
                     <p>
                         {t.generalInfo.logoutModal.description}

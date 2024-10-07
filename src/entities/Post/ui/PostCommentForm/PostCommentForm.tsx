@@ -3,8 +3,7 @@ import {Controller} from 'react-hook-form'
 
 import {useCommentPost} from '@/features/Post/CommentPost/hook/UseCommentPost'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Modal} from '@/shared/ui/Modal/Modal'
-import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
+import {Button, Modal, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 import {PostCommentFormWrapper} from './PostCommentForm.styled'
 
@@ -35,7 +34,7 @@ export const PostCommentForm = () => {
                 />
                 <Button variant={'outlined'}>{t.home.publish}</Button>
             </form>
-            <Modal handleClose={handleCloseModal} isOpen={isModalOpen} title={'modal'}>
+            <Modal onClose={handleCloseModal} open={isModalOpen} title={'modal'}>
                 <div>PostComments content</div>
             </Modal>
         </PostCommentFormWrapper>

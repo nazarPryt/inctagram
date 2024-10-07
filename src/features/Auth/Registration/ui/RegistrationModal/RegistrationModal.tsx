@@ -1,6 +1,5 @@
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Modal} from '@/shared/ui/Modal/Modal'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import {Button, Modal} from '@nazar-pryt/inctagram-ui-kit'
 
 import {RegistrationModalWrapper} from './RegistrationModal.styled'
 
@@ -14,7 +13,7 @@ export const RegistrationModal = ({email, handleModalClose, isOpen}: PropsType) 
     const {t} = useTranslation()
 
     return (
-        <Modal handleClose={handleModalClose} isOpen={isOpen} title={t.auth.modal.title}>
+        <Modal onClose={handleModalClose} open={isOpen} title={t.auth.modal.title}>
             <RegistrationModalWrapper>
                 <div>
                     {t.auth.modal.description}
