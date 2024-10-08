@@ -29,7 +29,8 @@ export const useUploadUserAvatar = (props: ModalProps) => {
                 avatar(formData)
                     .unwrap()
                     .then(() => {
-                        // props.onClose()
+                        // @ts-ignore
+                        props.onClose()
                         dispatch(
                             SetAppNotificationAC({
                                 notifications: {message: 'Your Avatar was successfully uploaded', type: 'success'},

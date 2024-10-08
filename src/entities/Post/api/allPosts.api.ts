@@ -17,7 +17,7 @@ export const allPostsApi = rtkQuery.injectEndpoints({
             transformResponse: response => {
                 console.log('response', response)
 
-                return AllPostsSchema.parse(response)
+                return AllPostsSchema.parseAsync(response)
             },
         }),
         getMorePosts: build.query<AllPostsType, AllPostsParamsType>({

@@ -20,19 +20,19 @@ export default function UserProfilePage() {
     })
     const {data: userPosts, isLoading: isLoadingPosts} = useGetUserPostsQuery(userId, {skip: !userId})
 
-    if (user) {
-        return (
-            <Profile
-                isLoadingPosts={isLoadingPosts}
-                isLoadingUser={isLoadingUser}
-                mode={mode}
-                postId={postId}
-                user={user}
-                userPosts={userPosts}
-            />
-        )
+    if (!user) {
+        return null
     }
 
-    return null
+    return (
+        <Profile
+            isLoadingPosts={isLoadingPosts}
+            isLoadingUser={isLoadingUser}
+            mode={mode}
+            postId={postId}
+            user={user}
+            userPosts={userPosts}
+        />
+    )
 }
 UserProfilePage.getLayout = getAuthorizedLayout

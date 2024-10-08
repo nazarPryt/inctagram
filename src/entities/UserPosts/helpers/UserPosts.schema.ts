@@ -15,6 +15,7 @@ export const UserPostItemSchema = z
         description: z.string(),
         id: z.number(),
         images: z.array(ImageSchema),
+        isLiked: z.boolean(),
         likesCount: z.number(),
         location: z.string().nullable(),
         owner: UserPostOwnerSchema,

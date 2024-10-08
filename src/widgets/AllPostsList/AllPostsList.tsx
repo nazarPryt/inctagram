@@ -16,30 +16,30 @@ export const AllPostsList = () => {
         return <AllPostsListSkeleton />
     }
 
-    if (isHavePosts) {
-        return (
-            <AllPostsListWrapper>
-                <AnimatePresence>
-                    <InfiniteScroll
-                        dataLength={posts.length}
-                        endMessage={
-                            <p style={{textAlign: 'center'}}>
-                                <b>Yay! You have seen it all</b>
-                            </p>
-                        }
-                        hasMore={hasMore}
-                        loader={<HomePostSkeleton />}
-                        next={fetchMoreData}
-                    >
-                        {posts.map((post, index) => (
-                            <Post key={index} post={post} />
-                        ))}
-                    </InfiniteScroll>
-                </AnimatePresence>
-                <ScrollToTop />
-            </AllPostsListWrapper>
-        )
+    if (!isHavePosts) {
+        return <NoPosts />
     }
 
-    return <NoPosts />
+    return (
+        <AllPostsListWrapper>
+            <AnimatePresence>
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    endMessage={
+                        <p style={{textAlign: 'center'}}>
+                            <b>Yay! You have seen it all</b>
+                        </p>
+                    }
+                    hasMore={hasMore}
+                    loader={<HomePostSkeleton />}
+                    next={fetchMoreData}
+                >
+                    {posts.map((post, index) => (
+                        <Post key={index} post={post} />
+                    ))}
+                </InfiniteScroll>
+            </AnimatePresence>
+            <ScrollToTop />
+        </AllPostsListWrapper>
+    )
 }

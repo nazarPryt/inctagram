@@ -2,6 +2,7 @@ import {useGetPublicProfileQuery} from '@/entities/Profile/PublicProfile/api/pub
 import {useGetUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {Profile} from '@/widgets/Profile'
+import {Loader} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
 
 export const MyProfile = () => {
@@ -15,5 +16,9 @@ export const MyProfile = () => {
 
     const {data: user, isLoading: isLoadingUser} = useGetPublicProfileQuery(userId, {skip: !userId})
 
-    return <Profile isLoadingUser={isLoadingUser} mode={'myProfile'} postId={postId} user={user!} />
+    if (!user) {
+        return <Loader fullScreen />
+    }
+
+    return <Profile isLoadingUser={isLoadingUser} mode={'myProfile'} postId={postId} user={user} />
 }

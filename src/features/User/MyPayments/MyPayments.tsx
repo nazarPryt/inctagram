@@ -1,8 +1,8 @@
+import {IsEmpty} from '@/shared/ui/IsEmpty'
 import {TableSkeleton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {MyPaymentsStyled} from './MyPayments.styled'
 import {useMyPaymentsQuery} from './api'
-import {IsEmpty} from './ui/IsEmpty'
 import {MyPaymentsTable} from './ui/MyPaymentsTable'
 
 export const MyPayments = () => {
@@ -11,13 +11,13 @@ export const MyPayments = () => {
     if (isLoading) {
         return <TableSkeleton columns={5} rows={10} />
     }
-    if (payments && payments.length !== 0) {
-        return (
-            <MyPaymentsStyled>
-                <MyPaymentsTable payments={payments} />
-            </MyPaymentsStyled>
-        )
+    if (!payments) {
+        return <IsEmpty text={'You do not have any payment yet'} />
     }
 
-    return <IsEmpty />
+    return (
+        <MyPaymentsStyled>
+            <MyPaymentsTable payments={payments} />
+        </MyPaymentsStyled>
+    )
 }
