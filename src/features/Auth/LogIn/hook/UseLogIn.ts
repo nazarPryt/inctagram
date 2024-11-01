@@ -1,4 +1,3 @@
-import cookie from 'react-cookies'
 import {useForm} from 'react-hook-form'
 
 import {appSettings} from '@/_app/AppSettings'

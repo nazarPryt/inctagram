@@ -1,13 +1,13 @@
 import {useForm} from 'react-hook-form'
 
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {z} from 'zod'
 
-const schema = yup.object({
-    comment: yup.string().required('Comment cant be empty').max(100, 'Comment may have max 100 letters'),
+const schema = z.object({
+    comment: z.string().min(1, 'Comment cant be empty').max(100, 'Comment may have max 100 letters'),
 })
 
-type FormData = yup.InferType<typeof schema>
+type FormData = z.infer<typeof schema>
 
 export const useCommentPost = () => {
     const {
@@ -17,7 +17,7 @@ export const useCommentPost = () => {
         ...rest
     } = useForm<FormData>({
         mode: 'all',
-        resolver: yupResolver(schema),
+        resolver: zodResolver(schema),
     })
 
     const onSubmit = (data: FormData) => {

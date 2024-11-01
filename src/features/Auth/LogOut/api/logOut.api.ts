@@ -1,7 +1,6 @@
-import cookie from 'react-cookies'
-
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {appSettings} from '@/_app/AppSettings'
+import {deleteCookie} from 'cookies-next'
 
 export const logOutAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
@@ -10,8 +9,8 @@ export const logOutAPI = rtkQuery.injectEndpoints({
                 try {
                     await queryFulfilled
                     dispatch(rtkQuery.util?.resetApiState())
-                    cookie.remove(appSettings.constants.accessToken)
-                    cookie.remove(appSettings.constants.refreshToken)
+                    deleteCookie(appSettings.constants.accessToken)
+                    deleteCookie(appSettings.constants.refreshToken)
                 } catch (e) {
                     console.log(e)
                 }

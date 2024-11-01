@@ -5,17 +5,17 @@ import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {PostByIdType} from '@/entities/ViewUserPost/api/getPost.types'
 import {useEditUserPostMutation} from '@/features/Post/EditPost/api/editPost.api'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {z} from 'zod'
 
-const schema = yup.object({
-    description: yup
+const schema = z.object({
+    description: z
         .string()
-        .required(`Description can't be empty`)
+        .min(1, `Description can't be empty`)
         .max(300, 'Description can`t be longer than 300 characters'),
 })
 
-type FormData = yup.InferType<typeof schema>
+type FormData = z.infer<typeof schema>
 type UseEditPostType = {
     post: PostByIdType
     setEdit: Dispatch<SetStateAction<boolean>>
@@ -34,7 +34,7 @@ export const useEditPost = ({post, setEdit}: UseEditPostType) => {
             description: post.description,
         },
         mode: 'all',
-        resolver: yupResolver(schema),
+        resolver: zodResolver(schema),
     })
 
     const onSubmit = async (data: FormData) => {
