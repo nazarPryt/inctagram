@@ -35,6 +35,8 @@ export const userPostApi = rtkQuery.injectEndpoints({
                 url: `public-posts/user/${userId}`,
             }),
             transformResponse(response) {
+                console.log('response: ', response)
+
                 return UserPostsSchema.parse(response)
             },
         }),

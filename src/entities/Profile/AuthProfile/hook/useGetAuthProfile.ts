@@ -7,7 +7,7 @@ type PropsType = {
     userName: string | undefined
 }
 export const useGetAuthProfile = ({mode, userName}: PropsType) => {
-    const {data: authProfile} = useGetAuthProfileQuery(userName, {
+    const {data: authProfile, isLoading: isLoadingUser} = useGetAuthProfileQuery(userName, {
         skip: !userName || mode === 'publick',
     })
     const avatarUrl = authProfile && authProfile.avatars.length ? authProfile.avatars[0].url : ''

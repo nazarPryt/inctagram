@@ -9,27 +9,27 @@ type PropsType = {
     browserName: string
     deviceId: number
     deviceName: string
-    deviceType: 'PC' | 'Phone'
+    deviceType: string | undefined
     disabled: boolean
     handleLogOut: (deviceId: number) => void
     lastVisit: string
 }
-export const ActiveSession = (props: PropsType) => {
+export const ActiveSession = ({deviceType = 'PC', ...rest}: PropsType) => {
     const handleLogOutSession = () => {
-        props.handleLogOut(props.deviceId)
+        rest.handleLogOut(rest.deviceId)
     }
 
     return (
         <ActiveSessionStyled>
-            {props.deviceType === 'PC' ? <PcIcon /> : ''}
-            {props.deviceType === 'Phone' ? <MobileIcon /> : ''}
+            {deviceType === 'PC' ? <PcIcon /> : ''}
+            {deviceType === 'mobile' ? <MobileIcon /> : ''}
             <div className={'deviceData'}>
-                <h2>{props.deviceName}</h2>
-                <p>Browser: {props.browserName}</p>
-                <p>IP: {props.IP}</p>
-                <span>Last visit: {new Date(props.lastVisit).toLocaleDateString('ru-RU')}</span>
+                <h2>{rest.deviceName}</h2>
+                <p>Browser: {rest.browserName}</p>
+                <p>IP: {rest.IP}</p>
+                <span>Last visit: {new Date(rest.lastVisit).toLocaleDateString('ru-RU')}</span>
             </div>
-            <NavButton disabled={props.disabled} icon={<LogOutIcon />} onClick={handleLogOutSession} title={'LogOut'} />
+            <NavButton disabled={rest.disabled} icon={<LogOutIcon />} onClick={handleLogOutSession} title={'LogOut'} />
         </ActiveSessionStyled>
     )
 }

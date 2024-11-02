@@ -58,7 +58,7 @@ export const Devices = () => {
                             browserName={`${session.browserName} ${session.browserVersion}`}
                             deviceId={session.deviceId}
                             deviceName={`${session.osName} ${session.osVersion}`}
-                            deviceType={'PC'}
+                            deviceType={session.deviceType}
                             disabled={isButtonDisabled}
                             handleLogOut={handleLogOut}
                             key={session.deviceId}

@@ -11,6 +11,7 @@ const AllPostsOwnerSchema = z
 export const AllPostsItemSchema = z
     .object({
         avatarOwner: z.string().optional(),
+        avatarWhoLikes: z.array(z.string()),
         createdAt: z.string(),
         description: z.string(),
         id: z.number(),

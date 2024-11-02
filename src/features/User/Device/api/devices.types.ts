@@ -5,6 +5,8 @@ export const DeviceItemSchema = z
         browserName: z.string(),
         browserVersion: z.string(),
         deviceId: z.number(),
+        deviceName: z.string().optional(),
+        deviceType: z.string().optional(),
         ip: z.string(),
         lastActive: z.string(),
         osName: z.string(),
