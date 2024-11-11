@@ -1,12 +1,9 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import {Post} from '@/entities/Post/Post'
 import {UserPost} from '@/entities/UserPosts/UserPost'
-import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
 import {UserPostItemType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {useGetUserPosts} from '@/entities/UserPosts/hooks/useGetUserPosts'
 import {NoPosts} from '@/shared/ui/NoPosts'
-import {HomePostSkeleton} from '@/widgets/AllPostsList/ui/AllPostsListSkeleton'
 import {AnimatePresence} from 'framer-motion'
 
 import {ProfilePostsListWrapper} from './ProfilePostsList.styled'
@@ -49,6 +46,7 @@ export const ProfilePostsList = ({serverSidePosts, userId}: PropsType) => {
                     hasMore={hasMore}
                     loader={<ProfilePostsListSkeleton />}
                     next={fetchMoreData}
+                    style={{height: '100%', overflowY: 'hidden'}}
                 >
                     {renderPosts()}
                 </InfiniteScroll>

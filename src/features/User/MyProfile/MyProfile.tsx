@@ -1,5 +1,4 @@
 import {useGetPublicProfileQuery} from '@/entities/Profile/PublicProfile/api/publicProfile.api'
-import {useGetUserPostsQuery} from '@/entities/UserPosts/api/userPosts.api'
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {Profile} from '@/widgets/Profile'
 import {Loader} from '@nazar-pryt/inctagram-ui-kit'

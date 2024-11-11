@@ -22,7 +22,6 @@ export const PostImage = ({images}: {images: ImageType[]}) => {
                 scrollbar={{draggable: true}}
                 slidesPerView={1}
                 spaceBetween={0}
-                width={500}
             >
                 {images.map(photo => {
                     return (
