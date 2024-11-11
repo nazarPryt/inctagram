@@ -1,3 +1,4 @@
+import {breakpoints} from '@/shared/styles/Breakpoints'
 import styled from 'styled-components'
 
 export const GeneralInformationWrapper = styled.div`
@@ -30,7 +31,7 @@ export const GeneralInformationWrapper = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    @media (max-width: 1000px) {
+    @media (max-width: ${breakpoints.tablet}px) {
         flex-direction: column;
         align-items: center;
     }
