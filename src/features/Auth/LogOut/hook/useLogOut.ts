@@ -17,7 +17,7 @@ export const useLogOut = () => {
             .unwrap()
             .then(async () => {
                 setIsOpen(false)
-                router.push(PATH.LOGIN)
+                void router.push(PATH.LOGIN)
             })
             .catch((error: any) => {
                 console.log(error)
