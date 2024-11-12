@@ -8,17 +8,17 @@ import {EditPostWrapper} from '@/features/Post/EditPost/ui/EditPost.styled'
 import {Button, TextArea} from '@nazar-pryt/inctagram-ui-kit'
 
 type EditPostPropsType = {
-    data: PostByIdType
     edit: boolean
+    post: PostByIdType
     setEdit: Dispatch<SetStateAction<boolean>>
 }
 
-export const EditPost = ({data, edit, setEdit}: EditPostPropsType) => {
-    const {control, errors, handleSubmit, isLoading} = useEditPost({data, setEdit})
+export const EditPost = ({edit, post, setEdit}: EditPostPropsType) => {
+    const {control, errors, handleSubmit, isLoading} = useEditPost({post, setEdit})
 
     return (
         <EditPostWrapper onSubmit={handleSubmit}>
-            <ViewUserPostHeader data={data} edit={edit} setEdit={setEdit} />
+            <ViewUserPostHeader edit={edit} post={post} setEdit={setEdit} />
             <Controller
                 control={control}
                 name={'description'}

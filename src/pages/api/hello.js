@@ -1,5 +1,3 @@
-import nookies from 'nookies'
-
 export default async function handler(req, res) {
     const blogData = [
         {

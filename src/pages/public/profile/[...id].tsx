@@ -2,16 +2,17 @@ import type {GetServerSideProps, InferGetServerSidePropsType} from 'next'
 
 import {serverPublicAPI} from '@/_app/Api/server/axiosPublic'
 import {getLayoutWithHeader} from '@/_app/Layouts/unauthorized'
-import {getPublicUserProfile} from '@/entities/PublicProfile/api/publicProfileServer.api'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {getPublicUserProfile} from '@/entities/Profile/PublicProfile/api/publicProfileServer.api'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {UserPostItemType, UserPostsType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {Profile} from '@/widgets/Profile'
 import {useRouter} from 'next/router'
 
 type PropsType = {
     profileId: number
+    serverSidePosts: UserPostItemType[]
     user: PublicProfileType
-    userPosts: Pick<PostsType,'items'>
 }
 
 export const getServerSideProps = (async ctx => {
@@ -22,7 +23,7 @@ export const getServerSideProps = (async ctx => {
         const res = await getPublicUserProfile(+profileId)
         const rese = await serverPublicAPI.getUserPosts(+profileId)
 
-        return { props: { profileId: +profileId,  user: res!.data, userPosts: rese!.data } }
+        return { props: { profileId: +profileId,  serverSidePosts: rese!.data.items, user: res!.data } }
     }
 
     return {notFound: true}
@@ -30,7 +31,7 @@ export const getServerSideProps = (async ctx => {
 
 
 
-const UserProfilePage = ({profileId, user,userPosts}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
+const UserProfilePage = ({profileId, serverSidePosts,user}: InferGetServerSidePropsType<typeof getServerSideProps>) =>{
     const {query} = useRouter()
 
     let postId = null
@@ -40,7 +41,7 @@ const UserProfilePage = ({profileId, user,userPosts}: InferGetServerSidePropsTyp
     }
 
     return (
-       <Profile mode={'publick'} postId={postId} user={user} userPosts={userPosts}/>
+       <Profile mode={'publick'} postId={postId} serverSidePosts={serverSidePosts} user={user}/>
     )
 }
 

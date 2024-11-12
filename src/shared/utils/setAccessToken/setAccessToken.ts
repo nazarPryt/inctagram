@@ -1,11 +1,10 @@
-import cookie from 'react-cookies'
-
 import {appSettings} from '@/_app/AppSettings'
+import {deleteCookie, setCookie} from 'cookies-next'
 
 export const setAccessToken = async (accessToken: string) => {
     return new Promise<void>(resolve => {
-        cookie.remove(appSettings.constants.accessToken)
-        cookie.save(appSettings.constants.accessToken, accessToken, {
+        deleteCookie(appSettings.constants.accessToken)
+        setCookie(appSettings.constants.accessToken, accessToken, {
             httpOnly: false,
             path: '/',
             sameSite: false,

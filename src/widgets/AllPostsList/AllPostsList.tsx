@@ -4,22 +4,27 @@ import {Post} from '@/entities/Post/Post'
 import {useGetAllPosts} from '@/entities/Post/hook/useGetAllPosts'
 import {ScrollToTop} from '@/features/ScrollToTop'
 import {NoPosts} from '@/shared/ui/NoPosts'
+import {AnimatePresence} from 'framer-motion'
 
 import {AllPostsListWrapper} from './AllPostsList.styled'
 import {AllPostsListSkeleton, HomePostSkeleton} from './ui/AllPostsListSkeleton'
 
 export const AllPostsList = () => {
-    const {data, fetchMoreData, hasMore, isHavePosts, isLoading} = useGetAllPosts()
+    const {fetchMoreData, hasMore, isHavePosts, isLoading, posts} = useGetAllPosts()
 
     if (isLoading) {
         return <AllPostsListSkeleton />
     }
 
-    if (isHavePosts) {
-        return (
-            <AllPostsListWrapper>
+    if (!isHavePosts) {
+        return <NoPosts />
+    }
+
+    return (
+        <AllPostsListWrapper>
+            <AnimatePresence>
                 <InfiniteScroll
-                    dataLength={data!.items.length}
+                    dataLength={posts.length}
                     endMessage={
                         <p style={{textAlign: 'center'}}>
                             <b>Yay! You have seen it all</b>
@@ -29,14 +34,12 @@ export const AllPostsList = () => {
                     loader={<HomePostSkeleton />}
                     next={fetchMoreData}
                 >
-                    {data!.items.map((post, index) => (
+                    {posts.map((post, index) => (
                         <Post key={index} post={post} />
                     ))}
                 </InfiniteScroll>
-                <ScrollToTop />
-            </AllPostsListWrapper>
-        )
-    }
-
-    return <NoPosts />
+            </AnimatePresence>
+            <ScrollToTop />
+        </AllPostsListWrapper>
+    )
 }

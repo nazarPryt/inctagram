@@ -13,14 +13,17 @@ import {PostByIdType} from '../../api/getPost.types'
 import {ViewUserPostHeaderWrapper} from './ViewUserPostHeader.styled'
 
 type PropsType = {
-    data: PostByIdType
     edit: boolean
+    post: PostByIdType
     setEdit: Dispatch<SetStateAction<boolean>>
 }
-export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
-    const {mode} = useMode(data.ownerId)
+export const ViewUserPostHeader = ({edit, post, setEdit}: PropsType) => {
+    const {mode} = useMode(post.ownerId)
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost(data.id as number)
+    const {handleDeletePost, handleModalClose, handleModalOpen, modalIsOpen} = useDeleteUserPost({
+        isModal: true,
+        postId: post.id,
+    })
     const handleEditPost = () => {
         setEdit(true)
         setIsPopoverOpen(false)
@@ -28,7 +31,7 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
 
     const showPopover = !edit && mode === 'myProfile'
     const userLink =
-        mode === 'publick' ? `/${PATH.PUBLIC.PROFILE}/${data.ownerId}` : `${PATH.USER_PROFILE}/${data.ownerId}`
+        mode === 'publick' ? `/${PATH.PUBLIC.PROFILE}/${post.ownerId}` : `${PATH.USER_PROFILE}/${post.ownerId}`
 
     return (
         <>
@@ -39,9 +42,9 @@ export const ViewUserPostHeader = ({data, edit, setEdit}: PropsType) => {
             />
             <ViewUserPostHeaderWrapper>
                 <div className={'avaLink'}>
-                    <Avatar alt={`${data.userName} avatar`} size={40} src={data.avatarOwner} userName={data.userName} />
+                    <Avatar alt={`${post.userName} avatar`} size={40} src={post.avatarOwner} userName={post.userName} />
                     <Link className={'link'} href={userLink}>
-                        {data.userName}
+                        {post.userName}
                     </Link>
                 </div>
                 {showPopover && (

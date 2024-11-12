@@ -1,7 +1,6 @@
 import {useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Modal} from '@/shared/ui/Modal/Modal'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import {Button, Modal} from '@nazar-pryt/inctagram-ui-kit'
 
 import {addToDraft, clearIndexedDB} from '../../lib/IndexedDB/indexedDB'
 import {SaveToDraftWrapper} from './styled'
@@ -33,7 +32,7 @@ export const CloseOrSaveToDraft = (props: SaveToDraftType) => {
     }
 
     return (
-        <Modal handleClose={handleClose} isOpen={props.isNotice} title={t.create.saveToDraftModal.title}>
+        <Modal onClose={handleClose} open={props.isNotice} title={t.create.saveToDraftModal.title}>
             <SaveToDraftWrapper>
                 <span>{t.create.saveToDraftModal.text}</span>
                 <span>{t.create.saveToDraftModal.textNext}</span>

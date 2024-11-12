@@ -3,11 +3,11 @@ import AvatarEditor from 'react-avatar-editor'
 
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {BaseModalProps} from '@/shared/ui/Modal/Modal'
+import {ModalProps} from '@nazar-pryt/inctagram-ui-kit'
 
 import {useUploadAvatarMutation} from '../api/avatar.api'
 
-export const useUploadUserAvatar = (props: BaseModalProps) => {
+export const useUploadUserAvatar = (props: ModalProps) => {
     const [avatar, {isLoading}] = useUploadAvatarMutation()
     const dispatch = useAppDispatch()
 
@@ -29,7 +29,8 @@ export const useUploadUserAvatar = (props: BaseModalProps) => {
                 avatar(formData)
                     .unwrap()
                     .then(() => {
-                        props.handleClose()
+                        // @ts-ignore
+                        props.onClose()
                         dispatch(
                             SetAppNotificationAC({
                                 notifications: {message: 'Your Avatar was successfully uploaded', type: 'success'},

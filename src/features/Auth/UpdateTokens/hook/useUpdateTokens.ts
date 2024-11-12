@@ -1,10 +1,9 @@
-import cookie from 'react-cookies'
-
 import {appSettings} from '@/_app/AppSettings'
 import {useUpdateTokensMutation} from '@/features/Auth/UpdateTokens/api/updateTokens.api'
+import {cookies} from 'next/headers'
 
 export const useUpdateTokens = () => {
-    const accessToken = cookie.load(appSettings.constants.accessToken)
+    const accessToken = cookies().get(appSettings.constants.accessToken)?.value
 
     const [updateTokens, {isLoading}] = useUpdateTokensMutation()
 

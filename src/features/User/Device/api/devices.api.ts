@@ -1,14 +1,17 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 
-import {DeviceType} from './devices.types'
+import {AllSessionsSchema, AllSessionsType} from './devices.types'
 
 export const devicesAPI = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getAllSessions: build.query<DeviceType[], void>({
+        getAllSessions: build.query<AllSessionsType, void>({
             providesTags: ['Sessions'],
             query: () => ({
                 url: `sessions`,
             }),
+            transformResponse: response => {
+                return AllSessionsSchema.parseAsync(response)
+            },
         }),
 
         terminateAllSessions: build.mutation<void, void>({

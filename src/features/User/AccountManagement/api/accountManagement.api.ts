@@ -29,6 +29,7 @@ export const accountManagementAPI = rtkQuery.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useCreateNewSubscriptionMutation, useGetCurrentSubscriptionQuery, useGetSubscriptionCostsQuery} =

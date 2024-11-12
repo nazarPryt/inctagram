@@ -1,15 +1,14 @@
 import {useEffect} from 'react'
-import cookie from 'react-cookies'
 
 import {WebSocketApi} from '@/_app/Api/client/webSocket'
 import {notificationSocketResponseSchema} from '@/_app/Api/client/webSocket/helpers/NotifcationWS.schema'
 import {appSettings} from '@/_app/AppSettings'
-import {chatAPI} from '@/entities/Messenger/Chat/api/chat.api'
-import {GetChatType, MessageSchema} from '@/entities/Messenger/Chat/helpers/Chat.schema'
+import {MessageSchema} from '@/entities/Messenger/Chat/helpers/Chat.schema'
 import {getNotificationsApi} from '@/entities/Notifications/api/getNotifications.api'
 import {NotificationType} from '@/entities/Notifications/helpers/notifications.schema'
-import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
+import {useAppDispatch} from '@/shared/hooks/reduxHooks'
 import {useAuth} from '@/shared/hooks/useAuth'
+import {getCookie} from 'cookies-next'
 
 import {SocketEvents} from '../helpers/socketEvents'
 
@@ -20,11 +19,14 @@ import {SocketEvents} from '../helpers/socketEvents'
 // }
 
 export const useConnectWebSocket = () => {
-    const accessToken = cookie.load(appSettings.constants.accessToken)
+    const accessToken = getCookie(appSettings.constants.accessToken)
     const {isLoggedIn} = useAuth()
     const dispatch = useAppDispatch()
 
     const connectWS = () => {
+        if (!accessToken) {
+            return
+        }
         WebSocketApi.createConnection(accessToken)
         WebSocketApi.socket?.on(SocketEvents.notifications, response => {
             // socketActions[SocketEvents.notifications](response, dispatch)

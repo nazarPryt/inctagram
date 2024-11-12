@@ -1,5 +1,5 @@
 import {PATH} from '@/_app/AppSettings/PATH'
-import {AllPostsTypeItemsImages} from '@/entities/Post/api/allPosts.types'
+import {ImageType} from '@/shared/schemas/Image.schema'
 import Image from 'next/image'
 import Link from 'next/link'
 import {A11y, Autoplay, Keyboard, Navigation, Pagination} from 'swiper/modules'
@@ -8,7 +8,7 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {PostPhotosStyled} from './PostPhotos.styled'
 
 type PropsType = {
-    images: AllPostsTypeItemsImages[]
+    images: ImageType[]
     ownerId: number
     postId: number
 }

@@ -4,7 +4,7 @@ import {useAppSelector} from '@/shared/hooks/reduxHooks'
 
 export type ComponentMode = 'fellow' | 'myProfile' | 'publick'
 
-export type ModeItems = {
+export type ModeVariant = {
     [key in ComponentMode]: ReactNode
 }
 /**

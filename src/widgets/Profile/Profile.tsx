@@ -1,5 +1,6 @@
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
+import {UserPostItemType, UserPostsType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
 import {ComponentMode} from '@/shared/hooks/useMode'
@@ -7,22 +8,23 @@ import {Loader, Modal} from '@nazar-pryt/inctagram-ui-kit'
 import {useRouter} from 'next/router'
 
 import {ProfileWrapper} from './Profile.styled'
-import {ProfileHeader} from './ui/ProfileHeader'
-import {ProfilePostsList} from './ui/ProfilePostsList'
+import {ProfileHeader} from './ProfileHeader'
+import {ProfilePostsList} from './ProfilePostsList'
 
 type ProfileType = {
     isLoadingPosts?: boolean
     isLoadingUser?: boolean
     mode: ComponentMode
     postId: null | number
-    user: PublicProfileType | undefined
-    userPosts: Pick<PostsType, 'items'> | undefined
+    serverSidePosts?: UserPostItemType[]
+    user: PublicProfileType
+    userPosts?: any
 }
-export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, userPosts}: ProfileType) => {
+export const Profile = ({isLoadingUser, mode, postId, serverSidePosts, user}: ProfileType) => {
     const {back} = useRouter()
-    const {data: post, isLoading} = useGetUserPostQuery(postId, {refetchOnMountOrArgChange: true, skip: !postId})
+    const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
 
-    const handleCloseModal = () => {
+    const handleCloseViewUserPost = () => {
         back()
     }
 
@@ -30,15 +32,15 @@ export const Profile = ({isLoadingPosts, isLoadingUser, mode, postId, user, user
 
     return (
         <>
-            {isLoading && <Loader />}
+            {isLoading && <Loader fullScreen />}
 
-            <Modal onClose={handleCloseModal} open={showPostModal} showTitle={false} size={'full'}>
+            <Modal onClose={handleCloseViewUserPost} open={showPostModal} showTitle={false} size={'full'}>
                 {post && <ViewUserPost post={post} />}
             </Modal>
 
             <ProfileWrapper>
                 <ProfileHeader isLoadingUser={isLoadingUser} mode={mode} user={user} />
-                <ProfilePostsList isLoadingPosts={isLoadingPosts} posts={userPosts} />
+                <ProfilePostsList serverSidePosts={serverSidePosts} userId={user.id} />
             </ProfileWrapper>
         </>
     )

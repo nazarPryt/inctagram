@@ -7,8 +7,7 @@ import {createPostAC} from '@/features/Post/CreatePost/model/slice/createPostSli
 import {editorPanelAC} from '@/features/Post/CreatePost/model/slice/editorPanelSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
 import {useTranslation} from '@/shared/hooks/useTranslation'
-import {Modal} from '@/shared/ui/Modal/Modal'
-import {EmptyAvatar, Loader, NavButton, SquarePlusIcon} from '@nazar-pryt/inctagram-ui-kit'
+import {EmptyAvatar, Loader, Modal, NavButton, SquarePlusIcon} from '@nazar-pryt/inctagram-ui-kit'
 
 import {CanvasContainer} from '../CreatePost/ui/CanvasContainer'
 import {CloseOrSaveToDraft} from '../CreatePost/ui/CloseOrSaveToDraft'
@@ -195,7 +194,7 @@ export const CreatePost = () => {
         <>
             <NavButton icon={<SquarePlusIcon />} onClick={checkData} title={t.aside.create} />
 
-            <Modal handleClose={handleClose} isOpen={isOpen} title={t.create.modalTitle}>
+            <Modal onClose={handleClose} open={isOpen} title={t.create.modalTitle}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader fullScreen />}
 

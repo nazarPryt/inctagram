@@ -2,23 +2,23 @@ import {useForm} from 'react-hook-form'
 
 import {appSettings} from '@/_app/AppSettings'
 import {PATH} from '@/_app/AppSettings/PATH'
-import {yupResolver} from '@hookform/resolvers/yup'
+import {zodResolver} from '@hookform/resolvers/zod'
 import {useRouter} from 'next/router'
-import * as yup from 'yup'
+import {z} from 'zod'
 
 import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
-import {PaymentType, SubscriptionType} from '../api/accountManagement.types'
+import {PaymentTypeSchema, SubscriptionSchema} from '../api/accountManagement.types'
 
-const urlToRedirect = `${appSettings.env.DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+const urlToRedirect = `${appSettings.env.DOMAIN_URL}${PATH.HOME}/${PATH.SETTINGS}/${PATH.ACCOUNT_MANAGEMENT}`
 
-const schema = yup.object({
-    amount: yup.number().default(10).required(),
-    baseUrl: yup.string().default(urlToRedirect).required(),
-    paymentType: yup.string<PaymentType>().required(),
-    typeSubscription: yup.string<SubscriptionType>().required(),
+const schema = z.object({
+    amount: z.number().min(1).default(10),
+    baseUrl: z.string().min(1).default(urlToRedirect),
+    paymentType: PaymentTypeSchema,
+    typeSubscription: SubscriptionSchema,
 })
 
-type FormData = yup.InferType<typeof schema>
+type FormData = z.infer<typeof schema>
 
 export const useCreateNewSubscription = () => {
     const router = useRouter()
@@ -32,7 +32,7 @@ export const useCreateNewSubscription = () => {
     } = useForm<FormData>({
         defaultValues: {typeSubscription: 'DAY'},
         mode: 'all',
-        resolver: yupResolver(schema),
+        resolver: zodResolver(schema),
     })
 
     const onSubmit = async (data: FormData) => {

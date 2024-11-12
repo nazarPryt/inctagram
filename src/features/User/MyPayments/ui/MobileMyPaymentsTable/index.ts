@@ -1,0 +1,1 @@
+export {MobileMyPaymentsTable} from './MobileMyPaymentsTable'

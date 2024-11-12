@@ -1,3 +1,5 @@
+import {z} from 'zod'
+
 export type NewSubscriptionType = {
     amount: number
     baseUrl: string
@@ -5,9 +7,11 @@ export type NewSubscriptionType = {
     typeSubscription: SubscriptionType
 }
 
-export type SubscriptionType = 'DAY' | 'MONTHLY' | 'WEEKLY'
+export const PaymentTypeSchema = z.enum(['PAYPAL', 'STRIPE'])
+export type PaymentType = z.infer<typeof PaymentTypeSchema>
 
-export type PaymentType = 'PAYPAL' | 'STRIPE'
+export const SubscriptionSchema = z.enum(['DAY', 'MONTHLY', 'WEEKLY'])
+export type SubscriptionType = z.infer<typeof SubscriptionSchema>
 
 export type ResponseCreateSubscriptionType = {
     url: string

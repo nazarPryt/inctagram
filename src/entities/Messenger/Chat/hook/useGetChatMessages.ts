@@ -9,7 +9,7 @@ export const useGetChatMessages = () => {
     const {currentData, data, isLoading} = useGetChatMessagesQuery(dialoguePartnerId!, {
         skip: !dialoguePartnerId,
     })
-    const [get] = useLazyGetMoreChatMessagesQuery()
+    const [getMoreMessages] = useLazyGetMoreChatMessagesQuery()
     const messages = data ? data.items ?? [] : []
     const totalCount = currentData ? currentData.totalCount : 0
 
@@ -20,7 +20,7 @@ export const useGetChatMessages = () => {
         const lastMessageId = isHaveMessages ? data.items[data.items.length - 1].id : null
 
         dispatch(SetMessageCursorAC(lastMessageId))
-        get({cursor: lastMessageId, dialoguePartnerId})
+        getMoreMessages({cursor: lastMessageId, dialoguePartnerId})
     }
 
     return {fetchMoreData, hasMore, isHaveMessages, isLoading, messages}

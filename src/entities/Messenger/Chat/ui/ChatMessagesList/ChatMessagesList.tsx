@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import {useGetChatMessages} from '@/entities/Messenger/Chat/hook/useGetChatMessages'
-import {PublicProfileType} from '@/entities/PublicProfile/helpers/publicProfile.schema'
+import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
 import {useUpdateMessageStatus} from '@/features/Messenger/UpdateMessageStatus/hook/useUpdateMessageStatus'
 import {AnimatePresence} from 'framer-motion'
 

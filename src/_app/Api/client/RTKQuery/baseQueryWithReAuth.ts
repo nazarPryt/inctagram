@@ -1,9 +1,8 @@
-import cookie from 'react-cookies'
-
 import {appSettings} from '@/_app/AppSettings'
 import {setAccessToken} from '@/shared/utils/setAccessToken'
 import {BaseQueryFn, FetchArgs, FetchBaseQueryError} from '@reduxjs/toolkit/dist/query/react'
 import {Mutex} from 'async-mutex'
+import {deleteCookie} from 'cookies-next'
 
 import {baseQuery} from './baseQuery'
 
@@ -38,8 +37,8 @@ export const baseQueryWithReAuth: BaseQueryFn<FetchArgs | string, unknown, Fetch
                     result = await baseQuery(args, api, extraOptions)
                 }
             } catch (e) {
-                cookie.remove(appSettings.constants.accessToken)
-                cookie.remove(appSettings.constants.refreshToken)
+                deleteCookie(appSettings.constants.accessToken)
+                deleteCookie(appSettings.constants.refreshToken)
             } finally {
                 release()
             }

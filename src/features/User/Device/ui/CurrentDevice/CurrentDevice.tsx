@@ -1,4 +1,5 @@
-import {DeviceType} from '../../api/devices.types'
+import {DeviceItemType} from '@/features/User/Device/api/devices.types'
+
 import {ChromeIcon} from '../icons/ChromeIcon'
 import {MozillaIcon} from '../icons/MozillaIcon'
 import {OperaIcon} from '../icons/OperaIcon'
@@ -7,7 +8,7 @@ import {CurrentDeviceStyled} from './CurrentDevice.styled'
 
 type PropsType = {
     online: boolean
-} & Partial<DeviceType>
+} & Partial<DeviceItemType>
 
 export const CurrentDevice = ({
     browserName,

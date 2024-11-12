@@ -1,9 +1,9 @@
-import {AllPostsTypeItems} from '@/entities/Post/api/allPosts.types'
+import {AllPostsItemType} from '@/entities/Post/helpers/AllPosts.schema'
 
 import {PublicPostsListStyled} from './PublicPostsList.styled'
 import {PostItem} from './ui/PostItem'
 
-export const PublicPostsList = ({posts}: {posts: AllPostsTypeItems[]}) => {
+export const PublicPostsList = ({posts}: {posts: AllPostsItemType[]}) => {
     return (
         <PublicPostsListStyled>
             {posts.map((post, index) => (

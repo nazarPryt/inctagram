@@ -22,6 +22,7 @@ export const avatarAPI = rtkQuery.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 })
 
 export const {useDeleteAvatarMutation, useUploadAvatarMutation} = avatarAPI
