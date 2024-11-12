@@ -20,6 +20,7 @@ export const PATH = {
     REGISTRATION: '/auth/registration',
     REGISTRATION_CONFIRMED: '/auth/registrationConfirmed',
     SEARCH: '/profile/search',
+    SETTINGS: 'settings',
     STATISTICS: '/profile/statistics',
     TERMS_OF_SERVICE: '/auth/terms-of-service',
     UPDATE_TOKENS: '/auth/update-tokens',

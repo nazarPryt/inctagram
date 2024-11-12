@@ -1,3 +1,4 @@
+import {breakpoints} from '@/shared/styles/Breakpoints'
 import styled from 'styled-components'
 
 export const AuthorizedLayoutWrapper = styled.div`
@@ -21,7 +22,7 @@ export const AuthorizedLayoutWrapper = styled.div`
         margin-left: 20px;
     }
 
-    @media (max-width: ${props => props.theme.viewPort[768]}px) {
+    @media (max-width: ${breakpoints.mobile}px) {
         grid-template-columns: 1fr;
         grid-template-areas: 'header' 'section';
 

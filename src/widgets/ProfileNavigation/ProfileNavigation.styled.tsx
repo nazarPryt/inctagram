@@ -8,6 +8,7 @@ export const ProfileNavigationStyled = styled.div`
     margin-bottom: 15px;
 
     a {
+        display: flex;
         position: relative;
         text-decoration: none;
         ${typography.H2}
@@ -15,7 +16,8 @@ export const ProfileNavigationStyled = styled.div`
         width: 100%;
         color: ${props => props.theme.textColor[900]};
         text-align: center;
-
+        justify-content: center;
+        align-items: center;
         transition: 200ms background-color;
 
         &:hover {
@@ -41,11 +43,18 @@ export const ProfileNavigationStyled = styled.div`
                 background-color: ${props => props.theme.palette.primary[500]};
             }
         }
-
+        
         @media (max-width: ${breakpoints.tablet}px) {
             ${IconColor};
-            ${typography.H3}
-
+          
+            
+            &.active {
+               svg{
+                   path{
+                       fill: ${props => props.theme.palette.primary[500]}};
+                   }
+               }
+            }
             svg {
                 width: 30px;
                 height: 30px;

@@ -9,7 +9,7 @@ import {z} from 'zod'
 import {useCreateNewSubscriptionMutation} from '../api/accountManagement.api'
 import {PaymentTypeSchema, SubscriptionSchema} from '../api/accountManagement.types'
 
-const urlToRedirect = `${appSettings.env.DOMAIN_URL}${PATH.PROFILE_SETTINGS}`
+const urlToRedirect = `${appSettings.env.DOMAIN_URL}${PATH.HOME}/${PATH.SETTINGS}/${PATH.ACCOUNT_MANAGEMENT}`
 
 const schema = z.object({
     amount: z.number().min(1).default(10),
