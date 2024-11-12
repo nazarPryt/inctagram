@@ -1,3 +1,4 @@
+import {toTimeAgo} from '@/shared/utils/toTimeAgo'
 import {TableBody, TableCell, TableHead, TableHeadCell, TableRow} from '@nazar-pryt/inctagram-ui-kit'
 
 import {MyPaymentType} from '../../api'
@@ -22,7 +23,7 @@ export const MyPaymentsTable = (props: PropsType) => {
                 {props.payments.map(subscription => {
                     return (
                         <TableRow key={subscription.dateOfPayment}>
-                            <TableCell>{new Date(subscription.dateOfPayment).toLocaleDateString('ru-RU')}</TableCell>
+                            <TableCell>{toTimeAgo(subscription.dateOfPayment)}</TableCell>
                             <TableCell>
                                 {new Date(subscription.endDateOfSubscription).toLocaleDateString('ru-RU')}
                             </TableCell>

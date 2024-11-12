@@ -10,8 +10,6 @@ export const devicesAPI = rtkQuery.injectEndpoints({
                 url: `sessions`,
             }),
             transformResponse: response => {
-                console.log(response)
-
                 return AllSessionsSchema.parseAsync(response)
             },
         }),
