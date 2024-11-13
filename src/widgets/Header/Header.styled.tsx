@@ -1,4 +1,3 @@
-import {breakpoints} from '@/shared/styles/Breakpoints'
 import {typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 

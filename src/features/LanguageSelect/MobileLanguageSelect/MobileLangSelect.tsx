@@ -10,9 +10,6 @@ import {MobileLanguageSelectStyled} from './MobileLanguageSelect.styled'
 export const MobileLangSelect = () => {
     const {asPath, locale} = useRouter()
 
-    console.log('asPath', asPath)
-    console.log('locale', locale)
-
     return (
         <MobileLanguageSelectStyled>
             <Link className={matchesPathname(locale as string, 'ru') ? 'active' : ''} href={asPath} locale={'ru'}>

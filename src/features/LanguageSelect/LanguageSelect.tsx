@@ -4,6 +4,8 @@ import {Select, SelectOptionType} from '@nazar-pryt/inctagram-ui-kit'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 
+import {LanguageSelectStyled} from './LanguageSelect.styled'
+
 export const LanguageSelect = () => {
     const {asPath, locale, pathname, push, query} = useRouter()
 
@@ -15,5 +17,9 @@ export const LanguageSelect = () => {
         void push({pathname, query}, asPath, {locale})
     }
 
-    return <Select onChange={changeLangHandler} options={options} value={locale!} width={150} />
+    return (
+        <LanguageSelectStyled>
+            <Select onChange={changeLangHandler} options={options} value={locale!} width={150} />
+        </LanguageSelectStyled>
+    )
 }

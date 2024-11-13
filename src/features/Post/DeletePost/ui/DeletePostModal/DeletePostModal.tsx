@@ -16,6 +16,7 @@ export const DeletePostModal = ({handleDeletePost, handleModalClose, isOpen}: Pr
             onClose={handleModalClose}
             onConfirmButtonClick={handleDeletePost}
             open={isOpen}
+            size={'sm'}
             title={t.myPost.modal.title}
         >
             <p>{t.myPost.modal.description}</p>

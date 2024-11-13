@@ -1,14 +1,14 @@
 import {PostWrapper} from '@/entities/Post/Post.styled'
 import {PostFeaturesWrapper} from '@/entities/Post/ui/PostFeatures/PostFeatures.styled'
 import {PostHeaderWrapper} from '@/entities/Post/ui/PostHeader/PostHeader.styled'
-import {AllPostsListWrapper} from '@/widgets/AllPostsList/AllPostsList.styled'
+import {AllPostsListStyled} from '@/widgets/AllPostsList/AllPostsList.styled'
 import {Skeleton} from '@nazar-pryt/inctagram-ui-kit'
 
 export const AllPostsListSkeleton = () => {
     return (
-        <AllPostsListWrapper>
+        <AllPostsListStyled>
             <HomePostSkeleton />
-        </AllPostsListWrapper>
+        </AllPostsListStyled>
     )
 }
 export const HomePostSkeleton = () => {

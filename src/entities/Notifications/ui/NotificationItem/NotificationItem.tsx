@@ -12,7 +12,7 @@ type PropsType = {
 export const NotificationItem = ({notification}: PropsType) => {
     const {handleDeleteNotification, isDeleting} = useDeleteNotification(notification.id)
     const {t} = useTranslation()
-    const notifyAt = useFormatDistance(notification.notifyAt)
+    const notifyAt = useFormatDistance(notification.createdAt)
 
     return (
         <NotificationItemWrapper>
