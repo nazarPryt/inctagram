@@ -1,11 +1,13 @@
-import {PATH} from '@/_app/AppSettings/PATH'
 import {Notifications} from '@/entities/Notifications'
 import {LanguageSelect, MobileLangSelect} from '@/features/LanguageSelect'
 import {ThemeSwitcher} from '@/features/ThemeSwitcher'
+import {useAuth} from '@/shared/hooks/useAuth'
 import {useScreenDetector} from '@/shared/hooks/useScreenDetector'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import {AuthButtons} from '@/widgets/Header/ui/AuthButtons'
+import {MobileHeaderPopover} from '@/widgets/Header/ui/MobileHeaderPopover'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 import {HeaderStyled} from './Header.styled'
 
@@ -14,30 +16,27 @@ const DynamicBurgerMenu = dynamic(() =>
 )
 
 export const Header = () => {
-    const {isMobile} = useScreenDetector()
+    const {asPath} = useRouter()
+
+    const {isLoggedIn} = useAuth()
+    const {isMobile, isTablet} = useScreenDetector()
+    const isPublic = asPath === '/'
 
     return (
         <HeaderStyled>
-            <DynamicBurgerMenu className={'BurgerMenu'} />
+            {isMobile && isLoggedIn && <DynamicBurgerMenu className={'BurgerMenu'} />}
             <Link className={'logo'} href={'/'}>
                 Inctagram
             </Link>
-            <ThemeSwitcher />
-            <div className={'block'}>
-                <Notifications />
-                {!isMobile && <LanguageSelect />}
-                {isMobile && <MobileLangSelect />}
-                {/*{publicMode && (*/}
-                {/*    <>*/}
-                {/*        <Button asT={Link} href={PATH.LOGIN} variant={'outlined'}>*/}
-                {/*            Log In*/}
-                {/*        </Button>*/}
-                {/*        <Button asT={Link} href={PATH.REGISTRATION}>*/}
-                {/*            Sign Up*/}
-                {/*        </Button>*/}
-                {/*    </>*/}
-                {/*)}*/}
-            </div>
+            {!isMobile && <ThemeSwitcher />}
+            {!isMobile && (
+                <div className={'block'}>
+                    {isLoggedIn && !isMobile && <Notifications />}
+                    {isTablet || isMobile ? <MobileLangSelect /> : <LanguageSelect />}
+                    {isPublic && <AuthButtons />}
+                </div>
+            )}
+            {isMobile && <MobileHeaderPopover isPublic={isPublic} />}
         </HeaderStyled>
     )
 }
