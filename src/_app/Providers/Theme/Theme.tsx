@@ -2,7 +2,8 @@ import {ReactNode, useEffect, useState} from 'react'
 
 import {setThemeAppAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
-import {GlobalStyles, ToastContainerStyled, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
+import {ToastContainerStyled} from '@/shared/styles/Toast.styled'
+import {GlobalStyles, darkTheme, lightTheme} from '@nazar-pryt/inctagram-ui-kit'
 import {Inter} from 'next/font/google'
 import {ThemeProvider} from 'styled-components'
 

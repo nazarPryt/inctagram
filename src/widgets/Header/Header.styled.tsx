@@ -11,6 +11,7 @@ export const HeaderStyled = styled.header`
     margin-bottom: 24px;
     z-index: 2;
     background-color: ${props => props.theme.bodyColor['700']};
+    padding: 12px 0;
 
     .block {
         display: flex;
@@ -18,17 +19,9 @@ export const HeaderStyled = styled.header`
         gap: 50px;
     }
 
-    .InctagramLogo {
-        padding: 12px 0;
+    .logo {
         text-decoration: none;
         ${typography.Large};
-
         color: ${props => props.theme.textColor['100']};
-    }
-
-    @media (max-width: ${props => props.theme.viewPort[768]}px) {
-        .InctagramLogo {
-            display: none;
-        }
     }
 `

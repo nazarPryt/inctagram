@@ -22,7 +22,7 @@ export const AuthorizedLayout: NextPage<PropsWithChildren> = ({children}) => {
     return (
         <Container>
             <AuthorizedLayoutWrapper>
-                <Header isLoggedIn={isSuccess} />
+                <Header />
                 <Aside />
                 <section>{children}</section>
             </AuthorizedLayoutWrapper>

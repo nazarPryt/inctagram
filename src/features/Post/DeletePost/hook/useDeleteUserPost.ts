@@ -1,5 +1,6 @@
 import {useState} from 'react'
 
+import {DeletePostModal} from '@/features/Post/DeletePost/ui/DeletePostModal'
 import {useRouter} from 'next/router'
 
 import {useDeletePostMutation} from '../api/DeletePost.api'

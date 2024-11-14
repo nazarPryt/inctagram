@@ -1,6 +1,5 @@
 import {PublicProfileType} from '@/entities/Profile/PublicProfile/helpers/publicProfile.schema'
-import {PostsType} from '@/entities/UserPosts/api/userPosts.types'
-import {UserPostItemType, UserPostsType} from '@/entities/UserPosts/helpers/UserPosts.schema'
+import {UserPostItemType} from '@/entities/UserPosts/helpers/UserPosts.schema'
 import {ViewUserPost} from '@/entities/ViewUserPost'
 import {useGetUserPostQuery} from '@/entities/ViewUserPost/api/getPost.api'
 import {ComponentMode} from '@/shared/hooks/useMode'
@@ -22,7 +21,7 @@ type ProfileType = {
 }
 export const Profile = ({isLoadingUser, mode, postId, serverSidePosts, user}: ProfileType) => {
     const {back} = useRouter()
-    const {data: post, isLoading} = useGetUserPostQuery(postId, {skip: !postId})
+    const {data: post, isLoading: isLoadingUserPost} = useGetUserPostQuery(postId, {skip: !postId})
 
     const handleCloseViewUserPost = () => {
         back()
@@ -32,7 +31,7 @@ export const Profile = ({isLoadingUser, mode, postId, serverSidePosts, user}: Pr
 
     return (
         <>
-            {isLoading && <Loader fullScreen />}
+            {isLoadingUserPost && <Loader fullScreen />}
 
             <Modal onClose={handleCloseViewUserPost} open={showPostModal} showTitle={false} size={'full'}>
                 {post && <ViewUserPost post={post} />}

@@ -1,3 +1,4 @@
+import {breakpoints} from '@/shared/styles/Breakpoints'
 import styled from 'styled-components'
 
 export const PostCommentFormWrapper = styled.div`
@@ -16,7 +17,12 @@ export const PostCommentFormWrapper = styled.div`
 
         textarea {
             background-color: inherit;
-            min-height: 20px;
+            min-height: 50px;
+        }
+
+        @media (max-width: ${breakpoints.mobileSmall}px) {
+            flex-direction: column;
+            gap: 0;
         }
     }
 `

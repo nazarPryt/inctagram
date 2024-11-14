@@ -3,10 +3,11 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import {Post} from '@/entities/Post/Post'
 import {useGetAllPosts} from '@/entities/Post/hook/useGetAllPosts'
 import {ScrollToTop} from '@/features/ScrollToTop'
+import {EndMessageScrolling} from '@/shared/ui/EndMessageScrolling'
 import {NoPosts} from '@/shared/ui/NoPosts'
 import {AnimatePresence} from 'framer-motion'
 
-import {AllPostsListWrapper} from './AllPostsList.styled'
+import {AllPostsListStyled} from './AllPostsList.styled'
 import {AllPostsListSkeleton, HomePostSkeleton} from './ui/AllPostsListSkeleton'
 
 export const AllPostsList = () => {
@@ -21,25 +22,23 @@ export const AllPostsList = () => {
     }
 
     return (
-        <AllPostsListWrapper>
+        <AllPostsListStyled>
             <AnimatePresence>
-                <InfiniteScroll
-                    dataLength={posts.length}
-                    endMessage={
-                        <p style={{textAlign: 'center'}}>
-                            <b>Yay! You have seen it all</b>
-                        </p>
-                    }
-                    hasMore={hasMore}
-                    loader={<HomePostSkeleton />}
-                    next={fetchMoreData}
-                >
-                    {posts.map((post, index) => (
-                        <Post key={index} post={post} />
-                    ))}
-                </InfiniteScroll>
+                <div className={'infiniteScrollWrapper'}>
+                    <InfiniteScroll
+                        dataLength={posts.length}
+                        endMessage={<EndMessageScrolling text={'Yay! You have seen it all'} />}
+                        hasMore={hasMore}
+                        loader={<HomePostSkeleton />}
+                        next={fetchMoreData}
+                    >
+                        {posts.map(post => (
+                            <Post key={post.id} post={post} />
+                        ))}
+                    </InfiniteScroll>
+                </div>
             </AnimatePresence>
             <ScrollToTop />
-        </AllPostsListWrapper>
+        </AllPostsListStyled>
     )
 }

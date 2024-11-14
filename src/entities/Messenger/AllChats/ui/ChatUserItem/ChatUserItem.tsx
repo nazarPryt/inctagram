@@ -1,3 +1,5 @@
+import {SetStateAction} from 'react'
+
 import {SetDialoguePartnerIdAC, SetMessageCursorAC} from '@/_app/Store/slices/messengerSlice'
 import {GetAllChatsItemType} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
 import {useAppDispatch, useAppSelector} from '@/shared/hooks/reduxHooks'
@@ -9,9 +11,10 @@ import {ChatUserItemStyled} from './ChatUserItem.styled'
 
 type PropsType = {
     chat: GetAllChatsItemType
+    setShowChat?: (value: SetStateAction<boolean>) => void
 }
 
-export const ChatUserItem = ({chat}: PropsType) => {
+export const ChatUserItem = ({chat, setShowChat}: PropsType) => {
     const dispatch = useAppDispatch()
     const dialoguePartnerId = useAppSelector(store => store.messengerParams.dialoguePartnerId)
     const {userId} = useAuth()
@@ -20,6 +23,7 @@ export const ChatUserItem = ({chat}: PropsType) => {
     const avatarImg = chat.avatars.length ? chat.avatars[0].url : ''
 
     const handleClick = () => {
+        setShowChat && setShowChat(true)
         dispatch(SetDialoguePartnerIdAC(userId === chat.ownerId ? chat.receiverId : chat.ownerId))
     }
 

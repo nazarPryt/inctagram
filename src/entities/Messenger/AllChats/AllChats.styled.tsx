@@ -1,3 +1,4 @@
+import {breakpoints} from '@/shared/styles/Breakpoints'
 import styled from 'styled-components'
 
 export const AllChatsStyled = styled.div`
@@ -6,4 +7,8 @@ export const AllChatsStyled = styled.div`
     padding: 10px;
     overflow-x: hidden;
     overflow-y: scroll;
+
+    @media (max-width: ${breakpoints.pc}px) {
+        flex: 2;
+    }
 `

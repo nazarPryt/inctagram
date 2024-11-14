@@ -1,12 +1,13 @@
-import {ComponentPropsWithoutRef} from 'react'
-
-import {PATH} from '@/_app/AppSettings/PATH'
 import {Notifications} from '@/entities/Notifications'
-import {LangSelect} from '@/features/LangaugeSelect'
+import {LanguageSelect, MobileLangSelect} from '@/features/LanguageSelect'
 import {ThemeSwitcher} from '@/features/ThemeSwitcher'
-import {Button} from '@nazar-pryt/inctagram-ui-kit'
+import {useAuth} from '@/shared/hooks/useAuth'
+import {useScreenDetector} from '@/shared/hooks/useScreenDetector'
+import {AuthButtons} from '@/widgets/Header/ui/AuthButtons'
+import {MobileHeaderPopover} from '@/widgets/Header/ui/MobileHeaderPopover'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 import {HeaderStyled} from './Header.styled'
 
@@ -14,32 +15,28 @@ const DynamicBurgerMenu = dynamic(() =>
     import('@/features/Burger/ui/BurgerMenu/BurgerMenu').then(module => module.BurgerMenu)
 )
 
-type HeaderType = {
-    isLoggedIn: boolean
-    publicMode?: boolean
-} & ComponentPropsWithoutRef<'div'>
-export const Header = ({isLoggedIn = false, publicMode = false, ...rest}: HeaderType) => {
+export const Header = () => {
+    const {asPath} = useRouter()
+
+    const {isLoggedIn} = useAuth()
+    const {isMobile, isTablet} = useScreenDetector()
+    const isPublic = asPath === '/'
+
     return (
-        <HeaderStyled {...rest}>
-            {!publicMode && <DynamicBurgerMenu className={'BurgerMenu'} />}
-            <Link className={'InctagramLogo'} href={'/'}>
+        <HeaderStyled>
+            {isMobile && isLoggedIn && <DynamicBurgerMenu className={'BurgerMenu'} />}
+            <Link className={'logo'} href={'/'}>
                 Inctagram
             </Link>
-            <ThemeSwitcher />
-            <div className={'block'}>
-                {isLoggedIn && <Notifications />}
-                <LangSelect />
-                {publicMode && (
-                    <>
-                        <Button asT={Link} href={PATH.LOGIN} variant={'outlined'}>
-                            Log In
-                        </Button>
-                        <Button asT={Link} href={PATH.REGISTRATION}>
-                            Sign Up
-                        </Button>
-                    </>
-                )}
-            </div>
+            {!isMobile && <ThemeSwitcher />}
+            {!isMobile && (
+                <div className={'block'}>
+                    {isLoggedIn && !isMobile && <Notifications />}
+                    {isTablet || isMobile ? <MobileLangSelect /> : <LanguageSelect />}
+                    {isPublic && <AuthButtons />}
+                </div>
+            )}
+            {isMobile && <MobileHeaderPopover isPublic={isPublic} />}
         </HeaderStyled>
     )
 }

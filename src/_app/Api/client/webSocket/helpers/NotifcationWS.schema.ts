@@ -3,6 +3,7 @@ import {z} from 'zod'
 export const notificationSocketResponseSchema = z
     .object({
         clientId: z.string().min(1),
+        createdAt: z.string().min(1),
         eventType: z.number().positive(),
         id: z.number().positive(),
         isRead: z.boolean(),

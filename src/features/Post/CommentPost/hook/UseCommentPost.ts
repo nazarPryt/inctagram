@@ -1,3 +1,4 @@
+import {FormEventHandler} from 'react'
 import {useForm} from 'react-hook-form'
 
 import {zodResolver} from '@hookform/resolvers/zod'
@@ -14,6 +15,7 @@ export const useCommentPost = () => {
         formState: {errors},
         handleSubmit,
         register,
+        trigger,
         ...rest
     } = useForm<FormData>({
         mode: 'all',
@@ -23,10 +25,18 @@ export const useCommentPost = () => {
     const onSubmit = (data: FormData) => {
         alert(JSON.stringify(data))
     }
+    const handleClick = async (e: any) => {
+        e.preventDefault()
+        const isValid = await trigger()
+
+        if (isValid) {
+            handleSubmit(onSubmit)()
+        }
+    }
 
     return {
         errors,
-        handleSubmit: handleSubmit(onSubmit),
+        handleSubmit: handleClick,
         register,
         ...rest,
     }

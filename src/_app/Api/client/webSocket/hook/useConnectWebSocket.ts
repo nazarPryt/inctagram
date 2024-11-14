@@ -33,6 +33,7 @@ export const useConnectWebSocket = () => {
             console.log(SocketEvents.notifications, response)
             const res = notificationSocketResponseSchema.parse(response)
             const newMessage: NotificationType = {
+                createdAt: res.createdAt,
                 id: res.id,
                 isRead: res.isRead,
                 message: res.message,

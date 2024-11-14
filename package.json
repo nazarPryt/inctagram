@@ -1,6 +1,6 @@
 {
     "name": "final",
-    "homepage": "https://instareplica.fun",
+    "homepage": "https://shotshare.nazarit.com",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -9,7 +9,7 @@
         "build:production": "env-cmd -f .env.production yarn build",
         "start": "next start",
         "format": "prettier --write src",
-        "lint": "eslint . --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input"
+        "lint": "eslint . --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix"
     },
     "dependencies": {
         "@hookform/resolvers": "3.3.2",

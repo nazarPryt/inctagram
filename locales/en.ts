@@ -24,7 +24,7 @@ export const en = {
         },
         modal: {
             btn: 'Ok',
-            description: 'We have sent a link to confirm your email to ',
+            description: 'We have sent a link to confirm your email to: ',
             title: 'Email sent',
         },
         newPassword: {

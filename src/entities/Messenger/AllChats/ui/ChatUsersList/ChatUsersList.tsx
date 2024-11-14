@@ -1,3 +1,5 @@
+import {SetStateAction} from 'react'
+
 import {GetAllChatsItemType} from '@/entities/Messenger/AllChats/helpers/getAllChatsSchema'
 import {ChatUserItem} from '@/entities/Messenger/AllChats/ui/ChatUserItem'
 import {ChatUserListSkeleton} from '@/entities/Messenger/AllChats/ui/ChatUsersListSkeleton'
@@ -8,9 +10,11 @@ import {ChatUsersListStyled} from './ChatUsersList.styled'
 type PropsType = {
     chats: GetAllChatsItemType[]
     isLoading: boolean
+
+    setShowChat?: (value: SetStateAction<boolean>) => void
 }
 
-export const ChatUsersList = ({chats, isLoading}: PropsType) => {
+export const ChatUsersList = ({chats, isLoading, setShowChat}: PropsType) => {
     if (isLoading) {
         return <ChatUserListSkeleton />
     }
@@ -21,7 +25,7 @@ export const ChatUsersList = ({chats, isLoading}: PropsType) => {
     return (
         <ChatUsersListStyled>
             {chats.map(chat => {
-                return <ChatUserItem chat={chat} key={chat.id} />
+                return <ChatUserItem chat={chat} key={chat.id} setShowChat={setShowChat} />
             })}
         </ChatUsersListStyled>
     )

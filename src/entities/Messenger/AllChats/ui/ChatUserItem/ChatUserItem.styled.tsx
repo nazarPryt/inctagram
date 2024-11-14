@@ -28,6 +28,7 @@ export const ChatUserItemStyled = styled.button<{$selected?: boolean}>`
         color : ${props => props.theme.textColor[900]}
     }
     .createdAt {
+        text-align: right;
         ${typography.small_text}
         color : ${props => props.theme.textColor[900]}
     }

@@ -1,3 +1,4 @@
+import {breakpoints} from '@/shared/styles/Breakpoints'
 import {Card, typography} from '@nazar-pryt/inctagram-ui-kit'
 import styled from 'styled-components'
 
@@ -28,5 +29,9 @@ export const RegisteredUsersStyled = styled(Card)`
             border: none;
             padding: 0;
         }
+    }
+    @media (max-width: ${breakpoints.mobileSmall}px) {
+        flex-direction: column;
+        gap: 10px;
     }
 `
