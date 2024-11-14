@@ -1,3 +1,4 @@
+import {toLocalFormat} from '@/shared/utils/toLocalFormat'
 import {LogOutIcon, NavButton} from '@nazar-pryt/inctagram-ui-kit'
 
 import {MobileIcon} from '../icons/MobileIcon'
@@ -19,6 +20,8 @@ export const ActiveSession = ({deviceType = 'PC', ...rest}: PropsType) => {
         rest.handleLogOut(rest.deviceId)
     }
 
+    console.log('rest.browserName:', rest.browserName)
+
     return (
         <ActiveSessionStyled>
             {deviceType === 'PC' ? <PcIcon /> : ''}
@@ -27,7 +30,7 @@ export const ActiveSession = ({deviceType = 'PC', ...rest}: PropsType) => {
                 <h2>{rest.deviceName}</h2>
                 <p>Browser: {rest.browserName}</p>
                 <p>IP: {rest.IP}</p>
-                <span>Last visit: {new Date(rest.lastVisit).toLocaleDateString('ru-RU')}</span>
+                <span>Last visit: {toLocalFormat(rest.lastVisit)}</span>
             </div>
             <NavButton disabled={rest.disabled} icon={<LogOutIcon />} onClick={handleLogOutSession} title={'LogOut'} />
         </ActiveSessionStyled>

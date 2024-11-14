@@ -1,5 +1,4 @@
 import {IsEmpty} from '@/shared/ui/IsEmpty'
-import {NoPosts} from '@/shared/ui/NoPosts'
 import {Button} from '@nazar-pryt/inctagram-ui-kit'
 
 import {DevicesStyled} from './Devices.styled'

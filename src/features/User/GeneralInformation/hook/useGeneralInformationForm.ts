@@ -2,7 +2,7 @@ import {useForm} from 'react-hook-form'
 
 import {SetAppNotificationAC} from '@/_app/Store/slices/appSlice'
 import {useAppDispatch} from '@/shared/hooks/reduxHooks'
-import {yupResolver} from '@hookform/resolvers/yup'
+import {zodResolver} from '@hookform/resolvers/zod'
 import {toDate} from 'date-fns'
 
 import {useUpdateUserMutation} from '../api/updateUser/updateUser.api'
@@ -26,7 +26,7 @@ export const useGeneralInformationForm = ({data}: {data: UserProfileType}) => {
     } = useForm<GeneralInformationFormData>({
         defaultValues: {...data, city, country, dateOfBirth: new Date(data.dateOfBirth)},
         mode: 'all',
-        resolver: yupResolver(GeneralInformationSchema),
+        resolver: zodResolver(GeneralInformationSchema),
     })
 
     const onSubmit = async (data: GeneralInformationFormData) => {
