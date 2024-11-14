@@ -194,7 +194,7 @@ export const CreatePost = () => {
         <>
             <NavButton icon={<SquarePlusIcon />} onClick={checkData} title={t.aside.create} />
 
-            <Modal onClose={handleClose} open={isOpen} title={t.create.modalTitle}>
+            <Modal onClose={handleClose} open={isOpen} size={'full'} title={t.create.modalTitle}>
                 <ModalContentWrapper>
                     {(isLoadingImage || isLoadingPost) && <Loader fullScreen />}
 

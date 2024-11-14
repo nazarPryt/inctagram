@@ -10,12 +10,17 @@ export const AllPostsListStyled = styled.div`
     .infiniteScrollWrapper {
         display: flex;
         flex-direction: column;
-        //align-items: center; //todo place center
+        align-items: center; //todo place center
         overflow: auto;
         width: 100%;
     }
 
     @media (max-width: ${breakpoints.mobile}px) {
         grid-template-columns: 1fr;
+    }
+    @media (max-width: 570px) {
+        .infiniteScrollWrapper {
+            align-items: normal;
+        }
     }
 `

@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import {Post} from '@/entities/Post/Post'
 import {useGetAllPosts} from '@/entities/Post/hook/useGetAllPosts'
 import {ScrollToTop} from '@/features/ScrollToTop'
+import {EndMessageScrolling} from '@/shared/ui/EndMessageScrolling'
 import {NoPosts} from '@/shared/ui/NoPosts'
 import {AnimatePresence} from 'framer-motion'
 
@@ -26,11 +27,7 @@ export const AllPostsList = () => {
                 <div className={'infiniteScrollWrapper'}>
                     <InfiniteScroll
                         dataLength={posts.length}
-                        endMessage={
-                            <p style={{textAlign: 'center'}}>
-                                <b>Yay! You have seen it all</b>
-                            </p>
-                        }
+                        endMessage={<EndMessageScrolling text={'Yay! You have seen it all'} />}
                         hasMore={hasMore}
                         loader={<HomePostSkeleton />}
                         next={fetchMoreData}
