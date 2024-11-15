@@ -89,8 +89,11 @@ export const en = {
     },
     common: {
         currentLanguage: 'en',
+        no: 'No',
         test: 'Test',
+        yes: 'Yes',
     },
+
     create: {
         addLocation: 'Add location',
         createPost: {
@@ -177,6 +180,23 @@ export const en = {
         under13: 'A user under 13 cannot create a profile.',
         usernameExists: 'User with this username is already registered',
         whereAreYouLive: 'Please indicate which city you live in',
+    },
+    feature: {
+        post: {
+            report: {
+                p: (userName: string) =>
+                    `Why are you reporting this post? User ${userName} will be pressingly verified`,
+                reason: {
+                    advertising: 'Advertising placement',
+                    another: 'Another reason',
+                    bad_behavior: 'Bad behavior',
+                },
+                selectPlaceholder: 'Reason for report',
+                success: (userName: string, reportReason: string) =>
+                    `Thanks for your report, ${userName} will be checked for: ${reportReason}`,
+                title: 'Report',
+            },
+        },
     },
     generalInfo: {
         addModal: {

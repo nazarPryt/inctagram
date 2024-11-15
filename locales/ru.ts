@@ -1,5 +1,3 @@
-import {emailRFCRegex} from '@/shared/regex/regex'
-
 import {LocaleType} from './en'
 
 export const ru: LocaleType = {
@@ -92,9 +90,12 @@ export const ru: LocaleType = {
         },
         username: 'Имя пользователя',
     },
+
     common: {
         currentLanguage: 'ru',
+        no: 'Нет',
         test: 'Тест',
+        yes: 'Да',
     },
     create: {
         addLocation: 'Добавить места',
@@ -186,6 +187,23 @@ export const ru: LocaleType = {
         whereAreYouLive: 'Укажите в каком городе вы живете',
     },
 
+    feature: {
+        post: {
+            report: {
+                p: (userName: string) =>
+                    `Почему вы сообщаете об этом посте? Пользователь ${userName} будет срочно проверен`,
+                reason: {
+                    advertising: 'Размещение рекламы',
+                    another: 'Другая причина',
+                    bad_behavior: 'Плохое поведение',
+                },
+                selectPlaceholder: 'Причина',
+                success: (userName: string, reportReason: string) =>
+                    `Спасибо за ваш отчет, ${userName} будет проверяться на наличие: ${reportReason}`,
+                title: 'Пожаловаться',
+            },
+        },
+    },
     generalInfo: {
         addModal: {
             saveBtn: 'Сохранить',
