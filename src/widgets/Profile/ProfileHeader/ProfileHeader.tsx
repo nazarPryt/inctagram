@@ -17,16 +17,18 @@ import {useRouter} from 'next/router'
 import {ProfileHeaderWrapper} from './ProfileHeader.styled'
 import {ProfileHeaderSkeleton} from './ProfileHeaderSkeleton'
 
-type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType | undefined}
+type PropsType = {isLoadingUser?: boolean; mode: ComponentMode; user: PublicProfileType}
 
 export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const [isFollowersModalOpen, setIsFollowersModalOpen] = useState(false)
     const [isFollowingModalOpen, setIsFollowingModalOpen] = useState(false)
-    const {data: authProfile, isLoading: authProfileLoading} = useGetAuthProfileQuery(user?.userName, {
+    const {data: authProfile} = useGetAuthProfileQuery(user.userName, {
         skip: !user?.userName || mode === 'publick',
     })
     const {handleFollowUnFollow} = useFollowUnFollow(authProfile && authProfile.id)
 
+    // console.log('user', user)
+    // console.log('authProfile', authProfile)
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -74,15 +76,15 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const clickable = (
         <>
             <button onClick={openFollowingHandler}>
-                <span>{user!.userMetadata.following}</span>
+                <span>{authProfile ? authProfile.followingCount : 0}</span>
                 {t.profile.following}
             </button>
             <button onClick={openFollowersHandler}>
-                <span>{user!.userMetadata.followers}</span>
+                <span>{authProfile ? authProfile.followersCount : 0}</span>
                 {t.profile.followers}
             </button>
             <div>
-                <span>{user!.userMetadata.publications}</span>
+                <span>{authProfile ? authProfile.publicationsCount : 0}</span>
                 {t.profile.publications}
             </div>
         </>
@@ -90,15 +92,15 @@ export const ProfileHeader = ({isLoadingUser, mode, user}: PropsType) => {
     const unClickable = (
         <>
             <div>
-                <span>{user!.userMetadata.following}</span>
+                <span>{user.userMetadata.following}</span>
                 {t.profile.following}
             </div>
             <div>
-                <span>{user!.userMetadata.followers}</span>
+                <span>{user.userMetadata.followers}</span>
                 {t.profile.followers}
             </div>
             <div>
-                <span>{user!.userMetadata.publications}</span>
+                <span>{user.userMetadata.publications}</span>
                 {t.profile.publications}
             </div>
         </>

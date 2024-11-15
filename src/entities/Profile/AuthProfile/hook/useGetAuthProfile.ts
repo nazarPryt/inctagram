@@ -4,7 +4,7 @@ import {useGetAuthProfileQuery} from '../api/authProfile.api'
 
 type PropsType = {
     mode: ComponentMode
-    userName: string | undefined
+    userName: string
 }
 export const useGetAuthProfile = ({mode, userName}: PropsType) => {
     const {data: authProfile, isLoading: isLoadingUser} = useGetAuthProfileQuery(userName, {
