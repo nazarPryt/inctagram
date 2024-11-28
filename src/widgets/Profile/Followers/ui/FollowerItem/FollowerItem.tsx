@@ -10,8 +10,9 @@ import {FollowerItemStyled} from './FollowerItem.styled'
 
 type PropsType = {
     follower: FollowerSchemaType
+    handleFollowersModalClose: () => void
 }
-export const FollowerItem = ({follower}: PropsType) => {
+export const FollowerItem = ({follower, handleFollowersModalClose}: PropsType) => {
     const {userId: currentUserId} = useAuth()
     const {handleFollowUnFollow} = useFollowUnFollow(follower.userId)
     const avatar = follower.avatars.length ? follower.avatars[0].url : ''
@@ -27,7 +28,9 @@ export const FollowerItem = ({follower}: PropsType) => {
                 <div>
                     <Avatar size={40} src={avatar} userName={follower.userName} />
                 </div>
-                <Link href={`${PATH.USER_PROFILE}/${follower.userId}`}>{follower.userName}</Link>
+                <Link href={`${PATH.USER_PROFILE}/${follower.userId}`} onClick={handleFollowersModalClose}>
+                    {follower.userName}
+                </Link>
             </div>
             <div className={'buttonsGroup'}>
                 {currentUserId !== follower.userId &&

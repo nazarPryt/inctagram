@@ -17,7 +17,11 @@ export const Followers = ({handleFollowersModalClose, isFollowersModalOpen, user
             size={'md'}
             title={`${totalFollowers} Followers`}
         >
-            <FollowersList followers={followers} isLoading={isLoading} />
+            <FollowersList
+                followers={followers}
+                handleFollowersModalClose={handleFollowersModalClose}
+                isLoading={isLoading}
+            />
         </Modal>
     )
 }

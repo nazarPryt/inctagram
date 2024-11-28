@@ -7,9 +7,10 @@ import {FollowersListSkeleton} from './FollowersListSkeleton'
 
 type PropsType = {
     followers: FollowerSchemaType[]
+    handleFollowersModalClose: () => void
     isLoading: boolean
 }
-export const FollowersList = ({followers, isLoading}: PropsType) => {
+export const FollowersList = ({followers, handleFollowersModalClose, isLoading}: PropsType) => {
     if (isLoading) {
         return <FollowersListSkeleton />
     }
@@ -20,7 +21,13 @@ export const FollowersList = ({followers, isLoading}: PropsType) => {
     return (
         <FollowersListStyled>
             {followers.map(follower => {
-                return <FollowerItem follower={follower} key={follower.id} />
+                return (
+                    <FollowerItem
+                        follower={follower}
+                        handleFollowersModalClose={handleFollowersModalClose}
+                        key={follower.id}
+                    />
+                )
             })}
         </FollowersListStyled>
     )
