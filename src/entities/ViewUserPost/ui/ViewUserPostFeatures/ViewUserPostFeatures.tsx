@@ -1,5 +1,5 @@
 import {AddToFavorites} from '@/features/Post/AddToFavorites/AddToFavorites'
-import {LikePost} from '@/features/Post/Likes/LikePost/LikePost'
+import {LikePost} from '@/features/Post/Likes/LikePost/ui/LikePost'
 import {Share} from '@/features/Post/Share/Share'
 import {ComponentMode} from '@/shared/hooks/useMode'
 
@@ -13,7 +13,7 @@ export const ViewUserPostFeatures = ({mode}: PropsType) => {
         return (
             <ViewUserPostFeaturesWrapper>
                 <div className={'box'}>
-                    <LikePost />
+                    <LikePost isLiked postId={0} />
                     <Share />
                 </div>
                 <AddToFavorites />

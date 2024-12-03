@@ -17,7 +17,11 @@ export const Following = ({handleFollowingModalClose, isFollowingModalOpen, user
             size={'md'}
             title={`${totalFollowing} Following`}
         >
-            <FollowingList following={following} isLoading={isLoading} />
+            <FollowingList
+                following={following}
+                handleFollowingModalClose={handleFollowingModalClose}
+                isLoading={isLoading}
+            />
         </Modal>
     )
 }

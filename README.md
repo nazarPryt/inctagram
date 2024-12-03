@@ -24,7 +24,7 @@ Developed a comprehensive social media application closely like Instagram, desig
 **CI/CD:** Jenkins, Kubernetes
 
 
-## Belowe you can check some screenshots about this aplication
+## Below you can check some screenshots about this application
 
 
 ![Screenshot1](https://github.com/nazarPryt/inctagram/raw/main/public/readme/Screenshot1.webp)

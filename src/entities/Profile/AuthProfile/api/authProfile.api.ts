@@ -1,12 +1,13 @@
 import {rtkQuery} from '@/_app/Api/client/RTKQuery'
 import {SetFollowUnFollowUserNameAC} from '@/_app/Store/slices/paramsSlice'
 
-import {AuthProfileSchema} from '../helpers/authProfile.schema'
+import {AuthProfileSchema, AuthProfileType} from '../helpers/authProfile.schema'
 
 export const authProfileApi = rtkQuery.injectEndpoints({
     endpoints: build => ({
-        getAuthProfile: build.query({
+        getAuthProfile: build.query<AuthProfileType, string>({
             async onQueryStarted(args, {dispatch}) {
+                console.log('args: ', args)
                 dispatch(SetFollowUnFollowUserNameAC(args))
             },
             providesTags: ['AuthProfile'],

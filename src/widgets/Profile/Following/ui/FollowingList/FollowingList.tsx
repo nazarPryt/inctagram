@@ -7,9 +7,10 @@ import {FollowingListSkeleton} from './FollowingListSkeleton'
 
 type PropsType = {
     following: FollowingSchemaType[]
+    handleFollowingModalClose: () => void
     isLoading: boolean
 }
-export const FollowingList = ({following, isLoading}: PropsType) => {
+export const FollowingList = ({following, handleFollowingModalClose, isLoading}: PropsType) => {
     if (isLoading) {
         return <FollowingListSkeleton />
     }
@@ -20,7 +21,13 @@ export const FollowingList = ({following, isLoading}: PropsType) => {
     return (
         <FollowingListStyled>
             {following.map(following => {
-                return <FollowingItem following={following} key={following.id} />
+                return (
+                    <FollowingItem
+                        following={following}
+                        handleFollowingModalClose={handleFollowingModalClose}
+                        key={following.id}
+                    />
+                )
             })}
         </FollowingListStyled>
     )

@@ -13,7 +13,7 @@ export const followUnFollowAPI = rtkQuery.injectEndpoints({
             invalidatesTags: ['AuthProfile'],
             async onQueryStarted({selectedUserId}, {dispatch, getState, queryFulfilled}) {
                 const state = getState() as RootState
-                const userName = state.params.followUnFollow.userName
+                const userName = state.params.followUnFollow.userName ?? ''
 
                 const patchResult = dispatch(
                     authProfileApi.util.updateQueryData('getAuthProfile', userName, (draft: AuthProfileType) => {
